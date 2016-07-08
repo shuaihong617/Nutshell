@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80B76382-4A40-42E2-97B5-466AE5BEF644}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nutshell.Presentation.GDIPlus.Hardware.Vision</RootNamespace>
+    <AssemblyName>Nutshell.Presentation.GDIPlus.Hardware.Vision</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CameraSence.cs" />
+    <Compile Include="CameraRenderer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Drawing.Imaging.Tests\Nutshell.Drawing.Imaging.Tests.csproj">
+      <Project>{e3f5cf37-402d-4efd-a62f-bd20c977ad51}</Project>
+      <Name>Nutshell.Drawing.Imaging.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
+      <Project>{5E9EC531-B6EA-4BA9-A3A5-DD40436860D7}</Project>
+      <Name>Nutshell.Drawing.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Hardware.Vision\Nutshell.Hardware.Vision.csproj">
+      <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
+      <Name>Nutshell.Hardware.Vision</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Hardware\Nutshell.Hardware.csproj">
+      <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>
+      <Name>Nutshell.Hardware</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell\Nutshell.csproj">
+      <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
+      <Name>Nutshell</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Presentation.GDIPlus\Nutshell.Presentation.GDIPlus.csproj">
+      <Project>{deb2dd79-c9b7-4c45-a1d3-12732803ec19}</Project>
+      <Name>Nutshell.Presentation.GDIPlus</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
