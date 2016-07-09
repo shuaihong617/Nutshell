@@ -21,7 +21,7 @@ namespace Nutshell.Presentation.GDIPlus.Hardware.Vision
         /// <summary>
         ///         Class CameraRender.
         /// </summary>
-        public class CameraRenderer : CameraProcessor
+        public class CameraRenderer : CameraConsumer
         {
                 /// <summary>
                 ///         初始化<see cref="CameraRenderer" />的新实例.

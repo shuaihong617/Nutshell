@@ -16,6 +16,7 @@ using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Drawing.Shapes;
 using Nutshell.Hardware.Vision.Models;
+using Nutshell.Threading;
 
 namespace Nutshell.Hardware.Vision
 {
@@ -100,7 +101,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         格式
                 /// </summary>
-                public BitmapPool BitmapPool { get; private set; }
+                public Pool<Bitmap> BitmapPool { get; private set; }
 
                 #endregion
 
@@ -142,13 +143,18 @@ namespace Nutshell.Hardware.Vision
                 }
 
                 /// <summary>
-                /// 创建图像缓冲区
+                /// 创建图像缓冲池
                 /// </summary>
                 public void CreateBitmapPool()
                 {
                         if (BitmapPool == null)
                         {
-                                BitmapPool = new BitmapPool(this, Region.Width, Region.Height, PixelFormat);
+                                BitmapPool = new Pool<Bitmap>(this, "图像缓冲池");
+                                for (int i = 1; i < 8; i++)
+                                {
+                                        var bitmap = new Bitmap(BitmapPool, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
+                                        BitmapPool.Add(bitmap);
+                                }
                         }
                 }
 

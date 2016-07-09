@@ -19,18 +19,18 @@ using Nutshell.Drawing.Imaging;
 namespace Nutshell.Hardware.Vision
 {
         /// <summary>
-        ///         摄像机图像处理器
+        ///         摄像机图像消费者
         /// </summary>
-        public abstract class CameraProcessor : Worker
+        public abstract class CameraConsumer : Worker
         {
                 /// <summary>
-                ///         初始化<see cref="CameraProcessor" />的新实例.
+                ///         初始化<see cref="CameraConsumer" />的新实例.
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                protected CameraProcessor(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
+                protected CameraConsumer(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
                         : base(parent, id)
                 {
                         camera.MustNotNull();

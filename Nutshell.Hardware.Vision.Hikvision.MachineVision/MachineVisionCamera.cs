@@ -123,7 +123,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                         this.Warn("摄像机断开连接");
 
                                         Stop();
-
+                                        Start();
                                         break;
                         }
                 }

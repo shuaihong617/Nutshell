@@ -17,7 +17,6 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 private readonly ReaderWriterLockSlim _bitmapLock = new ReaderWriterLockSlim();
 
-                
                 public void UpdateBufferBitmap(Drawing.Imaging.Bitmap bitmap)
                 {
                         if (_bitmapLock.TryEnterWriteLock(20))

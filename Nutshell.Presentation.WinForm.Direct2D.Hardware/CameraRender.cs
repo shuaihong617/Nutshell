@@ -9,7 +9,7 @@ using BitmapRenderTarget = SharpDX.Direct2D1.BitmapRenderTarget;
 
 namespace Nutshell.Presentation.WinForm.Direct2D.Hardware
 {
-        public abstract class CameraRender : CameraProcessor
+        public abstract class CameraRender : CameraConsumer
         {
                 protected CameraRender(IdentityObject parent, string id, Control control, Camera camera)
                         : base(parent, id, camera, Drawing.Imaging.PixelFormat.Bgra32)
