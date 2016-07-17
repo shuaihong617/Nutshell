@@ -53,9 +53,8 @@ namespace Nutshell
                 #endregion
 
                 /// <summary>
-                /// 获取或设置标识
+                /// 标识
                 /// </summary>
-                /// <value>标识</value>
                 public string Id
                 {
                         get { return _id; }
@@ -73,9 +72,8 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                /// 获取全局标识
+                /// 全局标识
                 /// </summary>
-                /// <value>全局标识</value>
                 public string GlobalId
                 {
                         get { return _globalId; }
@@ -93,9 +91,8 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                /// 获取上级对象
+                /// 上级对象
                 /// </summary>
-                /// <value>上级对象</value>
                 public IdentityObject Parent
                 {
                         get { return _parent; }

@@ -3,7 +3,7 @@
 namespace Nutshell.Drawing.Shapes
 {
         /// <summary>
-        ///         刻度
+        ///         直线刻度
         /// </summary>
         public class LineScale : Scale, IHitTest
         {

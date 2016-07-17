@@ -23,18 +23,19 @@ namespace Nutshell
         public enum ReadWriteMode
         {
                 None = 0,
+
                 /// <summary>
-                ///         上
+                ///         读
                 /// </summary>
                 Read = 1,
 
                 /// <summary>
-                ///         下
+                ///         写
                 /// </summary>
                 Write = 2,
 
                 /// <summary>
-                ///         未知
+                ///         读和写
                 /// </summary>
                 ReadWrite = Read | Write,
         }

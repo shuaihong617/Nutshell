@@ -20,12 +20,12 @@ namespace Nutshell.Hardware
         public enum RunMode
         {
                 /// <summary>
-                ///         发布模式
+                ///         发布模式，在此模式下设备按实际工作方式运行
                 /// </summary>
                 Release = 0,
 
                 /// <summary>
-                ///         调试模式
+                ///         调试模式，用于模拟测试或其他用途
                 /// </summary>
                 Debug = 1,
 

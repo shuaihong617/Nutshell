@@ -16,13 +16,13 @@ using System.Xml.Serialization;
 namespace Nutshell.Data.Models
 {
         /// <summary>
-        ///         主键对象序列化数据模型
+        ///         标识对象序列化数据模型
         /// </summary>
         [XmlRoot]
         public class IdentityModel : IIdentityModel
         {
                 /// <summary>
-                ///         主键
+                ///         标识
                 /// </summary>
                 [XmlAttribute]
                 public string Id { get; set; }

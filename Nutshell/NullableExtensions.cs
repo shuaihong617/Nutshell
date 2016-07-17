@@ -14,7 +14,7 @@
 namespace Nutshell
 {
         /// <summary>
-        ///         短整形扩展方法
+        ///         可空短整形扩展方法
         /// </summary>
         public static class NullableShortExtensions
         {

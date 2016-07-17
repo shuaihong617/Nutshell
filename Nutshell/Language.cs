@@ -15,23 +15,14 @@
 namespace Nutshell
 {
         /// <summary>
-        ///         方向枚举
+        ///         语言类型枚举
         /// </summary>
         public enum Language
         {
-                /// <summary>
-                ///         未知
-                /// </summary>
                 未定义 = 0,
 
-                /// <summary>
-                ///         上
-                /// </summary>
                 中文 = 1,
 
-                /// <summary>
-                ///         下
-                /// </summary>
                 英文 = 2,
         }
 }

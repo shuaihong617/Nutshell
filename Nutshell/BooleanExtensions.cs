@@ -21,10 +21,9 @@ namespace Nutshell
         public static class BooleanExtensions
         {
                 /// <summary>
-                ///         Musts the true.
+                ///         值必须为真
                 /// </summary>
-                /// <param name="value">if set to <c>true</c> [value].</param>
-                /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+                /// <param name="value">待判定的值</param>
                 public static void MustTrue(this bool value)
                 {
                         if (!value)
@@ -35,10 +34,9 @@ namespace Nutshell
 
 
                 /// <summary>
-                ///         Musts the false.
+                ///         值必须为假
                 /// </summary>
-                /// <param name="value">if set to <c>true</c> [value].</param>
-                /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+                /// <param name="value">待判定的值</param>
                 public static void MustFalse(this bool value)
                 {
                         if (value)
@@ -48,32 +46,32 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                ///         Musts the false.
+                ///         返回当前变量与条件变量与运算的结果
                 /// </summary>
-                /// <param name="value">if set to <c>true</c> [value].</param>
-                /// <param name="condition">if set to <c>true</c> [condition].</param>
-                /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+                /// <param name="value">当前变量</param>
+                /// <param name="condition">进行与运算的条件变量</param>
+                /// <returns>与运算的结果</returns>
                 public static bool And(this bool value, bool condition)
                 {
                         return value && condition;
                 }
 
                 /// <summary>
-                ///         Musts the false.
+                ///         返回当前变量与条件变量或运算的结果
                 /// </summary>
-                /// <param name="value">if set to <c>true</c> [value].</param>
-                /// <param name="condition">if set to <c>true</c> [condition].</param>
-                /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+                /// <param name="value">当前变量</param>
+                /// <param name="condition">进行或运算的条件变量</param>
+                /// <returns>或运算的结果</returns>
                 public static bool Or(this bool value, bool condition)
                 {
                         return value || condition;
                 }
 
                 /// <summary>
-                ///         To the string ex.
+                ///         返回变量的中文形式字符串
                 /// </summary>
                 /// <param name="value">if set to <c>true</c> [b].</param>
-                /// <returns>String.</returns>
+                /// <returns>中文形式字符串</returns>
                 public static String ToChineseString(this bool value)
                 {
                         return value ? "是" : "否";

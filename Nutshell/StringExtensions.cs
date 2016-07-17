@@ -24,18 +24,16 @@ namespace Nutshell
         public static class StringExtensions
         {
                 /// <summary>
-                ///         Requires the not null.
+                ///         当前字符串不能为空引用或空字符串
                 /// </summary>
-                /// <param name="value">The value.</param>
-                /// <returns>System.Object.</returns>
+                /// <param name="value">判定字符串</param>
                 /// <exception cref="System.ArgumentException">The value can't be null or empty</exception>
-                public static string MustNotNullOrEmpty(this string value)
+                public static void MustNotNullOrEmpty(this string value)
                 {
                         if (String.IsNullOrEmpty(value))
                         {
                                 throw new ArgumentException("不能为空引用或空字符串！");
                         }
-                        return value;
                 }
 
                 /// <summary>

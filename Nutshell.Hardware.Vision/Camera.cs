@@ -26,13 +26,13 @@ namespace Nutshell.Hardware.Vision
         public abstract class Camera : CaptureDevice<Bitmap>
         {
                 /// <summary>
-                /// Initializes a new instance of the <see cref="Camera" /> class.
+                /// 初始化<see cref="Camera" />的实例
                 /// </summary>
-                /// <param name="parent">The parent.</param>
-                /// <param name="id">The identifier.</param>
-                /// <param name="width">The width.</param>
-                /// <param name="height">The height.</param>
-                /// <param name="pixelFormat">The image format.</param>
+                /// <param name="parent">上级对象</param>
+                /// <param name="id">标识</param>
+                /// <param name="width">水平采集分辨率</param>
+                /// <param name="height">垂直采集分辨率</param>
+                /// <param name="pixelFormat">采集图像像素格式</param>
                 protected Camera(IdentityObject parent, string id = "", int width = 2, int height = 2,
                         PixelFormat pixelFormat = PixelFormat.Mono8)
                         : base( parent, id)
@@ -131,7 +131,6 @@ namespace Nutshell.Hardware.Vision
                 {
                         base.Save(model);
                         
-
                         var cameraModel = model as CameraModel;
                         Trace.Assert(cameraModel != null);
 

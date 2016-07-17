@@ -16,15 +16,15 @@ using System;
 namespace Nutshell
 {
         /// <summary>
-        ///         DateTime struce extensions
+        ///         双精度浮点数扩展方法
         /// </summary>
         public static class DoubleExtensions
         {
                 /// <summary>
-                ///         Musts the specified value.
+                ///         返回当前双精度浮点数的字节形式
                 /// </summary>
-                /// <param name="value">if set to <c>true</c> [value].</param>
-                /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+                /// <param name="value">转换前数值</param>
+                /// <returns>转换后数值</returns>
                 public static Byte ToByte(this double value)
                 {
                         if (value > 255)

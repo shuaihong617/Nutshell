@@ -16,16 +16,18 @@ using System;
 namespace Nutshell.Data
 {
         /// <summary>
-        ///         主键接口
+        ///         标识对象接口
         /// </summary>
         public interface IIdentityObject
         {
                 /// <summary>
                 ///         标识
                 /// </summary>
-                /// <value>The key.</value>
                 String Id { get; }
 
+                /// <summary>
+                ///         全局标识
+                /// </summary>
                 String GlobalId { get;}
         }
 }

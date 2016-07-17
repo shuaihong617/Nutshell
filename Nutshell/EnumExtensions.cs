@@ -25,10 +25,10 @@ namespace Nutshell
         public static class EnumExtensions
         {
                 /// <summary>
-                ///         将该枚举所有成员转换为列表
+                ///         为该枚举所有成员创建一个列表
                 /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <returns>List&lt;T&gt;.</returns>
+                /// <typeparam name="T">枚举类型</typeparam>
+                /// <returns>包含该枚举类型所有成员的列表</returns>
                 public static List<T> CreateList<T>() where T : struct
                 {
                         Type t = typeof (T);

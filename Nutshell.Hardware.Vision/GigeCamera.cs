@@ -53,7 +53,6 @@ namespace Nutshell.Hardware.Vision
                 {
                         base.Load(model);
 
-
                         var gigeCameraModel = model as GigeCameraModel;
                         Trace.Assert(gigeCameraModel != null);
 

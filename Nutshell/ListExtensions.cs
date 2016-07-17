@@ -22,11 +22,11 @@ namespace Nutshell
         public static class ListExtensions
         {
                 /// <summary>
-                ///         Musts the specified value.
+                ///         将当前列表转换为只读集合
                 /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="list">The dictionary.</param>
-                /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+                /// <typeparam name="T">列表数据类型</typeparam>
+                /// <param name="list">列表</param>
+                /// <returns>转换后的只读集合</returns>
                 public static ReadOnlyCollection<T> ToReadOnlyCollection<T>(this List<T> list)
                 {
                         return new ReadOnlyCollection<T>(list);

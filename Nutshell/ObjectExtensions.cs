@@ -22,11 +22,10 @@ namespace Nutshell
         public static class ObjectExtensions
         {
                 /// <summary>
-                ///         Requires the not null.
+                ///         当前对象不能为空
                 /// </summary>
                 /// <typeparam name="T"></typeparam>
-                /// <param name="value">The value.</param>
-                /// <returns>System.Object.</returns>
+                /// <param name="value">待判定对象</param>
                 /// <exception cref="System.ArgumentException">不能为空引用！</exception>
                 public static void MustNotNull<T>(this T value, string message = "不能为空引用！") where T : class
                 {
@@ -37,11 +36,11 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                ///         Determines whether the specified value is null.
+                ///         判断当前对象是否为空引用
                 /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="value">The value.</param>
-                /// <returns><c>true</c> if the specified value is null; otherwise, <c>false</c>.</returns>
+                /// <typeparam name="T">对象类型</typeparam>
+                /// <param name="value">当前对象</param>
+                /// <returns>当前对象为空引用则返回True，否则返回False</returns>
                 public static bool IsNull<T>(this T value) where T : class
                 {
                         return value == null;
@@ -49,11 +48,11 @@ namespace Nutshell
 
 
                 /// <summary>
-                ///         Determines whether the specified value is null.
+                ///         判断当前对象是否不为空引用
                 /// </summary>
-                /// <typeparam name="T"></typeparam>
-                /// <param name="value">The value.</param>
-                /// <returns><c>true</c> if the specified value is null; otherwise, <c>false</c>.</returns>
+                /// <typeparam name="T">对象类型</typeparam>
+                /// <param name="value">当前对象</param>
+                /// <returns>当前对象不为空引用则返回True，否则返回False</returns>
                 public static bool IsNotNull<T>(this T value) where T : class
                 {
                         return value != null;
