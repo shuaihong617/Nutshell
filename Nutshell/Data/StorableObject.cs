@@ -24,10 +24,10 @@ namespace Nutshell.Data
         public class StorableObject : IdentityObject
         {
                 /// <summary>
-                /// 初始化<see cref="IdentityObject" />的新实例.
+                /// 初始化<see cref="StorableObject" />的新实例.
                 /// </summary>
-                /// <param name="parent">The parent.</param>
-                /// <param name="id">主键</param>
+                /// <param name="parent">上级对象</param>
+                /// <param name="id">标识</param>
                 public StorableObject(IdentityObject parent = null, string id = "")
                         :base(parent, id)
                 {
@@ -47,6 +47,11 @@ namespace Nutshell.Data
                         Id = model.Id;
                 }
 
+                /// <summary>
+                /// 从文件反序列化数据模型并加载数据
+                /// </summary>
+                /// <typeparam name="T">数据模型的数据类型</typeparam>
+                /// <param name="filePath">文件类型</param>
                 public void Load<T>(string filePath) where T : class, IStorableModel
                 {
                         var model = XmlStorage.Load<T>(filePath);

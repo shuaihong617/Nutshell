@@ -11,15 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Speech.Synthesis;
-
 using Nutshell.Components;
 using Nutshell.Data.Models;
 using Nutshell.Log;
@@ -40,8 +37,8 @@ namespace Nutshell.Speech
                 /// <summary>
                 ///         数据缓存上下文私有构造函数
                 /// </summary>
-                public SpeechSynthesizer(string id = "未命名语音合成服务", Language language = Language.中文)
-                        : base(id)
+                public SpeechSynthesizer(IdentityObject parent, string id = "未命名语音合成服务", Language language = Language.中文)
+                        : base(parent, id)
                 {
                         Language = language;
                 }
@@ -100,7 +97,7 @@ namespace Nutshell.Speech
 
                 #endregion 方法
 
-                public override void Load(IIdentityModel model)
+                public override void Load(IStorableModel model)
                 {
                         base.Load(model);
 

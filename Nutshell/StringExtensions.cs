@@ -13,6 +13,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -75,7 +76,7 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                /// Requires the not null.
+                ///         Requires the not null.
                 /// </summary>
                 /// <param name="value">The value.</param>
                 /// <param name="end">The end.</param>
@@ -121,7 +122,7 @@ namespace Nutshell
 
                 public static T ToEnum<T>(this string source) where T : struct
                 {
-                        return (T)Enum.Parse(typeof(T), source);
+                        return (T) Enum.Parse(typeof (T), source);
                 }
 
                 public static bool ToBool(this string source)
@@ -132,7 +133,7 @@ namespace Nutshell
                 public static bool ToBoolWithDefault(this string source, bool def = false)
                 {
                         bool result;
-                        return bool.TryParse(source, out  result) ? result : def;
+                        return bool.TryParse(source, out result) ? result : def;
                 }
 
                 public static Byte ToByte(this string source)
@@ -153,6 +154,23 @@ namespace Nutshell
                 public static Single ToSingle(this string source)
                 {
                         return Convert.ToSingle(source);
+                }
+
+
+                public static void MustFileHasExist(this string path)
+                {
+                        if (!File.Exists(path))
+                        {
+                                throw new InvalidOperationException("文件 " + path + " 不存在");
+                        }
+                }
+
+                public static void MustDirectoryHasExist(this string path)
+                {
+                        if (!Directory.Exists(path))
+                        {
+                                throw new InvalidOperationException("目录 " + path + " 不存在");
+                        }
                 }
         }
 }

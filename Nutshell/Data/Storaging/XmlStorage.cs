@@ -44,6 +44,8 @@ namespace Nutshell.Data.Storaging
 
                 public static T Load<T>(string path) where T : class, IStorableModel
                 {
+                        path.MustFileHasExist();
+
                         using (var stream = File.OpenRead(path))
                         {
                                 return MSSerializers.GetMSSerializer(typeof (T)).Deserialize<T>(stream);

@@ -18,7 +18,7 @@ namespace Nutshell.Speech.Models
         /// <summary>
         ///         工作者数据模型接口
         /// </summary>
-        public interface ISpeechSynthesizerModel : IIdentityModel
+        public interface ISpeechSynthesizerModel : IStorableModel
         {
                 /// <summary>
                 ///         是否启用

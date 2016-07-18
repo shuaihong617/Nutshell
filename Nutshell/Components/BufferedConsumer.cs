@@ -12,12 +12,9 @@
 // ***********************************************************************
 
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using Nutshell.Collections;
 using Nutshell.Components.Models;
-using Nutshell.Data;
 using Nutshell.Data.Models;
-using Nutshell.Log;
 
 namespace Nutshell.Components
 {
@@ -34,18 +31,18 @@ namespace Nutshell.Components
 
                 protected IBuffer<T> Buffer { get; set; }
 
-                private Looper Looper { get;  set; }
+                private Looper Looper { get; set; }
 
                 public override void Load(IStorableModel model)
                 {
                         model.MustNotNull();
                         Trace.Assert(model is IBufferedModel);
-                        
+
 
                         base.Load(model);
 
                         var bufferedModel = (IBufferedModel) model;
-                        var looperModel = bufferedModel.DequeueLooperModel;
+                        LooperModel looperModel = bufferedModel.DequeueLooperModel;
 
                         Trace.Assert(looperModel != null);
                         Looper.Load(looperModel);
@@ -69,7 +66,7 @@ namespace Nutshell.Components
 
                 private void Dequeue()
                 {
-                        var t = Buffer.Dequeue();
+                        T t = Buffer.Dequeue();
                         if (t == null)
                         {
                                 return;

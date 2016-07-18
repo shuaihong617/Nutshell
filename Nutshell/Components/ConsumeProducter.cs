@@ -10,15 +10,16 @@
 // <summary>
 // </summary>
 // ***********************************************************************
+
 using System;
-using Nutshell.Data;
 
 namespace Nutshell.Components
 {
         /// <summary>
         ///         消费-生产者
         /// </summary>
-        public abstract class ConsumeProducter<TC, TP> : Worker, IConsumeProducter<TC,TP> where TC: class where TP : class 
+        public abstract class ConsumeProducter<TC, TP> : Worker, IConsumeProducter<TC, TP> where TC : class
+                where TP : class
         {
                 protected ConsumeProducter(IdentityObject parent, string id)
                         : base(parent, id)
@@ -32,7 +33,7 @@ namespace Nutshell.Components
                 protected void Acquire(TC c)
                 {
                         OnAcquired(new ValueEventArgs<TC>(c));
-                        var p = Consume(c);
+                        TP p = Consume(c);
                         Dispatch(p);
                 }
 
@@ -77,7 +78,5 @@ namespace Nutshell.Components
                 }
 
                 #endregion
-
-                
         }
 }

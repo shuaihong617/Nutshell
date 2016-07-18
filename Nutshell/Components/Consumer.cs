@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using System;
-using Nutshell.Data;
 
 namespace Nutshell.Components
 {
@@ -21,7 +20,7 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Consumer<T> : Worker, IConsumer<T> where T : class
         {
-                protected Consumer(IdentityObject parent, string id="")
+                protected Consumer(IdentityObject parent, string id = "")
                         : base(parent, id)
                 {
                 }

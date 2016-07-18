@@ -12,12 +12,9 @@
 // ***********************************************************************
 
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using Nutshell.Collections;
 using Nutshell.Components.Models;
-using Nutshell.Data;
 using Nutshell.Data.Models;
-using Nutshell.Log;
 
 namespace Nutshell.Components
 {
@@ -40,12 +37,12 @@ namespace Nutshell.Components
                 {
                         model.MustNotNull();
                         Trace.Assert(model is IBufferedModel);
-                        
+
 
                         base.Load(model);
-                        
+
                         var bufferedModel = (IBufferedModel) model;
-                        var dequeueLooperModel = bufferedModel.DequeueLooperModel;
+                        LooperModel dequeueLooperModel = bufferedModel.DequeueLooperModel;
                         Trace.Assert(dequeueLooperModel != null);
 
                         DequeueLooper.Load(dequeueLooperModel);

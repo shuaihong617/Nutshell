@@ -111,17 +111,6 @@ namespace Nutshell.Drawing.Shapes
                 /// <value>刻度只读集合</value>
                 public ReadOnlyCollection<Scale> Scales { get; private set; }
 
-                public override void Load(IStorableModel model)
-                {
-                        base.Load(model);
-
-
-                }
-
-                public override void Save(IStorableModel model)
-                {
-                        base.Save(model);
-                }
 
                 /// <summary>
                 ///         命中测试
