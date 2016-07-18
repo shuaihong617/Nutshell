@@ -19,14 +19,14 @@ using SharpDX.DXGI;
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
         /// <summary>
-        /// 基于Direct2D的Winform控件渲染器
+        /// 基于Direct2D的Winform控件渲染场景
         /// </summary>
         public abstract class Sence : IdentityObject
         {
                 /// <summary>
                 /// 初始化<see cref="Sence" />的新实例.
                 /// </summary>
-                /// <param name="control">The control.</param>
+                /// <param name="control">渲染的目标控件</param>
                 protected Sence(IdentityObject parent, string id = "", Control control = null)
                         :base(parent, id)
                 {
@@ -37,6 +37,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         SurfaceRenderTarget = new WindowRenderTarget(Direct2D1Factory,
                                 new RenderTargetProperties
                                 (
+                                        //此处必须为B8G8R8A8格式，否则至少Win7不支持
                                         new PixelFormat(Format.B8G8R8A8_UNorm, SharpDX.Direct2D1.AlphaMode.Ignore)
                                 ),
                                 new HwndRenderTargetProperties
@@ -51,9 +52,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
 
                 /// <summary>
-                /// Gets the direct2 d1 factory.
+                /// 图像渲染工厂
                 /// </summary>
-                /// <value>The direct2 d1 factory.</value>
                 public SharpDX.Direct2D1.Factory Direct2D1Factory { get; private set; }
 
                 /// <summary>
@@ -66,6 +66,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 /// </summary>
                 public SharpDX.DirectWrite.Factory DirectWriteFactory { get; private set; }
 
+                /// <summary>
+                /// 渲染
+                /// </summary>
                 public abstract void Render();
         }
 }

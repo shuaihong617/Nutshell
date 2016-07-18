@@ -16,22 +16,22 @@ using SharpDX.Mathematics.Interop;
 namespace Nutshell.Presentation.Direct2D
 {
         /// <summary>
-        ///         Class Colors.
+        ///  预定义颜色
         /// </summary>
         public static class Colors
         {
                 /// <summary>
-                ///         The red
+                /// 红色
                 /// </summary>
                 public static readonly RawColor4 Red = new RawColor4(1, 0, 0, 1);
 
                 /// <summary>
-                ///         The green
+                /// 绿色
                 /// </summary>
                 public static readonly RawColor4 Green = new RawColor4(0, 1, 0, 1);
 
                 /// <summary>
-                ///         The blue
+                /// 蓝色
                 /// </summary>
                 public static readonly RawColor4 Blue = new RawColor4(0, 0, 1, 1);
         }

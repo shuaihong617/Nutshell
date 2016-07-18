@@ -17,22 +17,22 @@ using System.Drawing;
 namespace Nutshell.Presentation.GDIPlus
 {
         /// <summary>
-        ///         Class Colors.
+        ///         预定义画刷
         /// </summary>
         public static class Brushs
         {
                 /// <summary>
-                ///         The red
+                ///         红色画刷
                 /// </summary>
                 public static readonly SolidBrush RedBrush = new SolidBrush(Color.Red);
 
                 /// <summary>
-                ///         The green
+                ///         绿色画刷
                 /// </summary>
                 public static readonly SolidBrush GreenBrush = new SolidBrush(Color.Chartreuse);
 
                 /// <summary>
-                ///         The blue
+                ///         蓝色画刷
                 /// </summary>
                 public static readonly SolidBrush BlueBrush = new SolidBrush(Color.Blue);
         }

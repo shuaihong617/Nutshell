@@ -1,9 +1,26 @@
-﻿using System.Threading;
+﻿// ***********************************************************************
+// 作者           : 阿尔卑斯 shuaihong617@qq.com
+// 创建           : 2016-07-06
+//
+// 编辑           : 阿尔卑斯 shuaihong617@qq.com
+// 日期           : 2016-07-06
+// 内容           : 创建文件
+// ***********************************************************************
+// Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
+// <summary>
+// </summary>
+// ***********************************************************************
+
+ 
+using System.Threading;
 using System.Windows.Forms;
 using SharpDX.Direct2D1;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
+        ///<summary>
+        /// 双缓冲渲染场景
+        ///</summary>
         public abstract class BufferSence : Sence
         {
                 protected BufferSence(IdentityObject parent, string id = "", Control control = null)
