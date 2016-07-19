@@ -38,10 +38,10 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         Camera = camera;
 
                         RedBrush = new SolidColorBrush(BufferBitmapRenderTarget, Colors.Red);
-                        RedBrush = new SolidColorBrush(BufferBitmapRenderTarget, Colors.Red);
+                        BlueBrush = new SolidColorBrush(BufferBitmapRenderTarget, Colors.Blue);
 
                         TextFactory = new SharpDX.DirectWrite.Factory();
-                        YaHei36Font = new TextFormat(TextFactory, "Microsoft YaHei", 36);
+                        YaHei36Font = new TextFormat(TextFactory, "Microsoft YaHei", 24);
                 }
 
                 private Camera Camera { get;  set; }
@@ -55,8 +55,10 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 protected override void Render(RenderTarget target)
                 {              
-                        target.DrawText(Camera.Id,YaHei36Font, new RawRectangleF(20, 20, 500,120), RedBrush);
-                        //graphics.DrawString(Camera.Id, YaHei36Font, Brushes.LawnGreen, 20, 20);
+                        target.DrawText(Camera.Id,YaHei36Font, new RawRectangleF(20, 20, 500,120), BlueBrush);
+
+                        target.DrawText(Camera.IsConnected ? "在线" :"离线", YaHei36Font, 
+                                new RawRectangleF(Camera.Region.Width - 120, 20, 160, 120), Camera.IsConnected? BlueBrush:RedBrush);
                 }                
         }
 }

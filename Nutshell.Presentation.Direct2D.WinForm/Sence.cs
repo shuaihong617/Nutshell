@@ -31,6 +31,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         :base(parent, id)
                 {
                         control.MustNotNull();
+                        Control = control;
 
                         Direct2D1Factory = new SharpDX.Direct2D1.Factory();
 
@@ -42,14 +43,15 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                                 ),
                                 new HwndRenderTargetProperties
                                 {
-                                        Hwnd = control.Handle,
-                                        PixelSize = new Size2(control.Width, control.Height),
+                                        Hwnd = Control.Handle,
+                                        PixelSize = new Size2(Control.Width, Control.Height),
                                         PresentOptions = PresentOptions.None,
                                 }) {AntialiasMode = AntialiasMode.PerPrimitive};
 
                         DirectWriteFactory = new SharpDX.DirectWrite.Factory();
                 }
 
+                protected Control Control { get; private set; }
 
                 /// <summary>
                 /// 图像渲染工厂

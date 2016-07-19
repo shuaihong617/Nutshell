@@ -38,7 +38,18 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private CameraSence Sence { get; set; }
 
+                public bool IsRenderStarted
+                {
+                        get { return _isRenderStarted; }
+                        private set
+                        {
+                                _isRenderStarted = value;
+                                RaisePropertyChanged();
+                        }
+                }
+
                 protected static Font YaHei40Font = new Font("Microsoft YaHei", 40);
+                private bool _isRenderStarted;
 
                 protected override void ProcessCore()
                 {
@@ -54,11 +65,13 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 public void StartCycle()
                 {
                         Sence.Start();
+                        IsRenderStarted = true;
                 }
 
                 public void StopCycle()
                 {
                         Sence.Stop();
+                        IsRenderStarted = false;
                 }
         }
 }

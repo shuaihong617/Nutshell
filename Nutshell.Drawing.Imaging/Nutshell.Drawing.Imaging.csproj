@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic.Compatibility.Data" />
     <Reference Include="NLog">
-      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\..\青岛云路包车机器视觉监控系统\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,9 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell\Nutshell.csproj">
       <Project>{c394aad7-06a2-429b-a3b8-ac531ef77de1}</Project>
       <Name>Nutshell</Name>
@@ -65,6 +62,9 @@
       <Project>{f86ed66f-e231-44d5-a33d-bd29663a7c57}</Project>
       <Name>Nutshell.Drawing.Shapes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

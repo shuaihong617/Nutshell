@@ -90,7 +90,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                         if (_deviceInfo.MajorVer == 0)
                         {
-                                this.WarnFail("枚举摄像机", "未刷新到摄像机信息");
+                                this.WarnFail("枚举摄像机", "未枚举到摄像机信息");
                                 return false;
                         }
 
