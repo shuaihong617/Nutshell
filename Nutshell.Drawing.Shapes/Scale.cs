@@ -1,4 +1,5 @@
-﻿using Nutshell.Components;
+﻿using System;
+using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Shapes.Models;
@@ -13,15 +14,12 @@ namespace Nutshell.Drawing.Shapes
                 public Scale(IdentityObject parent, string id = "")
                         : base(parent, id)
                 {
+                        Segment = new Segment(this);
                 }
 
-                public int X { get; set; }
-
-                public int Y { get; set; }
+                public Segment Segment { get;private set; }
 
                 public virtual int Value { get; private set; }
-
-                public Ruler Ruler { get; set; }
 
                 public override void Load(IStorableModel model)
                 {
@@ -30,9 +28,11 @@ namespace Nutshell.Drawing.Shapes
 
                         base.Load(model);
 
-                        X = scaleModel.X;
-                        Y = scaleModel.Y;
                         Value = scaleModel.Value;
+
+                        scaleModel.SegmentModel.MustNotNull();
+                        Segment.Load(scaleModel.SegmentModel);
+
                 }
 
                 public override void Save(IStorableModel model)
@@ -42,9 +42,9 @@ namespace Nutshell.Drawing.Shapes
 
                         base.Save(model);
 
-                        scaleModel.X = X;
-                        scaleModel.Y = Y;
                         scaleModel.Value = Value;
+
+                        Segment.Save(scaleModel.SegmentModel);
                 }
 
 
@@ -57,8 +57,14 @@ namespace Nutshell.Drawing.Shapes
                 /// <returns>如果命中返回<c>true</c>, 否则返回<c>false</c></returns>
                 public virtual bool HitTest(float x, float y, float threshold = 16)
                 {
-                        return x.IsBetween(X + threshold, X - threshold)
-                               && (y.IsBetween(Y + threshold, Y - threshold));
+                        var xmax = Math.Max(Segment.X1, Segment.X2);
+                        var xmin = Math.Min(Segment.X1, Segment.X2);
+
+                        var ymax = Math.Max(Segment.Y1, Segment.Y2);
+                        var ymin = Math.Min(Segment.Y1, Segment.Y2);
+
+                        return x.IsBetween(xmax + threshold, xmin - threshold)
+                               && (y.IsBetween(ymax + threshold, ymin - threshold));
                 }
         }
 }

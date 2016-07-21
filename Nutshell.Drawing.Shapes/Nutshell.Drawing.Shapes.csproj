@@ -43,16 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\LineModel.cs" />
+    <Compile Include="Models\SegmentModel.cs" />
     <Compile Include="Models\RegionModel.cs" />
     <Compile Include="Models\RulerModel.cs" />
-    <Compile Include="Models\OneDimensionScaleModel.cs" />
     <Compile Include="Models\ScaleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Region.cs" />
-    <Compile Include="Ruler.cs" />
-    <Compile Include="OneDimensionScale.cs" />
-    <Compile Include="Line.cs" />
+    <Compile Include="Segment.cs" />
     <Compile Include="Scale.cs" />
   </ItemGroup>
   <ItemGroup>

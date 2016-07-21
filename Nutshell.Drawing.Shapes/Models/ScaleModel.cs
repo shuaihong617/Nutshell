@@ -6,21 +6,19 @@ namespace Nutshell.Drawing.Shapes.Models
         /// <summary>
         ///         刻度
         /// </summary>
-        /// <value>The width.</value>
         [XmlType]
         public class ScaleModel : StorableModel
         {
-                /// <summary>
-                ///         水平坐标
-                /// </summary>
-                [XmlAttribute]
-                public int X { get; set; }
+                public ScaleModel()
+                {
+                        SegmentModel = new SegmentModel();
+                }
 
                 /// <summary>
-                ///         垂直坐标
+                ///         线段数据模型
                 /// </summary>
-                [XmlAttribute]
-                public int Y { get; set; }
+                [XmlElement]
+                public SegmentModel SegmentModel { get; set; }
 
                 /// <summary>
                 ///         刻度值

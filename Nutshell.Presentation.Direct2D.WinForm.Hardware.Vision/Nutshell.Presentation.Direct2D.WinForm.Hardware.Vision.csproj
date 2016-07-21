@@ -75,6 +75,10 @@
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Drawing.Shapes\Nutshell.Drawing.Shapes.csproj">
+      <Project>{F86ED66F-E231-44D5-A33D-BD29663A7C57}</Project>
+      <Name>Nutshell.Drawing.Shapes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Presentation.Direct2D.WinForm\Nutshell.Presentation.Direct2D.WinForm.csproj">
       <Project>{0a1bdcd2-a1e5-4239-9954-7540d789e8c7}</Project>
       <Name>Nutshell.Presentation.Direct2D.WinForm</Name>
