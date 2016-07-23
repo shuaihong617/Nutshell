@@ -58,7 +58,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                                 Sence.UpdateBufferBitmap(ProcessBitmap);
                         }
                         
-                        //Sence.Render();
+                        ////Sence.Render();
                 }
 
 

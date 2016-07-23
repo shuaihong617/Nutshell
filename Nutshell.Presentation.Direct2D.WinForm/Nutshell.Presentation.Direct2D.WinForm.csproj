@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CycleRenderer.cs" />
     <Compile Include="CycleSence.cs" />
     <Compile Include="BufferSence.cs" />
     <Compile Include="Sence.cs" />

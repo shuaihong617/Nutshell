@@ -11,9 +11,11 @@
 // </summary>
 // ***********************************************************************
 
- 
+
+using System;
 using System.Threading;
 using System.Windows.Forms;
+using Nutshell.Log;
 using SharpDX.Direct2D1;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
@@ -66,5 +68,25 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 }
 
                 protected abstract void Render(RenderTarget target);
+
+                #region 事件
+
+
+                /// <summary>
+                /// 当缓冲区图像已更新时发生
+                /// </summary>
+                public event EventHandler<EventArgs> Updated;
+
+                /// <summary>
+                /// 引发<see cref="E:Updated" />事件
+                /// </summary>
+                /// <param name="e">包含事件数据的<see cref="EventArgs"/>实例</param>
+                protected virtual void OnUpdated(EventArgs e)
+                {
+                        this.InfoEvent("上线");
+                        e.Raise(this, ref Updated);
+                }
+
+                #endregion
         }
 }
