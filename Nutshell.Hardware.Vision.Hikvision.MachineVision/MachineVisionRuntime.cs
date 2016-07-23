@@ -17,7 +17,6 @@ using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using Nutshell.Components;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
-using Nutshell.Hardware.Vision.Mvsion.SDK;
 using Nutshell.Log;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
@@ -69,7 +68,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         {
                                 if (deviceInfoPtr != IntPtr.Zero)
                                 {
-                                        DeviceInfo di = (DeviceInfo)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
+                                        var di = (DeviceInfo)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
                                         deviceInfos.Add(di);
 
                                         this.Info("检测到摄像机：IP" + di.GigeDeviceInfo.GetCurrentIpAddress());

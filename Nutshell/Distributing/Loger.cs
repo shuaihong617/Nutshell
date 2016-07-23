@@ -1,5 +1,4 @@
 ﻿using Nutshell.Components;
-using Nutshell.Data;
 using Nutshell.Messaging;
 
 namespace Nutshell.Distributing

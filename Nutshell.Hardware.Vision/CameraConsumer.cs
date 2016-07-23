@@ -26,7 +26,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         初始化<see cref="CameraConsumer" />的新实例.
                 /// </summary>
-                /// <param name="parent">The parent.</param>
+                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
@@ -76,8 +76,6 @@ namespace Nutshell.Hardware.Vision
                 /// </summary>
                 private Task _processTask;
 
-                private int i;
-
                 /// <summary>
                 ///         处理摄像机图像采集完成事件
                 /// </summary>
@@ -101,10 +99,6 @@ namespace Nutshell.Hardware.Vision
                         }
 
                         bitmap.TranslateTo(ProcessBitmap);
-
-                        i++;
-
-                        //ProcessBitmap.Save("c:\\ProcessBitmaps\\" + i + ".bmp");
 
                         if (Camera.RunMode == RunMode.Release)
                         {

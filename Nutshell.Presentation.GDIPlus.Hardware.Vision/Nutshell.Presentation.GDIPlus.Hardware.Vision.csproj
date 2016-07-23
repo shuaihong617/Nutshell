@@ -66,10 +66,6 @@
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Presentation.GDIPlus\Nutshell.Presentation.GDIPlus.csproj">
-      <Project>{deb2dd79-c9b7-4c45-a1d3-12732803ec19}</Project>
-      <Name>Nutshell.Presentation.GDIPlus</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

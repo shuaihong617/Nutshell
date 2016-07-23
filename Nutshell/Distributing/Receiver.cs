@@ -11,15 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using Nutshell.Components;
 using Nutshell.Components.Models;
-using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Distributing.Models;
-using Nutshell.Log;
 
 namespace Nutshell.Distributing
 {
@@ -27,12 +23,13 @@ namespace Nutshell.Distributing
         ///         总线消息发送者
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public abstract class Receiver<T> : DirectProducer<T>,ISender where T :class
+        public abstract class Receiver<T> : DirectProducer<T>, ISender where T : class
         {
                 /// <summary>
                 ///         初始化<see cref="Receiver{T}" />的新实例.
                 /// </summary>
-                /// <param name="id">The identifier.</param>
+                /// <param name="parent">上级对象</param>
+                /// <param name="id">标识</param>
                 protected Receiver(IdentityObject parent, string id = "接收器")
                         : base(parent, id)
                 {
@@ -40,21 +37,21 @@ namespace Nutshell.Distributing
                 }
 
                 /// <summary>
-                /// 是否为订阅模式
+                ///         是否为订阅模式
                 /// </summary>
                 /// <remarks>
-                /// 处于订阅模式时, 连接远程端口接收消息
-                /// 处于非订阅模式时, 绑定本地端口接收信息
-                /// 默认为非订阅模式
+                ///         处于订阅模式时, 连接远程端口接收消息
+                ///         处于非订阅模式时, 绑定本地端口接收信息
+                ///         默认为非订阅模式
                 /// </remarks>
-                public bool IsSubscribeMode { get;private set; }
+                public bool IsSubscribeMode { get; private set; }
 
-                public Looper ReceiveLooper { get;private set; }
+                public Looper ReceiveLooper { get; private set; }
 
                 public override void Load(IStorableModel model)
                 {
                         Trace.Assert(model is ReceiverModel);
-                        
+
 
                         base.Load(model);
 
@@ -62,9 +59,9 @@ namespace Nutshell.Distributing
 
                         IsSubscribeMode = receiverModel.IsSubscribeMode;
 
-                        var receiveLooperModel = receiverModel.ReceiveLooperModel;
+                        LooperModel receiveLooperModel = receiverModel.ReceiveLooperModel;
                         Trace.Assert(receiveLooperModel != null);
-                        
+
                         ReceiveLooper.Load(receiveLooperModel);
                 }
 
@@ -80,8 +77,8 @@ namespace Nutshell.Distributing
 
                 private void Enqueue()
                 {
-                        var t = Receive();
-                        
+                        T t = Receive();
+
                         Product(t);
                 }
 
@@ -89,8 +86,6 @@ namespace Nutshell.Distributing
 
                 #region 事件
 
-
                 #endregion
-
         }
 }

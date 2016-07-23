@@ -13,9 +13,7 @@
 
 using System;
 using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using Nutshell.Components.Models;
-using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Log;
 
@@ -26,7 +24,8 @@ namespace Nutshell.Components
         /// </summary>
         public class WatchDog : Worker
         {
-                public WatchDog(IdentityObject parent, string id = "看门狗", int scanInterval = int.MaxValue, int overflowInterval = int.MaxValue)
+                public WatchDog(IdentityObject parent, string id = "看门狗", int scanInterval = int.MaxValue,
+                        int overflowInterval = int.MaxValue)
                         : base(parent, id)
                 {
                         ScanLooper = new Looper(this, "扫描循环", Scan, scanInterval);
@@ -39,8 +38,6 @@ namespace Nutshell.Components
                 private DateTime _feedTime;
 
                 #endregion
-
-
 
                 public Looper ScanLooper { get; private set; }
 
@@ -63,12 +60,12 @@ namespace Nutshell.Components
                 {
                         model.MustNotNull();
                         Trace.Assert(model is WatchDogModel);
-                        
+
 
                         base.Load(model);
 
                         var watchDogModel = (WatchDogModel) model;
-                        Trace.Assert(watchDogModel.Interval>0);
+                        Trace.Assert(watchDogModel.Interval > 0);
 
                         OverflowSpan = TimeSpan.FromMilliseconds(watchDogModel.Interval);
                         ScanLooper.Load(watchDogModel.ScanLooperModel);
@@ -136,8 +133,6 @@ namespace Nutshell.Components
                         this.InfoEvent("溢出");
                         e.Raise(this, ref Overflowed);
                 }
-
-                
 
                 #endregion
         }

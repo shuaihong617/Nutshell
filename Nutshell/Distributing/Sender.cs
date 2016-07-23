@@ -26,9 +26,10 @@ namespace Nutshell.Distributing
         public abstract class Sender<T> : DirectConsumer<T>,ISender where T :class
         {
                 /// <summary>
-                ///         初始化<see cref="Sender{T}" />的新实例.
+                /// 初始化<see cref="Sender{T}" />的新实例.
                 /// </summary>
-                /// <param name="id">The identifier.</param>
+                /// <param name="parent">上级对象</param>
+                /// <param name="id">标识</param>
                 protected Sender(IdentityObject parent, string id = "发送器")
                         : base(parent, id)
                 {

@@ -21,13 +21,12 @@ using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.Models;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
-using Nutshell.Hardware.Vision.Mvsion.SDK;
 using Nutshell.Log;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 {
         /// <summary>
-        ///         海康威视摄像机
+        ///         海康威视机器视觉摄像机
         /// </summary>
         public class MachineVisionCamera : GigeCamera
         {
@@ -178,8 +177,6 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         return true;
                 }
 
-                private int i;
-
                 protected override sealed Bitmap CaptureCore()
                 {
                         if (!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured)
@@ -191,7 +188,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         Bitmap bitmap = BitmapPool.EnterWrite();
                         if (bitmap == null)
                         {
-                                Trace.WriteLine("BitmapPool.Instance.EnterWrite Failed");
+                                this.WarnFail("BitmapPool.Instance.EnterWrite");
                                 return null;
                         }
 
@@ -206,14 +203,6 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return bitmap;
                         }
                         //this.InfoSuccess("GetOneFrame");
-
-                        //bitmap.CopyFrom(_captureBufferPtr);
-
-                        //bitmap.Clear((byte)128,(byte)128,(byte)128);
-
-                        i++;
-
-                        //bitmap.Save("c:\\Camera\\" + i + ".bmp");
 
                         BitmapPool.ExitWrite(bitmap);
                         return bitmap;

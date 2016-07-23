@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 
-namespace Nutshell.Hardware.Vision.Mvsion.SDK
+namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         [StructLayout(LayoutKind.Sequential)]
         public struct GigeDeviceInfo

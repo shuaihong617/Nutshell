@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Nutshell.Data
+namespace Nutshell
 {
         /// <summary>
         ///         标识对象接口

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nutshell.Hardware.Vision.Mvsion.SDK
+﻿namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         public enum PixelType
         {

@@ -17,9 +17,7 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using Nutshell.Data;
 using Nutshell.Data.Models;
-using Nutshell.Distributing.Models;
 using Nutshell.Mathematics.Models;
-using Nutshell.Messaging;
 
 namespace Nutshell.Mathematics
 {

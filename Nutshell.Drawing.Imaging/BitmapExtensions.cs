@@ -11,8 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
-
 namespace Nutshell.Drawing.Imaging
 {
         /// <summary>

@@ -31,7 +31,7 @@ namespace Nutshell.Drawing.Shapes
                 /// <summary>
                 /// 初始化<see cref="Region" />的新实例.
                 /// </summary>
-                /// <param name="parent">The parent.</param>
+                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="x">The x.</param>
                 /// <param name="y">The y.</param>

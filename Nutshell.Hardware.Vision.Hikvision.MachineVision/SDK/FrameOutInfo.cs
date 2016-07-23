@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Nutshell.Hardware.Vision.Mvsion.SDK
+namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         [StructLayout(LayoutKind.Sequential)]
         // 输出帧的信息

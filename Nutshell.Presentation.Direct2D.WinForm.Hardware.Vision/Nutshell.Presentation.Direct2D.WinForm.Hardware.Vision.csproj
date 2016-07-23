@@ -87,10 +87,6 @@
       <Project>{4dc483a5-1f7e-4401-99c4-e59a041a3603}</Project>
       <Name>Nutshell.Presentation.Direct2D</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Presentation.GDIPlus\Nutshell.Presentation.GDIPlus.csproj">
-      <Project>{deb2dd79-c9b7-4c45-a1d3-12732803ec19}</Project>
-      <Name>Nutshell.Presentation.GDIPlus</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

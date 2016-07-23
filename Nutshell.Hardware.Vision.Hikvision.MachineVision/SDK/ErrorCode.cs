@@ -11,7 +11,7 @@
 // </summary>
 // ***********************************************************************
 
-namespace Nutshell.Hardware.Vision.Mvsion.SDK
+namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         /// <summary>
         /// 错误代码

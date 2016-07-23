@@ -12,8 +12,6 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics;
-using Nutshell.Data;
 
 namespace Nutshell
 {

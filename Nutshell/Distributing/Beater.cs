@@ -1,7 +1,5 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Nutshell.Components;
-using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Distributing.Models;
 using Nutshell.Messaging;

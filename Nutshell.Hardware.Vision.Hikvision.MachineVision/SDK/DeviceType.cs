@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nutshell.Hardware.Vision.Mvsion.SDK
+namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         [Flags]
         public enum DeviceType

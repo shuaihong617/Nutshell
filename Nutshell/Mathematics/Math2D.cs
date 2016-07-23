@@ -250,15 +250,8 @@ namespace Nutshell.Mathematics
                 {
                         float sumX2 = 0f;
                         float sumX = 0f;
-                        float sumXY = 0f;
+                        float sumXy = 0f;
                         float sumY = 0f;
-                        float deta = 0f;
-
-                        //斜率
-                        float k = 0f;
-
-                        //截距
-                        float d = 0f;
 
                         if (points.Count < 2)
                         {
@@ -269,16 +262,18 @@ namespace Nutshell.Mathematics
                         {
                                 sumX2 += point.X*point.X;
                                 sumX += point.X;
-                                sumXY += point.X*point.Y;
+                                sumXy += point.X*point.Y;
                                 sumY += point.Y;
                         }
 
-                        deta = sumX2*points.Count - sumX*sumX;
+                        float deta = sumX2*points.Count - sumX*sumX;
 
-                        k = (sumXY*points.Count - sumX*sumY)/deta;
+                        //斜率
+                        float k = (sumXy*points.Count - sumX*sumY)/deta;
                         k = k.WillNumber();
 
-                        d = (sumX2*sumY - sumXY*sumX)/deta;
+                        //截距
+                        float d = (sumX2*sumY - sumXy*sumX)/deta;
                         d = d.WillNumber();
 
                         return Tuple.Create(k, d);

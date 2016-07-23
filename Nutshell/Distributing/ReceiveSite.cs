@@ -1,6 +1,4 @@
-﻿using System;
-using Nutshell.Data;
-using Nutshell.Data.Serializing;
+﻿using Nutshell.Data.Serializing;
 using Nutshell.Messaging;
 
 namespace Nutshell.Distributing

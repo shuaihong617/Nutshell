@@ -1,4 +1,4 @@
-﻿namespace Nutshell.Hardware.Vision.Mvsion.SDK
+﻿namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         /// <summary>
         ///         访问模式枚举

@@ -13,10 +13,7 @@
 // ***********************************************************************
 
 using System;
-using System.Linq;
-using System.Text;
 using NLog;
-using Nutshell.Data;
 
 namespace Nutshell.Log
 {
@@ -83,12 +80,11 @@ namespace Nutshell.Log
                         Info(string.Format(format, args));
                 }
 
-                public static void InfoEvent(this IIdentityObject identityObject, object eventName,object args = null)
+                public static void InfoEvent(this IIdentityObject identityObject, object eventName, object args = null)
                 {
                         if (args == null)
                         {
                                 Info(identityObject, "引发", eventName, "事件.");
-                                
                         }
                         else
                         {
@@ -98,13 +94,13 @@ namespace Nutshell.Log
 
                 public static void InfoSuccess(this IIdentityObject identityObject, object operation)
                 {
-                        Info(identityObject,operation,"成功");
+                        Info(identityObject, operation, "成功");
                 }
 
                 public static void InfoSuccessWithDescription(this IIdentityObject identityObject, string operation,
                         object description)
                 {
-                        Info(identityObject,operation , "成功," ,description);
+                        Info(identityObject, operation, "成功,", description);
                 }
 
                 /// <summary>
@@ -141,7 +137,8 @@ namespace Nutshell.Log
                         Warn(identityObject, operation + "失败,错误原因：" + reason ?? "无");
                 }
 
-                public static void InfoSuccessOrWarnFailWithReason(this IIdentityObject identityObject, object operation, bool isSuccess,
+                public static void InfoSuccessOrWarnFailWithReason(this IIdentityObject identityObject, object operation,
+                        bool isSuccess,
                         object reason)
                 {
                         if (isSuccess)
@@ -150,7 +147,7 @@ namespace Nutshell.Log
                         }
                         else
                         {
-                                WarnFail(identityObject, operation, reason);                                
+                                WarnFail(identityObject, operation, reason);
                         }
                 }
 

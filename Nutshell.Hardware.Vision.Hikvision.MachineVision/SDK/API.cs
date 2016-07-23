@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Nutshell.Hardware.Vision.Mvsion.SDK;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {

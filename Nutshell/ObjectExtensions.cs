@@ -22,10 +22,11 @@ namespace Nutshell
         public static class ObjectExtensions
         {
                 /// <summary>
-                ///         当前对象不能为空
+                /// 当前对象不能为空
                 /// </summary>
                 /// <typeparam name="T"></typeparam>
                 /// <param name="value">待判定对象</param>
+                /// <param name="message">异常输出消息</param>
                 /// <exception cref="System.ArgumentException">不能为空引用！</exception>
                 public static void MustNotNull<T>(this T value, string message = "不能为空引用！") where T : class
                 {

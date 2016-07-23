@@ -233,11 +233,10 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                ///         Determines whether [is half between] [the specified value].
+                /// Determines whether [is half between] [the specified value].
                 /// </summary>
                 /// <param name="value">The value.</param>
                 /// <param name="max">The maximum.</param>
-                /// <param name="name">The name.</param>
                 /// <returns><c>true</c> if [is half between] [the specified value]; otherwise, <c>false</c>.</returns>
                 public static bool IsDoubleDirectionBetween(this float value, float max)
                 {

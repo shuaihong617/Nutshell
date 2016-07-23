@@ -13,6 +13,7 @@
 
 using System;
 using System.Diagnostics.Contracts;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -100,7 +101,7 @@ namespace Nutshell
                 public static string ChinesePadLeft(this string str, int totalByteCount, char c = ' ')
                 {
                         Encoding coding = Encoding.GetEncoding("gb2312");
-                        int dcount = str.Count(ch => coding.GetByteCount(ch.ToString()) == 2);
+                        int dcount = str.Count(ch => coding.GetByteCount(ch.ToString(CultureInfo.InvariantCulture)) == 2);
                         string w = str.PadRight(totalByteCount - dcount, c);
                         return w;
                 }
@@ -115,7 +116,7 @@ namespace Nutshell
                 public static string ChinesePadRight(this string str, int totalByteCount, char c = ' ')
                 {
                         Encoding coding = Encoding.GetEncoding("gb2312");
-                        int dcount = str.Count(ch => coding.GetByteCount(ch.ToString()) == 2);
+                        int dcount = str.Count(ch => coding.GetByteCount(ch.ToString(CultureInfo.InvariantCulture)) == 2);
                         string w = str.PadRight(totalByteCount - dcount, c);
                         return w;
                 }

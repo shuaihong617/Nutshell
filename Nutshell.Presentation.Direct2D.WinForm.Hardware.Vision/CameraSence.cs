@@ -27,7 +27,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <summary>
                 /// 初始化<see cref="CameraSence" />的新实例.
                 /// </summary>
-                /// <param name="parent">The parent.</param>
+                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="camera">The camera.</param>

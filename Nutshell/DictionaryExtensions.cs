@@ -40,11 +40,11 @@ namespace Nutshell
 
 
                 /// <summary>
-                ///         当前字典必须不包含指定的键
+                /// 当前字典必须不包含指定的键
                 /// </summary>
                 /// <typeparam name="TKey">键类型</typeparam>
                 /// <typeparam name="TValue">值类型</typeparam>
-                /// <param name="dist">字典</param>
+                /// <param name="dictionary">字典</param>
                 /// <param name="key">键</param>
                 /// <exception cref="System.InvalidOperationException">不能包含指定的键</exception>
                 public static  void MustNotContainsKey<TKey, TValue>(

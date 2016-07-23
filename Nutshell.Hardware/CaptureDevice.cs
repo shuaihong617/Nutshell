@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using System;
-using Nutshell.Data;
 
 namespace Nutshell.Hardware
 {
@@ -24,7 +23,7 @@ namespace Nutshell.Hardware
                 /// <summary>
                 /// 初始化<see cref="T:CaptureDevice" />的新实例.
                 /// </summary>
-                /// <param name="parent">The parent.</param>
+                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 protected CaptureDevice(IdentityObject parent, string id = "采集设备")
                         : base(parent, id)

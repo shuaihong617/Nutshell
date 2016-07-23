@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Components.Models;
 
 namespace Nutshell.Distributing.Models
 {
