@@ -18,7 +18,9 @@ using System;
 namespace Nutshell
 {
         /// <summary>
+        /// 值变更事件参数
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         public class ValueChangedEventArgs<T> : EventArgs
         {
                 /// <summary>

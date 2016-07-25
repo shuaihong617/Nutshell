@@ -36,7 +36,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 private readonly ReaderWriterLockSlim _bitmapLock = new ReaderWriterLockSlim();
 
-                public void UpdateBufferBitmap(Drawing.Imaging.Bitmap bitmap)
+                public void Update(Drawing.Imaging.Bitmap bitmap)
                 {
                         if (_bitmapLock.TryEnterWriteLock(20))
                         {
@@ -46,6 +46,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                                 BufferBitmapRenderTarget.Bitmap.CopyFromMemory(bitmap.Buffer, bitmap.Stride);
 
                                 _bitmapLock.ExitWriteLock();
+
+                                OnUpdated(EventArgs.Empty);
                         }
                 }
 
@@ -83,7 +85,6 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 /// <param name="e">包含事件数据的<see cref="EventArgs"/>实例</param>
                 protected virtual void OnUpdated(EventArgs e)
                 {
-                        this.InfoEvent("上线");
                         e.Raise(this, ref Updated);
                 }
 

@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-
 using System.Xml.Serialization;
 
 namespace Nutshell.Messaging

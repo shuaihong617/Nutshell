@@ -18,7 +18,7 @@ using System.Threading;
 namespace Nutshell
 {
         /// <summary>
-        ///         EventArgs Extensions
+        ///         事件参数扩展方法
         /// </summary>
         public static class EventArgsExtensions
         {

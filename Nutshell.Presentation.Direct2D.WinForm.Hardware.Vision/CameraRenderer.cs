@@ -11,9 +11,13 @@
 // </summary>
 // ***********************************************************************
 
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
+using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
+using Nutshell.Log;
 
 namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 {
@@ -33,10 +37,18 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         : base(parent, id, camera, PixelFormat.Bgra32)
                 {
                         sence.MustNotNull();
-                        Sence = sence;
+                        //Sence = sence;
+
+                        _renderLooper = new Looper(this, "显示循环", Render, 50);
                 }
 
-                private CameraSence Sence { get; set; }
+                private readonly Looper _renderLooper;
+
+                private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
+
+                private Queue<CameraSence> _sencePool;
+
+                private CameraSence _displaySence;
 
                 public bool IsRenderStarted
                 {
@@ -53,25 +65,51 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 protected override void ProcessCore()
                 {
-                        lock (ProcessBitmap)
+                        CameraSence sence = _sencePool.Dequeue();
+                        if (sence == null)
                         {
-                                Sence.UpdateBufferBitmap(ProcessBitmap);
+                                this.WarnFail("EnterWrite");
+                                return;
                         }
-                        
-                        ////Sence.Render();
+
+                        sence.Update(ProcessBitmap);
+
+                        if (_lock.TryEnterWriteLock(5))
+                        {
+                                _displaySence = sence;
+                                _lock.EnterWriteLock();
+                        }
+                        else
+                        {
+                                _sencePool.Enqueue(sence);
+                        }
                 }
 
 
                 public void StartCycle()
                 {
-                        Sence.Start();
+                        _renderLooper.Start();
                         IsRenderStarted = true;
                 }
 
                 public void StopCycle()
                 {
-                        Sence.Stop();
+                        _renderLooper.Stop();
                         IsRenderStarted = false;
+                }
+
+                private void Render()
+                {
+                        if (_lock.TryEnterReadLock(5))
+                        {
+                                if (_displaySence != null)
+                                {
+                                        _displaySence.Render();
+                                        _sencePool.Enqueue(_displaySence);
+                                }
+
+                                _lock.ExitReadLock();
+                        }
                 }
         }
 }

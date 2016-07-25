@@ -28,7 +28,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         _renderLooper.Stop();
                 }
 
-                private void Render()
+                protected virtual void Render()
                 {
                         
                 }

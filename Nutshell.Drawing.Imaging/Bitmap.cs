@@ -102,7 +102,7 @@ namespace Nutshell.Drawing.Imaging
 
                 public void CopyFrom(IntPtr souceIntPtr)
                 {
-                        Debug.Assert(souceIntPtr != IntPtr.Zero);
+                        Trace.Assert(souceIntPtr != IntPtr.Zero);
 
                         var sourcePtr = (byte*) souceIntPtr.ToPointer();
                         var targetPtr = (byte*) Buffer.ToPointer();
