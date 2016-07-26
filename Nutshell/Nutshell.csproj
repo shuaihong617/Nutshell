@@ -217,7 +217,9 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ValueChangedEventArgs.cs" />
     <Compile Include="ValueEventArgs.cs" />
+    <Compile Include="Windows\RasterOperationCode.cs" />
     <Compile Include="Windows\CpuPerformance.cs" />
+    <Compile Include="Windows\Win32GDIAPI.cs" />
     <Compile Include="Windows\Win32RectExtensions.cs" />
     <Compile Include="Windows\MouseEventFlag.cs" />
     <Compile Include="Windows\Win32API.cs" />
