@@ -46,9 +46,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 
-                private Queue<CameraSence> _sencePool;
+                private BitmapSence ForgroundSence { get; set; }
 
-                private CameraSence _displaySence;
+                private BitmapSence BackroundSence { get; set; }
 
                 public bool IsRenderStarted
                 {
@@ -96,6 +96,12 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 {
                         _renderLooper.Stop();
                         IsRenderStarted = false;
+                }
+
+
+                private void Swap()
+                {
+                        
                 }
 
                 private void Render()

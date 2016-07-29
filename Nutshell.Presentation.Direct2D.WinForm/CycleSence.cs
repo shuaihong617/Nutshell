@@ -3,7 +3,7 @@ using Nutshell.Components;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
-        public  abstract class CycleSence : BufferSence
+        public  abstract class CycleSence : BitmapSence
         {
                 protected CycleSence(IdentityObject parent, string id = "", Control control = null)
                         : base(parent, id, control)

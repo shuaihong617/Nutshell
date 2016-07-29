@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="CycleRenderer.cs" />
     <Compile Include="CycleSence.cs" />
-    <Compile Include="BufferSence.cs" />
+    <Compile Include="BitmapSence.cs" />
     <Compile Include="Sence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

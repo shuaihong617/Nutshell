@@ -37,8 +37,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         camera.MustNotNull();
                         Camera = camera;
 
-                        RedBrush = new SolidColorBrush(BufferBitmapRenderTarget, Colors.Red);
-                        BlueBrush = new SolidColorBrush(BufferBitmapRenderTarget, Colors.Blue);
+                        RedBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.Red);
+                        BlueBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.Blue);
 
                         TextFactory = new SharpDX.DirectWrite.Factory();
                         YaHei36Font = new TextFormat(TextFactory, "Microsoft YaHei", 24);

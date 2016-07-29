@@ -11,12 +11,13 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 {
                         _renderLooper = new Looper(this, "显示循环", Render, 50);
 
-                        SencePool = new Pool<BufferSence>(this, "场景池");
                 }
 
-                private Pool<BufferSence> SencePool; 
-
                 private readonly Looper _renderLooper;
+
+                private Sence ForgroundSence { get; set; }
+
+                private Sence BackroundSence { get; set; }
 
                 public void Start()
                 {

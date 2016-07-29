@@ -208,6 +208,9 @@
     <Compile Include="Messaging\ValueMessage.cs" />
     <Compile Include="Messaging\Message.cs" />
     <Compile Include="ReadWriteMode.cs" />
+    <Compile Include="Threading\IReaderWriterObject.cs" />
+    <Compile Include="Threading\ReaderWriterObject.cs" />
+    <Compile Include="Threading\ReaderWriterQueue.cs" />
     <Compile Include="Threading\Pool.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="NullableExtensions.cs" />
