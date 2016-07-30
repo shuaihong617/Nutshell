@@ -33,11 +33,6 @@ namespace Nutshell.Threading
 
                 private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 
-                public bool IsReadLockHeld
-                {
-                        get { return _lock.IsReadLockHeld; }
-                }
-
                 public T Value { get; private set; }
 
 

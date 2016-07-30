@@ -45,9 +45,17 @@ namespace Nutshell.Threading
                         _queue.Enqueue(t);
                 }
 
-                public T Dequeue()
+                public T Dequeue(int maxTryTime = 7)
                 {
-                       return _queue.Dequeue();
+                        for (int i = 0; i < maxTryTime; i++)
+                        {
+                                var t = _queue.Dequeue();
+                                if (t.EnterWrite())
+                                {
+                                        return t;
+                                }
+                        }
+                        return null;
                 }
         }
 }

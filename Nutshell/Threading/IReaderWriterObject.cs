@@ -19,9 +19,6 @@ namespace Nutshell.Threading
         /// <typeparam name="T"></typeparam>
         public interface IReaderWriterObject
         {
-                bool IsReadLockHeld { get; }
-
-
                 bool EnterRead();
 
                 /// <summary>
