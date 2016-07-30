@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using System.Diagnostics;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
@@ -99,9 +100,9 @@ namespace Nutshell.Hardware.Vision
                 public Region Region { get; private set; }
 
                 /// <summary>
-                ///         格式
+                ///         图像池
                 /// </summary>
-                public Pool<Bitmap> BitmapPool { get; private set; }
+                public ReaderWriterQueue<Bitmap> BitmapPool { get; private set; }
 
                 #endregion
 
@@ -146,13 +147,19 @@ namespace Nutshell.Hardware.Vision
                 /// </summary>
                 public void CreateBitmapPool()
                 {
+                        if (Region.Width == 0 || Region.Height==0)
+                        {
+                                throw new InvalidOperationException();
+                        }
+
                         if (BitmapPool == null)
                         {
-                                BitmapPool = new Pool<Bitmap>(this, "图像缓冲池");
+                                BitmapPool = new ReaderWriterQueue<Bitmap>(this, "图像缓冲池");
                                 for (int i = 1; i < 8; i++)
                                 {
                                         var bitmap = new Bitmap(BitmapPool, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
-                                        BitmapPool.Add(bitmap);
+                                        var readerWriterBitmap = new ReaderWriterObject<Bitmap>(BitmapPool, i + "号读写缓冲位图",bitmap);
+                                        BitmapPool.Enqueue(readerWriterBitmap);
                                 }
                         }
                 }

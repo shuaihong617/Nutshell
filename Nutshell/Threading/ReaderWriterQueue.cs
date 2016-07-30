@@ -19,7 +19,7 @@ namespace Nutshell.Threading
         ///         缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ReaderWriterQueue<T> : IdentityObject where T : IdentityObject, IReaderWriterObject
+        public class ReaderWriterQueue<T> : IdentityObject where T : IdentityObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
@@ -34,18 +34,18 @@ namespace Nutshell.Threading
                 /// <summary>
                 ///         The _usage
                 /// </summary>
-                private readonly Queue<T> _queue = new Queue<T>();
+                private readonly Queue<ReaderWriterObject<T>> _queue = new Queue<ReaderWriterObject<T>>();
 
                 /// <summary>
                 ///         添加缓冲对象到缓冲池
                 /// </summary>
                 /// <param name="t">缓冲对象</param>
-                public void Enqueue(T t)
+                public void Enqueue(ReaderWriterObject<T> t)
                 {
                         _queue.Enqueue(t);
                 }
 
-                public T Dequeue(int maxTryTime = 7)
+                public ReaderWriterObject<T> Dequeue(int maxTryTime = 7)
                 {
                         for (int i = 0; i < maxTryTime; i++)
                         {

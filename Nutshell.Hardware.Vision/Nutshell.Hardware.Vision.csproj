@@ -113,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="CameraConsumer.cs" />
+    <Compile Include="Decoder.cs" />
     <Compile Include="GigeCamera.cs" />
     <Compile Include="Models\CameraModel.cs" />
     <Compile Include="Models\GigeCameraModel.cs" />

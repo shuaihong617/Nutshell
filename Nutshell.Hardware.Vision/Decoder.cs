@@ -12,31 +12,39 @@
 // ***********************************************************************
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Drawing.Shapes;
+using Nutshell.Threading;
 
 namespace Nutshell.Hardware.Vision
 {
         /// <summary>
         ///         摄像机图像消费者
         /// </summary>
-        public abstract class CameraConsumer : Worker
+        public abstract class Decoder : Worker
         {
                 /// <summary>
-                ///         初始化<see cref="CameraConsumer" />的新实例.
+                ///         初始化<see cref="Decoder" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                protected CameraConsumer(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
+                protected Decoder(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
                         : base(parent, id)
                 {
                         camera.MustNotNull();
                         Camera = camera;
 
+                        PixelFormat = pixelFormat;
+
                         ProcessBitmap = new Bitmap(this, "处理图像", camera.Region.Width, camera.Region.Height, pixelFormat);
+
+                        _thread = new Thread(ThreadWork);
+                        _thread.Priority = ThreadPriority.Normal;
                 }
 
                 /// <summary>
@@ -45,49 +53,91 @@ namespace Nutshell.Hardware.Vision
                 public Camera Camera { get; private set; }
 
                 /// <summary>
+                ///         格式
+                /// </summary>
+                public PixelFormat PixelFormat { get; private set; }
+
+                /// <summary>
                 ///         待处理图像
                 /// </summary>
                 public Bitmap ProcessBitmap { get; private set; }
+
+                /// <summary>
+                ///         图像池
+                /// </summary>
+                public ReaderWriterQueue<Bitmap> BitmapPool { get; private set; }
+
+                /// <summary>
+                ///         处理任务
+                /// </summary>
+                private readonly Thread _thread;
+
+                private bool _isThreadExit = false;
+
+                /// <summary>
+                /// 创建图像缓冲池
+                /// </summary>
+                public void CreateBitmapPool()
+                {
+                        var width = Camera.Region.Width;
+                        var height = Camera.Region.Height;
+
+                        if (width == 0 || height == 0)
+                        {
+                                throw new InvalidOperationException();
+                        }
+
+                        if (BitmapPool == null)
+                        {
+                                BitmapPool = new ReaderWriterQueue<Bitmap>(this, "图像缓冲池");
+                                for (int i = 1; i < 8; i++)
+                                {
+                                        var bitmap = new Bitmap(BitmapPool, i + "号缓冲位图", width, height, PixelFormat);
+                                        var readerWriterBitmap = new ReaderWriterObject<Bitmap>(BitmapPool, i + "号读写缓冲位图", bitmap);
+                                        BitmapPool.Enqueue(readerWriterBitmap);
+                                }
+                        }
+                }
 
                 #region 处理流程
 
                 protected override sealed bool StartCore()
                 {
-                        Camera.CaptureSuccessed += Camera_CaptureSuccessed;
+                        _isThreadExit = false;
+                        _thread.Start();
+
                         return true;
                 }
 
                 protected override sealed bool StopCore()
                 {
-                        Camera.CaptureSuccessed -= Camera_CaptureSuccessed;
-
-                        if (_processTask != null)
-                        {
-                                if (!_processTask.IsCompleted)
-                                {
-                                        _processTask.Wait();
-                                }
-                        }
+                        _isThreadExit = true;
                         return true;
                 }
 
-                /// <summary>
-                ///         处理任务
-                /// </summary>
-                private Task _processTask;
+                private void ThreadWork()
+                {
+                        for (;;)
+                        {
+                                if (_isThreadExit)
+                                {
+                                        break;
+                                }
+
+                                Process();
+
+                                Thread.Sleep(20);
+                        }
+                }
 
                 /// <summary>
                 ///         处理摄像机图像采集完成事件
                 /// </summary>
                 /// <param name="sender">The source of the event.</param>
                 /// <param name="e">The e.</param>
-                private void Camera_CaptureSuccessed(object sender, ValueEventArgs<Bitmap> e)
+                private void Decode(object sender, ValueEventArgs<Bitmap> e)
                 {
-                        if (_processTask != null && !_processTask.IsCompleted)
-                        {
-                                return;
-                        }
-
+                        
                         Bitmap bitmap = e.Data;
 
                         if (Camera.RunMode == RunMode.Release)

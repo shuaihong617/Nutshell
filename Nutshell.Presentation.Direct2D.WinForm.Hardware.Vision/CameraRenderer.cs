@@ -24,7 +24,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
         /// <summary>
         ///         Class CameraRender.
         /// </summary>
-        public class CameraRenderer : CameraConsumer
+        public class CameraRenderer : Decoder
         {
                 /// <summary>
                 ///         初始化<see cref="CameraRenderer" />的新实例.
