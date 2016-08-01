@@ -102,7 +102,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public ReaderWriterQueue<Bitmap> BitmapPool { get; private set; }
+                public ReaderWriterQueueBuffer<ReaderWriterObject<Bitmap>> Buffers { get; private set; }
 
                 #endregion
 
@@ -152,14 +152,14 @@ namespace Nutshell.Hardware.Vision
                                 throw new InvalidOperationException();
                         }
 
-                        if (BitmapPool == null)
+                        if (Buffers == null)
                         {
-                                BitmapPool = new ReaderWriterQueue<Bitmap>(this, "图像缓冲池");
+                                Buffers = new ReaderWriterQueueBuffer<ReaderWriterObject<Bitmap>>(this, "图像缓冲池");
                                 for (int i = 1; i < 8; i++)
                                 {
-                                        var bitmap = new Bitmap(BitmapPool, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
-                                        var readerWriterBitmap = new ReaderWriterObject<Bitmap>(BitmapPool, i + "号读写缓冲位图",bitmap);
-                                        BitmapPool.Enqueue(readerWriterBitmap);
+                                        var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
+                                        var readerWriterBitmap = new ReaderWriterObject<Bitmap>(Buffers, i + "号读写缓冲位图",bitmap);
+                                        Buffers.Enqueue(readerWriterBitmap);
                                 }
                         }
                 }

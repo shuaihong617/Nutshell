@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
@@ -24,7 +25,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
         /// <summary>
         ///         Class CameraRender.
         /// </summary>
-        public class CameraRenderer : Decoder
+        public class CameraRenderer : CycleRenderer
         {
                 /// <summary>
                 ///         初始化<see cref="CameraRenderer" />的新实例.
@@ -38,17 +39,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 {
                         sence.MustNotNull();
                         //Sence = sence;
-
-                        _renderLooper = new Looper(this, "显示循环", Render, 50);
                 }
 
-                private readonly Looper _renderLooper;
-
-                private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
-
-                private BitmapSence ForgroundSence { get; set; }
-
-                private BitmapSence BackroundSence { get; set; }
+                private CameraDecoder _decoder;
 
                 public bool IsRenderStarted
                 {
@@ -85,24 +78,24 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         }
                 }
 
-
-                public void StartCycle()
+                protected override void Render()
                 {
-                        _renderLooper.Start();
-                        IsRenderStarted = true;
+                        var source = _decoder.Buffer.Dequeue();
+                        if (source == null)
+                        {
+                                throw new InvalidOperationException();
+                        }
+
+                        Bitmap = source.Value;
+                        base.Render();
+
+                        source.ExitWrite();
                 }
 
-                public void StopCycle()
-                {
-                        _renderLooper.Stop();
-                        IsRenderStarted = false;
-                }
 
+                
 
-                private void Swap()
-                {
-                        
-                }
+                
 
                 private void Render()
                 {

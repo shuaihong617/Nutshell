@@ -11,6 +11,7 @@
     <AssemblyName>Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,14 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\青岛云路包车机器视觉监控系统\packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.3.6\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="SharpDX.Direct2D1">
-      <HintPath>..\..\青岛云路包车机器视觉监控系统\packages\SharpDX.Direct2D1.3.0.2\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+    <Reference Include="SharpDX, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\青岛云路包车机器视觉监控系统\packages\SharpDX.DXGI.3.0.2\lib\net45\SharpDX.DXGI.dll</HintPath>
+    <Reference Include="SharpDX.Direct2D1, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.Direct2D1.3.0.2\lib\net45\SharpDX.Direct2D1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpDX.DXGI, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpDX.DXGI.3.0.2\lib\net45\SharpDX.DXGI.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,23 +63,23 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Drawing.Imaging.Tests\Nutshell.Drawing.Imaging.Tests.csproj">
+    <ProjectReference Include="..\Nutshell.Drawing.Imaging.Tests\Nutshell.Drawing.Imaging.Tests.csproj">
       <Project>{e3f5cf37-402d-4efd-a62f-bd20c977ad51}</Project>
       <Name>Nutshell.Drawing.Imaging.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
+    <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
       <Project>{5E9EC531-B6EA-4BA9-A3A5-DD40436860D7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Hardware.Vision\Nutshell.Hardware.Vision.csproj">
+    <ProjectReference Include="..\Nutshell.Hardware.Vision\Nutshell.Hardware.Vision.csproj">
       <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
       <Name>Nutshell.Hardware.Vision</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell.Hardware\Nutshell.Hardware.csproj">
+    <ProjectReference Include="..\Nutshell.Hardware\Nutshell.Hardware.csproj">
       <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>
       <Name>Nutshell.Hardware</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell\Nutshell.csproj">
+    <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>
     </ProjectReference>

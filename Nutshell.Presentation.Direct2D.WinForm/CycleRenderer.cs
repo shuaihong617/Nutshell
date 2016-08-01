@@ -1,38 +1,49 @@
 ﻿using System.Windows.Forms;
 using Nutshell.Components;
-using Nutshell.Threading;
+using Nutshell.Drawing.Imaging;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
-        public  abstract class CycleRenderer:IdentityObject
+        public abstract class CycleRenderer:Worker
         {
                 protected CycleRenderer(IdentityObject parent, string id = "", Control control = null)
                         : base(parent, id)
                 {
                         _renderLooper = new Looper(this, "显示循环", Render, 50);
-
                 }
 
                 private readonly Looper _renderLooper;
 
-                private Sence ForgroundSence { get; set; }
+                protected Bitmap Bitmap { get; set; }
 
-                private Sence BackroundSence { get; set; }
+                private BitmapSence Sence { get; set; }
 
-                public void Start()
+
+                private bool isRendering = false;
+
+                protected override bool StartCore()
                 {
-                        _renderLooper.Start();
+                        return _renderLooper.Start();
                 }
 
-                public void Stop()
+                protected override bool StopCore()
                 {
-                        _renderLooper.Stop();
+                        return _renderLooper.Stop();
                 }
+
 
                 protected virtual void Render()
                 {
-                        
+                        if (isRendering)
+                        {
+                            return;    
+                        }
+
+                        Sence.Update(Bitmap);
+                        Sence.Render();
                 }
 
+
+                
         }
 }

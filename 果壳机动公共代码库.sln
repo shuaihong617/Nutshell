@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell", "Nutshell\Nutshell.csproj", "{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}"
 EndProject
@@ -30,6 +30,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Presentation.GDI", "Nutshell.Presentation.GDI\Nutshell.Presentation.GDI.csproj", "{4E4A794B-0CC6-471B-93D8-2F13A05E1034}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Presentation.GDI.Hardware.Vision", "Nutshell.Presentation.GDI.Hardware.Vision\Nutshell.Presentation.GDI.Hardware.Vision.csproj", "{F65172EB-693D-4211-8E56-06A9D898C093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision", "Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision\Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision.csproj", "{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Presentation.Direct2D.WinForm", "Nutshell.Presentation.Direct2D.WinForm\Nutshell.Presentation.Direct2D.WinForm.csproj", "{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -211,6 +215,30 @@ Global
 		{F65172EB-693D-4211-8E56-06A9D898C093}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F65172EB-693D-4211-8E56-06A9D898C093}.Release|Win32.ActiveCfg = Release|Any CPU
 		{F65172EB-693D-4211-8E56-06A9D898C093}.Release|x86.ActiveCfg = Release|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Release|Win32.ActiveCfg = Release|Any CPU
+		{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}.Release|x86.ActiveCfg = Release|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Release|Win32.ActiveCfg = Release|Any CPU
+		{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

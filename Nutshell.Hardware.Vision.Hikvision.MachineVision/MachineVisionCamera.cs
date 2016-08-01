@@ -185,7 +185,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return null;
                         }
 
-                        Bitmap bitmap = BitmapPool.EnterWrite();
+                        Bitmap bitmap = Buffers.EnterWrite();
                         if (bitmap == null)
                         {
                                 this.WarnFail("BitmapPool.Instance.EnterWrite");
@@ -199,12 +199,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         if (error != ErrorCode.MV_OK)
                         {
                                 this.WarnFail("GetOneFrame", error);
-                                BitmapPool.ExitWrite(bitmap);
+                                Buffers.ExitWrite(bitmap);
                                 return bitmap;
                         }
                         //this.InfoSuccess("GetOneFrame");
 
-                        BitmapPool.ExitWrite(bitmap);
+                        Buffers.ExitWrite(bitmap);
                         return bitmap;
                 }
 

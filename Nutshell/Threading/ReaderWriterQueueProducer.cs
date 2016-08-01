@@ -11,31 +11,27 @@
 // </summary>
 // ***********************************************************************
 
-using System.Collections.Generic;
+using Nutshell.Components;
 
 namespace Nutshell.Threading
 {
         /// <summary>
-        ///         缓冲池
+        ///         读写队列缓冲池消费者
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ReaderWriterQueue<T> : IdentityObject where T : IdentityObject
+        public abstract class ReaderWriterQueueProducer<T> : IdentityObject where T : IdentityObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public ReaderWriterQueue(IdentityObject parent, string id)
+                protected ReaderWriterQueueProducer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
                 }
 
-                /// <summary>
-                ///         The _usage
-                /// </summary>
-                private readonly Queue<ReaderWriterObject<T>> _queue = new Queue<ReaderWriterObject<T>>();
-
+                
                 /// <summary>
                 ///         添加缓冲对象到缓冲池
                 /// </summary>

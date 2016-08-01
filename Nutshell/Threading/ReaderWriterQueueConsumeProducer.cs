@@ -1,0 +1,57 @@
+﻿// ***********************************************************************
+// 作者           : 阿尔卑斯 shuaihong617@qq.com
+// 创建           : 2016-07-09
+//
+// 编辑           : 阿尔卑斯 shuaihong617@qq.com
+// 日期           : 2016-07-09
+// 内容           : 创建文件
+// ***********************************************************************
+// Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
+// <summary>
+// </summary>
+// ***********************************************************************
+
+using Nutshell.Components;
+
+namespace Nutshell.Threading
+{
+        /// <summary>
+        ///         读写队列缓冲池消费者
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public abstract class ReaderWriterQueueConsumeProducer<T> : IdentityObject where T : IdentityObject
+        {
+                /// <summary>
+                ///         初始化<see cref="IdentityObject" />的新实例.
+                /// </summary>
+                /// <param name="parent">上级对象</param>
+                /// <param name="id">标识</param>
+                protected ReaderWriterQueueConsumeProducer(IdentityObject parent, string id)
+                        : base(parent, id)
+                {
+                }
+
+                
+                /// <summary>
+                ///         添加缓冲对象到缓冲池
+                /// </summary>
+                /// <param name="t">缓冲对象</param>
+                public void Enqueue(ReaderWriterObject<T> t)
+                {
+                        _queue.Enqueue(t);
+                }
+
+                public ReaderWriterObject<T> Dequeue(int maxTryTime = 7)
+                {
+                        for (int i = 0; i < maxTryTime; i++)
+                        {
+                                var t = _queue.Dequeue();
+                                if (t.EnterWrite())
+                                {
+                                        return t;
+                                }
+                        }
+                        return null;
+                }
+        }
+}

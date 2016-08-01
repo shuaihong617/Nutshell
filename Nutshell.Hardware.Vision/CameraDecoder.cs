@@ -24,16 +24,16 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         ///         摄像机图像消费者
         /// </summary>
-        public abstract class Decoder : Worker
+        public abstract class CameraDecoder : Worker
         {
                 /// <summary>
-                ///         初始化<see cref="Decoder" />的新实例.
+                ///         初始化<see cref="CameraDecoder" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                protected Decoder(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
+                protected CameraDecoder(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
                         : base(parent, id)
                 {
                         camera.MustNotNull();
@@ -41,10 +41,9 @@ namespace Nutshell.Hardware.Vision
 
                         PixelFormat = pixelFormat;
 
-                        ProcessBitmap = new Bitmap(this, "处理图像", camera.Region.Width, camera.Region.Height, pixelFormat);
+                        //ProcessBitmap = new Bitmap(this, "处理图像", camera.Region.Width, camera.Region.Height, pixelFormat);
 
-                        _thread = new Thread(ThreadWork);
-                        _thread.Priority = ThreadPriority.Normal;
+                        _thread = new Thread(ThreadWork) {Priority = ThreadPriority.Normal};
                 }
 
                 /// <summary>
@@ -58,14 +57,9 @@ namespace Nutshell.Hardware.Vision
                 public PixelFormat PixelFormat { get; private set; }
 
                 /// <summary>
-                ///         待处理图像
-                /// </summary>
-                public Bitmap ProcessBitmap { get; private set; }
-
-                /// <summary>
                 ///         图像池
                 /// </summary>
-                public ReaderWriterQueue<Bitmap> BitmapPool { get; private set; }
+                public ReaderWriterQueueBuffer<ReaderWriterObject<Bitmap>> Buffer { get; private set; }
 
                 /// <summary>
                 ///         处理任务
@@ -87,15 +81,17 @@ namespace Nutshell.Hardware.Vision
                                 throw new InvalidOperationException();
                         }
 
-                        if (BitmapPool == null)
+                        if (Buffer != null)
                         {
-                                BitmapPool = new ReaderWriterQueue<Bitmap>(this, "图像缓冲池");
-                                for (int i = 1; i < 8; i++)
-                                {
-                                        var bitmap = new Bitmap(BitmapPool, i + "号缓冲位图", width, height, PixelFormat);
-                                        var readerWriterBitmap = new ReaderWriterObject<Bitmap>(BitmapPool, i + "号读写缓冲位图", bitmap);
-                                        BitmapPool.Enqueue(readerWriterBitmap);
-                                }
+                                return;
+                        }
+
+                        Buffer = new ReaderWriterQueueBuffer<ReaderWriterObject<Bitmap>>(this, "图像缓冲池");
+                        for (int i = 1; i < 8; i++)
+                        {
+                                var bitmap = new Bitmap(Buffer, i + "号缓冲位图", width, height, PixelFormat);
+                                var readerWriterBitmap = new ReaderWriterObject<Bitmap>(Buffer, i + "号读写缓冲位图", bitmap);
+                                Buffer.Enqueue(readerWriterBitmap);
                         }
                 }
 
@@ -124,54 +120,28 @@ namespace Nutshell.Hardware.Vision
                                         break;
                                 }
 
-                                Process();
+                                if (!IsEnable || !IsStarted)
+                                {
+                                        return;
+                                }
+
+                                var source = Camera.Buffers.Dequeue();
+                                if (source == null)
+                                {
+                                        throw new InvalidOperationException();
+                                }
+
+                                var target = Buffer.Dequeue();
+                                if (target == null)
+                                {
+                                        throw new InvalidOperationException();
+                                }
+
+                                source.Value.TranslateTo(target.Value);
 
                                 Thread.Sleep(20);
                         }
                 }
-
-                /// <summary>
-                ///         处理摄像机图像采集完成事件
-                /// </summary>
-                /// <param name="sender">The source of the event.</param>
-                /// <param name="e">The e.</param>
-                private void Decode(object sender, ValueEventArgs<Bitmap> e)
-                {
-                        
-                        Bitmap bitmap = e.Data;
-
-                        if (Camera.RunMode == RunMode.Release)
-                        {
-                                if (!Camera.BitmapPool.EnterRead(bitmap))
-                                {
-                                        return;
-                                }
-                        }
-
-                        bitmap.TranslateTo(ProcessBitmap);
-
-                        if (Camera.RunMode == RunMode.Release)
-                        {
-                                Camera.BitmapPool.ExitRead(bitmap);
-                        }
-
-                        _processTask = Task.Run(() => Process());
-                }
-
-                /// <summary>
-                ///         处理接收的图像数据
-                /// </summary>
-                protected void Process()
-                {
-                        if (!IsEnable || !IsStarted)
-                        {
-                                return;
-                        }
-
-                        ProcessCore();
-                }
-
-                protected abstract void ProcessCore();
 
                 #endregion
         }
