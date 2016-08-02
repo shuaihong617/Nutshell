@@ -13,6 +13,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace Nutshell.Collections
 {
@@ -20,7 +21,7 @@ namespace Nutshell.Collections
         /// 队列缓冲区
         /// </summary>
         /// <typeparam name="T">缓冲数据类型</typeparam>
-        public class QueueBuffer<T>:Buffer<T>
+        public class QueueBuffer<T>:Buffer<T> where T:class 
         {
 
                 /// <summary>
@@ -56,6 +57,8 @@ namespace Nutshell.Collections
                                 throw new ArgumentException("要添加的对象不能为null");
                         }
                         _buffer.Enqueue(t);
+
+                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + GlobalId + "   入队  " + t);
                 }
 
 
@@ -66,7 +69,13 @@ namespace Nutshell.Collections
                 public override T Dequeue()
                 {
                         T t;
-                        return _buffer.TryDequeue(out t) ? t : default(T);
+                        if ( _buffer.TryDequeue(out t))
+                        {
+                                
+
+                                return t;
+                        }
+                        return null;
                 }
 
                 /// <summary>

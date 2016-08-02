@@ -11,47 +11,46 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components;
+using System.Collections.Generic;
+using Nutshell.Collections;
 
 namespace Nutshell.Threading
 {
         /// <summary>
-        ///         读写队列缓冲池消费者
+        ///         缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public abstract class ReaderWriterQueueConsumer<T> : IdentityObject where T : IdentityObject
+        public class ExclusiveQueueBuffer<T> : QueueBuffer<T> where T : IdentityObject,IExclusiveLockObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                protected ReaderWriterQueueConsumer(IdentityObject parent, string id)
+                public ExclusiveQueueBuffer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
                 }
 
-                
-                /// <summary>
-                ///         添加缓冲对象到缓冲池
-                /// </summary>
-                /// <param name="t">缓冲对象</param>
-                public void Enqueue(ReaderWriterObject<T> t)
+                public override T Dequeue()
                 {
-                        _queue.Enqueue(t);
-                }
+                        var length = Length + 3;
 
-                public ReaderWriterObject<T> Dequeue(int maxTryTime = 7)
-                {
-                        for (int i = 0; i < maxTryTime; i++)
+                        for (int i = 0; i < length; i++)
                         {
-                                var t = _queue.Dequeue();
-                                if (t.EnterWrite())
+                                var t = Dequeue();
+                                if (t.Lock())
                                 {
                                         return t;
+                                }
+                                else
+                                {
+                                        Enqueue(t);                                        
                                 }
                         }
                         return null;
                 }
+
+                
         }
 }

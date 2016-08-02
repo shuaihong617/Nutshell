@@ -13,15 +13,16 @@
 
 
 using System;
-using System.Threading;
 using System.Windows.Forms;
 using SharpDX.Direct2D1;
+using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
+using NutshellBitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
-        ///<summary>
-        /// 双缓冲渲染场景
-        ///</summary>
+        /// <summary>
+        ///         位图渲染场景
+        /// </summary>
         public abstract class BitmapSence : Sence
         {
                 protected BitmapSence(IdentityObject parent, string id = "", Control control = null)
@@ -32,59 +33,46 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                                 new BitmapProperties(SurfaceRenderTarget.PixelFormat));
                 }
 
-                protected Bitmap BufferBitmap { get; private set; }
+                protected SharpDXBitmap BufferBitmap { get; private set; }
 
-                protected DateTime UpdateTime { get; private set; }
+                public DateTime UpdateTime { get; private set; }
 
-                private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
-
-                public void Update(Drawing.Imaging.Bitmap bitmap)
+                public void Update(NutshellBitmap bitmap)
                 {
-                        if (_lock.TryEnterWriteLock(20))
-                        {
-                                bitmap.Width.MustEqual(BufferBitmap.PixelSize.Width);
-                                bitmap.Height.MustEqual(BufferBitmap.PixelSize.Height);
+                        bitmap.Width.MustEqual(BufferBitmap.PixelSize.Width);
+                        bitmap.Height.MustEqual(BufferBitmap.PixelSize.Height);
 
-                                BufferBitmap.CopyFromMemory(bitmap.Buffer, bitmap.Stride);
+                        BufferBitmap.CopyFromMemory(bitmap.Buffer, bitmap.Stride);
 
-                                _lock.ExitWriteLock();
+                        UpdateTime = DateTime.Now;
 
-                                UpdateTime = DateTime.Now;
-
-                                OnUpdated(EventArgs.Empty);
-                        }
+                        OnUpdated(EventArgs.Empty);
                 }
 
                 public override sealed void Render()
                 {
-                        if (_lock.TryEnterReadLock(20))
-                        {
-                                SurfaceRenderTarget.BeginDraw();
+                        SurfaceRenderTarget.BeginDraw();
 
-                                SurfaceRenderTarget.DrawBitmap(BufferBitmap, 1,
-                                        BitmapInterpolationMode.Linear);
-                                Render(SurfaceRenderTarget);
+                        SurfaceRenderTarget.DrawBitmap(BufferBitmap, 1,
+                                BitmapInterpolationMode.Linear);
+                        Render(SurfaceRenderTarget);
 
-                                SurfaceRenderTarget.EndDraw();
-
-                                _lock.ExitReadLock();
-                        }
+                        SurfaceRenderTarget.EndDraw();
                 }
 
                 protected abstract void Render(RenderTarget target);
 
                 #region 事件
 
-
                 /// <summary>
-                /// 当缓冲区图像已更新时发生
+                ///         当缓冲区图像已更新时发生
                 /// </summary>
                 public event EventHandler<EventArgs> Updated;
 
                 /// <summary>
-                /// 引发<see cref="E:Updated" />事件
+                ///         引发<see cref="E:Updated" />事件
                 /// </summary>
-                /// <param name="e">包含事件数据的<see cref="EventArgs"/>实例</param>
+                /// <param name="e">包含事件数据的<see cref="EventArgs" />实例</param>
                 protected virtual void OnUpdated(EventArgs e)
                 {
                         e.Raise(this, ref Updated);

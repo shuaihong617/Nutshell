@@ -1,25 +1,30 @@
-﻿using System.Windows.Forms;
+﻿using System;
 using Nutshell.Components;
-using Nutshell.Drawing.Imaging;
+using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
+using NutshellBitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
-        public abstract class CycleRenderer:Worker
+        public abstract class CycleRenderer : Worker
         {
-                protected CycleRenderer(IdentityObject parent, string id = "", Control control = null)
+                protected CycleRenderer(IdentityObject parent, string id = "", BitmapSence sence = null)
                         : base(parent, id)
                 {
+                        if (sence == null)
+                        {
+                                throw new ArgumentException("渲染场景不能为null");
+                        }
+                        _sence = sence;
+
                         _renderLooper = new Looper(this, "显示循环", Render, 50);
                 }
 
+                private readonly BitmapSence _sence;
                 private readonly Looper _renderLooper;
 
-                protected Bitmap Bitmap { get; set; }
+                protected NutshellBitmap Bitmap { get; set; }
 
-                private BitmapSence Sence { get; set; }
-
-
-                private bool isRendering = false;
+                private bool _isRendering;
 
                 protected override bool StartCore()
                 {
@@ -34,16 +39,17 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 protected virtual void Render()
                 {
-                        if (isRendering)
+                        if (_isRendering)
                         {
-                            return;    
+                                return;
                         }
 
-                        Sence.Update(Bitmap);
-                        Sence.Render();
+                        _isRendering = true;
+
+                        _sence.Update(Bitmap);
+                        _sence.Render();
+
+                        _isRendering = false;
                 }
-
-
-                
         }
 }

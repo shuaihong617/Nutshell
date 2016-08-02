@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace Nutshell.Drawing.Imaging
 {
@@ -38,6 +39,11 @@ namespace Nutshell.Drawing.Imaging
                 public int BufferLength { get; private set; }
 
                 public DateTime TimeStamp { get; private set; }
+
+                public void UpdateTimeStamp()
+                {
+                        TimeStamp = DateTime.Now;
+                }
 
                 public void TranslateTo(Bitmap target)
                 {
@@ -133,18 +139,30 @@ namespace Nutshell.Drawing.Imaging
 
                         int length = source.BufferLength / 3;
 
-                        for (int i = 0; i < length; i++)
+                        //for(int i = 0; i < length; i++)
+                        //{
+                        //        byte r = *sourcePtr++;
+                        //        byte g = *sourcePtr++;
+                        //        byte b = *sourcePtr++;
+
+                        //        *targetPtr++ = b;
+                        //        *targetPtr++ = g;
+                        //        *targetPtr++ = r;
+                        //        *targetPtr++ = 255;
+                        //}
+
+                        Parallel.For(0, length, i =>
                         {
-                                byte r = *sourcePtr++;
-                                byte g = *sourcePtr++;
-                                byte b = *sourcePtr++;
+                                byte r = *(sourcePtr + i *3);
+                                byte g = *(sourcePtr + i * 3 + 1);
+                                byte b = *(sourcePtr + i * 3 + 2);
 
-                                *targetPtr++ = b;
-                                *targetPtr++ = g;
-                                *targetPtr++ = r;
-                                *targetPtr++ = 255;
-                        }
-
+                                *(targetPtr+ i * 4) = b;
+                                *(targetPtr + i * 4 + 1) = g;
+                                *(targetPtr + i * 4 + 2) = r;
+                                *(targetPtr + i * 4 + 3) = 255;
+                        });
+                       
                         //王喜 2016.7.8 算法，测试未通过
                         //var sourcePtr = (uint*)source.Buffer.ToPointer();
                         //var targetPtr = (uint*)target.Buffer.ToPointer();
@@ -327,6 +345,11 @@ namespace Nutshell.Drawing.Imaging
                                         *sourcePtr++ = b;
                                 }
                         }
+                }
+
+                public override string ToString()
+                {
+                        return string.Format("{0}:{1}", GlobalId, TimeStamp.ToChineseLongMillisecondString());
                 }
         }
 }

@@ -11,47 +11,48 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components;
+using System.Threading;
 
 namespace Nutshell.Threading
 {
         /// <summary>
-        ///         读写队列缓冲池消费者
+        ///         独占锁对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public abstract class ReaderWriterQueueProducer<T> : IdentityObject where T : IdentityObject
+        public class ExclusiveLockObject<T> : IdentityObject,IExclusiveLockObject where T : IdentityObject
         {
                 /// <summary>
-                ///         初始化<see cref="IdentityObject" />的新实例.
+                /// 初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                protected ReaderWriterQueueProducer(IdentityObject parent, string id)
+                /// <param name="t">需要锁定的对象</param>
+                public ExclusiveLockObject(IdentityObject parent, string id, T t)
                         : base(parent, id)
                 {
+                        Value = t;
                 }
 
-                
+                private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
+
+                public T Value { get; private set; }
+
+
                 /// <summary>
-                ///         添加缓冲对象到缓冲池
+                /// 锁定
                 /// </summary>
-                /// <param name="t">缓冲对象</param>
-                public void Enqueue(ReaderWriterObject<T> t)
+                /// <returns>锁定操作是否成功</returns>
+                public bool Lock()
                 {
-                        _queue.Enqueue(t);
+                        return _lock.TryEnterWriteLock(0);
                 }
 
-                public ReaderWriterObject<T> Dequeue(int maxTryTime = 7)
+                /// <summary>
+                /// 解锁
+                /// </summary>
+                public void Unlock()
                 {
-                        for (int i = 0; i < maxTryTime; i++)
-                        {
-                                var t = _queue.Dequeue();
-                                if (t.EnterWrite())
-                                {
-                                        return t;
-                                }
-                        }
-                        return null;
+                        _lock.ExitWriteLock();
                 }
         }
 }

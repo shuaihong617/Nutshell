@@ -14,29 +14,19 @@
 namespace Nutshell.Threading
 {
         /// <summary>
-        ///         缓冲池
+        ///         独占锁对象接口
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public interface IReaderWriterObject
+        public interface IExclusiveLockObject
         {
-                bool EnterRead();
+                /// <summary>
+                /// 锁定
+                /// </summary>
+                /// <returns>锁定操作是否成功</returns>
+                bool Lock();
 
                 /// <summary>
-                ///         Exits the read.
+                /// 解锁
                 /// </summary>
-                /// <param name="t">The t.</param>
-                void ExitRead();
-
-                /// <summary>
-                ///         Enters the write.
-                /// </summary>
-                /// <returns>T.</returns>
-                bool EnterWrite();
-
-                /// <summary>
-                ///         Exits the write.
-                /// </summary>
-                /// <param name="t">The t.</param>
-                void ExitWrite();
+                void Unlock();
         }
 }

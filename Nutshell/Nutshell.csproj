@@ -196,12 +196,9 @@
     <Compile Include="Messaging\ValueMessage.cs" />
     <Compile Include="Messaging\Message.cs" />
     <Compile Include="ReadWriteMode.cs" />
-    <Compile Include="Threading\IReaderWriterObject.cs" />
-    <Compile Include="Threading\ReaderWriterObject.cs" />
-    <Compile Include="Threading\ReaderWriterQueueProducer.cs" />
-    <Compile Include="Threading\ReaderWriterQueueConsumeProducer.cs" />
-    <Compile Include="Threading\ReaderWriterQueueConsumer.cs" />
-    <Compile Include="Threading\ReaderWriterQueueBuffer.cs" />
+    <Compile Include="Threading\IExclusiveLockObject.cs" />
+    <Compile Include="Threading\ExclusiveLockObject.cs" />
+    <Compile Include="Threading\ExclusiveQueueBuffer.cs" />
     <Compile Include="Threading\Pool.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="NullableExtensions.cs" />

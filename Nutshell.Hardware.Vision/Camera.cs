@@ -13,6 +13,7 @@
 
 using System;
 using System.Diagnostics;
+using Nutshell.Collections;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Drawing.Shapes;
@@ -102,7 +103,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public ReaderWriterQueueBuffer<ReaderWriterObject<Bitmap>> Buffers { get; private set; }
+                public QueueBuffer<Bitmap> Buffers { get; private set; }
 
                 #endregion
 
@@ -154,12 +155,11 @@ namespace Nutshell.Hardware.Vision
 
                         if (Buffers == null)
                         {
-                                Buffers = new ReaderWriterQueueBuffer<ReaderWriterObject<Bitmap>>(this, "图像缓冲池");
-                                for (int i = 1; i < 8; i++)
+                                Buffers = new QueueBuffer<Bitmap>(this, "图像缓冲池");
+                                for (int i = 1; i < 6; i++)
                                 {
                                         var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
-                                        var readerWriterBitmap = new ReaderWriterObject<Bitmap>(Buffers, i + "号读写缓冲位图",bitmap);
-                                        Buffers.Enqueue(readerWriterBitmap);
+                                        Buffers.Enqueue(bitmap);
                                 }
                         }
                 }

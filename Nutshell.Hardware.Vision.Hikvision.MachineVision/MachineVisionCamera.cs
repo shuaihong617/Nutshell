@@ -33,7 +33,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 public MachineVisionCamera(IdentityObject parent, string id = "", string ipAddress = "192.168.1.1")
                         : base(parent, id, 1280, 960, PixelFormat.Rgb24, ipAddress)
                 {
-                        _captureLooper = new Looper(this, "采集循环", Capture, 40);
+                        _captureLooper = new Looper(this, "采集循环", Capture, 25);
 
                         _exceptionCallback = ExceptionCallBack;
                 }
@@ -185,12 +185,14 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return null;
                         }
 
-                        Bitmap bitmap = Buffers.EnterWrite();
+                        Bitmap bitmap = Buffers.Dequeue();
                         if (bitmap == null)
                         {
                                 this.WarnFail("BitmapPool.Instance.EnterWrite");
                                 return null;
                         }
+
+                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "   出队  " + bitmap);
 
                         //ErrorCode error = API.GetOneFrame(_handle, _captureBufferPtr, CaptureBufferBytesCount,
                         //        ref _frameOutInfo);
@@ -199,12 +201,16 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         if (error != ErrorCode.MV_OK)
                         {
                                 this.WarnFail("GetOneFrame", error);
-                                Buffers.ExitWrite(bitmap);
+                                Buffers.Enqueue(bitmap);
                                 return bitmap;
                         }
                         //this.InfoSuccess("GetOneFrame");
 
-                        Buffers.ExitWrite(bitmap);
+                        bitmap.UpdateTimeStamp();
+                        Buffers.Enqueue(bitmap);
+
+                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
+                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "   入队  " + bitmap);
                         return bitmap;
                 }
 

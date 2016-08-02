@@ -12,13 +12,10 @@
 // ***********************************************************************
 
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
-using System.Threading;
-using Nutshell.Components;
-using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
-using Nutshell.Log;
+using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 {
@@ -32,16 +29,20 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
-                /// <param name="camera">The camera.</param>
+                /// <param name="decoder">The decoder.</param>
                 /// <param name="sence">The sence.</param>
-                public CameraRenderer(IdentityObject parent, string id, Camera camera, CameraSence sence)
-                        : base(parent, id, camera, PixelFormat.Bgra32)
+                /// <exception cref="System.ArgumentException">摄像机解码单元不能为null</exception>
+                public CameraRenderer(IdentityObject parent, string id, CameraDecoder decoder, CameraSence sence)
+                        : base(parent, id, sence)
                 {
-                        sence.MustNotNull();
-                        //Sence = sence;
+                        if (decoder == null)
+                        {
+                                throw new ArgumentException("摄像机解码单元不能为null");
+                        }
+                        _decoder = decoder;
                 }
 
-                private CameraDecoder _decoder;
+                private readonly CameraDecoder _decoder;
 
                 public bool IsRenderStarted
                 {
@@ -53,62 +54,34 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         }
                 }
 
-                protected static Font YaHei40Font = new Font("Microsoft YaHei", 40);
+                protected static Font YaHei40Font = new Font("Microsoft YaHei", 10);
                 private bool _isRenderStarted;
 
-                protected override void ProcessCore()
-                {
-                        CameraSence sence = _sencePool.Dequeue();
-                        if (sence == null)
-                        {
-                                this.WarnFail("EnterWrite");
-                                return;
-                        }
 
-                        sence.Update(ProcessBitmap);
-
-                        if (_lock.TryEnterWriteLock(5))
-                        {
-                                _displaySence = sence;
-                                _lock.EnterWriteLock();
-                        }
-                        else
-                        {
-                                _sencePool.Enqueue(sence);
-                        }
-                }
+                public DateTime LastDecodeBitmapTimeStamp { get; private set; }
 
                 protected override void Render()
                 {
-                        var source = _decoder.Buffer.Dequeue();
+                        Bitmap source = _decoder.Buffers.Dequeue();
                         if (source == null)
                         {
                                 throw new InvalidOperationException();
                         }
 
-                        Bitmap = source.Value;
+                        if (source.TimeStamp < LastDecodeBitmapTimeStamp)
+                        {
+                                _decoder.Buffers.Enqueue(source);
+                                return;
+                        }
+
+                        Bitmap = source;
                         base.Render();
 
-                        source.ExitWrite();
-                }
+                        LastDecodeBitmapTimeStamp = source.TimeStamp;
+                        _decoder.Buffers.Enqueue(source);
 
+                        Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
 
-                
-
-                
-
-                private void Render()
-                {
-                        if (_lock.TryEnterReadLock(5))
-                        {
-                                if (_displaySence != null)
-                                {
-                                        _displaySence.Render();
-                                        _sencePool.Enqueue(_displaySence);
-                                }
-
-                                _lock.ExitReadLock();
-                        }
                 }
         }
 }
