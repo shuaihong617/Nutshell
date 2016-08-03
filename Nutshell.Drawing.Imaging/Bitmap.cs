@@ -134,10 +134,10 @@ namespace Nutshell.Drawing.Imaging
                         target.PixelFormat.MustEqual(PixelFormat.Bgra32);
 
                         //逐字节复制
-                        var sourcePtr = (byte*)source.Buffer.ToPointer();
-                        var targetPtr = (byte*)target.Buffer.ToPointer();
+                        var sourcePtr = (byte*) source.Buffer.ToPointer();
+                        var targetPtr = (byte*) target.Buffer.ToPointer();
 
-                        int length = source.BufferLength / 3;
+                        int length = source.BufferLength/3;
 
                         //for(int i = 0; i < length; i++)
                         //{
@@ -153,16 +153,18 @@ namespace Nutshell.Drawing.Imaging
 
                         Parallel.For(0, length, i =>
                         {
-                                byte r = *(sourcePtr + i *3);
-                                byte g = *(sourcePtr + i * 3 + 1);
-                                byte b = *(sourcePtr + i * 3 + 2);
+                                byte* s = sourcePtr + i*3;
+                                byte r = *s;
+                                byte g = *(s + 1);
+                                byte b = *(s + 2);
 
-                                *(targetPtr+ i * 4) = b;
-                                *(targetPtr + i * 4 + 1) = g;
-                                *(targetPtr + i * 4 + 2) = r;
-                                *(targetPtr + i * 4 + 3) = 255;
+                                byte* t = targetPtr + i*4;
+                                *t = b;
+                                *(t + 1) = g;
+                                *(t + 2) = r;
+                                *(t + 3) = 255;
                         });
-                       
+
                         //王喜 2016.7.8 算法，测试未通过
                         //var sourcePtr = (uint*)source.Buffer.ToPointer();
                         //var targetPtr = (uint*)target.Buffer.ToPointer();
@@ -210,7 +212,7 @@ namespace Nutshell.Drawing.Imaging
                         //                Trace.WriteLine("b2:" + b2);
                         //                Trace.WriteLine("b3:" + b3);
                         //        }
-                                
+
                         //}
                 }
 
@@ -263,7 +265,7 @@ namespace Nutshell.Drawing.Imaging
                 {
                         PixelFormat.MustEqual(PixelFormat.Rgb24);
 
-                        var sourcePtr = (byte*)Buffer.ToPointer();
+                        var sourcePtr = (byte*) Buffer.ToPointer();
 
                         var bitmap = new System.Drawing.Bitmap(Width, Height,
                                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);

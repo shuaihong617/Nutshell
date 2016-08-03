@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackgroundSence.cs" />
     <Compile Include="CycleRenderer.cs" />
     <Compile Include="BitmapSence.cs" />
     <Compile Include="Sence.cs" />

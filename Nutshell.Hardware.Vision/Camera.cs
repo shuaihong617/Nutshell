@@ -156,7 +156,7 @@ namespace Nutshell.Hardware.Vision
                         if (Buffers == null)
                         {
                                 Buffers = new QueueBuffer<Bitmap>(this, "图像缓冲池");
-                                for (int i = 1; i < 6; i++)
+                                for (int i = 1; i < 5; i++)
                                 {
                                         var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
                                         Buffers.Enqueue(bitmap);

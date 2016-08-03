@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using Nutshell.Hardware.Vision;
 using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
@@ -80,7 +79,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         LastDecodeBitmapTimeStamp = source.TimeStamp;
                         _decoder.Buffers.Enqueue(source);
 
-                        Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
+                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
 
                 }
         }

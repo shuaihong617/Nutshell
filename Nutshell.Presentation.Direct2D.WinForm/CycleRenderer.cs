@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Nutshell.Components;
 using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
 using NutshellBitmap = Nutshell.Drawing.Imaging.Bitmap;
@@ -16,7 +17,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         }
                         _sence = sence;
 
-                        _renderLooper = new Looper(this, "显示循环", Render, 50);
+                        _renderLooper = new Looper(this, "显示循环", Render, 50, ThreadPriority.AboveNormal);
                 }
 
                 private readonly BitmapSence _sence;

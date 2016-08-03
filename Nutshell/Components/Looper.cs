@@ -14,7 +14,6 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 using Nutshell.Components.Models;
 using Nutshell.Data.Models;
 using Nutshell.Log;
@@ -31,18 +30,23 @@ namespace Nutshell.Components
                 {
                 }
 
-                public Looper(IdentityObject parent, string id = "", Action work = null, int interval = 1000)
+                public Looper(IdentityObject parent, string id = "", Action work = null, int interval = 1000, ThreadPriority priority = ThreadPriority.Normal)
                         : base(parent, id)
                 {
                         _work = work;
                         Interval = interval;
+
+                        _thread = new Thread(ThreadWork);
+                        _thread.Priority = priority;
                 }
 
                 #region 字段
 
-                private readonly Action _work;
+                private readonly Thread _thread;
 
-                private bool _isTaskRuning;
+                private bool _isThreadWorking;
+
+                private readonly Action _work;
 
                 #endregion
 
@@ -64,36 +68,33 @@ namespace Nutshell.Components
 
                 protected override bool StartCore()
                 {
-                        _isTaskRuning = true;
-                        Task.Run(() =>
-                        {
-                                this.Info("循环启动,周期",Interval,"毫秒");
-                                for (;;)
-                                {
-                                        _work();
+                        _isThreadWorking = true;
 
-                                        Thread.Sleep(Interval);
-
-                                        if (!_isTaskRuning)
-                                        {
-                                                this.Info("循环停止");
-                                                break;
-                                        }
-                                }
-                        });
+                        _thread.Start();
 
                         return true;
                 }
 
+                private void ThreadWork()
+                {
+                        this.Info("循环启动,周期", Interval, "毫秒");
+                        for (; ; )
+                        {
+                                _work();
+
+                                Thread.Sleep(Interval);
+
+                                if (!_isThreadWorking)
+                                {
+                                        this.Info("循环停止");
+                                        break;
+                                }
+                        }
+                }
+
                 protected override bool StopCore()
                 {
-                        _isTaskRuning = false;
-
-                        //_workTask.Wait();
-
-                        //_workTask.Dispose();
-                        //_workTask = null;
-
+                        _isThreadWorking = false;
 
                         return true;
                 }
