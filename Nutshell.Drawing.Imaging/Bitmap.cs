@@ -139,31 +139,31 @@ namespace Nutshell.Drawing.Imaging
 
                         int length = source.BufferLength/3;
 
-                        //for(int i = 0; i < length; i++)
-                        //{
-                        //        byte r = *sourcePtr++;
-                        //        byte g = *sourcePtr++;
-                        //        byte b = *sourcePtr++;
-
-                        //        *targetPtr++ = b;
-                        //        *targetPtr++ = g;
-                        //        *targetPtr++ = r;
-                        //        *targetPtr++ = 255;
-                        //}
-
-                        Parallel.For(0, length, i =>
+                        for (int i = 0; i < length; i++)
                         {
-                                byte* s = sourcePtr + i*3;
-                                byte r = *s;
-                                byte g = *(s + 1);
-                                byte b = *(s + 2);
+                                byte r = *sourcePtr++;
+                                byte g = *sourcePtr++;
+                                byte b = *sourcePtr++;
 
-                                byte* t = targetPtr + i*4;
-                                *t = b;
-                                *(t + 1) = g;
-                                *(t + 2) = r;
-                                *(t + 3) = 255;
-                        });
+                                *targetPtr++ = b;
+                                *targetPtr++ = g;
+                                *targetPtr++ = r;
+                                *targetPtr++ = 255;
+                        }
+
+                        //Parallel.For(0, length, i =>
+                        //{
+                        //        byte* s = sourcePtr + i*3;
+                        //        byte r = *s;
+                        //        byte g = *(s + 1);
+                        //        byte b = *(s + 2);
+
+                        //        byte* t = targetPtr + i*4;
+                        //        *t = b;
+                        //        *(t + 1) = g;
+                        //        *(t + 2) = r;
+                        //        *(t + 3) = 255;
+                        //});
 
                         //王喜 2016.7.8 算法，测试未通过
                         //var sourcePtr = (uint*)source.Buffer.ToPointer();

@@ -67,6 +67,8 @@ namespace Nutshell.Hardware.Vision
 
                 private bool _isThreadExit;
 
+                private Stopwatch _stopwatch = new Stopwatch();
+
                 /// <summary>
                 ///         创建图像缓冲池
                 /// </summary>
@@ -114,7 +116,7 @@ namespace Nutshell.Hardware.Vision
                 private void ThreadWork()
                 {
                         Bitmap source;
-
+                        int count = 0;
                         for (;;)
                         {
                                 if (_isThreadExit)
@@ -132,18 +134,26 @@ namespace Nutshell.Hardware.Vision
                                         return;
                                 }
 
+                                _stopwatch.Restart();
+
+                                count = 0;
+
                                 for (;;)
                                 {
+                                       
+
                                         var bitmap = Camera.Buffers.Dequeue();
                                         if (bitmap == null)
                                         {
                                                 throw new InvalidOperationException();
                                         }
 
+                                        count++;
                                         //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     摄像机缓冲区出队  " + bitmap);
 
                                         if (bitmap.TimeStamp < LastDecodeBitmapTimeStamp)
                                         {
+                                                
                                                Camera.Buffers.Enqueue(bitmap);
                                                //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     摄像机  旧数据入队  " + bitmap);
                                                continue;
@@ -172,7 +182,12 @@ namespace Nutshell.Hardware.Vision
                                 Buffers.Enqueue(target);
                                 //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     解码  入队  " + target);
 
-                                Thread.Sleep(50);
+                                _stopwatch.Stop();
+
+                                Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + "   解码: " + count + "  " +
+                                                _stopwatch.ElapsedMilliseconds);
+
+                                Thread.Sleep(5);
                         }
                 }
 

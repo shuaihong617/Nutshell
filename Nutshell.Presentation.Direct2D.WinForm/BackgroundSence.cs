@@ -28,26 +28,20 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 protected BackgroundSence(IdentityObject parent, string id = "", Control control = null)
                         : base(parent, id, control)
                 {
-                        BufferBitmap = new Bitmap(SurfaceRenderTarget,
-                                SurfaceRenderTarget.PixelSize,
-                                new BitmapProperties(SurfaceRenderTarget.PixelFormat));
-
                         BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,
                                 CompatibleRenderTargetOptions.None);
                 }
 
                 protected BitmapRenderTarget BufferBitmapRenderTarget { get; private set; }
-
-                protected SharpDXBitmap BufferBitmap { get; private set; }
-
                 public DateTime UpdateTime { get; private set; }
 
-                public void Update(NutshellBitmap bitmap)
+                public void Update(NutshellBitmap source)
                 {
-                        bitmap.Width.MustEqual(BufferBitmap.PixelSize.Width);
-                        bitmap.Height.MustEqual(BufferBitmap.PixelSize.Height);
+                        var target = BufferBitmapRenderTarget.Bitmap;
+                        source.Width.MustEqual(target.PixelSize.Width);
+                        source.Height.MustEqual(target.PixelSize.Height);
 
-                        BufferBitmap.CopyFromMemory(bitmap.Buffer, bitmap.Stride);
+                        BufferBitmapRenderTarget.Bitmap.CopyFromMemory(source.Buffer, source.Stride);
 
                         UpdateTime = DateTime.Now;
 
@@ -56,12 +50,13 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 public override sealed void Render()
                 {
+                        BufferBitmapRenderTarget.BeginDraw();
+                        Render(BufferBitmapRenderTarget);
+                        BufferBitmapRenderTarget.EndDraw();
+
                         SurfaceRenderTarget.BeginDraw();
-
-                        SurfaceRenderTarget.DrawBitmap(BufferBitmap, 1,
+                        SurfaceRenderTarget.DrawBitmap(BufferBitmapRenderTarget.Bitmap, 1,
                                 BitmapInterpolationMode.Linear);
-                        Render(SurfaceRenderTarget);
-
                         SurfaceRenderTarget.EndDraw();
                 }
 

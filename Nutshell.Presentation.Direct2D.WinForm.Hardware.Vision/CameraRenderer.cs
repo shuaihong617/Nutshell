@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using Nutshell.Hardware.Vision;
 using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
@@ -43,6 +44,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private readonly CameraDecoder _decoder;
 
+                private readonly Stopwatch _stopwatch = new Stopwatch();
+                private int count;
+
                 public bool IsRenderStarted
                 {
                         get { return _isRenderStarted; }
@@ -61,6 +65,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 protected override void Render()
                 {
+                        _stopwatch.Restart();
+                        count++;
+
                         Bitmap source = _decoder.Buffers.Dequeue();
                         if (source == null)
                         {
@@ -78,6 +85,11 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                         LastDecodeBitmapTimeStamp = source.TimeStamp;
                         _decoder.Buffers.Enqueue(source);
+
+                        _stopwatch.Stop();
+
+                        Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + "   显示单元: " + count + "  " +
+                                        _stopwatch.ElapsedMilliseconds);
 
                         //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
 
