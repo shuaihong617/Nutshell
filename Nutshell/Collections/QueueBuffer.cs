@@ -13,7 +13,6 @@
 
 using System;
 using System.Collections.Concurrent;
-using System.Diagnostics;
 
 namespace Nutshell.Collections
 {
@@ -57,25 +56,17 @@ namespace Nutshell.Collections
                                 throw new ArgumentException("要添加的对象不能为null");
                         }
                         _buffer.Enqueue(t);
-
-                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + GlobalId + "   入队  " + t);
                 }
 
 
                 /// <summary>
-                /// Dequeues this instance.
+                /// 从缓冲区中移除并返回对象。
                 /// </summary>
-                /// <returns>T.</returns>
+                /// <returns>移除并返回的对象</returns>
                 public override T Dequeue()
                 {
                         T t;
-                        if ( _buffer.TryDequeue(out t))
-                        {
-                                
-
-                                return t;
-                        }
-                        return null;
+                        return _buffer.TryDequeue(out t) ? t : null;
                 }
 
                 /// <summary>

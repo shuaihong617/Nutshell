@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System.Collections.Generic;
 using Nutshell.Collections;
 
 namespace Nutshell.Threading
@@ -20,14 +19,14 @@ namespace Nutshell.Threading
         ///         缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ExclusiveQueueBuffer<T> : QueueBuffer<T> where T : IdentityObject,IExclusiveLockObject
+        public class MonopolyBuffer<T> : QueueBuffer<T> where T : IdentityObject,IMonopolyObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public ExclusiveQueueBuffer(IdentityObject parent, string id)
+                public MonopolyBuffer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
                 }

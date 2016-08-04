@@ -16,17 +16,17 @@ using System.Threading;
 namespace Nutshell.Threading
 {
         /// <summary>
-        /// 缓冲池
+        /// 为对象添加读写锁的缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class Pool<T> : IdentityObject where T : IdentityObject
+        public class ReadWritePool<T> : IdentityObject where T : IdentityObject
         {
                 /// <summary>
                 /// 初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public Pool(IdentityObject parent, string id)
+                public ReadWritePool(IdentityObject parent, string id)
                         : base(parent, id)
                 {
                 }
@@ -51,7 +51,7 @@ namespace Nutshell.Threading
                 /// </summary>
                 /// <param name="t">The t.</param>
                 /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-                public bool EnterRead(T t)
+                public bool ReadLock(T t)
                 {
                         return _buffers[t].TryEnterReadLock(0);
                 }
@@ -60,7 +60,7 @@ namespace Nutshell.Threading
                 /// Exits the read.
                 /// </summary>
                 /// <param name="t">The t.</param>
-                public void ExitRead(T t)
+                public void ReadUnlock(T t)
                 {
                         _buffers[t].ExitReadLock();
                 }
@@ -69,7 +69,7 @@ namespace Nutshell.Threading
                 /// Enters the write.
                 /// </summary>
                 /// <returns>T.</returns>
-                public T EnterWrite()
+                public T WriteLock()
                 {
                         foreach (var pair in _buffers)
                         {
@@ -85,7 +85,7 @@ namespace Nutshell.Threading
                 /// Exits the write.
                 /// </summary>
                 /// <param name="t">The t.</param>
-                public void ExitWrite(T t)
+                public void WriteUnlock(T t)
                 {
                         _buffers[t].ExitWriteLock();
                 }

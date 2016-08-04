@@ -17,7 +17,7 @@ namespace Nutshell.Drawing.Imaging
         /// <summary>
         ///         方向枚举
         /// </summary>
-        public enum PixelFormat
+        public enum NSPixelFormat
         {
                 Mono8,
                 /// <summary>

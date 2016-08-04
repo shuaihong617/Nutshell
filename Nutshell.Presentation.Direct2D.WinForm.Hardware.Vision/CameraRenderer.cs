@@ -14,8 +14,10 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
+using Nutshell.Components;
+using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
-using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 {
@@ -44,55 +46,21 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private readonly CameraDecoder _decoder;
 
-                private readonly Stopwatch _stopwatch = new Stopwatch();
-                private int count;
-
-                public bool IsRenderStarted
+                protected override bool StartCore()
                 {
-                        get { return _isRenderStarted; }
-                        private set
-                        {
-                                _isRenderStarted = value;
-                                RaisePropertyChanged();
-                        }
+                        _decoder.DecodeFinished += Decoder_DecodeFinished;
+                        return base.StartCore();
                 }
 
-                protected static Font YaHei40Font = new Font("Microsoft YaHei", 10);
-                private bool _isRenderStarted;
-
-
-                public DateTime LastDecodeBitmapTimeStamp { get; private set; }
-
-                protected override void Render()
+                private void Decoder_DecodeFinished(object sender, ValueEventArgs<NSBitmap> e)
                 {
-                        _stopwatch.Restart();
-                        count++;
+                        Sence.Update(e.Data);
+                }
 
-                        Bitmap source = _decoder.Buffers.Dequeue();
-                        if (source == null)
-                        {
-                                throw new InvalidOperationException();
-                        }
-
-                        if (source.TimeStamp < LastDecodeBitmapTimeStamp)
-                        {
-                                _decoder.Buffers.Enqueue(source);
-                                return;
-                        }
-
-                        Bitmap = source;
-                        base.Render();
-
-                        LastDecodeBitmapTimeStamp = source.TimeStamp;
-                        _decoder.Buffers.Enqueue(source);
-
-                        _stopwatch.Stop();
-
-                        Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + "   显示单元: " + count + "  " +
-                                        _stopwatch.ElapsedMilliseconds);
-
-                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
-
+                protected override bool StopCore()
+                {
+                        _decoder.DecodeFinished -= Decoder_DecodeFinished;
+                        return base.StopCore();
                 }
         }
 }

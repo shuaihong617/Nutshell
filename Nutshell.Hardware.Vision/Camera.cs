@@ -25,7 +25,7 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class Camera : CaptureDevice<Bitmap>
+        public abstract class Camera : CaptureDevice<NSBitmap>
         {
                 /// <summary>
                 /// 初始化<see cref="Camera" />的实例
@@ -36,7 +36,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
                 protected Camera(IdentityObject parent, string id = "", int width = 2, int height = 2,
-                        PixelFormat pixelFormat = PixelFormat.Mono8)
+                        NSPixelFormat pixelFormat = NSPixelFormat.Mono8)
                         : base( parent, id)
                 {
                         Region = new Region(this);
@@ -92,7 +92,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         格式
                 /// </summary>
-                public PixelFormat PixelFormat { get; private set; }
+                public NSPixelFormat PixelFormat { get; private set; }
 
                 /// <summary>
                 ///         获取有效图像ROI区域数据模型
@@ -103,7 +103,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public QueueBuffer<Bitmap> Buffers { get; private set; }
+                public ReadWritePool<NSBitmap> Buffers { get; private set; }
 
                 #endregion
 
@@ -155,11 +155,11 @@ namespace Nutshell.Hardware.Vision
 
                         if (Buffers == null)
                         {
-                                Buffers = new QueueBuffer<Bitmap>(this, "图像缓冲池");
+                                Buffers = new ReadWritePool<NSBitmap>(this, "图像缓冲池");
                                 for (int i = 1; i < 5; i++)
                                 {
-                                        var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
-                                        Buffers.Enqueue(bitmap);
+                                        var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
+                                        Buffers.Add(bitmap);
                                 }
                         }
                 }

@@ -22,7 +22,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
         /// <summary>
         ///         Class CameraRender.
         /// </summary>
-        public abstract class CameraSence : BackgroundSence
+        public abstract class CameraSence : BitmapSence
         {
                 /// <summary>
                 /// 初始化<see cref="CameraSence" />的新实例.

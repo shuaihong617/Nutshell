@@ -2,13 +2,12 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace Nutshell.Drawing.Imaging
 {
-        public unsafe class Bitmap : IdentityObject
+        public unsafe class NSBitmap : IdentityObject
         {
-                public Bitmap(IdentityObject parent, String id, int width, int height, PixelFormat format)
+                public NSBitmap(IdentityObject parent, String id, int width, int height, NSPixelFormat format)
                         : base(parent, id)
                 {
                         width.MustGreaterThan(0);
@@ -30,7 +29,7 @@ namespace Nutshell.Drawing.Imaging
 
                 public int Height { get; private set; }
 
-                public PixelFormat PixelFormat { get; private set; }
+                public NSPixelFormat PixelFormat { get; private set; }
 
                 public int Stride { get; private set; }
 
@@ -45,7 +44,7 @@ namespace Nutshell.Drawing.Imaging
                         TimeStamp = DateTime.Now;
                 }
 
-                public void TranslateTo(Bitmap target)
+                public void TranslateTo(NSBitmap target)
                 {
                         target.MustNotNull();
                         target.Width.MustEqual(Width);
@@ -59,10 +58,10 @@ namespace Nutshell.Drawing.Imaging
 
                         switch (PixelFormat)
                         {
-                                case PixelFormat.Rgb24:
+                                case NSPixelFormat.Rgb24:
                                         switch (target.PixelFormat)
                                         {
-                                                case PixelFormat.Bgra32:
+                                                case NSPixelFormat.Bgra32:
                                                         ConvertRgb24ToBgra32(this, target);
                                                         break;
 
@@ -71,10 +70,10 @@ namespace Nutshell.Drawing.Imaging
                                         }
                                         break;
 
-                                case PixelFormat.Bgr24:
+                                case NSPixelFormat.Bgr24:
                                         switch (target.PixelFormat)
                                         {
-                                                case PixelFormat.Bgra32:
+                                                case NSPixelFormat.Bgra32:
                                                         ConvertBgr24ToBgra32(this, target);
                                                         break;
 
@@ -86,9 +85,11 @@ namespace Nutshell.Drawing.Imaging
                                 default:
                                         throw new Exception();
                         }
+
+                        target.UpdateTimeStamp();
                 }
 
-                private void CopyTo(Bitmap target)
+                private void CopyTo(NSBitmap target)
                 {
                         target.MustNotNull();
                         target.Width.MustEqual(Width);
@@ -123,15 +124,15 @@ namespace Nutshell.Drawing.Imaging
                         TimeStamp = DateTime.Now;
                 }
 
-                private static void ConvertRgb24ToBgra32(Bitmap source, Bitmap target)
+                private static void ConvertRgb24ToBgra32(NSBitmap source, NSBitmap target)
                 {
                         source.MustNotNull();
-                        source.PixelFormat.MustEqual(PixelFormat.Rgb24);
+                        source.PixelFormat.MustEqual(NSPixelFormat.Rgb24);
 
                         target.MustNotNull();
                         target.Width.MustEqual(source.Width);
                         target.Height.MustEqual(source.Height);
-                        target.PixelFormat.MustEqual(PixelFormat.Bgra32);
+                        target.PixelFormat.MustEqual(NSPixelFormat.Bgra32);
 
                         //逐字节复制
                         var sourcePtr = (byte*) source.Buffer.ToPointer();
@@ -216,15 +217,15 @@ namespace Nutshell.Drawing.Imaging
                         //}
                 }
 
-                private static void ConvertBgr24ToBgra32(Bitmap source, Bitmap target)
+                private static void ConvertBgr24ToBgra32(NSBitmap source, NSBitmap target)
                 {
                         source.MustNotNull();
-                        source.PixelFormat.MustEqual(PixelFormat.Bgr24);
+                        source.PixelFormat.MustEqual(NSPixelFormat.Bgr24);
 
                         target.MustNotNull();
                         target.Width.MustEqual(source.Width);
                         target.Height.MustEqual(source.Height);
-                        target.PixelFormat.MustEqual(PixelFormat.Bgra32);
+                        target.PixelFormat.MustEqual(NSPixelFormat.Bgra32);
 
                         var sourcePtr = (byte*) source.Buffer.ToPointer();
                         var targetPtr = (byte*) target.Buffer.ToPointer();
@@ -244,15 +245,15 @@ namespace Nutshell.Drawing.Imaging
                 {
                         switch (PixelFormat)
                         {
-                                case PixelFormat.Rgb24:
+                                case NSPixelFormat.Rgb24:
                                         SaveRgb24(filePath);
                                         break;
 
-                                case PixelFormat.Bgr24:
+                                case NSPixelFormat.Bgr24:
                                         SaveBgr24(filePath);
                                         break;
 
-                                case PixelFormat.Bgra32:
+                                case NSPixelFormat.Bgra32:
                                         SaveBgra32(filePath);
                                         break;
 
@@ -263,11 +264,11 @@ namespace Nutshell.Drawing.Imaging
 
                 public void SaveRgb24(string filePath)
                 {
-                        PixelFormat.MustEqual(PixelFormat.Rgb24);
+                        PixelFormat.MustEqual(NSPixelFormat.Rgb24);
 
                         var sourcePtr = (byte*) Buffer.ToPointer();
 
-                        var bitmap = new System.Drawing.Bitmap(Width, Height,
+                        var bitmap = new Bitmap(Width, Height,
                                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
                         for (int x = 0; x < Width; x++)
@@ -286,11 +287,11 @@ namespace Nutshell.Drawing.Imaging
 
                 public void SaveBgr24(string filePath)
                 {
-                        PixelFormat.MustEqual(PixelFormat.Bgr24);
+                        PixelFormat.MustEqual(NSPixelFormat.Bgr24);
 
                         var sourcePtr = (byte*) Buffer.ToPointer();
 
-                        var bitmap = new System.Drawing.Bitmap(Width, Height,
+                        var bitmap = new Bitmap(Width, Height,
                                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
                         for (int x = 0; x < Width; x++)
@@ -309,11 +310,11 @@ namespace Nutshell.Drawing.Imaging
 
                 public void SaveBgra32(string filePath)
                 {
-                        PixelFormat.MustEqual(PixelFormat.Bgra32);
+                        PixelFormat.MustEqual(NSPixelFormat.Bgra32);
 
                         var sourcePtr = (byte*) Buffer.ToPointer();
 
-                        var bitmap = new System.Drawing.Bitmap(Width, Height,
+                        var bitmap = new Bitmap(Width, Height,
                                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
                         for (int i = 0; i < Width; i++)
@@ -334,7 +335,7 @@ namespace Nutshell.Drawing.Imaging
 
                 public void Clear(byte r = 0, byte g = 0, byte b = 0)
                 {
-                        PixelFormat.MustEqual(PixelFormat.Rgb24);
+                        PixelFormat.MustEqual(NSPixelFormat.Rgb24);
 
                         var sourcePtr = (byte*) Buffer.ToPointer();
 

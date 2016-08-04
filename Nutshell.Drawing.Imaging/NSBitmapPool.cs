@@ -3,33 +3,33 @@ using System.Threading;
 
 namespace Nutshell.Drawing.Imaging
 {
-        public class BitmapPool:IdentityObject
+        public class NSBitmapPool:IdentityObject
         {
-                public BitmapPool(IdentityObject parent, int width, int height, PixelFormat pixelFormat, int count=7)
+                public NSBitmapPool(IdentityObject parent, int width, int height, NSPixelFormat pixelFormat, int count=7)
                         :base(parent, "位图池")
                 {
                         
                         for (int i  = 1; i < count + 1; i++)
                         {
-                                var bitmap = new Bitmap(this, i + "号位图", width, height, pixelFormat);
+                                var bitmap = new NSBitmap(this, i + "号位图", width, height, pixelFormat);
                                 _usage[bitmap] = new ReaderWriterLockSlim();
                         }
                 }
 
-                private readonly Dictionary<Bitmap, ReaderWriterLockSlim> _usage =
-                        new Dictionary<Bitmap, ReaderWriterLockSlim>();
+                private readonly Dictionary<NSBitmap, ReaderWriterLockSlim> _usage =
+                        new Dictionary<NSBitmap, ReaderWriterLockSlim>();
 
-                public bool EnterRead(Bitmap bitmap)
+                public bool EnterRead(NSBitmap nsBitmap)
                 {
-                        return _usage[bitmap].TryEnterReadLock(0);
+                        return _usage[nsBitmap].TryEnterReadLock(0);
                 }
 
-                public void ExitRead(Bitmap bitmap)
+                public void ExitRead(NSBitmap nsBitmap)
                 {
-                        _usage[bitmap].ExitReadLock();
+                        _usage[nsBitmap].ExitReadLock();
                 }
 
-                public Bitmap EnterWrite()
+                public NSBitmap EnterWrite()
                 {
                         foreach (var pair in _usage)
                         {
@@ -41,9 +41,9 @@ namespace Nutshell.Drawing.Imaging
                         return null;
                 }
 
-                public void ExitWrite(Bitmap bitmap)
+                public void ExitWrite(NSBitmap nsBitmap)
                 {
-                        _usage[bitmap].ExitWriteLock();
+                        _usage[nsBitmap].ExitWriteLock();
                 }
         }
 }

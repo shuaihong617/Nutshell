@@ -32,9 +32,9 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         public class MachineVisionCamera : GigeCamera
         {
                 public MachineVisionCamera(IdentityObject parent, string id = "", string ipAddress = "192.168.1.1")
-                        : base(parent, id, 1280, 960, PixelFormat.Rgb24, ipAddress)
+                        : base(parent, id, 1280, 960, NSPixelFormat.Rgb24, ipAddress)
                 {
-                        _captureLooper = new Looper(this, "采集循环", Capture, 25, ThreadPriority.Highest);
+                        _captureLooper = new Looper(this, "采集循环", Capture, 20, ThreadPriority.Highest);
 
                         _exceptionCallback = ExceptionCallBack;
                 }
@@ -178,7 +178,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         return true;
                 }
 
-                protected override sealed Bitmap CaptureCore()
+                protected override sealed NSBitmap CaptureCore()
                 {
                         if (!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured)
                         {
@@ -186,8 +186,8 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return null;
                         }
 
-                        Bitmap bitmap = Buffers.Dequeue();
-                        if (bitmap == null)
+                        NSBitmap nsBitmap = Buffers.WriteLock();
+                        if (nsBitmap == null)
                         {
                                 this.WarnFail("BitmapPool.Instance.EnterWrite");
                                 return null;
@@ -197,22 +197,19 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                         //ErrorCode error = API.GetOneFrame(_handle, _captureBufferPtr, CaptureBufferBytesCount,
                         //        ref _frameOutInfo);
-                        ErrorCode error = API.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
+                        ErrorCode error = API.GetOneFrame(_handle, nsBitmap.Buffer, nsBitmap.BufferLength,
                                 ref _frameOutInfo);
                         if (error != ErrorCode.MV_OK)
                         {
-                                this.WarnFail("GetOneFrame", error);
-                                Buffers.Enqueue(bitmap);
-                                return bitmap;
+                                //this.WarnFail("GetOneFrame", error);
+                                Buffers.WriteUnlock(nsBitmap);
+                                return nsBitmap;
                         }
                         //this.InfoSuccess("GetOneFrame");
 
-                        bitmap.UpdateTimeStamp();
-                        Buffers.Enqueue(bitmap);
+                        nsBitmap.UpdateTimeStamp();
 
-                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString());
-                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "   入队  " + bitmap);
-                        return bitmap;
+                        return nsBitmap;
                 }
 
                 #endregion

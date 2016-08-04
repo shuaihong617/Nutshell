@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Threading;
 using Nutshell.Components;
+using Nutshell.Drawing.Imaging;
 using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
-using NutshellBitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
         public abstract class CycleRenderer : Worker
         {
-                protected CycleRenderer(IdentityObject parent, string id = "", BackgroundSence sence = null)
+                protected CycleRenderer(IdentityObject parent, string id = "", BitmapSence sence = null)
                         : base(parent, id)
                 {
                         if (sence == null)
                         {
                                 throw new ArgumentException("渲染场景不能为null");
                         }
-                        _sence = sence;
+                        Sence = sence;
 
                         _renderLooper = new Looper(this, "显示循环", Render, 5, ThreadPriority.Highest);
                 }
 
-                private readonly BackgroundSence _sence;
+                protected BitmapSence Sence { get;private set; }
+
                 private readonly Looper _renderLooper;
 
-                protected NutshellBitmap Bitmap { get; set; }
+                protected NSBitmap NsBitmap { get; set; }
 
                 private bool _isRendering;
 
@@ -47,8 +48,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                         _isRendering = true;
 
-                        _sence.Update(Bitmap);
-                        _sence.Render();
+                        Sence.Update();
+                        Sence.Render();
 
                         _isRendering = false;
                 }

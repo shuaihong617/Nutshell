@@ -16,10 +16,10 @@ using System.Threading;
 namespace Nutshell.Threading
 {
         /// <summary>
-        ///         独占锁对象
+        ///         共享锁对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ExclusiveLockObject<T> : IdentityObject,IExclusiveLockObject where T : IdentityObject
+        public class ShareObject<T> : IdentityObject,IMonopolyObject where T : IdentityObject
         {
                 /// <summary>
                 /// 初始化<see cref="IdentityObject" />的新实例.
@@ -27,7 +27,7 @@ namespace Nutshell.Threading
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="t">需要锁定的对象</param>
-                public ExclusiveLockObject(IdentityObject parent, string id, T t)
+                public ShareObject(IdentityObject parent, string id, T t)
                         : base(parent, id)
                 {
                         Value = t;
@@ -44,7 +44,7 @@ namespace Nutshell.Threading
                 /// <returns>锁定操作是否成功</returns>
                 public bool Lock()
                 {
-                        return _lock.TryEnterWriteLock(0);
+                        return _lock.TryEnterReadLock(0);
                 }
 
                 /// <summary>
@@ -52,7 +52,7 @@ namespace Nutshell.Threading
                 /// </summary>
                 public void Unlock()
                 {
-                        _lock.ExitWriteLock();
+                        _lock.ExitReadLock();
                 }
         }
 }

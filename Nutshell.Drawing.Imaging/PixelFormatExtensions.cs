@@ -27,26 +27,26 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="format">像素格式</param>
                 /// <returns>位宽</returns>
                 /// <exception cref="System.ComponentModel.InvalidEnumArgumentException">不支持的像素格式</exception>
-                public static int GetBits(this PixelFormat format)
+                public static int GetBits(this NSPixelFormat format)
                 {
                         switch (format)
                         {
-                                case PixelFormat.Mono8:
+                                case NSPixelFormat.Mono8:
                                         return 8;
 
-                                case PixelFormat.Yuv422:
+                                case NSPixelFormat.Yuv422:
                                         return 16;
 
-                                case PixelFormat.Rgb24:
+                                case NSPixelFormat.Rgb24:
                                         return 24;
 
-                                case PixelFormat.Bgr24:
+                                case NSPixelFormat.Bgr24:
                                         return 24;
 
-                                case PixelFormat.Rgba32:
+                                case NSPixelFormat.Rgba32:
                                         return 32;
 
-                                case PixelFormat.Bgra32:
+                                case NSPixelFormat.Bgra32:
                                         return 32;
 
                                 default:
@@ -60,7 +60,7 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="format">像素格式</param>
                 /// <returns>位宽</returns>
                 /// <exception cref="System.ComponentModel.InvalidEnumArgumentException">不支持的像素格式</exception>
-                public static int GetBytes(this PixelFormat format)
+                public static int GetBytes(this NSPixelFormat format)
                 {
                         return GetBits(format)/8;
                 }
@@ -72,7 +72,7 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="compare">要比较的格式</param>
                 /// <returns>当前格式</returns>
                 /// <exception cref="System.ArgumentException"></exception>
-                public static void MustEqual(this PixelFormat value, PixelFormat compare)
+                public static void MustEqual(this NSPixelFormat value, NSPixelFormat compare)
                 {
                         if (value != compare)
                         {

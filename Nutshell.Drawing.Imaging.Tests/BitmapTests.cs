@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace Nutshell.Drawing.Imaging.Tests
 {
         [TestClass()]
@@ -7,7 +8,7 @@ namespace Nutshell.Drawing.Imaging.Tests
                 [TestMethod()]
                 public void SaveBgr24Test()
                 {
-                        var bitmap = new Bitmap(null, string.Empty, 640, 480, PixelFormat.Bgr24);
+                        var bitmap = new NSBitmap(null, string.Empty, 640, 480, NSPixelFormat.Bgr24);
                         var ptr = (byte*)bitmap.Buffer.ToPointer();
                         for (int x = 0; x < bitmap.Width; x++)
                         {
@@ -24,7 +25,7 @@ namespace Nutshell.Drawing.Imaging.Tests
                 [TestMethod()]
                 public void SaveRgb24Test()
                 {
-                        var bitmap = new Bitmap(null, string.Empty, 640, 480, PixelFormat.Rgb24);
+                        var bitmap = new NSBitmap(null, string.Empty, 640, 480, NSPixelFormat.Rgb24);
                         var ptr = (byte*)bitmap.Buffer.ToPointer();
                         for (int x = 0; x < bitmap.Width; x++)
                         {

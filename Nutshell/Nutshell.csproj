@@ -104,6 +104,7 @@
     <Compile Include="Components\ConsumeProducter.cs" />
     <Compile Include="Components\IConsumeProducter.cs" />
     <Compile Include="Components\IEnable.cs" />
+    <Compile Include="Components\Asyncer.cs" />
     <Compile Include="Components\Models\IBufferedModel.cs" />
     <Compile Include="Components\Models\BufferedModel.cs" />
     <Compile Include="Components\Models\WatchDogModel.cs" />
@@ -196,10 +197,15 @@
     <Compile Include="Messaging\ValueMessage.cs" />
     <Compile Include="Messaging\Message.cs" />
     <Compile Include="ReadWriteMode.cs" />
-    <Compile Include="Threading\IExclusiveLockObject.cs" />
-    <Compile Include="Threading\ExclusiveLockObject.cs" />
-    <Compile Include="Threading\ExclusiveQueueBuffer.cs" />
-    <Compile Include="Threading\Pool.cs" />
+    <Compile Include="Threading\IShareObject.cs" />
+    <Compile Include="Threading\IReadWriteObject.cs" />
+    <Compile Include="Threading\IMonopolyObject.cs" />
+    <Compile Include="Threading\ReadWriteObject.cs" />
+    <Compile Include="Threading\ShareBuffer.cs" />
+    <Compile Include="Threading\ShareObject.cs" />
+    <Compile Include="Threading\MonopolyObject.cs" />
+    <Compile Include="Threading\MonopolyBuffer.cs" />
+    <Compile Include="Threading\ReadWritePool.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="NullableExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />
@@ -218,6 +224,9 @@
     <Compile Include="Windows\Win32Window.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

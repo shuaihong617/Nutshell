@@ -16,7 +16,7 @@ namespace Nutshell.Drawing.Imaging
         /// <summary>
         ///         DateTime struce extensions
         /// </summary>
-        public static class BitmapExtensions
+        public static class MSBitmapExtensions
         {
                 /// <summary>
                 ///         BMP文件头节大小（字节）

@@ -12,11 +12,10 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics;
 using System.Threading;
-using Nutshell.Collections;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Threading;
 
 namespace Nutshell.Hardware.Vision
 {
@@ -32,7 +31,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                public CameraDecoder(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
+                public CameraDecoder(IdentityObject parent, string id, Camera camera, NSPixelFormat pixelFormat)
                         : base(parent, id)
                 {
                         camera.MustNotNull();
@@ -40,7 +39,7 @@ namespace Nutshell.Hardware.Vision
 
                         PixelFormat = pixelFormat;
 
-                        _thread = new Thread(ThreadWork) {Priority = ThreadPriority.Highest};
+                        _asyncer = new Asyncer(this, string.Empty, ThreadPriority.Highest, Decode);
                 }
 
                 /// <summary>
@@ -51,23 +50,16 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         格式
                 /// </summary>
-                public PixelFormat PixelFormat { get; private set; }
+                public NSPixelFormat PixelFormat { get; private set; }
 
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public QueueBuffer<Bitmap> Buffers { get; private set; }
+                public ReadWritePool<NSBitmap> Buffers { get; private set; }
 
-                public DateTime LastDecodeBitmapTimeStamp { get; private set; }
+                private readonly Asyncer _asyncer;
 
-                /// <summary>
-                ///         处理任务
-                /// </summary>
-                private readonly Thread _thread;
-
-                private bool _isThreadExit;
-
-                private Stopwatch _stopwatch = new Stopwatch();
+                private NSBitmap _source;
 
                 /// <summary>
                 ///         创建图像缓冲池
@@ -87,11 +79,11 @@ namespace Nutshell.Hardware.Vision
                                 return;
                         }
 
-                        Buffers = new QueueBuffer<Bitmap>(this, "图像缓冲池");
-                        for (int i = 1; i < 8; i++)
+                        Buffers = new ReadWritePool<NSBitmap>(this, "图像缓冲池");
+                        for (int i = 1; i < 5; i++)
                         {
-                                var bitmap = new Bitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat);
-                                Buffers.Enqueue(bitmap);
+                                var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat);
+                                Buffers.Add(bitmap);
                         }
                 }
 
@@ -101,94 +93,71 @@ namespace Nutshell.Hardware.Vision
                 {
                         CreateBitmapPool();
 
-                        _isThreadExit = false;
-                        _thread.Start();
-
+                        Camera.CaptureSuccessed += Camera_CaptureSuccessed;                        
                         return true;
+                }
+
+                private void Camera_CaptureSuccessed(object sender, ValueEventArgs<NSBitmap> e)
+                {
+                        if (_asyncer.IsBusy)
+                        {
+                                return;
+                        }
+
+                        _source = e.Data;
+                        _asyncer.Start();
                 }
 
                 protected override sealed bool StopCore()
                 {
-                        _isThreadExit = true;
+                        Camera.CaptureSuccessed -= Camera_CaptureSuccessed;
                         return true;
                 }
 
-                private void ThreadWork()
+                private void Decode()
                 {
-                        Bitmap source;
-                        int count = 0;
-                        for (;;)
+                        if (!IsEnable || !IsStarted)
                         {
-                                if (_isThreadExit)
-                                {
-                                        break;
-                                }
-
-                                if (!IsEnable || !IsStarted)
-                                {
-                                        return;
-                                }
-
-                                if (Camera.Buffers == null)
-                                {
-                                        return;
-                                }
-
-                                _stopwatch.Restart();
-
-                                count = 0;
-
-                                for (;;)
-                                {
-                                       
-
-                                        var bitmap = Camera.Buffers.Dequeue();
-                                        if (bitmap == null)
-                                        {
-                                                throw new InvalidOperationException();
-                                        }
-
-                                        count++;
-                                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     摄像机缓冲区出队  " + bitmap);
-
-                                        if (bitmap.TimeStamp < LastDecodeBitmapTimeStamp)
-                                        {
-                                                
-                                               Camera.Buffers.Enqueue(bitmap);
-                                               //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     摄像机  旧数据入队  " + bitmap);
-                                               continue;
-                                        }
-
-                                        
-
-                                        source = bitmap;
-                                        break;
-                                }
-
-                                Bitmap target = Buffers.Dequeue();
-                                if (target == null)
-                                {
-                                        throw new InvalidOperationException();
-                                }
-                                //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     解码  出队  " + target);
-
-                                source.TranslateTo(target);
-                                target.UpdateTimeStamp();
-                                LastDecodeBitmapTimeStamp = source.TimeStamp;
-
-                                Camera.Buffers.Enqueue(source);
-                                //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     摄像机  入队  " + source);
-
-                                Buffers.Enqueue(target);
-                                //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "     解码  入队  " + target);
-
-                                _stopwatch.Stop();
-
-                                Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + "   解码: " + count + "  " +
-                                                _stopwatch.ElapsedMilliseconds);
-
-                                Thread.Sleep(5);
+                                return;
                         }
+
+                        if (_source == null)
+                        {
+                                throw new InvalidOperationException();
+                        }
+
+
+                        Camera.Buffers.ReadLock(_source);
+
+
+                        NSBitmap target = Buffers.WriteLock();
+                        if (target == null)
+                        {
+                                throw new InvalidOperationException();
+                        }
+
+                        _source.TranslateTo(target);
+
+                        Buffers.WriteUnlock(target);
+
+                        Camera.Buffers.ReadUnlock(_source);
+
+                        OnDecodeFinished(new ValueEventArgs<NSBitmap>(target));
+                }
+
+                #endregion
+
+                #region 事件
+
+                public event EventHandler<ValueEventArgs<NSBitmap>> DecodeFinished;
+
+                /// <summary>
+                ///         引发 <see cref="E:Opened" /> 事件.
+                /// </summary>
+                /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+                protected virtual void OnDecodeFinished(ValueEventArgs<NSBitmap> e)
+                {
+                        e.Raise(this, ref DecodeFinished);
                 }
 
                 #endregion

@@ -41,7 +41,7 @@ namespace Nutshell.Hardware.Vision.Models
                 ///         像素格式
                 /// </summary>
                 [XmlAttribute]
-                public PixelFormat PixelFormat { get; set; }
+                public NSPixelFormat PixelFormat { get; set; }
 
                 /// <summary>
                 ///         摄像机图像有效区域

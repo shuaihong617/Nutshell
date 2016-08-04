@@ -14,9 +14,9 @@
 namespace Nutshell.Threading
 {
         /// <summary>
-        ///         独占锁对象接口
+        ///         共享锁对象接口
         /// </summary>
-        public interface IExclusiveLockObject
+        public interface IShareObject
         {
                 /// <summary>
                 /// 锁定

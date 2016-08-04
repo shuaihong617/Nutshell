@@ -21,36 +21,26 @@ using Nutshell.Log;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         循环工作者
+        ///         异步工作者
         /// </summary>
-        public class Looper : Worker
+        public class Asyncer : Worker
         {
-                public Looper(IdentityObject parent, Action action)
-                        : this(parent, String.Empty, action)
-                {
-                }
-
-                public Looper(IdentityObject parent, string id = "", Action work = null, int interval = 1000, ThreadPriority priority = ThreadPriority.Normal)
+                public Asyncer(IdentityObject parent, string id = "", ThreadPriority priority = ThreadPriority.Normal, Action action = null)
                         : base(parent, id)
                 {
-                        _action = work;
-                        Interval = interval;
+                        if (action == null)
+                        {
+                                throw new ArgumentException("线程工作方法不能为null");
+                        }
 
-                        _thread = new Thread(ThreadWork);
-                        _thread.Priority = priority;
+                        _thread = new Thread(() => action()) {Priority = priority};
                 }
 
                 #region 字段
 
                 private readonly Thread _thread;
 
-                private bool _isWork;
-
-                private readonly Action _action;
-
                 #endregion
-
-                public int Interval { get; private set; }
 
                 public bool IsBusy
                 {
@@ -68,39 +58,22 @@ namespace Nutshell.Components
                         Trace.Assert(looperModel != null);
 
                         Trace.Assert(looperModel.Interval > 0);
-                        Interval = looperModel.Interval;
                 }
 
                 protected override bool StartCore()
                 {
-                        _isWork = true;
-
+                        if (_thread.IsAlive)
+                        {
+                                return true;
+                        }
                         _thread.Start();
-
                         return true;
                 }
 
-                private void ThreadWork()
-                {
-                        this.Info("循环启动,周期", Interval, "毫秒");
-                        for (; ; )
-                        {
-                                _action();
-
-                                Thread.Sleep(Interval);
-
-                                if (!_isWork)
-                                {
-                                        this.Info("循环停止");
-                                        break;
-                                }
-                        }
-                }
+                
 
                 protected override bool StopCore()
                 {
-                        _isWork = false;
-
                         return true;
                 }
         }

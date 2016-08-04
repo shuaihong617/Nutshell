@@ -14,9 +14,9 @@
 
 using System;
 using System.Windows.Forms;
+using Nutshell.Drawing.Imaging;
 using SharpDX.Direct2D1;
-using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
-using NutshellBitmap = Nutshell.Drawing.Imaging.Bitmap;
+using DXBitmap = SharpDX.Direct2D1.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
@@ -28,35 +28,53 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 protected BitmapSence(IdentityObject parent, string id = "", Control control = null)
                         : base(parent, id, control)
                 {
-                        BufferBitmap = new Bitmap(SurfaceRenderTarget,
-                                SurfaceRenderTarget.PixelSize,
-                                new BitmapProperties(SurfaceRenderTarget.PixelFormat));
+                        BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,
+                                CompatibleRenderTargetOptions.None);
                 }
 
-                protected SharpDXBitmap BufferBitmap { get; private set; }
-
+                protected BitmapRenderTarget BufferBitmapRenderTarget { get; private set; }
                 public DateTime UpdateTime { get; private set; }
 
-                public void Update(NutshellBitmap bitmap)
+                private NSBitmap _backgroundBitmap;
+
+                private NSBitmap _foregroundBitmap;
+
+                private readonly object _threadLock = new object();
+
+                public void UpdateBackgroundBitmap(NSBitmap bitmap)
                 {
-                        bitmap.Width.MustEqual(BufferBitmap.PixelSize.Width);
-                        bitmap.Height.MustEqual(BufferBitmap.PixelSize.Height);
+                }
 
-                        BufferBitmap.CopyFromMemory(bitmap.Buffer, bitmap.Stride);
-
-                        UpdateTime = DateTime.Now;
-
-                        OnUpdated(EventArgs.Empty);
+                public void Update(NSBitmap source = null)
+                {
+                        lock (_threadLock)
+                        {
+                                if (source == null)
+                                {
+                                        if (_backgroundBitmap != null)
+                                        {
+                                                _foregroundBitmap = _backgroundBitmap;
+                                                _backgroundBitmap = null;
+                                        }
+                                }
+                                else
+                                {
+                                        _backgroundBitmap = source;
+                                }
+                        }
                 }
 
                 public override sealed void Render()
                 {
+                        BufferBitmapRenderTarget.Bitmap.CopyFromMemory(_foregroundBitmap.Buffer, _foregroundBitmap.Stride);
+
+                        BufferBitmapRenderTarget.BeginDraw();
+                        Render(BufferBitmapRenderTarget);
+                        BufferBitmapRenderTarget.EndDraw();
+
                         SurfaceRenderTarget.BeginDraw();
-
-                        SurfaceRenderTarget.DrawBitmap(BufferBitmap, 1,
+                        SurfaceRenderTarget.DrawBitmap(BufferBitmapRenderTarget.Bitmap, 1,
                                 BitmapInterpolationMode.Linear);
-                        Render(SurfaceRenderTarget);
-
                         SurfaceRenderTarget.EndDraw();
                 }
 

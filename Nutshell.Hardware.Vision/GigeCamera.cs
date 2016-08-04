@@ -33,7 +33,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="height">高度</param>
                 /// <param name="pixelFormat">图像格式</param>
                 /// <param name="ipAddress">IP地址</param>
-                protected GigeCamera(IdentityObject parent, string id, int width, int height, PixelFormat pixelFormat,
+                protected GigeCamera(IdentityObject parent, string id, int width, int height, NSPixelFormat pixelFormat,
                         string ipAddress)
                         : base(parent, id, width, height, pixelFormat)
                 {
