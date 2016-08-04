@@ -138,6 +138,14 @@ namespace Nutshell.Hardware.Vision
 
                         _source.TranslateTo(target);
 
+                        var sourceStamp = _source.TimeStamp as NSCaptureTimeStamp;
+                        var targetStamp = target.TimeStamp as NSDecodeTimeStamp;
+                        if (sourceStamp != null && targetStamp != null)
+                        {
+                                targetStamp.CaptureTime = sourceStamp.CaptureTime;
+                                targetStamp.DecodeTime = DateTime.Now;
+                        }
+
                         Buffers.WriteUnlock(target);
 
                         Camera.Buffers.ReadUnlock(_source);

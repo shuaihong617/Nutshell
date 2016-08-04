@@ -54,7 +54,13 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private void Decoder_DecodeFinished(object sender, ValueEventArgs<NSBitmap> e)
                 {
-                        Sence.Update(e.Data);
+                        var bitmap = e.Data;
+
+                        _decoder.Buffers.ReadLock(bitmap);
+
+                        Sence.Swap(e.Data);
+
+                        _decoder.Buffers.ReadUnlock(bitmap);
                 }
 
                 protected override bool StopCore()

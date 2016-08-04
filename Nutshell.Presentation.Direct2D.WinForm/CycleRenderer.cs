@@ -48,7 +48,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                         _isRendering = true;
 
-                        Sence.Update();
+                        Sence.Swap();
                         Sence.Render();
 
                         _isRendering = false;

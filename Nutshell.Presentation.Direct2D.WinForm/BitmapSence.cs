@@ -15,6 +15,7 @@
 using System;
 using System.Windows.Forms;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Hardware.Vision;
 using SharpDX.Direct2D1;
 using DXBitmap = SharpDX.Direct2D1.Bitmap;
 
@@ -30,43 +31,70 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 {
                         BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,
                                 CompatibleRenderTargetOptions.None);
+
+                        _backgroundBitmap = new NSBitmap(this, string.Empty, control.Width, control.Height, NSPixelFormat.Bgra32, new NSSwapTimeStamp());
+                        _foregroundBitmap = new NSBitmap(this, string.Empty, control.Width, control.Height, NSPixelFormat.Bgra32, new NSSwapTimeStamp());
                 }
 
                 protected BitmapRenderTarget BufferBitmapRenderTarget { get; private set; }
                 public DateTime UpdateTime { get; private set; }
 
-                private NSBitmap _backgroundBitmap;
+                private readonly NSBitmap _backgroundBitmap;
 
-                private NSBitmap _foregroundBitmap;
+                private readonly NSBitmap _foregroundBitmap;
 
                 private readonly object _threadLock = new object();
 
-                public void UpdateBackgroundBitmap(NSBitmap bitmap)
-                {
-                }
-
-                public void Update(NSBitmap source = null)
+                public void Swap(NSBitmap source = null)
                 {
                         lock (_threadLock)
                         {
                                 if (source == null)
                                 {
-                                        if (_backgroundBitmap != null)
+                                        var sourceStamp = _backgroundBitmap.TimeStamp as NSSwapTimeStamp;
+                                        if (sourceStamp == null)
                                         {
-                                                _foregroundBitmap = _backgroundBitmap;
-                                                _backgroundBitmap = null;
+                                                throw new InvalidOperationException();
+                                        }
+
+                                        var targetStamp = _foregroundBitmap.TimeStamp as NSSwapTimeStamp;
+                                        if (targetStamp == null)
+                                        {
+                                                throw new InvalidOperationException();
+                                        }
+
+                                        //source为null时，从背景位图更新前景位图数据
+                                        if (sourceStamp.DecodeTime > targetStamp.DecodeTime)
+                                        {
+                                                _backgroundBitmap.TranslateTo(_foregroundBitmap);
+
+
+                                                targetStamp.CaptureTime = sourceStamp.CaptureTime;
+                                                targetStamp.DecodeTime = sourceStamp.DecodeTime;
+                                                targetStamp.SwapTime = sourceStamp.SwapTime;
                                         }
                                 }
                                 else
                                 {
-                                        _backgroundBitmap = source;
+                                        //source不为null时，从解码位图更新背景位图数据
+                                        source.TranslateTo(_backgroundBitmap);
+
+                                        var sourceStamp = source.TimeStamp as NSDecodeTimeStamp;
+                                        var targetStamp = _backgroundBitmap.TimeStamp as NSSwapTimeStamp;
+                                        if (sourceStamp != null && targetStamp != null)
+                                        {
+                                                targetStamp.CaptureTime = sourceStamp.CaptureTime;
+                                                targetStamp.DecodeTime = sourceStamp.DecodeTime;
+                                                targetStamp.SwapTime = DateTime.Now;
+                                        }
                                 }
                         }
                 }
 
                 public override sealed void Render()
                 {
-                        BufferBitmapRenderTarget.Bitmap.CopyFromMemory(_foregroundBitmap.Buffer, _foregroundBitmap.Stride);
+                        BufferBitmapRenderTarget.Bitmap.CopyFromMemory(_foregroundBitmap.Buffer,
+                                _foregroundBitmap.Stride);
 
                         BufferBitmapRenderTarget.BeginDraw();
                         Render(BufferBitmapRenderTarget);

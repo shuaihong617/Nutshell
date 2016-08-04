@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="BitmapSence.cs" />
     <Compile Include="CycleRenderer.cs" />
+    <Compile Include="NSSwapTimeStamp.cs" />
     <Compile Include="Sence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
       <Project>{5e9ec531-b6ea-4ba9-a3a5-dd40436860d7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Hardware.Vision\Nutshell.Hardware.Vision.csproj">
+      <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
+      <Name>Nutshell.Hardware.Vision</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>

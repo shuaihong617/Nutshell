@@ -206,6 +206,7 @@
     <Compile Include="Threading\MonopolyObject.cs" />
     <Compile Include="Threading\MonopolyBuffer.cs" />
     <Compile Include="Threading\ReadWritePool.cs" />
+    <Compile Include="NSTimeStamp.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="NullableExtensions.cs" />
     <Compile Include="ObjectExtensions.cs" />

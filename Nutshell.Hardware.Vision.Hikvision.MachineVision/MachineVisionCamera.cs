@@ -186,8 +186,8 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return null;
                         }
 
-                        NSBitmap nsBitmap = Buffers.WriteLock();
-                        if (nsBitmap == null)
+                        NSBitmap bitmap = Buffers.WriteLock();
+                        if (bitmap == null)
                         {
                                 this.WarnFail("BitmapPool.Instance.EnterWrite");
                                 return null;
@@ -197,19 +197,23 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                         //ErrorCode error = API.GetOneFrame(_handle, _captureBufferPtr, CaptureBufferBytesCount,
                         //        ref _frameOutInfo);
-                        ErrorCode error = API.GetOneFrame(_handle, nsBitmap.Buffer, nsBitmap.BufferLength,
+                        ErrorCode error = API.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
                                 ref _frameOutInfo);
                         if (error != ErrorCode.MV_OK)
                         {
                                 //this.WarnFail("GetOneFrame", error);
-                                Buffers.WriteUnlock(nsBitmap);
-                                return nsBitmap;
+                                Buffers.WriteUnlock(bitmap);
+                                return bitmap;
                         }
                         //this.InfoSuccess("GetOneFrame");
 
-                        nsBitmap.UpdateTimeStamp();
+                        var stamp = bitmap.TimeStamp as NSCaptureTimeStamp;
+                        if (stamp != null)
+                        {
+                                stamp.CaptureTime = DateTime.Now;
+                        }
 
-                        return nsBitmap;
+                        return bitmap;
                 }
 
                 #endregion

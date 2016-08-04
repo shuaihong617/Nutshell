@@ -1,13 +1,38 @@
-﻿using System;
+﻿// ***********************************************************************
+// 作者           : 阿尔卑斯 shuaihong617@qq.com
+// 创建           : 2016-08-02
+//
+// 编辑           : 阿尔卑斯 shuaihong617@qq.com
+// 日期           : 2016-08-04
+// 内容           : 创建文件
+// ***********************************************************************
+// Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
+// <summary>
+// </summary>
+// ***********************************************************************
+
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace Nutshell.Drawing.Imaging
 {
+        /// <summary>
+        /// Class NSBitmap.
+        /// </summary>
         public unsafe class NSBitmap : IdentityObject
         {
-                public NSBitmap(IdentityObject parent, String id, int width, int height, NSPixelFormat format)
+                /// <summary>
+                /// 初始化<see cref="NSBitmap"/>的新实例.
+                /// </summary>
+                /// <param name="parent">The parent.</param>
+                /// <param name="id">The identifier.</param>
+                /// <param name="width">The width.</param>
+                /// <param name="height">The height.</param>
+                /// <param name="format">The format.</param>
+                /// <param name="timeStamp">The time stamp.</param>
+                public NSBitmap(IdentityObject parent, String id, int width, int height, NSPixelFormat format, NSTimeStamp timeStamp = null)
                         : base(parent, id)
                 {
                         width.MustGreaterThan(0);
@@ -23,27 +48,58 @@ namespace Nutshell.Drawing.Imaging
                         BufferLength = Width*Height*PixelFormat.GetBytes();
 
                         Buffer = Marshal.AllocHGlobal(BufferLength);
+
+                        TimeStamp = timeStamp;
                 }
 
+                /// <summary>
+                /// Gets the width.
+                /// </summary>
+                /// <value>The width.</value>
                 public int Width { get; private set; }
 
+                /// <summary>
+                /// Gets the height.
+                /// </summary>
+                /// <value>The height.</value>
                 public int Height { get; private set; }
 
+                /// <summary>
+                /// Gets the pixel format.
+                /// </summary>
+                /// <value>The pixel format.</value>
                 public NSPixelFormat PixelFormat { get; private set; }
 
+                /// <summary>
+                /// Gets the stride.
+                /// </summary>
+                /// <value>The stride.</value>
                 public int Stride { get; private set; }
 
+                /// <summary>
+                /// Gets the buffer.
+                /// </summary>
+                /// <value>The buffer.</value>
                 public IntPtr Buffer { get; private set; }
 
+                /// <summary>
+                /// Gets the length of the buffer.
+                /// </summary>
+                /// <value>The length of the buffer.</value>
                 public int BufferLength { get; private set; }
 
-                public DateTime TimeStamp { get; private set; }
+                /// <summary>
+                /// Gets the time stamp.
+                /// </summary>
+                /// <value>The time stamp.</value>
+                public NSTimeStamp TimeStamp { get; private set; }
 
-                public void UpdateTimeStamp()
-                {
-                        TimeStamp = DateTime.Now;
-                }
-
+                /// <summary>
+                /// Translates to.
+                /// </summary>
+                /// <param name="target">The target.</param>
+                /// <exception cref="System.Exception">
+                /// </exception>
                 public void TranslateTo(NSBitmap target)
                 {
                         target.MustNotNull();
@@ -85,10 +141,12 @@ namespace Nutshell.Drawing.Imaging
                                 default:
                                         throw new Exception();
                         }
-
-                        target.UpdateTimeStamp();
                 }
 
+                /// <summary>
+                /// Copies to.
+                /// </summary>
+                /// <param name="target">The target.</param>
                 private void CopyTo(NSBitmap target)
                 {
                         target.MustNotNull();
@@ -107,6 +165,10 @@ namespace Nutshell.Drawing.Imaging
                         }
                 }
 
+                /// <summary>
+                /// Copies from.
+                /// </summary>
+                /// <param name="souceIntPtr">The souce int PTR.</param>
                 public void CopyFrom(IntPtr souceIntPtr)
                 {
                         Trace.Assert(souceIntPtr != IntPtr.Zero);
@@ -120,10 +182,13 @@ namespace Nutshell.Drawing.Imaging
                         {
                                 *targetPtr++ = *sourcePtr++;
                         }
-
-                        TimeStamp = DateTime.Now;
                 }
 
+                /// <summary>
+                /// Converts the RGB24 to bgra32.
+                /// </summary>
+                /// <param name="source">The source.</param>
+                /// <param name="target">The target.</param>
                 private static void ConvertRgb24ToBgra32(NSBitmap source, NSBitmap target)
                 {
                         source.MustNotNull();
@@ -217,6 +282,11 @@ namespace Nutshell.Drawing.Imaging
                         //}
                 }
 
+                /// <summary>
+                /// Converts the BGR24 to bgra32.
+                /// </summary>
+                /// <param name="source">The source.</param>
+                /// <param name="target">The target.</param>
                 private static void ConvertBgr24ToBgra32(NSBitmap source, NSBitmap target)
                 {
                         source.MustNotNull();
@@ -241,6 +311,11 @@ namespace Nutshell.Drawing.Imaging
                         }
                 }
 
+                /// <summary>
+                /// Saves the specified file path.
+                /// </summary>
+                /// <param name="filePath">The file path.</param>
+                /// <exception cref="System.Exception"></exception>
                 public void Save(string filePath)
                 {
                         switch (PixelFormat)
@@ -262,6 +337,10 @@ namespace Nutshell.Drawing.Imaging
                         }
                 }
 
+                /// <summary>
+                /// Saves the RGB24.
+                /// </summary>
+                /// <param name="filePath">The file path.</param>
                 public void SaveRgb24(string filePath)
                 {
                         PixelFormat.MustEqual(NSPixelFormat.Rgb24);
@@ -285,6 +364,10 @@ namespace Nutshell.Drawing.Imaging
                         bitmap.Save(filePath);
                 }
 
+                /// <summary>
+                /// Saves the BGR24.
+                /// </summary>
+                /// <param name="filePath">The file path.</param>
                 public void SaveBgr24(string filePath)
                 {
                         PixelFormat.MustEqual(NSPixelFormat.Bgr24);
@@ -308,6 +391,10 @@ namespace Nutshell.Drawing.Imaging
                         bitmap.Save(filePath);
                 }
 
+                /// <summary>
+                /// Saves the bgra32.
+                /// </summary>
+                /// <param name="filePath">The file path.</param>
                 public void SaveBgra32(string filePath)
                 {
                         PixelFormat.MustEqual(NSPixelFormat.Bgra32);
@@ -333,6 +420,12 @@ namespace Nutshell.Drawing.Imaging
                 }
 
 
+                /// <summary>
+                /// Clears the specified r.
+                /// </summary>
+                /// <param name="r">The r.</param>
+                /// <param name="g">The g.</param>
+                /// <param name="b">The b.</param>
                 public void Clear(byte r = 0, byte g = 0, byte b = 0)
                 {
                         PixelFormat.MustEqual(NSPixelFormat.Rgb24);
@@ -350,9 +443,13 @@ namespace Nutshell.Drawing.Imaging
                         }
                 }
 
+                /// <summary>
+                /// Returns a <see cref="System.String" /> that represents this instance.
+                /// </summary>
+                /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
                 public override string ToString()
                 {
-                        return string.Format("{0}:{1}", GlobalId, TimeStamp.ToChineseLongMillisecondString());
+                        return string.Format("{0}", GlobalId);
                 }
         }
 }
