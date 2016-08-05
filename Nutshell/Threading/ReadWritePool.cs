@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 
 namespace Nutshell.Threading
 {
@@ -57,11 +58,14 @@ namespace Nutshell.Threading
                 /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
                 public void ReadLock(T t)
                 {
+                        Contract.Requires(t != null);
+
                         lock (_lockObject)
                         {
-                                //Trace.WriteLine(Id + "获取读锁");
-
-                                Trace.Assert(_buffers[t] >= 0);
+                                if (_buffers[t] < 0)
+                                {
+                                        throw new InvalidOperationException("当前值为" + _buffers[t]);
+                                }
                                 _buffers[t]++;
                         }
                 }
@@ -72,13 +76,14 @@ namespace Nutshell.Threading
                 /// <param name="t">The t.</param>
                 public void ReadUnlock(T t)
                 {
+                        Contract.Requires(t != null);
                         //Trace.WriteLine(Id + "释放读锁");
 
                         lock (_lockObject)
                         {
                                 if (_buffers[t] < 1)
                                 {
-                                        throw new InvalidOperationException();
+                                        throw new InvalidOperationException("当前值为" + _buffers[t]);
                                 }
                                 _buffers[t]--;
                         }
@@ -114,11 +119,16 @@ namespace Nutshell.Threading
                 /// <param name="t">The t.</param>
                 public void WriteUnlock(T t)
                 {
+                        Contract.Requires(t != null);
+                        
+
                         lock (_lockObject)
                         {
                                 //Trace.WriteLine(Id + "释放写锁");
-
-                                Trace.Assert(_buffers[t] == -1);
+                                if (_buffers[t] != -1)
+                                {
+                                        throw new InvalidOperationException("当前值为" + _buffers[t]);
+                                }
                                 _buffers[t] = 0;
                         }
                 }

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}</ProjectGuid>
+    <ProjectGuid>{AC39913B-0A3D-4B2A-B0AF-8CA16C8D0344}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Presentation.Direct2D.WinForm</RootNamespace>
-    <AssemblyName>Nutshell.Presentation.Direct2D.WinForm</AssemblyName>
+    <RootNamespace>Nutshell.Resources.Converters.Presentation.Hardware.Vision</RootNamespace>
+    <AssemblyName>Nutshell.Resources.Converters.Presentation.Hardware.Vision</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <RestorePackages>true</RestorePackages>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -75,25 +74,9 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.6\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpDX, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.3.0.2\lib\net45\SharpDX.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpDX.Direct2D1, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.Direct2D1.3.0.2\lib\net45\SharpDX.Direct2D1.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpDX.DXGI, Version=3.0.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.DXGI.3.0.2\lib\net45\SharpDX.DXGI.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -101,28 +84,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitmapSence.cs" />
-    <Compile Include="CycleRenderer.cs" />
-    <Compile Include="NSSwapTimeStamp.cs" />
-    <Compile Include="Sence.cs" />
+    <Compile Include="CameraRendererActionConverter.cs" />
+    <Compile Include="CameraRendererStateConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
-      <Project>{5e9ec531-b6ea-4ba9-a3a5-dd40436860d7}</Project>
-      <Name>Nutshell.Drawing.Imaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Hardware.Vision\Nutshell.Hardware.Vision.csproj">
-      <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
-      <Name>Nutshell.Hardware.Vision</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell\Nutshell.csproj">
-      <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
-      <Name>Nutshell</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

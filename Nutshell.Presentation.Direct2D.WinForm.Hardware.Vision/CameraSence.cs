@@ -57,10 +57,14 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 {              
                         target.DrawText(Camera.Id,YaHei36Font, new RawRectangleF(20, 20, 500,120), BlueBrush);
 
-                        target.DrawText(TimeSpan.TotalMilliseconds.ToString(), YaHei36Font, new RawRectangleF(20, 120, 500, 120), BlueBrush);
+                        var totalMilliseconds = ProcessTimeSpan.TotalMilliseconds;
+                        target.DrawText(totalMilliseconds.ToString(), YaHei36Font, new RawRectangleF(20, 120, 500, 120), BlueBrush);
 
-                        target.DrawText(Camera.IsConnected ? "在线" :"离线", YaHei36Font, 
-                                new RawRectangleF(Camera.Region.Width - 120, 20, Camera.Region.Width, 120), Camera.IsConnected? BlueBrush:RedBrush);
+                        target.DrawText(totalMilliseconds < 1500 ? "在线" : "离线", YaHei36Font,
+                                new RawRectangleF(Camera.Region.Width - 120, 20, Camera.Region.Width, 120), totalMilliseconds < 1500 ? BlueBrush : RedBrush);
+
+                        //target.DrawText(Camera.IsConnected ? "在线" :"离线", YaHei36Font, 
+                        //        new RawRectangleF(Camera.Region.Width - 120, 20, Camera.Region.Width, 120), Camera.IsConnected? BlueBrush:RedBrush);
                 }                
         }
 }

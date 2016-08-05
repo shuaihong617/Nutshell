@@ -21,6 +21,10 @@ namespace Nutshell.Presentation.Direct2D.WinForm
         /// </summary>
         public class NSSwapTimeStamp : NSDecodeTimeStamp
         {
+                public NSSwapTimeStamp()
+                {
+                        SwapTime = DateTime.Now;
+                }
                 public DateTime SwapTime { get; set; }
         }
 }

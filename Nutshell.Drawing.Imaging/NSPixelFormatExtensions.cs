@@ -19,7 +19,7 @@ namespace Nutshell.Drawing.Imaging
         /// <summary>
         ///         像素格式扩展方法
         /// </summary>
-        public static class PixelFormatExtensions
+        public static class NSPixelFormatExtensions
         {
                 /// <summary>
                 ///         获取像素格式的位宽

@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics.Contracts;
 
 namespace Nutshell
 {
@@ -27,7 +28,7 @@ namespace Nutshell
                 /// <param name="id">标识</param>
                 public IdentityObject(IdentityObject parent= null, string id = "")
                 {
-                        id.MustNotNull();
+                        Contract.Requires(id != null);
                         Id = id;
 
                         Parent = parent;

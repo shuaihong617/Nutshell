@@ -50,22 +50,24 @@ namespace Nutshell.Components
                 public Looper(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
                         : base(parent, id)
                 {
-                        _action = action;
+                        Priority = priority;
                         Interval = interval;
+                        _action = action;
 
-                        _thread = new Thread(ThreadWork);
-                        _thread.Priority = priority;
+                        
                 }
 
                 #region 字段
 
-                private readonly Thread _thread;
+                private Thread _thread;
 
                 private bool _isWork;
 
                 private readonly Action _action;
 
                 #endregion
+
+                public ThreadPriority Priority { get; private set; }
 
                 public int Interval { get; private set; }
 
@@ -87,6 +89,7 @@ namespace Nutshell.Components
                 {
                         _isWork = true;
 
+                        _thread = new Thread(ThreadWork) {Priority = Priority};
                         _thread.Start();
 
                         return true;

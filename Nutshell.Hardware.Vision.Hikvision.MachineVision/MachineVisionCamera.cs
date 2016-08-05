@@ -122,6 +122,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 private void ExceptionCallBack(ExceptionType exceptionType, IntPtr user)
                 {
+                        this.Info("发生异常");
                         switch (exceptionType)
                         {
                                 case ExceptionType.以太网设备断开连接:
@@ -211,6 +212,11 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         }
 
                         return bitmap;
+                }
+
+                public bool IsAccessible()
+                {
+                        return API.IsDeviceAccessible(_handle,ref _deviceInfo, AccessMode.独占权限);
                 }
 
                 #endregion

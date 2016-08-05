@@ -20,6 +20,10 @@ namespace Nutshell.Hardware.Vision
         /// </summary>
         public class NSDecodeTimeStamp:NSCaptureTimeStamp
         {
+                public NSDecodeTimeStamp()
+                {
+                        DecodeTime = DateTime.Now;
+                }
                 public DateTime DecodeTime { get; set; }
         }
 }

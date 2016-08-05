@@ -45,7 +45,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 private readonly object _threadLock = new object();
 
-                protected TimeSpan TimeSpan { get; private set; }
+                protected TimeSpan ProcessTimeSpan { get; private set; }
 
                 public void Swap(NSBitmap source = null)
                 {
@@ -98,7 +98,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 public override sealed void Render()
                 {
                         var stamp = _foregroundBitmap.TimeStamp as NSCaptureTimeStamp;
-                        TimeSpan = DateTime.Now - stamp.CaptureTime;
+                        ProcessTimeSpan = DateTime.Now - stamp.CaptureTime;
 
                         BufferBitmapRenderTarget.Bitmap.CopyFromMemory(_foregroundBitmap.Buffer,
                                 _foregroundBitmap.Stride);
@@ -106,8 +106,6 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         BufferBitmapRenderTarget.BeginDraw();
                         Render(BufferBitmapRenderTarget);
                         BufferBitmapRenderTarget.EndDraw();
-
-                       
 
                         SurfaceRenderTarget.BeginDraw();
                         SurfaceRenderTarget.DrawBitmap(BufferBitmapRenderTarget.Bitmap, 1,
