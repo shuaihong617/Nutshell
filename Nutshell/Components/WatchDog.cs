@@ -28,7 +28,7 @@ namespace Nutshell.Components
                         int overflowInterval = int.MaxValue)
                         : base(parent, id)
                 {
-                        ScanLooper = new Looper(this, "扫描循环", Scan, scanInterval);
+                        ScanLooper = new Looper(this, "扫描循环", scanInterval, Scan);
 
                         OverflowSpan = TimeSpan.FromMilliseconds(overflowInterval);
                 }

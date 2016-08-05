@@ -35,7 +35,6 @@
   <ItemGroup>
     <Compile Include="NSBitmap.cs" />
     <Compile Include="MSBitmapExtensions.cs" />
-    <Compile Include="NSBitmapPool.cs" />
     <Compile Include="NSPixelFormat.cs" />
     <Compile Include="PixelFormatExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

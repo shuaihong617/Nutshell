@@ -155,10 +155,10 @@ namespace Nutshell.Hardware.Vision
 
                         if (Buffers == null)
                         {
-                                Buffers = new ReadWritePool<NSBitmap>(this, "图像缓冲池");
+                                Buffers = new ReadWritePool<NSBitmap>(this, "采集图像缓冲池");
                                 for (int i = 1; i < 5; i++)
                                 {
-                                        var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
+                                        var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat, new NSCaptureTimeStamp());
                                         Buffers.Add(bitmap);
                                 }
                         }

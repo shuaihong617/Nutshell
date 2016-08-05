@@ -17,7 +17,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         }
                         Sence = sence;
 
-                        _renderLooper = new Looper(this, "显示循环", Render, 5, ThreadPriority.Highest);
+                        _renderLooper = new Looper(this, "显示循环", ThreadPriority.Highest,5, Render);
                 }
 
                 protected BitmapSence Sence { get;private set; }

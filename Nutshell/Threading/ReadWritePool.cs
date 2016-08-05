@@ -10,19 +10,21 @@
 // <summary>
 // </summary>
 // ***********************************************************************
+
+using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.Diagnostics;
 
 namespace Nutshell.Threading
 {
         /// <summary>
-        /// 为对象添加读写锁的缓冲池
+        ///         为对象添加读写锁的缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
         public class ReadWritePool<T> : IdentityObject where T : IdentityObject
         {
                 /// <summary>
-                /// 初始化<see cref="IdentityObject" />的新实例.
+                ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
@@ -32,62 +34,93 @@ namespace Nutshell.Threading
                 }
 
                 /// <summary>
-                /// The _usage
+                ///         The _usage
                 /// </summary>
-                private readonly Dictionary<T, ReaderWriterLockSlim> _buffers =
-                        new Dictionary<T, ReaderWriterLockSlim>();
+                private readonly Dictionary<T, int> _buffers =
+                        new Dictionary<T, int>();
+
+                private readonly object _lockObject = new object();
 
                 /// <summary>
-                /// 添加缓冲对象到缓冲池
+                ///         添加缓冲对象到缓冲池
                 /// </summary>
                 /// <param name="t">缓冲对象</param>
                 public void Add(T t)
                 {
-                        _buffers[t] = new ReaderWriterLockSlim();
+                        _buffers[t] = 0;
                 }
 
                 /// <summary>
-                /// Enters the read.
+                ///         Enters the read.
                 /// </summary>
                 /// <param name="t">The t.</param>
                 /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-                public bool ReadLock(T t)
+                public void ReadLock(T t)
                 {
-                        return _buffers[t].TryEnterReadLock(0);
+                        lock (_lockObject)
+                        {
+                                //Trace.WriteLine(Id + "获取读锁");
+
+                                Trace.Assert(_buffers[t] >= 0);
+                                _buffers[t]++;
+                        }
                 }
 
                 /// <summary>
-                /// Exits the read.
+                ///         Exits the read.
                 /// </summary>
                 /// <param name="t">The t.</param>
                 public void ReadUnlock(T t)
                 {
-                        _buffers[t].ExitReadLock();
+                        //Trace.WriteLine(Id + "释放读锁");
+
+                        lock (_lockObject)
+                        {
+                                if (_buffers[t] < 1)
+                                {
+                                        throw new InvalidOperationException();
+                                }
+                                _buffers[t]--;
+                        }
                 }
 
                 /// <summary>
-                /// Enters the write.
+                ///         Enters the write.
                 /// </summary>
                 /// <returns>T.</returns>
                 public T WriteLock()
                 {
-                        foreach (var pair in _buffers)
+                        lock (_lockObject)
                         {
-                                if (pair.Value.TryEnterWriteLock(0))
+                                //Trace.WriteLine(Id + "获取写锁");
+
+                                foreach (var pair in _buffers)
                                 {
-                                        return pair.Key;
+                                        if (pair.Value == 0)
+                                        {
+                                                T t = pair.Key;
+                                                _buffers[t] = -1;
+                                                return t;
+                                        }
                                 }
+
+                                throw new InvalidOperationException();
                         }
-                        return null;
                 }
 
                 /// <summary>
-                /// Exits the write.
+                ///         Exits the write.
                 /// </summary>
                 /// <param name="t">The t.</param>
                 public void WriteUnlock(T t)
                 {
-                        _buffers[t].ExitWriteLock();
+                        lock (_lockObject)
+                        {
+                                //Trace.WriteLine(Id + "释放写锁");
+
+                                Trace.Assert(_buffers[t] == -1);
+                                _buffers[t] = 0;
+                        }
                 }
         }
 }

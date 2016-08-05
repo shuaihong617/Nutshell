@@ -11,7 +11,7 @@ namespace Nutshell.Distributing
                 protected Beater(IdentityObject parent, string id = "心跳", int interval = 3000)
                         : base(parent, id)
                 {
-                        SendLooper = new Looper(this, "发送循环", Send, interval);
+                        SendLooper = new Looper(this, "发送循环", interval, Send);
                 }
 
                 public SendSite<StringMessage> SendSite { get; protected set; }

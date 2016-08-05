@@ -34,7 +34,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 public MachineVisionCamera(IdentityObject parent, string id = "", string ipAddress = "192.168.1.1")
                         : base(parent, id, 1280, 960, NSPixelFormat.Rgb24, ipAddress)
                 {
-                        _captureLooper = new Looper(this, "采集循环", Capture, 20, ThreadPriority.Highest);
+                        _captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
 
                         _exceptionCallback = ExceptionCallBack;
                 }
@@ -102,7 +102,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         }
                         this.InfoSuccess("CreateHandle");
 
-                        API.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero);
+                        if (!API.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
+                        {
+                                this.WarnFail("RegisterExceptionCallBack", error);
+                                return false;
+                        }
+                        
 
                         error = API.OpenDevice(_handle, AccessMode.控制权限);
                         if (error != ErrorCode.MV_OK)
@@ -187,25 +192,17 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         }
 
                         NSBitmap bitmap = Buffers.WriteLock();
-                        if (bitmap == null)
-                        {
-                                this.WarnFail("BitmapPool.Instance.EnterWrite");
-                                return null;
-                        }
 
-                        //Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + " : " + Id + "   出队  " + bitmap);
-
-                        //ErrorCode error = API.GetOneFrame(_handle, _captureBufferPtr, CaptureBufferBytesCount,
-                        //        ref _frameOutInfo);
                         ErrorCode error = API.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
                                 ref _frameOutInfo);
                         if (error != ErrorCode.MV_OK)
                         {
                                 //this.WarnFail("GetOneFrame", error);
                                 Buffers.WriteUnlock(bitmap);
-                                return bitmap;
+                                return null;
                         }
                         //this.InfoSuccess("GetOneFrame");
+                        Buffers.WriteUnlock(bitmap);
 
                         var stamp = bitmap.TimeStamp as NSCaptureTimeStamp;
                         if (stamp != null)

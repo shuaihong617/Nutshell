@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using System.Threading;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
@@ -39,7 +40,7 @@ namespace Nutshell.Hardware.Vision
 
                         PixelFormat = pixelFormat;
 
-                        _asyncer = new Asyncer(this, string.Empty, ThreadPriority.Highest, Decode);
+                        _looper = new Looper(this, string.Empty, ThreadPriority.Highest,5, Decode);
                 }
 
                 /// <summary>
@@ -57,9 +58,9 @@ namespace Nutshell.Hardware.Vision
                 /// </summary>
                 public ReadWritePool<NSBitmap> Buffers { get; private set; }
 
-                private readonly Asyncer _asyncer;
+                private readonly Looper _looper;
 
-                private NSBitmap _source;
+                private NSBitmap _decodeBitmap;
 
                 /// <summary>
                 ///         创建图像缓冲池
@@ -79,10 +80,10 @@ namespace Nutshell.Hardware.Vision
                                 return;
                         }
 
-                        Buffers = new ReadWritePool<NSBitmap>(this, "图像缓冲池");
+                        Buffers = new ReadWritePool<NSBitmap>(this, "解码图像缓冲池");
                         for (int i = 1; i < 5; i++)
                         {
-                                var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat);
+                                var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat, new NSDecodeTimeStamp());
                                 Buffers.Add(bitmap);
                         }
                 }
@@ -93,52 +94,49 @@ namespace Nutshell.Hardware.Vision
                 {
                         CreateBitmapPool();
 
-                        Camera.CaptureSuccessed += Camera_CaptureSuccessed;                        
+                        Camera.CaptureSuccessed += Camera_CaptureSuccessed;
+                        _looper.Start();
                         return true;
                 }
 
                 private void Camera_CaptureSuccessed(object sender, ValueEventArgs<NSBitmap> e)
                 {
-                        if (_asyncer.IsBusy)
+                        if (_decodeBitmap != null)
                         {
                                 return;
                         }
 
-                        _source = e.Data;
-                        _asyncer.Start();
+                        _decodeBitmap = e.Data;
+
+                        Camera.Buffers.ReadLock(_decodeBitmap);
                 }
 
                 protected override sealed bool StopCore()
                 {
+                        _looper.Stop();
                         Camera.CaptureSuccessed -= Camera_CaptureSuccessed;
                         return true;
                 }
 
                 private void Decode()
                 {
-                        if (!IsEnable || !IsStarted)
+                        if (_decodeBitmap == null)
                         {
                                 return;
                         }
 
-                        if (_source == null)
+                        if (!IsEnable || !IsStarted)
                         {
-                                throw new InvalidOperationException();
-                        }
-
-
-                        Camera.Buffers.ReadLock(_source);
-
-
+                                Camera.Buffers.ReadUnlock(_decodeBitmap);
+                                _decodeBitmap = null;
+                                return;
+                        }                        
+                        
                         NSBitmap target = Buffers.WriteLock();
-                        if (target == null)
-                        {
-                                throw new InvalidOperationException();
-                        }
 
-                        _source.TranslateTo(target);
+                        _decodeBitmap.TranslateTo(target);
 
-                        var sourceStamp = _source.TimeStamp as NSCaptureTimeStamp;
+                        var sourceStamp = _decodeBitmap.TimeStamp as NSCaptureTimeStamp;
                         var targetStamp = target.TimeStamp as NSDecodeTimeStamp;
                         if (sourceStamp != null && targetStamp != null)
                         {
@@ -148,9 +146,11 @@ namespace Nutshell.Hardware.Vision
 
                         Buffers.WriteUnlock(target);
 
-                        Camera.Buffers.ReadUnlock(_source);
+                        Camera.Buffers.ReadUnlock(_decodeBitmap);
 
                         OnDecodeFinished(new ValueEventArgs<NSBitmap>(target));
+
+                        _decodeBitmap = null;
                 }
 
                 #endregion

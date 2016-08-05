@@ -26,14 +26,31 @@ namespace Nutshell.Components
         public class Looper : Worker
         {
                 public Looper(IdentityObject parent, Action action)
-                        : this(parent, String.Empty, action)
+                        : this(parent, 1000, action)
                 {
                 }
 
-                public Looper(IdentityObject parent, string id = "", Action work = null, int interval = 1000, ThreadPriority priority = ThreadPriority.Normal)
+                public Looper(IdentityObject parent, string id, Action action)
+                        : this(parent, id, ThreadPriority.Normal, 1000, action)
+                {
+
+                }
+
+                public Looper(IdentityObject parent, int interval, Action action)
+                        : this(parent, String.Empty, interval, action)
+                {
+                }
+
+                public Looper(IdentityObject parent, string id, int interval, Action action)
+                        : this(parent, id, ThreadPriority.Normal,  interval, action)
+                {
+                       
+                }
+
+                public Looper(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
                         : base(parent, id)
                 {
-                        _action = work;
+                        _action = action;
                         Interval = interval;
 
                         _thread = new Thread(ThreadWork);
@@ -51,11 +68,6 @@ namespace Nutshell.Components
                 #endregion
 
                 public int Interval { get; private set; }
-
-                public bool IsBusy
-                {
-                        get { return _thread.IsAlive; }
-                }
 
                 public override void Load(IStorableModel model)
                 {

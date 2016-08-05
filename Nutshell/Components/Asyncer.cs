@@ -17,6 +17,7 @@ using System.Threading;
 using Nutshell.Components.Models;
 using Nutshell.Data.Models;
 using Nutshell.Log;
+using ThreadState = System.Threading.ThreadState;
 
 namespace Nutshell.Components
 {
@@ -47,6 +48,11 @@ namespace Nutshell.Components
                         get { return _thread.IsAlive; }
                 }
 
+                public ThreadState ThreadState
+                {
+                        get { return _thread.ThreadState; }
+                }
+
                 public override void Load(IStorableModel model)
                 {
                         model.MustNotNull();
@@ -62,6 +68,7 @@ namespace Nutshell.Components
 
                 protected override bool StartCore()
                 {
+                        Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + "   "  + Id + _thread.IsAlive);
                         if (_thread.IsAlive)
                         {
                                 return true;
