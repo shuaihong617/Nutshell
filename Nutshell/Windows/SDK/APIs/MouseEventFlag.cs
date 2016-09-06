@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Nutshell.Windows
+namespace Nutshell.Windows.Win32API
 {
         [Flags]
         public enum MouseEventFlag : uint

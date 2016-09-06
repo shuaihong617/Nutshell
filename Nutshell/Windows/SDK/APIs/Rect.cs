@@ -1,9 +1,9 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Nutshell.Windows
+namespace Nutshell.Windows.SDK.APIs
 {
         [StructLayout(LayoutKind.Sequential)]
-        public struct Win32RECT
+        public struct Rect
         {
                 public int left;
                 public int top;

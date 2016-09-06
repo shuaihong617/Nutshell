@@ -24,7 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
     <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
     <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
     <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
@@ -64,8 +64,8 @@
     <CodeContractsSkipAnalysisIfCannotConnectToCache>False</CodeContractsSkipAnalysisIfCannotConnectToCache>
     <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
     <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
-    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
-    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsRuntimeCheckingLevel>Pre and Post</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -258,14 +258,20 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ValueChangedEventArgs.cs" />
     <Compile Include="ValueEventArgs.cs" />
-    <Compile Include="Windows\RasterOperationCode.cs" />
+    <Compile Include="Windows\SDK\APIs\CursorAPI.cs" />
+    <Compile Include="Windows\SDK\APIs\MemoryAPIs.cs" />
+    <Compile Include="Windows\SDK\APIs\MouseAPI.cs" />
     <Compile Include="Windows\CpuPerformance.cs" />
-    <Compile Include="Windows\Win32GDIAPI.cs" />
-    <Compile Include="Windows\Win32RectExtensions.cs" />
-    <Compile Include="Windows\MouseEventFlag.cs" />
-    <Compile Include="Windows\Win32API.cs" />
-    <Compile Include="Windows\Win32Rect.cs" />
-    <Compile Include="Windows\Win32Window.cs" />
+    <Compile Include="Windows\SDK\APIs\GDIAPI.cs" />
+    <Compile Include="Windows\SDK\APIs\MessageAPI.cs" />
+    <Compile Include="Windows\SDK\APIs\RectExtensions.cs" />
+    <Compile Include="Windows\SDK\APIs\MouseEventFlag.cs" />
+    <Compile Include="Windows\SDK\APIs\VirtualMouseButtons.cs" />
+    <Compile Include="Windows\SDK\APIs\Rect.cs" />
+    <Compile Include="Windows\SDK\CapturableWindow.cs" />
+    <Compile Include="Windows\SDK\Window.cs" />
+    <Compile Include="Windows\SDK\APIs\WindowAPI.cs" />
+    <Compile Include="Windows\SDK\APIs\Messages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLog.config">

@@ -13,14 +13,14 @@
 
 using System.Drawing;
 
-namespace Nutshell.Windows
+namespace Nutshell.Windows.SDK.APIs
 {
         /// <summary>
         ///         WIN32API矩形扩展方法
         /// </summary>
-        public static class Win32RectExtensions
+        public static class RectExtensions
         {
-                public static Rectangle ToRectangle(this Win32RECT rect)
+                public static Rectangle ToRectangle(this Rect rect)
                 {
                         return new Rectangle(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
                 }
