@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Drawing;
 using Nutshell.Windows.SDK.APIs;
@@ -25,9 +26,9 @@ namespace Nutshell.Windows.SDK
 
                 public void CreateEnvironment()
                 {
-                        Contract.Requires(_windowDC == IntPtr.Zero);
-                        Contract.Requires(_memoryDC == IntPtr.Zero);
-                        Contract.Requires(MemoryBitmapHandle == IntPtr.Zero);
+                        Trace.Assert(_windowDC == IntPtr.Zero);
+                        Trace.Assert(_memoryDC == IntPtr.Zero);
+                        Trace.Assert(MemoryBitmapHandle == IntPtr.Zero);
                         
                         _windowDC = WindowAPI.GetWindowDC(Handle);
                         _memoryDC = GDIAPI.CreateCompatibleDC(_windowDC);
@@ -101,17 +102,5 @@ namespace Nutshell.Windows.SDK
                 //        Win32API.PostMessage(WindowHandle, Win32API.WM_LBUTTONUP, Win32API.MK_LBUTTON,
                 //                Win32API.MAKELONG(x, y));
                 //}
-
-                public static Window FindWindow(string title)
-                {
-                        IntPtr handle = WindowAPI.FindWindow(null, title);
-                        return handle == IntPtr.Zero ? null : new Window(handle);
-                }
-
-                public Window FindChildWindow()
-                {
-                        IntPtr handle = WindowAPI.FindWindowEx(Handle, IntPtr.Zero, null, null);
-                        return handle == IntPtr.Zero ? null : new Window(handle);
-                }
         }
 }

@@ -31,7 +31,7 @@ namespace Nutshell.Windows.SDK.APIs
                 public static extern bool StretchBlt(IntPtr hdcDest, int nXOriginDest, int nYOriginDest,
                         int nWidthDest, int nHeightDest,
                         IntPtr hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc,
-                        RasterOperationCode code);
+                        CopyPixelOperation code);
 
                 [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
                 public static extern IntPtr CreateSolidBrush(int crColor);

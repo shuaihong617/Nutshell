@@ -107,9 +107,14 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         Render(BufferBitmapRenderTarget);
                         BufferBitmapRenderTarget.EndDraw();
 
+                        //渲染缓冲图像到界面
                         SurfaceRenderTarget.BeginDraw();
+                        //重要操作，清理以前绘制结果为透明黑色背景，无此行界面绘制结果会累加
+                        SurfaceRenderTarget.Clear(null);
+
                         SurfaceRenderTarget.DrawBitmap(BufferBitmapRenderTarget.Bitmap, 1,
                                 BitmapInterpolationMode.Linear);
+
                         SurfaceRenderTarget.EndDraw();
                 }
 
