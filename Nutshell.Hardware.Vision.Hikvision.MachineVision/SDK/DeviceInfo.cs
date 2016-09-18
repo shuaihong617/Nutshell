@@ -1,4 +1,16 @@
-﻿using System.Runtime.InteropServices;
+﻿// ***********************************************************************
+// 作者           : 阿尔卑斯 shuaihong617@qq.com
+// 创建           : 2016-07-17
+//
+// 编辑           : 阿尔卑斯 shuaihong617@qq.com
+// 日期           : 2016-07-31
+// 内容           : 创建文件
+// ***********************************************************************
+// Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
+// <summary>
+// </summary>
+// ***********************************************************************
+using System.Runtime.InteropServices;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
@@ -9,12 +21,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
         public struct DeviceInfo
         {
                 /// <summary>
-                /// 主版本号
+                /// 固件主版本号
                 /// </summary>
                 public ushort MajorVer;
 
                 /// <summary>
-                /// 次版本号
+                /// 固件次版本号
                 /// </summary>
                 public ushort MinorVer;
 
@@ -33,9 +45,15 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
                 /// </summary>
                 public DeviceType DeviceType;
 
+                /// <summary>
+                /// 保留
+                /// </summary>
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
                 public uint[] Reserved;
 
+                /// <summary>
+                /// 以太网摄像机独有设备信息
+                /// </summary>
                 public GigeDeviceInfo GigeDeviceInfo;
                
         }

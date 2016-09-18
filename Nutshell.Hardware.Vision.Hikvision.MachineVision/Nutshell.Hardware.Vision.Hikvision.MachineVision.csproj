@@ -141,6 +141,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\API.cs" />
     <Compile Include="SDK\AccessMode.cs" />
+    <Compile Include="SDK\FloatValue.cs" />
     <Compile Include="SDK\DeviceInfoList.cs" />
     <Compile Include="SDK\ExceptionType.cs" />
     <Compile Include="SDK\PixelType.cs" />
