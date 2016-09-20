@@ -18,75 +18,82 @@ using System.Runtime.InteropServices;
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         /// <summary>
-        /// Struct GigeDeviceInfo
+        /// 千兆以太网摄像机设备信息
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct GigeDeviceInfo
         {
                 /// <summary>
-                /// The n ip CFG option
+                /// IP配置选项
                 /// </summary>
-                public uint nIpCfgOption;
-                /// <summary>
-                /// The n ip CFG current
-                /// </summary>
-                public uint nIpCfgCurrent; //IP configuration:bit31-static bit30-dhcp bit29-lla          
-                /// <summary>
-                /// The current ip address
-                /// </summary>
-                public uint CurrentIPAddress; //curtent ip          
-                /// <summary>
-                /// The n current sub net mask
-                /// </summary>
-                public uint nCurrentSubNetMask; //curtent subnet mask             
-                /// <summary>
-                /// The n defult gate way
-                /// </summary>
-                public uint nDefultGateWay; //current gateway
+                public uint IpCfgOption;
 
                 /// <summary>
-                /// The manufacturer name
+                /// 当前IP配置选项
+                /// </summary>
+                /// <remark>
+                /// bit31-static bit30-dhcp bit29-lla 
+                /// </remark>
+                public uint IpCfgCurrent; 
+
+                /// <summary>
+                /// 当前IP地址（整型形式）
+                /// </summary>
+                public uint CurrentIPAddress; 
+
+                /// <summary>
+                /// 当前子网掩码（整型形式）
+                /// </summary>
+                public uint CurrentSubNetMask;    
+
+                /// <summary>
+                /// 当前默认网关掩码（整型形式）
+                /// </summary>
+                public uint nDefultGateWay;
+
+                /// <summary>
+                /// 制造商名称
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] 
                 public string ManufacturerName;
 
                 /// <summary>
-                /// The ch model name
+                /// 型号名称
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
                 public string chModelName;
 
                 /// <summary>
-                /// The ch device version
+                /// 设备版本
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
-                public string chDeviceVersion;
+                public string DeviceVersion;
 
                 /// <summary>
-                /// The ch manufacturer specific information
+                /// 制造批次等信息
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 48)]
-                public string chManufacturerSpecificInfo;
+                public string ManufacturerSpecificInfo;
 
                 /// <summary>
-                /// The ch serial number
+                /// 序列号
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
-                public string chSerialNumber;
+                public string SerialNumber;
 
                 /// <summary>
-                /// The ch user defined name
+                /// 自定义名称
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
-                public string chUserDefinedName;
+                public string UserDefinedName;
 
                 /// <summary>
-                /// The n net export
+                /// 网口IP地址  什么东西？不明白.
                 /// </summary>
-                public uint nNetExport; // 网口IP地址
+                public uint NetExport; // 
 
                 /// <summary>
-                /// The n reserved
+                /// 保留
                 /// </summary>
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
                 public uint[] nReserved;
