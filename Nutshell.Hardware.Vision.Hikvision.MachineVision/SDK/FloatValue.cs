@@ -1,4 +1,17 @@
-﻿using System.Runtime.InteropServices;
+﻿// ***********************************************************************
+// 作者           : 阿尔卑斯 shuaihong617@qq.com
+// 创建           : 2016-07-17
+//
+// 编辑           : 阿尔卑斯 shuaihong617@qq.com
+// 日期           : 2016-07-17
+// 内容           : 创建文件
+// ***********************************************************************
+// Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
+// <summary>
+// </summary>
+// ***********************************************************************
+
+using System.Runtime.InteropServices;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
@@ -9,19 +22,19 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
         public struct FloatValue
         {
                 /// <summary>
-                /// 主版本号
+                /// 当前值
                 /// </summary>
                 public float Current;
 
                 /// <summary>
-                /// 次版本号
+                /// 最大值
                 /// </summary>
-                public ushort Max;
+                public float Maximum;
 
                 /// <summary>
-                /// MAC地址高32位
+                /// 最小值
                 /// </summary>
-                public uint Min;
+                public float Minimum;
 
                 
                 

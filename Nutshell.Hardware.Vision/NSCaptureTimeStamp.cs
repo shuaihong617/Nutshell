@@ -16,7 +16,7 @@ using System;
 namespace Nutshell.Hardware.Vision
 {
         /// <summary>
-        /// 时间戳
+        /// 采集时间戳
         /// </summary>
         public class NSCaptureTimeStamp:NSTimeStamp
         {

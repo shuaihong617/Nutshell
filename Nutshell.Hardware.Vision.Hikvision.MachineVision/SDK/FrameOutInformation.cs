@@ -15,46 +15,57 @@ using System.Runtime.InteropServices;
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         /// <summary>
-        /// 设备信息结构体
+        /// 输出帧信息
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public struct DeviceInfo
+        public struct FrameOutInformation
         {
                 /// <summary>
-                /// 固件主版本号
+                /// 图像宽度
                 /// </summary>
-                public ushort MajorVer;
+                public ushort Width;
 
                 /// <summary>
-                /// 固件次版本号
+                /// 图像高度
                 /// </summary>
-                public ushort MinorVer;
+                public ushort Height; 
 
                 /// <summary>
-                /// MAC地址高32位
+                /// 像素格式
                 /// </summary>
-                public uint MacAddrHigh;
+                public PixelType PixelType; 
+
+                /*以下字段暂不支持*/
 
                 /// <summary>
-                /// MAC地址低32位
+                /// 帧编号
                 /// </summary>
-                public uint MacAddrLow;
+                public uint FrameNum; 
 
                 /// <summary>
-                /// 设备类型(通过传输层协议区分)
+                /// 时间戳高32位
                 /// </summary>
-                public DeviceType DeviceType;
+                public uint DevTimeStampHigh;
+
+                /// <summary>
+                /// 时间戳低32位
+                /// </summary>
+                public uint DevTimeStampLow;
 
                 /// <summary>
                 /// 保留
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
-                public uint[] Reserved;
+                public uint Reserved0; 
 
                 /// <summary>
-                /// 以太网摄像机独有设备信息
+                /// 主机生成的时间戳
                 /// </summary>
-                public GigeDeviceInfo GigeDeviceInfo;
-               
+                public long HostTimeStamp;
+
+                /// <summary>
+                /// // 保留
+                /// </summary>
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
+                public uint[] Reserved; 
         }
 }

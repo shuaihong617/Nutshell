@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2016-07-17
+// 创建           : 2015-07-22
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2016-07-31
+// 日期           : 2015-07-22
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,14 +11,20 @@
 // </summary>
 // ***********************************************************************
 
-namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
+
+using Nutshell.Components;
+
+namespace Nutshell.Hardware
 {
-		/// <summary>
-        /// 像素类型
+        /// <summary>
+        /// 设备接口
         /// </summary>
-        public enum PixelType
+        public interface INSDevice : IWorker
         {
-                // Undefined pixel type
-                Undefined = -1,
+        	#region 属性
+
+                NSRunMode NSRunMode { get; }
+
+                #endregion
         }
 }

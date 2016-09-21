@@ -18,14 +18,14 @@ namespace Nutshell.Hardware
         /// <summary>
         ///         采集设备
         /// </summary>
-        public abstract class CaptureDevice<T> : Device
+        public abstract class NSCaptureDevice<T> : NSDevice
         {
                 /// <summary>
                 /// 初始化<see cref="T:CaptureDevice" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
-                protected CaptureDevice(IdentityObject parent, string id = "采集设备")
+                protected NSCaptureDevice(IdentityObject parent, string id = "采集设备")
                         : base(parent, id)
                 {
                         _isConnected = false;

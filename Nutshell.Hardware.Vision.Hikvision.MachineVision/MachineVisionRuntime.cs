@@ -1,4 +1,4 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
 // 创建           : 2014-10-16
 //
@@ -22,7 +22,7 @@ using Nutshell.Log;
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 {
         /// <summary>
-        ///         海康威视摄像机运行环境
+        ///         海康威视机器视觉摄像机运行环境
         /// </summary>
         public class MachineVisionRuntime:Worker
         {
@@ -41,7 +41,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 #endregion
 
-                public ReadOnlyCollection<DeviceInfo> DeviceInfos { get; private set; } 
+                public ReadOnlyCollection<DeviceInformation> DeviceInfos { get; private set; } 
 
                 #region 方法
 
@@ -52,7 +52,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return true;
                         }
 
-                        var deviceInfoList = new DeviceInfoList();
+                        var deviceInfoList = new DeviceInformationList();
                         var errorCode = API.EnumDevices(DeviceType.GigeDevice, ref deviceInfoList);
 
                         if (errorCode != ErrorCode.MV_OK)
@@ -61,21 +61,21 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return false;
                         }
 
-                        var deviceInfos = new List<DeviceInfo>();
+                        var deviceInfos = new List<DeviceInformation>();
 
-                        var deviceInfoType = typeof (DeviceInfo);
+                        var deviceInfoType = typeof (DeviceInformation);
                         foreach (var deviceInfoPtr in deviceInfoList.DeviceInfoPtrs)
                         {
                                 if (deviceInfoPtr != IntPtr.Zero)
                                 {
-                                        var di = (DeviceInfo)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
+                                        var di = (DeviceInformation)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
                                         deviceInfos.Add(di);
 
                                         this.Info("检测到摄像机：IP" + di.GigeDeviceInfo.GetCurrentIpAddress());
                                 }
                         }
 
-                        DeviceInfos = new ReadOnlyCollection<DeviceInfo>(deviceInfos);
+                        DeviceInfos = new ReadOnlyCollection<DeviceInformation>(deviceInfos);
                         
                         return true;
                 }

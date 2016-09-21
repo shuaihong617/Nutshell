@@ -23,16 +23,16 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         ///         摄像机图像消费者
         /// </summary>
-        public class CameraDecoder : Worker
+        public class NSCameraDecoder : Worker
         {
                 /// <summary>
-                ///         初始化<see cref="CameraDecoder" />的新实例.
+                ///         初始化<see cref="NSCameraDecoder" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                public CameraDecoder(IdentityObject parent, string id, Camera camera, NSPixelFormat pixelFormat)
+                public NSCameraDecoder(IdentityObject parent, string id, NSCamera camera, NSPixelFormat pixelFormat)
                         : base(parent, id)
                 {
                         camera.MustNotNull();
@@ -46,7 +46,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         摄像机
                 /// </summary>
-                public Camera Camera { get; private set; }
+                public NSCamera Camera { get; private set; }
 
                 /// <summary>
                 ///         格式

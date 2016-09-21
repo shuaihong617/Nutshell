@@ -14,7 +14,7 @@
 namespace Nutshell.Drawing.Imaging
 {
         /// <summary>
-        ///         DateTime struce extensions
+        ///         微软位图扩展
         /// </summary>
         public static class MSBitmapExtensions
         {

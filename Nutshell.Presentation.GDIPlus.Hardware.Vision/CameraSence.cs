@@ -29,14 +29,14 @@ namespace Nutshell.Presentation.GDIPlus.Hardware.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="camera">The camera.</param>
-                protected CameraSence(IdentityObject parent, string id, Control control, Camera camera)
+                protected CameraSence(IdentityObject parent, string id, Control control, NSCamera camera)
                         : base(parent, id, control)
                 {
                         camera.MustNotNull();
                         Camera = camera;
                 }
 
-                private Camera Camera { get;  set; }
+                private NSCamera Camera { get;  set; }
 
                 protected static Font YaHei36Font = new Font("Microsoft YaHei", 36);
 

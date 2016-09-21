@@ -32,7 +32,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="camera">The camera.</param>
-                protected CameraSence(IdentityObject parent, string id, Control control, Camera camera)
+                protected CameraSence(IdentityObject parent, string id, Control control, NSCamera camera)
                         : base(parent, id, control)
                 {
                         camera.MustNotNull();
@@ -50,7 +50,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 private readonly RawRectangleF _cameraIdLocation = new RawRectangleF(20, 20, 500, 120);
                 private readonly RawRectangleF _cameraOnlineLocation;
 
-                protected Camera Camera { get;  set; }
+                protected NSCamera Camera { get;  set; }
 
                 protected SolidColorBrush RedBrush;
                 protected SolidColorBrush BlueBrush;

@@ -142,13 +142,13 @@
     <Compile Include="SDK\API.cs" />
     <Compile Include="SDK\AccessMode.cs" />
     <Compile Include="SDK\FloatValue.cs" />
-    <Compile Include="SDK\DeviceInfoList.cs" />
+    <Compile Include="SDK\DeviceInformationList.cs" />
     <Compile Include="SDK\ExceptionType.cs" />
     <Compile Include="SDK\PixelType.cs" />
-    <Compile Include="SDK\FrameOutInfo.cs" />
+    <Compile Include="SDK\FrameOutInformation.cs" />
     <Compile Include="SDK\ErrorCode.cs" />
-    <Compile Include="SDK\DeviceInfo.cs" />
-    <Compile Include="SDK\GigeDeviceInfo.cs" />
+    <Compile Include="SDK\DeviceInformation.cs" />
+    <Compile Include="SDK\GigeDeviceInformation.cs" />
     <Compile Include="SDK\DeviceType.cs" />
   </ItemGroup>
   <ItemGroup>

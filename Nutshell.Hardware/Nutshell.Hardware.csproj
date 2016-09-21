@@ -146,11 +146,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaptureDevice.cs" />
+    <Compile Include="NSCaptureDevice.cs" />
+    <Compile Include="INSDevice.cs" />
     <Compile Include="Models\DeviceModel.cs" />
-    <Compile Include="RunMode.cs" />
-    <Compile Include="Device.cs" />
-    <Compile Include="IDevice.cs" />
+    <Compile Include="NSDevice.cs" />
+    <Compile Include="NSRunMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

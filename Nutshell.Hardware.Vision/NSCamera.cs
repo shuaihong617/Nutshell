@@ -25,17 +25,17 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class Camera : CaptureDevice<NSBitmap>
+        public abstract class NSCamera : NSCaptureDevice<NSBitmap>
         {
                 /// <summary>
-                /// 初始化<see cref="Camera" />的实例
+                /// 初始化<see cref="NSCamera" />的实例
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="width">水平采集分辨率</param>
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
-                protected Camera(IdentityObject parent, string id = "", int width = 2, int height = 2,
+                protected NSCamera(IdentityObject parent, string id = "", int width = 2, int height = 2,
                         NSPixelFormat pixelFormat = NSPixelFormat.Mono8)
                         : base( parent, id)
                 {

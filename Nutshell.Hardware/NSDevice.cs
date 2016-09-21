@@ -24,14 +24,14 @@ namespace Nutshell.Hardware
         /// <summary>
         ///         设备
         /// </summary>
-        public abstract class Device : Worker
+        public abstract class NSDevice : Worker,INSDevice
         {
                 #region 构造函数
 
-                protected Device(IdentityObject parent, string id = "")
+                protected NSDevice(IdentityObject parent, string id = "")
                         : base(parent,id)
                 {
-                        RunMode = RunMode.Release;
+                        NSRunMode = NSRunMode.Release;
                 }
 
                 #endregion
@@ -45,7 +45,7 @@ namespace Nutshell.Hardware
 
                 #region 属性
 
-                public RunMode RunMode { get; private set; }
+                public NSRunMode NSRunMode { get; private set; }
 
                 /// <summary>
                 ///         设备是否已打开
@@ -101,7 +101,7 @@ namespace Nutshell.Hardware
                         var deviceModel = model as DeviceModel;
                         deviceModel.MustNotNull();
 
-                        RunMode = deviceModel.RunMode;
+                        NSRunMode = deviceModel.NSRunMode;
                 }
 
                 protected override sealed bool StartCore()
@@ -121,7 +121,7 @@ namespace Nutshell.Hardware
                                 return true;
                         }
 
-                        this.Info("运行状态：" + RunMode);
+                        this.Info("运行状态：" + NSRunMode);
 
                         IsOpened = OpenCore();
                         return IsOpened;

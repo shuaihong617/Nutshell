@@ -34,7 +34,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <param name="decoder">The decoder.</param>
                 /// <param name="sence">The sence.</param>
                 /// <exception cref="System.ArgumentException">摄像机解码单元不能为null</exception>
-                public CameraRenderer(IdentityObject parent, string id, CameraDecoder decoder, CameraSence sence)
+                public CameraRenderer(IdentityObject parent, string id, NSCameraDecoder decoder, CameraSence sence)
                         : base(parent, id, sence)
                 {
                         if (decoder == null)
@@ -44,7 +44,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         _decoder = decoder;
                 }
 
-                private readonly CameraDecoder _decoder;
+                private readonly NSCameraDecoder _decoder;
 
                 protected override bool StartCore()
                 {

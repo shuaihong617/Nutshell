@@ -15,57 +15,46 @@ using System.Runtime.InteropServices;
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
 {
         /// <summary>
-        /// 输出帧信息
+        /// 设备信息结构体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public struct FrameOutInfo
+        public struct DeviceInformation
         {
                 /// <summary>
-                /// 图像宽度
+                /// 固件主版本号
                 /// </summary>
-                public ushort Width;
+                public ushort MajorVer;
 
                 /// <summary>
-                /// 图像高度
+                /// 固件次版本号
                 /// </summary>
-                public ushort Height; 
+                public ushort MinorVer;
 
                 /// <summary>
-                /// 像素格式
+                /// MAC地址高32位
                 /// </summary>
-                public PixelType PixelType; 
-
-                /*以下字段暂不支持*/
+                public uint MacAddrHigh;
 
                 /// <summary>
-                /// 帧编号
+                /// MAC地址低32位
                 /// </summary>
-                public uint FrameNum; 
+                public uint MacAddrLow;
 
                 /// <summary>
-                /// 时间戳高32位
+                /// 设备类型(通过传输层协议区分)
                 /// </summary>
-                public uint DevTimeStampHigh;
-
-                /// <summary>
-                /// 时间戳低32位
-                /// </summary>
-                public uint DevTimeStampLow;
+                public DeviceType DeviceType;
 
                 /// <summary>
                 /// 保留
                 /// </summary>
-                public uint Reserved0; 
-
-                /// <summary>
-                /// 主机生成的时间戳
-                /// </summary>
-                public long HostTimeStamp;
-
-                /// <summary>
-                /// // 保留
-                /// </summary>
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
-                public uint[] Reserved; 
+                public uint[] Reserved;
+
+                /// <summary>
+                /// 以太网摄像机独有设备信息
+                /// </summary>
+                public GigeDeviceInformation GigeDeviceInfo;
+               
         }
 }

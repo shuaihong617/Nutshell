@@ -29,7 +29,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机
         /// </summary>
-        public class MachineVisionCamera : GigeCamera
+        public class MachineVisionCamera : NSGigeCamera
         {
                 public MachineVisionCamera(IdentityObject parent, string id = "", string ipAddress = "192.168.1.1")
                         : base(parent, id, 1280, 960, NSPixelFormat.Rgb24, ipAddress)
@@ -50,7 +50,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 /// </summary>
                 private IntPtr _handle;
 
-                private DeviceInfo _deviceInfo;
+                private DeviceInformation _deviceInfo;
 
 
                 /// <summary>
@@ -64,7 +64,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 private const int CaptureBufferBytesCount = 1024*1024*24;
 
 
-                private FrameOutInfo _frameOutInfo;
+                private FrameOutInformation _frameOutInfo;
 
                 private readonly Looper _captureLooper;
 

@@ -21,7 +21,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
         /// 千兆以太网摄像机设备信息
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public struct GigeDeviceInfo
+        public struct GigeDeviceInformation
         {
                 /// <summary>
                 /// IP配置选项

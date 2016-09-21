@@ -150,10 +150,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
-    <Compile Include="CameraDecoder.cs" />
+    <Compile Include="NSCamera.cs" />
+    <Compile Include="NSCameraDecoder.cs" />
     <Compile Include="NSCaptureTimeStamp.cs" />
-    <Compile Include="GigeCamera.cs" />
+    <Compile Include="NSGigeCamera.cs" />
     <Compile Include="Models\CameraModel.cs" />
     <Compile Include="Models\GigeCameraModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

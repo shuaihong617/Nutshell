@@ -25,13 +25,13 @@ namespace Nutshell.Hardware.Models
         {
                 public DeviceModel()
                 {
-                        RunMode = RunMode.Release;
+                        NSRunMode = NSRunMode.Release;
                 }
 
                 /// <summary>
                 ///         运行模式
                 /// </summary>
                 [XmlAttribute]
-                public RunMode RunMode { get; set; }
+                public NSRunMode NSRunMode { get; set; }
         }
 }
