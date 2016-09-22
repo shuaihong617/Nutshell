@@ -47,6 +47,6 @@ namespace Nutshell.Hardware.Vision.Models
                 ///         摄像机图像有效区域
                 /// </summary>
                 [XmlElement]
-                public RegionModel RegionModel { get; set; }
+                public NSRegionModel RegionModel { get; set; }
         }
 }

@@ -21,7 +21,7 @@ namespace Nutshell.Drawing.Shapes.Models
         ///         区域数据模型
         /// </summary>
         [XmlType]
-        public class RegionModel : StorableModel
+        public class NSRegionModel : StorableModel
         {
                 /// <summary>
                 ///         水平坐标

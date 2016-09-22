@@ -56,7 +56,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public ReadWritePool<NSBitmap> Buffers { get; private set; }
+                public NSReadWritePool<NSBitmap> Buffers { get; private set; }
 
                 private readonly Looper _looper;
 
@@ -80,7 +80,7 @@ namespace Nutshell.Hardware.Vision
                                 return;
                         }
 
-                        Buffers = new ReadWritePool<NSBitmap>(this, "解码图像缓冲池");
+                        Buffers = new NSReadWritePool<NSBitmap>(this, "解码图像缓冲池");
                         for (int i = 1; i < 5; i++)
                         {
                                 var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat, new NSDecodeTimeStamp());

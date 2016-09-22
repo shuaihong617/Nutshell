@@ -29,6 +29,6 @@ namespace Nutshell.Drawing.Shapes.Models
                 /// </summary>
                 /// <value>The width.</value>
                 [XmlArray]
-                public List<ScaleModel> ScaleModels { get; set; }
+                public List<NSScaleModel> ScaleModels { get; set; }
         }
 }

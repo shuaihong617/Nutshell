@@ -135,6 +135,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceInformation.cs" />
     <Compile Include="MachineVisionRuntime.cs" />
     <Compile Include="MachineVisionCamera.cs" />
     <Compile Include="Models\MachineVisionCameraModel.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="SDK\FloatValue.cs" />
     <Compile Include="SDK\DeviceInformationList.cs" />
     <Compile Include="SDK\ExceptionType.cs" />
+    <Compile Include="SDK\IPConfigType.cs" />
     <Compile Include="SDK\PixelType.cs" />
     <Compile Include="SDK\FrameOutInformation.cs" />
     <Compile Include="SDK\ErrorCode.cs" />

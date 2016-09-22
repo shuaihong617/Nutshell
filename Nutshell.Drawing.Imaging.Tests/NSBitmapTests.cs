@@ -3,7 +3,7 @@
 namespace Nutshell.Drawing.Imaging.Tests
 {
         [TestClass()]
-        public unsafe class BitmapTests
+        public unsafe class NSBitmapTests
         {
                 [TestMethod()]
                 public void SaveBgr24Test()

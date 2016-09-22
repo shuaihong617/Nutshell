@@ -150,6 +150,8 @@
     <Compile Include="INSDevice.cs" />
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="NSDevice.cs" />
+    <Compile Include="NSRuntimeInformation.cs" />
+    <Compile Include="NSDeviceInformation.cs" />
     <Compile Include="NSRunMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

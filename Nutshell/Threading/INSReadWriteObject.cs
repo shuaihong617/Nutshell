@@ -16,7 +16,7 @@ namespace Nutshell.Threading
         /// <summary>
         ///         共享锁对象接口
         /// </summary>
-        public interface IReadWriteObject
+        public interface INSReadWriteObject
         {
                 /// <summary>
                 /// 读锁定

@@ -107,10 +107,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Drawing.Imaging.Tests\Nutshell.Drawing.Imaging.Tests.csproj">
-      <Project>{e3f5cf37-402d-4efd-a62f-bd20c977ad51}</Project>
-      <Name>Nutshell.Drawing.Imaging.Tests</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
       <Project>{5E9EC531-B6EA-4BA9-A3A5-DD40436860D7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>

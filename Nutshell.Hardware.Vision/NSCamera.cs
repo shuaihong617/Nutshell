@@ -39,7 +39,7 @@ namespace Nutshell.Hardware.Vision
                         NSPixelFormat pixelFormat = NSPixelFormat.Mono8)
                         : base( parent, id)
                 {
-                        Region = new Region(this);
+                        Region = new NSRegion(this);
 
                         Width = width;
                         Height = height;
@@ -98,12 +98,12 @@ namespace Nutshell.Hardware.Vision
                 ///         获取有效图像ROI区域数据模型
                 /// </summary>
                 /// <value>有效图像ROI区域数据模型</value>
-                public Region Region { get; private set; }
+                public NSRegion Region { get; private set; }
 
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public ReadWritePool<NSBitmap> Buffers { get; private set; }
+                public NSReadWritePool<NSBitmap> Buffers { get; private set; }
 
                 #endregion
 
@@ -155,7 +155,7 @@ namespace Nutshell.Hardware.Vision
 
                         if (Buffers == null)
                         {
-                                Buffers = new ReadWritePool<NSBitmap>(this, "采集图像缓冲池");
+                                Buffers = new NSReadWritePool<NSBitmap>(this, "采集图像缓冲池");
                                 for (int i = 1; i < 5; i++)
                                 {
                                         var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height, PixelFormat, new NSCaptureTimeStamp());

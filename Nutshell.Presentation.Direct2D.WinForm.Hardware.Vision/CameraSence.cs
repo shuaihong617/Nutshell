@@ -23,7 +23,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
         /// <summary>
         ///         Class CameraRender.
         /// </summary>
-        public abstract class CameraSence : BitmapSence
+        public class CameraSence : BitmapSence
         {
                 /// <summary>
                 /// 初始化<see cref="CameraSence" />的新实例.
@@ -32,7 +32,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="camera">The camera.</param>
-                protected CameraSence(IdentityObject parent, string id, Control control, NSCamera camera)
+                public CameraSence(IdentityObject parent, string id, Control control, NSCamera camera)
                         : base(parent, id, control)
                 {
                         camera.MustNotNull();

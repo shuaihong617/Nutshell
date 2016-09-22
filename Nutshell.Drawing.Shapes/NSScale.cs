@@ -9,21 +9,21 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         ///         刻度
         /// </summary>
-        public class Scale : StorableObject, IHitTest
+        public class NSScale : StorableObject, IHitTest
         {
-                public Scale(IdentityObject parent, string id = "")
+                public NSScale(IdentityObject parent, string id = "")
                         : base(parent, id)
                 {
-                        Segment = new Segment(this);
+                        Segment = new NSSegment(this);
                 }
 
-                public Segment Segment { get;private set; }
+                public NSSegment Segment { get;private set; }
 
                 public virtual int Value { get; private set; }
 
                 public override void Load(IStorableModel model)
                 {
-                        var scaleModel = model as ScaleModel;
+                        var scaleModel = model as NSScaleModel;
                         scaleModel.MustNotNull();
 
                         base.Load(model);
@@ -37,7 +37,7 @@ namespace Nutshell.Drawing.Shapes
 
                 public override void Save(IStorableModel model)
                 {
-                        var scaleModel = model as ScaleModel;
+                        var scaleModel = model as NSScaleModel;
                         scaleModel.MustNotNull();
 
                         base.Save(model);

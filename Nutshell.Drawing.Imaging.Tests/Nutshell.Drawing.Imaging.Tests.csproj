@@ -100,7 +100,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BitmapTests.cs" />
+    <Compile Include="NSBitmapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

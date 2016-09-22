@@ -7,7 +7,7 @@ namespace Nutshell.Drawing.Shapes.Models
         ///         线段数据模型
         /// </summary>
         [XmlType]
-        public class SegmentModel : StorableModel
+        public class NSSegmentModel : StorableModel
         {
                 /// <summary>
                 ///         端点1水平坐标

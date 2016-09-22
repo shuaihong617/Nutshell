@@ -19,7 +19,7 @@ namespace Nutshell.Threading
         ///         读写锁对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ReadWriteObject<T> : IdentityObject,IReadWriteObject where T : IdentityObject
+        public class NSReadWriteObject<T> : IdentityObject,INSReadWriteObject where T : IdentityObject
         {
                 /// <summary>
                 /// 初始化<see cref="IdentityObject" />的新实例.
@@ -27,7 +27,7 @@ namespace Nutshell.Threading
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="t">需要锁定的对象</param>
-                public ReadWriteObject(IdentityObject parent, string id, T t)
+                public NSReadWriteObject(IdentityObject parent, string id, T t)
                         : base(parent, id)
                 {
                         Value = t;

@@ -20,12 +20,12 @@ using Nutshell.Hardware.Vision.Models;
 namespace Nutshell.Hardware.Vision
 {
         /// <summary>
-        /// 以太网摄像机
+        /// 网络摄像机
         /// </summary>
-        public abstract class NSGigeCamera : NSCamera
+        public abstract class NSNetworkCamera : NSCamera
         {
                 /// <summary>
-                /// 初始化<see cref="NSGigeCamera"/>的新实例.
+                /// 初始化<see cref="NSNetworkCamera"/>的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
@@ -33,7 +33,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="height">高度</param>
                 /// <param name="pixelFormat">图像格式</param>
                 /// <param name="ipAddress">IP地址</param>
-                protected NSGigeCamera(IdentityObject parent, string id, int width, int height, NSPixelFormat pixelFormat,
+                protected NSNetworkCamera(IdentityObject parent, string id, int width, int height, NSPixelFormat pixelFormat,
                         string ipAddress)
                         : base(parent, id, width, height, pixelFormat)
                 {

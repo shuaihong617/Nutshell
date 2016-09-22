@@ -89,14 +89,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\SegmentModel.cs" />
-    <Compile Include="Models\RegionModel.cs" />
+    <Compile Include="Models\NSSegmentModel.cs" />
+    <Compile Include="Models\NSRegionModel.cs" />
     <Compile Include="Models\RulerModel.cs" />
-    <Compile Include="Models\ScaleModel.cs" />
+    <Compile Include="Models\NSScaleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs" />
-    <Compile Include="Segment.cs" />
-    <Compile Include="Scale.cs" />
+    <Compile Include="NSRegion.cs" />
+    <Compile Include="NSSegment.cs" />
+    <Compile Include="NSScale.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\果壳机动公共代码库\Nutshell\Nutshell.csproj">

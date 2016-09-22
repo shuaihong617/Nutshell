@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <DataTemplate x:Key="UpdateTimeDataTemplate">
+                <TextBlock
+                        Style="{DynamicResource TextBlockStyle}"
+                        Text="{Binding UpdateTime, StringFormat=\{0:yyyy年MM月dd日 HH:mm:ss:fff\}}" />
+        </DataTemplate>
+</ResourceDictionary>

@@ -241,14 +241,14 @@
     <Compile Include="Messaging\Message.cs" />
     <Compile Include="ReadWriteMode.cs" />
     <Compile Include="Threading\IShareObject.cs" />
-    <Compile Include="Threading\IReadWriteObject.cs" />
+    <Compile Include="Threading\INSReadWriteObject.cs" />
     <Compile Include="Threading\IMonopolyObject.cs" />
-    <Compile Include="Threading\ReadWriteObject.cs" />
+    <Compile Include="Threading\NSReadWriteObject.cs" />
     <Compile Include="Threading\ShareBuffer.cs" />
     <Compile Include="Threading\ShareObject.cs" />
     <Compile Include="Threading\MonopolyObject.cs" />
     <Compile Include="Threading\MonopolyBuffer.cs" />
-    <Compile Include="Threading\ReadWritePool.cs" />
+    <Compile Include="Threading\NSReadWritePool.cs" />
     <Compile Include="NSTimeStamp.cs" />
     <Compile Include="TypeExtensions.cs" />
     <Compile Include="NullableExtensions.cs" />

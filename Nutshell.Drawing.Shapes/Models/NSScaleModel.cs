@@ -7,18 +7,18 @@ namespace Nutshell.Drawing.Shapes.Models
         ///         刻度
         /// </summary>
         [XmlType]
-        public class ScaleModel : StorableModel
+        public class NSScaleModel : StorableModel
         {
-                public ScaleModel()
+                public NSScaleModel()
                 {
-                        SegmentModel = new SegmentModel();
+                        SegmentModel = new NSSegmentModel();
                 }
 
                 /// <summary>
                 ///         线段数据模型
                 /// </summary>
                 [XmlElement]
-                public SegmentModel SegmentModel { get; set; }
+                public NSSegmentModel SegmentModel { get; set; }
 
                 /// <summary>
                 ///         刻度值

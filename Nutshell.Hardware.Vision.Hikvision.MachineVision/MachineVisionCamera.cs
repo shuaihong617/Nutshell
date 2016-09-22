@@ -29,7 +29,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机
         /// </summary>
-        public class MachineVisionCamera : NSGigeCamera
+        public class MachineVisionCamera : NSNetworkCamera
         {
                 public MachineVisionCamera(IdentityObject parent, string id = "", string ipAddress = "192.168.1.1")
                         : base(parent, id, 1280, 960, NSPixelFormat.Rgb24, ipAddress)

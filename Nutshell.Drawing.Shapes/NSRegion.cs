@@ -23,13 +23,13 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         ///         区域
         /// </summary>
-        public class Region : StorableObject, IHitTest
+        public class NSRegion : StorableObject, IHitTest
         {
                 private int _x;
                 private int _y;
 
                 /// <summary>
-                /// 初始化<see cref="Region" />的新实例.
+                /// 初始化<see cref="NSRegion" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
@@ -39,7 +39,7 @@ namespace Nutshell.Drawing.Shapes
                 /// <param name="height">The height.</param>
                 /// <param name="containerWidth">Width of the container.</param>
                 /// <param name="containerHeight">Height of the container.</param>
-                public Region(IdentityObject parent, string id = "", int x = 0, int y = 0, int width = 0, int height = 0,
+                public NSRegion(IdentityObject parent, string id = "", int x = 0, int y = 0, int width = 0, int height = 0,
                         int containerWidth = 0, int containerHeight = 0)
                         : base(parent, id)
                 {
@@ -251,7 +251,7 @@ namespace Nutshell.Drawing.Shapes
 
                         base.Load(model);
 
-                        var regionModel = model as RegionModel;
+                        var regionModel = model as NSRegionModel;
                         Trace.Assert(regionModel != null);
 
                         X = regionModel.X;
@@ -269,7 +269,7 @@ namespace Nutshell.Drawing.Shapes
                         model.MustNotNull();
                         base.Save(model);
 
-                        var regionModel = model as RegionModel;
+                        var regionModel = model as NSRegionModel;
                         Trace.Assert(regionModel != null);
                         
 

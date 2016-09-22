@@ -21,15 +21,15 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         /// 线段
         /// </summary>
-        public class Segment : StorableObject
+        public class NSSegment : StorableObject
         {
 
                 /// <summary>
-                /// 初始化<see cref="Segment" />的新实例.
+                /// 初始化<see cref="NSSegment" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public Segment(IdentityObject parent, string id = "")
+                public NSSegment(IdentityObject parent, string id = "")
                         : base(parent, id)
                 {
                 }
@@ -62,7 +62,7 @@ namespace Nutshell.Drawing.Shapes
                 {
                         base.Load(model);
 
-                        var segmentModel = model as SegmentModel;
+                        var segmentModel = model as NSSegmentModel;
                         if (segmentModel == null)
                         {
                                 throw new ArgumentException(model.Id + "加载失败：无法转换为SegmentModel");
@@ -84,7 +84,7 @@ namespace Nutshell.Drawing.Shapes
                 {
                         base.Save(model);
 
-                        var segmentModel = model as SegmentModel;
+                        var segmentModel = model as NSSegmentModel;
                         if (segmentModel == null)
                         {
                                 throw new ArgumentException(model.Id + "加载失败：无法转换为SegmentModel");
