@@ -10,16 +10,20 @@
 // <summary>
 // </summary>
 // ***********************************************************************
+
 using System;
 using System.Runtime.InteropServices;
 
-namespace Nutshell.Windows.Win32API
+namespace Nutshell.Windows.SDK.APIs
 {
         /// <summary>
         /// 内存操作API.
         /// </summary>
         public static class MemoryAPIs
         {
+                [DllImport("kernel32")]
+                public static extern void GlobalMemoryStatus(ref MemoryInformation memoryInformation); 
+
                 /// <summary>
                 /// Copies the memory.
                 /// </summary>

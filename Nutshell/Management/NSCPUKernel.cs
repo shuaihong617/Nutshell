@@ -11,20 +11,26 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-
-namespace Nutshell.Hardware
+namespace Nutshell.Management
 {
         /// <summary>
-        /// 运行环境信息
+        /// CPU核心
         /// </summary>
-        public class NSRuntimeInformation
+        public class NSCPUKernel
         {
-                public OperatingSystem OperatingSystem { get; private set; }
+                /// <summary>
+                /// 编号
+                /// </summary>
+                public uint Index { get; private set; }
 
                 /// <summary>
-                /// 驱动版本
+                /// 时钟频率
                 /// </summary>
-                public Version DriverVersion;
+                public int ClockSpeed { get; private set; }
+
+                /// <summary>
+                /// 使用率
+                /// </summary>
+                public float UsedPercentage { get; private set; }
         }
 }
