@@ -146,6 +146,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NSDeviceRuntime.cs" />
     <Compile Include="NSCaptureDevice.cs" />
     <Compile Include="INSDevice.cs" />
     <Compile Include="Models\DeviceModel.cs" />
