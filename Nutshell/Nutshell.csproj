@@ -14,6 +14,7 @@
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
     <RestorePackages>true</RestorePackages>
+    <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -139,6 +140,14 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Aspects\Events\EventDescriptionAttribute.cs" />
+    <Compile Include="Aspects\LocationContracts\NotEqualNullAttribute.cs" />
+    <Compile Include="Aspects\LocationContracts\NotEqualZeroAttribute.cs" />
+    <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
+    <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />
+    <Compile Include="Aspects\Methods\EventRaiseMethodAttribute.cs" />
+    <Compile Include="Aspects\Propertys\EqualCheckPropertyAttribute.cs" />
+    <Compile Include="Aspects\Propertys\NotifyChangedPropertyAttribute.cs" />
     <Compile Include="Collections\Models\KeyValuePairModel.cs" />
     <Compile Include="Components\BufferedConsumer.cs" />
     <Compile Include="Components\BufferedProducer.cs" />
@@ -284,6 +293,7 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Nutshell.psproj" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -295,11 +305,36 @@
       <HintPath>..\packages\NLog.4.3.6\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\lib\net35-client\PostSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Compiler.Client, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Compiler.Client.4.2.27\lib\net40\PostSharp.Compiler.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Common, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Common.4.2.27\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Diagnostics, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Diagnostics.4.2.27\lib\net40\PostSharp.Patterns.Diagnostics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Model, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Model.4.2.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets" Condition="Exists('..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets')" />
+  <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
+    <Error Condition="!Exists('..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
+    <Error Condition="Exists('..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
