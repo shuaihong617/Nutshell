@@ -13,6 +13,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Security.AccessControl;
 using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Data.Models;
@@ -46,6 +47,10 @@ namespace Nutshell.Hardware
                 #region 属性
 
                 public NSRunMode NSRunMode { get; private set; }
+
+                public NSManufacturingInformation ManufacturingInformation { get; private set; }
+
+                public NSRuntimeInformation RuntimeInformation { get; private set; }
 
                 /// <summary>
                 ///         设备是否已打开

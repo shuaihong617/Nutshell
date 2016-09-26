@@ -135,23 +135,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DeviceInformation.cs" />
     <Compile Include="MachineVisionRuntime.cs" />
     <Compile Include="MachineVisionCamera.cs" />
     <Compile Include="Models\MachineVisionCameraModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SDK\API.cs" />
+    <Compile Include="SDK\MVOfficialAPI.cs" />
     <Compile Include="SDK\AccessMode.cs" />
     <Compile Include="SDK\FloatValue.cs" />
-    <Compile Include="SDK\DeviceInformationList.cs" />
-    <Compile Include="SDK\ExceptionType.cs" />
+    <Compile Include="SDK\MVDeviceInformationList.cs" />
+    <Compile Include="SDK\MVExceptionType.cs" />
     <Compile Include="SDK\IPConfigType.cs" />
-    <Compile Include="SDK\PixelType.cs" />
-    <Compile Include="SDK\FrameOutInformation.cs" />
-    <Compile Include="SDK\ErrorCode.cs" />
-    <Compile Include="SDK\DeviceInformation.cs" />
-    <Compile Include="SDK\GigeDeviceInformation.cs" />
-    <Compile Include="SDK\DeviceType.cs" />
+    <Compile Include="SDK\MVPixelType.cs" />
+    <Compile Include="SDK\MVFrameOutInformation.cs" />
+    <Compile Include="SDK\MVErrorCode.cs" />
+    <Compile Include="SDK\MVDeviceInformation.cs" />
+    <Compile Include="SDK\MVGigeDeviceInformation.cs" />
+    <Compile Include="SDK\MVDeviceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

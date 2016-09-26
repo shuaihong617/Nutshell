@@ -31,7 +31,7 @@ namespace Nutshell.Presentation.GDIPlus.Hardware.Vision
                 /// <param name="camera">The camera.</param>
                 /// <param name="sence">The sence.</param>
                 public CameraRenderer(IdentityObject parent, string id, NSCamera camera, CameraSence sence)
-                        : base(parent, id, camera, PixelFormat.Bgra32)
+                        : base(parent, id, camera, NSPixelFormat.Bgra32)
                 {
                         sence.MustNotNull();
                         Sence = sence;

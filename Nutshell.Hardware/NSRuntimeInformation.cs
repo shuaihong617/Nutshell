@@ -20,7 +20,10 @@ namespace Nutshell.Hardware
         /// </summary>
         public class NSRuntimeInformation
         {
-                public OperatingSystem OperatingSystem { get; private set; }
+                /// <summary>
+                /// 固件版本
+                /// </summary>
+                public Version FirewareVersion;
 
                 /// <summary>
                 /// 驱动版本

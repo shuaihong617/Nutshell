@@ -3,6 +3,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Threading;
 using System.Windows.Forms;
+using Nutshell.Drawing.Imaging;
 
 namespace Nutshell.Presentation.GDIPlus
 {
@@ -23,7 +24,7 @@ namespace Nutshell.Presentation.GDIPlus
 
                 private readonly ReaderWriterLockSlim _bitmapLock = new ReaderWriterLockSlim();
 
-                public void UpdateBufferBitmap(Drawing.Imaging.Bitmap bitmap)
+                public void UpdateBufferBitmap(NSBitmap bitmap)
                 {
                         if (_bitmapLock.TryEnterWriteLock(16))
                         {

@@ -23,7 +23,7 @@ namespace Nutshell.Presentation.GDI
 
                 private readonly ReaderWriterLockSlim _bitmapLock = new ReaderWriterLockSlim();
 
-                public void UpdateBufferBitmap(Bitmap bitmap)
+                public void UpdateBufferBitmap(NSBitmap bitmap)
                 {
                         if (_bitmapLock.TryEnterWriteLock(16))
                         {

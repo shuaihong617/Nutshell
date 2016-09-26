@@ -41,7 +41,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 #endregion
 
-                public ReadOnlyCollection<DeviceInformation> DeviceInfos { get; private set; } 
+                public ReadOnlyCollection<MVDeviceInformation> DeviceInfos { get; private set; } 
 
                 #region 方法
 
@@ -52,30 +52,30 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return true;
                         }
 
-                        var deviceInfoList = new DeviceInformationList();
-                        var errorCode = API.EnumDevices(DeviceType.GigeDevice, ref deviceInfoList);
+                        var deviceInfoList = new MVDeviceInformationList();
+                        var errorCode = MVOfficialAPI.EnumDevices(MVDeviceType.GigeDevice, ref deviceInfoList);
 
-                        if (errorCode != ErrorCode.MV_OK)
+                        if (errorCode != MVErrorCode.MV_OK)
                         {
                                 this.WarnFail("摄像机枚举", errorCode);
                                 return false;
                         }
 
-                        var deviceInfos = new List<DeviceInformation>();
+                        var deviceInfos = new List<MVDeviceInformation>();
 
-                        var deviceInfoType = typeof (DeviceInformation);
+                        var deviceInfoType = typeof(MVDeviceInformation);
                         foreach (var deviceInfoPtr in deviceInfoList.DeviceInfoPtrs)
                         {
                                 if (deviceInfoPtr != IntPtr.Zero)
                                 {
-                                        var di = (DeviceInformation)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
+                                        var di = (MVDeviceInformation)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
                                         deviceInfos.Add(di);
 
                                         this.Info("检测到摄像机：IP" + di.GigeDeviceInfo.GetCurrentIpAddress());
                                 }
                         }
 
-                        DeviceInfos = new ReadOnlyCollection<DeviceInformation>(deviceInfos);
+                        DeviceInfos = new ReadOnlyCollection<MVDeviceInformation>(deviceInfos);
                         
                         return true;
                 }

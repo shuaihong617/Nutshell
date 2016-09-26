@@ -152,7 +152,7 @@
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="NSDevice.cs" />
     <Compile Include="NSRuntimeInformation.cs" />
-    <Compile Include="NSDeviceInformation.cs" />
+    <Compile Include="NSManufacturingInformation.cs" />
     <Compile Include="NSRunMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -33,7 +33,7 @@ namespace Nutshell.Hardware
 
                 #region 属性
 
-                public NSDeviceInformation DeviceInformation { get; private set; }
+                public NSManufacturingInformation ManufacturingInformation { get; private set; }
 
                 #endregion
 

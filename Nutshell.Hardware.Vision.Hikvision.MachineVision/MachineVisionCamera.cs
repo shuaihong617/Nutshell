@@ -50,7 +50,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 /// </summary>
                 private IntPtr _handle;
 
-                private DeviceInformation _deviceInfo;
+                private MVDeviceInformation _deviceInfo;
 
 
                 /// <summary>
@@ -64,11 +64,11 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 private const int CaptureBufferBytesCount = 1024*1024*24;
 
 
-                private FrameOutInformation _frameOutInfo;
+                private MVFrameOutInformation _mvFrameOutInfo;
 
                 private readonly Looper _captureLooper;
 
-                private readonly API.ExceptionCallbackFunction _exceptionCallback;
+                private readonly MVOfficialAPI.ExceptionCallbackFunction _exceptionCallback;
 
                 #endregion
 
@@ -94,25 +94,25 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return false;
                         }
 
-                        ErrorCode error = API.CreateHandle(ref _handle, ref _deviceInfo);
-                        if (error != ErrorCode.MV_OK)
+                        MVErrorCode mvError = MVOfficialAPI.CreateHandle(ref _handle, ref _deviceInfo);
+                        if (mvError != MVErrorCode.MV_OK)
                         {
-                                this.WarnFail("CreateHandle", error);
+                                this.WarnFail("CreateHandle", mvError);
                                 return false;
                         }
                         this.InfoSuccess("CreateHandle");
 
-                        if (!API.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
+                        if (!MVOfficialAPI.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
                         {
-                                this.WarnFail("RegisterExceptionCallBack", error);
+                                this.WarnFail("RegisterExceptionCallBack", mvError);
                                 return false;
                         }
                         
 
-                        error = API.OpenDevice(_handle, AccessMode.控制权限);
-                        if (error != ErrorCode.MV_OK)
+                        mvError = MVOfficialAPI.OpenDevice(_handle, AccessMode.控制权限);
+                        if (mvError != MVErrorCode.MV_OK)
                         {
-                                this.WarnFail("OpenDevice", error);
+                                this.WarnFail("OpenDevice", mvError);
                                 return false;
                         }
                         this.InfoSuccess("OpenDevice");
@@ -120,12 +120,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         return true;
                 }
 
-                private void ExceptionCallBack(ExceptionType exceptionType, IntPtr user)
+                private void ExceptionCallBack(MVExceptionType mvExceptionType, IntPtr user)
                 {
                         this.Info("发生异常");
-                        switch (exceptionType)
+                        switch (mvExceptionType)
                         {
-                                case ExceptionType.以太网设备断开连接:
+                                case MVExceptionType.以太网设备断开连接:
                                         this.Warn("摄像机断开连接");
 
                                         Stop();
@@ -136,18 +136,18 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 protected override sealed bool DisconnectCore()
                 {
-                        ErrorCode error = API.CloseDevice(_handle);
-                        if (error != ErrorCode.MV_OK)
+                        MVErrorCode mvError = MVOfficialAPI.CloseDevice(_handle);
+                        if (mvError != MVErrorCode.MV_OK)
                         {
-                                this.WarnFail("CloseDevice", error);
+                                this.WarnFail("CloseDevice", mvError);
                                 return false;
                         }
                         this.InfoSuccess("CloseDevice");
 
-                        error = API.DestroyHandle(_handle);
-                        if (error != ErrorCode.MV_OK)
+                        mvError = MVOfficialAPI.DestroyHandle(_handle);
+                        if (mvError != MVErrorCode.MV_OK)
                         {
-                                this.WarnFail("DestroyHandle", error);
+                                this.WarnFail("DestroyHandle", mvError);
                                 return false;
                         }
                         this.InfoSuccess("DestroyHandle");
@@ -164,10 +164,10 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 _captureBufferPtr = Marshal.AllocHGlobal(CaptureBufferBytesCount);
                         }
 
-                        ErrorCode error = API.StartGrabbing(_handle);
-                        if (error != ErrorCode.MV_OK)
+                        MVErrorCode mvError = MVOfficialAPI.StartGrabbing(_handle);
+                        if (mvError != MVErrorCode.MV_OK)
                         {
-                                this.WarnFail("StartGrabbing", error);
+                                this.WarnFail("StartGrabbing", mvError);
                                 return false;
                         }
                         this.InfoSuccess("StartGrabbing");
@@ -179,7 +179,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 {
                         _captureLooper.Stop();
 
-                        API.StopGrabbing(_handle);
+                        MVOfficialAPI.StopGrabbing(_handle);
 
                         return true;
                 }
@@ -194,9 +194,9 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                         NSBitmap bitmap = Buffers.WriteLock();
 
-                        ErrorCode error = API.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
-                                ref _frameOutInfo);
-                        if (error != ErrorCode.MV_OK)
+                        MVErrorCode mvError = MVOfficialAPI.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
+                                ref _mvFrameOutInfo);
+                        if (mvError != MVErrorCode.MV_OK)
                         {
                                 //this.WarnFail("GetOneFrame", error);
                                 Buffers.WriteUnlock(bitmap);
@@ -216,7 +216,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 public bool IsAccessible()
                 {
-                        return API.IsDeviceAccessible(_handle,ref _deviceInfo, AccessMode.独占权限);
+                        return MVOfficialAPI.IsDeviceAccessible(_handle,ref _deviceInfo, AccessMode.独占权限);
                 }
 
                 #endregion

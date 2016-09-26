@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;CONTRACTS_FULL</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -76,6 +76,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
+    <UpdateAssemblyVersion>False</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -142,6 +146,7 @@
   <ItemGroup>
     <Compile Include="Aspects\Events\EventDescriptionAttribute.cs" />
     <Compile Include="Aspects\LocationContracts\NotEqualNullAttribute.cs" />
+    <Compile Include="Aspects\LocationContracts\GreaterThanAttribute.cs" />
     <Compile Include="Aspects\LocationContracts\NotEqualZeroAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />

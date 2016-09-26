@@ -119,9 +119,9 @@ namespace Nutshell
                 }
 
                 /// <summary>
-                /// 以字符串形式输出带有标识的对象
+                /// 返回表示当前对象的字符串。
                 /// </summary>
-                /// <returns>全局标识</returns>
+                /// <returns>全局标识。</returns>
                 public override string ToString()
                 {
                         return GlobalId;
