@@ -11,7 +11,7 @@
                 /// <summary>
                 ///         单例
                 /// </summary>
-                public static readonly StringToBoolConverter Instance = new StringToBoolConverter();
+                public static readonly StringToBoolConverter Itance = new StringToBoolConverter();
 
                 #endregion
 

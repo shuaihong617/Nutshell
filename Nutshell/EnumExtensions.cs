@@ -13,9 +13,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 
 namespace Nutshell
 {
@@ -33,27 +31,8 @@ namespace Nutshell
                 {
                         Type t = typeof (T);
                         List<string> names = Enum.GetNames(t).ToList();
-                        var result = new List<T>();
 
-                        names.ForEach(i => result.Add((T) Enum.Parse(t, i)));
-
-                        return result;
-                }
-
-                public static string GetDescription(this Enum value)
-                {
-                        string output = null;
-                        Type type = value.GetType();
-
-                        FieldInfo fi = type.GetField(value.ToString());
-                        var attars = fi.GetCustomAttributes(typeof (DescriptionAttribute),
-                                false) as DescriptionAttribute[];
-                        if (attars != null && attars.Length > 0)
-                        {
-                                output = attars[0].Description;
-                        }
-
-                        return output;
+                        return names.Select(name => (T) Enum.Parse(t, name)).ToList();
                 }
 
                 /// <summary>

@@ -70,9 +70,9 @@ namespace Nutshell
                 /// </summary>
                 /// <param name="value">The value.</param>
                 /// <returns>Int16.</returns>
-                public static Int32 ToInt32(this Single value)
+                public static int ToInt32(this float value)
                 {
-                        if (Single.IsNaN(value))
+                        if (float.IsNaN(value))
                         {
                                 return 0;
                         }
@@ -86,7 +86,7 @@ namespace Nutshell
                 /// <param name="value">The value.</param>
                 /// <param name="max">The maximum.</param>
                 /// <returns>Int16.</returns>
-                public static Int32 ToInt32(this Single value, short max)
+                public static int ToInt32(this float value, short max)
                 {
                         max.MustNotNegative();
 

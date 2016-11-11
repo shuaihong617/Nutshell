@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nutshell.Aspects.LocationContracts;
+using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell.Tests.Aspects.LocationContracts
 {
@@ -13,7 +13,7 @@ namespace Nutshell.Tests.Aspects.LocationContracts
                         Test(null);
                 }
 
-                private void Test([NotEqualNull]object data)
+                private void Test([NSNotEqualNull]object data)
                 {
                         Trace.Write(data);
                 }

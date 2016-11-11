@@ -1,5 +1,4 @@
 ﻿// ***********************************************************************
-
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
 // 创建           : 2014-10-24
 //
@@ -17,7 +16,7 @@ namespace Nutshell
         /// <summary>
         ///         语言类型枚举
         /// </summary>
-        public enum Language
+        public enum Language               
         {
                 未定义 = 0,
 

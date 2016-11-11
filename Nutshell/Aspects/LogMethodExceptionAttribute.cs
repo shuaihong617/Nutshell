@@ -3,7 +3,6 @@ using PostSharp.Aspects;
 
 namespace Nutshell.Aspects
 {
-        [Serializable]
         public sealed class LogMethodExceptionAttribute : OnMethodBoundaryAspect
         {
                 public override void OnException(MethodExecutionArgs args)
@@ -12,9 +11,9 @@ namespace Nutshell.Aspects
                         // It is equivelent to the 'catch' block.
 
 
-                        // args.Instance contains the object whose method is being executed (null if the method is static).
-                        // args.Arguments contains method arguments.
-                        // args.Exception contains the current exception.
+                        // args.Itance contaI the object whose method is being executed (null if the method is static).
+                        // args.Arguments contaI method arguments.
+                        // args.Exception contaI the current exception.
 
                         // By default, the exception will be rethrown after execution of the current advise.
                         // Set args.FlowBehavior = FlowBehavior.Return to return to the caller without executing an exception.

@@ -78,7 +78,7 @@ namespace Nutshell.Speech
                                 Debug.Assert(value.IsNotNullOrEmpty());
 
                                 _content = value;
-                                RaisePropertyChanged();
+                                OnPropertyChanged();
                         }
                 }
 
@@ -97,7 +97,7 @@ namespace Nutshell.Speech
 
                 #endregion 方法
 
-                public override void Load(IStorableModel model)
+                public override void Load(IDataModel model)
                 {
                         base.Load(model);
 
@@ -121,8 +121,8 @@ namespace Nutshell.Speech
                         switch (Language)
                         {
                                 case Language.中文:
-                                        List<InstalledVoice> chineseVoices =
-                                                MSSynthesizer.GetInstalledVoices(new CultureInfo("zh-CN"))
+                                        List<ItalledVoice> chineseVoices =
+                                                MSSynthesizer.GetItalledVoices(new CultureInfo("zh-CN"))
                                                         .Where(i => i.Enabled)
                                                         .ToList();
                                         if (chineseVoices.Count > 0)
@@ -132,8 +132,8 @@ namespace Nutshell.Speech
                                         break;
 
                                 case Language.英文:
-                                        List<InstalledVoice> englishVoices =
-                                                MSSynthesizer.GetInstalledVoices(new CultureInfo("en-US"))
+                                        List<ItalledVoice> englishVoices =
+                                                MSSynthesizer.GetItalledVoices(new CultureInfo("en-US"))
                                                         .Where(i => i.Enabled)
                                                         .ToList();
                                         if (englishVoices.Count > 0)

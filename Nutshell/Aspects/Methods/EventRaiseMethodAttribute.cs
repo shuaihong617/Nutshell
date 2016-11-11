@@ -34,13 +34,7 @@ namespace Nutshell.Aspects.Methods
                                 throw new ArgumentException("必须定义EventName事件");
                         }
 
-                        var d = e.GetCustomAttribute(typeof(EventDescriptionAttribute), true) as EventDescriptionAttribute;
-                        if (d == null)
-                        {
-                                throw new ArgumentException("EventName事件上找不到EventDescriptionAttribute");
-                        }
-
-                        i.Info("引发" + d.Description);
+                        
                 }
         }
 }

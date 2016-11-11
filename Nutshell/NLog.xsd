@@ -135,9 +135,9 @@
   <xs:complexType name="NLogFilters">
     <xs:choice minOccurs="0" maxOccurs="unbounded">
       <xs:element name="when" type="when" />
-      <xs:element name="whenContains" type="whenContains" />
+      <xs:element name="whenContaI" type="whenContaI" />
       <xs:element name="whenEqual" type="whenEqual" />
-      <xs:element name="whenNotContains" type="whenNotContains" />
+      <xs:element name="whenNotContaI" type="whenNotContaI" />
       <xs:element name="whenNotEqual" type="whenNotEqual" />
     </xs:choice>
   </xs:complexType>
@@ -357,7 +357,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="Chainsaw">
+  <xs:complexType name="ChaIaw">
     <xs:complexContent>
       <xs:extension base="Target">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -392,7 +392,7 @@
         </xs:attribute>
         <xs:attribute name="layout" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Instance of  that is used to format log messages.</xs:documentation>
+            <xs:documentation>Itance of  that is used to format log messages.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="maxMessageSize" type="xs:integer">
@@ -537,7 +537,7 @@
         </xs:attribute>
         <xs:attribute name="errorStream" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether the error stream (stderr) should be used instead of the output stream (stdout).</xs:documentation>
+            <xs:documentation>Indicates whether the error stream (stderr) should be used Itead of the output stream (stdout).</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -659,7 +659,7 @@
         </xs:attribute>
         <xs:attribute name="error" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to send the log messages to the standard error instead of the standard output.</xs:documentation>
+            <xs:documentation>Indicates whether to send the log messages to the standard error Itead of the standard output.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="encoding" type="xs:string">
@@ -683,9 +683,9 @@
           <xs:element name="dbProvider" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="dbUserName" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="keepConnection" minOccurs="0" maxOccurs="1" type="xs:boolean" />
-          <xs:element name="installConnectionString" minOccurs="0" maxOccurs="1" type="Layout" />
-          <xs:element name="install-command" minOccurs="0" maxOccurs="unbounded" type="NLog.Targets.DatabaseCommandInfo" />
-          <xs:element name="uninstall-command" minOccurs="0" maxOccurs="unbounded" type="NLog.Targets.DatabaseCommandInfo" />
+          <xs:element name="ItallConnectionString" minOccurs="0" maxOccurs="1" type="Layout" />
+          <xs:element name="Itall-command" minOccurs="0" maxOccurs="unbounded" type="NLog.Targets.DatabaseCommandInfo" />
+          <xs:element name="unItall-command" minOccurs="0" maxOccurs="unbounded" type="NLog.Targets.DatabaseCommandInfo" />
           <xs:element name="commandText" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="commandType" minOccurs="0" maxOccurs="1" type="System.Data.CommandType" />
           <xs:element name="parameter" minOccurs="0" maxOccurs="unbounded" type="NLog.Targets.DatabaseParameterInfo" />
@@ -735,9 +735,9 @@
             <xs:documentation>Indicates whether to keep the database connection open between the log events.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="installConnectionString" type="SimpleLayoutAttribute">
+        <xs:attribute name="ItallConnectionString" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Connection string using for installation and uninstallation. If not provided, regular ConnectionString is being used.</xs:documentation>
+            <xs:documentation>Connection string using for Itallation and unItallation. If not provided, regular ConnectionString is being used.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="commandText" type="SimpleLayoutAttribute">
@@ -775,7 +775,7 @@
     </xs:attribute>
     <xs:attribute name="connectionString" type="SimpleLayoutAttribute">
       <xs:annotation>
-        <xs:documentation>Connection string to run the command against. If not provided, connection string from the target is used.</xs:documentation>
+        <xs:documentation>Connection string to run the command agaIt. If not provided, connection string from the target is used.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="ignoreFailures" type="xs:boolean">
@@ -1049,7 +1049,7 @@
         </xs:attribute>
         <xs:attribute name="forceManaged" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Gets ors set a value indicating whether a managed file stream is forced, instead of used the native implementation.</xs:documentation>
+            <xs:documentation>Gets ors set a value indicating whether a managed file stream is forced, Itead of used the native implementation.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="fileAttributes" type="NLog.Targets.Win32FileAttributes">
@@ -1059,7 +1059,7 @@
         </xs:attribute>
         <xs:attribute name="replaceFileContentsOnEachWrite" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to replace file contents on each write instead of appending log message at the end.</xs:documentation>
+            <xs:documentation>Indicates whether to replace file contents on each write Itead of appending log message at the end.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="fileName" type="SimpleLayoutAttribute">
@@ -1109,7 +1109,7 @@
         </xs:attribute>
         <xs:attribute name="keepFileOpen" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to keep log file open instead of opening and closing it on each logging event.</xs:documentation>
+            <xs:documentation>Indicates whether to keep log file open Itead of opening and closing it on each logging event.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="concurrentWrites" type="xs:boolean">
@@ -1248,7 +1248,7 @@
         </xs:attribute>
         <xs:attribute name="revertToSelf" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to revert to the credentials of the process instead of impersonating another user.</xs:documentation>
+            <xs:documentation>Indicates whether to revert to the credentials of the process Itead of impersonating another user.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="userName" type="xs:string">
@@ -1405,7 +1405,7 @@
         </xs:attribute>
         <xs:attribute name="html" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to send message as HTML instead of plain text.</xs:documentation>
+            <xs:documentation>Indicates whether to send message as HTML Itead of plain text.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="encoding" type="xs:string">
@@ -1480,7 +1480,7 @@
         </xs:attribute>
         <xs:attribute name="smtpPassword" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Password used to authenticate against SMTP server (used when SmtpAuthentication is set to "basic").</xs:documentation>
+            <xs:documentation>Password used to authenticate agaIt SMTP server (used when SmtpAuthentication is set to "basic").</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="enableSsl" type="xs:boolean">
@@ -1720,7 +1720,7 @@
         </xs:attribute>
         <xs:attribute name="layout" type="SimpleLayoutAttribute">
           <xs:annotation>
-            <xs:documentation>Instance of  that is used to format log messages.</xs:documentation>
+            <xs:documentation>Itance of  that is used to format log messages.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="maxMessageSize" type="xs:integer">
@@ -1852,7 +1852,7 @@
           <xs:element name="counterHelp" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterName" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterType" minOccurs="0" maxOccurs="1" type="System.Diagnostics.PerformanceCounterType" />
-          <xs:element name="instanceName" minOccurs="0" maxOccurs="1" type="xs:string" />
+          <xs:element name="ItanceName" minOccurs="0" maxOccurs="1" type="xs:string" />
         </xs:choice>
         <xs:attribute name="name" type="xs:string">
           <xs:annotation>
@@ -1884,9 +1884,9 @@
             <xs:documentation>Performance counter type.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="instanceName" type="xs:string">
+        <xs:attribute name="ItanceName" type="xs:string">
           <xs:annotation>
-            <xs:documentation>Performance counter instance name.</xs:documentation>
+            <xs:documentation>Performance counter Itance name.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
       </xs:extension>
@@ -2320,7 +2320,7 @@
       <xs:enumeration value="IgnoreFinal" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name="whenContains">
+  <xs:complexType name="whenContaI">
     <xs:complexContent>
       <xs:extension base="Filter">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -2384,7 +2384,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="whenNotContains">
+  <xs:complexType name="whenNotContaI">
     <xs:complexContent>
       <xs:extension base="Filter">
         <xs:choice minOccurs="0" maxOccurs="unbounded">

@@ -3,8 +3,6 @@
                     xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
         <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
-                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
-                <ResourceDictionary
                         Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
                 <ResourceDictionary
                         Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Expander.xaml" />
@@ -20,39 +18,17 @@
                 <Setter Property="WindowTitleBrush" Value="Transparent"/>
                 <Setter Property="NonActiveWindowTitleBrush" Value="Transparent" />
                 <Setter Property="TitleForeground" Value="Azure"/>
-                <Setter Property="Width" Value="1280"></Setter>
-                <Setter Property="MinHeight" Value="36"></Setter>
-                <Setter Property="SizeToContent" Value="Height"></Setter>
                 <Setter Property="ResizeMode" Value="CanMinimize"></Setter>
                 <Setter Property="TitlebarHeight" Value="44"></Setter>
                 <Setter Property="TitleCaps" Value="False" />
                 <Setter Property="Foreground" Value="White" />
-                <Setter Property="Background">
-                        <Setter.Value>
-                                <ImageBrush ImageSource="/Nutshell.Presentation.MahApps.Metro;component/Images/Background.jpg"/>
-                        </Setter.Value>
-                </Setter>
                 <Setter Property="FontFamily" Value="Microsoft YaHei" />
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="Icon">
-                        <Setter.Value>
-                                <BitmapImage UriSource="/Nutshell.Presentation.MahApps.Metro;component/Images/Icon.png"></BitmapImage>
-                        </Setter.Value>
-                </Setter>
-                <Setter Property="IconTemplate">
-                        <Setter.Value>
-                                <DataTemplate>
-                                        <Grid Margin="8,0">
-                                                <Image Source="/Nutshell.Presentation.MahApps.Metro;component/Images/Icon.png"></Image>
-                                        </Grid>
-                                </DataTemplate>
-                        </Setter.Value>
-                </Setter>
                 <Setter Property="IconBitmapScalingMode" Value="HighQuality"></Setter>
                 <Setter Property="IconEdgeMode" Value="Aliased"></Setter>
                 <Setter Property="UseLayoutRounding" Value="True"></Setter>
                 <Setter Property="ShowInTaskbar" Value="True"></Setter>
-                <Setter Property="ShowMaxRestoreButton" Value="False"></Setter>
+                <Setter Property="ShowMaxRestoreButton" Value="True"></Setter>
                 <Setter Property="SaveWindowPosition" Value="True"></Setter>                
         </Style>
 </ResourceDictionary>

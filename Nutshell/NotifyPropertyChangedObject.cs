@@ -37,12 +37,12 @@ namespace Nutshell
                 ///         通知属性值已更改
                 /// </summary>
                 /// <param name="propertyName">属性名称, 由编译器自动生成</param>
-                public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+                public void OnPropertyChanged([CallerMemberName] string propertyName = null)
                 {
-                        PropertyChangedEventHandler handle = PropertyChanged;
-                        if (handle != null)
+                        PropertyChangedEventHandler handler = PropertyChanged;
+                        if (handler != null)
                         {
-                                handle(this, new PropertyChangedEventArgs(propertyName));
+                                handler.Invoke(this,new PropertyChangedEventArgs(propertyName));
                         }
                 }
 
@@ -62,7 +62,7 @@ namespace Nutshell
                         }
 
                         storage = value;
-                        RaisePropertyChanged();
+                        OnPropertyChanged();
 
                         return true;
                 }

@@ -102,7 +102,7 @@ namespace Nutshell.Drawing.Imaging
                 /// </exception>
                 public void TranslateTo(NSBitmap target)
                 {
-                        target.MustNotNull();
+                        target.NotNull();
                         target.Width.MustEqual(Width);
                         target.Height.MustEqual(Height);
 
@@ -149,7 +149,7 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="target">The target.</param>
                 private void CopyTo(NSBitmap target)
                 {
-                        target.MustNotNull();
+                        target.NotNull();
                         target.Width.MustEqual(Width);
                         target.Height.MustEqual(Height);
                         target.PixelFormat.MustEqual(PixelFormat);
@@ -191,10 +191,10 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="target">The target.</param>
                 private static void ConvertRgb24ToBgra32(NSBitmap source, NSBitmap target)
                 {
-                        source.MustNotNull();
+                        source.NotNull();
                         source.PixelFormat.MustEqual(NSPixelFormat.Rgb24);
 
-                        target.MustNotNull();
+                        target.NotNull();
                         target.Width.MustEqual(source.Width);
                         target.Height.MustEqual(source.Height);
                         target.PixelFormat.MustEqual(NSPixelFormat.Bgra32);
@@ -289,10 +289,10 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="target">The target.</param>
                 private static void ConvertBgr24ToBgra32(NSBitmap source, NSBitmap target)
                 {
-                        source.MustNotNull();
+                        source.NotNull();
                         source.PixelFormat.MustEqual(NSPixelFormat.Bgr24);
 
-                        target.MustNotNull();
+                        target.NotNull();
                         target.Width.MustEqual(source.Width);
                         target.Height.MustEqual(source.Height);
                         target.PixelFormat.MustEqual(NSPixelFormat.Bgra32);
@@ -444,9 +444,9 @@ namespace Nutshell.Drawing.Imaging
                 }
 
                 /// <summary>
-                /// Returns a <see cref="System.String" /> that represents this instance.
+                /// Returns a <see cref="System.String" /> that represents this Itance.
                 /// </summary>
-                /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+                /// <returns>A <see cref="System.String" /> that represents this Itance.</returns>
                 public override string ToString()
                 {
                         return string.Format("{0}", GlobalId);

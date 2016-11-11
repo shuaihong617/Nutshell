@@ -1,6 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.postsharp.org/1.0/configuration">
   <Property Name="LoggingBackEnd" Value="nlog" />
-  <Using File="..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Diagnostics.4.2.27\tools\PostSharp.Patterns.Diagnostics.Weaver.dll" />
-  <Using File="..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Diagnostics.NLog.4.2.27\tools\PostSharp.Patterns.Diagnostics.Weaver.NLog.dll" />
 </Project>

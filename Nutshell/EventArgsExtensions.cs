@@ -36,8 +36,9 @@ namespace Nutshell
                         EventHandler<TEventArgs> handler = Interlocked.CompareExchange(ref eventDelegate, null, null);
                         if (handler != null)
                         {
-                                handler(sender, e);
+                                handler.Invoke(sender,e);
                         }
+                        
                 }
         }
 }

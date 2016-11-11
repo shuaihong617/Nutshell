@@ -100,10 +100,11 @@ namespace Nutshell
                 /// <returns>对齐后字符串</returns>
                 public static string ChinesePadLeft(this string str, int totalByteCount, char c = ' ')
                 {
-                        Encoding coding = Encoding.GetEncoding("gb2312");
-                        int dcount = str.Count(ch => coding.GetByteCount(ch.ToString(CultureInfo.InvariantCulture)) == 2);
-                        string w = str.PadRight(totalByteCount - dcount, c);
-                        return w;
+                        //Encoding coding = Encoding.GetEncoding("gb2312");
+                        //int dcount = str.Count(ch => coding.GetByteCount(ch.ToString(CultureInfo.InvariantCulture)) == 2);
+                        //string w = str.PadRight(totalByteCount - dcount, c);
+                        //return w;
+                        throw new NotImplementedException();
                 }
 
                 /// <summary>
@@ -115,10 +116,11 @@ namespace Nutshell
                 /// <returns>对齐后字符串</returns>
                 public static string ChinesePadRight(this string str, int totalByteCount, char c = ' ')
                 {
-                        Encoding coding = Encoding.GetEncoding("gb2312");
-                        int dcount = str.Count(ch => coding.GetByteCount(ch.ToString(CultureInfo.InvariantCulture)) == 2);
-                        string w = str.PadRight(totalByteCount - dcount, c);
-                        return w;
+                        //Encoding coding = Encoding.GetEncoding("gb2312");
+                        //int dcount = str.Count(ch => coding.GetByteCount(ch.ToString(CultureInfo.InvariantCulture)) == 2);
+                        //string w = str.PadRight(totalByteCount - dcount, c);
+                        //return w;
+                        throw new NotImplementedException();
                 }
 
                 public static T ToEnum<T>(this string source) where T : struct
@@ -155,23 +157,6 @@ namespace Nutshell
                 public static Single ToSingle(this string source)
                 {
                         return Convert.ToSingle(source);
-                }
-
-
-                public static void MustFileHasExist(this string path)
-                {
-                        if (!File.Exists(path))
-                        {
-                                throw new InvalidOperationException("文件 " + path + " 不存在");
-                        }
-                }
-
-                public static void MustDirectoryHasExist(this string path)
-                {
-                        if (!Directory.Exists(path))
-                        {
-                                throw new InvalidOperationException("目录 " + path + " 不存在");
-                        }
                 }
         }
 }

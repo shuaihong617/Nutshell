@@ -60,7 +60,7 @@ namespace Nutshell.Collections
                 /// <summary>
                 /// 引发 <see cref="E:Enqueued" /> 事件.
                 /// </summary>
-                /// <param name="e">The <see cref="ValueEventArgs{T}" /> instance containing the event data.</param>
+                /// <param name="e">The <see cref="ValueEventArgs{T}" /> Itance containing the event data.</param>
                 protected virtual void OnEnqueued(ValueEventArgs<T> e)
                 {
                         e.Raise(this, ref Enqueued);
@@ -74,7 +74,7 @@ namespace Nutshell.Collections
                 /// <summary>
                 /// 引发 <see cref="E:Dequeued" /> 事件.
                 /// </summary>
-                /// <param name="e">The <see cref="ValueEventArgs{T}" /> instance containing the event data.</param>
+                /// <param name="e">The <see cref="ValueEventArgs{T}" /> Itance containing the event data.</param>
                 protected virtual void OnDequeued(ValueEventArgs<T> e)
                 {
                         e.Raise(this, ref Dequeued);
@@ -88,7 +88,7 @@ namespace Nutshell.Collections
                 /// <summary>
                 /// Raises the <see cref="E:Opened" /> event.
                 /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
                 protected virtual void OnCleared(EventArgs e)
                 {
                         e.Raise(this, ref Cleared);

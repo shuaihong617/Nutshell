@@ -9,11 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nutshell</RootNamespace>
     <AssemblyName>Nutshell</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -144,118 +144,44 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Aspects\Events\EventDescriptionAttribute.cs" />
-    <Compile Include="Aspects\LocationContracts\NotEqualNullAttribute.cs" />
-    <Compile Include="Aspects\LocationContracts\GreaterThanAttribute.cs" />
-    <Compile Include="Aspects\LocationContracts\NotEqualZeroAttribute.cs" />
+    <Compile Include="Aspects\Events\LogEventHandlerAttribute.cs" />
+    <Compile Include="Aspects\Events\LogEventInvokeAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\AssignableFromAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\NSGreaterThanAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\NSIdNotEqualNullOrEmptyAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\NSNotEqualNullAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\NSNotEqualZeroAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />
     <Compile Include="Aspects\Methods\EventRaiseMethodAttribute.cs" />
-    <Compile Include="Aspects\Propertys\EqualCheckPropertyAttribute.cs" />
-    <Compile Include="Aspects\Propertys\NotifyChangedPropertyAttribute.cs" />
-    <Compile Include="Collections\Models\KeyValuePairModel.cs" />
-    <Compile Include="Components\BufferedConsumer.cs" />
-    <Compile Include="Components\BufferedProducer.cs" />
-    <Compile Include="Components\DirectConsumer.cs" />
-    <Compile Include="Components\DirectProducer.cs" />
-    <Compile Include="Components\ConsumeProducter.cs" />
-    <Compile Include="Components\IConsumeProducter.cs" />
-    <Compile Include="Components\IEnable.cs" />
-    <Compile Include="Components\Asyncer.cs" />
-    <Compile Include="Components\Models\IBufferedModel.cs" />
-    <Compile Include="Components\Models\BufferedModel.cs" />
-    <Compile Include="Components\Models\WatchDogModel.cs" />
-    <Compile Include="Components\QueueConsumer.cs" />
-    <Compile Include="Components\QueueProducer.cs" />
-    <Compile Include="Components\WatchDog.cs" />
     <Compile Include="Data\Binding\PropertyBinderCollection.cs" />
     <Compile Include="Data\Binding\PropertyBinder.cs" />
     <Compile Include="Data\Converting\StringToBoolValueConverter.cs" />
     <Compile Include="Data\Converting\Converter.cs" />
     <Compile Include="Data\Converting\IConverter.cs" />
-    <Compile Include="Data\Serializing\Serializer.cs" />
-    <Compile Include="Data\Serializing\MSXMLSerializers.cs" />
-    <Compile Include="Data\Serializing\MSXMLSerializer.cs" />
-    <Compile Include="Distributing\Beater.cs" />
-    <Compile Include="Distributing\Models\LogerModel.cs" />
-    <Compile Include="Distributing\Models\SenderModel.cs" />
-    <Compile Include="Distributing\Models\ReceiveSiteModel.cs" />
-    <Compile Include="Distributing\Models\SendSiteModel.cs" />
-    <Compile Include="Distributing\Models\BeaterModel.cs" />
-    <Compile Include="Distributing\Models\SiteModel.cs" />
-    <Compile Include="Distributing\Models\ReceiverModel.cs" />
-    <Compile Include="Distributing\ISendSite.cs" />
-    <Compile Include="Distributing\Receiver.cs" />
-    <Compile Include="Distributing\Sender.cs" />
-    <Compile Include="Distributing\IReceiver.cs" />
-    <Compile Include="Distributing\ISender.cs" />
-    <Compile Include="Distributing\ReceiveSite.cs" />
-    <Compile Include="Distributing\SendSite.cs" />
-    <Compile Include="Distributing\Site.cs" />
-    <Compile Include="Distributing\ISite.cs" />
-    <Compile Include="Distributing\Loger.cs" />
     <Compile Include="IdentityObject.cs" />
     <Compile Include="Log\LogLevel.cs" />
-    <Compile Include="Management\NSMemroy.cs" />
-    <Compile Include="Management\NSCPUKernel.cs" />
-    <Compile Include="Mathematics\Geometry2D.cs" />
-    <Compile Include="Mathematics\LinearInterpolation.cs" />
-    <Compile Include="Mathematics\Linearity.cs" />
-    <Compile Include="Mathematics\Math2D.cs" />
-    <Compile Include="Mathematics\Models\LinearityModel.cs" />
-    <Compile Include="Messaging\DictionaryExtension.cs" />
-    <Compile Include="Messaging\MultiStringKeySingleValueMessage.cs" />
-    <Compile Include="Messaging\MultiSingleMessageModel.cs" />
-    <Compile Include="Messaging\StringKeyStringValueMessage.cs" />
-    <Compile Include="Messaging\LogMessage.cs" />
-    <Compile Include="Messaging\MultiStringKeyStringValueMessageModel.cs" />
-    <Compile Include="Messaging\MultiStringMessage.cs" />
-    <Compile Include="Messaging\BoolMessage.cs" />
-    <Compile Include="Messaging\StringMessageModel.cs" />
-    <Compile Include="Messaging\MultiValueMessageModel.cs" />
-    <Compile Include="Messaging\MultiKeyValueMessage.cs" />
-    <Compile Include="Messaging\KeyValueMessage.cs" />
     <Compile Include="Data\ObservableNullableObject.cs" />
-    <Compile Include="OperationEventArgs.cs" />
     <Compile Include="BooleanExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Collections\QueueBuffer.cs" />
     <Compile Include="Collections\IBuffer.cs" />
     <Compile Include="Collections\Buffer.cs" />
-    <Compile Include="Components\Consumer.cs" />
-    <Compile Include="Components\Producer.cs" />
-    <Compile Include="Components\IConsumer.cs" />
-    <Compile Include="Components\IProducer.cs" />
-    <Compile Include="Components\IHitTest.cs" />
-    <Compile Include="Components\IWorker.cs" />
-    <Compile Include="Components\Models\IWorkerModel.cs" />
-    <Compile Include="Components\Models\LooperModel.cs" />
-    <Compile Include="Components\Models\WorkerModel.cs" />
-    <Compile Include="Components\Looper.cs" />
-    <Compile Include="Components\Worker.cs" />
     <Compile Include="DisposableObject.cs" />
-    <Compile Include="Data\Models\IStorableModel.cs" />
-    <Compile Include="Data\Models\StorableModel.cs" />
     <Compile Include="IIdentityObject.cs" />
-    <Compile Include="Data\StorableObject.cs" />
     <Compile Include="NotifyPropertyChangedObject.cs" />
-    <Compile Include="Data\Storaging\XmlStorage.cs" />
     <Compile Include="DateTimeExtensions.cs" />
     <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="Language.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="DoubleExtensions.cs" />
-    <Compile Include="EffectiveValuesEventArgs.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="EventArgsExtensions.cs" />
     <Compile Include="Int16Extensions.cs" />
     <Compile Include="Int32Extensions.cs" />
     <Compile Include="ListExtensions.cs" />
     <Compile Include="Log\NLoger.cs" />
-    <Compile Include="Messaging\IMessage.cs" />
-    <Compile Include="Messaging\ValueMessage.cs" />
-    <Compile Include="Messaging\Message.cs" />
-    <Compile Include="ReadWriteMode.cs" />
+    <Compile Include="NSReadWriteMode.cs" />
     <Compile Include="Threading\IShareObject.cs" />
     <Compile Include="Threading\INSReadWriteObject.cs" />
     <Compile Include="Threading\IMonopolyObject.cs" />
@@ -274,22 +200,6 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ValueChangedEventArgs.cs" />
     <Compile Include="ValueEventArgs.cs" />
-    <Compile Include="Management\NSCPU.cs" />
-    <Compile Include="Windows\SDK\APIs\MemoryInformation.cs" />
-    <Compile Include="Windows\SDK\APIs\CursorAPI.cs" />
-    <Compile Include="Windows\SDK\APIs\MemoryAPIs.cs" />
-    <Compile Include="Windows\SDK\APIs\MouseAPI.cs" />
-    <Compile Include="Windows\CpuPerformance.cs" />
-    <Compile Include="Windows\SDK\APIs\GDIAPI.cs" />
-    <Compile Include="Windows\SDK\APIs\MessageAPI.cs" />
-    <Compile Include="Windows\SDK\APIs\RectExtensions.cs" />
-    <Compile Include="Windows\SDK\APIs\MouseEventFlag.cs" />
-    <Compile Include="Windows\SDK\APIs\VirtualMouseButtons.cs" />
-    <Compile Include="Windows\SDK\APIs\Rect.cs" />
-    <Compile Include="Windows\SDK\CapturableWindow.cs" />
-    <Compile Include="Windows\SDK\Window.cs" />
-    <Compile Include="Windows\SDK\APIs\WindowAPI.cs" />
-    <Compile Include="Windows\SDK\APIs\Messages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLog.config">
@@ -307,27 +217,16 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.6\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.3.10\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\lib\net35-client\PostSharp.dll</HintPath>
+      <HintPath>..\packages\PostSharp.4.2.27\lib\net35-client\PostSharp.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="PostSharp.Compiler.Client, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Compiler.Client.4.2.27\lib\net40\PostSharp.Compiler.Client.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PostSharp.Patterns.Common, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Common.4.2.27\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PostSharp.Patterns.Diagnostics, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Diagnostics.4.2.27\lib\net40\PostSharp.Patterns.Diagnostics.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp.Patterns.Model, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
-      <HintPath>..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.Patterns.Model.4.2.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+      <HintPath>..\packages\PostSharp.Patterns.Model.4.2.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -335,10 +234,8 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets" Condition="Exists('..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets')" />
+  <Import Project="..\packages\PostSharp.4.2.27\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.27\tools\PostSharp.targets')" />
   <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
-    <Error Condition="!Exists('..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />
-    <Error Condition="Exists('..\..\海康威视机器视觉摄像机客户端\packages\PostSharp.4.2.27\tools\PostSharp.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://www.postsharp.net/links/nuget-restore." />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

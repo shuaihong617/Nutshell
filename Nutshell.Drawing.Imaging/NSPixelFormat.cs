@@ -15,7 +15,7 @@
 namespace Nutshell.Drawing.Imaging
 {
         /// <summary>
-        ///         方向枚举
+        ///         像素格式枚举
         /// </summary>
         public enum NSPixelFormat
         {

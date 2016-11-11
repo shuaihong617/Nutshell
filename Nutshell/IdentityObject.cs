@@ -12,7 +12,7 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics.Contracts;
+using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
 {
@@ -26,12 +26,11 @@ namespace Nutshell
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public IdentityObject(IdentityObject parent= null, string id = "")
+                public IdentityObject(IdentityObject parent= null, 
+                        [NSNotEqualNull]string id = "")
                 {
-                        Contract.Requires(id != null);
-                        Id = id;
-
                         Parent = parent;
+                        Id = id;
                 }
 
                 #region 字段
@@ -64,7 +63,7 @@ namespace Nutshell
                                         return;
                                 }
                                 _id = value;
-                                RaisePropertyChanged();
+                                OnPropertyChanged();
 
                                 UpdateGlobalId();
                         }
@@ -83,7 +82,7 @@ namespace Nutshell
                                         return;
                                 }
                                 _globalId = value;
-                                RaisePropertyChanged();
+                                OnPropertyChanged();
 
                                 OnGlobalIdChanged(null);
                         }

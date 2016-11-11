@@ -21,23 +21,26 @@ namespace Nutshell
         public static class TypeExtensions
         {
                 /// <summary>
-                ///         判断当前类型是否为简单类型（值类型或字符串）
+                /// 判断当前类型是否为简单类型（值类型或字符串）
                 /// </summary>
                 /// <param name="t">类型.</param>
                 /// <returns>值类型或字符串类型返回True, 否则返回False</returns>
+                /// <exception cref="NotImplementedException"></exception>
                 public static bool IsSimpleType(this Type t)
                 {
-                        if (t.IsValueType)
-                        {
-                                return true;
-                        }
+                        //if (t.IsValueType)
+                        //{
+                        //        return true;
+                        //}
 
-                        if (t == typeof (string))
-                        {
-                                return true;
-                        }
+                        //if (t == typeof (string))
+                        //{
+                        //        return true;
+                        //}
 
-                        return false;
+                        //return false;
+
+                        throw new NotImplementedException();
                 }
         }
 }

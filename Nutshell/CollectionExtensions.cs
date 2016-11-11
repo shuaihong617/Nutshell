@@ -33,8 +33,8 @@ namespace Nutshell
                 public static ObservableCollection<T> ToObservableCollection<T>(this ICollection<T> collection,
                         ObservableCollection<T> observableCollection)
                 {
-                        collection.MustNotNull();
-                        observableCollection.MustNotNull();
+                        collection.NotNull();
+                        observableCollection.NotNull();
 
                         observableCollection.Clear();
                         foreach (T t in collection)
@@ -53,7 +53,7 @@ namespace Nutshell
                 /// <returns></returns>
                 public static ObservableCollection<T> ToObservableCollection<T>(this ICollection<T> collection)
                 {
-                        collection.MustNotNull();
+                        collection.NotNull();
 
                         var observableCollection = new ObservableCollection<T>();
 
@@ -73,8 +73,8 @@ namespace Nutshell
                 /// <param name="action">The action.</param>
                 public static void Each<T>(this ICollection<T> collection, Action<T> action)
                 {
-                        collection.MustNotNull();
-                        action.MustNotNull();
+                        collection.NotNull();
+                        action.NotNull();
 
                         foreach (T t in collection)
                         {

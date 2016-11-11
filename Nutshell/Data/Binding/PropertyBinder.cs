@@ -9,7 +9,7 @@ namespace Nutshell.Data.Binding
                         Instance = instance;
                         PropertyName = propertyName;
 
-                        PropertyInfo = Instance.GetType().GetProperty(PropertyName);
+                        PropertyInfo = Instance.GetType().GetRuntimeProperty(PropertyName);
 
                         Converter = converter;
                 }

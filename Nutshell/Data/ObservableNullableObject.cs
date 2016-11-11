@@ -51,7 +51,7 @@ namespace Nutshell.Data
                         set
                         {
                                 _nullableValue = value;
-                                RaisePropertyChanged();
+                                OnPropertyChanged();
 
                                 OnValueChanged(new ValueEventArgs<T?>(value));
                         }
@@ -72,7 +72,7 @@ namespace Nutshell.Data
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
-                /// <param name="e">The <see cref="ValueChangedEventArgs{T}" /> instance containing the event data.</param>
+                /// <param name="e">The <see cref="ValueChangedEventArgs{T}" /> Itance containing the event data.</param>
                 protected virtual void OnValueChanged(ValueEventArgs<T?> e)
                 {
                         //this.InfoEvent("数据更新", e.Data);

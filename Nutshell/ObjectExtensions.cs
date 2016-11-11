@@ -28,7 +28,7 @@ namespace Nutshell
                 /// <param name="value">待判定对象</param>
                 /// <param name="message">异常输出消息</param>
                 /// <exception cref="System.ArgumentException">不能为空引用！</exception>
-                public static void MustNotNull<T>(this T value, string message = "不能为空引用！") where T : class
+                public static void NotNull<T>(this T value, string message = "不能为空引用！") where T : class
                 {
                         if (value == null)
                         {
@@ -67,7 +67,7 @@ namespace Nutshell
                 /// <param name="value">The t.</param>
                 /// <param name="ps">The c.</param>
                 /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-                public static void MustIn<T>(this T value, params T[] ps)
+                public static void In<T>(this T value, params T[] ps)
                 {
                         if (ps.All(i => !i.Equals(value)))
                         {
@@ -83,7 +83,7 @@ namespace Nutshell
                 /// <param name="value">The value.</param>
                 /// <param name="compare">The compare.</param>
                 /// <returns>T.</returns>
-                public static void MustEqual<T>(this T value, T compare)
+                public static void Equal<T>(this T value, T compare)
                 {
                         if (!value.Equals(compare))
                         {
@@ -99,7 +99,7 @@ namespace Nutshell
                 /// <param name="compare">The compare.</param>
                 /// <returns>T.</returns>
                 /// <exception cref="System.ArgumentException">不能与给定值相等！</exception>
-                public static void MustNotEqual<T>(this T value, T compare)
+                public static void NotEqual<T>(this T value, T compare)
                 {
                         if (value.Equals(compare))
                         {

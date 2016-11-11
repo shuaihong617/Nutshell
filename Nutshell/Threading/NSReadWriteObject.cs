@@ -19,7 +19,7 @@ namespace Nutshell.Threading
         ///         读写锁对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class NSReadWriteObject<T> : IdentityObject,INSReadWriteObject where T : IdentityObject
+        public class NSReadWriteObject<T> : IdentityObject,IReadWriteObject where T : IdentityObject
         {
                 /// <summary>
                 /// 初始化<see cref="IdentityObject" />的新实例.
