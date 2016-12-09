@@ -39,7 +39,7 @@ namespace Nutshell.Data
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public virtual void Load([NSModelIdNotEqualNullOrEmpty] IDataModel model)
+                public virtual void Load([MustModelIdNotEqualNullOrEmpty] IDataModel model)
                 {
                         Id = model.Id;
                 }
@@ -50,7 +50,7 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <param name="model">数据模型</param>
                 /// <returns>成功返回True, 否则返回False</returns>
-                public virtual void Save([NSNotEqualNull] IDataModel model)
+                public virtual void Save([MustNotEqualNull] IDataModel model)
                 {
                         model.Id = Id;
 

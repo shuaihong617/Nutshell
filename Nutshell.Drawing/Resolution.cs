@@ -34,8 +34,8 @@ namespace Nutshell.Drawing
                 /// <param name="vertical">The vertical.</param>
                 public Resolution(IdentityObject parent,
                         string id,
-                        [NSGreaterThan(0)] int horizontal,
-                        [NSGreaterThan(0)] int vertical)
+                        [MustGreaterThan(0)] int horizontal,
+                        [MustGreaterThan(0)] int vertical)
                         : base(parent, id)
                 {
                         Horizontal = horizontal;
@@ -45,21 +45,21 @@ namespace Nutshell.Drawing
                 /// <summary>
                 ///         Gets the width.
                 /// </summary>
-                [NSGreaterThan(0)]
+                [MustGreaterThan(0)]
                 public int Horizontal { get; private set; }
 
                 /// <summary>
                 ///         Gets the height.
                 /// </summary>
                 /// <value>The height.</value>
-                [NSGreaterThan(0)]
+                [MustGreaterThan(0)]
                 public int Vertical { get; private set; }
 
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Load([AssignableFrom(typeof(IResolutionModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(IResolutionModel))]IDataModel model)
                 {
                         base.Load(model);
 
@@ -73,7 +73,7 @@ namespace Nutshell.Drawing
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Save([AssignableFrom(typeof(IResolutionModel))]IDataModel model)
+                public override void Save([MustAssignableFrom(typeof(IResolutionModel))]IDataModel model)
                 {
                         base.Save(model);
 

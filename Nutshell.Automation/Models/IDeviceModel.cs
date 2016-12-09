@@ -20,6 +20,5 @@ namespace Nutshell.Automation.Models
         /// </summary>
         public interface IDeviceModel : IWorkerModel
         {
-                RunMode RunMode { get; set; }
         }
 }

@@ -27,7 +27,7 @@ namespace Nutshell
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 public IdentityObject(IdentityObject parent= null, 
-                        [NSNotEqualNull]string id = "")
+                        [MustNotEqualNull]string id = "")
                 {
                         Parent = parent;
                         Id = id;

@@ -2,7 +2,6 @@
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Data.Models;
-using Nutshell.Hardware;
 using Nutshell.Log;
 using PostSharp.Patterns.Model;
 
@@ -63,7 +62,7 @@ namespace Nutshell.Automation
 
                 #region 方法
 
-                public override void Load([AssignableFrom(typeof(IDeviceModel))] IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(IDeviceModel))] IDataModel model)
                 {
                         base.Load(model);
 
@@ -88,7 +87,7 @@ namespace Nutshell.Automation
                                 return true;
                         }
 
-                        this.Info("运行状态：" + RunMode);
+                        this.Info("运行状态：" + ControlMode);
 
                         IsOpened = OpenCore();
                         return IsOpened;

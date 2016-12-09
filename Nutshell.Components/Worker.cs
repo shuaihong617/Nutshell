@@ -83,7 +83,7 @@ namespace Nutshell.Components
 
                 #endregion
 
-                public override void Load([AssignableFrom(typeof(IWorkerModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(IWorkerModel))]IDataModel model)
                 {
                         base.Load(model);
 
@@ -92,7 +92,7 @@ namespace Nutshell.Components
                 }
 
 
-                public override void Save([AssignableFrom(typeof(IWorkerModel))]IDataModel model)
+                public override void Save([MustAssignableFrom(typeof(IWorkerModel))]IDataModel model)
                 {
                         base.Save(model);
 

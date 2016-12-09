@@ -53,7 +53,7 @@ namespace Nutshell.Components
                         get { return _thread.ThreadState; }
                 }
 
-                public override void Load([AssignableFrom(typeof(ILooperModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(ILooperModel))]IDataModel model)
                 {
                         base.Load(model);
 

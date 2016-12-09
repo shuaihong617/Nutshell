@@ -57,7 +57,7 @@ namespace Nutshell.Components
                         }
                 }
 
-                public override void Load([AssignableFrom(typeof(IWatchDogModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(IWatchDogModel))]IDataModel model)
                 {
 
                         base.Load(model);

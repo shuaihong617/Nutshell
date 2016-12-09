@@ -27,7 +27,7 @@ namespace Nutshell.Storaging
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                void Load([NSNotEqualNull] IDataModel model);
+                void Load([MustNotEqualNull] IDataModel model);
 
 
                 /// <summary>
@@ -35,7 +35,7 @@ namespace Nutshell.Storaging
                 /// </summary>
                 /// <param name="model">数据模型</param>
                 /// <returns>成功返回True, 否则返回False</returns>
-                void Save([NSNotEqualNull] IDataModel model);
+                void Save([MustNotEqualNull] IDataModel model);
 
                 #endregion
         }

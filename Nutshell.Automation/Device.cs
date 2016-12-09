@@ -15,7 +15,6 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Components;
 using Nutshell.Data.Models;
-using Nutshell.Hardware;
 
 namespace Nutshell.Automation
 {
@@ -36,13 +35,16 @@ namespace Nutshell.Automation
 
                 #region 属性
 
+                /// <summary>
+                /// 制造信息
+                /// </summary>
                 public ManufacturingInformation ManufacturingInformation { get; private set; }
 
                 #endregion
 
                 #region 方法
 
-                public override void Load([AssignableFrom(typeof (IDeviceModel))] IDataModel model)
+                public override void Load([MustAssignableFrom(typeof (IDeviceModel))] IDataModel model)
                 {
                         base.Load(model);
 

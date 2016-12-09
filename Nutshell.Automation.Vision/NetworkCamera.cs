@@ -50,7 +50,7 @@ namespace Nutshell.Hardware.Vision
                 /// 从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Load([AssignableFrom(typeof(INetworkCameraModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(INetworkCameraModel))]IDataModel model)
                 {
                         base.Load(model);
 
@@ -63,7 +63,7 @@ namespace Nutshell.Hardware.Vision
                 /// 保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Save([AssignableFrom(typeof(INetworkCameraModel))]IDataModel model)
+                public override void Save([MustAssignableFrom(typeof(INetworkCameraModel))]IDataModel model)
                 {
                         base.Save(model);
 

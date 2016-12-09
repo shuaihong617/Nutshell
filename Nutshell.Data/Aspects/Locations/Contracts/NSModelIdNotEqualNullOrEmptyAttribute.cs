@@ -6,7 +6,7 @@ using PostSharp.Reflection;
 
 namespace Nutshell.Data.Aspects.Locations.Contracts
 {
-        public class NSModelIdNotEqualNullOrEmptyAttribute : NSNotEqualNullAttribute,ILocationValidationAspect<IDataModel>
+        public class MustModelIdNotEqualNullOrEmptyAttribute : MustNotEqualNullAttribute,ILocationValidationAspect<IDataModel>
         {
                 protected override string GetErrorMessage()
                 {

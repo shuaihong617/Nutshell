@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using Nutshell.Components;
-using Nutshell.Hardware;
 
 namespace Nutshell.Automation
 {

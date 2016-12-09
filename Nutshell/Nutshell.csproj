@@ -146,11 +146,11 @@
   <ItemGroup>
     <Compile Include="Aspects\Events\LogEventHandlerAttribute.cs" />
     <Compile Include="Aspects\Events\LogEventInvokeAttribute.cs" />
-    <Compile Include="Aspects\Locations\Contracts\AssignableFromAttribute.cs" />
-    <Compile Include="Aspects\Locations\Contracts\NSGreaterThanAttribute.cs" />
-    <Compile Include="Aspects\Locations\Contracts\NSIdNotEqualNullOrEmptyAttribute.cs" />
-    <Compile Include="Aspects\Locations\Contracts\NSNotEqualNullAttribute.cs" />
-    <Compile Include="Aspects\Locations\Contracts\NSNotEqualZeroAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustAssignableFromAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustGreaterThanAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustIdNotEqualNullOrEmptyAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustNotEqualZeroAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />
     <Compile Include="Aspects\Methods\EventRaiseMethodAttribute.cs" />

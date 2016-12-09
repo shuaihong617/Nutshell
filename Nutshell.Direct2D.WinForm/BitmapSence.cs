@@ -14,6 +14,7 @@
 
 using System;
 using System.Windows.Forms;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
 using SharpDX.Direct2D1;
@@ -26,7 +27,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
         /// </summary>
         public abstract class BitmapSence : Sence
         {
-                protected BitmapSence(IdentityObject parent, string id = "", Control control = null)
+                protected BitmapSence(IdentityObject parent, string id = "", [MustNotEqualNull]Control control = null)
                         : base(parent, id, control)
                 {
                         BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,

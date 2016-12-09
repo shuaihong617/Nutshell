@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using Nutshell.Components.Models;
-using Nutshell.Hardware;
 
 namespace Nutshell.Automation.Models
 {
@@ -21,6 +20,6 @@ namespace Nutshell.Automation.Models
         /// </summary>
         public interface IControllableDeviceModel : IWorkerModel
         {
-                RunMode RunMode { get; set; }
+                ControlMode ControlMode { get; set; }
         }
 }

@@ -175,7 +175,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="RuntimeInformation.cs" />
     <Compile Include="ManufacturingInformation.cs" />
-    <Compile Include="RunMode.cs" />
+    <Compile Include="ControlMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

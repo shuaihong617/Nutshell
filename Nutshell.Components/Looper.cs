@@ -72,7 +72,7 @@ namespace Nutshell.Components
 
                 public int Interval { get; private set; }
 
-                public override void Load([AssignableFrom(typeof(ILooperModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(ILooperModel))]IDataModel model)
                 {
                         
                         base.Load(model);

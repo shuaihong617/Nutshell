@@ -15,6 +15,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
@@ -34,13 +35,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <param name="decoder">The decoder.</param>
                 /// <param name="sence">The sence.</param>
                 /// <exception cref="System.ArgumentException">摄像机解码单元不能为null</exception>
-                public CameraRenderer(IdentityObject parent, string id, CameraDecoder decoder, CameraSence sence)
+                public CameraRenderer(IdentityObject parent, string id, [MustNotEqualNull]CameraDecoder decoder, CameraSence sence)
                         : base(parent, id, sence)
                 {
-                        if (decoder == null)
-                        {
-                                throw new ArgumentException("摄像机解码单元不能为null");
-                        }
                         _decoder = decoder;
                 }
 

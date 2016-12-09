@@ -13,10 +13,10 @@
 
 using System;
 
-namespace Nutshell.Hardware
+namespace Nutshell.Automation
 {
         /// <summary>
-        /// 设备制造信息结构体
+        /// 制造信息
         /// </summary>
         public class ManufacturingInformation
         {

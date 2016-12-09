@@ -13,7 +13,7 @@ namespace Nutshell.Tests.Aspects.LocationContracts
                         Test(null);
                 }
 
-                private void Test([NSNotEqualNull]object data)
+                private void Test([MustNotEqualNull]object data)
                 {
                         Trace.Write(data);
                 }

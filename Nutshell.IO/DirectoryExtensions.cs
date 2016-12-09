@@ -9,7 +9,7 @@ namespace Nutshell.IO
 {
         public static class DirectoryExtensions
         {
-                public static void MustDirectoryHasExist(this string path)
+                public static void MustExistDirectory(this string path)
                 {
                         if (!Directory.Exists(path))
                         {

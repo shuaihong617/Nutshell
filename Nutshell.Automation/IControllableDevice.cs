@@ -2,6 +2,6 @@
 {
         public interface IControllableDevice
         {
-                RunMode RunMode { get; }
+                ControlMode ControlMode { get; }
         }
 }

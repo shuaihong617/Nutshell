@@ -34,7 +34,7 @@ namespace Nutshell.Components
 
                 private Looper DequeueLooper { get; set; }
 
-                public override void Load([AssignableFrom(typeof(IBufferedModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(IBufferedModel))]IDataModel model)
                 {
                         base.Load(model);
 

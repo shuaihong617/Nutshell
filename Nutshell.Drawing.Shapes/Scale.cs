@@ -22,7 +22,7 @@ namespace Nutshell.Drawing.Shapes
 
                 public virtual int Value { get; private set; }
 
-                public override void Load([AssignableFrom(typeof(IScaleModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(IScaleModel))]IDataModel model)
                 {
 
                         base.Load(model);
@@ -35,7 +35,7 @@ namespace Nutshell.Drawing.Shapes
 
                 }
 
-                public override void Save([AssignableFrom(typeof(IScaleModel))]IDataModel model)
+                public override void Save([MustAssignableFrom(typeof(IScaleModel))]IDataModel model)
                 {
                         base.Save(model);
 
