@@ -8,7 +8,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 {
         public abstract class CycleRenderer : Worker
         {
-                protected CycleRenderer(IdentityObject parent, string id = "", BitmapSence sence = null)
+                protected CycleRenderer(IdentityObject parent, string id = null, BitmapSence sence = null)
                         : base(parent, id)
                 {
                         if (sence == null)

@@ -14,7 +14,7 @@
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
 
-namespace Nutshell.Storaging
+namespace Nutshell.Data
 {
         /// <summary>
         ///         主键对象

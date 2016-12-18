@@ -17,7 +17,7 @@ using Nutshell.Components.Models;
 namespace Nutshell.Speech.Models
 {
         /// <summary>
-        ///         主键对象XML序列化数据模型
+        ///         主键对象Xml序列化数据模型
         /// </summary>
         [XmlType]
         public class SpeechSynthesizerModel : BufferedModel, ISpeechSynthesizerModel

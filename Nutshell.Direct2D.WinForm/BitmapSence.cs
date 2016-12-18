@@ -27,7 +27,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
         /// </summary>
         public abstract class BitmapSence : Sence
         {
-                protected BitmapSence(IdentityObject parent, string id = "", [MustNotEqualNull]Control control = null)
+                protected BitmapSence(IdentityObject parent, string id = null, [MustNotEqualNull]Control control = null)
                         : base(parent, id, control)
                 {
                         BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,

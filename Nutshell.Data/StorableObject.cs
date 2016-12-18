@@ -21,14 +21,14 @@ namespace Nutshell.Data
         /// <summary>
         ///         主键对象
         /// </summary>
-        public class StorableObject : IdentityObject
+        public class StorableObject : IdentityObject,IStorable
         {
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public StorableObject(IdentityObject parent = null, string id = "")
+                public StorableObject(IdentityObject parent = null, string id = null)
                         : base(parent, id)
                 {
                 }
@@ -39,7 +39,7 @@ namespace Nutshell.Data
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public virtual void Load([MustModelIdNotEqualNullOrEmpty] IDataModel model)
+                public virtual void Load(IDataModel model)
                 {
                         Id = model.Id;
                 }
@@ -50,11 +50,9 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <param name="model">数据模型</param>
                 /// <returns>成功返回True, 否则返回False</returns>
-                public virtual void Save([MustNotEqualNull] IDataModel model)
+                public virtual void Save(IDataModel model)
                 {
                         model.Id = Id;
-
-                        Trace.Assert(!string.IsNullOrEmpty(model.Id));
                 }
 
                 #endregion

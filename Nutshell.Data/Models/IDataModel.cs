@@ -11,6 +11,8 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
+
 namespace Nutshell.Data.Models
 {
         /// <summary>
@@ -19,8 +21,10 @@ namespace Nutshell.Data.Models
         public interface IDataModel
         {
                 /// <summary>
-                ///         主键
+                /// 获取或设置标识
                 /// </summary>
+                /// <value>标识，不能为空引用或空字符串</value>
+                [MustNotEqualNullOrEmpty]
                 string Id { get; set; }
         }
 }

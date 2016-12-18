@@ -109,7 +109,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "数字视频", "数字视�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "渲染", "渲染", "{4A98A9E2-91D7-42E4-9054-6AA4F145BEDE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "消息", "消息", "{024331C6-89CA-475F-929D-CED5D89A0109}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "通讯", "通讯", "{024331C6-89CA-475F-929D-CED5D89A0109}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "消息队列", "消息队列", "{E6F5497C-18F0-41F4-B8C3-66B0B1733632}"
 EndProject
@@ -128,6 +128,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.MessageQueue.RabbitMQ", "Nutshell.MessageQueue.RabbitMQ\Nutshell.MessageQueue.RabbitMQ.csproj", "{6F9764CE-E583-4953-97CF-CC26A7D7165D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Messaging.Xml", "Nutshell.Messaging.Xml\Nutshell.Messaging.Xml.csproj", "{FA079D95-0CA9-49C1-BA86-90555AF91CDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Communication", "Nutshell.Communication\Nutshell.Communication.csproj", "{4B22F550-25B2-4F7E-A8A7-8181A3F10494}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -769,6 +771,22 @@ Global
 		{FA079D95-0CA9-49C1-BA86-90555AF91CDF}.Release|Win32.Build.0 = Release|Any CPU
 		{FA079D95-0CA9-49C1-BA86-90555AF91CDF}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA079D95-0CA9-49C1-BA86-90555AF91CDF}.Release|x86.Build.0 = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|Win32.Build.0 = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|Win32.ActiveCfg = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|Win32.Build.0 = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -821,5 +839,6 @@ Global
 		{0A50CAFF-497A-45DF-A0C2-5D8D5473334E} = {E6F5497C-18F0-41F4-B8C3-66B0B1733632}
 		{6F9764CE-E583-4953-97CF-CC26A7D7165D} = {E6F5497C-18F0-41F4-B8C3-66B0B1733632}
 		{FA079D95-0CA9-49C1-BA86-90555AF91CDF} = {024331C6-89CA-475F-929D-CED5D89A0109}
+		{4B22F550-25B2-4F7E-A8A7-8181A3F10494} = {024331C6-89CA-475F-929D-CED5D89A0109}
 	EndGlobalSection
 EndGlobal

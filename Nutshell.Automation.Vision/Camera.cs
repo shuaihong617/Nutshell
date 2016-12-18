@@ -37,7 +37,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="width">水平采集分辨率</param>
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
-                protected Camera(IdentityObject parent, string id = "", int width = 2, int height = 2,
+                protected Camera(IdentityObject parent, string id = null, int width = 2, int height = 2,
                         NSPixelFormat pixelFormat = NSPixelFormat.Mono8)
                         : base(parent, id)
                 {

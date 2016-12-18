@@ -6,7 +6,7 @@ using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Events
 {
-        public sealed class LogEventHandlerAttribute : EventInterceptionAspect
+        public sealed class LogEventHandlerChangedAttribute : EventInterceptionAspect
         {
                 public override void OnAddHandler(EventInterceptionArgs args)
                 {
@@ -24,7 +24,7 @@ namespace Nutshell.Aspects.Events
                                 throw new ArgumentException("EventName事件上找不到EventDescriptionAttribute");
                         }
 
-                        i.Info("引发" + d.Description + "事件。");
+                        i.Info("挂载" + d.Description);
                 }
 
                 public override void OnRemoveHandler(EventInterceptionArgs args)
@@ -43,7 +43,7 @@ namespace Nutshell.Aspects.Events
                                 throw new ArgumentException("EventName事件上找不到EventDescriptionAttribute");
                         }
 
-                        i.Info("引发" + d.Description + "事件。");
+                        i.Info("卸载" + d.Description);
                 }
 
                 

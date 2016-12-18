@@ -28,7 +28,7 @@ namespace Nutshell.Collections
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public QueueBuffer(IdentityObject parent, string id = "")
+                public QueueBuffer(IdentityObject parent, string id = null)
                         :base(parent, id)
                 {
                         

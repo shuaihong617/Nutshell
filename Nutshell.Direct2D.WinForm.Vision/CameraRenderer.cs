@@ -51,11 +51,11 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private void Decoder_DecodeFinished(object sender, ValueEventArgs<NSBitmap> e)
                 {
-                        var bitmap = e.Data;
+                        var bitmap = e.Value;
 
                         _decoder.Buffers.ReadLock(bitmap);
 
-                        Sence.Swap(e.Data);
+                        Sence.Swap(e.Value);
 
                         _decoder.Buffers.ReadUnlock(bitmap);
                 }

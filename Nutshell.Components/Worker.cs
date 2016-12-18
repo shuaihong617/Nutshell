@@ -13,7 +13,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
+using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
 using Nutshell.Data;
@@ -27,7 +27,7 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Worker : StorableObject, IWorker
         {
-                protected Worker(IdentityObject parent, string id = "")
+                protected Worker(IdentityObject parent, string id = null)
                         : base(parent,id)
                 {
                         IsEnable = true;
@@ -35,7 +35,11 @@ namespace Nutshell.Components
 
                 #region 字段
 
-                private bool _isEnable;
+                /// <summary>
+                /// 线程同步标识
+                /// </summary>
+                private readonly object _syncFlag = new object(); 
+
                 private bool _isStarted;
 
                 #endregion
@@ -45,15 +49,7 @@ namespace Nutshell.Components
                 /// <summary>
                 ///         是否启用
                 /// </summary>
-                public bool IsEnable
-                {
-                        get { return _isEnable; }
-                        set
-                        {
-                                _isEnable = value;
-                                OnPropertyChanged();
-                        }
-                }
+                public bool IsEnable { get; set; }
 
                 /// <summary>
                 ///         是否已启动
@@ -68,7 +64,6 @@ namespace Nutshell.Components
                                         return;
                                 }
                                 _isStarted = value;
-                                OnPropertyChanged();
 
                                 if (_isStarted)
                                 {
@@ -87,7 +82,7 @@ namespace Nutshell.Components
                 {
                         base.Load(model);
 
-                        var workerModel = model as IWorkerModel;
+                        var workerModel = (IWorkerModel)model;
                         IsEnable = workerModel.IsEnable;
                 }
 
@@ -96,7 +91,7 @@ namespace Nutshell.Components
                 {
                         base.Save(model);
 
-                        var workerModel = model as IWorkerModel;
+                        var workerModel = (IWorkerModel)model;
                         workerModel.IsEnable = IsEnable;
                 }
 
@@ -108,6 +103,11 @@ namespace Nutshell.Components
                 /// </remarks>
                 public bool Start()
                 {
+                        if (IsStarted)
+                        {
+                                return true;
+                        }
+
                         if (!IsEnable)
                         {
                                 this.Warn("启用状态：否");
@@ -115,11 +115,6 @@ namespace Nutshell.Components
                                 IsStarted = false;
                                 OnStartFailed(null);
                                 return IsStarted;
-                        }
-
-                        if (IsStarted)
-                        {
-                                return true;
                         }
 
                         try
@@ -143,17 +138,17 @@ namespace Nutshell.Components
                 /// </summary>
                 public bool Stop()
                 {
-                        if (!IsEnable)
-                        {
-                                this.Warn("启用状态：否");
-                                return true;
-                        }
-
                         if (!IsStarted)
                         {
                                 return true;
                         }
 
+                        if (!IsEnable)
+                        {
+                                this.Warn("启用状态：否");
+                                return true;
+                        }
+                        
                         try
                         {
                                 IsStarted = !StopCore();
@@ -192,6 +187,7 @@ namespace Nutshell.Components
                 ///         Occurs when [opened].
                 /// </summary>
                 [Description("启动成功事件")]
+                [LogEventInvokeHandler]
                 public event EventHandler<EventArgs> StartSuccessed;
 
                 /// <summary>

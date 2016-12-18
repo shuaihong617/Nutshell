@@ -11,12 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-namespace Nutshell.Data.Serializing
+namespace Nutshell.Serializing
 {
         /// <summary>
         ///         序列化器抽象基类
         /// </summary>
-        public abstract class Serializer
+        public abstract class Serializer:ISerializer
         {
                 /// <summary>
                 ///         将对象序列化为字节数组

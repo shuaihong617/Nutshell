@@ -12,7 +12,7 @@ namespace Nutshell.Drawing.Shapes
         /// </summary>
         public class Scale : StorableObject, IHitTest
         {
-                public Scale(IdentityObject parent, string id = "")
+                public Scale(IdentityObject parent, string id = null)
                         : base(parent, id)
                 {
                         Segment = new Segment(this);

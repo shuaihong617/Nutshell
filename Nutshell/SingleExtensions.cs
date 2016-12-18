@@ -18,7 +18,7 @@ using System.Diagnostics.Contracts;
 namespace Nutshell
 {
         /// <summary>
-        ///         DateTime struce extensions
+        ///         浮点数据类型扩展方法
         /// </summary>
         public static class SingleExtensions
         {
@@ -219,17 +219,7 @@ namespace Nutshell
                 /// <returns><c>true</c> if the specified value is between; otherwise, <c>false</c>.</returns>
                 public static bool IsBetween(this float value, float max, float min = 0f)
                 {
-                        if (value > max)
-                        {
-                                return false;
-                        }
-
-                        if (value < min)
-                        {
-                                return false;
-                        }
-
-                        return true;
+                        return min < value && value < max;
                 }
 
                 /// <summary>

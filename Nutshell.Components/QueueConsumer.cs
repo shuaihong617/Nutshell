@@ -21,7 +21,7 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class QueueConsumer<T> : BufferedConsumer<T> where T : class
         {
-                protected QueueConsumer(IdentityObject parent, string id = "")
+                protected QueueConsumer(IdentityObject parent, string id = null)
                         : base(parent, id)
                 {
                         Buffer = new QueueBuffer<T>(this, "队列缓冲区");

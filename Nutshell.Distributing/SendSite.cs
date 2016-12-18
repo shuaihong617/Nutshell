@@ -46,7 +46,7 @@ namespace Nutshell.Distributing
                 protected override void OnDispatched(ValueEventArgs<byte[]> e)
                 {
                         base.OnDispatched(e);
-                        Sender.Acquire(e.Data);
+                        Sender.Acquire(e.Value);
                 }
         }
 }

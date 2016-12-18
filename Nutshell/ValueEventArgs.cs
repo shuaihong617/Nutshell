@@ -16,21 +16,22 @@ using System;
 namespace Nutshell
 {
         /// <summary>
+        /// 带值的事件参数
         /// </summary>
         public class ValueEventArgs<T> : EventArgs
         {
                 /// <summary>
                 ///         初始化<see cref="ValueEventArgs{T}" />的新实例.
                 /// </summary>
-                /// <param name="data">The result.</param>
-                public ValueEventArgs(T data)
+                /// <param name="value">The result.</param>
+                public ValueEventArgs(T value)
                 {
-                        Data = data;
+                        Value = value;
                 }
 
                 /// <summary>
-                ///         返回值
+                ///         事件值
                 /// </summary>
-                public T Data { get; private set; }
+                public T Value { get; private set; }
         }
 }

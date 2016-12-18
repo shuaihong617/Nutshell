@@ -12,18 +12,28 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Messaging
 {
         /// <summary>
         ///         消息接口
         /// </summary>
-        public interface IMessage: IIdentityObject
-        {
+        public interface IMessage:IDataModel
+        {                
                 /// <summary>
-                ///         时间
+                /// 获取消息的类型
                 /// </summary>
-                /// <value>The time.</value>
-                DateTime Time { get; }
+                /// <value>消息类型</value>
+                [MustNotEqualNullOrEmpty]
+                string Category { get; }
+
+                /// <summary>
+                ///         获取消息的创建时间戳
+                /// </summary>
+                /// <value>创建时间戳</value>
+                [MustNotEqualNull]
+                DateTime CreateTimeStamp { get; }
         }
 }

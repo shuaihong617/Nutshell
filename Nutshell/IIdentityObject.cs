@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
 {
@@ -23,11 +24,13 @@ namespace Nutshell
                 /// <summary>
                 ///         标识
                 /// </summary>
+                [MustNotEqualNullOrEmpty]
                 String Id { get; }
 
                 /// <summary>
                 ///         全局标识
                 /// </summary>
+                [MustNotEqualNullOrEmpty]
                 String GlobalId { get;}
         }
 }

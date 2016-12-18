@@ -38,7 +38,7 @@ namespace Nutshell.Distributing
 
                 private void Receiver_Dispatched(object sender, ValueEventArgs<byte[]> e)
                 {
-                        Acquire(e.Data);
+                        Acquire(e.Value);
                 }
 
                 protected override TP Consume(byte[] tc)

@@ -26,7 +26,7 @@ namespace Nutshell.Components
         /// </summary>
         public class Asyncer : Worker
         {
-                public Asyncer(IdentityObject parent, string id = "", ThreadPriority priority = ThreadPriority.Normal, Action action = null)
+                public Asyncer(IdentityObject parent, string id = null, ThreadPriority priority = ThreadPriority.Normal, Action action = null)
                         : base(parent, id)
                 {
                         if (action == null)

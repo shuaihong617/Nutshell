@@ -106,7 +106,7 @@ namespace Nutshell.Hardware.Vision
                                 return;
                         }
 
-                        _decodeBitmap = e.Data;
+                        _decodeBitmap = e.Value;
 
                         Camera.Buffers.ReadLock(_decodeBitmap);
                 }
