@@ -25,18 +25,21 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         未定义模式，在此模式下设备不工作
                 /// </summary>
-                未定义 = 0,
+                Undefined = 0,
 
                 /// <summary>
-                ///         普通模式，在此模式下设备按实际工作方式运行，接受真实控制信号
+                ///         发布模式，在此模式下设备按实际工作方式运行，接受真实控制信号
                 /// </summary>
-                普通 = 1,
+                Release = 1,
 
                 /// <summary>
                 ///         调试模式，用于模拟测试或其他用途，接受模拟控制信号
                 /// </summary>
-                调试 = 2,
+                Debug = 2,
 
-                所有 = 普通| 调试
+		/// <summary>
+		///  所有模式，兼容调试模式和发布模式
+		/// </summary>
+		All = Release| Debug
         }
 }

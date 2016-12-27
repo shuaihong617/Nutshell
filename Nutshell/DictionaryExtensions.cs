@@ -13,11 +13,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
 {
         /// <summary>
-        ///         集合接口扩展方法
+        ///         字典接口扩展方法
         /// </summary>
         public static class DictionaryExtensions
         {
@@ -30,7 +32,8 @@ namespace Nutshell
                 /// <param name="key">键</param>
                 /// <exception cref="System.InvalidOperationException">必须包含指定的键</exception>
                 public static void MustContainsKey<TKey, TValue>(
-                        this IDictionary<TKey, TValue> dist, TKey key)
+                        [MustNotEqualNull]this IDictionary<TKey, TValue> dist,
+			TKey key)
                 {
                         if (!dist.ContainsKey(key))
                         {
@@ -48,12 +51,26 @@ namespace Nutshell
                 /// <param name="key">键</param>
                 /// <exception cref="System.InvalidOperationException">不能包含指定的键</exception>
                 public static  void MustNotContainsKey<TKey, TValue>(
-                        this IDictionary<TKey, TValue> dictionary, TKey key)
+                        [MustNotEqualNull]this IDictionary<TKey, TValue> dictionary,
+			TKey key)
                 {
                         if (dictionary.ContainsKey(key))
                         {
                                 throw new InvalidOperationException("不能包含指定的键");
                         }
                 }
-        }
+
+		/// <summary>
+		/// 返回字典的只读形式
+		/// </summary>
+		/// <typeparam name="TKey">键类型</typeparam>
+		/// <typeparam name="TValue">值类型</typeparam>
+		/// <param name="dictionary">字典</param>
+		/// <returns>字典的只读形式</returns>
+		public static ReadOnlyDictionary<TKey,TValue> ToReadOnlyDictionary<TKey, TValue>(
+			[MustNotEqualNull]this IDictionary<TKey, TValue> dictionary)
+		{
+			return new ReadOnlyDictionary<TKey,TValue>(dictionary);
+		}
+	}
 }

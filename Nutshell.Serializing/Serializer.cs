@@ -11,27 +11,30 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Data.Models;
+
 namespace Nutshell.Serializing
 {
-        /// <summary>
-        ///         序列化器抽象基类
-        /// </summary>
-        public abstract class Serializer:ISerializer
-        {
-                /// <summary>
-                ///         将对象序列化为字节数组
-                /// </summary>
-                /// <typeparam name="T">类型参数</typeparam>
-                /// <param name="t">序列化对象</param>
-                /// <returns>序列化完成后的字节数组</returns>
-                public abstract byte[] Serialize<T>(T t) where T : class;
+	/// <summary>
+	///         序列化器抽象基类
+	/// </summary>
+	public abstract class Serializer<T> : ISerializer<T> where T : IDataModel
+	{
+		/// <summary>
+		///         将对象序列化为字节数组
+		/// </summary>
+		/// <typeparam name="T">类型参数</typeparam>
+		/// <param name="t">序列化对象</param>
+		/// <returns>序列化完成后的字节数组</returns>
+		public abstract byte[] Serialize([MustNotEqualNull] T t);
 
-                /// <summary>
-                ///         将字节数组反序列化为对象
-                /// </summary>
-                /// <typeparam name="T">类型参数</typeparam>
-                /// <param name="content">包含对象信息的字节数组</param>
-                /// <returns>反序列化后的对象</returns>
-                public abstract T Deserialize<T>(byte[] content) where T : class;
-        }
+		/// <summary>
+		///         将字节数组反序列化为对象
+		/// </summary>
+		/// <typeparam name="T">类型参数</typeparam>
+		/// <param name="content">包含对象信息的字节数组</param>
+		/// <returns>反序列化后的对象</returns>
+		public abstract T Deserialize([MustNotEqualNull] byte[] content);
+	}
 }

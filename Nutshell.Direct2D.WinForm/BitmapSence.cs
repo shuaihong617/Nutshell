@@ -18,7 +18,9 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
 using SharpDX.Direct2D1;
+using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 using DXBitmap = SharpDX.Direct2D1.Bitmap;
+using PixelFormat = Nutshell.Drawing.Imaging.PixelFormat;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
@@ -33,22 +35,22 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,
                                 CompatibleRenderTargetOptions.None);
 
-                        _backgroundBitmap = new NSBitmap(this, string.Empty, control.Width, control.Height, NSPixelFormat.Bgra32, new NSSwapTimeStamp());
-                        _foregroundBitmap = new NSBitmap(this, string.Empty, control.Width, control.Height, NSPixelFormat.Bgra32, new NSSwapTimeStamp());
+                        _backgroundBitmap = new Bitmap(this, string.Empty, control.Width, control.Height, PixelFormat.Bgra32, new NSSwapTimeStamp());
+                        _foregroundBitmap = new Bitmap(this, string.Empty, control.Width, control.Height, PixelFormat.Bgra32, new NSSwapTimeStamp());
                 }
 
                 protected BitmapRenderTarget BufferBitmapRenderTarget { get; private set; }
                 public DateTime UpdateTime { get; private set; }
 
-                private readonly NSBitmap _backgroundBitmap;
+                private readonly Bitmap _backgroundBitmap;
 
-                private readonly NSBitmap _foregroundBitmap;
+                private readonly Bitmap _foregroundBitmap;
 
                 private readonly object _threadLock = new object();
 
                 protected TimeSpan ProcessTimeSpan { get; private set; }
 
-                public void Swap(NSBitmap source = null)
+                public void Swap(Bitmap source = null)
                 {
                         lock (_threadLock)
                         {

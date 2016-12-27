@@ -21,7 +21,7 @@ namespace Nutshell.Data
         /// <summary>
         ///         主键对象
         /// </summary>
-        public class StorableObject : IdentityObject,IStorable
+        public class StorableObject: IdentityObject,IStorable<IDataModel>
         {
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.

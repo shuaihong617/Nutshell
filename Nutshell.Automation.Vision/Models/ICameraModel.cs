@@ -35,6 +35,6 @@ namespace Nutshell.Hardware.Vision.Models
                 /// <summary>
                 ///         像素格式
                 /// </summary>
-                NSPixelFormat PixelFormat { get; set; }
+                PixelFormat PixelFormat { get; set; }
         }
 }

@@ -13,7 +13,10 @@
 
 namespace Nutshell.Automation
 {
-        public class UncontrollableDevice
+	/// <summary>
+	/// 不可控设备
+	/// </summary>
+	public class UncontrollableDevice
         {
         }
 }

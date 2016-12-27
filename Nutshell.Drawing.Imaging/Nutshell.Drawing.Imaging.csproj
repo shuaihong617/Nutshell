@@ -78,10 +78,10 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NSBitmap.cs" />
+    <Compile Include="Bitmap.cs" />
     <Compile Include="MSBitmapExtensions.cs" />
-    <Compile Include="NSPixelFormat.cs" />
-    <Compile Include="NSPixelFormatExtensions.cs" />
+    <Compile Include="PixelFormat.cs" />
+    <Compile Include="PixelFormatExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

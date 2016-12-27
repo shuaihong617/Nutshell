@@ -13,6 +13,7 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
+using Nutshell.Data;
 using Nutshell.Data.Models;
 
 namespace Nutshell.Automation
@@ -20,7 +21,7 @@ namespace Nutshell.Automation
         /// <summary>
         /// 可控设备
         /// </summary>
-        public abstract class ControllableDevice : Device
+        public abstract class ControllableDevice : Device,IStorable<IControllableDeviceModel>
         {
                 /// <summary>
                 /// 初始化<see cref="ControllableDevice" />的新实例.
@@ -30,7 +31,7 @@ namespace Nutshell.Automation
                 protected ControllableDevice(IdentityObject parent, string id = "可控设备")
                         : base(parent, id)
                 {
-                        ControlMode = ControlMode.普通;
+                        ControlMode = ControlMode.Release;
                 }
 
                 #region 属性
@@ -46,12 +47,20 @@ namespace Nutshell.Automation
                 /// Loads the specified model.
                 /// </summary>
                 /// <param name="model">The model.</param>
-                public override void Load([MustAssignableFrom(typeof(IDeviceModel))] IDataModel model)
+                public void Load([MustNotEqualNull]IControllableDeviceModel model)
                 {
                         base.Load(model);
 
-                        var deviceModel = model as IControllableDeviceModel;
-                        ControlMode = deviceModel.ControlMode;
+                        ControlMode = model.ControlMode;
                 }
+
+	        /// <summary>
+	        ///         保存数据到数据模型
+	        /// </summary>
+	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+	        public void Save([MustNotEqualNull]IControllableDeviceModel model)
+	        {
+		        throw new System.NotImplementedException();
+	        }
         }
 }

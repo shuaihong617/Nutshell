@@ -27,7 +27,7 @@ namespace Nutshell.Hardware.Vision
         ///         摄像机
         /// </summary>
         [NotifyPropertyChanged]        
-        public abstract class Camera : CaptureDevice<NSBitmap>
+        public abstract class Camera : CaptureDevice<Bitmap>
         {
                 /// <summary>
                 ///         初始化<see cref="Camera" />的实例
@@ -38,7 +38,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
                 protected Camera(IdentityObject parent, string id = null, int width = 2, int height = 2,
-                        NSPixelFormat pixelFormat = NSPixelFormat.Mono8)
+                        PixelFormat pixelFormat = Drawing.Imaging.PixelFormat.Mono8)
                         : base(parent, id)
                 {
                         Region = new Region(this);
@@ -97,7 +97,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         格式
                 /// </summary>
-                public NSPixelFormat PixelFormat { get; private set; }
+                public PixelFormat PixelFormat { get; private set; }
 
                 /// <summary>
                 ///         获取有效图像ROI区域数据模型
@@ -108,7 +108,7 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public NSReadWritePool<NSBitmap> Buffers { get; private set; }
+                public NSReadWritePool<Bitmap> Buffers { get; private set; }
 
                 #endregion
 
@@ -158,10 +158,10 @@ namespace Nutshell.Hardware.Vision
 
                         if (Buffers == null)
                         {
-                                Buffers = new NSReadWritePool<NSBitmap>(this, "采集图像缓冲池");
+                                Buffers = new NSReadWritePool<Bitmap>(this, "采集图像缓冲池");
                                 for (var i = 1; i < 5; i++)
                                 {
-                                        var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height,
+                                        var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height,
                                                 PixelFormat, new NSCaptureTimeStamp());
                                         Buffers.Add(bitmap);
                                 }

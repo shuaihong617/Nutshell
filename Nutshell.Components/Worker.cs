@@ -25,7 +25,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         工作者
         /// </summary>
-        public abstract class Worker : StorableObject, IWorker
+        public abstract class Worker : StorableObject, IWorker,IStorable<IWorkerModel>
         {
                 protected Worker(IdentityObject parent, string id = null)
                         : base(parent,id)
@@ -76,32 +76,38 @@ namespace Nutshell.Components
                         }
                 }
 
-                #endregion
+		#endregion
 
-                public override void Load([MustAssignableFrom(typeof(IWorkerModel))]IDataModel model)
-                {
-                        base.Load(model);
+		/// <summary>
+		/// 从数据模型加载数据
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Load(IWorkerModel model)
+		{
+			base.Load(model);
 
-                        var workerModel = (IWorkerModel)model;
-                        IsEnable = workerModel.IsEnable;
-                }
+			IsEnable = model.IsEnable;
+		}
+
+		/// <summary>
+		/// 保存数据到数据模型
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		/// <returns>成功返回True, 否则返回False</returns>
+		public void Save(IWorkerModel model)
+		{
+			base.Save(model);
+
+			model.IsEnable = IsEnable;
+		}
 
 
-                public override void Save([MustAssignableFrom(typeof(IWorkerModel))]IDataModel model)
-                {
-                        base.Save(model);
-
-                        var workerModel = (IWorkerModel)model;
-                        workerModel.IsEnable = IsEnable;
-                }
-
-
-                /// <summary>
-                ///         启动
-                /// </summary>
-                /// <remarks>
-                /// </remarks>
-                public bool Start()
+		/// <summary>
+		///         启动
+		/// </summary>
+		/// <remarks>
+		/// </remarks>
+		public bool Start()
                 {
                         if (IsStarted)
                         {
@@ -245,5 +251,7 @@ namespace Nutshell.Components
                 }
 
                 #endregion
+
+	        
         }
 }

@@ -114,7 +114,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="NSBitmapTests.cs" />
+    <Compile Include="BitmapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

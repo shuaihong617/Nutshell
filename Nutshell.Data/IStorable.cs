@@ -17,25 +17,24 @@ using Nutshell.Data.Models;
 namespace Nutshell.Data
 {
         /// <summary>
-        ///         主键对象
+        ///         可存储对象接口
         /// </summary>
-        public interface IStorable : IIdentityObject
+        public interface IStorable<in T> : IIdentityObject where T : IDataModel
         {
                 #region 方法
 
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
-                /// <param name="model">数据模型</param>
-                void Load([MustNotEqualNull] IDataModel model);
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
+                void Load([MustNotEqualNull]T model);
 
 
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                /// <returns>成功返回True, 否则返回False</returns>
-                void Save([MustNotEqualNull] IDataModel model);
+		/// <summary>
+		///         保存数据到数据模型
+		/// </summary>
+		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+		void Save([MustNotEqualNull] T model);
 
                 #endregion
         }

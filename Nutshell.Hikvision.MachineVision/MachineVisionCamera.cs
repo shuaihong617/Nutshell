@@ -32,7 +32,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         public class MachineVisionCamera : NetworkCamera
         {
                 public MachineVisionCamera(IdentityObject parent, string id = null, string ipAddress = "192.168.1.1")
-                        : base(parent, id, 1280, 960, NSPixelFormat.Rgb24, ipAddress)
+                        : base(parent, id, 1280, 960, Drawing.Imaging.PixelFormat.Rgb24, ipAddress)
                 {
                         _captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
 
@@ -184,7 +184,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         return true;
                 }
 
-                protected override sealed NSBitmap CaptureCore()
+                protected override sealed Bitmap CaptureCore()
                 {
                         if (!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured)
                         {
@@ -192,7 +192,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 return null;
                         }
 
-                        NSBitmap bitmap = Buffers.WriteLock();
+                        Bitmap bitmap = Buffers.WriteLock();
 
                         MVErrorCode mvError = MVOfficialAPI.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
                                 ref _mvFrameOutInfo);

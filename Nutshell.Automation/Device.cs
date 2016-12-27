@@ -14,6 +14,7 @@
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Components;
+using Nutshell.Data;
 using Nutshell.Data.Models;
 
 namespace Nutshell.Automation
@@ -21,7 +22,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         设备
         /// </summary>
-        public abstract class Device : Worker, IDevice
+        public abstract class Device : Worker, IDevice,IStorable<IDeviceModel>
         {
                 #region 构造函数
 
@@ -44,13 +45,20 @@ namespace Nutshell.Automation
 
                 #region 方法
 
-                public override void Load([MustAssignableFrom(typeof (IDeviceModel))] IDataModel model)
+                public void Load(IDeviceModel model)
                 {
                         base.Load(model);
-
-                        var deviceModel = model as IDeviceModel;
                 }
 
-                #endregion
+	        /// <summary>
+	        ///         保存数据到数据模型
+	        /// </summary>
+	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+	        public void Save(IDeviceModel model)
+	        {
+		        throw new System.NotImplementedException();
+	        }
+
+	        #endregion
         }
 }

@@ -24,7 +24,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 private readonly Looper _renderLooper;
 
-                protected NSBitmap NsBitmap { get; set; }
+                protected Bitmap Bitmap { get; set; }
 
                 private bool _isRendering;
 

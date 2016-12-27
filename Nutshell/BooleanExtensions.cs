@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
 {
@@ -67,14 +68,18 @@ namespace Nutshell
                         return value || condition;
                 }
 
-                /// <summary>
-                ///         返回变量的中文形式字符串
-                /// </summary>
-                /// <param name="value">if set to <c>true</c> [b].</param>
-                /// <returns>中文形式字符串</returns>
-                public static String ToChineseString(this bool value)
+		/// <summary>
+		/// 返回值的中文形式字符串
+		/// </summary>
+		/// <param name="value">布尔值</param>
+		/// <param name="trueString">当布尔值为True时返回的中文字符串</param>
+		/// <param name="falseString">当布尔值为False时返回的中文字符串</param>
+		/// <returns>中文形式字符串</returns>
+		public static String ToChineseString(this bool value, 
+			[MustNotEqualNull]string trueString = "真", 
+			[MustNotEqualNull]string falseString ="假")
                 {
-                        return value ? "是" : "否";
+                        return value ? trueString : falseString;
                 }
         }
 }

@@ -11,12 +11,15 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Data.Models;
+
 namespace Nutshell.Serializing
 {
         /// <summary>
         ///         序列化器抽象基类
         /// </summary>
-        public interface ISerializer
+        public interface ISerializer<T> where T: IDataModel
         {
                 /// <summary>
                 ///         将对象序列化为字节数组
@@ -24,7 +27,7 @@ namespace Nutshell.Serializing
                 /// <typeparam name="T">类型参数</typeparam>
                 /// <param name="t">序列化对象</param>
                 /// <returns>序列化完成后的字节数组</returns>
-                byte[] Serialize<T>(T t) where T : class;
+                byte[] Serialize([MustNotEqualNull]T t);
 
                 /// <summary>
                 ///         将字节数组反序列化为对象
@@ -32,6 +35,6 @@ namespace Nutshell.Serializing
                 /// <typeparam name="T">类型参数</typeparam>
                 /// <param name="content">包含对象信息的字节数组</param>
                 /// <returns>反序列化后的对象</returns>
-                T Deserialize<T>(byte[] content) where T : class;
+                T Deserialize([MustNotEqualNull]byte[] content);
         }
 }

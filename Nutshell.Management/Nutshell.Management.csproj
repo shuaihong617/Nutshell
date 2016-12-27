@@ -52,9 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NSCPU.cs" />
-    <Compile Include="NSCPUKernel.cs" />
-    <Compile Include="NSMemroy.cs" />
+    <Compile Include="Cpu.cs" />
+    <Compile Include="CpuKernel.cs" />
+    <Compile Include="Memroy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

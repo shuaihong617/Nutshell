@@ -11,15 +11,33 @@
 // </summary>
 // ***********************************************************************
 
-using System.Collections.ObjectModel;
+using System;
+using System.ComponentModel;
+using Nutshell.Aspects.Events;
 
 namespace Nutshell.Communication
 {
-        /// <summary>
-        /// 接收转发器接口
-        /// </summary>
-        public interface IReceiver:ITransferor
-        {                
-                
-        }
+	/// <summary>
+	///         接收器接口
+	/// </summary>
+	public interface IReceiver : IActor
+	{
+		#region 事件
+
+		/// <summary>
+		///         当数据接收成功时发生。
+		/// </summary>
+		[Description("数据接收成功事件")]
+		[LogEventInvokeHandler]
+		event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
+
+		/// <summary>
+		///         当数据接收失败时发生。
+		/// </summary>
+		[Description("数据接收失败事件")]
+		[LogEventInvokeHandler]
+		event EventHandler<ValueEventArgs<Exception>> ReceiveFailed;
+
+		#endregion
+	}
 }

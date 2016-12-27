@@ -19,6 +19,7 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
+using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 {
@@ -49,7 +50,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         return base.StartCore();
                 }
 
-                private void Decoder_DecodeFinished(object sender, ValueEventArgs<NSBitmap> e)
+                private void Decoder_DecodeFinished(object sender, ValueEventArgs<Bitmap> e)
                 {
                         var bitmap = e.Value;
 

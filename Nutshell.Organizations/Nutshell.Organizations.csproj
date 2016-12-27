@@ -58,9 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NSGroupBase.cs" />
-    <Compile Include="NSOrganizationBase.cs" />
-    <Compile Include="NSPersonBase.cs" />
+    <Compile Include="GroupBase.cs" />
+    <Compile Include="OrganizationBase.cs" />
+    <Compile Include="PersonBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NSSex.cs" />
   </ItemGroup>

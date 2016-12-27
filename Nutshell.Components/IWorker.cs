@@ -11,12 +11,15 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Components.Models;
+using Nutshell.Data;
+
 namespace Nutshell.Components
 {
         /// <summary>
         ///         工作者接口
         /// </summary>
-        public interface IWorker
+        public interface IWorker:IStorable<IWorkerModel>
         {
                 /// <summary>
                 ///         是否允许运行

@@ -32,7 +32,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                public CameraDecoder(IdentityObject parent, string id, Camera camera, NSPixelFormat pixelFormat)
+                public CameraDecoder(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
                         : base(parent, id)
                 {
                         camera.NotNull();
@@ -51,16 +51,16 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 ///         格式
                 /// </summary>
-                public NSPixelFormat PixelFormat { get; private set; }
+                public PixelFormat PixelFormat { get; private set; }
 
                 /// <summary>
                 ///         图像池
                 /// </summary>
-                public NSReadWritePool<NSBitmap> Buffers { get; private set; }
+                public NSReadWritePool<Bitmap> Buffers { get; private set; }
 
                 private readonly Looper _looper;
 
-                private NSBitmap _decodeBitmap;
+                private Bitmap _decodeBitmap;
 
                 /// <summary>
                 ///         创建图像缓冲池
@@ -80,10 +80,10 @@ namespace Nutshell.Hardware.Vision
                                 return;
                         }
 
-                        Buffers = new NSReadWritePool<NSBitmap>(this, "解码图像缓冲池");
+                        Buffers = new NSReadWritePool<Bitmap>(this, "解码图像缓冲池");
                         for (int i = 1; i < 5; i++)
                         {
-                                var bitmap = new NSBitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat, new NSDecodeTimeStamp());
+                                var bitmap = new Bitmap(Buffers, i + "号缓冲位图", width, height, PixelFormat, new NSDecodeTimeStamp());
                                 Buffers.Add(bitmap);
                         }
                 }
@@ -99,7 +99,7 @@ namespace Nutshell.Hardware.Vision
                         return true;
                 }
 
-                private void Camera_CaptureSuccessed(object sender, ValueEventArgs<NSBitmap> e)
+                private void Camera_CaptureSuccessed(object sender, ValueEventArgs<Bitmap> e)
                 {
                         if (_decodeBitmap != null)
                         {
@@ -132,7 +132,7 @@ namespace Nutshell.Hardware.Vision
                                 return;
                         }                        
                         
-                        NSBitmap target = Buffers.WriteLock();
+                        Bitmap target = Buffers.WriteLock();
 
                         _decodeBitmap.TranslateTo(target);
 
@@ -148,7 +148,7 @@ namespace Nutshell.Hardware.Vision
 
                         Camera.Buffers.ReadUnlock(_decodeBitmap);
 
-                        OnDecodeFinished(new ValueEventArgs<NSBitmap>(target));
+                        OnDecodeFinished(new ValueEventArgs<Bitmap>(target));
 
                         _decodeBitmap = null;
                 }
@@ -157,13 +157,13 @@ namespace Nutshell.Hardware.Vision
 
                 #region 事件
 
-                public event EventHandler<ValueEventArgs<NSBitmap>> DecodeFinished;
+                public event EventHandler<ValueEventArgs<Bitmap>> DecodeFinished;
 
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnDecodeFinished(ValueEventArgs<NSBitmap> e)
+                protected virtual void OnDecodeFinished(ValueEventArgs<Bitmap> e)
                 {
                         e.Raise(this, ref DecodeFinished);
                 }

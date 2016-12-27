@@ -169,7 +169,7 @@
     <Compile Include="UncontrollableDevice.cs" />
     <Compile Include="ControllableDevice.cs" />
     <Compile Include="Models\IDeviceModel.cs" />
-    <Compile Include="NSDeviceRuntime.cs" />
+    <Compile Include="DeviceRuntime.cs" />
     <Compile Include="CaptureDevice.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="Device.cs" />

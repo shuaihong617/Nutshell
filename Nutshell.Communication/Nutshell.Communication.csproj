@@ -46,23 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Port.cs" />
-    <Compile Include="IPort.cs" />
-    <Compile Include="Exchanger.cs" />
-    <Compile Include="SendPort.cs" />
-    <Compile Include="Transferor.cs" />
-    <Compile Include="Receiver.cs" />
-    <Compile Include="ReceivePort.cs" />
+    <Compile Include="Models\IActorModel.cs" />
+    <Compile Include="Models\ISenderModel.cs" />
+    <Compile Include="Models\IReceiverModel.cs" />
+    <Compile Include="Models\IBusModel.cs" />
+    <Compile Include="Site.cs" />
+    <Compile Include="ISite.cs" />
+    <Compile Include="Bus.cs" />
     <Compile Include="IReceiver.cs" />
     <Compile Include="ISender.cs" />
-    <Compile Include="ITransferor.cs" />
-    <Compile Include="IReceivePort.cs" />
-    <Compile Include="IExchanger.cs" />
-    <Compile Include="ReceiveExchanger.cs" />
-    <Compile Include="IReceiveExchanger.cs" />
-    <Compile Include="ISendPort.cs" />
-    <Compile Include="SendExchanger.cs" />
-    <Compile Include="ISendExchanger.cs" />
+    <Compile Include="IActor.cs" />
+    <Compile Include="IBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
