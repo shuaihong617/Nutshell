@@ -20,7 +20,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         发送器和接收器基础接口
 	/// </summary>
-	public interface IActor : IWorker,IStorable<IActorModel>
+	public interface IActor : IDispatcher,IStorable<IActorModel>
 	{
 	}
 }

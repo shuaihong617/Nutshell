@@ -145,14 +145,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Aspects\Events\LogEventHandlerChangedAttribute.cs" />
-    <Compile Include="Aspects\Events\LogEventInvokeHandlerAttribute.cs" />
+    <Compile Include="Aspects\Events\WillLogEventInvokeHandlerAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustAssignableFromAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustGreaterThanOrEqualAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustGreaterThanAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullOrEmptyAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualZeroAttribute.cs" />
     <Compile Include="Aspects\Locations\Propertys\EuqalSetDirectReturnAttribute.cs" />
-    <Compile Include="Aspects\Locations\Propertys\NotifyPropertyChangedAttribute.cs" />
+    <Compile Include="Aspects\Locations\Propertys\WillNotifyPropertyChangedAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />
     <Compile Include="Aspects\Methods\EventRaiseMethodAttribute.cs" />

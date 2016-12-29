@@ -18,7 +18,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         海康威视机器视觉摄像机运行环境
         /// </summary>
-        public abstract class DeviceRuntime:Worker
+        public abstract class DeviceRuntime:Dispatcher
         {
                 protected DeviceRuntime()
                         :base(null,"设备运行环境")

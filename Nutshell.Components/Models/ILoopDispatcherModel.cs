@@ -11,16 +11,23 @@
 // </summary>
 // ***********************************************************************
 
+using System.Threading;
 
 namespace Nutshell.Components.Models
 {
         /// <summary>
-        ///         看门狗序列化数据模型
+        ///         循环调度者数据模型接口
         /// </summary>
-        public interface IWatchDogModel : IDispatcherModel
+        public interface ILoopDispatcherModel:IDispatcherModel
         {
                 /// <summary>
-                ///         溢出时间间隔, 单位毫秒
+                /// 获取循环调度线程优先级
+                /// </summary>
+                /// <value>循环调度线程优先级</value>
+                ThreadPriority Priority { get; set; }
+
+                /// <summary>
+                ///         循环工作线程休眠时间间隔（毫秒）
                 /// </summary>
                 int Interval { get; set; }
         }

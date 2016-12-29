@@ -31,11 +31,6 @@ namespace Nutshell.Automation
                 public string Model;
 
                 /// <summary>
-                /// 设备版本
-                /// </summary>
-                public Version DeviceVersion;
-
-                /// <summary>
                 /// 序列号
                 /// </summary>
                 public string SerialNumber;

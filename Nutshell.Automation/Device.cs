@@ -11,25 +11,28 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
-using Nutshell.Components;
 using Nutshell.Data;
-using Nutshell.Data.Models;
 
 namespace Nutshell.Automation
 {
         /// <summary>
         ///         设备
         /// </summary>
-        public abstract class Device : Worker, IDevice,IStorable<IDeviceModel>
+        public abstract class Device : StorableObject, IDevice, IStorable<IDeviceModel>
         {
                 #region 构造函数
 
-                protected Device(IdentityObject parent, string id = "设备", ManufacturingInformation manufacturingInformation = null)
+                protected Device(IdentityObject parent, string id = "设备",
+                        ManufacturingInformation manufacturingInformation = null)
                         : base(parent, id)
                 {
-                        ManufacturingInformation = manufacturingInformation;
+                        if (manufacturingInformation != null)
+                        {
+                                ManufacturingInformation = manufacturingInformation;
+                        }
                 }
 
                 #endregion
@@ -37,9 +40,10 @@ namespace Nutshell.Automation
                 #region 属性
 
                 /// <summary>
-                /// 制造信息
+                ///         制造信息
                 /// </summary>
-                public ManufacturingInformation ManufacturingInformation { get; private set; }
+                [MustNotEqualNull]
+                public ManufacturingInformation ManufacturingInformation { get; }
 
                 #endregion
 
@@ -50,15 +54,15 @@ namespace Nutshell.Automation
                         base.Load(model);
                 }
 
-	        /// <summary>
-	        ///         保存数据到数据模型
-	        /// </summary>
-	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-	        public void Save(IDeviceModel model)
-	        {
-		        throw new System.NotImplementedException();
-	        }
+                /// <summary>
+                ///         保存数据到数据模型
+                /// </summary>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                public void Save(IDeviceModel model)
+                {
+                        throw new NotImplementedException();
+                }
 
-	        #endregion
+                #endregion
         }
 }

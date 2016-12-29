@@ -6,17 +6,17 @@ using Nutshell.Messaging;
 
 namespace Nutshell.Distributing
 {
-        public abstract class Beater : Worker
+        public abstract class Beater : Dispatcher
         {
                 protected Beater(IdentityObject parent, string id = "心跳", int interval = 3000)
                         : base(parent, id)
                 {
-                        SendLooper = new Looper(this, "发送循环", interval, Send);
+                        SendLoopDispatcher = new LoopDispatcher(this, "发送循环", interval, Send);
                 }
 
                 public SendSite<StringMessage> SendSite { get; protected set; }
 
-                public Looper SendLooper { get; private set; }
+                public LoopDispatcher SendLoopDispatcher { get; private set; }
 
                 public StringMessage Message { get; private set; }
 
@@ -32,7 +32,7 @@ namespace Nutshell.Distributing
                         var beaterModel = model as BeaterModel;
                         Trace.Assert(beaterModel != null);
 
-                        SendLooper.Load(beaterModel.SendLooperModel);
+                        SendLoopDispatcher.Load(beaterModel.SendLooperModel);
                 }
 
                 private void Send()
@@ -45,12 +45,12 @@ namespace Nutshell.Distributing
 
                 protected override bool StartCore()
                 {
-                        return SendSite.Start() && SendLooper.Start();
+                        return SendSite.Start() && SendLoopDispatcher.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return SendLooper.Stop() && SendSite.Stop();
+                        return SendLoopDispatcher.Stop() && SendSite.Stop();
                 }
         }
 }

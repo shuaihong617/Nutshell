@@ -15,6 +15,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
 using Nutshell.Data.Models;
 using Nutshell.Log;
@@ -22,33 +23,23 @@ using Nutshell.Log;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         循环工作者
+        ///         循环调度者
         /// </summary>
-        public class Looper : Worker
+        public class LoopDispatcher : Dispatcher,ILoopDispatcher
         {
-                public Looper(IdentityObject parent, Action action)
-                        : this(parent, 1000, action)
-                {
-                }
-
-                public Looper(IdentityObject parent, string id, Action action)
+                public LoopDispatcher(IdentityObject parent, string id, Action action)
                         : this(parent, id, ThreadPriority.Normal, 1000, action)
                 {
 
                 }
 
-                public Looper(IdentityObject parent, int interval, Action action)
-                        : this(parent, String.Empty, interval, action)
-                {
-                }
-
-                public Looper(IdentityObject parent, string id, int interval, Action action)
+                public LoopDispatcher(IdentityObject parent, string id, int interval, Action action)
                         : this(parent, id, ThreadPriority.Normal,  interval, action)
                 {
                        
                 }
 
-                public Looper(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
+                public LoopDispatcher(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
                         : base(parent, id)
                 {
                         Priority = priority;
@@ -68,19 +59,33 @@ namespace Nutshell.Components
 
                 #endregion
 
+                /// <summary>
+                /// 获取循环调度线程优先级
+                /// </summary>
+                /// <value>循环调度线程优先级</value>
+                [WillNotifyPropertyChanged]
                 public ThreadPriority Priority { get; private set; }
 
-                public int Interval { get; private set; }
+                /// <summary>
+                /// 获取循环调度间隔时间
+                /// </summary>
+                /// <value>循环调度间隔事件</value>
+                [MustGreaterThanOrEqual(0)]
+                [WillNotifyPropertyChanged]
+                public int Interval { get; set; }
 
-                public override void Load([MustAssignableFrom(typeof(ILooperModel))]IDataModel model)
+                public void Load([MustNotEqualNull]ILoopDispatcherModel model)
                 {
                         
                         base.Load(model);
 
-                        var looperModel = model as ILooperModel;
+                        Priority = model.Priority;
+                        Interval = model.Interval;
+                }
 
-                        Trace.Assert(looperModel.Interval > 0);
-                        Interval = looperModel.Interval;
+                public void Save([MustNotEqualNull]ILoopDispatcherModel model)
+                {
+                        throw new NotImplementedException();
                 }
 
                 protected override bool StartCore()

@@ -23,7 +23,7 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         ///         摄像机图像消费者
         /// </summary>
-        public class CameraDecoder : Worker
+        public class CameraDecoder : Dispatcher
         {
                 /// <summary>
                 ///         初始化<see cref="CameraDecoder" />的新实例.
@@ -40,7 +40,7 @@ namespace Nutshell.Hardware.Vision
 
                         PixelFormat = pixelFormat;
 
-                        _looper = new Looper(this, string.Empty, ThreadPriority.Highest,5, Decode);
+                        _loopDispatcher = new LoopDispatcher(this, string.Empty, ThreadPriority.Highest,5, Decode);
                 }
 
                 /// <summary>
@@ -58,7 +58,7 @@ namespace Nutshell.Hardware.Vision
                 /// </summary>
                 public NSReadWritePool<Bitmap> Buffers { get; private set; }
 
-                private readonly Looper _looper;
+                private readonly LoopDispatcher _loopDispatcher;
 
                 private Bitmap _decodeBitmap;
 
@@ -95,7 +95,7 @@ namespace Nutshell.Hardware.Vision
                         CreateBitmapPool();
 
                         Camera.CaptureSuccessed += Camera_CaptureSuccessed;
-                        _looper.Start();
+                        _loopDispatcher.Start();
                         return true;
                 }
 
@@ -113,7 +113,7 @@ namespace Nutshell.Hardware.Vision
 
                 protected override sealed bool StopCore()
                 {
-                        _looper.Stop();
+                        _loopDispatcher.Stop();
                         Camera.CaptureSuccessed -= Camera_CaptureSuccessed;
                         return true;
                 }

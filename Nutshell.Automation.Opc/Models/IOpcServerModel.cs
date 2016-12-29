@@ -19,7 +19,7 @@ namespace Nutshell.Automation.OPC.Models
 	/// <summary>
 	///         已定义主键的xmlOPC服务器数据模型
 	/// </summary>
-	public interface IOpcServerModel : IControllableDeviceModel
+	public interface IOpcServerModel : IConnectableDeviceModel
 	{
 		/// <summary>
 		///         名称

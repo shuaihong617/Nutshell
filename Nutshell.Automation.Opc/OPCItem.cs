@@ -5,6 +5,7 @@ using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Automation;
+using Nutshell.Components;
 using Nutshell.Log;
 using OPCAutomation;
 
@@ -50,7 +51,7 @@ namespace Nutshell.Automation.OPC
                         }
                 }
 
-		[NotifyPropertyChanged]
+		[WillNotifyPropertyChanged]
                 public DateTime UpdateTime { get; private set; }
 
 	        /// <summary>
@@ -84,7 +85,7 @@ namespace Nutshell.Automation.OPC
 
                         try
                         {
-                                if (server.RunMode != RunMode.Release)
+                                if (server.RunMode != DebugMode.Release)
                                 {
                                         throw new InvalidOperationException(GlobalId + "只能在发布模式下读取远程数据");
                                 }
@@ -160,7 +161,7 @@ namespace Nutshell.Automation.OPC
 
                         try
                         {
-                                if (server.RunMode != RunMode.Release)
+                                if (server.RunMode != DebugMode.Release)
                                 {
                                         throw new InvalidOperationException(GlobalId + "只能在发布模式下写入远程数据");
                                 }

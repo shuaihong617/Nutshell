@@ -19,8 +19,9 @@ namespace Nutshell.Components
         public interface IEnable
         {
                 /// <summary>
-                ///         是否启用
+                /// 获取是否启用
                 /// </summary>
+                /// <value>如果启用则返回True，否则返回False</value>
                 bool IsEnable { get; }
         }
 }

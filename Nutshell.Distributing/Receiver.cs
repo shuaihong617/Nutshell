@@ -33,7 +33,7 @@ namespace Nutshell.Distributing
                 protected Receiver(IdentityObject parent, string id = "接收器")
                         : base(parent, id)
                 {
-                        ReceiveLooper = new Looper(this, "接收循环", Enqueue);
+                        ReceiveLoopDispatcher = new LoopDispatcher(this, "接收循环", Enqueue);
                 }
 
                 /// <summary>
@@ -46,7 +46,7 @@ namespace Nutshell.Distributing
                 /// </remarks>
                 public bool IsSubscribeMode { get; private set; }
 
-                public Looper ReceiveLooper { get; private set; }
+                public LoopDispatcher ReceiveLoopDispatcher { get; private set; }
 
                 public override void Load(IDataModel model)
                 {
@@ -62,17 +62,17 @@ namespace Nutshell.Distributing
                         LooperModel receiveLooperModel = receiverModel.ReceiveLooperModel;
                         Trace.Assert(receiveLooperModel != null);
 
-                        ReceiveLooper.Load(receiveLooperModel);
+                        ReceiveLoopDispatcher.Load(receiveLooperModel);
                 }
 
                 protected override bool StartCore()
                 {
-                        return ReceiveLooper.Start();
+                        return ReceiveLoopDispatcher.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return ReceiveLooper.Stop();
+                        return ReceiveLoopDispatcher.Stop();
                 }
 
                 private void Enqueue()

@@ -11,7 +11,7 @@ namespace Nutshell.Communication
         /// <summary>
         /// 通讯上下文接口
         /// </summary>
-        public sealed class Site:Worker,ISite
+        public sealed class Site:Dispatcher,ISite
         {
                 public Site(IdentityObject parent, string id = null) 
                         : base(parent, id)

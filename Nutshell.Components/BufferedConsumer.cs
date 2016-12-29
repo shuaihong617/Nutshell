@@ -27,12 +27,12 @@ namespace Nutshell.Components
                 protected BufferedConsumer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
-                        Looper = new Looper(this, Id + "消费循环", Dequeue);
+                        LoopDispatcher = new LoopDispatcher(this, Id + "消费循环", Dequeue);
                 }
 
                 protected IBuffer<T> Buffer { get; set; }
 
-                private Looper Looper { get; set; }
+                private LoopDispatcher LoopDispatcher { get; set; }
 
                 public override void Load([MustAssignableFrom(typeof(IBufferedModel))]IDataModel model)
                 {
@@ -47,12 +47,12 @@ namespace Nutshell.Components
 
                 protected override bool StartCore()
                 {
-                        return Looper.Start();
+                        return LoopDispatcher.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return Looper.Stop();
+                        return LoopDispatcher.Stop();
                 }
 
                 public override void Acquire(T t)

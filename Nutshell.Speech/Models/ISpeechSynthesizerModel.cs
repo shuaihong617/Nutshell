@@ -16,7 +16,7 @@ using Nutshell.Data.Models;
 namespace Nutshell.Speech.Models
 {
         /// <summary>
-        ///         工作者数据模型接口
+        ///         调度者数据模型接口
         /// </summary>
         public interface ISpeechSynthesizerModel : IDataModel
         {

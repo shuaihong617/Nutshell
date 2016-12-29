@@ -25,7 +25,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         总线接口
 	/// </summary>
-	public interface IBus : IWorker,IStorable<IBusModel>
+	public interface IBus : IDispatcher,IStorable<IBusModel>
 	{
 		/// <summary>
 		/// 注册消息类型所用的序列化器
@@ -47,7 +47,7 @@ namespace Nutshell.Communication
 		///         当消息接收成功时发生。
 		/// </summary>
 		[Description("消息接收成功事件")]
-		[LogEventInvokeHandler]
+		[WillLogEventInvokeHandler]
 		event EventHandler<ValueEventArgs<IMessage>> ReceiveSuccessed;
 
 		#endregion

@@ -1,5 +1,4 @@
 ﻿// ***********************************************************************
-
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
 // 创建           : 2014-10-24
 //
@@ -12,34 +11,31 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-
-namespace Nutshell.Automation
+namespace Nutshell.Components
 {
         /// <summary>
-        ///         控制模式枚举
+        ///         调度状态枚举
         /// </summary>
-        [Flags]
-        public enum ControlMode
+        public enum DisptachState
         {
                 /// <summary>
-                ///         未定义模式，在此模式下设备不工作
+                ///         已停止
                 /// </summary>
-                Undefined = 0,
+                Stoped = 0,
 
                 /// <summary>
-                ///         发布模式，在此模式下设备按实际工作方式运行，接受真实控制信号
+                ///         正在开始
                 /// </summary>
-                Release = 1,
+                Starting = 1,
 
                 /// <summary>
-                ///         调试模式，用于模拟测试或其他用途，接受模拟控制信号
+                ///         已开始
                 /// </summary>
-                Debug = 2,
+                Started = 2,
 
-		/// <summary>
-		///  所有模式，兼容调试模式和发布模式
-		/// </summary>
-		All = Release| Debug
+                /// <summary>
+                ///         正在停止
+                /// </summary>
+                Stoping = 3,
         }
 }

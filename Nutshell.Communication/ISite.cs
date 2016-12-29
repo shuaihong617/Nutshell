@@ -22,7 +22,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         站点接口
 	/// </summary>
-	public interface ISite : IWorker
+	public interface ISite : IDispatcher
 	{
 		#region 发送部分
 
@@ -45,14 +45,14 @@ namespace Nutshell.Communication
 		///         当数据发送成功时发生。
 		/// </summary>
 		[Description("数据发送成功事件")]
-		[LogEventInvokeHandler]
+		[WillLogEventInvokeHandler]
 		event EventHandler<EventArgs> SendSuccessed;
 
 		/// <summary>
 		///         当数据发送成功时发生。
 		/// </summary>
 		[Description("数据发送成功事件")]
-		[LogEventInvokeHandler]
+		[WillLogEventInvokeHandler]
 		event EventHandler<EventArgs> SendFailed;
 
 		#endregion
@@ -74,7 +74,7 @@ namespace Nutshell.Communication
 		///         当数据接收成功时发生。
 		/// </summary>
 		[Description("数据接收成功事件")]
-		[LogEventInvokeHandler]
+		[WillLogEventInvokeHandler]
 		event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
 
 		#endregion

@@ -3,7 +3,7 @@ using Nutshell.Messaging;
 
 namespace Nutshell.Distributing
 {
-        public class Loger : Worker
+        public class Loger : Dispatcher
         {
                 protected Loger(IdentityObject parent, string id = "心跳")
                         : base(parent, id)

@@ -18,7 +18,7 @@ namespace Nutshell.Automation.Models
         /// <summary>
         ///         设备数据模型
         /// </summary>
-        public interface IDeviceModel : IWorkerModel
+        public interface IDeviceModel : IDispatcherModel
         {
         }
 }

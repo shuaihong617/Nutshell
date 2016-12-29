@@ -22,7 +22,7 @@ namespace Nutshell.Aspects.Events
         /// 记录事件调用的特性类，该类不能被继承。
         /// </summary>
         [Serializable]
-        public sealed class LogEventInvokeHandlerAttribute : EventInterceptionAspect
+        public sealed class WillLogEventInvokeHandlerAttribute : EventInterceptionAspect
         {
                 /// <summary>
                 /// Method invoked when the event to which the current aspect is applied is fired, <i>for each</i> delegate

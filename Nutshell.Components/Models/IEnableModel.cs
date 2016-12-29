@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2015-01-05
+// 创建           : 2015-09-05
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2015-01-05
+// 日期           : 2015-09-05
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,17 +11,17 @@
 // </summary>
 // ***********************************************************************
 
-
 namespace Nutshell.Components.Models
 {
         /// <summary>
-        ///         看门狗序列化数据模型
-        /// </summary>
-        public interface IWatchDogModel : IDispatcherModel
+        /// 使能数据模型
+        /// </summary>b
+        public interface IEnableModel
         {
                 /// <summary>
-                ///         溢出时间间隔, 单位毫秒
+                /// 获取或设置是否启用
                 /// </summary>
-                int Interval { get; set; }
+                /// <value>如果启用则返回True，否则返回False</value>
+                bool IsEnable { get; set; }
         }
 }

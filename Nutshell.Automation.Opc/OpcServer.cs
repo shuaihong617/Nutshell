@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Nutshell.Automation.OPC.Models;
+using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Hardware;
@@ -80,7 +81,7 @@ namespace Nutshell.Automation.OPC
                         {
                                 Items.Add(item.Id, item);
 
-                                if (RunMode == RunMode.Debug)
+                                if (DebugMode == DebugMode.Debug)
                                 {
                                         //item.Reset();
                                 }
@@ -90,7 +91,7 @@ namespace Nutshell.Automation.OPC
 
                 protected override bool OpenCore()
                 {
-                        if (RunMode == RunMode.Debug)
+                        if (DebugMode == DebugMode.Debug)
                         {
                                 return true;
                         }
@@ -113,7 +114,7 @@ namespace Nutshell.Automation.OPC
 
                 protected override bool CloseCore()
                 {
-                        if (RunMode == RunMode.Debug)
+                        if (DebugMode == DebugMode.Debug)
                         {
                                 return true;
                         }
@@ -123,7 +124,7 @@ namespace Nutshell.Automation.OPC
 
                 public void Attach()
                 {
-                        if (RunMode == RunMode.Debug)
+                        if (DebugMode == DebugMode.Debug)
                         {
                                 return;
                         }

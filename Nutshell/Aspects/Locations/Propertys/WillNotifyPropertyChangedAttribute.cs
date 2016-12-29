@@ -3,8 +3,9 @@ using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Locations.Propertys
 {
+        [Serializable]
         [AttributeUsage(AttributeTargets.Property)]
-        public class NotifyPropertyChangedAttribute : LocationInterceptionAspect
+        public sealed class WillNotifyPropertyChangedAttribute : LocationInterceptionAspect
         {
                 public override void OnSetValue(LocationInterceptionArgs args)
                 {

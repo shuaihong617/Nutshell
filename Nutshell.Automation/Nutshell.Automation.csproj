@@ -160,10 +160,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IControllableDevice.cs" />
+    <Compile Include="ConnectableDevice.cs" />
+    <Compile Include="IControlableDevice.cs" />
+    <Compile Include="IConnectableDevice.cs" />
     <Compile Include="IndirectControlDevice.cs" />
     <Compile Include="DirectControlDevice.cs" />
-    <Compile Include="Models\IControllableDeviceModel.cs" />
+    <Compile Include="Models\IConnectableDeviceModel.cs" />
     <Compile Include="Models\IManufacturingInformation.cs" />
     <Compile Include="ConnectState.cs" />
     <Compile Include="UncontrollableDevice.cs" />
@@ -175,7 +177,6 @@
     <Compile Include="Device.cs" />
     <Compile Include="RuntimeInformation.cs" />
     <Compile Include="ManufacturingInformation.cs" />
-    <Compile Include="ControlMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
 
 namespace Nutshell.Presentation.Direct2D.WinForm
 {
-        public abstract class CycleRenderer : Worker
+        public abstract class CycleRenderer : Dispatcher
         {
                 protected CycleRenderer(IdentityObject parent, string id = null, BitmapSence sence = null)
                         : base(parent, id)
@@ -17,12 +17,12 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         }
                         Sence = sence;
 
-                        _renderLooper = new Looper(this, "显示循环", ThreadPriority.Highest,5, Render);
+                        _renderLoopDispatcher = new LoopDispatcher(this, "显示循环", ThreadPriority.Highest,5, Render);
                 }
 
                 protected BitmapSence Sence { get;private set; }
 
-                private readonly Looper _renderLooper;
+                private readonly LoopDispatcher _renderLoopDispatcher;
 
                 protected Bitmap Bitmap { get; set; }
 
@@ -30,12 +30,12 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 protected override bool StartCore()
                 {
-                        return _renderLooper.Start();
+                        return _renderLoopDispatcher.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return _renderLooper.Stop();
+                        return _renderLoopDispatcher.Stop();
                 }
 
 

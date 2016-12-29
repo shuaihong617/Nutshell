@@ -21,19 +21,24 @@ namespace Nutshell.Automation
         public enum ConnectState
         {
                 /// <summary>
-                ///         
+                /// 已断开
                 /// </summary>
-                未连接 = 0,
+                Disconnected = 0,
 
                 /// <summary>
-                ///         
+                /// 正在连接        
                 /// </summary>
-                正在连接 = 1,
+                Connecting = 1,
 
                 /// <summary>
-                ///         
+                /// 已连接        
                 /// </summary>
-                已连接 = 2,
+                Connected = 2,
+
+                /// <summary>
+                /// 正在断开
+                /// </summary>
+                Disconnecting = 3
 
         }
 }

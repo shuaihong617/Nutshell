@@ -1,9 +1,10 @@
 ﻿// ***********************************************************************
+
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2015-09-05
+// 创建           : 2014-10-24
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2015-09-05
+// 日期           : 2014-10-24
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,36 +12,23 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
-using Nutshell.Data;
+using System;
 
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         工作者接口
+        ///         调试模式枚举
         /// </summary>
-        public interface IWorker:IStorable<IWorkerModel>
+        public enum DebugMode
         {
                 /// <summary>
-                ///         是否允许运行
+                ///         发布模式，在此模式下设备按实际工作方式运行，接受真实控制信号
                 /// </summary>
-                bool IsEnable { get; }
-
+                Release = 0,
 
                 /// <summary>
-                ///         是否正在运行
+                ///         调试模式，用于模拟测试或其他用途，接受模拟控制信号
                 /// </summary>
-                bool IsStarted { get; }
-
-
-                /// <summary>
-                ///         启动
-                /// </summary>
-                bool Start();
-
-                /// <summary>
-                ///         停止
-                /// </summary>
-                bool Stop();
+                Debug = 1,
         }
 }

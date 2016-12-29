@@ -11,32 +11,25 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-
 namespace Nutshell.Automation.Models
 {
         /// <summary>
-        /// 设备制造信息结构体
+        ///         设备制造信息结构体
         /// </summary>
         public interface IManufacturingInformation
         {
                 /// <summary>
-                /// 制造商
+                ///         制造商
                 /// </summary>
-                 string Manufacturer { get; }
+                string Manufacturer { get; }
 
                 /// <summary>
-                /// 型号
+                ///         型号
                 /// </summary>
-                 string Model { get; }
+                string Model { get; }
 
                 /// <summary>
-                /// 设备版本
-                /// </summary>
-                Version DeviceVersion { get; }
-
-                /// <summary>
-                /// 序列号
+                ///         序列号
                 /// </summary>
                 string SerialNumber { get; }
         }

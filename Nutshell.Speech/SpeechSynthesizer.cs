@@ -17,7 +17,6 @@ using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Speech.Synthesis;
-using Nutshell.Components;
 using Nutshell.Data.Models;
 using Nutshell.Log;
 using Nutshell.Speech.Models;

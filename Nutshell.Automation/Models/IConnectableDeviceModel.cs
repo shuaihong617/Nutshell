@@ -11,15 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
-
 namespace Nutshell.Automation.Models
 {
         /// <summary>
-        ///         可控设备设备数据模型
+        ///         可连接设备数据模型
         /// </summary>
-        public interface IControllableDeviceModel : IDeviceModel
+        public interface IConnectableDeviceModel : IDeviceModel
         {
-                ControlMode ControlMode { get; set; }
         }
 }

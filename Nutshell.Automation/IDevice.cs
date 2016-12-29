@@ -12,16 +12,14 @@
 // ***********************************************************************
 
 
-using Nutshell.Components;
-
 namespace Nutshell.Automation
 {
         /// <summary>
-        /// 设备接口
+        ///         设备接口
         /// </summary>
-        public interface IDevice : IWorker
+        public interface IDevice : IIdentityObject
         {
-        	#region 属性
+                #region 属性
 
                 ManufacturingInformation ManufacturingInformation { get; }
 

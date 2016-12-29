@@ -1,13 +1,13 @@
 ﻿using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
+using Nutshell.Components;
 using Nutshell.Data.Models;
 using Nutshell.Log;
 using PostSharp.Patterns.Model;
 
 namespace Nutshell.Automation
 {
-        [NotifyPropertyChanged]
         public abstract class DirectControlDevice:ControllableDevice
         {
                 protected DirectControlDevice(IdentityObject parent, string id = "直接控制设备")
@@ -23,6 +23,10 @@ namespace Nutshell.Automation
                 #endregion
 
                 #region 属性
+
+                public IDispatcher ConnectionDispatcher { get; private set; }
+
+                public IDispatcher Dispatcher { get; private set; }
 
                 public RuntimeInformation RuntimeInformation { get; private set; }
 
@@ -64,21 +68,10 @@ namespace Nutshell.Automation
 
                 public override void Load([MustAssignableFrom(typeof(IDeviceModel))] IDataModel model)
                 {
-                        base.Load(model);
-
-                        var deviceModel = model as IDeviceModel;
-                        
+                        base.Load(model);                        
                 }
 
-                protected override sealed bool StartCore()
-                {
-                        return Open();
-                }
-
-                protected override sealed bool StopCore()
-                {
-                        return Close();
-                }
+                
 
                 protected bool Open()
                 {
@@ -87,7 +80,7 @@ namespace Nutshell.Automation
                                 return true;
                         }
 
-                        this.Info("运行状态：" + ControlMode);
+                        this.Info("运行状态：" + DebugMode);
 
                         IsOpened = OpenCore();
                         return IsOpened;

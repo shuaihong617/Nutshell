@@ -13,6 +13,7 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
+using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 
@@ -21,7 +22,7 @@ namespace Nutshell.Automation
         /// <summary>
         /// 可控设备
         /// </summary>
-        public abstract class ControllableDevice : Device,IStorable<IControllableDeviceModel>
+        public abstract class ControllableDevice : Device,IControlableDevice,IConnectableDevice
         {
                 /// <summary>
                 /// 初始化<see cref="ControllableDevice" />的新实例.
@@ -31,7 +32,7 @@ namespace Nutshell.Automation
                 protected ControllableDevice(IdentityObject parent, string id = "可控设备")
                         : base(parent, id)
                 {
-                        ControlMode = ControlMode.Release;
+                        DebugMode = DebugMode.Release;
                 }
 
                 #region 属性
@@ -39,7 +40,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 /// 控制模式
                 /// </summary>
-                public ControlMode ControlMode { get; private set; }
+                public DebugMode DebugMode { get; private set; }
 
                 #endregion
 
@@ -47,18 +48,18 @@ namespace Nutshell.Automation
                 /// Loads the specified model.
                 /// </summary>
                 /// <param name="model">The model.</param>
-                public void Load([MustNotEqualNull]IControllableDeviceModel model)
+                public void Load([MustNotEqualNull]IConnectableDeviceModel model)
                 {
                         base.Load(model);
 
-                        ControlMode = model.ControlMode;
+                        DebugMode = model.DebugMode;
                 }
 
 	        /// <summary>
 	        ///         保存数据到数据模型
 	        /// </summary>
 	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-	        public void Save([MustNotEqualNull]IControllableDeviceModel model)
+	        public void Save([MustNotEqualNull]IConnectableDeviceModel model)
 	        {
 		        throw new System.NotImplementedException();
 	        }

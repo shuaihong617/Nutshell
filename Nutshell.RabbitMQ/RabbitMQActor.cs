@@ -5,7 +5,7 @@ using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-	public abstract class RabbitMQActor : Worker, IActor
+	public abstract class RabbitMQActor : Dispatcher, IActor
 	{
 		protected RabbitMQActor(IdentityObject parent, string id = null)
 			: base(parent, id)

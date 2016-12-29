@@ -14,6 +14,7 @@
 using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
 using PostSharp.Patterns.Model;
 
 namespace Nutshell
@@ -57,6 +58,7 @@ namespace Nutshell
                 /// <summary>
                 ///         标识
                 /// </summary>
+                [WillNotifyPropertyChanged]
                 public string Id
                 {
                         get { return _id; }
@@ -75,6 +77,7 @@ namespace Nutshell
                 /// <summary>
                 ///         全局标识
                 /// </summary>
+                [WillNotifyPropertyChanged]
                 public string GlobalId
                 {
                         get { return _globalId; }
@@ -93,7 +96,6 @@ namespace Nutshell
                 /// <summary>
                 ///         上级对象
                 /// </summary>
-                [IgnoreAutoChangeNotification]
                 public IdentityObject Parent
                 {
                         get { return _parent; }
@@ -146,7 +148,7 @@ namespace Nutshell
 
 
                 /// <summary>
-                ///         引发<see cref="E:GlobalIdChanged" />事件
+                ///         引发全局标识改变事件
                 /// </summary>
                 /// <param name="e">包含事件数据的<see cref="EventArgs" />实例</param>
                 private void OnGlobalIdChanged(EventArgs e)

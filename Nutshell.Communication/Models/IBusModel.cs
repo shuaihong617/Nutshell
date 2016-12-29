@@ -20,7 +20,7 @@ namespace Nutshell.Communication.Models
         /// <summary>
         ///         数据模型接口
         /// </summary>
-        public interface IBusModel:IWorkerModel
+        public interface IBusModel:IDispatcherModel
         {
                 
         }
