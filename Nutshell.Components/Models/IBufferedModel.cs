@@ -14,9 +14,9 @@
 namespace Nutshell.Components.Models
 {
         /// <summary>
-        ///         调度者数据模型接口
+        ///         工作者数据模型接口
         /// </summary>
-        public interface IBufferedModel : IDispatcherModel
+        public interface IBufferedModel : IWorkerModel
         {
         }
 }

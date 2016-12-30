@@ -21,7 +21,11 @@ namespace Nutshell.Automation
         {
                 #region 属性
 
-                ManufacturingInformation ManufacturingInformation { get; }
+                /// <summary>
+                /// 获取制造信息
+                /// </summary>
+                /// <value>制造信息</value>
+                IManufacturingInformation ManufacturingInformation { get; }
 
                 #endregion
         }

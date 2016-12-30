@@ -23,23 +23,23 @@ using Nutshell.Log;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         循环调度者
+        ///         循环工作者
         /// </summary>
-        public class LoopDispatcher : Dispatcher,ILoopDispatcher
+        public class Looper : Worker,ILooper
         {
-                public LoopDispatcher(IdentityObject parent, string id, Action action)
+                public Looper(IdentityObject parent, string id, Action action)
                         : this(parent, id, ThreadPriority.Normal, 1000, action)
                 {
 
                 }
 
-                public LoopDispatcher(IdentityObject parent, string id, int interval, Action action)
+                public Looper(IdentityObject parent, string id, int interval, Action action)
                         : this(parent, id, ThreadPriority.Normal,  interval, action)
                 {
                        
                 }
 
-                public LoopDispatcher(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
+                public Looper(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
                         : base(parent, id)
                 {
                         Priority = priority;
@@ -74,7 +74,7 @@ namespace Nutshell.Components
                 [WillNotifyPropertyChanged]
                 public int Interval { get; set; }
 
-                public void Load([MustNotEqualNull]ILoopDispatcherModel model)
+                public void Load([MustNotEqualNull]ILooperModel model)
                 {
                         
                         base.Load(model);
@@ -83,7 +83,7 @@ namespace Nutshell.Components
                         Interval = model.Interval;
                 }
 
-                public void Save([MustNotEqualNull]ILoopDispatcherModel model)
+                public void Save([MustNotEqualNull]ILooperModel model)
                 {
                         throw new NotImplementedException();
                 }

@@ -22,7 +22,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         站点接口
 	/// </summary>
-	public interface ISite : IDispatcher
+	public interface ISite : IWorker
 	{
 		#region 发送部分
 

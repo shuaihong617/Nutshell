@@ -23,13 +23,13 @@ namespace Nutshell.Components
         /// <summary>
         ///         应用程序令牌集合
         /// </summary>
-        public class WatchDog : Dispatcher
+        public class WatchDog : Worker
         {
                 public WatchDog(IdentityObject parent, string id = "看门狗", int scanInterval = int.MaxValue,
                         int overflowInterval = int.MaxValue)
                         : base(parent, id)
                 {
-                        ScanLoopDispatcher = new LoopDispatcher(this, "扫描循环", scanInterval, Scan);
+                        ScanLooper = new Looper(this, "扫描循环", scanInterval, Scan);
 
                         OverflowSpan = TimeSpan.FromMilliseconds(overflowInterval);
                 }
@@ -40,7 +40,7 @@ namespace Nutshell.Components
 
                 #endregion
 
-                public LoopDispatcher ScanLoopDispatcher { get; private set; }
+                public Looper ScanLooper { get; private set; }
 
 
                 public TimeSpan OverflowSpan { get; private set; }
@@ -73,14 +73,14 @@ namespace Nutshell.Components
                 {
                         FeedTime = DateTime.Now;
 
-                        ScanLoopDispatcher.Start();
-                        return ScanLoopDispatcher.DisptachState == DisptachState.Started;
+                        ScanLooper.Start();
+                        return ScanLooper.WorkState == WorkState.Started;
                 }
 
                 protected override bool StopCore()
                 {
-                        ScanLoopDispatcher.Stop();
-                        return ScanLoopDispatcher.DisptachState == DisptachState.Started;
+                        ScanLooper.Stop();
+                        return ScanLooper.WorkState == WorkState.Started;
                 }
 
                 /// <summary>

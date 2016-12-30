@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.OPC.Models;
-using Nutshell.Components;
-using Nutshell.Data;
-using Nutshell.Data.Models;
-using Nutshell.Hardware;
-using Nutshell.Log;
 
 namespace Nutshell.Automation.OPC
 {
@@ -19,7 +14,7 @@ namespace Nutshell.Automation.OPC
         ///         2. 通过人工写入模拟OPC项值的变化
         ///         3. OPC项写入请求直接完成
         /// </remarks>
-        public class OpcServer : Device
+        public class OpcServer : ControllableDevice, IOpcServer
         {
                 public OpcServer(IdentityObject parent, string id = "", string name = "", string address = "")
                         : base(parent, id)
@@ -27,8 +22,8 @@ namespace Nutshell.Automation.OPC
                         Name = name;
                         Address = address;
 
-                        Groups = new List<OPCGroup>();
-                        Items = new Dictionary<string, IOPCItem>();
+                        Groups = new List<OpcGroup>();
+                        Items = new Dictionary<string, IOpcItem>();
                 }
 
                 #region 字段
@@ -41,39 +36,44 @@ namespace Nutshell.Automation.OPC
 
                 #region 属性
 
-                public string Name { get; private set; }
+                public string Name { get; }
 
-                public string Address { get; private set; }
+                public string Address { get; }
 
 
-                public List<OPCGroup> Groups { get; private set; }
+                public List<OpcGroup> Groups { get; }
 
-                public Dictionary<string, IOPCItem> Items { get; private set; }
+                public Dictionary<string, IOpcItem> Items { get; }
 
                 #endregion
 
-                public override void Load(IIdentityModel model)
+                public void Load([MustNotEqualNull] IOpcServerModel model)
                 {
                         base.Load(model);
 
-                        var serverModel = model as OPCServerModel;
-                        Trace.Assert(serverModel != null);
+                        //var serverModel = model as OPCServerModel;
+                        //Trace.Assert(serverModel != null);
 
-                        Name = serverModel.Name;
-                        Address = serverModel.Address;
+                        //Name = serverModel.Name;
+                        //Address = serverModel.Address;
 
-                        var groupModels = serverModel.OPCGroupModels;
+                        //var groupModels = serverModel.OPCGroupModels;
 
-                        foreach (var groupModel in groupModels)
-                        {
-                                var group = new OPCGroup(this);
-                                group.Load(groupModel);
+                        //foreach (var groupModel in groupModels)
+                        //{
+                        //        var group = new OpcGroup(this);
+                        //        group.Load(groupModel);
 
-                                AddGroup(group);
-                        }
+                        //        AddGroup(group);
+                        //}
                 }
 
-                protected void AddGroup(OPCGroup group)
+                public void Save(IOpcServerModel model)
+                {
+                        throw new NotImplementedException();
+                }
+
+                protected void AddGroup(OpcGroup group)
                 {
                         Groups.Add(group);
 
@@ -81,53 +81,53 @@ namespace Nutshell.Automation.OPC
                         {
                                 Items.Add(item.Id, item);
 
-                                if (DebugMode == DebugMode.Debug)
-                                {
-                                        //item.Reset();
-                                }
+                                //if (RunMode == RunMode.Debug)
+                                //{
+                                //        //item.Reset();
+                                //}
                         }
                 }
 
 
                 protected override bool OpenCore()
                 {
-                        if (DebugMode == DebugMode.Debug)
-                        {
-                                return true;
-                        }
+                        //if (RunMode == RunMode.Debug)
+                        //{
+                        //        return true;
+                        //}
 
-                        try
-                        {
-                                _server = new OPCAutomation.OPCServer();
-                                _server.Connect(Name);
-                        }
-                        catch (Exception e)
-                        {
-                                this.Error(Id + " " + Name + "  连接失败," + e);
-                                return false;
-                        }
+                        //try
+                        //{
+                        //        _server = new OPCAutomation.OPCServer();
+                        //        _server.Connect(Name);
+                        //}
+                        //catch (Exception e)
+                        //{
+                        //        this.Error(Id + " " + Name + "  连接失败," + e);
+                        //        return false;
+                        //}
 
-                        this.InfoSuccess("连接" + Name);
+                        //this.InfoSuccess("连接" + Name);
 
                         return true;
                 }
 
                 protected override bool CloseCore()
                 {
-                        if (DebugMode == DebugMode.Debug)
-                        {
-                                return true;
-                        }
-                        _server.Disconnect();
+                        //if (RunMode == RunMode.Debug)
+                        //{
+                        //        return true;
+                        //}
+                        //_server.Disconnect();
                         return true;
                 }
 
                 public void Attach()
                 {
-                        if (DebugMode == DebugMode.Debug)
-                        {
-                                return;
-                        }
+                        //if (RunMode == RunMode.Debug)
+                        //{
+                        //        return;
+                        //}
 
                         foreach (var group in Groups)
                         {

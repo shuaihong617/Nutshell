@@ -36,6 +36,14 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PostSharp.Patterns.Common, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Common.4.2.27\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PostSharp.Patterns.Model, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <HintPath>..\packages\PostSharp.Patterns.Model.4.2.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,13 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IOPCItem.cs" />
+    <Compile Include="IOpcItem.cs" />
     <Compile Include="Models\IOpcGroupModel.cs" />
     <Compile Include="Models\IOpcItemModel.cs" />
     <Compile Include="Models\IOpcServerModel.cs" />
-    <Compile Include="OPCGroup.cs" />
+    <Compile Include="OpcGroup.cs" />
     <Compile Include="OpcItem.cs" />
     <Compile Include="OPCObject.cs" />
+    <Compile Include="IOpcServer.cs" />
     <Compile Include="OpcServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

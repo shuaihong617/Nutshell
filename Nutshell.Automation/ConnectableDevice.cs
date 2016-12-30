@@ -20,24 +20,25 @@ using Nutshell.Components;
 namespace Nutshell.Automation
 {
         /// <summary>
-        ///         可控设备
+        ///         可连接设备
         /// </summary>
         public abstract class ConnectableDevice : Device, IConnectableDevice
         {
                 /// <summary>
-                ///         初始化<see cref="ConnectableDevice" />的新实例.
+                ///         初始化<see cref="ControllableDevice" />的新实例.
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected ConnectableDevice(IdentityObject parent, string id = "可连接设备")
+                protected ConnectableDevice([MustNotEqualNull]IdentityObject parent,
+                                            [MustNotEqualNull]string id = null)
                         : base(parent, id)
                 {
                         ConnectState = ConnectState.Disconnected;
 
-                        ConnectDispatcher.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
-                        ConnectDispatcher.StartSuccessed += (obj, args) => ConnectState = ConnectState.Connected;
-                        ConnectDispatcher.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
-                        ConnectDispatcher.StopSuccessed += (obj, args) => ConnectState = ConnectState.Disconnected;
+                        ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
+                        ConnectWorker.StartSuccessed += (obj, args) => ConnectState = ConnectState.Connected;
+                        ConnectWorker.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
+                        ConnectWorker.StopSuccessed += (obj, args) => ConnectState = ConnectState.Disconnected;
 
 
                 }
@@ -52,16 +53,16 @@ namespace Nutshell.Automation
                 public ConnectState ConnectState { get; private set; }
 
                 /// <summary>
-                ///         获取连接调度者，连接调度者负责设备的连接\断开
+                ///         获取连接工作者，连接工作者负责设备的连接\断开
                 /// </summary>
-                /// <value>连接调度者</value>
-                public IDispatcher ConnectDispatcher { get; private set; }
+                /// <value>连接工作者</value>
+                public IWorker ConnectWorker { get; private set; }
 
                 /// <summary>
-                ///         获取在线调度者,在线调度者负责检查设备在连接后是否依然在线
+                ///         获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
                 /// </summary>
-                /// <value>在线调度者</value>
-                public IDispatcher OnlineDispatcher { get; private set; }
+                /// <value>在线工作者</value>
+                public ILooper OnlineWorker { get; private set; }
 
                 #endregion
 

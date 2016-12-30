@@ -24,7 +24,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机运行环境
         /// </summary>
-        public class MachineVisionRuntime:Dispatcher
+        public class MachineVisionRuntime:Worker
         {
                 protected MachineVisionRuntime()
                         :base(null,"海康威视机器视觉摄像机运行环境")

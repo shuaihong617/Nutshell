@@ -43,7 +43,7 @@ namespace Nutshell.Automation
                 ///         制造信息
                 /// </summary>
                 [MustNotEqualNull]
-                public ManufacturingInformation ManufacturingInformation { get; }
+                public IManufacturingInformation ManufacturingInformation { get; set; }
 
                 #endregion
 

@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2015-09-05
+// 创建           : 2014-10-24
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2015-09-05
+// 日期           : 2014-10-24
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,27 +11,31 @@
 // </summary>
 // ***********************************************************************
 
-using System.Threading;
-using Nutshell.Components.Models;
-using Nutshell.Data;
-
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         循环调度者接口
+        ///         工作状态枚举
         /// </summary>
-        public interface ILoopDispatcher : IDispatcher,IStorable<ILoopDispatcherModel>
+        public enum WorkState
         {
                 /// <summary>
-                /// 获取循环调度线程优先级
+                ///         已停止
                 /// </summary>
-                /// <value>循环调度线程优先级</value>
-                ThreadPriority Priority { get; }
+                Stoped = 0,
 
                 /// <summary>
-                /// 获取循环调度间隔时间
+                ///         正在开始
                 /// </summary>
-                /// <value>循环调度间隔事件</value>
-                int Interval { get; set; }
+                Starting = 1,
+
+                /// <summary>
+                ///         已开始
+                /// </summary>
+                Started = 2,
+
+                /// <summary>
+                ///         正在停止
+                /// </summary>
+                Stoping = 3,
         }
 }

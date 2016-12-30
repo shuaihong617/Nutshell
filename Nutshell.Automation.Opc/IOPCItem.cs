@@ -3,7 +3,7 @@ using Nutshell.Data;
 
 namespace Nutshell.Automation.OPC
 {
-        public interface IOPCItem : IIdentityObject
+        public interface IOpcItem : IIdentityObject
         {
                 string Address { get; }
 

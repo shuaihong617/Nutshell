@@ -31,10 +31,10 @@ namespace Nutshell.Automation
                 ConnectState ConnectState { get; }
 
                 /// <summary>
-                /// 获取连接调度者，连接调度者负责设备的连接\断开
+                /// 获取连接工作者，连接工作者负责设备的连接\断开
                 /// </summary>
-                /// <value>连接调度者</value>
-                IDispatcher ConnectDispatcher { get; }
+                /// <value>连接工作者</value>
+                IWorker ConnectWorker { get; }
 
                 /// <summary>
                 /// 在线测试
@@ -43,9 +43,9 @@ namespace Nutshell.Automation
                 bool OnlineTest();
 
                 /// <summary>
-                /// 获取在线调度者,在线调度者负责检查设备在连接后是否依然在线
+                /// 获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
                 /// </summary>
-                /// <value>在线调度者</value>
-                ILoopDispatcher OnlineDispatcher { get; }
+                /// <value>在线工作者</value>
+                ILooper OnlineWorker { get; }
         }
 }

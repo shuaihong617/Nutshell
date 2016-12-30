@@ -11,7 +11,7 @@ using OPCAutomation;
 
 namespace Nutshell.Automation.OPC
 {
-        public class OpcItem<T> : IdentityObject, IOPCItem where T : struct
+        public class OpcItem<T> : IdentityObject, IOpcItem where T : struct
         {
                 public OpcItem(IdentityObject parent, string id = "", string address = "",
                         TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
@@ -85,7 +85,7 @@ namespace Nutshell.Automation.OPC
 
                         try
                         {
-                                if (server.RunMode != DebugMode.Release)
+                                if (server.RunMode != RunMode.Release)
                                 {
                                         throw new InvalidOperationException(GlobalId + "只能在发布模式下读取远程数据");
                                 }
@@ -161,7 +161,7 @@ namespace Nutshell.Automation.OPC
 
                         try
                         {
-                                if (server.RunMode != DebugMode.Release)
+                                if (server.RunMode != RunMode.Release)
                                 {
                                         throw new InvalidOperationException(GlobalId + "只能在发布模式下写入远程数据");
                                 }

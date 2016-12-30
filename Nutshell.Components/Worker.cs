@@ -22,11 +22,11 @@ using Nutshell.Log;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         调度者
+        ///         工作者
         /// </summary>
-        public abstract class Dispatcher : StorableObject, IDispatcher
+        public abstract class Worker : StorableObject, IWorker
         {
-                protected Dispatcher(IdentityObject parent, string id = null)
+                protected Worker(IdentityObject parent, string id = null)
                         : base(parent, id)
                 {
                         IsEnable = true;
@@ -39,8 +39,6 @@ namespace Nutshell.Components
                 /// </summary>
                 private readonly object _syncFlag = new object();
 
-                private DisptachState _disptachState;
-
                 #endregion
 
                 #region 属性
@@ -49,64 +47,22 @@ namespace Nutshell.Components
                 ///         获取是否启用
                 /// </summary>
                 /// <value>如果启用则返回True，否则返回False</value>
+                [WillNotifyPropertyChanged]
                 public bool IsEnable { get; set; }
 
                 /// <summary>
                 ///         获取调试模式
                 /// </summary>
                 /// <value>调试模式</value>
-                public DebugMode DebugMode { get; private set; }
+                [WillNotifyPropertyChanged]
+                public RunMode RunMode { get; private set; }
 
                 /// <summary>
                 ///         获取调度状态
                 /// </summary>
                 /// <value>调度状态</value>
                 [WillNotifyPropertyChanged]
-                public DisptachState DisptachState
-                {
-                        get { return _disptachState; }
-                        private set
-                        {
-                                if (_disptachState == value)
-                                {
-                                        return;
-                                }
-
-                                var oldValue = _disptachState;
-                                var newValue = value;
-
-                                _disptachState = newValue;
-
-                                switch (newValue)
-                                {
-                                        case DisptachState.Started:
-                                                switch (oldValue)
-                                                {
-                                                        case DisptachState.Starting:
-                                                                OnStartSuccessed(EventArgs.Empty);
-                                                                break;
-
-                                                        case DisptachState.Stoping:
-                                                                OnStopFailed(EventArgs.Empty);
-                                                                break;
-                                                }
-                                                break;
-
-                                        case DisptachState.Stoped:
-                                                switch (oldValue)
-                                                {
-                                                        case DisptachState.Starting:
-                                                                OnStartFailed(EventArgs.Empty);
-                                                                break;
-
-                                                        case DisptachState.Stoping:
-                                                                OnStopSuccessed(EventArgs.Empty);
-                                                                break;
-                                                }
-                                                break;
-                                }
-                        }
-                }
+                public WorkState WorkState { get; private set; }
 
                 #endregion
 
@@ -114,7 +70,7 @@ namespace Nutshell.Components
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Load(IDispatcherModel model)
+                public void Load(IWorkerModel model)
                 {
                         base.Load(model);
 
@@ -126,7 +82,7 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <param name="model">数据模型</param>
                 /// <returns>成功返回True, 否则返回False</returns>
-                public void Save(IDispatcherModel model)
+                public void Save(IWorkerModel model)
                 {
                         base.Save(model);
 
@@ -143,17 +99,17 @@ namespace Nutshell.Components
                 {
                         lock (_syncFlag)
                         {
-                                DisptachState = DisptachState.Starting;
+                                WorkState = WorkState.Starting;
 
                                 if (!IsEnable)
                                 {
                                         this.Warn("启用状态：否");
 
-                                        DisptachState = DisptachState.Stoped;
+                                        WorkState = WorkState.Stoped;
                                         return false;
                                 }
 
-                                if (DisptachState == DisptachState.Started)
+                                if (WorkState == WorkState.Started)
                                 {
                                         return true;
                                 }
@@ -165,7 +121,7 @@ namespace Nutshell.Components
                                 }
                                 catch (Exception e)
                                 {
-                                        DisptachState = DisptachState.Stoped;
+                                        WorkState = WorkState.Stoped;
                                         result = false;
                                         this.Fatal(e);
                                 }
@@ -188,7 +144,7 @@ namespace Nutshell.Components
                                         return false;
                                 }
 
-                                if (DisptachState == DisptachState.Stoped)
+                                if (WorkState == WorkState.Stoped)
                                 {
                                         return true;
                                 }
@@ -293,6 +249,7 @@ namespace Nutshell.Components
                 ///         Occurs when [opened].
                 /// </summary>
                 [Description("启动失败事件")]
+                [WillLogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<Exception>> StartFailed;
 
                 /// <summary>
@@ -304,20 +261,28 @@ namespace Nutshell.Components
                         e.Raise(this, ref StartFailed);
                 }
 
-
+                /// <summary>
+                ///         当停止时发生。
+                /// </summary>
+                [Description("停止事件")]
+                [WillLogEventInvokeHandler]
                 public event EventHandler<EventArgs> Stoping;
-                public event EventHandler<ValueEventArgs<Exception>> Stoped;
 
                 /// <summary>
-                ///         Occurs when [opened].
+                ///         当停止完成时发生。
                 /// </summary>
+                [Description("停止完成事件")]
+                [WillLogEventInvokeHandler]
+                public event EventHandler<ValueEventArgs<Exception>> Stoped;
+
+               
+                /// <summary>
+                ///         当停止成功时发生。
+                /// </summary>
+                [Description("停止成功事件")]
+                [WillLogEventInvokeHandler]
                 public event EventHandler<EventArgs> StopSuccessed;
 
-                event EventHandler<ValueEventArgs<Exception>> IDispatcher.StopFailed
-                {
-                        add { throw new NotImplementedException(); }
-                        remove { throw new NotImplementedException(); }
-                }
 
                 /// <summary>
                 ///         Raises the <see cref="E:Opened" /> event.
@@ -330,15 +295,17 @@ namespace Nutshell.Components
                 }
 
                 /// <summary>
-                ///         Occurs when [opened].
+                ///         当停止失败时发生。
                 /// </summary>
-                public event EventHandler<EventArgs> StopFailed;
+                [Description("停止失败事件")]
+                [WillLogEventInvokeHandler]
+                public event EventHandler<ValueEventArgs<Exception>> StopFailed;
 
                 /// <summary>
                 ///         Raises the <see cref="E:Opened" /> event.
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnStopFailed(EventArgs e)
+                protected virtual void OnStopFailed(ValueEventArgs<Exception> e)
                 {
                         this.InfoEvent("停止失败");
                         e.Raise(this, ref StopFailed);

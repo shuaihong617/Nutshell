@@ -18,7 +18,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         生产者
         /// </summary>
-        public abstract class Producer<T> : Dispatcher, IProducer<T> where T : class
+        public abstract class Producer<T> : Worker, IProducer<T> where T : class
         {
                 protected Producer(IdentityObject parent, string id)
                         : base(parent, id)

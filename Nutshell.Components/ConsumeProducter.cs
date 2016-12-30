@@ -18,7 +18,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         消费-生产者
         /// </summary>
-        public abstract class ConsumeProducter<TC, TP> : Dispatcher, IConsumeProducter<TC, TP> where TC : class
+        public abstract class ConsumeProducter<TC, TP> : Worker, IConsumeProducter<TC, TP> where TC : class
                 where TP : class
         {
                 protected ConsumeProducter(IdentityObject parent, string id)

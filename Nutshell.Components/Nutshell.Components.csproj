@@ -64,22 +64,22 @@
     <Compile Include="IEnable.cs" />
     <Compile Include="IHitTest.cs" />
     <Compile Include="IProducer.cs" />
-    <Compile Include="IDispatcher.cs" />
-    <Compile Include="ILoopDispatcher.cs" />
-    <Compile Include="LoopDispatcher.cs" />
+    <Compile Include="IWorker.cs" />
+    <Compile Include="ILooper.cs" />
+    <Compile Include="Looper.cs" />
     <Compile Include="Models\IBufferedModel.cs" />
-    <Compile Include="Models\IDispatcherModel.cs" />
+    <Compile Include="Models\IWorkerModel.cs" />
     <Compile Include="Models\IEnableModel.cs" />
-    <Compile Include="Models\ILoopDispatcherModel.cs" />
+    <Compile Include="Models\ILooperModel.cs" />
     <Compile Include="Models\IWatchDogModel.cs" />
     <Compile Include="Producer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueueConsumer.cs" />
     <Compile Include="QueueProducer.cs" />
-    <Compile Include="DisptachState.cs" />
-    <Compile Include="DebugMode.cs" />
+    <Compile Include="WorkState.cs" />
+    <Compile Include="RunMode.cs" />
     <Compile Include="WatchDog.cs" />
-    <Compile Include="Dispatcher.cs" />
+    <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">

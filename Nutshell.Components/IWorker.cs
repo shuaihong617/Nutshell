@@ -20,15 +20,15 @@ using Nutshell.Data;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         调度者接口
+        ///         工作者接口
         /// </summary>
-        public interface IDispatcher : IStorable<IDispatcherModel>, IEnable, IDebuggable
+        public interface IWorker : IStorable<IWorkerModel>, IEnable, IDebuggable
         {
                 /// <summary>
                 ///         获取调度状态
                 /// </summary>
                 /// <value>调度状态</value>
-                DisptachState DisptachState { get; }
+                WorkState WorkState { get; }
 
 
                 #region 属性
@@ -53,61 +53,45 @@ namespace Nutshell.Components
                 /// <summary>
                 ///         当启动时发生。
                 /// </summary>
-                [Description("启动事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<EventArgs> Starting;
 
                 /// <summary>
                 ///         当启动完成时发生。
                 /// </summary>
-                [Description("启动完成事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<Exception>> Started;
 
                 /// <summary>
                 ///         当启动成功时发生。
                 /// </summary>
-                [Description("启动成功事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<EventArgs> StartSuccessed;
 
 
                 /// <summary>
                 ///         当启动失败时发生。
                 /// </summary>
-                [Description("启动失败事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<Exception>> StartFailed;
 
 
                 /// <summary>
                 ///         当停止时发生。
                 /// </summary>
-                [Description("停止事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<EventArgs> Stoping;
 
 
                 /// <summary>
                 ///         当停止完成时发生。
                 /// </summary>
-                [Description("停止完成事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<Exception>> Stoped;
 
                 /// <summary>
                 ///         当停止成功时发生。
                 /// </summary>
-                [Description("停止成功事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<EventArgs> StopSuccessed;
 
 
                 /// <summary>
                 ///         当停止失败时发生。
                 /// </summary>
-                [Description("停止失败事件")]
-                [WillLogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<Exception>> StopFailed;
 
                 #endregion

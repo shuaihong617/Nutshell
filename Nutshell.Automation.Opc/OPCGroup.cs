@@ -9,20 +9,20 @@ using OPCAutomation;
 
 namespace Nutshell.Automation.OPC
 {
-        public class OPCGroup : IdentityObject
+        public class OpcGroup : IdentityObject
         {
-                public OPCGroup(IdentityObject parent, string id = "", string address="")
+                public OpcGroup(IdentityObject parent, string id = "", string address="")
                         : base(parent, id)
                 {
                         Address = address;
-                        Items = new List<IOPCItem>();
+                        Items = new List<IOpcItem>();
                 }
 
                 #region 字段
 
                 
 
-                private readonly Dictionary<int, IOPCItem> _subscribeItems = new Dictionary<int, IOPCItem>();
+                private readonly Dictionary<int, IOpcItem> _subscribeItems = new Dictionary<int, IOpcItem>();
 
                 private OPCAutomation.OPCGroup _group;
 
@@ -32,7 +32,7 @@ namespace Nutshell.Automation.OPC
 
                 public string Address { get; private set; }
 
-                public List<IOPCItem> Items { get; private set; }
+                public List<IOpcItem> Items { get; private set; }
 
                 #endregion
 
@@ -57,7 +57,7 @@ namespace Nutshell.Automation.OPC
                         //}
                 }
 
-                public void AddItem(IOPCItem item)
+                public void AddItem(IOpcItem item)
                 {
                         Items.Add(item);
                 }

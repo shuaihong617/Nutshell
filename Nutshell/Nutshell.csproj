@@ -162,6 +162,7 @@
     <Compile Include="Data\Converting\StringToBoolValueConverter.cs" />
     <Compile Include="Data\Converting\Converter.cs" />
     <Compile Include="Data\Converting\IConverter.cs" />
+    <Compile Include="Diagnostics\ILogServiceProvider.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="IdentityObject.cs" />
     <Compile Include="Log\LogLevel.cs" />
@@ -215,9 +216,7 @@
     <None Include="Nutshell.psproj" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Diagnostics\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">

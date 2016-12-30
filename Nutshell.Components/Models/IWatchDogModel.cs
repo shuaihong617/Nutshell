@@ -17,7 +17,7 @@ namespace Nutshell.Components.Models
         /// <summary>
         ///         看门狗序列化数据模型
         /// </summary>
-        public interface IWatchDogModel : IDispatcherModel
+        public interface IWatchDogModel : IWorkerModel
         {
                 /// <summary>
                 ///         溢出时间间隔, 单位毫秒

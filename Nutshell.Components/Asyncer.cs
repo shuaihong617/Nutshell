@@ -22,9 +22,9 @@ using ThreadState = System.Threading.ThreadState;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         异步调度者
+        ///         异步工作者
         /// </summary>
-        public class Asyncer : Dispatcher
+        public class Asyncer : Worker
         {
                 public Asyncer(IdentityObject parent, string id = null, ThreadPriority priority = ThreadPriority.Normal, Action action = null)
                         : base(parent, id)
@@ -53,11 +53,11 @@ namespace Nutshell.Components
                         get { return _thread.ThreadState; }
                 }
 
-                public override void Load([MustAssignableFrom(typeof(ILoopDispatcherModel))]IDataModel model)
+                public override void Load([MustAssignableFrom(typeof(ILooperModel))]IDataModel model)
                 {
                         base.Load(model);
 
-                        var looperModel = model as ILoopDispatcherModel;
+                        var looperModel = model as ILooperModel;
 
                         Trace.Assert(looperModel.Interval > 0);
                 }

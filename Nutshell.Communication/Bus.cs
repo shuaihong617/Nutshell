@@ -24,7 +24,7 @@ namespace Nutshell.Communication
         /// <summary>
         /// 总线
         /// </summary>
-        public abstract class Bus:Dispatcher,IBus
+        public abstract class Bus:Worker,IBus
         {
                 protected Bus(IdentityObject parent, string id = null) 
                         : base(parent, id)

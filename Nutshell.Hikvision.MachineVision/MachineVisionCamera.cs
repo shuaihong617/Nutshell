@@ -34,7 +34,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 public MachineVisionCamera(IdentityObject parent, string id = null, string ipAddress = "192.168.1.1")
                         : base(parent, id, 1280, 960, Drawing.Imaging.PixelFormat.Rgb24, ipAddress)
                 {
-                        _captureLoopDispatcher = new LoopDispatcher(this, "采集循环",ThreadPriority.Highest,20,Capture);
+                        _captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
 
                         _exceptionCallback = ExceptionCallBack;
                 }
@@ -66,7 +66,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 private MVFrameOutInformation _mvFrameOutInfo;
 
-                private readonly LoopDispatcher _captureLoopDispatcher;
+                private readonly Looper _captureLooper;
 
                 private readonly MVOfficialAPI.ExceptionCallbackFunction _exceptionCallback;
 
@@ -172,12 +172,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         }
                         this.InfoSuccess("StartGrabbing");
 
-                        return _captureLoopDispatcher.Start();
+                        return _captureLooper.Start();
                 }
 
                 protected override bool StopCaptureCore()
                 {
-                        _captureLoopDispatcher.Stop();
+                        _captureLooper.Stop();
 
                         MVOfficialAPI.StopGrabbing(_handle);
 

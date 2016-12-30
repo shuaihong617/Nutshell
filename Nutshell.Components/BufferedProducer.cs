@@ -27,12 +27,12 @@ namespace Nutshell.Components
                 protected BufferedProducer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
-                        DequeueLoopDispatcher = new LoopDispatcher(this, "出队工作循环", Dequeue);
+                        DequeueLooper = new Looper(this, "出队工作循环", Dequeue);
                 }
 
                 protected IBuffer<T> Buffer { get; set; }
 
-                private LoopDispatcher DequeueLoopDispatcher { get; set; }
+                private Looper DequeueLooper { get; set; }
 
                 public override void Load([MustAssignableFrom(typeof(IBufferedModel))]IDataModel model)
                 {
@@ -47,12 +47,12 @@ namespace Nutshell.Components
 
                 protected override bool StartCore()
                 {
-                        return DequeueLoopDispatcher.Start();
+                        return DequeueLooper.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return DequeueLoopDispatcher.Stop();
+                        return DequeueLooper.Stop();
                 }
 
                 protected override void Product(T t)

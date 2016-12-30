@@ -25,7 +25,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         总线接口
 	/// </summary>
-	public interface IBus : IDispatcher,IStorable<IBusModel>
+	public interface IBus : IWorker,IStorable<IBusModel>
 	{
 		/// <summary>
 		/// 注册消息类型所用的序列化器

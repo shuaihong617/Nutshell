@@ -22,6 +22,6 @@ namespace Nutshell.Components
                 /// 获取调试模式
                 /// </summary>
                 /// <value>调试模式</value>
-                DebugMode DebugMode { get; }
+                RunMode RunMode { get; }
         }
 }

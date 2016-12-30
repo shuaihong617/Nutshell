@@ -12,13 +12,14 @@
 // ***********************************************************************
 
 using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Automation.Models
 {
         /// <summary>
         ///         设备数据模型
         /// </summary>
-        public interface IDeviceModel : IDispatcherModel
+        public interface IDeviceModel : IDataModel
         {
         }
 }

@@ -24,9 +24,9 @@ namespace Nutshell.Automation
 
                 #region 属性
 
-                public IDispatcher ConnectionDispatcher { get; private set; }
+                public IWorker ConnectionWorker { get; private set; }
 
-                public IDispatcher Dispatcher { get; private set; }
+                public IWorker Worker { get; private set; }
 
                 public RuntimeInformation RuntimeInformation { get; private set; }
 
@@ -80,7 +80,7 @@ namespace Nutshell.Automation
                                 return true;
                         }
 
-                        this.Info("运行状态：" + DebugMode);
+                        //this.Info("运行状态：" + RunMode);
 
                         IsOpened = OpenCore();
                         return IsOpened;

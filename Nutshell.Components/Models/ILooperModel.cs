@@ -1,10 +1,9 @@
 ﻿// ***********************************************************************
-
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2014-10-24
+// 创建           : 2015-01-05
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2014-10-24
+// 日期           : 2015-01-05
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -12,23 +11,25 @@
 // </summary>
 // ***********************************************************************
 
-using System;
+using System.Threading;
 
-namespace Nutshell.Components
+namespace Nutshell.Components.Models
 {
         /// <summary>
-        ///         调试模式枚举
+        ///         循环工作者数据模型接口
         /// </summary>
-        public enum DebugMode
+        public interface ILooperModel:IWorkerModel
         {
                 /// <summary>
-                ///         发布模式，在此模式下设备按实际工作方式运行，接受真实控制信号
+                /// 获取循环调度线程优先级
                 /// </summary>
-                Release = 0,
+                /// <value>循环调度线程优先级</value>
+                ThreadPriority Priority { get; set; }
 
                 /// <summary>
-                ///         调试模式，用于模拟测试或其他用途，接受模拟控制信号
+                /// 获取循环工作线程休眠时间间隔
                 /// </summary>
-                Debug = 1,
+                /// <value>循环工作线程休眠时间间隔，单位为毫秒</value>
+                int Interval { get; set; }
         }
 }
