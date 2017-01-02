@@ -31,8 +31,8 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="width">The width.</param>
                 /// <param name="height">The height.</param>
                 /// <param name="format">The format.</param>
-                /// <param name="timeStamp">The time stamp.</param>
-                public Bitmap(IdentityObject parent, String id, int width, int height, PixelFormat format, NSTimeStamp timeStamp = null)
+                /// <param name="timeStampChain">The time stamp.</param>
+                public Bitmap(IdentityObject parent, String id, int width, int height, PixelFormat format, TimeStampChain timeStampChain = null)
                         : base(parent, id)
                 {
                         width.MustGreaterThan(0);
@@ -49,7 +49,7 @@ namespace Nutshell.Drawing.Imaging
 
                         Buffer = Marshal.AllocHGlobal(BufferLength);
 
-                        TimeStamp = timeStamp;
+                        TimeStampChain = timeStampChain;
                 }
 
                 /// <summary>
@@ -92,7 +92,7 @@ namespace Nutshell.Drawing.Imaging
                 /// Gets the time stamp.
                 /// </summary>
                 /// <value>The time stamp.</value>
-                public NSTimeStamp TimeStamp { get; private set; }
+                public TimeStampChain TimeStampChain { get; private set; }
 
                 /// <summary>
                 /// Translates to.

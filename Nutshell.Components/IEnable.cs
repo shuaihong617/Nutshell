@@ -21,7 +21,7 @@ namespace Nutshell.Components
                 /// <summary>
                 /// 获取是否启用
                 /// </summary>
-                /// <value>如果启用则返回True，否则返回False</value>
+                /// <value>是否启用</value>
                 bool IsEnable { get; }
         }
 }

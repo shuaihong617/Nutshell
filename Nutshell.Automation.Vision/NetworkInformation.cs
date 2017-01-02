@@ -20,7 +20,7 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         /// 设备信息结构体
         /// </summary>
-        public class NSNetworkInformation
+        public class NetworkInformation
         {
                 /// <summary>
                 /// MAC地址

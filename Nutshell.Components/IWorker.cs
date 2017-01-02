@@ -22,28 +22,35 @@ namespace Nutshell.Components
         /// <summary>
         ///         工作者接口
         /// </summary>
-        public interface IWorker : IStorable<IWorkerModel>, IEnable, IDebuggable
+        public interface IWorker : IStorable<IWorkerModel>
         {
-                /// <summary>
-                ///         获取调度状态
-                /// </summary>
-                /// <value>调度状态</value>
-                WorkState WorkState { get; }
+	        #region 属性
+
+	        /// <summary>
+	        ///         获取调度状态
+	        /// </summary>
+	        /// <value>调度状态</value>
+	        WorkState WorkState { get; }
+
+		#endregion
 
 
-                #region 属性
 
-                /// <summary>
-                /// 启动
-                /// </summary>
-                /// <returns>成功返回True，失败返回False.</returns>
-                bool Start();
+		#region 方法
 
-                /// <summary>
-                ///         停止
-                /// </summary>
-                /// <returns>成功返回True，失败返回False.</returns>
-                bool Stop();
+		/// <summary>
+		/// 启动
+		/// </summary>
+		/// <param name="context">工作上下文</param>
+		/// <returns>成功返回True，失败返回False.</returns>
+		bool Start(IWorkContext context);
+
+		/// <summary>
+		///         停止
+		/// </summary>
+		/// <param name="context">工作上下文</param>
+		/// <returns>成功返回True，失败返回False.</returns>
+		bool Stop(IWorkContext context);
 
                 #endregion
 

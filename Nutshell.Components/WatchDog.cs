@@ -73,14 +73,16 @@ namespace Nutshell.Components
                 {
                         FeedTime = DateTime.Now;
 
-                        ScanLooper.Start();
-                        return ScanLooper.WorkState == WorkState.Started;
+			throw new NotImplementedException();
+			//ScanLooper.Start();
+			return ScanLooper.WorkState == WorkState.Started;
                 }
 
                 protected override bool StopCore()
                 {
-                        ScanLooper.Stop();
-                        return ScanLooper.WorkState == WorkState.Started;
+			throw new NotImplementedException();
+			//ScanLooper.Stop();
+			return ScanLooper.WorkState == WorkState.Started;
                 }
 
                 /// <summary>
@@ -96,9 +98,10 @@ namespace Nutshell.Components
                         if (DateTime.Now - FeedTime > OverflowSpan)
                         {
                                 OnOverflowed(null);
-                                Stop();
-                        }
-                }
+				throw new NotImplementedException();
+				//Stop();
+			}
+		}
 
                 #region 事件
 

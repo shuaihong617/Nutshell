@@ -18,9 +18,9 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         /// 时间戳
         /// </summary>
-        public class NSDecodeTimeStamp:NSCaptureTimeStamp
+        public class DecodeTimeStampChain:CaptureTimeStampChain
         {
-                public NSDecodeTimeStamp()
+                public DecodeTimeStampChain()
                 {
                         DecodeTime = DateTime.Now;
                 }

@@ -58,9 +58,10 @@
     <Compile Include="Models\IOpcGroupModel.cs" />
     <Compile Include="Models\IOpcItemModel.cs" />
     <Compile Include="Models\IOpcServerModel.cs" />
+    <Compile Include="IOpcGroup.cs" />
     <Compile Include="OpcGroup.cs" />
     <Compile Include="OpcItem.cs" />
-    <Compile Include="OPCObject.cs" />
+    <Compile Include="OpcObject.cs" />
     <Compile Include="IOpcServer.cs" />
     <Compile Include="OpcServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +86,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="OPCAutomation">
+      <Guid>{28E68F91-8D75-11D1-8DC3-3C302A000000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\PostSharp.4.2.27\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.27\tools\PostSharp.targets')" />

@@ -19,9 +19,9 @@ namespace Nutshell.Components.Models
         public interface IEnableModel
         {
                 /// <summary>
-                /// 获取或设置是否启用
+                /// 获取或设置是否使能
                 /// </summary>
-                /// <value>如果启用则返回True，否则返回False</value>
+                /// <value>是否使能</value>
                 bool IsEnable { get; set; }
         }
 }

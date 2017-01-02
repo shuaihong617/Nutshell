@@ -19,9 +19,9 @@ namespace Nutshell.Presentation.Direct2D.WinForm
         /// <summary>
         /// 时间戳
         /// </summary>
-        public class NSSwapTimeStamp : NSDecodeTimeStamp
+        public class SwapTimeStampChain : DecodeTimeStampChain
         {
-                public NSSwapTimeStamp()
+                public SwapTimeStampChain()
                 {
                         SwapTime = DateTime.Now;
                 }

@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Collections;
@@ -47,15 +48,17 @@ namespace Nutshell.Components
 
                 protected override bool StartCore()
                 {
-                        return DequeueLooper.Start();
-                }
+			throw new NotImplementedException();
+			//return DequeueLooper.Start();
+		}
 
-                protected override bool StopCore()
+		protected override bool StopCore()
                 {
-                        return DequeueLooper.Stop();
-                }
+			throw new NotImplementedException();
+			//return DequeueLooper.Stop();
+		}
 
-                protected override void Product(T t)
+		protected override void Product(T t)
                 {
                         base.Product(t);
                         Buffer.Enqueue(t);

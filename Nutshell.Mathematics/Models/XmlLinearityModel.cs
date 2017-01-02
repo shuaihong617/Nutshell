@@ -13,7 +13,9 @@
 
 
 using System.Xml.Serialization;
+using System.Xml.XPath;
 using Nutshell.Data.Models;
+using Nutshell.Data.Xml.Models;
 
 namespace Nutshell.Mathematics.Models
 {
@@ -21,7 +23,7 @@ namespace Nutshell.Mathematics.Models
         ///         线性参数数据模型
         /// </summary>
         [XmlRoot]
-        public class LinearityModel : StorableModel
+        public class XmlLinearityModel : XmlDataModel
         {
                 /// <summary>
                 ///         斜率

@@ -24,7 +24,6 @@ namespace Nutshell.Mathematics
         /// <summary>
         ///         线性参数
         /// </summary>
-        [XmlRoot]
         public class Linearity : StorableObject
         {
                 public Linearity(float slope = 0f, float intercept = 0f)
@@ -50,7 +49,7 @@ namespace Nutshell.Mathematics
 
                         base.Load(model);
 
-                        var linearityModel = model as LinearityModel;
+                        var linearityModel = model as XmlLinearityModel;
                         Trace.Assert(linearityModel != null);
 
                         Slope = linearityModel.Slope;

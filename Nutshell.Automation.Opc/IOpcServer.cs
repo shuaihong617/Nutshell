@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
 
@@ -23,6 +24,8 @@ namespace Nutshell.Automation.OPC
                 List<OpcGroup> Groups { get; }
 
                 Dictionary<string, IOpcItem> Items { get; }
+
+                ReadOnlyCollection<IOpcItem> DisplayItems { get; }
 
                 #endregion
         }

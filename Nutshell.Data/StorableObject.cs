@@ -19,7 +19,7 @@ using Nutshell.Data.Models;
 namespace Nutshell.Data
 {
         /// <summary>
-        ///         主键对象
+        ///         可存储对象
         /// </summary>
         public class StorableObject: IdentityObject,IStorable<IDataModel>
         {
@@ -39,7 +39,7 @@ namespace Nutshell.Data
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public virtual void Load(IDataModel model)
+                public virtual void Load([MustNotEqualNull]IDataModel model)
                 {
                         Id = model.Id;
                 }
@@ -50,7 +50,7 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <param name="model">数据模型</param>
                 /// <returns>成功返回True, 否则返回False</returns>
-                public virtual void Save(IDataModel model)
+                public virtual void Save([MustNotEqualNull]IDataModel model)
                 {
                         model.Id = Id;
                 }

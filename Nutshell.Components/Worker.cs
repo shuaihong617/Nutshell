@@ -29,7 +29,6 @@ namespace Nutshell.Components
                 protected Worker(IdentityObject parent, string id = null)
                         : base(parent, id)
                 {
-                        IsEnable = true;
                 }
 
                 #region 字段
@@ -43,19 +42,7 @@ namespace Nutshell.Components
 
                 #region 属性
 
-                /// <summary>
-                ///         获取是否启用
-                /// </summary>
-                /// <value>如果启用则返回True，否则返回False</value>
-                [WillNotifyPropertyChanged]
-                public bool IsEnable { get; set; }
-
-                /// <summary>
-                ///         获取调试模式
-                /// </summary>
-                /// <value>调试模式</value>
-                [WillNotifyPropertyChanged]
-                public RunMode RunMode { get; private set; }
+                
 
                 /// <summary>
                 ///         获取调度状态
@@ -73,8 +60,6 @@ namespace Nutshell.Components
                 public void Load(IWorkerModel model)
                 {
                         base.Load(model);
-
-                        IsEnable = model.IsEnable;
                 }
 
                 /// <summary>
@@ -85,23 +70,20 @@ namespace Nutshell.Components
                 public void Save(IWorkerModel model)
                 {
                         base.Save(model);
-
-                        model.IsEnable = IsEnable;
                 }
 
-
-                /// <summary>
-                ///         启动
-                /// </summary>
-                /// <remarks>
-                /// </remarks>
-                public bool Start()
+		/// <summary>
+		/// 启动
+		/// </summary>
+		/// <param name="context">工作上下文</param>
+		/// <returns>成功返回True，失败返回False.</returns>
+		public bool Start(IWorkContext context)
                 {
                         lock (_syncFlag)
                         {
                                 WorkState = WorkState.Starting;
 
-                                if (!IsEnable)
+                                if (!context.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
 
@@ -131,14 +113,17 @@ namespace Nutshell.Components
                 }
 
 
-                /// <summary>
-                ///         停止
-                /// </summary>
-                public bool Stop()
+
+		/// <summary>
+		/// 停止
+		/// </summary>
+		/// <param name="context">工作上下文</param>
+		/// <returns>成功返回True，失败返回False.</returns>
+		public bool Stop(IWorkContext context)
                 {
                         lock (_syncFlag)
                         {
-                                if (!IsEnable)
+                                if (!context.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
                                         return false;

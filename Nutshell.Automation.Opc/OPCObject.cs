@@ -13,6 +13,7 @@
 
 using System;
 using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
 using Nutshell.Log;
 
@@ -22,20 +23,21 @@ namespace Nutshell.Automation.OPC
         ///         跟踪值更新前后变化的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class OPCObject<T> : ObservableNullableObject<T> where T : struct
+        public class OpcObject<T> : ObservableNullableObject<T> where T : struct
         {
                 /// <summary>
-                /// 初始化<see cref="OPCObject{T}" />的新实例.
+                /// 初始化<see cref="OpcObject{T}" />的新实例.
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The item.</param>
-                public OPCObject(IdentityObject parent, string id, OpcItem<T> opcItem)
+                public OpcObject([MustNotEqualNull]IdentityObject parent, 
+			[MustNotEqualNull]string id, 
+			[MustNotEqualNull]OpcItem<T> opcItem)
                         :base(parent, id)
                 {
-                        Debug.Assert(opcItem != null);
                         _opcItem = opcItem;
 
-                        _opcItem.Data.ValueChanged += (o, e) => NullableValue = e.Data;
+                        _opcItem.Data.ValueChanged += (o, e) => NullableValue = e.Value;
                 }
 
                 private readonly OpcItem<T> _opcItem;

@@ -35,8 +35,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         BufferBitmapRenderTarget = new BitmapRenderTarget(SurfaceRenderTarget,
                                 CompatibleRenderTargetOptions.None);
 
-                        _backgroundBitmap = new Bitmap(this, string.Empty, control.Width, control.Height, PixelFormat.Bgra32, new NSSwapTimeStamp());
-                        _foregroundBitmap = new Bitmap(this, string.Empty, control.Width, control.Height, PixelFormat.Bgra32, new NSSwapTimeStamp());
+                        _backgroundBitmap = new Bitmap(this, string.Empty, control.Width, control.Height, PixelFormat.Bgra32, new SwapTimeStampChain());
+                        _foregroundBitmap = new Bitmap(this, string.Empty, control.Width, control.Height, PixelFormat.Bgra32, new SwapTimeStampChain());
                 }
 
                 protected BitmapRenderTarget BufferBitmapRenderTarget { get; private set; }
@@ -56,13 +56,13 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         {
                                 if (source == null)
                                 {
-                                        var sourceStamp = _backgroundBitmap.TimeStamp as NSSwapTimeStamp;
+                                        var sourceStamp = _backgroundBitmap.TimeStampChain as SwapTimeStampChain;
                                         if (sourceStamp == null)
                                         {
                                                 throw new InvalidOperationException();
                                         }
 
-                                        var targetStamp = _foregroundBitmap.TimeStamp as NSSwapTimeStamp;
+                                        var targetStamp = _foregroundBitmap.TimeStampChain as SwapTimeStampChain;
                                         if (targetStamp == null)
                                         {
                                                 throw new InvalidOperationException();
@@ -84,8 +84,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                                         //source不为null时，从解码位图更新背景位图数据
                                         source.TranslateTo(_backgroundBitmap);
 
-                                        var sourceStamp = source.TimeStamp as NSDecodeTimeStamp;
-                                        var targetStamp = _backgroundBitmap.TimeStamp as NSSwapTimeStamp;
+                                        var sourceStamp = source.TimeStampChain as DecodeTimeStampChain;
+                                        var targetStamp = _backgroundBitmap.TimeStampChain as SwapTimeStampChain;
                                         if (sourceStamp != null && targetStamp != null)
                                         {
                                                 targetStamp.CaptureTime = sourceStamp.CaptureTime;
@@ -100,7 +100,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 public override sealed void Render()
                 {
-                        var stamp = _foregroundBitmap.TimeStamp as NSCaptureTimeStamp;
+                        var stamp = _foregroundBitmap.TimeStampChain as CaptureTimeStampChain;
                         ProcessTimeSpan = DateTime.Now - stamp.CaptureTime;
 
                         BufferBitmapRenderTarget.Bitmap.CopyFromMemory(_foregroundBitmap.Buffer,

@@ -12,13 +12,15 @@
 // ***********************************************************************
 
 
+using Nutshell.Components;
+
 namespace Nutshell.Automation
 {
         /// <summary>
         ///         设备接口
         /// </summary>
-        public interface IDevice : IIdentityObject
-        {
+        public interface IDevice : IIdentityObject,IEnable, IDebuggable
+	{
                 #region 属性
 
                 /// <summary>

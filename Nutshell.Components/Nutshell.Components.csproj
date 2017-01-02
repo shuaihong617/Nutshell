@@ -64,6 +64,9 @@
     <Compile Include="IEnable.cs" />
     <Compile Include="IHitTest.cs" />
     <Compile Include="IProducer.cs" />
+    <Compile Include="Models\IDebuggableModel.cs" />
+    <Compile Include="WorkContext.cs" />
+    <Compile Include="IWorkContext.cs" />
     <Compile Include="IWorker.cs" />
     <Compile Include="ILooper.cs" />
     <Compile Include="Looper.cs" />

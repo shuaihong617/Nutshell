@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
@@ -9,9 +10,14 @@ using Nutshell.Components;
 using Nutshell.Log;
 using OPCAutomation;
 
+//重命名OPCDAAuto.dll中类名，禁止删除；
+using NativeOpcServer = OPCAutomation.OPCServer;
+using NativeOpcGroup = OPCAutomation.OPCGroup;
+using NativeOpcItem = OPCAutomation.OPCItem;
+
 namespace Nutshell.Automation.OPC
 {
-        public class OpcItem<T> : IdentityObject, IOpcItem where T : struct
+        public class OpcItem<T> : StorableObject, IOpcItem where T : struct
         {
                 public OpcItem(IdentityObject parent, string id = "", string address = "",
                         TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
@@ -26,7 +32,7 @@ namespace Nutshell.Automation.OPC
 
                 #region 字段
 
-                private OpcItem<> _item;
+                private NativeOpcItem _item;
 	        private readonly ObservableNullableObject<T> _data;
 
                 #endregion
@@ -58,19 +64,26 @@ namespace Nutshell.Automation.OPC
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Load(IIdentityModel model)
+                public void Load([MustNotEqualNull]IOpcItemModel model)
                 {
                         base.Load(model);
 
-                        var itemModel = model as OPCItemModel;
-                        Trace.Assert(itemModel != null);
 
-                        Address = itemModel.Address;
-                        TypeCode = itemModel.TypeCode;
-                        ReadWriteMode = itemModel.ReadWriteMode;
+                        Address = model.Address;
+                        TypeCode = model.TypeCode;
+                        ReadWriteMode = model.ReadWriteMode;
                 }
 
-                public void Attach(string address, OPCAutomation.OPCGroup group)
+	        /// <summary>
+	        ///         保存数据到数据模型
+	        /// </summary>
+	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+	        public void Save(IOpcItemModel model)
+	        {
+		        throw new NotImplementedException();
+	        }
+
+	        public void Attach(string address, OPCAutomation.OPCGroup group)
                 {
                         OpcServer.ClientHandleIndex++;
                         var name = address + "." + group.Name + "." + Address;

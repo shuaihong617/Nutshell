@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Collections;
@@ -47,15 +48,17 @@ namespace Nutshell.Components
 
                 protected override bool StartCore()
                 {
-                        return Looper.Start();
+			throw new NotImplementedException();
+                        //return Looper.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return Looper.Stop();
-                }
+			throw new NotImplementedException();
+			//return Looper.Stop();
+		}
 
-                public override void Acquire(T t)
+		public override void Acquire(T t)
                 {
                         base.Acquire(t);
                         Buffer.Enqueue(t);

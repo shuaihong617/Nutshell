@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.OPC.Models;
+
+//重命名OPCDAAuto.dll中类名，禁止删除；
+using NativeOpcServer = OPCAutomation.OPCServer; 
 
 namespace Nutshell.Automation.OPC
 {
@@ -16,7 +20,8 @@ namespace Nutshell.Automation.OPC
         /// </remarks>
         public class OpcServer : ControllableDevice, IOpcServer
         {
-                public OpcServer(IdentityObject parent, string id = "", string name = "", string address = "")
+                public OpcServer([MustNotEqualNull]IdentityObject parent, 
+                        string id = "", string name = "", string address = "")
                         : base(parent, id)
                 {
                         Name = name;
@@ -30,20 +35,21 @@ namespace Nutshell.Automation.OPC
 
                 public static int ClientHandleIndex;
 
-                private OPCAutomation.OPCServer _server;
+                private NativeOpcServer _server;
 
                 #endregion
 
                 #region 属性
 
-                public string Name { get; }
+                public string Name { get; private set; }
 
-                public string Address { get; }
+                public string Address { get; private set; }
 
 
                 public List<OpcGroup> Groups { get; }
 
                 public Dictionary<string, IOpcItem> Items { get; }
+                public ReadOnlyCollection<IOpcItem> DisplayItems { get; }
 
                 #endregion
 
@@ -51,11 +57,8 @@ namespace Nutshell.Automation.OPC
                 {
                         base.Load(model);
 
-                        //var serverModel = model as OPCServerModel;
-                        //Trace.Assert(serverModel != null);
-
-                        //Name = serverModel.Name;
-                        //Address = serverModel.Address;
+                        Name = model.Name;
+                        Address = model.Address;
 
                         //var groupModels = serverModel.OPCGroupModels;
 
@@ -89,38 +92,38 @@ namespace Nutshell.Automation.OPC
                 }
 
 
-                protected override bool OpenCore()
-                {
-                        //if (RunMode == RunMode.Debug)
-                        //{
-                        //        return true;
-                        //}
+                //protected override bool OpenCore()
+                //{
+                //        //if (RunMode == RunMode.Debug)
+                //        //{
+                //        //        return true;
+                //        //}
 
-                        //try
-                        //{
-                        //        _server = new OPCAutomation.OPCServer();
-                        //        _server.Connect(Name);
-                        //}
-                        //catch (Exception e)
-                        //{
-                        //        this.Error(Id + " " + Name + "  连接失败," + e);
-                        //        return false;
-                        //}
+                //        //try
+                //        //{
+                //        //        _server = new OPCAutomation.OPCServer();
+                //        //        _server.Connect(Name);
+                //        //}
+                //        //catch (Exception e)
+                //        //{
+                //        //        this.Error(Id + " " + Name + "  连接失败," + e);
+                //        //        return false;
+                //        //}
 
-                        //this.InfoSuccess("连接" + Name);
+                //        //this.InfoSuccess("连接" + Name);
 
-                        return true;
-                }
+                //        return true;
+                //}
 
-                protected override bool CloseCore()
-                {
-                        //if (RunMode == RunMode.Debug)
-                        //{
-                        //        return true;
-                        //}
-                        //_server.Disconnect();
-                        return true;
-                }
+                //protected override bool CloseCore()
+                //{
+                //        //if (RunMode == RunMode.Debug)
+                //        //{
+                //        //        return true;
+                //        //}
+                //        //_server.Disconnect();
+                //        return true;
+                //}
 
                 public void Attach()
                 {

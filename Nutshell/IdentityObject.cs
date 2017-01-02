@@ -15,25 +15,25 @@ using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
-using PostSharp.Patterns.Model;
 
 namespace Nutshell
 {
         /// <summary>
         ///         带有标识的对象
         /// </summary>
-        public class IdentityObject : DisposableObject, IIdentityObject
+        public abstract class IdentityObject : DisposableObject, IIdentityObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public IdentityObject(IdentityObject parent = null,
+                protected IdentityObject(IdentityObject parent = null,
                         [MustNotEqualNullOrEmpty] string id = null)
                 {
-                        Parent = parent;
+                        //两行赋值语句前后关系不能互换，重要！！！
                         Id = id;
+                        Parent = parent;
                 }
 
                 #region 字段
@@ -59,6 +59,7 @@ namespace Nutshell
                 ///         标识
                 /// </summary>
                 [WillNotifyPropertyChanged]
+                [MustNotEqualNullOrEmpty]
                 public string Id
                 {
                         get { return _id; }
@@ -78,6 +79,7 @@ namespace Nutshell
                 ///         全局标识
                 /// </summary>
                 [WillNotifyPropertyChanged]
+                [MustNotEqualNullOrEmpty]
                 public string GlobalId
                 {
                         get { return _globalId; }
@@ -124,7 +126,14 @@ namespace Nutshell
                 /// </summary>
                 private void UpdateGlobalId()
                 {
-                        GlobalId = Parent == null ? Id : Parent.GlobalId + "." + Id;
+                        if (Parent == null)
+                        {
+                                GlobalId = Id;
+                        }
+                        else
+                        {
+                                GlobalId = Parent.GlobalId + "." + Id;
+                        }
                 }
 
                 /// <summary>

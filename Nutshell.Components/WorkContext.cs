@@ -11,17 +11,30 @@
 // </summary>
 // ***********************************************************************
 
+using System;
+using System.ComponentModel;
+using Nutshell.Aspects.Events;
+using Nutshell.Components.Models;
+using Nutshell.Data;
+
 namespace Nutshell.Components
 {
         /// <summary>
-        /// 可调试接口
-        /// </summary>b
-        public interface IDebuggable
+        ///         工作上下文
+        /// </summary>
+        public abstract class WorkContext : IWorkContext
         {
-                /// <summary>
-                /// 获取运行模式
-                /// </summary>
-                /// <value>运行模式</value>
-                RunMode RunMode { get; }
+
+		/// <summary>
+		/// 获取是否启用
+		/// </summary>
+		/// <value>是否启用</value>
+		public bool IsEnable { get; private set; }
+
+	        /// <summary>
+	        /// 获取调试模式
+	        /// </summary>
+	        /// <value>调试模式</value>
+	        public RunMode RunMode { get; private set; }
         }
 }

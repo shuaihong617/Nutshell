@@ -26,7 +26,6 @@ namespace Nutshell.Hardware.Vision
         /// <summary>
         ///         摄像机
         /// </summary>
-        [NotifyPropertyChanged]        
         public abstract class Camera : CaptureDevice<Bitmap>
         {
                 /// <summary>
@@ -48,9 +47,9 @@ namespace Nutshell.Hardware.Vision
                         PixelFormat = pixelFormat;
                 }
 
-                #region 字段
+		#region 字段
 
-                private int _width;
+		private int _width;
                 private int _height;
 
                 #endregion
@@ -161,9 +160,11 @@ namespace Nutshell.Hardware.Vision
                                 Buffers = new NSReadWritePool<Bitmap>(this, "采集图像缓冲池");
                                 for (var i = 1; i < 5; i++)
                                 {
-                                        var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height,
-                                                PixelFormat, new NSCaptureTimeStamp());
-                                        Buffers.Add(bitmap);
+					throw new NotImplementedException();
+					//
+					//var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height,
+     //                                           PixelFormat, new NSCaptureTimeStamp());
+     //                                   Buffers.Add(bitmap);
                                 }
                         }
                 }

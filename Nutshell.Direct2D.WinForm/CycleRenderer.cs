@@ -30,12 +30,14 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 protected override bool StartCore()
                 {
-                        return _renderLooper.Start();
+			throw new NotImplementedException();
+                        //return _renderLooper.Start();
                 }
 
                 protected override bool StopCore()
                 {
-                        return _renderLooper.Stop();
+			throw new NotImplementedException();
+			//return _renderLooper.Stop();
                 }
 
 

@@ -1,0 +1,15 @@
+首先安装KEPSERVER4.5
+注册：把OPCDAAuto.dll放入windows的system32文件夹，然后在windows的开始菜单选“运行”，输入 regsvr32 OPCDAAuto.dll ，确定。
+引用：注册完成后浏览添加本文件引用即可。
+
+使用REGSVR32 OPCDAAuto.dll命令在Windows Server 2008 R2 64位操作系统下注册OPCDAAuto.dll时，提示OPCDAAuto.dll与Windows版本不兼容错误 
+OPCDAAuto.dll与Windows版本不兼容.JPG 
+解决： 
+使用REGSVR32 C:\Windows\System32\OPCDAAuto.dll或REGSVR32 C:\Windows\SysWOW64\OPCDAAuto.dll命令注册。 
+如果仍无法注册，请下载附件中最新版本的OPCDAAuto.dll（版本号2.02.5.30）进行注册即可。 
+OPCDAAuto.rar (466.05 KB)
+
+http://www.zhumeng.org/thread-159440-1-1.html
+
+另外：VS不能引用opcdaauto.dll的话，需要进行注册以后才能引用， 
+当出现“对 COM 组件的调用返回了错误 HRESULT E_FAIL”错误。的时候，首先应当考虑OPC服务是不是正常，其实考虑与服务器的连接是否正常，另外试着关闭一下防火墙

@@ -7,9 +7,13 @@ using Nutshell.Data;
 using Nutshell.Data.Models;
 using OPCAutomation;
 
+//重命名OPCDAAuto.dll中类名，禁止删除；
+using NativeOpcServer = OPCAutomation.OPCServer;
+using NativeOpcGroup = OPCAutomation.OPCGroup;
+
 namespace Nutshell.Automation.OPC
 {
-        public class OpcGroup : IdentityObject
+        public class OpcGroup : StorableObject,IOpcGroup
         {
                 public OpcGroup(IdentityObject parent, string id = "", string address="")
                         : base(parent, id)
@@ -24,7 +28,7 @@ namespace Nutshell.Automation.OPC
 
                 private readonly Dictionary<int, IOpcItem> _subscribeItems = new Dictionary<int, IOpcItem>();
 
-                private OPCAutomation.OPCGroup _group;
+                private NativeOpcGroup _group;
 
                 #endregion
 
@@ -37,15 +41,11 @@ namespace Nutshell.Automation.OPC
                 #endregion
 
 
-                public override void Load(IIdentityModel model)
+                public void Load(IOpcGroupModel model)
                 {
                         base.Load(model);
 
-
-                        var groupModel = model as OPCGroupModel;
-                        Trace.Assert(groupModel != null);
-
-                        Address = groupModel.Address;
+                        Address = model.Address;
 
                         //var groupModels = groupModel.OPCItemModels;
 
@@ -57,7 +57,16 @@ namespace Nutshell.Automation.OPC
                         //}
                 }
 
-                public void AddItem(IOpcItem item)
+	        /// <summary>
+	        ///         保存数据到数据模型
+	        /// </summary>
+	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+	        public void Save(IOpcGroupModel model)
+	        {
+		        throw new NotImplementedException();
+	        }
+
+	        public void AddItem(IOpcItem item)
                 {
                         Items.Add(item);
                 }

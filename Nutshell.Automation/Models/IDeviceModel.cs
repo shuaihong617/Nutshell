@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Components;
 using Nutshell.Components.Models;
 using Nutshell.Data.Models;
 
@@ -19,7 +20,7 @@ namespace Nutshell.Automation.Models
         /// <summary>
         ///         设备数据模型
         /// </summary>
-        public interface IDeviceModel : IDataModel
-        {
+        public interface IDeviceModel : IDataModel,IEnableModel,IDebuggableModel
+	{
         }
 }

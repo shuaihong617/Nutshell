@@ -12,21 +12,20 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Components.Models;
+using Nutshell.Data.Xml.Models;
 
 namespace Nutshell.Speech.Models
 {
-        /// <summary>
-        ///         主键对象Xml序列化数据模型
-        /// </summary>
-        [XmlType]
-        public class SpeechSynthesizerModel : BufferedModel, ISpeechSynthesizerModel
-        {
-                /// <summary>
-                ///         主键
-                /// </summary>
-
-                [XmlAttribute]
-                public Language Language { get; set; }
-        }
+	/// <summary>
+	///         主键对象Xml序列化数据模型
+	/// </summary>
+	[XmlType]
+	public class SpeechSynthesizerModel : XmlDataModel, ISpeechSynthesizerModel
+	{
+		/// <summary>
+		///         主键
+		/// </summary>
+		[XmlAttribute]
+		public Language Language { get; set; }
+	}
 }

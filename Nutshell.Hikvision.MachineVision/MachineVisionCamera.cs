@@ -13,6 +13,7 @@
 
 
 using System;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -128,8 +129,9 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                 case MVExceptionType.以太网设备断开连接:
                                         this.Warn("摄像机断开连接");
 
-                                        Stop();
-                                        Start();
+					throw new NotImplementedException();
+                                        //Stop();
+                                        //Start();
                                         break;
                         }
                 }
@@ -172,25 +174,29 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         }
                         this.InfoSuccess("StartGrabbing");
 
-                        return _captureLooper.Start();
+			throw new NotImplementedException();
+                        //return _captureLooper.Start();
                 }
 
                 protected override bool StopCaptureCore()
                 {
-                        _captureLooper.Stop();
+			throw new NotImplementedException();
+			//_captureLooper.Stop();
 
-                        MVOfficialAPI.StopGrabbing(_handle);
+			MVOfficialAPI.StopGrabbing(_handle);
 
                         return true;
                 }
 
                 protected override sealed Bitmap CaptureCore()
                 {
-                        if (!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured)
-                        {
-                                Trace.WriteLine("!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured Failed");
-                                return null;
-                        }
+			throw new NotImplementedException();
+			//
+			//if (!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured)
+   //                     {
+   //                             Trace.WriteLine("!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured Failed");
+   //                             return null;
+   //                     }
 
                         Bitmap bitmap = Buffers.WriteLock();
 
@@ -205,7 +211,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         //this.InfoSuccess("GetOneFrame");
                         Buffers.WriteUnlock(bitmap);
 
-                        var stamp = bitmap.TimeStamp as NSCaptureTimeStamp;
+                        var stamp = bitmap.TimeStampChain as CaptureTimeStampChain;
                         if (stamp != null)
                         {
                                 stamp.CaptureTime = DateTime.Now;
