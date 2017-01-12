@@ -14,19 +14,19 @@ namespace Nutshell.Automation.OPC
         ///         2. 通过人工写入模拟OPC项值的变化
         ///         3. OPC项写入请求直接完成
         /// </remarks>
-        public interface IOpcServer : IControllableDevice, IStorable<IOpcServerModel>
+        public interface IOpcServer : IDispatchableDevice, IStorable<IOpcServerModel>
         {
                 #region 属性
 
                 string Name { get;  }
 
                 string Address { get; }
-                List<OpcGroup> Groups { get; }
+                ObservableCollection<IOpcGroup> OpcGroups { get; }
 
-                Dictionary<string, IOpcItem> Items { get; }
+                ObservableCollection<IOpcItem> OpcItems { get; }
 
-                ReadOnlyCollection<IOpcItem> DisplayItems { get; }
+		#endregion
 
-                #endregion
-        }
+	        void AddGroup(IOpcGroup group);
+	}
 }

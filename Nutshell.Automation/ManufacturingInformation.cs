@@ -12,27 +12,35 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Automation.Models;
+using Nutshell.Data;
 
 namespace Nutshell.Automation
 {
         /// <summary>
         /// 制造信息
         /// </summary>
-        public class ManufacturingInformation:IManufacturingInformation
+        public class ManufacturingInformation:StorableObject, IManufacturingInformation
         {
                 /// <summary>
                 /// 制造商
                 /// </summary>
-                public string Manufacturer { get; }
+                public string Manufacturer { get; private set; }
 
                 /// <summary>
                 /// 型号
                 /// </summary>
-                public string Model { get; }
+                public string Model { get; private set; }
 
-                /// <summary>
-                /// 序列号
-                /// </summary>
-                public string SerialNumber { get; }
+                public void Load(IManufacturingInformationModel model)
+                {
+                        Manufacturer = model.Manufacturer;
+                        Model = model.Model;
+                }
+
+                public void Save(IManufacturingInformationModel model)
+                {
+                        throw new NotImplementedException();
+                }
         }
 }

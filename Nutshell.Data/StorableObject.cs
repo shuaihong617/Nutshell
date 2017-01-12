@@ -28,7 +28,8 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public StorableObject(IdentityObject parent = null, string id = null)
+                public StorableObject(IIdentityObject parent = null, 
+			string id = null)
                         : base(parent, id)
                 {
                 }

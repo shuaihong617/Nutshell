@@ -37,17 +37,17 @@ namespace Nutshell.RabbitMQ
 		/// Starts the core.
 		/// </summary>
 		/// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-		protected override bool StartCore()
-		{
-			base.StartCore();
+		//protected override bool Start()
+		//{
+		//	base.Start();
 
-			Channel.ExchangeDeclare("ExchangeName",
-				"Topic",
-				true,
-				false);
+		//	Channel.ExchangeDeclare("ExchangeName",
+		//		"Topic",
+		//		true,
+		//		false);
 
-			return true;
-		}
+		//	return true;
+		//}
 
 
 

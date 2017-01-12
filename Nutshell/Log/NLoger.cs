@@ -204,7 +204,7 @@ namespace Nutshell.Log
                 {
                         if (Logger != null && Logger.IsFatalEnabled)
                         {
-                                Logger.Fatal(exception.ToString);
+                                Logger.Fatal(exception);
                         }
                 }
 

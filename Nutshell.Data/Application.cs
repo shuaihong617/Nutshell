@@ -23,9 +23,9 @@ namespace Nutshell.Data
 	/// <summary>
 	///         封装应用程序标识
 	/// </summary>
-	public class Application : StorableObject,IApplication,IStorable<IApplicationModel>
+	public class Application : StorableObject,IApplication
 	{
-		public Application([MustNotEqualNullOrEmpty] string id = null)
+		public Application(string id = null)
 			: base(null, id)
 		{
 		}

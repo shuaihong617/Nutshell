@@ -13,7 +13,7 @@
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -156,6 +156,7 @@
     <Compile Include="Aspects\Locations\Propertys\WillNotifyPropertyChangedAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />
+    <Compile Include="Aspects\Methods\Contracts\MustReturnNotEqualNullAttribute.cs" />
     <Compile Include="Aspects\Methods\EventRaiseMethodAttribute.cs" />
     <Compile Include="Data\Binding\PropertyBinderCollection.cs" />
     <Compile Include="Data\Binding\PropertyBinder.cs" />
@@ -165,7 +166,7 @@
     <Compile Include="Diagnostics\ILogServiceProvider.cs" />
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="IdentityObject.cs" />
-    <Compile Include="IApplication.cs" />
+    <Compile Include="IResult.cs" />
     <Compile Include="Log\LogLevel.cs" />
     <Compile Include="Data\ObservableNullableObject.cs" />
     <Compile Include="BooleanExtensions.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="StringExtensions.cs" />
     <Compile Include="ValueChangedEventArgs.cs" />
     <Compile Include="ValueEventArgs.cs" />
+    <Compile Include="Result.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NLog.config">
@@ -222,7 +224,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.10\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">

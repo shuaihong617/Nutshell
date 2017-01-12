@@ -13,6 +13,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 
@@ -28,12 +29,18 @@ namespace Nutshell
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                protected IdentityObject(IdentityObject parent = null,
-                        [MustNotEqualNullOrEmpty] string id = null)
+                protected IdentityObject(IIdentityObject parent = null,
+                        string id = null)
                 {
-                        //两行赋值语句前后关系不能互换，重要！！！
-                        Id = id;
-                        Parent = parent;
+                        if (parent != null)
+                        {
+                                Parent = parent;
+                        }
+
+                        if (!string.IsNullOrEmpty(id))
+                        {
+                                Id = id;
+                        }
                 }
 
                 #region 字段
@@ -51,7 +58,7 @@ namespace Nutshell
                 /// <summary>
                 ///         The _parent
                 /// </summary>
-                private IdentityObject _parent;
+                private IIdentityObject _parent;
 
                 #endregion
 
@@ -98,14 +105,15 @@ namespace Nutshell
                 /// <summary>
                 ///         上级对象
                 /// </summary>
-                public IdentityObject Parent
+                [MustNotEqualNull]
+                public IIdentityObject Parent
                 {
                         get { return _parent; }
                         private set
                         {
                                 if (Parent != null)
                                 {
-                                        throw new InvalidOperationException("上级对象已存在，不运行重复赋值。");
+                                        throw new InvalidOperationException("上级对象已存在，不允许重复赋值。");
                                 }
 
                                 _parent = value;
@@ -126,20 +134,28 @@ namespace Nutshell
                 /// </summary>
                 private void UpdateGlobalId()
                 {
-                        if (Parent == null)
+                        if (Id != null)
                         {
-                                GlobalId = Id;
+                                if (Parent == null)
+                                {
+                                        
+                                                GlobalId = Id;
+                                        
+                                }
+                                else
+                                {
+                                        
+                                                GlobalId = Parent.GlobalId + "." + Id;
+                                        
+                                }
                         }
-                        else
-                        {
-                                GlobalId = Parent.GlobalId + "." + Id;
-                        }
+                        
                 }
 
                 /// <summary>
                 ///         返回表示当前对象的字符串。
                 /// </summary>
-                /// <returns>全局标识。</returns>
+                /// <returns>全局标识</returns>
                 public override string ToString()
                 {
                         return GlobalId;

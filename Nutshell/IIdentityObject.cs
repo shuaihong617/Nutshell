@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.ComponentModel;
 using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
@@ -21,10 +22,16 @@ namespace Nutshell
         /// </summary>
         public interface IIdentityObject
         {
-                /// <summary>
-                ///         标识
-                /// </summary>
-                [MustNotEqualNullOrEmpty]
+		/// <summary>
+		/// 获取上级对象
+		/// </summary>
+		/// <value>上级对象</value>
+		IIdentityObject Parent { get; }
+
+		/// <summary>
+		///         标识
+		/// </summary>
+		[MustNotEqualNullOrEmpty]
                 String Id { get; }
 
                 /// <summary>
@@ -32,5 +39,15 @@ namespace Nutshell
                 /// </summary>
                 [MustNotEqualNullOrEmpty]
                 String GlobalId { get;}
-        }
+
+		#region 事件
+
+		/// <summary>
+		///         当全局标识改变时发生
+		/// </summary>
+		[Description("全局标识改变事件")]
+		event EventHandler<EventArgs> GlobalIdChanged;
+
+		#endregion
+	}
 }

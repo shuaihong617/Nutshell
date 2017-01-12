@@ -44,10 +44,10 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private readonly CameraDecoder _decoder;
 
-                protected override bool StartCore()
+                protected override bool Start()
                 {
                         _decoder.DecodeFinished += Decoder_DecodeFinished;
-                        return base.StartCore();
+                        return base.Start();
                 }
 
                 private void Decoder_DecodeFinished(object sender, ValueEventArgs<Bitmap> e)
@@ -61,10 +61,10 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                         _decoder.Buffers.ReadUnlock(bitmap);
                 }
 
-                protected override bool StopCore()
+                protected override bool Stop()
                 {
                         _decoder.DecodeFinished -= Decoder_DecodeFinished;
-                        return base.StopCore();
+                        return base.Stop();
                 }
         }
 }

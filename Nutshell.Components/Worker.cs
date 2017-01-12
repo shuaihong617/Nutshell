@@ -14,6 +14,7 @@
 using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
 using Nutshell.Data;
@@ -26,7 +27,8 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Worker : StorableObject, IWorker
         {
-                protected Worker(IdentityObject parent, string id = null)
+                protected Worker(IIdentityObject parent, 
+                        [MustNotEqualNullOrEmpty]string id)
                         : base(parent, id)
                 {
                 }
@@ -41,8 +43,6 @@ namespace Nutshell.Components
                 #endregion
 
                 #region 属性
-
-                
 
                 /// <summary>
                 ///         获取调度状态
@@ -72,40 +72,37 @@ namespace Nutshell.Components
                         base.Save(model);
                 }
 
-		/// <summary>
-		/// 启动
-		/// </summary>
-		/// <param name="context">工作上下文</param>
-		/// <returns>成功返回True，失败返回False.</returns>
-		public bool Start(IWorkContext context)
+                /// <summary>
+                ///         启动
+                /// </summary>
+                /// <returns>成功返回True，失败返回False.</returns>
+                public IResult Start(IWorkContext context)
                 {
                         lock (_syncFlag)
                         {
-                                WorkState = WorkState.Starting;
-
-                                if (!context.IsEnable)
-                                {
-                                        this.Warn("启用状态：否");
-
-                                        WorkState = WorkState.Stoped;
-                                        return false;
-                                }
-
                                 if (WorkState == WorkState.Started)
                                 {
-                                        return true;
+                                        return Result.Successed;
                                 }
 
-                                var result = false;
-                                try
+                                WorkState = WorkState.Starting;
+
+                                if (context.IsEnable)
                                 {
-                                        result = StartCore();
+                                        this.Warn("启用状态：否");
+
+                                        WorkState = WorkState.Stoped;
+                                        return new Result(new ArgumentException("启用状态：否"));
                                 }
-                                catch (Exception e)
+
+                                
+
+                                var result = Starup(context);
+
+                                if (!result.IsSuccess)
                                 {
                                         WorkState = WorkState.Stoped;
-                                        result = false;
-                                        this.Fatal(e);
+                                        this.Fatal(result.Exception);
                                 }
 
                                 return result;
@@ -113,44 +110,36 @@ namespace Nutshell.Components
                 }
 
 
-
-		/// <summary>
-		/// 停止
-		/// </summary>
-		/// <param name="context">工作上下文</param>
-		/// <returns>成功返回True，失败返回False.</returns>
-		public bool Stop(IWorkContext context)
+                /// <summary>
+                ///         停止
+                /// </summary>
+                /// <returns>成功返回True，失败返回False.</returns>
+                public IResult Stop(IWorkContext context)
                 {
                         lock (_syncFlag)
                         {
+                                if (WorkState == WorkState.Stoped)
+                                {
+                                        return Result.Successed;
+                                }
+
                                 if (!context.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
-                                        return false;
+                                        return new Result(new ArgumentException("启用状态：否")); ;
                                 }
 
-                                if (WorkState == WorkState.Stoped)
-                                {
-                                        return true;
-                                }
+                                
+                                var result = Clean(context);
 
-                                var result = false;
-                                try
+                                if (!result.IsSuccess)
                                 {
-                                        result = StopCore();
-                                }
-                                catch (Exception e)
-                                {
-                                        this.Fatal(e);
-                                        result = false;
+                                        this.Fatal(result.Exception);
                                 }
 
                                 return result;
                         }
                 }
-
-                
-
 
                 /// <summary>
                 ///         执行启动过程的具体步骤.
@@ -159,7 +148,7 @@ namespace Nutshell.Components
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected abstract bool StartCore();
+                protected abstract IResult Starup([MustNotEqualNull]IWorkContext context);
 
                 /// <summary>
                 ///         执行退出过程的具体步骤.
@@ -168,12 +157,12 @@ namespace Nutshell.Components
                 /// <remarks>
                 ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
                 /// </remarks>
-                protected abstract bool StopCore();
+                protected abstract IResult Clean([MustNotEqualNull]IWorkContext context);
 
                 #region 事件
 
                 /// <summary>
-                /// 当启动时发生。
+                ///         当启动时发生。
                 /// </summary>
                 [Description("启动事件")]
                 [WillLogEventInvokeHandler]
@@ -260,7 +249,7 @@ namespace Nutshell.Components
                 [WillLogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<Exception>> Stoped;
 
-               
+
                 /// <summary>
                 ///         当停止成功时发生。
                 /// </summary>

@@ -88,14 +88,14 @@ namespace Nutshell.Components
                         throw new NotImplementedException();
                 }
 
-                protected override bool StartCore()
+                protected override IResult Starup(IWorkContext context)
                 {
                         _isWork = true;
 
                         _thread = new Thread(ThreadWork) {Priority = Priority};
                         _thread.Start();
 
-                        return true;
+                        return Result.Successed;
                 }
 
                 private void ThreadWork()
@@ -115,11 +115,11 @@ namespace Nutshell.Components
                         }
                 }
 
-                protected override bool StopCore()
+                protected override IResult Clean(IWorkContext context)
                 {
                         _isWork = false;
 
-                        return true;
+                        return Result.Successed;
                 }
         }
 }

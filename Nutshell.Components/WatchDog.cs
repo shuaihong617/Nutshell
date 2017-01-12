@@ -26,10 +26,10 @@ namespace Nutshell.Components
         public class WatchDog : Worker
         {
                 public WatchDog(IdentityObject parent, string id = "看门狗", int scanInterval = int.MaxValue,
-                        int overflowInterval = int.MaxValue)
+                        int overflowInterval = int.MaxValue, IWorkContext context = null)
                         : base(parent, id)
                 {
-                        ScanLooper = new Looper(this, "扫描循环", scanInterval, Scan);
+                        //ScanLooper = new Looper(this, "扫描循环", scanInterval, Scan);
 
                         OverflowSpan = TimeSpan.FromMilliseconds(overflowInterval);
                 }
@@ -69,20 +69,20 @@ namespace Nutshell.Components
                         //ScanLooper.Load(watchDogModel.ScanLooperModel);
                 }
 
-                protected override bool StartCore()
+                protected override IResult Starup(IWorkContext context)
                 {
                         FeedTime = DateTime.Now;
 
 			throw new NotImplementedException();
 			//ScanLooper.Start();
-			return ScanLooper.WorkState == WorkState.Started;
+			//return ScanLooper.WorkState == WorkState.Started;
                 }
 
-                protected override bool StopCore()
+                protected override IResult Clean(IWorkContext context)
                 {
 			throw new NotImplementedException();
 			//ScanLooper.Stop();
-			return ScanLooper.WorkState == WorkState.Started;
+			//return ScanLooper.WorkState == WorkState.Started;
                 }
 
                 /// <summary>

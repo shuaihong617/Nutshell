@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DontImportPostSharp>True</DontImportPostSharp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OpcRuntime.cs" />
+    <Compile Include="OpcRuntimeDispatchWorker.cs" />
+    <Compile Include="OpcServerSurviveContext.cs" />
+    <Compile Include="OpcServerSurviveLooper.cs" />
+    <Compile Include="OpcServerDispatchContext.cs" />
+    <Compile Include="OpcServerDispatchWorker.cs" />
+    <Compile Include="OpcServerConnectWorker.cs" />
     <Compile Include="IOpcItem.cs" />
     <Compile Include="Models\IOpcGroupModel.cs" />
     <Compile Include="Models\IOpcItemModel.cs" />
@@ -64,7 +72,9 @@
     <Compile Include="OpcObject.cs" />
     <Compile Include="IOpcServer.cs" />
     <Compile Include="OpcServer.cs" />
+    <Compile Include="OpcServerConnectContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OpcRuntimeDispatchResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">

@@ -28,13 +28,13 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 private bool _isRendering;
 
-                protected override bool StartCore()
+                protected override bool Start()
                 {
 			throw new NotImplementedException();
                         //return _renderLooper.Start();
                 }
 
-                protected override bool StopCore()
+                protected override bool Stop()
                 {
 			throw new NotImplementedException();
 			//return _renderLooper.Stop();

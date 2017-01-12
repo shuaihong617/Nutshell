@@ -36,16 +36,22 @@ namespace Nutshell.Automation
                 /// <value>连接工作者</value>
                 IWorker ConnectWorker { get; }
 
-                /// <summary>
-                /// 在线测试
-                /// </summary>
-                /// <returns>设备在线返回True，否则返回False</returns>
-                bool OnlineTest();
+                void Connect();
+
+                void Disconnect();
+
+                
 
                 /// <summary>
                 /// 获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
                 /// </summary>
                 /// <value>在线工作者</value>
-                ILooper OnlineWorker { get; }
+                ILooper SurviveLooper { get; }
+
+                /// <summary>
+                /// 在线测试
+                /// </summary>
+                /// <returns>设备在线返回True，否则返回False</returns>
+                bool OnlineTest();
         }
 }

@@ -29,7 +29,7 @@ namespace Nutshell.Data
                 public ObservableNullableObject(IdentityObject parent, string id)
                         :base(parent, id)
                 {
-                        NullableValue = new T();
+                        Value = new T();
                 }
 
                 #region 字段
@@ -37,7 +37,7 @@ namespace Nutshell.Data
                 /// <summary>
                 ///         The _data
                 /// </summary>
-                private T? _nullableValue;
+                private T? _value;
 
                 #endregion
 
@@ -45,12 +45,12 @@ namespace Nutshell.Data
                 ///         Gets or sets the data.
                 /// </summary>
                 /// <value>The data.</value>
-                public T? NullableValue 
+                public T? Value 
                 { 
-                        get { return _nullableValue; }
+                        get { return _value; }
                         set
                         {
-                                _nullableValue = value;
+                                _value = value;
                                 OnPropertyChanged();
 
                                 OnValueChanged(new ValueEventArgs<T?>(value));
@@ -59,7 +59,7 @@ namespace Nutshell.Data
 
                 public override string ToString()
                 {
-                        return GlobalId + " : " + NullableValue;
+                        return GlobalId + " : " + Value;
                 }
 
                 #region 事件

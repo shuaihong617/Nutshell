@@ -1,0 +1,16 @@
+﻿<mahapps:MetroWindow x:Class="Nutshell.Automation.Opc.WPFUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+        WindowStartupLocation="CenterScreen"
+        Title="{Binding Application.Id}"
+        Style="{StaticResource MetroWindowStyle}"
+        Loaded="Window_OnLoaded"
+        Closing="MainWindow_OnClosing" Icon="Resources/Images/Icon.ico">
+        <Grid Style="{StaticResource GridStyle}">
+                <ListBox Style="{StaticResource ListBoxStyle}"
+                         VirtualizingStackPanel.IsVirtualizing="True"
+                         ItemsSource="{Binding OpcServer.OpcItems}"
+                         ItemTemplate="{StaticResource ItemDataTemplate}" />
+        </Grid>
+</mahapps:MetroWindow>

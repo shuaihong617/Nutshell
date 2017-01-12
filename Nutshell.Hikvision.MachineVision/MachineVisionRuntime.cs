@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
+using Nutshell.Automation;
 using Nutshell.Components;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
 using Nutshell.Log;
@@ -24,7 +25,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机运行环境
         /// </summary>
-        public class MachineVisionRuntime:Worker
+        public class MachineVisionRuntime:Runtime
         {
                 protected MachineVisionRuntime()
                         :base(null,"海康威视机器视觉摄像机运行环境")
@@ -45,7 +46,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 #region 方法
 
-                protected override bool StartCore()
+                protected override bool Start()
                 {
                         if (DeviceInfos != null)
                         {
@@ -80,7 +81,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         return true;
                 }
 
-                protected override bool StopCore()
+                protected override bool Stop()
                 {
                         DeviceInfos = null;
 

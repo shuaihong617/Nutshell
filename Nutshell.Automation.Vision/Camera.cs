@@ -115,35 +115,35 @@ namespace Nutshell.Hardware.Vision
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Load([MustAssignableFrom(typeof (ICameraModel))] IDataModel model)
-                {
-                        base.Load(model);
+                //public override void Load([MustAssignableFrom(typeof (ICameraModel))] IDataModel model)
+                //{
+                //        base.Load(model);
 
-                        var cameraModel = model as ICameraModel;
+                //        var cameraModel = model as ICameraModel;
 
-                        Width = cameraModel.Width;
-                        Height = cameraModel.Height;
-                        PixelFormat = cameraModel.PixelFormat;
+                //        Width = cameraModel.Width;
+                //        Height = cameraModel.Height;
+                //        PixelFormat = cameraModel.PixelFormat;
 
-                        //Region.Load(cameraModel.RegionModel);
-                }
+                //        //Region.Load(cameraModel.RegionModel);
+                //}
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Save([MustAssignableFrom(typeof (ICameraModel))] IDataModel model)
-                {
-                        base.Save(model);
+                //public override void Save([MustAssignableFrom(typeof (ICameraModel))] IDataModel model)
+                //{
+                //        base.Save(model);
 
-                        var cameraModel = model as ICameraModel;
+                //        var cameraModel = model as ICameraModel;
 
-                        cameraModel.Width = Width;
-                        cameraModel.Height = Height;
-                        cameraModel.PixelFormat = PixelFormat;
+                //        cameraModel.Width = Width;
+                //        cameraModel.Height = Height;
+                //        cameraModel.PixelFormat = PixelFormat;
 
-                        //Region.Save(cameraModel.RegionModel);
-                }
+                //        //Region.Save(cameraModel.RegionModel);
+                //}
 
                 /// <summary>
                 ///         创建图像缓冲池

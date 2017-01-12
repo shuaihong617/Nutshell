@@ -1,4 +1,5 @@
-﻿using Nutshell.Communication;
+﻿using System;
+using Nutshell.Communication;
 using Nutshell.Communication.Models;
 using Nutshell.Components;
 using RabbitMQ.Client;
@@ -28,46 +29,50 @@ namespace Nutshell.RabbitMQ
 			throw new System.NotImplementedException();
 		}
 
-		protected override bool StartCore()
+		protected override IResult Starup(IWorkContext context)
 		{
-			_factory = new ConnectionFactory
-			{
-				HostName = "127.0.0.1",
-				Port = 15536,
-				UserName = "guest",
-				Password = "guest"
-			};
+			//_factory = new ConnectionFactory
+			//{
+			//	HostName = "127.0.0.1",
+			//	Port = 15536,
+			//	UserName = "guest",
+			//	Password = "guest"
+			//};
 
-			_connection = _factory.CreateConnection();
+			//_connection = _factory.CreateConnection();
 
-			Channel = _connection.CreateModel();
+			//Channel = _connection.CreateModel();
 
-			//设置消息持久化
-			IBasicProperties properties = Channel.CreateBasicProperties();
-			properties.DeliveryMode = 2;
+			////设置消息持久化
+			//IBasicProperties properties = Channel.CreateBasicProperties();
+			//properties.DeliveryMode = 2;
 
-			Channel.ExchangeDeclare(exchange: "ExchangeName",
-						type: "Topic",
-						durable: true,
-						autoDelete: false);
+			//Channel.ExchangeDeclare(exchange: "ExchangeName",
+			//			type: "Topic",
+			//			durable: true,
+			//			autoDelete: false);
 
-			return true;
+			//return true;
+
+                        throw new NotImplementedException();
 		}
 
-		protected override bool StopCore()
+		protected override IResult Clean(IWorkContext context)
 		{
-			Channel.Close();
-			Channel.Dispose();
-			Channel = null;
+			//Channel.Close();
+			//Channel.Dispose();
+			//Channel = null;
 
-			_connection.Close();
-			_connection.Dispose();
-			_connection = null;
+			//_connection.Close();
+			//_connection.Dispose();
+			//_connection = null;
 
-			_factory = null;
+			//_factory = null;
 
-			return true;
-		}
+			//return true;
+
+                        throw new NotImplementedException();
+                }
 
 		
 	}

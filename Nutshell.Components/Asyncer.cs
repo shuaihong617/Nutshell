@@ -62,22 +62,22 @@ namespace Nutshell.Components
                         Trace.Assert(looperModel.Interval > 0);
                 }
 
-                protected override bool StartCore()
+                protected override IResult Starup(IWorkContext context)
                 {
                         Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + "   "  + Id + _thread.IsAlive);
                         if (_thread.IsAlive)
                         {
-                                return true;
+                                return Result.Successed;
                         }
                         _thread.Start();
-                        return true;
+                        return Result.Successed;
                 }
 
                 
 
-                protected override bool StopCore()
+                protected override IResult Clean(IWorkContext context)
                 {
-                        return true;
+                        return Result.Successed;
                 }
         }
 }

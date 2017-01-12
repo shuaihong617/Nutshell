@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nutshell.Automation</RootNamespace>
     <AssemblyName>Nutshell.Automation</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
@@ -139,7 +139,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.10\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
@@ -161,20 +161,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectableDevice.cs" />
-    <Compile Include="ControllableDevice.cs" />
+    <Compile Include="DispatchableDevice.cs" />
     <Compile Include="IConnectableDevice.cs" />
-    <Compile Include="IControllableDevice.cs" />
+    <Compile Include="IDispatchableDevice.cs" />
     <Compile Include="DirectControlDevice.cs" />
     <Compile Include="Models\IUpgradeableManufacturingInformation.cs" />
+    <Compile Include="IRuntimeInformation.cs" />
     <Compile Include="UpgradeableManufacturingInformation.cs" />
     <Compile Include="IUpgradeableManufacturingInformation.cs" />
     <Compile Include="IManufacturingInformation.cs" />
-    <Compile Include="Models\IControllableDeviceModel.cs" />
+    <Compile Include="Models\IDispatchableDeviceModel.cs" />
     <Compile Include="Models\IConnectableDeviceModel.cs" />
     <Compile Include="Models\IManufacturingInformationModel.cs" />
     <Compile Include="ConnectState.cs" />
     <Compile Include="Models\IDeviceModel.cs" />
-    <Compile Include="DeviceRuntime.cs" />
+    <Compile Include="Runtime.cs" />
     <Compile Include="CaptureDevice.cs" />
     <Compile Include="IDevice.cs" />
     <Compile Include="Device.cs" />

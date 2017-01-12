@@ -11,9 +11,6 @@ namespace Nutshell.Aspects.Locations.Contracts
 
                 public Exception ValidateValue(object value, string locationName, LocationKind locationKind)
                 {
-                        Trace.WriteLine("name :" + locationName);
-                        Trace.WriteLine("locationKind :" + locationKind);
-
                         var kind = string.Empty;
                         switch (locationKind)
                         {

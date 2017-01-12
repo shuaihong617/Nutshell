@@ -17,9 +17,9 @@ using NativeOpcItem = OPCAutomation.OPCItem;
 
 namespace Nutshell.Automation.OPC
 {
-        public class OpcItem<T> : StorableObject, IOpcItem where T : struct
+        public class OpcItem : StorableObject, IOpcItem
         {
-                public OpcItem(IdentityObject parent, string id = "", string address = "",
+                public OpcItem(IIdentityObject parent, string id = "", string address = "",
                         TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
                         : base(parent, id)
                 {
@@ -27,13 +27,14 @@ namespace Nutshell.Automation.OPC
                         TypeCode = typeCode;
                         ReadWriteMode = readWriteMode;
 
-                        _data = new ObservableNullableObject<T>(this, string.Empty);
+	                Value = null;
+			UpdateTime = DateTime.MinValue;
+
                 }
 
                 #region 字段
 
                 private NativeOpcItem _item;
-	        private readonly ObservableNullableObject<T> _data;
 
                 #endregion
 
@@ -48,14 +49,8 @@ namespace Nutshell.Automation.OPC
 
                 public int ClientHandle { get; private set; }
 
-                public ObservableNullableObject<T> Data
-                {
-                        get
-                        {
-                                Trace.Assert(_data != null);
-                                return _data;
-                        }
-                }
+		[WillNotifyPropertyChanged]
+                public object Value { get; private set; }
 
 		[WillNotifyPropertyChanged]
                 public DateTime UpdateTime { get; private set; }
@@ -67,7 +62,6 @@ namespace Nutshell.Automation.OPC
                 public void Load([MustNotEqualNull]IOpcItemModel model)
                 {
                         base.Load(model);
-
 
                         Address = model.Address;
                         TypeCode = model.TypeCode;
@@ -83,7 +77,7 @@ namespace Nutshell.Automation.OPC
 		        throw new NotImplementedException();
 	        }
 
-	        public void Attach(string address, OPCAutomation.OPCGroup group)
+	        public void Attach(string address, NativeOpcGroup group)
                 {
                         OpcServer.ClientHandleIndex++;
                         var name = address + "." + group.Name + "." + Address;
@@ -91,83 +85,52 @@ namespace Nutshell.Automation.OPC
                         ClientHandle = OpcServer.ClientHandleIndex;
                 }
 
-                public void RemoteRead()
+                public object RemoteRead()
                 {
                         var server = Parent.Parent as OpcServer;
                         Debug.Assert(server != null);
 
-                        try
-                        {
-                                if (server.RunMode != RunMode.Release)
-                                {
-                                        throw new InvalidOperationException(GlobalId + "只能在发布模式下读取远程数据");
-                                }
+	                object result = null;
+	                try
+	                {
+		                if (server.RunMode != RunMode.Release)
+		                {
+			                throw new InvalidOperationException(GlobalId + "只能在发布模式下读取远程数据");
+		                }
 
-                                object quality;
-                                object timestamp;
+		                object quality;
+		                object timestamp;
 
-                                object result;
-                                _item.Read((short) OPCDataSource.OPCDevice, out result, out quality, out timestamp);
+		                _item.Read((short) OPCDataSource.OPCDevice, out result, out quality, out timestamp);
 
-                                Trace.WriteLine(GlobalId + " : " + result);
+		                Trace.WriteLine(GlobalId + " : " + result);
 
-                                LocalWrite(result);
-                        }
-                        catch (Exception e)
-                        {
-                                LocalWrite(null);
-                                this.Error("读取失败, 错误原因：" + e);
-                        }
-                }
+		                LocalWrite(result);
+	                }
+	                catch (Exception e)
+	                {
+		                result = null;
+		                LocalWrite(null);
+		                this.Error("读取失败, 错误原因：" + e);
+	                }
+			return result;
+		}
 
-                public void LocalWrite(object obj)
+                public void LocalWrite(object value)
                 {
-                        dynamic d = Data;
-
-                        if (obj == null)
-                        {
-                                d.NullableValue =null;
-                                return;
-                        }
-
-                        switch (TypeCode)
-                        {
-                                case TypeCode.Boolean:
-                                        var bo = bool.Parse(obj.ToString());
-                                        d.NullableValue =bo;
-                                        break;
-
-                                case TypeCode.Single:
-                                        var si = float.Parse(obj.ToString());
-                                        d.NullableValue =si;
-                                        break;
-
-                                case TypeCode.Byte:
-                                        var by = byte.Parse(obj.ToString());
-                                        d.NullableValue =by;
-                                        break;
-
-                                case TypeCode.Int16:
-                                        var sh = short.Parse(obj.ToString());
-                                        d.NullableValue = sh;
-                                        break;
-
-                                case TypeCode.UInt16:
-                                        var i16 = ushort.Parse(obj.ToString());
-                                        d.NullableValue =i16;
-                                        break;
-
-                                case TypeCode.Int32:
-                                        var i32 = int.Parse(obj.ToString());
-                                        d.NullableValue =i32;
-                                        break;
-
-                                default:
-                                        throw new ArgumentOutOfRangeException();
-                        }
+	                Value = value;
+	                if (Value != null)
+	                {
+				UpdateTime = DateTime.Now;
+		                OnReadSuccessed(new ValueEventArgs<object>(Value));
+	                }
+	                else
+	                {
+		                OnReadFailed(EventArgs.Empty);
+	                }
                 }
 
-                public void RemoteWrite(T t)
+                public void RemoteWrite(object value)
                 {
                         var server = Parent.Parent as OpcServer;
                         Debug.Assert(server != null);
@@ -183,7 +146,7 @@ namespace Nutshell.Automation.OPC
                                 {
                                         throw new InvalidOperationException(GlobalId + "读写模式不具备远程数据写入权限");
                                 }
-                                _item.Write(t);
+                                _item.Write(value);
                         }
                         catch (InvalidOperationException e)
                         {
@@ -198,12 +161,26 @@ namespace Nutshell.Automation.OPC
                         }
                 }
 
-                #region 事件
+		#region 事件
 
-                /// <summary>
-                ///         Occurs when [opened].
-                /// </summary>
-                public event EventHandler<EventArgs> ReadFailed;
+		/// <summary>
+		///         Occurs when [opened].
+		/// </summary>
+		public event EventHandler<ValueEventArgs<object>> ReadSuccessed;
+
+		/// <summary>
+		///         引发 <see cref="E:Opened" /> 事件.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		protected virtual void OnReadSuccessed(ValueEventArgs<object> e)
+		{
+			e.Raise(this, ref ReadSuccessed);
+		}
+
+		/// <summary>
+		///         Occurs when [opened].
+		/// </summary>
+		public event EventHandler<EventArgs> ReadFailed;
 
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.

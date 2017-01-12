@@ -11,12 +11,15 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Automation.Models;
+using Nutshell.Data;
+
 namespace Nutshell.Automation
 {
         /// <summary>
         ///         制造信息接口
         /// </summary>
-        public interface IManufacturingInformation
+        public interface IManufacturingInformation:IStorable<IManufacturingInformationModel>
         {
                 /// <summary>
                 ///         制造商
@@ -27,10 +30,5 @@ namespace Nutshell.Automation
                 ///         型号
                 /// </summary>
                 string Model { get; }
-
-                /// <summary>
-                ///         序列号
-                /// </summary>
-                string SerialNumber { get; }
         }
 }

@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Automation.Models;
 
 namespace Nutshell.Automation
 {
@@ -23,12 +24,21 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         设备版本
                 /// </summary>
-                public Version DeviceVersion { get; }
+                public Version DeviceVersion { get; private set; }
 
                 /// <summary>
                 ///         固件版本
                 /// </summary>
-                public Version FirewareVersion { get; }
+                public Version FirewareVersion { get; private set; }
 
+                public void Load(IUpgradeableManufacturingInformationModel model)
+                {
+                        throw new NotImplementedException();
+                }
+
+                public void Save(IUpgradeableManufacturingInformationModel model)
+                {
+                        throw new NotImplementedException();
+                }
         }
 }

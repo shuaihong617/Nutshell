@@ -23,12 +23,12 @@ namespace Nutshell.Automation
         /// <summary>
         ///         设备
         /// </summary>
-        public abstract class Device : StorableObject, IDevice, IStorable<IDeviceModel>
+        public abstract class Device : StorableObject, IDevice
         {
                 #region 构造函数
 
-                protected Device([MustNotEqualNull]IdentityObject parent,
-			[MustNotEqualNull]string id = null)
+                protected Device([MustNotEqualNull]IIdentityObject parent,
+			string id = null)
                         : base(parent, id)
                 {
                 }
@@ -55,13 +55,13 @@ namespace Nutshell.Automation
 		///         制造信息
 		/// </summary>
 		[MustNotEqualNull]
-                public IManufacturingInformation ManufacturingInformation { get;private set; }
+                public IManufacturingInformation ManufacturingInformation { get; set; }
 
                 #endregion
 
                 #region 方法
 
-                public void Load(IDeviceModel model)
+                public void Load([MustNotEqualNull]IDeviceModel model)
                 {
                         base.Load(model);
 
@@ -73,7 +73,7 @@ namespace Nutshell.Automation
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(IDeviceModel model)
+                public void Save([MustNotEqualNull]IDeviceModel model)
                 {
                         base.Save(model);
 

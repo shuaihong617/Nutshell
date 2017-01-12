@@ -18,16 +18,16 @@ namespace Nutshell.Automation
         /// <summary>
         /// 运行环境信息
         /// </summary>
-        public class RuntimeInformation
+        public class RuntimeInformation:IRuntimeInformation
         {
-                /// <summary>
-                /// 固件版本
-                /// </summary>
-                public Version FirewareVersion;
+                public RuntimeInformation(Version driverVersion)
+                {
+                        DriverVersion = driverVersion;
+                }
 
                 /// <summary>
                 /// 驱动版本
                 /// </summary>
-                public Version DriverVersion;
+                public Version DriverVersion { get;private set; }
         }
 }

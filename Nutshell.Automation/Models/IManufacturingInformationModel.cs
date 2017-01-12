@@ -30,9 +30,5 @@ namespace Nutshell.Automation.Models
                 /// </summary>
                 string Model { get; set; }
 
-                /// <summary>
-                ///         序列号
-                /// </summary>
-                string SerialNumber { get; set; }
         }
 }

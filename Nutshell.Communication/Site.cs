@@ -44,16 +44,14 @@ namespace Nutshell.Communication
 	        public event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
 
 
-	        protected override bool StartCore()
-	        {
-		        throw new System.NotImplementedException();
-	        }
+                protected override IResult Starup(IWorkContext context)
+                {
+                        throw new NotImplementedException();
+                }
 
-	        protected override bool StopCore()
-	        {
-		        throw new System.NotImplementedException();
-	        }
-
-	        
+                protected override IResult Clean(IWorkContext context)
+                {
+                        throw new NotImplementedException();
+                }
         }
 }

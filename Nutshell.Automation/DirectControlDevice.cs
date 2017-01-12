@@ -8,7 +8,7 @@ using PostSharp.Patterns.Model;
 
 namespace Nutshell.Automation
 {
-        public abstract class DirectControlDevice:ControllableDevice
+        public abstract class DirectControlDevice:IdentityObject
         {
                 protected DirectControlDevice(IdentityObject parent, string id = "直接控制设备")
                         : base(parent, id)
@@ -66,13 +66,7 @@ namespace Nutshell.Automation
 
                 #region 方法
 
-                public override void Load([MustAssignableFrom(typeof(IDeviceModel))] IDataModel model)
-                {
-                        base.Load(model);                        
-                }
-
                 
-
                 protected bool Open()
                 {
                         if (IsOpened)

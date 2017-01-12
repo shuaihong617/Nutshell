@@ -28,29 +28,26 @@ namespace Nutshell.RabbitMQ
 			throw new System.NotImplementedException();
 		}
 
-		protected override bool StartCore()
-                {
-                        _consumer = new EventingBasicConsumer(Channel);
-			//Channel.BasicConsume("queueName", false, _consumer);
+		//protected override bool Start()
+  //              {
+  //                      _consumer = new EventingBasicConsumer(Channel);
+		//	//Channel.BasicConsume("queueName", false, _consumer);
 
-			var consumer = new EventingBasicConsumer(Channel);
-			consumer.Received += (model, ea) =>
-			{
-				//var body = ea.Body;
-				//var message = Encoding.UTF8.GetString(body);
-				//Console.WriteLine(" [x] Received {0}", message);
-			};
-			Channel.BasicConsume(queue: "hello",
-					     noAck: true,
-					     consumer: consumer);
+		//	var consumer = new EventingBasicConsumer(Channel);
+		//	consumer.Received += (model, ea) =>
+		//	{
+		//		//var body = ea.Body;
+		//		//var message = Encoding.UTF8.GetString(body);
+		//		//Console.WriteLine(" [x] Received {0}", message);
+		//	};
+		//	Channel.BasicConsume(queue: "hello",
+		//			     noAck: true,
+		//			     consumer: consumer);
 
-			return true;
-                }
+		//	return true;
+  //              }
 
-                protected override bool StopCore()
-                {
-                        throw new System.NotImplementedException();
-                }
+                
 
                 public byte[] Receive()
                 {

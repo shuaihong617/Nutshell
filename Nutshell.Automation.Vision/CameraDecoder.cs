@@ -92,14 +92,14 @@ namespace Nutshell.Hardware.Vision
 
                 #region 处理流程
 
-                protected override sealed bool StartCore()
+                protected override sealed IResult Starup(IWorkContext context)
                 {
                         CreateBitmapPool();
 
                         Camera.CaptureSuccessed += Camera_CaptureSuccessed;
 			throw new NotImplementedException();
 			//_looper.Start();
-                        return true;
+                        //return true;
                 }
 
                 private void Camera_CaptureSuccessed(object sender, ValueEventArgs<Bitmap> e)
@@ -114,12 +114,12 @@ namespace Nutshell.Hardware.Vision
                         Camera.Buffers.ReadLock(_decodeBitmap);
                 }
 
-                protected override sealed bool StopCore()
+                protected override sealed IResult Clean(IWorkContext context)
                 {
 			throw new NotImplementedException();
 			// _looper.Stop();
-			Camera.CaptureSuccessed -= Camera_CaptureSuccessed;
-                        return true;
+			//Camera.CaptureSuccessed -= Camera_CaptureSuccessed;
+                        //return true;
                 }
 
                 private void Decode()

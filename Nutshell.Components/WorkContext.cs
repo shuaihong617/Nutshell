@@ -22,8 +22,13 @@ namespace Nutshell.Components
         /// <summary>
         ///         工作上下文
         /// </summary>
-        public abstract class WorkContext : IWorkContext
+        public class WorkContext : IWorkContext
         {
+                public WorkContext(bool isEnable = true, RunMode runMode = RunMode.Release)
+                {
+                        IsEnable = isEnable;
+                        RunMode = runMode;
+                }
 
 		/// <summary>
 		/// 获取是否启用
@@ -36,5 +41,8 @@ namespace Nutshell.Components
 	        /// </summary>
 	        /// <value>调试模式</value>
 	        public RunMode RunMode { get; private set; }
+
+
+                public static readonly WorkContext EnableRelease = new WorkContext(true, RunMode.Release);
         }
 }

@@ -28,7 +28,7 @@ namespace Nutshell.Components
                 protected BufferedConsumer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
-                        Looper = new Looper(this, Id + "消费循环", Dequeue);
+                        //Looper = new Looper(this, Id + "消费循环", Dequeue);
                 }
 
                 protected IBuffer<T> Buffer { get; set; }
@@ -46,13 +46,13 @@ namespace Nutshell.Components
                         //Looper.Load(looperModel);
                 }
 
-                protected override bool StartCore()
+                protected override IResult Starup(IWorkContext context)
                 {
 			throw new NotImplementedException();
                         //return Looper.Start();
                 }
 
-                protected override bool StopCore()
+                protected override IResult Clean(IWorkContext context)
                 {
 			throw new NotImplementedException();
 			//return Looper.Stop();

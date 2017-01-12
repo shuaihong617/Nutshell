@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
-using Nutshell.Data.Models;
-using OPCAutomation;
-
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 
 namespace Nutshell.Automation.OPC
 {
-        public class OpcGroup : StorableObject,IOpcGroup
+        public class OpcGroup : StorableObject, IOpcGroup
         {
-                public OpcGroup(IdentityObject parent, string id = "", string address="")
+                public OpcGroup(IIdentityObject parent, string id = "", string address = "")
                         : base(parent, id)
                 {
                         Address = address;
-                        Items = new List<IOpcItem>();
+                        OpcItems = new ObservableCollection<IOpcItem>();
                 }
 
                 #region 字段
-
-                
 
                 private readonly Dictionary<int, IOpcItem> _subscribeItems = new Dictionary<int, IOpcItem>();
 
@@ -36,52 +30,52 @@ namespace Nutshell.Automation.OPC
 
                 public string Address { get; private set; }
 
-                public List<IOpcItem> Items { get; private set; }
+                public ObservableCollection<IOpcItem> OpcItems { get; private set; }
 
                 #endregion
-
 
                 public void Load(IOpcGroupModel model)
                 {
                         base.Load(model);
 
                         Address = model.Address;
-
-                        //var groupModels = groupModel.OPCItemModels;
-
-                        //foreach (var itemModel in groupModels)
-                        //{
-                        //        //var item = new OPCItem(this);
-                        //        //item.Load(itemModel);
-                        //        //AddItem(item);
-                        //}
                 }
 
-	        /// <summary>
-	        ///         保存数据到数据模型
-	        /// </summary>
-	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-	        public void Save(IOpcGroupModel model)
-	        {
-		        throw new NotImplementedException();
-	        }
-
-	        public void AddItem(IOpcItem item)
+                public void Load(IEnumerable<IOpcItemModel> itemModels)
                 {
-                        Items.Add(item);
+                        foreach (var itemModel in itemModels)
+                        {
+                                //var item = new OPCItem(this);
+                                //item.Load(itemModel);
+                                //AddItem(item);
+                        }
                 }
 
-                public void Attach(OPCAutomation.OPCServer server, string serverAddress)
+                /// <summary>
+                ///         保存数据到数据模型
+                /// </summary>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                public void Save(IOpcGroupModel model)
                 {
-                        
-                                        _group = server.OPCGroups.Add(Address);
-                                        _group.IsActive = true;
-                                        _group.OPCItems.DefaultIsActive = true;
-                                        _group.IsSubscribed = true;
-                                        _group.UpdateRate = 100;
-                                               
+                        throw new NotImplementedException();
+                }
 
-                        foreach (var item in Items)
+
+                public void AddItem(IOpcItem item)
+                {
+                        OpcItems.Add(item);
+                }
+
+                public void Attach(NativeOpcServer server, string serverAddress)
+                {
+                        _group = server.OPCGroups.Add(Address);
+                        _group.IsActive = true;
+                        _group.OPCItems.DefaultIsActive = true;
+                        _group.IsSubscribed = true;
+                        _group.UpdateRate = 100;
+
+
+                        foreach (var item in OpcItems)
                         {
                                 dynamic d = item;
                                 d.Attach(serverAddress, _group);

@@ -12,13 +12,15 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Automation.Models;
+using Nutshell.Data;
 
 namespace Nutshell.Automation
 {
         /// <summary>
         ///         可升级制造信息接口
         /// </summary>
-        public interface IUpgradeableManufacturingInformation:IManufacturingInformation
+        public interface IUpgradeableManufacturingInformation:IManufacturingInformation,IStorable<IUpgradeableManufacturingInformationModel>
         {
                 /// <summary>
                 ///         设备版本

@@ -28,7 +28,7 @@ namespace Nutshell.Components
                 protected BufferedProducer(IdentityObject parent, string id)
                         : base(parent, id)
                 {
-                        DequeueLooper = new Looper(this, "出队工作循环", Dequeue);
+                        //DequeueLooper = new Looper(this, "出队工作循环", Dequeue);
                 }
 
                 protected IBuffer<T> Buffer { get; set; }
@@ -46,13 +46,13 @@ namespace Nutshell.Components
                         //DequeueLooper.Load(dequeueLooperModel);
                 }
 
-                protected override bool StartCore()
+                protected override IResult Starup(IWorkContext context)
                 {
 			throw new NotImplementedException();
 			//return DequeueLooper.Start();
 		}
 
-		protected override bool StopCore()
+                protected override IResult Clean(IWorkContext context)
                 {
 			throw new NotImplementedException();
 			//return DequeueLooper.Stop();

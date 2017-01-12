@@ -12,46 +12,53 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
-using Nutshell.Log;
 
 namespace Nutshell.Automation.OPC
 {
-        /// <summary>
-        ///         跟踪值更新前后变化的对象
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        public class OpcObject<T> : ObservableNullableObject<T> where T : struct
-        {
-                /// <summary>
-                /// 初始化<see cref="OpcObject{T}" />的新实例.
-                /// </summary>
-                /// <param name="parent">The parent.</param>
-                /// <param name="id">The item.</param>
-                public OpcObject([MustNotEqualNull]IdentityObject parent, 
-			[MustNotEqualNull]string id, 
-			[MustNotEqualNull]OpcItem<T> opcItem)
-                        :base(parent, id)
-                {
-                        _opcItem = opcItem;
+	/// <summary>
+	///         跟踪值更新前后变化的对象
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public class OpcObject<T> : ObservableNullableObject<T> where T : struct
+	{
+		/// <summary>
+		///         初始化<see cref="OpcObject{T}" />的新实例.
+		/// </summary>
+		/// <param name="parent">The parent.</param>
+		/// <param name="id">The item.</param>
+		/// <param name="opcItem">The opc item.</param>
+		public OpcObject([MustNotEqualNull] IdentityObject parent,
+			[MustNotEqualNull] string id,
+			[MustNotEqualNull] OpcItem opcItem)
+			: base(parent, id)
+		{
+			_opcItem = opcItem;
 
-                        _opcItem.Data.ValueChanged += (o, e) => NullableValue = e.Value;
-                }
+			_opcItem.ReadSuccessed += (obj, args) => { Value = ConvertFrom(args.Value, _opcItem.TypeCode); };
 
-                private readonly OpcItem<T> _opcItem;
+			_opcItem.ReadFailed += (obj, args) => { Value = null; };
+			//_opcItem.Data.ValueChanged += (o, e) => NullableValue = e.Value;
+		}
 
-                public void RemoteWrite(T t)
-                {
-                        _opcItem.RemoteWrite(t);
-                }
+		private readonly OpcItem _opcItem;
 
-                public void RemoteRead()
-                {
-                        _opcItem.RemoteRead();
-                        NullableValue = _opcItem.Data.NullableValue;
-                }
-        }
+		public void RemoteWrite(T t)
+		{
+			_opcItem.RemoteWrite(t);
+		}
 
+		public void RemoteRead()
+		{
+			var result = _opcItem.RemoteRead();
+			Value = ConvertFrom(result, _opcItem.TypeCode);
+		}
+
+		private T? ConvertFrom(object value, TypeCode typeCode)
+		{
+			throw new NotImplementedException();
+			//return null;
+		}
+	}
 }

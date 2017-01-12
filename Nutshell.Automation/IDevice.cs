@@ -12,23 +12,27 @@
 // ***********************************************************************
 
 
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Automation.Models;
 using Nutshell.Components;
+using Nutshell.Data;
 
 namespace Nutshell.Automation
 {
         /// <summary>
         ///         设备接口
         /// </summary>
-        public interface IDevice : IIdentityObject,IEnable, IDebuggable
-	{
+        public interface IDevice : IEnable, IDebuggable,IStorable<IDeviceModel>
+        {
                 #region 属性
 
                 /// <summary>
                 /// 获取制造信息
                 /// </summary>
                 /// <value>制造信息</value>
-                IManufacturingInformation ManufacturingInformation { get; }
+                [MustNotEqualNull]
+                IManufacturingInformation ManufacturingInformation { get; set; }
 
                 #endregion
-        }
+	}
 }

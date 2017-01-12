@@ -41,16 +41,14 @@ namespace Nutshell.Components
 		/// <summary>
 		/// 启动
 		/// </summary>
-		/// <param name="context">工作上下文</param>
 		/// <returns>成功返回True，失败返回False.</returns>
-		bool Start(IWorkContext context);
+		IResult Start(IWorkContext context);
 
 		/// <summary>
 		///         停止
 		/// </summary>
-		/// <param name="context">工作上下文</param>
 		/// <returns>成功返回True，失败返回False.</returns>
-		bool Stop(IWorkContext context);
+		IResult Stop(IWorkContext context);
 
                 #endregion
 

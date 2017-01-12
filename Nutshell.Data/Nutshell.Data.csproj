@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nutshell.Data</RootNamespace>
     <AssemblyName>Nutshell.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DontImportPostSharp>True</DontImportPostSharp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Aspects\Locations\Contracts\NSModelIdNotEqualNullOrEmptyAttribute.cs" />
+    <Compile Include="IApplication.cs" />
     <Compile Include="IStorable.cs" />
     <Compile Include="Models\IApplicationModel.cs" />
     <Compile Include="Models\IDataModel.cs" />

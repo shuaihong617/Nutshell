@@ -4,7 +4,7 @@ using Nutshell.Data;
 
 namespace Nutshell.Automation.OPC
 {
-	public interface IOpcItem : IIdentityObject, IStorable<IOpcItemModel>
+	public interface IOpcItem : IStorable<IOpcItemModel>
 	{
 		string Address { get; }
 
@@ -15,9 +15,13 @@ namespace Nutshell.Automation.OPC
 		/// </summary>
 		ReadWriteMode ReadWriteMode { get; }
 
+		object Value { get;}
+
+		DateTime UpdateTime { get;}
+
 		int ClientHandle { get; }
 
-		void RemoteRead();
+		object RemoteRead();
 
 		void LocalWrite(object value);
 	}
