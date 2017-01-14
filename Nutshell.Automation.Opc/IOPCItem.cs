@@ -2,6 +2,10 @@
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
 
+//重命名OPCDAAuto.dll中类名，禁止删除；
+using NativeOpcGroup = OPCAutomation.OPCGroup;
+using NativeOpcItem = OPCAutomation.OPCItem;
+
 namespace Nutshell.Automation.OPC
 {
 	public interface IOpcItem : IStorable<IOpcItemModel>
@@ -21,7 +25,10 @@ namespace Nutshell.Automation.OPC
 
 		int ClientHandle { get; }
 
-		object RemoteRead();
+	        void Attach(string serverAddress, NativeOpcGroup group);
+
+
+                object RemoteRead();
 
 		void LocalWrite(object value);
 	}

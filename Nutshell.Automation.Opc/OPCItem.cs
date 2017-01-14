@@ -77,10 +77,10 @@ namespace Nutshell.Automation.OPC
 		        throw new NotImplementedException();
 	        }
 
-	        public void Attach(string address, NativeOpcGroup group)
+	        public void Attach(string serverAddress, NativeOpcGroup group)
                 {
                         OpcServer.ClientHandleIndex++;
-                        var name = address + "." + group.Name + "." + Address;
+                        var name = serverAddress + "." + group.Name + "." + Address;
                         _item = group.OPCItems.AddItem(name, OpcServer.ClientHandleIndex);
                         ClientHandle = OpcServer.ClientHandleIndex;
                 }

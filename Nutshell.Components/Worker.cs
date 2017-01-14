@@ -87,7 +87,7 @@ namespace Nutshell.Components
 
                                 WorkState = WorkState.Starting;
 
-                                if (context.IsEnable)
+                                if (!context.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
 

@@ -167,6 +167,7 @@
     <Compile Include="DirectControlDevice.cs" />
     <Compile Include="Models\IUpgradeableManufacturingInformation.cs" />
     <Compile Include="IRuntimeInformation.cs" />
+    <Compile Include="SurviveLooper.cs" />
     <Compile Include="UpgradeableManufacturingInformation.cs" />
     <Compile Include="IUpgradeableManufacturingInformation.cs" />
     <Compile Include="IManufacturingInformation.cs" />

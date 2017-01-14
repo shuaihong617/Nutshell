@@ -1,4 +1,5 @@
 ﻿using System;
+using Nutshell.Automation.OPC;
 using Nutshell.Components;
 using Nutshell.Log;
 
@@ -25,13 +26,14 @@ namespace Nutshell.Automation.Opc
 				return Result.Successed;
 			}
 
-			var opcContext = context as OpcServerDispatchContext;
+			var opcContext = context as IOpcServer;
 
                         try
                         {
 				foreach (var group in opcContext.OpcGroups)
 				{
 					group.Attach(opcContext.NativeOpcServer, opcContext.Address);
+				        
 				};
 			}
 			catch (Exception ex)
@@ -40,7 +42,12 @@ namespace Nutshell.Automation.Opc
                                 return new Result(ex);
                         }
 
-                        //this.InfoSuccess("连接" + opcContext.Name);
+                        foreach (var opcItem in opcContext.OpcItems)
+                        {
+                                opcItem.RemoteRead();
+                        }
+
+                        this.InfoSuccess("Attach" + opcContext.Name);
 
                         return Result.Successed;
                 }
@@ -54,7 +61,7 @@ namespace Nutshell.Automation.Opc
                 /// </remarks>
                 protected override sealed IResult Clean(IWorkContext context)
                 {
-                        var opcContext = context as OpcServerConnectContext;
+                        var opcContext = context as IOpcServer;
 
                         try
                         {

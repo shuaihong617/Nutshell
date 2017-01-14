@@ -3,6 +3,9 @@ using System.Collections.ObjectModel;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
 
+//重命名OPCDAAuto.dll中类名，禁止删除；
+using NativeOpcServer = OPCAutomation.OPCServer;
+
 namespace Nutshell.Automation.OPC
 {
         /// <summary>
@@ -21,6 +24,9 @@ namespace Nutshell.Automation.OPC
                 string Name { get;  }
 
                 string Address { get; }
+
+                NativeOpcServer NativeOpcServer { get; }
+
                 ObservableCollection<IOpcGroup> OpcGroups { get; }
 
                 ObservableCollection<IOpcItem> OpcItems { get; }

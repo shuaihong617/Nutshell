@@ -6,6 +6,7 @@ using Nutshell.Aspects.Methods.Contracts;
 using Nutshell.Automation.Opc;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Components;
+using OPCAutomation;
 
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer; 
@@ -37,12 +38,14 @@ namespace Nutshell.Automation.OPC
                                 Address = address;                                
                         }
 
+                        NativeOpcServer = new NativeOpcServer();
+
                         OpcGroups = new ObservableCollection<IOpcGroup>();
                         OpcItems = new ObservableCollection<IOpcItem>();
                         OpcItemsLookupTable = new Dictionary<string, IOpcItem>();
 
                         ConnectWorker = new OpcServerConnectWorker(this);
-			SurviveLooper = new OpcServerSurviveLooper(this);
+			SurviveLooper = new SurviveLooper(this);
 			DispatchWorker = new OpcServerDispatchWorker(this);
                 }
 
@@ -50,7 +53,7 @@ namespace Nutshell.Automation.OPC
 
                 public static int ClientHandleIndex;
 
-                private readonly NativeOpcServer _nativeOpcServer = new NativeOpcServer();
+                
 
                 public Dictionary<string, IOpcItem> OpcItemsLookupTable { get; private set; }
 
@@ -58,6 +61,8 @@ namespace Nutshell.Automation.OPC
                 #endregion
 
                 #region 属性
+
+                public NativeOpcServer NativeOpcServer { get; private set; }
 
                 [MustNotEqualNullOrEmpty]
                 public string Name { get; private set; }
@@ -97,28 +102,6 @@ namespace Nutshell.Automation.OPC
                                 OpcItems.Add(opcItem);
                                 OpcItemsLookupTable.Add(opcItem.Id, opcItem);
                         }
-                }
-
-		[MustReturnNotEqualNull]
-                protected override IWorkContext CreateConnectContext()
-                {
-                        return new OpcServerConnectContext(_nativeOpcServer,Name, Address);
-                }
-
-		[MustReturnNotEqualNull]
-                protected override IWorkContext CreateSurviveContext()
-		{
-			return WorkContext.EnableRelease;
-		}
-
-		[MustReturnNotEqualNull]
-                protected override IWorkContext CreateDispatchContext()
-                {
-			return new OpcServerDispatchContext(_nativeOpcServer, Address, OpcGroups);
-		}
-
-                
-
-                
+                }                
         }
 }

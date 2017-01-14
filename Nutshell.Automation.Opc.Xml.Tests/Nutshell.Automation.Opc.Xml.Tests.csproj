@@ -63,6 +63,10 @@
       <Project>{F7D1B8C5-5F18-435D-9E22-59D8960B44C3}</Project>
       <Name>Nutshell.Automation.Opc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation.Xml\Nutshell.Automation.Xml.csproj">
+      <Project>{DE2C3F5B-04CF-46E2-AD61-1B3E451E6D73}</Project>
+      <Name>Nutshell.Automation.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
       <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>
       <Name>Nutshell.Automation</Name>

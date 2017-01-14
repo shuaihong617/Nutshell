@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Data;
+using OPCAutomation;
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
@@ -45,9 +46,9 @@ namespace Nutshell.Automation.OPC
                 {
                         foreach (var itemModel in itemModels)
                         {
-                                //var item = new OPCItem(this);
-                                //item.Load(itemModel);
-                                //AddItem(item);
+                                var item = new OpcItem(this);
+                                item.Load(itemModel);
+                                AddItem(item);
                         }
                 }
 
@@ -77,9 +78,8 @@ namespace Nutshell.Automation.OPC
 
                         foreach (var item in OpcItems)
                         {
-                                dynamic d = item;
-                                d.Attach(serverAddress, _group);
-                                _subscribeItems.Add(d.ClientHandle, d);
+                                item.Attach(serverAddress, _group);
+                                _subscribeItems.Add(item.ClientHandle, item);
                         }
 
                         _group.DataChange += DataChange;

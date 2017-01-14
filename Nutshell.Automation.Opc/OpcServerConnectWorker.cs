@@ -1,4 +1,5 @@
 ﻿using System;
+using Nutshell.Automation.OPC;
 using Nutshell.Components;
 using Nutshell.Log;
 
@@ -20,7 +21,7 @@ namespace Nutshell.Automation.Opc
                 /// </remarks>
                 protected override sealed IResult Starup(IWorkContext context)
                 {
-                        var opcContext = context as OpcServerConnectContext;
+                        var opcContext = context as IOpcServer;
 
                         try
                         {
@@ -46,7 +47,7 @@ namespace Nutshell.Automation.Opc
                 /// </remarks>
                 protected override sealed IResult Clean(IWorkContext context)
                 {
-                        var opcContext = context as OpcServerConnectContext;
+                        var opcContext = context as IOpcServer;
 
                         try
                         {

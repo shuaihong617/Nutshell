@@ -7,9 +7,9 @@
     <ProjectGuid>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Hardware.Vision</RootNamespace>
-    <AssemblyName>Nutshell.Hardware.Vision</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Nutshell.Automation.Vision</RootNamespace>
+    <AssemblyName>Nutshell.Automation.Vision</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />

@@ -46,12 +46,6 @@ namespace Nutshell.Automation
                 /// 获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
                 /// </summary>
                 /// <value>在线工作者</value>
-                ILooper SurviveLooper { get; }
-
-                /// <summary>
-                /// 在线测试
-                /// </summary>
-                /// <returns>设备在线返回True，否则返回False</returns>
-                bool OnlineTest();
+                SurviveLooper SurviveLooper { get; }
         }
 }

@@ -58,8 +58,6 @@
     <Compile Include="OpcRuntime.cs" />
     <Compile Include="OpcRuntimeDispatchWorker.cs" />
     <Compile Include="OpcServerSurviveContext.cs" />
-    <Compile Include="OpcServerSurviveLooper.cs" />
-    <Compile Include="OpcServerDispatchContext.cs" />
     <Compile Include="OpcServerDispatchWorker.cs" />
     <Compile Include="OpcServerConnectWorker.cs" />
     <Compile Include="IOpcItem.cs" />
@@ -72,7 +70,6 @@
     <Compile Include="OpcObject.cs" />
     <Compile Include="IOpcServer.cs" />
     <Compile Include="OpcServer.cs" />
-    <Compile Include="OpcServerConnectContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OpcRuntimeDispatchResult.cs" />
   </ItemGroup>

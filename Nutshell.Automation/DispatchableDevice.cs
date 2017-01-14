@@ -13,7 +13,6 @@
 
 using System;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.Models;
 using Nutshell.Components;
 
@@ -29,13 +28,9 @@ namespace Nutshell.Automation
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected DispatchableDevice([MustNotEqualNull]IIdentityObject parent,
-                                            string id)
+                protected DispatchableDevice([MustNotEqualNull] IIdentityObject parent,string id)
                         : base(parent, id)
                 {
-                       
-
-
                 }
 
                 #region 属性
@@ -43,14 +38,13 @@ namespace Nutshell.Automation
                 [MustNotEqualNull]
                 public IWorker DispatchWorker { get; protected set; }
 
+                #endregion
 
-		#endregion
-
-		/// <summary>
-		///         Loads the specified model.
-		/// </summary>
-		/// <param name="model">The model.</param>
-		public void Load([MustNotEqualNull] IDispatchableDeviceModel model)
+                /// <summary>
+                ///         Loads the specified model.
+                /// </summary>
+                /// <param name="model">The model.</param>
+                public void Load([MustNotEqualNull] IDispatchableDeviceModel model)
                 {
                         base.Load(model);
                 }
@@ -64,18 +58,15 @@ namespace Nutshell.Automation
                         throw new NotImplementedException();
                 }
 
-                protected abstract IWorkContext CreateDispatchContext();
 
                 public void Establish()
                 {
-	                var context = CreateDispatchContext();
-	                DispatchWorker.Start(context);
+                        DispatchWorker.Start(this);
                 }
 
                 public void Terminate()
                 {
-	                var context = CreateDispatchContext();
-	                DispatchWorker.Stop(context);
+                        DispatchWorker.Stop(this);
                 }
         }
 }

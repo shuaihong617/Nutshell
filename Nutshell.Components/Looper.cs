@@ -12,8 +12,10 @@
 // ***********************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
+using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
@@ -25,37 +27,32 @@ namespace Nutshell.Components
         /// <summary>
         ///         循环工作者
         /// </summary>
-        public class Looper : Worker,ILooper
+        public abstract class Looper : Worker,ILooper
         {
-                public Looper(IdentityObject parent, string id, Action action)
-                        : this(parent, id, ThreadPriority.Normal, 1000, action)
+                protected Looper(IIdentityObject parent, string id)
+                        : this(parent, id, ThreadPriority.Normal, 1000)
                 {
 
                 }
 
-                public Looper(IdentityObject parent, string id, int interval, Action action)
-                        : this(parent, id, ThreadPriority.Normal,  interval, action)
+                protected Looper(IIdentityObject parent, string id, int interval)
+                        : this(parent, id, ThreadPriority.Normal,  interval)
                 {
                        
                 }
 
-                public Looper(IdentityObject parent, string id, ThreadPriority priority, int interval, Action action)
+                protected Looper(IIdentityObject parent, string id, ThreadPriority priority, int interval)
                         : base(parent, id)
                 {
                         Priority = priority;
                         Interval = interval;
-                        _action = action;
-
-                        
                 }
 
                 #region 字段
 
                 private Thread _thread;
 
-                private bool _isWork;
-
-                private readonly Action _action;
+                private bool _isRequestWork;
 
                 #endregion
 
@@ -90,7 +87,7 @@ namespace Nutshell.Components
 
                 protected override IResult Starup(IWorkContext context)
                 {
-                        _isWork = true;
+                        _isRequestWork = true;
 
                         _thread = new Thread(ThreadWork) {Priority = Priority};
                         _thread.Start();
@@ -103,11 +100,12 @@ namespace Nutshell.Components
                         this.Info("循环启动,周期", Interval, "毫秒");
                         for (; ; )
                         {
-                                _action();
+                                var result = RepeatWork();
+                                OnRepeatWorkFinshed(new ValueEventArgs<IResult>(result));
 
                                 Thread.Sleep(Interval);
 
-                                if (!_isWork)
+                                if (!_isRequestWork)
                                 {
                                         this.Info("循环停止");
                                         break;
@@ -117,9 +115,32 @@ namespace Nutshell.Components
 
                 protected override IResult Clean(IWorkContext context)
                 {
-                        _isWork = false;
+                        _isRequestWork = false;
 
                         return Result.Successed;
                 }
+
+                protected abstract IResult RepeatWork();
+
+                #region 事件
+
+                /// <summary>
+                ///         当启动时发生。
+                /// </summary>
+                [Description("启动事件")]
+                [WillLogEventInvokeHandler]
+                public event EventHandler<ValueEventArgs<IResult>> RepeatWorkFinshed;
+
+                /// <summary>
+                ///         引发启动事件。
+                /// </summary>
+                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+                protected virtual void OnRepeatWorkFinshed(ValueEventArgs<IResult> e)
+                {
+                        e.Raise(this, ref RepeatWorkFinshed);
+                }
+
+                #endregion
+
         }
 }

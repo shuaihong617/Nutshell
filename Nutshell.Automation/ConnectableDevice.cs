@@ -74,7 +74,7 @@ namespace Nutshell.Automation
                 ///         获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
                 /// </summary>
                 /// <value>在线工作者</value>
-                public ILooper SurviveLooper { get; protected set; }
+                public SurviveLooper SurviveLooper { get; protected set; }
 
                 #endregion
 
@@ -96,35 +96,20 @@ namespace Nutshell.Automation
                         throw new NotImplementedException();
                 }
 
-                protected abstract IWorkContext CreateConnectContext();
-
-                protected abstract IWorkContext CreateSurviveContext();
 
                 public void Connect()
                 {
-                        var connectContext = CreateConnectContext();                        
-                        var surviveContext = CreateSurviveContext();
 
-                        ConnectWorker.Start(connectContext);
-                        SurviveLooper.Start(surviveContext);
+                        ConnectWorker.Start(this);
+                        SurviveLooper.Start(this);
                 }
 
                 public  void Disconnect()
                 {
-                        var connectContext = CreateConnectContext();
-                        var surviveContext = CreateSurviveContext();
-
-                        SurviveLooper.Stop(surviveContext);
-                        ConnectWorker.Stop(connectContext);
+                        SurviveLooper.Stop(this);
+                        ConnectWorker.Stop(this);
                 }
 
-                /// <summary>
-                /// 在线测试
-                /// </summary>
-                /// <returns>设备在线返回True，否则返回False</returns>
-                public virtual bool OnlineTest()
-                {
-                        return true;
-                }
+                
         }
 }

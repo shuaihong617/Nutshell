@@ -22,7 +22,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         设备接口
         /// </summary>
-        public interface IDevice : IEnable, IDebuggable,IStorable<IDeviceModel>
+        public interface IDevice : IWorkContext,IStorable<IDeviceModel>
         {
                 #region 属性
 
