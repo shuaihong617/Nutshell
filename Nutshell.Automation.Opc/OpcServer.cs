@@ -22,7 +22,7 @@ namespace Nutshell.Automation.OPC
         ///         2. 通过人工写入模拟OPC项值的变化
         ///         3. OPC项写入请求直接完成
         /// </remarks>
-        public class OpcServer : DispatchableDevice, IOpcServer
+        public class OpcServer : DispatchableComponent, IOpcServer
         {
                 public OpcServer([MustNotEqualNull]IIdentityObject parent, 
                         string id = null, string name = null, string address = null)
@@ -45,7 +45,6 @@ namespace Nutshell.Automation.OPC
                         OpcItemsLookupTable = new Dictionary<string, IOpcItem>();
 
                         ConnectWorker = new OpcServerConnectWorker(this);
-			SurviveLooper = new SurviveLooper(this);
 			DispatchWorker = new OpcServerDispatchWorker(this);
                 }
 

@@ -12,6 +12,8 @@
 // ***********************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Nutshell
 {
@@ -20,8 +22,8 @@ namespace Nutshell
         /// </summary>
         public interface IResult
         {
-                bool IsSuccess { get; }
+                bool IsSuccessed { get; }
 
-                Exception Exception { get; }
+                ReadOnlyCollection<Exception> Exceptions { get; }
         }
 }

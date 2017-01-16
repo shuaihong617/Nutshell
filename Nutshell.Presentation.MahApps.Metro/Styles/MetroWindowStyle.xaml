@@ -15,8 +15,8 @@
         </ResourceDictionary.MergedDictionaries>
         <Style x:Key="MetroWindowStyle" TargetType="controls:MetroWindow">
                 <Setter Property="EnableDWMDropShadow" Value="True" />
-                <Setter Property="WindowTitleBrush" Value="Transparent"/>
-                <Setter Property="NonActiveWindowTitleBrush" Value="Transparent" />
+                <Setter Property="WindowTitleBrush" Value="Black"/>
+                <Setter Property="NonActiveWindowTitleBrush" Value="Black" />
                 <Setter Property="TitleForeground" Value="Azure"/>
                 <Setter Property="ResizeMode" Value="CanMinimize"></Setter>
                 <Setter Property="TitlebarHeight" Value="44"></Setter>

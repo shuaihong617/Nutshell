@@ -21,7 +21,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         可调度设备
         /// </summary>
-        public abstract class DispatchableDevice : ConnectableDevice, IDispatchableDevice
+        public abstract class DispatchableDevice : DispatchableComponent, IDispatchableDevice
         {
                 /// <summary>
                 ///         初始化<see cref="DispatchableDevice" />的新实例.
@@ -35,8 +35,11 @@ namespace Nutshell.Automation
 
                 #region 属性
 
-                [MustNotEqualNull]
-                public IWorker DispatchWorker { get; protected set; }
+                /// <summary>
+                ///         获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
+                /// </summary>
+                /// <value>在线工作者</value>
+                public SurviveLooper SurviveLooper { get; protected set; }
 
                 #endregion
 
@@ -59,14 +62,6 @@ namespace Nutshell.Automation
                 }
 
 
-                public void Establish()
-                {
-                        DispatchWorker.Start(this);
-                }
-
-                public void Terminate()
-                {
-                        DispatchWorker.Stop(this);
-                }
+                
         }
 }

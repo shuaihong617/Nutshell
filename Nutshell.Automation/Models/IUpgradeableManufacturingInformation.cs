@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Components.Models;
 
 namespace Nutshell.Automation.Models
 {

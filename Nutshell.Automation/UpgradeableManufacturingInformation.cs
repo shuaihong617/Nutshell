@@ -13,6 +13,7 @@
 
 using System;
 using Nutshell.Automation.Models;
+using Nutshell.Components;
 
 namespace Nutshell.Automation
 {

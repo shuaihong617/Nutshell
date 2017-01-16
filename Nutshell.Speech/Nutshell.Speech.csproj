@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nutshell.Speech</RootNamespace>
     <AssemblyName>Nutshell.Speech</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
     <TargetFrameworkProfile />
@@ -122,12 +122,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ISpeechSynthesizerModel.cs" />
-    <Compile Include="Models\SpeechSynthesizerModel.cs" />
+    <Compile Include="Synthesizer.cs" />
+    <Compile Include="ISynthesizer.cs" />
+    <Compile Include="Models\ISynthesizerModel.cs" />
+    <Compile Include="Models\SynthesizerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpeechSynthesizer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
+      <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
+      <Name>Nutshell.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
       <Project>{B18778A6-3E38-470F-9D73-702553F426E4}</Project>
       <Name>Nutshell.Data.Xml</Name>

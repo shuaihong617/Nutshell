@@ -1,0 +1,76 @@
+﻿<mahapps:MetroWindow x:Class="Nutshell.Speech.Microsoft.WPFUI.MainWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+                     WindowStartupLocation="CenterScreen"
+                     Title="{Binding Application.Id}"
+                     Style="{StaticResource MetroWindowStyle}"
+                     Loaded="Window_OnLoaded"
+                     Closing="MainWindow_OnClosing" Icon="Resources/Images/Icon.ico" TitleCharacterCasing="Normal">
+        <mahapps:MetroWindow.RightWindowCommands>
+                <mahapps:WindowCommands>
+                        <Button Style="{StaticResource ButtonStyle}"
+                                Content="反馈" Click="Button_Click" />
+                        <Button Style="{StaticResource ButtonStyle}"
+                                Content="关于" Click="Button_Click" />
+                </mahapps:WindowCommands>
+        </mahapps:MetroWindow.RightWindowCommands>
+        <Grid Style="{StaticResource GridStyle}">
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Column="0" Grid.Row="0" Style="{StaticResource GridStyle}"
+                      Background="Black">
+                        <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Style="{StaticResource ButtonStyle}"
+                                Content="语音合成" Click="Button_Click" />
+                        <Button Grid.Row="1" Style="{StaticResource ButtonStyle}"
+                                Content="系统设置" Click="Button_Click" />
+                        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}"
+                                Content="工作日志" Click="Button_Click" />
+                </Grid>
+                <Frame NavigationUIVisibility="Hidden"></Frame>
+                <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource GridStyle}"
+                      Background="Black">
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource TextBlockStyle}" Text="果壳机动-有金属的地方就有果壳"/>
+                        <TextBlock Grid.Column="2" Style="{StaticResource TextBlockStyle}" Text="引擎:"/>
+                        <TextBlock Grid.Column="3" Style="{StaticResource TextBlockStyle}" Text="微软语音合成引擎"/>
+                        <TextBlock Grid.Column="5" Style="{StaticResource TextBlockStyle}" Text="语言:"/>
+                        <TextBlock Grid.Column="6" Style="{StaticResource TextBlockStyle}" Text="中文"/>
+                        <TextBlock Grid.Column="8" Style="{StaticResource TextBlockStyle}" Text="角色:"/>
+                        <TextBlock Grid.Column="9" Style="{StaticResource TextBlockStyle}" Text="Lili"/>
+                        <TextBlock Grid.Column="11" Style="{StaticResource TextBlockStyle}" Text="输出:"/>
+                        <TextBlock Grid.Column="12" Style="{StaticResource TextBlockStyle}" Text="扬声器"/>
+                        <TextBlock Grid.Column="14" Style="{StaticResource TextBlockStyle}" Text="状态:"/>
+                        <TextBlock Grid.Column="15" Style="{StaticResource TextBlockStyle}" Text="空闲"/>
+                </Grid>
+        </Grid>
+</mahapps:MetroWindow>

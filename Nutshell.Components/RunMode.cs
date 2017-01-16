@@ -22,7 +22,7 @@ namespace Nutshell.Components
         public enum RunMode
         {
                 /// <summary>
-                ///         发布模式，在此模式下设备按实际工作方式运行，接受真实控制信号
+                ///         发布模式，在此模式下组件按实际工作方式运行，接受真实控制信号
                 /// </summary>
                 Release = 0,
 

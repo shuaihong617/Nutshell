@@ -32,11 +32,11 @@ namespace Nutshell.Automation.Opc
                 {
                         var result = base.Start();
 
-	                if (result.IsSuccess)
+	                if (result.IsSuccessed)
 	                {
 
                                 var opcResult = result as OpcRuntimeDispatchResult;
-                                if (result.IsSuccess)
+                                if (result.IsSuccessed)
                                 {
                                         OpcServerNames = opcResult.OpcServerNames;
                                         RuntimeInformation = new RuntimeInformation(opcResult.OpcVersion);

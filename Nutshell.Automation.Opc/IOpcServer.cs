@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Nutshell.Automation.OPC.Models;
+using Nutshell.Components;
 using Nutshell.Data;
 
 //重命名OPCDAAuto.dll中类名，禁止删除；
@@ -17,7 +18,7 @@ namespace Nutshell.Automation.OPC
         ///         2. 通过人工写入模拟OPC项值的变化
         ///         3. OPC项写入请求直接完成
         /// </remarks>
-        public interface IOpcServer : IDispatchableDevice, IStorable<IOpcServerModel>
+        public interface IOpcServer : IDispatchableComponent, IStorable<IOpcServerModel>
         {
                 #region 属性
 

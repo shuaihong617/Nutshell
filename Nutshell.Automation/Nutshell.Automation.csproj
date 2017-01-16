@@ -160,28 +160,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectableDevice.cs" />
     <Compile Include="DispatchableDevice.cs" />
-    <Compile Include="IConnectableDevice.cs" />
     <Compile Include="IDispatchableDevice.cs" />
     <Compile Include="DirectControlDevice.cs" />
     <Compile Include="Models\IUpgradeableManufacturingInformation.cs" />
-    <Compile Include="IRuntimeInformation.cs" />
     <Compile Include="SurviveLooper.cs" />
     <Compile Include="UpgradeableManufacturingInformation.cs" />
     <Compile Include="IUpgradeableManufacturingInformation.cs" />
-    <Compile Include="IManufacturingInformation.cs" />
     <Compile Include="Models\IDispatchableDeviceModel.cs" />
-    <Compile Include="Models\IConnectableDeviceModel.cs" />
-    <Compile Include="Models\IManufacturingInformationModel.cs" />
-    <Compile Include="ConnectState.cs" />
-    <Compile Include="Models\IDeviceModel.cs" />
-    <Compile Include="Runtime.cs" />
+    <Compile Include="Models\IIndependentDeviceModel.cs" />
     <Compile Include="CaptureDevice.cs" />
-    <Compile Include="IDevice.cs" />
-    <Compile Include="Device.cs" />
-    <Compile Include="RuntimeInformation.cs" />
-    <Compile Include="ManufacturingInformation.cs" />
+    <Compile Include="IIndependentDevice.cs" />
+    <Compile Include="UndispatchableDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

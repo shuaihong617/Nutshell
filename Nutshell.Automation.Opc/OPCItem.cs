@@ -3,13 +3,10 @@ using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.OPC.Models;
-using Nutshell.Data;
-using Nutshell.Data.Models;
-using Nutshell.Automation;
 using Nutshell.Components;
+using Nutshell.Data;
 using Nutshell.Log;
 using OPCAutomation;
-
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
@@ -17,149 +14,159 @@ using NativeOpcItem = OPCAutomation.OPCItem;
 
 namespace Nutshell.Automation.OPC
 {
-        public class OpcItem : StorableObject, IOpcItem
-        {
-                public OpcItem(IIdentityObject parent, string id = "", string address = "",
-                        TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
-                        : base(parent, id)
-                {
-                        Address = address;
-                        TypeCode = typeCode;
-                        ReadWriteMode = readWriteMode;
+	public class OpcItem : StorableObject, IOpcItem
+	{
+		public OpcItem(IIdentityObject parent, string id = "", string address = "",
+			TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
+			: base(parent, id)
+		{
+			Address = address;
+			TypeCode = typeCode;
+			ReadWriteMode = readWriteMode;
 
-	                Value = null;
+			Value = null;
 			UpdateTime = DateTime.MinValue;
+		}
 
-                }
+		#region 字段
 
-                #region 字段
+		private NativeOpcItem _item;
 
-                private NativeOpcItem _item;
+		#endregion
 
-                #endregion
+		public string Address { get; private set; }
 
-                public string Address { get; private set; }
+		public TypeCode TypeCode { get; private set; }
 
-                public TypeCode TypeCode { get; private set; }
+		/// <summary>
+		///         读写模式
+		/// </summary>
+		public ReadWriteMode ReadWriteMode { get; private set; }
 
-                /// <summary>
-                ///         读写模式
-                /// </summary>
-                public ReadWriteMode ReadWriteMode { get; private set; }
-
-                public int ClientHandle { get; private set; }
-
-		[WillNotifyPropertyChanged]
-                public object Value { get; private set; }
+		public int ClientHandle { get; private set; }
 
 		[WillNotifyPropertyChanged]
-                public DateTime UpdateTime { get; private set; }
+		public object Value { get; private set; }
 
-	        /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull]IOpcItemModel model)
-                {
-                        base.Load(model);
+		[WillNotifyPropertyChanged]
+		public DateTime UpdateTime { get; private set; }
 
-                        Address = model.Address;
-                        TypeCode = model.TypeCode;
-                        ReadWriteMode = model.ReadWriteMode;
-                }
+		/// <summary>
+		///         从数据模型加载数据
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Load([MustNotEqualNull] IOpcItemModel model)
+		{
+			base.Load(model);
 
-	        /// <summary>
-	        ///         保存数据到数据模型
-	        /// </summary>
-	        /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-	        public void Save(IOpcItemModel model)
-	        {
-		        throw new NotImplementedException();
-	        }
+			Address = model.Address;
+			TypeCode = model.TypeCode;
+			ReadWriteMode = model.ReadWriteMode;
+		}
 
-	        public void Attach(string serverAddress, NativeOpcGroup group)
-                {
-                        OpcServer.ClientHandleIndex++;
-                        var name = serverAddress + "." + group.Name + "." + Address;
-                        _item = group.OPCItems.AddItem(name, OpcServer.ClientHandleIndex);
-                        ClientHandle = OpcServer.ClientHandleIndex;
-                }
+		/// <summary>
+		///         保存数据到数据模型
+		/// </summary>
+		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+		public void Save(IOpcItemModel model)
+		{
+			throw new NotImplementedException();
+		}
 
-                public object RemoteRead()
-                {
-                        var server = Parent.Parent as OpcServer;
-                        Debug.Assert(server != null);
+		public void Attach(string serverAddress, NativeOpcGroup group)
+		{
+			OpcServer.ClientHandleIndex++;
+			var name = serverAddress + "." + group.Name + "." + Address;
+			try
+			{
+				ClientHandle = OpcServer.ClientHandleIndex;
+				_item = group.OPCItems.AddItem(name, OpcServer.ClientHandleIndex);
+			}
+			catch (Exception ex)
+			{
+				
+			}
+			finally
+			{
+				
+			}
+		}
 
-	                object result = null;
-	                try
-	                {
-		                if (server.RunMode != RunMode.Release)
-		                {
-			                throw new InvalidOperationException(GlobalId + "只能在发布模式下读取远程数据");
-		                }
+		public object RemoteRead()
+		{
+			var server = Parent.Parent as OpcServer;
+			Debug.Assert(server != null);
 
-		                object quality;
-		                object timestamp;
+			object result = null;
+			try
+			{
+				if (server.RunMode != RunMode.Release)
+				{
+					throw new InvalidOperationException(GlobalId + "只能在发布模式下读取远程数据");
+				}
 
-		                _item.Read((short) OPCDataSource.OPCDevice, out result, out quality, out timestamp);
+				object quality;
+				object timestamp;
 
-		                Trace.WriteLine(GlobalId + " : " + result);
+				_item.Read((short) OPCDataSource.OPCDevice, out result, out quality, out timestamp);
 
-		                LocalWrite(result);
-	                }
-	                catch (Exception e)
-	                {
-		                result = null;
-		                LocalWrite(null);
-		                this.Error("读取失败, 错误原因：" + e);
-	                }
+				Trace.WriteLine(GlobalId + " : " + result);
+
+				LocalWrite(result);
+			}
+			catch (Exception e)
+			{
+				result = null;
+				LocalWrite(null);
+				this.Error("读取失败, 错误原因：" + e);
+			}
 			return result;
 		}
 
-                public void LocalWrite(object value)
-                {
-	                Value = value;
-	                if (Value != null)
-	                {
+		public void LocalWrite(object value)
+		{
+			Value = value;
+			if (Value != null)
+			{
 				UpdateTime = DateTime.Now;
-		                OnReadSuccessed(new ValueEventArgs<object>(Value));
-	                }
-	                else
-	                {
-		                OnReadFailed(EventArgs.Empty);
-	                }
-                }
+				OnReadSuccessed(new ValueEventArgs<object>(Value));
+			}
+			else
+			{
+				OnReadFailed(EventArgs.Empty);
+			}
+		}
 
-                public void RemoteWrite(object value)
-                {
-                        var server = Parent.Parent as OpcServer;
-                        Debug.Assert(server != null);
+		public void RemoteWrite(object value)
+		{
+			var server = Parent.Parent as OpcServer;
+			Debug.Assert(server != null);
 
-                        try
-                        {
-                                if (server.RunMode != RunMode.Release)
-                                {
-                                        throw new InvalidOperationException(GlobalId + "只能在发布模式下写入远程数据");
-                                }
+			try
+			{
+				if (server.RunMode != RunMode.Release)
+				{
+					throw new InvalidOperationException(GlobalId + "只能在发布模式下写入远程数据");
+				}
 
-                                if (!ReadWriteMode.HasFlag(ReadWriteMode.Write))
-                                {
-                                        throw new InvalidOperationException(GlobalId + "读写模式不具备远程数据写入权限");
-                                }
-                                _item.Write(value);
-                        }
-                        catch (InvalidOperationException e)
-                        {
-                                this.Error("写入失败, 错误原因：" + e);
-                        }
-                        catch (Exception e)
-                        {
-                                //其他原因写入失败，表示OPC通讯故障
-                                LocalWrite(null);
+				if (!ReadWriteMode.HasFlag(ReadWriteMode.Write))
+				{
+					throw new InvalidOperationException(GlobalId + "读写模式不具备远程数据写入权限");
+				}
+				_item.Write(value);
+			}
+			catch (InvalidOperationException e)
+			{
+				this.Error("写入失败, 错误原因：" + e);
+			}
+			catch (Exception e)
+			{
+				//其他原因写入失败，表示OPC通讯故障
+				LocalWrite(null);
 
-                                this.Error("写入失败, 错误原因：" + e);
-                        }
-                }
+				this.Error("写入失败, 错误原因：" + e);
+			}
+		}
 
 		#region 事件
 
@@ -182,15 +189,15 @@ namespace Nutshell.Automation.OPC
 		/// </summary>
 		public event EventHandler<EventArgs> ReadFailed;
 
-                /// <summary>
-                ///         引发 <see cref="E:Opened" /> 事件.
-                /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-                protected virtual void OnReadFailed(EventArgs e)
-                {
-                        e.Raise(this, ref ReadFailed);
-                }
+		/// <summary>
+		///         引发 <see cref="E:Opened" /> 事件.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+		protected virtual void OnReadFailed(EventArgs e)
+		{
+			e.Raise(this, ref ReadFailed);
+		}
 
-                #endregion
-        }
+		#endregion
+	}
 }

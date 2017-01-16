@@ -12,6 +12,8 @@
 // ***********************************************************************
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
@@ -21,26 +23,52 @@ namespace Nutshell
         /// </summary>
         public class Result:IResult
         {
-                public Result(bool isSuccess, Exception exception = null)
+                public Result(bool isSuccessed, IEnumerable<Exception> exceptions = null)
                 {
-                        IsSuccess = isSuccess;
+                        IsSuccessed = isSuccessed;
 
-                        if (!IsSuccess && exception == null)
+                        if (!IsSuccessed && exceptions == null)
                         {
                                 throw new ArgumentException();
                         }
-                        Exception = exception;
+                        Exceptions = new ReadOnlyCollection<Exception>(Exceptions);
+
                 }
 
                 public Result([MustNotEqualNull]Exception exception)
-                        : this(false, exception)
+                        : this(false, new List<Exception>
+                        {
+                                exception
+                        })
+                {
+                }
+
+                public Result([MustNotEqualNull]IEnumerable<Exception> exceptions)
+                        : this(false, exceptions)
                 {
                 }
 
                 public static readonly Result Successed = new Result(true);
 
-                public bool IsSuccess { get; }
+                public bool IsSuccessed { get; }
 
-                public Exception Exception { get; }
+                public ReadOnlyCollection<Exception> Exceptions { get; }
+
+                public static Result operator +(Result r1, Result r2)
+                {
+                        var isSuccessed = r1.IsSuccessed & r2.IsSuccessed;
+                        if (isSuccessed)
+                        {
+                                return new Result(true);
+                        }
+
+                        var exceptions = new List<Exception>(r1.Exceptions.Count + r2.Exceptions.Count);
+                        exceptions.AddRange(r1.Exceptions);
+                        exceptions.AddRange(r2.Exceptions);
+
+                        return new Result(false, exceptions);
+                }
+
+
         }
 }

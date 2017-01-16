@@ -4,6 +4,7 @@ using Nutshell.Automation.Opc.Xml;
 using Nutshell.Automation.OPC;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
+using Nutshell.Speech.Microsoft;
 
 namespace Nutshell.Automation.Opc.WPFUI
 {
@@ -36,10 +37,10 @@ namespace Nutshell.Automation.Opc.WPFUI
                 public IApplication Application { get; private set; }
 
                 [WillNotifyPropertyChanged]
-                public OpcRuntime OpcRuntime { get; private set; }
+                public MicrosoftSynthesisRuntime MicrosoftSynthesisRuntime { get; private set; }
 
                 [WillNotifyPropertyChanged]
-                public OpcServer OpcServer { get; private set; }
+                public MicrosoftSynthesizer MicrosoftSynthesizer { get; private set; }
 
 
                 public void LoadApplication()
@@ -50,23 +51,23 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void Start()
                 {
-                        OpcRuntime = OpcRuntime.Instance;
-                        OpcRuntime.Start();
+                        //OpcRuntime = OpcRuntime.Instance;
+                        //OpcRuntime.Start();
 
-                        OpcServer = new OpcServer(Application);
-                        XmlOpcServerStorager.Instance.Load(OpcServer, ConfigDirectory + "OpcServer.config");
+                        //OpcServer = new OpcServer(Application);
+                        //XmlOpcServerStorager.Instance.Load(OpcServer, ConfigDirectory + "OpcServer.config");
 
-                        OpcServer.Connect();
-                        OpcServer.Establish();
+                        //OpcServer.Connect();
+                        //OpcServer.Establish();
                 }
 
 
                 public void Stop()
                 {
-                        OpcServer.Terminate();
-                        OpcServer.Disconnect();
+                        //OpcServer.Terminate();
+                        //OpcServer.Disconnect();
 
-                        OpcRuntime.Stop();
+                        //OpcRuntime.Stop();
                 }
         }
 }

@@ -36,5 +36,10 @@ namespace Nutshell.Automation.Opc.WPFUI
                 {
                         _gm.Stop();
                 }
-        }
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

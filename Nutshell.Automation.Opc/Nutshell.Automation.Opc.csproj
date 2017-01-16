@@ -57,7 +57,6 @@
   <ItemGroup>
     <Compile Include="OpcRuntime.cs" />
     <Compile Include="OpcRuntimeDispatchWorker.cs" />
-    <Compile Include="OpcServerSurviveContext.cs" />
     <Compile Include="OpcServerDispatchWorker.cs" />
     <Compile Include="OpcServerConnectWorker.cs" />
     <Compile Include="IOpcItem.cs" />

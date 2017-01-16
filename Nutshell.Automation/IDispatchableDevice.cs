@@ -22,16 +22,12 @@ namespace Nutshell.Automation
         /// <summary>
         /// 可控设备接口
         /// </summary>
-        public interface IDispatchableDevice : IConnectableDevice, IStorable<IDispatchableDeviceModel>
+        public interface IDispatchableDevice : IDispatchableComponent, IStorable<IDispatchableDeviceModel>
         {
                 /// <summary>
-                /// 获取控制工作者，控制工作者负责设备的开始\停止工作
+                /// 获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
                 /// </summary>
-                /// <value>控制工作者</value>
-                IWorker DispatchWorker { get; }
-
-                void Establish();
-
-                void Terminate();
+                /// <value>在线工作者</value>
+                SurviveLooper SurviveLooper { get; }
         }
 }

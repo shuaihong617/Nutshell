@@ -27,8 +27,8 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Worker : StorableObject, IWorker
         {
-                protected Worker(IIdentityObject parent, 
-                        [MustNotEqualNullOrEmpty]string id)
+                protected Worker(IIdentityObject parent,
+                        [MustNotEqualNullOrEmpty] string id)
                         : base(parent, id)
                 {
                 }
@@ -95,14 +95,16 @@ namespace Nutshell.Components
                                         return new Result(new ArgumentException("启用状态：否"));
                                 }
 
-                                
 
                                 var result = Starup(context);
 
-                                if (!result.IsSuccess)
+                                if (!result.IsSuccessed)
                                 {
                                         WorkState = WorkState.Stoped;
-                                        this.Fatal(result.Exception);
+                                        foreach (var exception in result.Exceptions)
+                                        {
+                                                this.Fatal(exception);
+                                        }
                                 }
 
                                 return result;
@@ -126,15 +128,19 @@ namespace Nutshell.Components
                                 if (!context.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
-                                        return new Result(new ArgumentException("启用状态：否")); ;
+                                        return new Result(new ArgumentException("启用状态：否"));
+                                        ;
                                 }
 
-                                
+
                                 var result = Clean(context);
 
-                                if (!result.IsSuccess)
+                                if (!result.IsSuccessed)
                                 {
-                                        this.Fatal(result.Exception);
+                                        foreach (var exception in result.Exceptions)
+                                        {
+                                                this.Fatal(exception);
+                                        }
                                 }
 
                                 return result;
@@ -148,7 +154,7 @@ namespace Nutshell.Components
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected abstract IResult Starup([MustNotEqualNull]IWorkContext context);
+                protected abstract IResult Starup([MustNotEqualNull] IWorkContext context);
 
                 /// <summary>
                 ///         执行退出过程的具体步骤.
@@ -157,7 +163,7 @@ namespace Nutshell.Components
                 /// <remarks>
                 ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
                 /// </remarks>
-                protected abstract IResult Clean([MustNotEqualNull]IWorkContext context);
+                protected abstract IResult Clean([MustNotEqualNull] IWorkContext context);
 
                 #region 事件
 
