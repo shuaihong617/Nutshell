@@ -6,16 +6,20 @@
                 <ResourceDictionary>
                         <ResourceDictionary.MergedDictionaries>
                                 <ResourceDictionary
-                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps.Metro;component/Styles/MetroWindowStyle.xaml" />
+                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/MetroWindowStyle.xaml" />
                                 <ResourceDictionary
-                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps.Metro;component/Styles/GridStyle.xaml" />
+                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/GridStyle.xaml" />
                                 <ResourceDictionary
-                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps.Metro;component/Styles/ButtonStyle.xaml" />
+                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/ButtonStyle.xaml" />
                                 <ResourceDictionary
-                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps.Metro;component/Styles/ListBoxStyle.xaml" />
+                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/ListBoxStyle.xaml" />
                                 <ResourceDictionary
-                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps.Metro;component/Styles/TextBlockStyle.xaml" />
+                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/TextBlockStyle.xaml" />
 
+                                <ResourceDictionary
+                                        Source="pack://application:,,,/Nutshell.Presentation.Bootstrap;component/Styles/Bootstrap.xaml" />
+
+                                <ResourceDictionary Source="Resources/DataTemplate/InstalledVoiceDataTemplate.xaml"/>
                         </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
         </Application.Resources>

@@ -1,0 +1,16 @@
+﻿<Page x:Class="Nutshell.Speech.Microsoft.WPFUI.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="RuntimePage">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                </Grid.RowDefinitions>
+                <ListBox Grid.Row="0" Style="{StaticResource ListBoxStyle}"
+                         VirtualizingStackPanel.IsVirtualizing="True"
+                         ItemsSource="{Binding Runtime.ChineseVoices}"
+                         ItemTemplate="{StaticResource InstalledVoiceDataTemplate}" />
+        </Grid>
+</Page>

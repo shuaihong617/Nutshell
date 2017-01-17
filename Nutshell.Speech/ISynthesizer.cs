@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nutshell.Components;
+﻿using Nutshell.Components;
 
 namespace Nutshell.Speech
 {
-        public interface ISynthesizer: IDispatchableComponent
+        public interface ISynthesizer : IComponent
         {
+                Language Language { get; }
+
+                OutputMode OutputMode { get; }
+
+                SynthesizerState SynthesizerState { get; }
+
+                IResult SelectVoice(string voice);
+
+                IResult SpeakAsync(string content);
         }
 }

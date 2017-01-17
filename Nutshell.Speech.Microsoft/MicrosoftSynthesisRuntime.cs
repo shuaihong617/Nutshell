@@ -18,6 +18,7 @@ using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.Linq;
 using System.Speech.Synthesis;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Data.Models;
 using Nutshell.Log;
@@ -36,7 +37,8 @@ namespace Nutshell.Speech.Microsoft
                 /// <summary>
                 ///         数据缓存上下文私有构造函数
                 /// </summary>
-                protected MicrosoftSynthesisRuntime()
+                public MicrosoftSynthesisRuntime(IIdentityObject parent)
+                        : base(parent, "微软语音合成运行环境")
                 {
 			DispatchWorker = new MicrosoftSynthesisRuntimeDispatchWorker(this);
                 }
@@ -44,15 +46,6 @@ namespace Nutshell.Speech.Microsoft
                 #endregion 构造函数
 
                 #region 属性
-
-                #region 单例
-
-                /// <summary>
-                ///         单例
-                /// </summary>
-                public static readonly MicrosoftSynthesisRuntime Instance = new MicrosoftSynthesisRuntime();
-
-                #endregion
 
                 public ReadOnlyCollection<InstalledVoice> ChineseVoices { get; private set; }
 

@@ -21,15 +21,29 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Runtime:IdentityObject,IWorkContext
         {
-                protected Runtime()
-                        :base(null,"运行环境")
+                protected Runtime([MustNotEqualNull]IIdentityObject parent,
+                        [MustNotEqualNullOrEmpty] string id)
+                        : base(parent, id)
                 {
-
+                        IsEnable = true;
+                        RunMode = RunMode.Release;
                 }
 
                 #region 属性
 
-		[MustNotEqualNull]
+                /// <summary>
+	        /// 获取是否启用
+	        /// </summary>
+	        /// <value>是否启用</value>
+	        public bool IsEnable { get; }
+
+                /// <summary>
+                /// 获取运行模式
+                /// </summary>
+                /// <value>运行模式</value>
+                public RunMode RunMode { get; }
+
+                [MustNotEqualNull]
                 public IRuntimeInformation RuntimeInformation { get; protected set; }
 
 		[MustNotEqualNull]
@@ -43,39 +57,21 @@ namespace Nutshell.Components
                 #endregion
 
                 #region 方法
-
-                [MustReturnNotEqualNull]
-                protected virtual IWorkContext CreateDispatchContext()
-	        {
-		        return WorkContext.EnableRelease;
-	        }
-
+                
                 [MustReturnNotEqualNull]
                 public virtual IResult Start()
                 {
-	                var context = CreateDispatchContext();
-                        return DispatchWorker.Start(context);
+                        return DispatchWorker.Start(this);
                 }
 
                 [MustReturnNotEqualNull]
                 public virtual IResult Stop()
                 {
-			var context = CreateDispatchContext();
-			return DispatchWorker.Stop(context);
+			return DispatchWorker.Stop(this);
                 }
 
 	        #endregion
 
-	        /// <summary>
-	        /// 获取是否启用
-	        /// </summary>
-	        /// <value>是否启用</value>
-	        public bool IsEnable { get; }
-
-	        /// <summary>
-	        /// 获取运行模式
-	        /// </summary>
-	        /// <value>运行模式</value>
-	        public RunMode RunMode { get; }
+	        
         }
 }

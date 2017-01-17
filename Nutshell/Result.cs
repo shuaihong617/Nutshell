@@ -23,16 +23,25 @@ namespace Nutshell
         /// </summary>
         public class Result:IResult
         {
-                public Result(bool isSuccessed, IEnumerable<Exception> exceptions = null)
+                public Result(bool isSuccessed, IList<Exception> exceptions = null)
                 {
                         IsSuccessed = isSuccessed;
 
-                        if (!IsSuccessed && exceptions == null)
+                        if (isSuccessed)
                         {
-                                throw new ArgumentException();
+                                if (exceptions != null)
+                                {
+                                        throw new ArgumentException();
+                                }
                         }
-                        Exceptions = new ReadOnlyCollection<Exception>(Exceptions);
-
+                        else
+                        {
+                                if (exceptions == null)
+                                {
+                                        throw new ArgumentException();
+                                }
+                                Exceptions = new ReadOnlyCollection<Exception>(exceptions);
+                        }
                 }
 
                 public Result([MustNotEqualNull]Exception exception)
@@ -43,7 +52,7 @@ namespace Nutshell
                 {
                 }
 
-                public Result([MustNotEqualNull]IEnumerable<Exception> exceptions)
+                public Result([MustNotEqualNull]IList<Exception> exceptions)
                         : this(false, exceptions)
                 {
                 }

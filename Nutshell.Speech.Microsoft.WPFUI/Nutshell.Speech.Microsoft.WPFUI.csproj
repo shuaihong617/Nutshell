@@ -42,6 +42,7 @@
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.4.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -63,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SynthesisPage.xaml.cs">
       <DependentUpon>SynthesisPage.xaml</DependentUpon>
     </Compile>
@@ -79,6 +83,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\DataTemplate\InstalledVoiceDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SynthesisPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,9 +143,13 @@
       <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
       <Name>Nutshell.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Presentation.MahApps.Metro\Nutshell.Presentation.MahApps.Metro.csproj">
+    <ProjectReference Include="..\Nutshell.Presentation.Bootstrap\Nutshell.Presentation.Bootstrap.csproj">
+      <Project>{fc47fdad-024f-4fd1-b629-9a20ba7f76b5}</Project>
+      <Name>Nutshell.Presentation.Bootstrap</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Presentation.MahApps\Nutshell.Presentation.MahApps.csproj">
       <Project>{bd530e64-a243-494b-9c8c-5362c8a36e8c}</Project>
-      <Name>Nutshell.Presentation.MahApps.Metro</Name>
+      <Name>Nutshell.Presentation.MahApps</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Speech.Microsoft\Nutshell.Speech.Microsoft.csproj">
       <Project>{906f80eb-08f2-4476-a891-f760c184da5a}</Project>

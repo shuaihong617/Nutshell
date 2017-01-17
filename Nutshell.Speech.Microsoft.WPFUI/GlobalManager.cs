@@ -1,4 +1,5 @@
-﻿using Nutshell.Aspects.Locations.Propertys;
+﻿using System.Linq;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
 
@@ -27,7 +28,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 /// <summary>
                 ///         配置文件目录
                 /// </summary>
-                public string ConfigDirectory { get; set; }
+                public string ConfigDirectory { get;private set; }
 
                 [WillNotifyPropertyChanged]
                 public IApplication Application { get; private set; }
@@ -47,23 +48,21 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
                 public void Start()
                 {
-                        //Runtime = MicrosoftSynthesizeRuntime.Instance;
-                        //Runtime.Start();
+                        Runtime = new MicrosoftSynthesisRuntime(Application);
+                        Runtime.Start();
 
-                        //Synthesizer = new MicrosoftSynthesizer(Application);
-                        ////XmlOpcServerStorager.Instance.Load(OpcServer, ConfigDirectory + "OpcServer.config");
+			Synthesizer = new MicrosoftSynthesizer(Application);
 
-                        //Synthesizer.Connect();
-                        //Synthesizer.Establish();
+	                Synthesizer.SelectVoice(Runtime.ChineseVoices.First().VoiceInfo.Name);
                 }
 
 
                 public void Stop()
                 {
-                        //Synthesizer.Terminate();
-                        //Synthesizer.Disconnect();
+			//Synthesizer.Terminate();
+			//Synthesizer.Disconnect();
 
-                        //Runtime.Stop();
+			//Runtime.Stop();
                 }
         }
 }

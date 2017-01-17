@@ -8,19 +8,12 @@ namespace Nutshell.Automation.Opc
 {
         public class OpcRuntime : Runtime
         {
-                protected OpcRuntime()
+                protected OpcRuntime(IIdentityObject parent)
+                        : base(parent, "过程控制通讯运行环境")
                 {
                         DispatchWorker = new OpcRuntimeDispatchWorker(this);
                 }
 
-                #region 单例
-
-                /// <summary>
-                ///         单例
-                /// </summary>
-                public static readonly OpcRuntime Instance = new OpcRuntime();
-
-                #endregion
 
                 [MustNotEqualNull]
                 public ReadOnlyCollection<string> OpcServerNames { get; private set; }

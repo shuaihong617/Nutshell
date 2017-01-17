@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:synthesis="clr-namespace:System.Speech.Synthesis;assembly=System.Speech">
+        <DataTemplate x:Key="InstalledVoiceDataTemplate" DataType="{x:Type synthesis:InstalledVoice}">
+                <Border>
+                        <Grid>
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Style="{DynamicResource TextBlockStyle}"
+                                           Text="{Binding VoiceInfo.Id}" />
+                                <TextBlock Grid.Column="1"
+                                           Style="{DynamicResource TextBlockStyle}"
+                                           Text="{Binding VoiceInfo.Name}" />
+                                <TextBlock Grid.Column="2"
+                                           Style="{DynamicResource TextBlockStyle}"
+                                           Text="{Binding VoiceInfo.Description}" />
+                                <TextBlock Grid.Column="3"
+                                           Style="{DynamicResource TextBlockStyle}"
+                                           Text="{Binding Enabled}" />
+                        </Grid>
+                </Border>
+        </DataTemplate>
+</ResourceDictionary>

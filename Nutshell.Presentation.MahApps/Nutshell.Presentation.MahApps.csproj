@@ -7,8 +7,8 @@
     <ProjectGuid>{BD530E64-A243-494B-9C8C-5362C8A36E8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Presentation.MahApps.Metro</RootNamespace>
-    <AssemblyName>Nutshell.Presentation.MahApps.Metro</AssemblyName>
+    <RootNamespace>Nutshell.Presentation.MahApps</RootNamespace>
+    <AssemblyName>Nutshell.Presentation.MahApps</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
