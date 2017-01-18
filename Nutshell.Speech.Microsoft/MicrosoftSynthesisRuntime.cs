@@ -11,25 +11,16 @@
 // </summary>
 // ***********************************************************************
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Diagnostics.Contracts;
-using System.Globalization;
-using System.Linq;
 using System.Speech.Synthesis;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
-using Nutshell.Data.Models;
-using Nutshell.Log;
-using NativeSynthesizer = System.Speech.Synthesis.SpeechSynthesizer;
 
 namespace Nutshell.Speech.Microsoft
 {
         /// <summary>
         ///         表示数据环境上下文（缓存）
         /// </summary>
-        /// <remarks>此类表示系统所有对象在内存中的数据缓存, 唯一, 采用单例模式构造</remarks>
         public class MicrosoftSynthesisRuntime : Runtime
         {
                 #region 构造函数
@@ -40,42 +31,40 @@ namespace Nutshell.Speech.Microsoft
                 public MicrosoftSynthesisRuntime(IIdentityObject parent)
                         : base(parent, "微软语音合成运行环境")
                 {
-			DispatchWorker = new MicrosoftSynthesisRuntimeDispatchWorker(this);
+                        DispatchWorker = new MicrosoftSynthesisRuntimeDispatchWorker(this);
                 }
 
                 #endregion 构造函数
 
                 #region 属性
 
+                [MustNotEqualNull]
                 public ReadOnlyCollection<InstalledVoice> ChineseVoices { get; private set; }
 
+                [MustNotEqualNull]
                 public ReadOnlyCollection<InstalledVoice> EnglishVoices { get; private set; }
 
                 #endregion 属性
 
                 #region 方法
 
-	        public override IResult Start()
-	        {
-		        var result = base.Start();
-		        if (!result.IsSuccessed)
-		        {
-			        return result;
-		        }
+                public override IResult Start()
+                {
+                        var result = base.Start();
+                        if (!result.IsSuccessed)
+                        {
+                                return result;
+                        }
 
-		        var microsoftResult = DispatchWorker.Start(this);
-		        var microsoft = microsoftResult as MicrosoftSynthesisRuntimeDispatchResult;
+                        var microsoftResult = DispatchWorker.Start(this);
+                        var microsoft = microsoftResult as MicrosoftSynthesisRuntimeDispatchResult;
 
-		        ChineseVoices = microsoft.ChineseVoiceInfos;
-		        EnglishVoices = microsoft.EnglishVoiceInfos;
+                        ChineseVoices = microsoft.ChineseVoiceInfos;
+                        EnglishVoices = microsoft.EnglishVoiceInfos;
 
-		        return microsoftResult;
-	        }
+                        return microsoftResult;
+                }
 
-	        #endregion 方法
-
-               
-
-                
+                #endregion 方法
         }
 }

@@ -15,9 +15,7 @@
         <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
                 <Setter Property="MinWidth" Value="84" />
                 <Setter Property="Width" Value="Auto" />
-                <Setter Property="Margin" Value="8,4" />
                 <Setter Property="FontSize" Value="15" />
-                <Setter Property="Foreground" Value="White" />
                 <Setter Property="Background" Value="Transparent" />
         </Style>
 </ResourceDictionary>

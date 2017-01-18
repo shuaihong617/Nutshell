@@ -11,7 +11,7 @@
                 <ResourceDictionary
                         Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <ResourceDictionary
-                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/baselight.xaml" />
+                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/blue.xaml" />
         </ResourceDictionary.MergedDictionaries>
         <Style x:Key="MetroWindowStyle" TargetType="controls:MetroWindow">
                 <Setter Property="EnableDWMDropShadow" Value="True" />
@@ -22,8 +22,8 @@
                 <Setter Property="ResizeMode" Value="CanMinimize"></Setter>
                 <Setter Property="TitlebarHeight" Value="38"></Setter>
                 <Setter Property="TitleCaps" Value="False" />
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="Background" Value="AliceBlue"/>
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Background" Value="#FFEDEDED"/>
                 <Setter Property="FontFamily" Value="Microsoft YaHei" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="IconBitmapScalingMode" Value="HighQuality"></Setter>
@@ -31,6 +31,5 @@
                 <Setter Property="UseLayoutRounding" Value="True"></Setter>
                 <Setter Property="ShowInTaskbar" Value="True"></Setter>
                 <Setter Property="ShowMaxRestoreButton" Value="True"></Setter>
-                <Setter Property="SaveWindowPosition" Value="True"></Setter>                
         </Style>
 </ResourceDictionary>

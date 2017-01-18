@@ -1,4 +1,5 @@
 ﻿using System;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components;
 
@@ -17,14 +18,25 @@ namespace Nutshell.Speech
 		[WillNotifyPropertyChanged]
 		public Language Language { get; protected set; }
 
-		[WillNotifyPropertyChanged]
+                [MustBetweenOrEqual(0,100)]
+                [WillNotifyPropertyChanged]
+	        public int Volume { get; set; }
+
+	        [WillNotifyPropertyChanged]
 		public SynthesizerState SynthesizerState { get; protected set; }
-		
-		[WillNotifyPropertyChanged]
-		public OutputMode OutputMode { get; protected set; }
+
+	        public int Progresee { get; }
+
+	        [WillNotifyPropertyChanged]
+		public OutputMode OutputMode { get; set; }
 
 		public abstract IResult SelectVoice(string voice);
 
-		public abstract IResult SpeakAsync(string content);
+		public abstract IResult SynthesizeAsync(string content);
+
+	        public event EventHandler<EventArgs> SynthesizeStarting;
+	        public event EventHandler<ValueEventArgs<Exception>> SynthesizeStarted;
+	        public event EventHandler<EventArgs> SynthesizeStoping;
+	        public event EventHandler<ValueEventArgs<Exception>> SynthesizeStoped;
 	}
 }

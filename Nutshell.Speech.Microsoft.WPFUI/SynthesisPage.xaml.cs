@@ -30,7 +30,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 		private void PlayButton_Click(object sender, RoutedEventArgs e)
 		{
 			var content = MainTextBox.Text.Trim();
-			_gm.Synthesizer.SpeakAsync(content);
+			_gm.Synthesizer.SynthesizeAsync(content);
 		}
 
 		private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -55,13 +55,19 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                                 CheckFileExists = false,
                                 CheckPathExists = true,
                                 DefaultExt = ".wav",
-                                FileName = Title+".wav",
-                                Filter = "**.wav",
+                                FileName = title+".wav",
+                                Filter = "Wav音频文件|*.wav",
                                 Title = "保存音频文件"
 		        };
+
+		        if (dialog.ShowDialog().GetValueOrDefault(false))
+		        {
+                                _gm.Synthesizer.OutputMode = OutputMode.文件;
+                                _gm.Synthesizer.SpeakAsync(content, dialog.FileName);
+		        }
                         
 
-			_gm.Synthesizer.SpeakAsync(content, @"c:1.wav");
+			
 		}
 	}
 }

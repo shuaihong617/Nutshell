@@ -2,29 +2,31 @@
                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                      xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+                     Style="{StaticResource MetroWindowStyle}"
                      WindowStartupLocation="CenterScreen"
-                     Width="640"
-                     Height="480"
+                     Width="960"
+                     Height="600"
                      Icon="Resources/Images/Icon.ico" 
                      Title="{Binding Application.Id}"
-                     Style="{StaticResource MetroWindowStyle}"
                      Loaded="Window_OnLoaded"
                      Closing="MainWindow_OnClosing" >
         <mahapps:MetroWindow.RightWindowCommands>
                 <mahapps:WindowCommands>
-                        <Button Style="{StaticResource ButtonStyle}"
+                        <Button Style="{StaticResource ButtonStyle}" Foreground="Azure"
                                 Content="反馈" Click="FeedbackButton_Click" />
-                        <Button Style="{StaticResource ButtonStyle}"
+                        <Button Style="{StaticResource ButtonStyle}" Foreground="Azure"
                                 Content="关于" Click="AboutButton_Click" />
                 </mahapps:WindowCommands>
         </mahapps:MetroWindow.RightWindowCommands>
         <Grid Style="{StaticResource GridStyle}">
                 <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="180" />
+                        <ColumnDefinition Width="1" />
                         <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid Grid.Column="0" Grid.Row="0" Style="{StaticResource GridStyle}">
@@ -32,46 +34,53 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Style="{StaticResource Btn-Primary}"
-                                Content="合成" Click="SynthesisButton_Click" />
-                        <Button Grid.Row="1" Style="{StaticResource Btn-Primary}"
-                                Content="设置" Click="SettingsButton_Click" />
-                        <Button Grid.Row="2" Style="{StaticResource Btn-Primary}"
-                                Content="日志" Click="LogButton_Click" />
+                        <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" 
+                                Content="语音合成" Click="SynthesisButton_Click" />
+                        <Border Grid.Row="1" Height="1" Background="LightGray" Margin="24,0"></Border>
+                        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" 
+                                Content="系统设置" Click="SettingsButton_Click" />
+                        <Border Grid.Row="3" Height="1" Background="LightGray" Margin="24,0"></Border>
+                        <Button Grid.Row="4" Style="{StaticResource ButtonStyle}" 
+                                Content="系统日志" Click="LogButton_Click" />
+                        <Border Grid.Row="5" Height="1" Background="LightGray" Margin="24,0"></Border>
                 </Grid>
-                <Frame Grid.Column="1" Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden" Source="SettingsPage.xaml"></Frame>
-                <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Style="{StaticResource GridStyle}">
-                        <Grid.ColumnDefinitions>
+                <Border Grid.Column="1" Grid.Row="0" Width="1" Background="LightGray"></Border>
+                <Frame Grid.Column="2" Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden" Source="SettingsPage.xaml"></Frame>
+                <Border Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Height="1" Width="Auto" Background="LightGray"></Border>
+                <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource GridStyle}">
+                        <Grid Style="{StaticResource GridStyle}" Margin="8,-4">
+                                <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Style="{StaticResource Text-Primary}" Content="果壳机动-有金属的地方就有果壳"/>
-                        <Label Grid.Column="2" Style="{StaticResource Text-Info}" Content="引擎:"/>
-                        <Label Grid.Column="3" Style="{StaticResource Text-Primary}" Content="微软语音合成引擎"/>
-                        <Label Grid.Column="5" Style="{StaticResource Text-Info}" Content="语言:"/>
-                        <Label Grid.Column="6" Style="{StaticResource Text-Primary}" Content="中文"/>
-                        <Label Grid.Column="8" Style="{StaticResource Text-Info}" Content="角色:"/>
-                        <Label Grid.Column="9" Style="{StaticResource Text-Primary}" Content="Lili"/>
-                        <Label Grid.Column="11" Style="{StaticResource Text-Info}" Content="输出:"/>
-                        <Label Grid.Column="12" Style="{StaticResource Text-Primary}" Content="扬声器"/>
-                        <Label Grid.Column="14" Style="{StaticResource Text-Info}" Content="状态:"/>
-                        <Label Grid.Column="15" Style="{StaticResource Text-Primary}" Content="空闲"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Style="{StaticResource H3 Small}"  Content="引擎:"/>
+                                <Label Grid.Column="1" Style="{StaticResource H3 Small}"  Content="微软语音合成引擎"/>
+                                <Label Grid.Column="3" Style="{StaticResource H3 Small}"  Content="语言:"/>
+                                <Label Grid.Column="4" Style="{StaticResource H3 Small}"  Content="中文"/>
+                                <Label Grid.Column="6" Style="{StaticResource H3 Small}"  Content="角色:"/>
+                                <Label Grid.Column="7" Style="{StaticResource H3 Small}"  Content="Lili"/>
+                                <Label Grid.Column="9" Style="{StaticResource H3 Small}"  Content="输出:"/>
+                                <Label Grid.Column="10" Style="{StaticResource H3 Small}"  Content="扬声器"/>
+                                <Label Grid.Column="12" Style="{StaticResource H3 Small}"  Content="状态:"/>
+                                <Label Grid.Column="13" Style="{StaticResource H3 Small}"  Content="空闲"/>
+                        </Grid>
                 </Grid>
         </Grid>
 </mahapps:MetroWindow>

@@ -148,6 +148,7 @@
     <Compile Include="Aspects\Events\WillLogEventInvokeHandlerAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustAssignableFromAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustGreaterThanOrEqualAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustBetweenOrEqualAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustGreaterThanAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullOrEmptyAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullAttribute.cs" />

@@ -42,6 +42,11 @@ namespace Nutshell.Speech.Microsoft
                         NativeSynthesizer = new NativeSynthesizer();
 		        NativeSynthesizer.Volume = 100;
 
+		        NativeSynthesizer.StateChanged += (obj, args) =>
+		        {
+                                
+		        };
+
 		}
 
 		#endregion 构造函数
@@ -84,7 +89,7 @@ namespace Nutshell.Speech.Microsoft
 
 		
 
-		public override IResult SpeakAsync(string content)
+		public override IResult SynthesizeAsync(string content)
 		{
 			switch (OutputMode)
 			{

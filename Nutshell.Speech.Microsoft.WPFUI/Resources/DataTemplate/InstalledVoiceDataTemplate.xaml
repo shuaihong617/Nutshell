@@ -8,18 +8,14 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"
-                                           Style="{DynamicResource TextBlockStyle}"
-                                           Text="{Binding VoiceInfo.Id}" />
+                                <Label Grid.Column="0"
+                                           Style="{DynamicResource H4 Small}"
+                                           Content="{Binding VoiceInfo.Description}" />
                                 <TextBlock Grid.Column="1"
                                            Style="{DynamicResource TextBlockStyle}"
                                            Text="{Binding VoiceInfo.Name}" />
                                 <TextBlock Grid.Column="2"
-                                           Style="{DynamicResource TextBlockStyle}"
-                                           Text="{Binding VoiceInfo.Description}" />
-                                <TextBlock Grid.Column="3"
                                            Style="{DynamicResource TextBlockStyle}"
                                            Text="{Binding Enabled}" />
                         </Grid>

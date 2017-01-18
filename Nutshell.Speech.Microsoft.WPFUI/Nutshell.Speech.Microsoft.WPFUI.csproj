@@ -151,6 +151,10 @@
       <Project>{bd530e64-a243-494b-9c8c-5362c8a36e8c}</Project>
       <Name>Nutshell.Presentation.MahApps</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Presentation\Nutshell.Presentation.csproj">
+      <Project>{571b8e0a-d541-4e9a-8fc3-0ffcd60e848a}</Project>
+      <Name>Nutshell.Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Speech.Microsoft\Nutshell.Speech.Microsoft.csproj">
       <Project>{906f80eb-08f2-4476-a891-f760c184da5a}</Project>
       <Name>Nutshell.Speech.Microsoft</Name>
