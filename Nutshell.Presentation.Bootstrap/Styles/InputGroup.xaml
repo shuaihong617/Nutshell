@@ -179,7 +179,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Input-Group-Btn Left" BasedOn="{StaticResource InputGroupBtnBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="input-group-btn left" BasedOn="{StaticResource InputGroupBtnBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -233,7 +233,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="Input-Group-Btn Right" BasedOn="{StaticResource InputGroupBtnBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="input-group-btn right" BasedOn="{StaticResource InputGroupBtnBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -347,7 +347,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Input-Group-Addon Left" BasedOn="{StaticResource InputGroupAddonBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="input-group-addon left" BasedOn="{StaticResource InputGroupAddonBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">
@@ -401,7 +401,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="Input-Group-Addon Right" BasedOn="{StaticResource InputGroupAddonBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="input-group-addon right" BasedOn="{StaticResource InputGroupAddonBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Control}">

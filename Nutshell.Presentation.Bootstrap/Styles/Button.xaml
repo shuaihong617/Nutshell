@@ -108,7 +108,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Btn-Primary" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="btn-primary" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource Background-Primary1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Primary1}"/>
         <Style.Triggers>
@@ -118,7 +118,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Btn-Success" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="btn-success" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource Background-Success1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success1}"/>
         <Style.Triggers>
@@ -128,7 +128,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Btn-Info" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="btn-info" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource Background-Info1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Info1}"/>
         <Style.Triggers>
@@ -138,7 +138,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Btn-Warning" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="btn-warning" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource Background-Warning1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning1}"/>
         <Style.Triggers>
@@ -148,7 +148,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Btn-Danger" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
+    <Style x:Key="btn-danger" BasedOn="{StaticResource ButtonBaseStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="{DynamicResource Background-Danger1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger1}"/>
         <Style.Triggers>
@@ -170,7 +170,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Tbtn-Primary" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="tbtn-primary" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource Background-Primary1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Primary1}"/>
         <Style.Triggers>
@@ -180,7 +180,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Tbtn-Success" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="tbtn-success" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource Background-Success1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success1}"/>
         <Style.Triggers>
@@ -190,7 +190,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Tbtn-Info" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="tbtn-info" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource Background-Info1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Info1}"/>
         <Style.Triggers>
@@ -200,7 +200,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Tbtn-Warning" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="tbtn-warning" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource Background-Warning1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning1}"/>
         <Style.Triggers>
@@ -210,7 +210,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Tbtn-Danger" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
+    <Style x:Key="tbtn-danger" BasedOn="{StaticResource ToggleButtonBaseStyle}" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="{DynamicResource Background-Danger1}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger1}"/>
         <Style.Triggers>

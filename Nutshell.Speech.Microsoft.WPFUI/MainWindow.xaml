@@ -6,10 +6,10 @@
                      WindowStartupLocation="CenterScreen"
                      Width="960"
                      Height="600"
-                     Icon="Resources/Images/Icon.ico" 
+                     Icon="Resources/Images/Icon.ico"
                      Title="{Binding Application.Id}"
                      Loaded="Window_OnLoaded"
-                     Closing="MainWindow_OnClosing" >
+                     Closing="MainWindow_OnClosing">
         <mahapps:MetroWindow.RightWindowCommands>
                 <mahapps:WindowCommands>
                         <Button Style="{StaticResource ButtonStyle}" Foreground="Azure"
@@ -39,47 +39,41 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Style="{StaticResource ButtonStyle}" 
+                        <Button Grid.Row="0" Style="{StaticResource ButtonStyle}"
                                 Content="语音合成" Click="SynthesisButton_Click" />
-                        <Border Grid.Row="1" Height="1" Background="LightGray" Margin="24,0"></Border>
-                        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" 
+                        <Border Grid.Row="1" Height="1" Background="LightGray" Margin="24,0" />
+                        <Button Grid.Row="2" Style="{StaticResource ButtonStyle}"
                                 Content="系统设置" Click="SettingsButton_Click" />
-                        <Border Grid.Row="3" Height="1" Background="LightGray" Margin="24,0"></Border>
-                        <Button Grid.Row="4" Style="{StaticResource ButtonStyle}" 
+                        <Border Grid.Row="3" Height="1" Background="LightGray" Margin="24,0" />
+                        <Button Grid.Row="4" Style="{StaticResource ButtonStyle}"
                                 Content="系统日志" Click="LogButton_Click" />
-                        <Border Grid.Row="5" Height="1" Background="LightGray" Margin="24,0"></Border>
+                        <Border Grid.Row="5" Height="1" Background="LightGray" Margin="24,0" />
                 </Grid>
-                <Border Grid.Column="1" Grid.Row="0" Width="1" Background="LightGray"></Border>
-                <Frame Grid.Column="2" Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden" Source="SettingsPage.xaml"></Frame>
-                <Border Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Height="1" Width="Auto" Background="LightGray"></Border>
+                <Border Grid.Column="1" Grid.Row="0" Width="1" Background="LightGray" />
+                <Frame Grid.Column="2" Grid.Row="0" Name="MainFrame" NavigationUIVisibility="Hidden"
+                       Source="SynthesisPage.xaml" />
+                <Border Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Height="1" Width="Auto" Background="LightGray" />
                 <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Style="{StaticResource GridStyle}">
-                        <Grid Style="{StaticResource GridStyle}" Margin="8,-4">
+                        <Grid Style="{StaticResource GridStyle}" Margin="8">
                                 <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Style="{StaticResource H3 Small}"  Content="引擎:"/>
-                                <Label Grid.Column="1" Style="{StaticResource H3 Small}"  Content="微软语音合成引擎"/>
-                                <Label Grid.Column="3" Style="{StaticResource H3 Small}"  Content="语言:"/>
-                                <Label Grid.Column="4" Style="{StaticResource H3 Small}"  Content="中文"/>
-                                <Label Grid.Column="6" Style="{StaticResource H3 Small}"  Content="角色:"/>
-                                <Label Grid.Column="7" Style="{StaticResource H3 Small}"  Content="Lili"/>
-                                <Label Grid.Column="9" Style="{StaticResource H3 Small}"  Content="输出:"/>
-                                <Label Grid.Column="10" Style="{StaticResource H3 Small}"  Content="扬声器"/>
-                                <Label Grid.Column="12" Style="{StaticResource H3 Small}"  Content="状态:"/>
-                                <Label Grid.Column="13" Style="{StaticResource H3 Small}"  Content="空闲"/>
+                                <Label Grid.Column="0" Content="微软语音合成引擎" />
+                                <Label Grid.Column="2" Content="中文" />
+                                <Label Grid.Column="4" Content="{Binding Synthesizer.Voice}" />
+                                <Label Grid.Column="6" Content="{Binding Synthesizer.Volume}" />
+                                <Label Grid.Column="8" Content="{Binding Synthesizer.OutputMode}" />
+                                <Label Grid.Column="10" Content="{Binding Synthesizer.SynthesizerState}" />
                         </Grid>
                 </Grid>
         </Grid>

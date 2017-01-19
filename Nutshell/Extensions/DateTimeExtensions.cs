@@ -45,7 +45,7 @@ namespace Nutshell
                         return dt == Empty ? string.Empty : dt.ToString("yyyy年MM月dd日 HH:mm:ss");
                 }
 
-                public static String ToChineseLongFileNameWithoutExtension(this DateTime dt)
+                public static String ToChineseLongFileName(this DateTime dt)
                 {
                         return dt.ToString("yyyy年MM月dd日 HH_mm_ss");
                 }

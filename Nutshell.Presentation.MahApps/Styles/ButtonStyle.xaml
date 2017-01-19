@@ -3,14 +3,6 @@
         <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                         Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Buttons.xaml" />
-                <ResourceDictionary
-                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Expander.xaml" />
-                <ResourceDictionary
-                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-                <ResourceDictionary
-                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
-                <ResourceDictionary
-                        Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
         </ResourceDictionary.MergedDictionaries>
         <Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource MetroFlatButton}">
                 <Setter Property="MinWidth" Value="84" />

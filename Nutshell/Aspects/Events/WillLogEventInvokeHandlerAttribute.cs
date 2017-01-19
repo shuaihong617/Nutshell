@@ -13,7 +13,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
-using Nutshell.Log;
+using Nutshell.Extensions;
 using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Events

@@ -12,13 +12,13 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics;
-using System.Diagnostics.Contracts;
 using System.Speech.Synthesis;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data.Models;
+using Nutshell.Extensions;
 using NativeSynthesizer = System.Speech.Synthesis.SpeechSynthesizer;
+using NativeSynthesizerState = System.Speech.Synthesis.SynthesizerState;
 
 namespace Nutshell.Speech.Microsoft
 {
@@ -28,7 +28,6 @@ namespace Nutshell.Speech.Microsoft
 	/// <remarks>此类表示系统所有对象在内存中的数据缓存, 唯一, 采用单例模式构造</remarks>
 	public class MicrosoftSynthesizer : Synthesizer
 	{
-
 		#region 构造函数
 
 		/// <summary>
@@ -39,14 +38,22 @@ namespace Nutshell.Speech.Microsoft
 		{
 			Language = language;
 
-                        NativeSynthesizer = new NativeSynthesizer();
-		        NativeSynthesizer.Volume = 100;
+			NativeSynthesizer = new NativeSynthesizer();
+			NativeSynthesizer.Volume = 100;
 
-		        NativeSynthesizer.StateChanged += (obj, args) =>
-		        {
-                                
-		        };
+			NativeSynthesizer.StateChanged += (obj, args) =>
+			{
+				switch (args.State)
+				{
+					case NativeSynthesizerState.Ready:
+						SynthesizerState = SynthesizerState.空闲;
+						break;
 
+					default:
+						SynthesizerState = SynthesizerState.合成;
+						break;
+				}
+			};
 		}
 
 		#endregion 构造函数
@@ -63,7 +70,7 @@ namespace Nutshell.Speech.Microsoft
 		///         当前语音合成器
 		/// </summary>
 		/// <value>The speech synthesizer.</value>
-		public NativeSynthesizer NativeSynthesizer { get; private set; }
+		public NativeSynthesizer NativeSynthesizer { get; }
 
 		[MustNotEqualNullOrEmpty]
 		[WillNotifyPropertyChanged]
@@ -85,20 +92,22 @@ namespace Nutshell.Speech.Microsoft
 			//Language = synthesizerModel.Language;
 		}
 
-		
-
-		
-
-		public override IResult SynthesizeAsync(string content)
+		public override IResult SynthesizeAsync(string content, string fileName = null)
 		{
 			switch (OutputMode)
 			{
-					case OutputMode.扬声器:
+				case OutputMode.扬声器:
 					NativeSynthesizer.SetOutputToDefaultAudioDevice();
+					break;
+
+				case OutputMode.文件:
+					NativeSynthesizer.SetOutputToWaveFile(fileName);
 					break;
 			}
 
-		        NativeSynthesizer.SpeakAsync(content);
+			NativeSynthesizer.SpeakAsync(content);
+
+			this.Info("合成:" + content);
 
 			return Result.Successed;
 		}
@@ -108,32 +117,12 @@ namespace Nutshell.Speech.Microsoft
 			try
 			{
 				NativeSynthesizer.SelectVoice(voice);
-				
+				Voice = NativeSynthesizer.Voice.Name;
 			}
 			catch (Exception ex)
 			{
-				
 				return new Result(ex);
 			}
-			return Result.Successed;
-		}
-
-		public IResult SpeakAsync(string content, string fileName)
-		{
-			switch (OutputMode)
-			{
-				case OutputMode.扬声器:
-					NativeSynthesizer.SetOutputToDefaultAudioDevice();
-					break;
-
-					case OutputMode.文件:
-					NativeSynthesizer.SetOutputToWaveFile(fileName);
-					break;
-
-			}
-
-			NativeSynthesizer.SpeakAsync(content);
-
 			return Result.Successed;
 		}
 	}

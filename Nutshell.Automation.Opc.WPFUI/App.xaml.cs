@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using Nutshell.Log;
+using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Automation.Opc.WPFUI
 {

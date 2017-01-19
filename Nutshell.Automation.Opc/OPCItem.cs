@@ -5,7 +5,7 @@ using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.OPC.Models;
 using Nutshell.Components;
 using Nutshell.Data;
-using Nutshell.Log;
+using Nutshell.Logging.KernelLogging;
 using OPCAutomation;
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;

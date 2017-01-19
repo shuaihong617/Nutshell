@@ -9,6 +9,6 @@ namespace Nutshell.Speech
 	public enum SynthesizerState
 	{
 		空闲,
-		正在合成
+		合成
 	}
 }

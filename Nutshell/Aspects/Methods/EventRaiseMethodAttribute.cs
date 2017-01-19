@@ -2,7 +2,6 @@
 using System.Reflection;
 using Nutshell.Aspects.Events;
 using Nutshell.Data;
-using Nutshell.Log;
 using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Methods

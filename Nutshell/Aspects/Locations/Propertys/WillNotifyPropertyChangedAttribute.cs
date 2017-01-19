@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Locations.Propertys
@@ -24,7 +25,7 @@ namespace Nutshell.Aspects.Locations.Propertys
 				throw new ArgumentException("必须为IdentityObject或其子类");
 			}
 
-			i.OnPropertyChanged();
+			i.OnPropertyChanged(args.LocationName);
 		}
 	}
 }

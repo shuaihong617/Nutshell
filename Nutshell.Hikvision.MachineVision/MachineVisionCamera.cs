@@ -23,7 +23,7 @@ using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.Models;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
-using Nutshell.Log;
+using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 {

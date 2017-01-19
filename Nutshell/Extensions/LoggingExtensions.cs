@@ -14,70 +14,29 @@
 
 using System;
 using NLog;
+using Nutshell.Logging;
 
-namespace Nutshell.Log
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         Class NLogDebuger.
         /// </summary>
-        public static class NLoger
+        public static class LoggingExtensions
         {
-                /// <summary>
-                ///         The _logger
-                /// </summary>
-                private static readonly Logger Logger = LogManager.GetLogger("NLoger");
-
-                private const string Formater = "{0,-32}{1,-4}{2}";
-
-                /// <summary>
-                ///         Informations the star.
-                /// </summary>
-                public static void Separate()
-                {
-                        if (Logger != null && Logger.IsInfoEnabled)
-                        {
-                                Logger.Info(
-                                        "***********************************************************************************");
-                        }
-                }
-
-                /// <summary>
-                ///         Debugs the specified message.
-                /// </summary>
-                /// <param name="message">The message.</param>
-                public static void Debug(string message)
-                {
-                        if (Logger != null && Logger.IsDebugEnabled)
-                        {
-                                Logger.Debug(Formater, DateTime.Now.ToChineseLongMillisecondString(), "调试", message);
-                        }
-                }
-
                 public static void Debug(this IIdentityObject identityObject, string message)
                 {
-                        Debug(identityObject.GlobalId + message);
+                        LogProvider.Instance.Debug(identityObject.GlobalId + message);
                 }
 
-                /// <summary>
-                ///         Fatals the specified message.
-                /// </summary>
-                /// <param name="message">The message.</param>
-                private static void Info(object message)
-                {
-                        if (Logger != null && Logger.IsInfoEnabled)
-                        {
-                                Logger.Info(DateTime.Now.ToChineseLongMillisecondString() + "    信息    " + message);
-                        }
-                }
-
+                
                 public static void Info(this IIdentityObject identityObject, params object[] args)
                 {
-                        Info(identityObject.GlobalId + ":" + string.Concat(args));
+                        LogProvider.Instance.Info(identityObject.GlobalId + ":" + string.Concat(args));
                 }
 
                 public static void InfoFormat(this IIdentityObject identityObject, string format, params object[] args)
                 {
-                        Info(string.Format(format, args));
+                        LogProvider.Instance.Info(string.Format(format, args));
                 }
 
                 public static void InfoEvent(this IIdentityObject identityObject, object eventName, object args = null)
@@ -103,26 +62,16 @@ namespace Nutshell.Log
                         Info(identityObject, operation, "成功,", description);
                 }
 
-                /// <summary>
-                ///         Fatals the specified message.
-                /// </summary>
-                /// <param name="message">The message.</param>
-                private static void Warn(string message)
-                {
-                        if (Logger != null && Logger.IsWarnEnabled)
-                        {
-                                Logger.Warn(Formater, DateTime.Now.ToChineseLongMillisecondString(), "警告", message);
-                        }
-                }
+                
 
                 public static void Warn(this IIdentityObject identityObject, string message)
                 {
-                        Warn(identityObject.GlobalId + message);
+                        LogProvider.Instance.Warn(identityObject.GlobalId + message);
                 }
 
                 public static void WarnFormat(this IIdentityObject identityObject, string format, params object[] args)
                 {
-                        Warn(string.Format(format, args));
+                        LogProvider.Instance.Warn(string.Format(format, args));
                 }
 
                 /// <summary>
@@ -151,26 +100,16 @@ namespace Nutshell.Log
                         }
                 }
 
-                /// <summary>
-                ///         Fatals the specified message.
-                /// </summary>
-                /// <param name="message">The message.</param>
-                private static void Error(string message)
-                {
-                        if (Logger != null && Logger.IsErrorEnabled)
-                        {
-                                Logger.Error(Formater, DateTime.Now.ToChineseLongMillisecondString(), "错误", message);
-                        }
-                }
+                
 
                 public static void Error(this IIdentityObject identityObject, string message)
                 {
-                        Error(identityObject.GlobalId + message);
+                        LogProvider.Instance.Error(identityObject.GlobalId + message);
                 }
 
                 public static void ErrorFormat(this IIdentityObject identityObject, string format, params object[] args)
                 {
-                        Error(string.Format(format, args));
+                        LogProvider.Instance.Error(string.Format(format, args));
                 }
 
                 public static void ErrorFail(this IIdentityObject identityObject, string operation)
@@ -184,33 +123,9 @@ namespace Nutshell.Log
                         ErrorFormat(identityObject, "{0}失败, 错误原因:{1}", operation, description);
                 }
 
-                /// <summary>
-                ///         Fatals the specified message.
-                /// </summary>
-                /// <param name="message">The message.</param>
-                private static void Fatal(string message)
-                {
-                        if (Logger != null && Logger.IsFatalEnabled)
-                        {
-                                Logger.Fatal(Formater, DateTime.Now.ToChineseLongMillisecondString(), "故障", message);
-                        }
-                }
-
-                /// <summary>
-                ///         Fatals the specified message.
-                /// </summary>
-                /// <param name="exception">The exception.</param>
-                public static void Fatal(Exception exception)
-                {
-                        if (Logger != null && Logger.IsFatalEnabled)
-                        {
-                                Logger.Fatal(exception);
-                        }
-                }
-
                 public static void Fatal(this IIdentityObject identityObject, Exception exception)
                 {
-                        Fatal(exception);
+                        LogProvider.Instance.Fatal(exception);
                 }
         }
 }

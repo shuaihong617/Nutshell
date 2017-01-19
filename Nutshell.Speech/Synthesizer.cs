@@ -11,12 +11,17 @@ namespace Nutshell.Speech
 			: base(parent, id)
 		{
 			Language = language;
+		        Volume = 100;
 			SynthesizerState = SynthesizerState.空闲;
 			OutputMode = OutputMode.扬声器;
 		}
 
 		[WillNotifyPropertyChanged]
 		public Language Language { get; protected set; }
+
+                [MustNotEqualNullOrEmpty]
+                [WillNotifyPropertyChanged]
+                public string Voice { get; protected set; }
 
                 [MustBetweenOrEqual(0,100)]
                 [WillNotifyPropertyChanged]
@@ -32,7 +37,7 @@ namespace Nutshell.Speech
 
 		public abstract IResult SelectVoice(string voice);
 
-		public abstract IResult SynthesizeAsync(string content);
+		public abstract IResult SynthesizeAsync(string content, string fileName = null);
 
 	        public event EventHandler<EventArgs> SynthesizeStarting;
 	        public event EventHandler<ValueEventArgs<Exception>> SynthesizeStarted;

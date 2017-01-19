@@ -1,27 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {
 	/// <summary>
-	/// SynthesisPage.xaml 的交互逻辑
+	///         SynthesisPage.xaml 的交互逻辑
 	/// </summary>
 	public partial class SynthesisPage : Page
 	{
 		private readonly GlobalManager _gm = GlobalManager.Instance;
+
 		public SynthesisPage()
 		{
 			InitializeComponent();
@@ -37,37 +28,34 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 		{
 			var content = MainTextBox.Text.Trim();
 
-                        //取第一句话作为默认文件名
-		        var segments = content.Split(new char[]
-		        {
-		                ',','，',
-                                '.','。',
-                                ';','；',
-                                ':','：',
-                                '!','！',
-                                '?','?',
-                        }, StringSplitOptions.RemoveEmptyEntries);
-		        var title = segments.FirstOrDefault();
+			var myInvalidChars = new char[]
+			{
+				',', '，',
+				'.', '。',
+				';', '；',
+				':', '：',
+				'!', '！',
+				'?', '?',
+				'、', '、'
+			};
 
-		        SaveFileDialog dialog = new SaveFileDialog()
-		        {
-                                AddExtension = true,
-                                CheckFileExists = false,
-                                CheckPathExists = true,
-                                DefaultExt = ".wav",
-                                FileName = title+".wav",
-                                Filter = "Wav音频文件|*.wav",
-                                Title = "保存音频文件"
-		        };
+			var allInvalid = myInvalidChars.Union(Path.GetInvalidFileNameChars()).ToArray();
 
-		        if (dialog.ShowDialog().GetValueOrDefault(false))
-		        {
-                                _gm.Synthesizer.OutputMode = OutputMode.文件;
-                                _gm.Synthesizer.SpeakAsync(content, dialog.FileName);
-		        }
-                        
+			//取第一句话作为默认文件名
+			var segments = content.Split(allInvalid, StringSplitOptions.RemoveEmptyEntries);
+			var title = segments.FirstOrDefault();
 
-			
+			var dir = "输出";
+			if (!Directory.Exists(dir))
+			{
+				Directory.CreateDirectory(dir);
+			}
+
+			var now = DateTime.Now.ToChineseLongFileName();
+
+			var fileName = Path.Combine(dir, now + title + ".wav");
+				_gm.Synthesizer.OutputMode = OutputMode.文件;
+			_gm.Synthesizer.SynthesizeAsync(content, fileName);
 		}
 	}
 }

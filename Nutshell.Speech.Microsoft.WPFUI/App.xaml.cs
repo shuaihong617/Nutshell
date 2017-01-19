@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using Nutshell.Log;
+using Nutshell.Logging;
+using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {
@@ -16,7 +19,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
                 public App()
                 {
-                        NLoger.Separate();
+                        NLoger.Instance.Separate();
 
                         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
                         DispatcherUnhandledException += Application_DispatcherUnhandledException;
@@ -55,7 +58,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 private void Application_DispatcherUnhandledException(object sender,
                         DispatcherUnhandledExceptionEventArgs e)
                 {
-                        NLoger.Fatal(e.Exception);
+                        LogProvider.Instance.Fatal(e.Exception);
                         MessageBox.Show("当前应用程序发生了一个不曾预料的错误, 操作无法继续, 请联系软件发行方以协助改进这个问题, 非常感谢！");
 
                         Current.Shutdown();
@@ -63,7 +66,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
                 private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
                 {
-                        NLoger.Fatal((Exception)e.ExceptionObject);
+                        LogProvider.Instance.Fatal((Exception)e.ExceptionObject);
                         MessageBox.Show("当前应用程序域发生了一个不曾预料的错误, 操作无法继续, 请联系软件发行方以协助改进这个问题, 非常感谢！");
 
                         Current.Shutdown();

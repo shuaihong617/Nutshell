@@ -1,7 +1,7 @@
 ﻿using System;
 using Nutshell.Automation.OPC;
 using Nutshell.Components;
-using Nutshell.Log;
+using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Automation.Opc
 {

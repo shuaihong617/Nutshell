@@ -2,6 +2,8 @@
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
+using Nutshell.Logging;
+using Nutshell.Logging.UserLogging;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {
@@ -12,6 +14,10 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 private GlobalManager()
                 {
                         ConfigDirectory = @"配置/";
+
+                        LogProvider.Initialize();
+                        LogCollecter = new LogCollecter();
+                        LogProvider.Instance.Register(LogCollecter);
                 }
 
                 #endregion
@@ -32,6 +38,8 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
                 [WillNotifyPropertyChanged]
                 public IApplication Application { get; private set; }
+
+                public LogCollecter LogCollecter { get; private set; }
 
                 [WillNotifyPropertyChanged]
                 public MicrosoftSynthesisRuntime Runtime { get; private set; }
@@ -59,9 +67,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
                 public void Stop()
                 {
-			//Synthesizer.Terminate();
-			//Synthesizer.Disconnect();
-
+			
 			//Runtime.Stop();
                 }
         }

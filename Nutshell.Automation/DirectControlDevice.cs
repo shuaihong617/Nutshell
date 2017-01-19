@@ -3,7 +3,7 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Components;
 using Nutshell.Data.Models;
-using Nutshell.Log;
+using Nutshell.Logging.KernelLogging;
 using PostSharp.Patterns.Model;
 
 namespace Nutshell.Automation

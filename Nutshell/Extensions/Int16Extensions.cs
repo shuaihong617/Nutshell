@@ -14,7 +14,7 @@
 
 using System;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         短整形扩展方法

@@ -15,8 +15,6 @@
                                 <ResourceDictionary
                                         Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/ButtonStyle.xaml" />
                                 <ResourceDictionary
-                                        Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/ListBoxStyle.xaml" />
-                                <ResourceDictionary
                                         Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/TextBlockStyle.xaml" />
                                 
                                 

@@ -16,7 +16,6 @@ using System.ComponentModel;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
-using Nutshell.Log;
 
 namespace Nutshell.Data
 {

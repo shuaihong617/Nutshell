@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 using Nutshell.Automation;
 using Nutshell.Components;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
-using Nutshell.Log;
+using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 {

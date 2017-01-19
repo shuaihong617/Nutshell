@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2014-10-15
+// 创建           : 2015-09-05
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2014-10-15
+// 日期           : 2015-09-05
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,26 +11,20 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Data;
 
-namespace Nutshell.Diagnostics
+namespace Nutshell.Components
 {
         /// <summary>
-        ///         标识对象接口
+        ///         消费者接口
         /// </summary>
-        public interface ILogServiceProvider
+        /// <typeparam name="T"></typeparam>
+        public interface IConsumer<in T>
         {
                 /// <summary>
-                ///         标识
+                ///         获得
                 /// </summary>
-                [MustNotEqualNullOrEmpty]
-                String Id { get; }
-
-                /// <summary>
-                ///         全局标识
-                /// </summary>
-                [MustNotEqualNullOrEmpty]
-                String GlobalId { get;}
+                /// <param name="t">生产结果</param>
+                void Acquire(T t);
         }
 }

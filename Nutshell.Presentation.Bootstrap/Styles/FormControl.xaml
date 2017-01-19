@@ -90,7 +90,7 @@
         </Style.Triggers>
     </Style>
     <!--验证 源码行数:2594-2683-->
-    <Style x:Key="Has-Success" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="has-success" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success3}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -145,7 +145,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Has-Warning" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="has-warning" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning3}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -200,7 +200,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Has-Error" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="has-error" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger3}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -256,7 +256,7 @@
         </Style.Triggers>
     </Style>
     <!--控件尺寸 源码行数:2528-2535 2547-2554-->
-    <Style x:Key="Input-Sm" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="input-sm" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="Height" Value="{DynamicResource SmallControlHeight}"/>
         <Setter Property="Padding" Value="{DynamicResource SmallControlPadding}"/>
         <Setter Property="FontSize" Value="{DynamicResource SmallFontSize}"/>
@@ -317,7 +317,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="Input-Lg" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="input-lg" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="Height" Value="{DynamicResource LargeControlHeight}"/>
         <Setter Property="Padding" Value="{DynamicResource LargeControlPadding}"/>
         <Setter Property="FontSize" Value="{DynamicResource LargeFontSize}"/>
@@ -645,15 +645,15 @@
         </Setter>
     </Style>
     <Style BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}"/>
-    <Style x:Key="Checkbox Has-Success" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+    <Style x:Key="checkbox has-success" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}"/>
     </Style>
-    <Style x:Key="Checkbox Has-Warning" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+    <Style x:Key="checkbox has-warning" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}"/>
     </Style>
-    <Style x:Key="Checkbox Has-Error" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+    <Style x:Key="checkbox has-error" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}"/>
     </Style>
@@ -688,15 +688,15 @@
         </Setter>
     </Style>
     <Style BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}"/>
-    <Style x:Key="Radio Has-Success" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
+    <Style x:Key="radio has-success" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}"/>
     </Style>
-    <Style x:Key="Radio Has-Warning" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
+    <Style x:Key="radio has-warning" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}"/>
     </Style>
-    <Style x:Key="Radio Has-Error" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
+    <Style x:Key="radio has-error" BasedOn="{StaticResource RadioButtonBaseStyle}" TargetType="{x:Type RadioButton}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}"/>
     </Style>

@@ -10,6 +10,8 @@ namespace Nutshell.Speech
 
                 OutputMode OutputMode { get; }
 
+                string Voice { get; }
+
                 [MustBetweenOrEqual(0, 100)]
                 int Volume { get; set; }
 
@@ -19,7 +21,7 @@ namespace Nutshell.Speech
 
                 IResult SelectVoice(string voice);
 
-                IResult SynthesizeAsync(string content);
+                IResult SynthesizeAsync(string content, string fileName = null);
 
                 #region 事件
 

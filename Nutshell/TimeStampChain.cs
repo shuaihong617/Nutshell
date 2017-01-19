@@ -11,12 +11,20 @@
 // </summary>
 // ***********************************************************************
 
+using System;
+
 namespace Nutshell
 {
 	/// <summary>
 	///         时间戳链，用于跟踪其附着的对象状态变更的时间
 	/// </summary>
-	public abstract class TimeStampChain
+	public class TimeStampChain
 	{
+	        public TimeStampChain()
+	        {
+	                CreateTime = DateTime.Now;
+	        }
+
+	        public DateTime CreateTime { get; private set; }
 	}
 }

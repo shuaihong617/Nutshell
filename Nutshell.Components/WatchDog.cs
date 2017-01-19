@@ -16,7 +16,8 @@ using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
 using Nutshell.Data.Models;
-using Nutshell.Log;
+using Nutshell.Extensions;
+using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Components
 {
