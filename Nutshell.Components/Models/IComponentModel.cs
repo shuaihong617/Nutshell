@@ -11,14 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Data.Models;
-
 namespace Nutshell.Components.Models
 {
         /// <summary>
         ///         组件数据模型接口
         /// </summary>
-        public interface IComponentModel : IDataModel,IEnableModel,IDebuggableModel
+        public interface IComponentObjectModel : IRunableObjectModel
 	{
         }
 }

@@ -13,6 +13,7 @@
 
 using System;
 using System.Windows.Forms;
+using Nutshell.Automation.Vision;
 using Nutshell.Hardware.Vision;
 using SharpDX.Direct2D1;
 using SharpDX.DirectWrite;

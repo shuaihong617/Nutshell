@@ -19,7 +19,7 @@ namespace Nutshell.Automation.Models
         /// <summary>
         ///         独立设备数据模型
         /// </summary>
-        public interface IIndependentDeviceModel : IComponentModel
+        public interface IIndependentDeviceObjectModel : IComponentObjectModel
         {
         }
 }

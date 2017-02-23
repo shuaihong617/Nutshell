@@ -32,10 +32,43 @@ namespace Nutshell.Components
                 /// 获取连接工作者，连接工作者负责组件的连接\断开
                 /// </summary>
                 /// <value>连接工作者</value>
-                IWorker ConnectWorker { get; }
+                IConnectWorker ConnectWorker { get; }
 
-                void Connect();
+		/// <summary>
+		/// 获取守护工作者，守护工作者负责组件的在线检测、断线重连
+		/// </summary>
+		/// <value>守护工作者</value>
+		ISurviveLooper SurviveLooper { get; }
 
-                void Disconnect();
-        }
+		/// <summary>
+		/// 连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult StartConnect();
+
+		/// <summary>
+		///  断开连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult StopConnect();
+
+
+		/// <summary>
+		///  测试是否守护
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult IsSurvive();
+
+		/// <summary>
+		/// 连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult StartSurvive();
+
+		/// <summary>
+		///  断开连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult StopSurvive();
+	}
 }

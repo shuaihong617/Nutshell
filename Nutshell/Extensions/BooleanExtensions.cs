@@ -14,7 +14,7 @@
 using System;
 using Nutshell.Aspects.Locations.Contracts;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         布尔类型扩展方法

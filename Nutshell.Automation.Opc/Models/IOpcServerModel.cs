@@ -14,20 +14,15 @@
 
 using Nutshell.Components.Models;
 
-namespace Nutshell.Automation.OPC.Models
+namespace Nutshell.Automation.Opc.Models
 {
 	/// <summary>
-	///         已定义主键的xmlOPC服务器数据模型
+	///         已定义主键的xmlOpc服务器数据模型
 	/// </summary>
 	public interface IOpcServerModel : IDispatchableComponentModel
 	{
 		/// <summary>
-		///         名称
-		/// </summary>
-		string Name { get; set; }
-
-		/// <summary>
-		///         名称
+		///         地址
 		/// </summary>
 		string Address { get; set; }
 	}

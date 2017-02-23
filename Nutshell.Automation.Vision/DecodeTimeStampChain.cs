@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Automation.Vision;
 
 namespace Nutshell.Hardware.Vision
 {

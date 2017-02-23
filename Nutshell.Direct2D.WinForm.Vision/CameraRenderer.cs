@@ -16,6 +16,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Automation.Vision;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;

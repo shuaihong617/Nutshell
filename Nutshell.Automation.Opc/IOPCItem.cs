@@ -1,12 +1,12 @@
 ﻿using System;
-using Nutshell.Automation.OPC.Models;
+using Nutshell.Automation.Opc.Models;
 using Nutshell.Data;
 
-//重命名OPCDAAuto.dll中类名，禁止删除；
+//重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 using NativeOpcItem = OPCAutomation.OPCItem;
 
-namespace Nutshell.Automation.OPC
+namespace Nutshell.Automation.Opc
 {
 	public interface IOpcItem : IStorable<IOpcItemModel>
 	{

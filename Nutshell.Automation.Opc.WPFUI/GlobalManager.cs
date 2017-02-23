@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.Opc.Xml;
-using Nutshell.Automation.OPC;
+using Nutshell.Automation.Opc;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
-using Nutshell.Speech.Microsoft;
+using Nutshell.Logging;
+using Nutshell.Logging.UserLogging;
 
 namespace Nutshell.Automation.Opc.WPFUI
 {
@@ -15,6 +17,10 @@ namespace Nutshell.Automation.Opc.WPFUI
                 private GlobalManager()
                 {
                         ConfigDirectory = @"配置/";
+
+                        LogProvider.Initialize();
+                        LogCollecter = new LogCollecter();
+                        LogProvider.Instance.Register(LogCollecter);
                 }
 
                 #endregion
@@ -31,16 +37,18 @@ namespace Nutshell.Automation.Opc.WPFUI
                 /// <summary>
                 ///         配置文件目录
                 /// </summary>
-                public string ConfigDirectory { get; set; }
+                public string ConfigDirectory { get;private set; }
 
                 [WillNotifyPropertyChanged]
                 public IApplication Application { get; private set; }
 
-                [WillNotifyPropertyChanged]
-                public MicrosoftSynthesisRuntime MicrosoftSynthesisRuntime { get; private set; }
+                public LogCollecter LogCollecter { get; private set; }
 
                 [WillNotifyPropertyChanged]
-                public MicrosoftSynthesizer MicrosoftSynthesizer { get; private set; }
+                public OpcRuntime Runtime { get; private set; }
+
+                [WillNotifyPropertyChanged]
+                public OpcServer Server { get; private set; }
 
 
                 public void LoadApplication()
@@ -51,23 +59,18 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void Start()
                 {
-                        //OpcRuntime = OpcRuntime.Instance;
-                        //OpcRuntime.Start();
+                        Runtime = new OpcRuntime(Application);
+                        Runtime.Start();
 
-                        //OpcServer = new OpcServer(Application);
-                        //XmlOpcServerStorager.Instance.Load(OpcServer, ConfigDirectory + "OpcServer.config");
-
-                        //OpcServer.Connect();
-                        //OpcServer.Establish();
-                }
+			Server = new OpcServer(Application);
+			XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
+		}
 
 
                 public void Stop()
                 {
-                        //OpcServer.Terminate();
-                        //OpcServer.Disconnect();
-
-                        //OpcRuntime.Stop();
+			
+			//Runtime.Stop();
                 }
         }
 }

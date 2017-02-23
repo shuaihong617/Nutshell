@@ -163,6 +163,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Presentation.Boots
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Presentation.MahApps", "Nutshell.Presentation.MahApps\Nutshell.Presentation.MahApps.csproj", "{BD530E64-A243-494B-9C8C-5362C8A36E8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.Opc.Devices", "Nutshell.Automation.Opc.Devices\Nutshell.Automation.Opc.Devices.csproj", "{799CFD7B-57DC-4006-B437-0F2C5215F885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Hikvision.MachineVision.WPFUI", "Nutshell.Hikvision.MachineVision.WPFUI\Nutshell.Hikvision.MachineVision.WPFUI.csproj", "{59C36EE1-19BE-496E-A782-2EF657C330F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1011,6 +1015,38 @@ Global
 		{BD530E64-A243-494B-9C8C-5362C8A36E8C}.Release|Win32.Build.0 = Release|Any CPU
 		{BD530E64-A243-494B-9C8C-5362C8A36E8C}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD530E64-A243-494B-9C8C-5362C8A36E8C}.Release|x86.Build.0 = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|Win32.Build.0 = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Debug|x86.Build.0 = Debug|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|Win32.ActiveCfg = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|Win32.Build.0 = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|x86.ActiveCfg = Release|Any CPU
+		{799CFD7B-57DC-4006-B437-0F2C5215F885}.Release|x86.Build.0 = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|Win32.Build.0 = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Debug|x86.Build.0 = Debug|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|Win32.ActiveCfg = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|Win32.Build.0 = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|x86.ActiveCfg = Release|Any CPU
+		{59C36EE1-19BE-496E-A782-2EF657C330F8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1080,5 +1116,7 @@ Global
 		{13A602D5-96AF-42AE-845A-2443A15167E7} = {CE5C1591-BF47-4307-97AC-D5AE38EB4FC8}
 		{FC47FDAD-024F-4FD1-B629-9A20BA7F76B5} = {660EB2BD-FB42-4546-8F57-BC1CDD3606FD}
 		{BD530E64-A243-494B-9C8C-5362C8A36E8C} = {660EB2BD-FB42-4546-8F57-BC1CDD3606FD}
+		{799CFD7B-57DC-4006-B437-0F2C5215F885} = {06DCD453-80B5-45F9-9A4E-77025B4F9203}
+		{59C36EE1-19BE-496E-A782-2EF657C330F8} = {543D6701-1BAB-4EF7-ACAC-B36DD6B07DF1}
 	EndGlobalSection
 EndGlobal

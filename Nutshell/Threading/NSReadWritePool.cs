@@ -22,7 +22,7 @@ namespace Nutshell.Threading
         ///         为对象添加读写锁的缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class NSReadWritePool<T> : IdentityObject where T : IdentityObject
+        public class NSReadWritePool<T> : IdentityObject where T : IIdentityObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.

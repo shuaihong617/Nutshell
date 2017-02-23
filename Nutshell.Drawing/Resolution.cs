@@ -13,85 +13,78 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
-using Nutshell.Data.Models;
 using Nutshell.Drawing.Models;
-using PostSharp.Patterns.Model;
 
 namespace Nutshell.Drawing
 {
-        /// <summary>
-        ///         Class NSBitmap.
-        /// </summary>
-        [NotifyPropertyChanged]        
-        public class Resolution : StorableObject
-        {
-                /// <summary>
-                ///         初始化<see cref="Resolution" />的新实例.
-                /// </summary>
-                /// <param name="parent">The parent.</param>
-                /// <param name="id">The identifier.</param>
-                /// <param name="horizontal">The horizontal.</param>
-                /// <param name="vertical">The vertical.</param>
-                public Resolution(IdentityObject parent,
-                        string id,
-                        [MustGreaterThan(0)] int horizontal,
-                        [MustGreaterThan(0)] int vertical)
-                        : base(parent, id)
-                {
-                        Horizontal = horizontal;
-                        Vertical = vertical;
-                }
+	/// <summary>
+	///         Class NSBitmap.
+	/// </summary>
+	public abstract class Resolution : StorableObject, IStorable<IResolutionModel>
+	{
+		/// <summary>
+		///         初始化<see cref="Resolution" />的新实例.
+		/// </summary>
+		/// <param name="parent">The parent.</param>
+		/// <param name="id">The identifier.</param>
+		/// <param name="horizontal">The horizontal.</param>
+		/// <param name="vertical">The vertical.</param>
+		protected Resolution(IdentityObject parent,
+			string id,
+			[MustGreaterThan(0f)] double horizontal,
+			[MustGreaterThan(0f)] double vertical)
+			: base(parent, id)
+		{
+			Horizontal = horizontal;
+			Vertical = vertical;
+		}
 
-                /// <summary>
-                ///         Gets the width.
-                /// </summary>
-                [MustGreaterThan(0)]
-                public int Horizontal { get; private set; }
+		/// <summary>
+		///         Gets the width.
+		/// </summary>
+		[MustGreaterThan(0f)]
+		public double Horizontal { get; private set; }
 
-                /// <summary>
-                ///         Gets the height.
-                /// </summary>
-                /// <value>The height.</value>
-                [MustGreaterThan(0)]
-                public int Vertical { get; private set; }
+		/// <summary>
+		///         Gets the height.
+		/// </summary>
+		/// <value>The height.</value>
+		[MustGreaterThan(0f)]
+		public double Vertical { get; private set; }
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public override void Load([MustAssignableFrom(typeof(IResolutionModel))]IDataModel model)
-                {
-                        base.Load(model);
+		/// <summary>
+		///         从数据模型加载数据
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Load([MustNotEqualNull] IResolutionModel model)
+		{
+			base.Load(model);
 
-                        var resolutionModel = model as IResolutionModel;
+			Horizontal = model.Horizontal;
+			Vertical = model.Vertical;
+		}
 
-                        Horizontal = resolutionModel.Width;
-                        Vertical = resolutionModel.Height;
-                }
+		/// <summary>
+		///         保存数据到数据模型
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Save([MustNotEqualNull] IResolutionModel model)
+		{
+			base.Save(model);
 
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public override void Save([MustAssignableFrom(typeof(IResolutionModel))]IDataModel model)
-                {
-                        base.Save(model);
+			model.Horizontal = Horizontal;
+			model.Vertical = Vertical;
+		}
 
-                        var resolutionModel = model as IResolutionModel;
-
-                        resolutionModel.Width = Horizontal;
-                        resolutionModel.Height = Vertical;
-                }
-
-                /// <summary>
-                ///         返回表示当前对象的字符串。
-                /// </summary>
-                /// <returns>
-                ///         表示当前对象的字符串。
-                /// </returns>
-                public override string ToString()
-                {
-                        return $"{GlobalId}：水平{Horizontal} 垂直{Vertical}";
-                }
-        }
+		/// <summary>
+		///         返回表示当前对象的字符串。
+		/// </summary>
+		/// <returns>
+		///         表示当前对象的字符串。
+		/// </returns>
+		public override string ToString()
+		{
+			return $"{GlobalId}：水平{Horizontal} 垂直{Vertical}";
+		}
+	}
 }

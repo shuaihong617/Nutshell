@@ -1,15 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using Nutshell.Automation.Opc;
 using Nutshell.Components;
-//重命名OPCDAAuto.dll中类名，禁止删除；
+//重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 
 namespace Nutshell.Automation.Opc
 {
         public class OpcRuntimeDispatchWorker : Worker
         {
-                public OpcRuntimeDispatchWorker(IIdentityObject parent)
+                public OpcRuntimeDispatchWorker(OpcRuntime parent)
                         : base(parent, "Opc运行环境工作者")
                 {
                 }
@@ -21,44 +24,37 @@ namespace Nutshell.Automation.Opc
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected override sealed IResult Starup(IWorkContext context)
+                protected override sealed IResult Starup(IRunableObject runableObject)
                 {
                         var version = new Version(3, 6);
-                        ReadOnlyCollection<string> names;
+                        ReadOnlyCollection<InstalledOpcServer> installedOpcServers;
                         try
                         {
-                                names = GetAllOpcServerNames();
+                                installedOpcServers = GetInstalledOpcServers();
                         }
                         catch (Exception ex)
                         {
-                                return new Result(ex);
+                                return new ExceptionResult(ex);
                         }
-                        return new OpcRuntimeDispatchResult(version, names);
+                        return new OpcRuntimeDispatchResult(version, installedOpcServers);
                 }
 
-                /// <summary>
-                ///         执行退出过程的具体步骤.
-                /// </summary>
-                /// <returns>成功返回True, 否则返回False.</returns>
-                /// <remarks>
-                ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
-                /// </remarks>
-                protected override sealed IResult Clean(IWorkContext context)
-                {
-                        return Result.Successed;
-                }
-
-
-                private ReadOnlyCollection<string> GetAllOpcServerNames()
+                private ReadOnlyCollection<InstalledOpcServer> GetInstalledOpcServers()
                 {
                         var server = new NativeOpcServer();
 
                         //此处必须为object类型，使用var自动推导将导致后续转换失败
-                        object names = server.GetOPCServers();
+                        object addresses = server.GetOPCServers();
 
-                        var result = ((Array) names).Cast<string>().ToList();
+                        var addressList = ((Array) addresses).Cast<string>().ToList();
+			List<InstalledOpcServer> installedOpcServers = new List<InstalledOpcServer>(addressList.Count);
 
-                        return new ReadOnlyCollection<string>(result);
+	                var runtime = Parent as OpcRuntime;
+			Trace.Assert(runtime != null);
+
+	                installedOpcServers.AddRange(addressList.Select(address => new InstalledOpcServer(runtime, address)));
+
+	                return new ReadOnlyCollection<InstalledOpcServer>(installedOpcServers);
                 }
         }
 }

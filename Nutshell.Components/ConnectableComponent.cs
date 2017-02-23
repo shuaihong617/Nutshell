@@ -29,14 +29,19 @@ namespace Nutshell.Components
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
                 protected ConnectableComponent([MustNotEqualNull]IIdentityObject parent,
-                                            string id)
+                                            string id=null)
                         : base(parent, id)
                 {
                         ConnectState = ConnectState.Disconnected; 
-                                               
                 }
 
-                private IWorker _connectWorker;
+	        #region 字段
+
+	        private IConnectWorker _connectWorker;
+	        private ISurviveLooper _surviveLooper;
+
+	        #endregion
+
 
                 #region 属性
 
@@ -52,7 +57,7 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <value>连接工作者</value>
                 [MustNotEqualNull]
-                public IWorker ConnectWorker
+                public IConnectWorker ConnectWorker
                 {
                         get { return _connectWorker; }
                         protected set
@@ -61,19 +66,33 @@ namespace Nutshell.Components
                                 OnPropertyChanged();
 
                                 ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
-                                ConnectWorker.StartSuccessed += (obj, args) => ConnectState = ConnectState.Connected;
+                                ConnectWorker.Started += (obj, args) => ConnectState = ConnectState.Connected;
                                 ConnectWorker.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
-                                ConnectWorker.StopSuccessed += (obj, args) => ConnectState = ConnectState.Disconnected;
+                                ConnectWorker.Stoped += (obj, args) => ConnectState = ConnectState.Disconnected;
                         }
                 }
 
-                #endregion
+		[MustNotEqualNull]
+	        public ISurviveLooper SurviveLooper
+	        {
+		        get { return _surviveLooper; }
+			set
+			{
+				_surviveLooper = value;
+				OnPropertyChanged();
 
-                /// <summary>
-                ///         Loads the specified model.
-                /// </summary>
-                /// <param name="model">The model.</param>
-                public void Load([MustNotEqualNull] IConnectableComponentModel model)
+
+			}
+	        }
+
+	        #endregion
+
+
+		/// <summary>
+		/// 从数据模型加载数据
+		/// </summary>
+		/// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
+		public void Load([MustNotEqualNull] IConnectableComponentModel model)
                 {
                         base.Load(model);
                 }
@@ -88,17 +107,141 @@ namespace Nutshell.Components
                 }
 
 
-                public void Connect()
+		/// <summary>
+		/// 连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		public IResult StartConnect()
                 {
-
-                        ConnectWorker.Start(this);
+                        return ConnectWorker.Start(this);
                 }
 
-                public  void Disconnect()
+		/// <summary>
+		/// 断开连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		public IResult StopConnect()
                 {
-                        ConnectWorker.Stop(this);
+                        return ConnectWorker.Stop(this);
                 }
 
-                
-        }
+	        public IResult IsSurvive()
+	        {
+		        return Result.Successed;
+	        }
+
+		/// <summary>
+		/// 连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		public IResult StartSurvive()
+		{
+			return SurviveLooper.Start(this);
+		}
+
+		/// <summary>
+		/// 断开连接
+		/// </summary>
+		/// <returns>操作结果</returns>
+		public IResult StopSurvive()
+		{
+			return SurviveLooper.Stop(this);
+		}
+
+		#region 事件
+
+		protected event EventHandler<EventArgs> ConnectSuccessed;
+
+
+		/// <summary>
+		///         引发 <see cref="E:Opened" /> 事件.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnConnectSuccessed(EventArgs e)
+		{
+			e.Raise(this, ref ConnectSuccessed);
+		}
+
+		/// <summary>
+		///         Occurs when [opened].
+		/// </summary>
+		protected event EventHandler<EventArgs> ConnectFailed;
+
+		/// <summary>
+		///         引发 <see cref="E:Opened" /> 事件.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnConnectFailed(EventArgs e)
+		{
+			e.Raise(this, ref ConnectFailed);
+		}
+
+		/// <summary>
+		///         Occurs when [opened].
+		/// </summary>
+		protected event EventHandler<EventArgs> DisconnectSuccessed;
+
+		/// <summary>
+		///         引发 <see cref="E:Opened" /> 事件.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnDisconnectSuccessed(EventArgs e)
+		{
+			e.Raise(this, ref DisconnectSuccessed);
+		}
+
+		/// <summary>
+		///         Occurs when [opened].
+		/// </summary>
+		protected event EventHandler<EventArgs> DisconnectFailed;
+
+		/// <summary>
+		///         引发 <see cref="E:Opened" /> 事件.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnDisconnectFailed(EventArgs e)
+		{
+			e.Raise(this, ref DisconnectFailed);
+		}
+
+		/// <summary>
+		///         Occurs when [openCaptur].
+		/// </summary>
+		public event EventHandler<EventArgs> StartCaptured;
+
+		/// <summary>
+		///         Raises the <see cref="E:OpenCaptur" /> event.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnStartCaptured(EventArgs e)
+		{
+			e.Raise(this, ref StartCaptured);
+		}
+
+		/// <summary>
+		///         Occurs when [openCaptur].
+		/// </summary>
+		public event EventHandler<EventArgs> StopCaptured;
+
+		/// <summary>
+		///         Raises the <see cref="E:OpenCaptur" /> event.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnStopCaptured(EventArgs e)
+		{
+			e.Raise(this, ref StopCaptured);
+		}
+
+		
+
+
+		//protected override void OnOnlineTestFailed(EventArgs e)
+		//{
+		//        this.WarnFail("在线检测");
+		//        Shutdown();
+		//        base.OnOnlineTestFailed(e);
+		//}
+
+		#endregion
+	}
 }

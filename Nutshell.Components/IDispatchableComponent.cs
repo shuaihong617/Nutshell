@@ -18,18 +18,26 @@ using Nutshell.Data;
 namespace Nutshell.Components
 {
         /// <summary>
-        /// 可控组件接口
+        /// 可调度组件接口
         /// </summary>
         public interface IDispatchableComponent : IConnectableComponent, IStorable<IDispatchableComponentModel>
         {
                 /// <summary>
-                /// 获取控制工作者，控制工作者负责组件的开始\停止工作
+                /// 获取调度工作站，调度工作站负责组件的开始\停止工作
                 /// </summary>
-                /// <value>控制工作者</value>
-                IWorker DispatchWorker { get; }
+                /// <value>调度工作者</value>
+                IDispatchWorker DispatchWorker { get; }
 
-                void Establish();
+		/// <summary>
+		/// 开始调度
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult StartDispath();
 
-                void Terminate();
+		/// <summary>
+		/// 停止调度
+		/// </summary>
+		/// <returns>操作结果</returns>
+		IResult StopDispatch();
         }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Nutshell.Automation.Opc.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nutshell.Automation.OPC;
+using Nutshell.Automation.Opc;
 using Nutshell.Data;
 
 namespace Nutshell.Automation.Opc.Xml.Tests
@@ -16,7 +16,7 @@ namespace Nutshell.Automation.Opc.Xml.Tests
                 [TestMethod()]
                 public void LoadTest()
                 {
-			Application application = new Application("OPC测试程序");
+			Application application = new Application("Opc测试程序");
 			OpcServer opcServer = new OpcServer(application);
                         XmlOpcServerStorager.Instance.Load(opcServer, "server.config");
                 }

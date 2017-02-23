@@ -18,7 +18,7 @@ namespace Nutshell.Speech.Microsoft
 		/// <remarks>
 		///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
 		/// </remarks>
-		protected override sealed IResult Starup(IWorkContext context)
+		protected override sealed IResult Starup(IRunableObject runableObject)
 		{
 			var synthesizer = new NativeSynthesizer();
 
@@ -35,7 +35,7 @@ namespace Nutshell.Speech.Microsoft
 		/// <remarks>
 		///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
 		/// </remarks>
-		protected override sealed IResult Clean(IWorkContext context)
+		protected override sealed IResult Clean(IRunableObject runableObject)
 		{
 			return Result.Successed;
 		}

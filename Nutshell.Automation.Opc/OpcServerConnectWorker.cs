@@ -1,13 +1,15 @@
 ﻿using System;
-using Nutshell.Automation.OPC;
+using System.Diagnostics;
+using Nutshell.Automation.Opc;
 using Nutshell.Components;
+using Nutshell.Extensions;
 using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcServerConnectWorker : Worker
+        public class OpcServerConnectWorker : ConnectWorker
         {
-                public OpcServerConnectWorker(IIdentityObject parent)
+                public OpcServerConnectWorker(OpcServer parent)
                         : base(parent, "Opc服务器连接工作者")
                 {
                 }
@@ -19,21 +21,22 @@ namespace Nutshell.Automation.Opc
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected override sealed IResult Starup(IWorkContext context)
+                protected override sealed IResult Starup(IRunableObject runableObject)
                 {
-                        var opcContext = context as IOpcServer;
+                        var opcServer = runableObject as IOpcServer;
+			Trace.Assert(opcServer != null);
 
                         try
                         {
-                                opcContext.NativeOpcServer.Connect(opcContext.Name);
+                                opcServer.NativeOpcServer.Connect(opcServer.Address);
                         }
                         catch (Exception ex)
                         {
-                                this.Error(Id + " " + opcContext.Name + "  连接失败," + ex);
-                                return new Result(ex);
+                                this.Error(Id + " " + opcServer.Address + "  连接失败," + ex);
+	                        return Result.Failed;
                         }
 
-                        this.InfoSuccess("连接" + opcContext.Name);
+                        this.InfoSuccess("连接" + opcServer.Address);
 
                         return Result.Successed;
                 }
@@ -45,21 +48,22 @@ namespace Nutshell.Automation.Opc
                 /// <remarks>
                 ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
                 /// </remarks>
-                protected override sealed IResult Clean(IWorkContext context)
+                protected override sealed IResult Clean(IRunableObject runableObject)
                 {
-                        var opcContext = context as IOpcServer;
+                        var opcServer = runableObject as IOpcServer;
+			Trace.Assert(opcServer !=null);
 
                         try
                         {
-                                opcContext.NativeOpcServer.Disconnect();
+                                opcServer.NativeOpcServer.Disconnect();
                         }
                         catch (Exception ex)
                         {
-                                this.Error(Id + " " + opcContext.Name + "  断开失败," + ex);
-                                return new Result(ex);
-                        }
+                                this.Error(Id + " " + opcServer.Address + "  断开失败," + ex);
+				return Result.Failed;
+			}
 
-                        this.InfoSuccess("断开" + opcContext.Name);
+                        this.InfoSuccess("断开" + opcServer.Address);
 
                         return Result.Successed;
                 }

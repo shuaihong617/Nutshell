@@ -19,29 +19,16 @@ namespace Nutshell.Components
         /// <summary>
         ///         运行环境
         /// </summary>
-        public abstract class Runtime:IdentityObject,IWorkContext
+        public abstract class Runtime:RunableObject,IRuntime
         {
                 protected Runtime([MustNotEqualNull]IIdentityObject parent,
                         [MustNotEqualNullOrEmpty] string id)
                         : base(parent, id)
                 {
-                        IsEnable = true;
-                        RunMode = RunMode.Release;
                 }
 
                 #region 属性
 
-                /// <summary>
-	        /// 获取是否启用
-	        /// </summary>
-	        /// <value>是否启用</value>
-	        public bool IsEnable { get; }
-
-                /// <summary>
-                /// 获取运行模式
-                /// </summary>
-                /// <value>运行模式</value>
-                public RunMode RunMode { get; }
 
                 [MustNotEqualNull]
                 public IRuntimeInformation RuntimeInformation { get; protected set; }
@@ -49,9 +36,9 @@ namespace Nutshell.Components
 		[MustNotEqualNull]
                 protected IWorker DispatchWorker { get; set; }
 
-                public WorkState WorkState
+                public WorkerState WorkerState
                 {
-                        get { return DispatchWorker.WorkState; }
+                        get { return DispatchWorker.WorkerState; }
                 }
 
                 #endregion

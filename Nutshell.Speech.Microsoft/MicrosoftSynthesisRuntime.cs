@@ -12,8 +12,10 @@
 // ***********************************************************************
 
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Speech.Synthesis;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Methods.Contracts;
 using Nutshell.Components;
 
 namespace Nutshell.Speech.Microsoft
@@ -48,21 +50,23 @@ namespace Nutshell.Speech.Microsoft
 
                 #region 方法
 
+		[MustReturnNotEqualNull]
                 public override IResult Start()
                 {
-                        var result = base.Start();
-                        if (!result.IsSuccessed)
+                        var baseResult = base.Start();
+                        if (!baseResult.IsSuccessed)
                         {
-                                return result;
+                                return baseResult;
                         }
 
-                        var microsoftResult = DispatchWorker.Start(this);
-                        var microsoft = microsoftResult as MicrosoftSynthesisRuntimeDispatchResult;
+                        var dispatchResult = DispatchWorker.Start(this);
+                        var microsoftResult = dispatchResult as MicrosoftSynthesisRuntimeDispatchResult;
+			Trace.Assert(microsoftResult!= null);
 
-                        ChineseVoices = microsoft.ChineseVoiceInfos;
-                        EnglishVoices = microsoft.EnglishVoiceInfos;
+                        ChineseVoices = microsoftResult.ChineseVoiceInfos;
+                        EnglishVoices = microsoftResult.EnglishVoiceInfos;
 
-                        return microsoftResult;
+                        return dispatchResult;
                 }
 
                 #endregion 方法

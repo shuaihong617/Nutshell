@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
 
 namespace Nutshell.Drawing.Models
@@ -24,11 +25,13 @@ namespace Nutshell.Drawing.Models
                 /// <summary>
                 ///         水平分辨率
                 /// </summary>
-                int Width { get; set; }
+                [MustGreaterThan(0f)]
+                double Horizontal { get; set; }
 
-                /// <summary>
-                ///         垂直分辨率
-                /// </summary>
-                int Height { get; set; }
+		/// <summary>
+		///         垂直分辨率
+		/// </summary>
+		[MustGreaterThan(0f)]
+		double Vertical { get; set; }
         }
 }

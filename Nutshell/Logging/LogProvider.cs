@@ -57,7 +57,6 @@ namespace Nutshell.Logging
                 /// <param name="message">The message.</param>
                 public void Info([MustNotEqualNull] object message)
                 {
-                        Trace.WriteLine(message);
                         Product(new LogRecord(LogLevel.信息, message.ToString()));
                 }
 

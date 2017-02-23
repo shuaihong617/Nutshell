@@ -19,7 +19,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         运行环境接口
         /// </summary>
-        public interface IRuntime : IIdentityObject
+        public interface IRuntime : IRunableObject
         {
                 #region 属性
 
@@ -27,7 +27,7 @@ namespace Nutshell.Components
                 IRuntimeInformation RuntimeInformation { get; }
 
 
-                WorkState WorkState { get; }
+                WorkerState WorkerState { get; }
 
                 #endregion
 

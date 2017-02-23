@@ -7,12 +7,12 @@ using System.Windows;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Nutshell.Automation.Opc.WPFUI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("果壳机动Opc客户端")]
+[assembly: AssemblyDescription("果壳机动Opc客户端")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("果壳机动")]
 [assembly: AssemblyProduct("Nutshell.Automation.Opc.WPFUI")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2017")]
+[assembly: AssemblyCopyright("Copyright © 果壳机动 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

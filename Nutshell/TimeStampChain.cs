@@ -25,6 +25,10 @@ namespace Nutshell
 	                CreateTime = DateTime.Now;
 	        }
 
-	        public DateTime CreateTime { get; private set; }
+		/// <summary>
+		/// 获取创建时间
+		/// </summary>
+		/// <value>创建时间</value>
+		public DateTime CreateTime { get; private set; }
 	}
 }

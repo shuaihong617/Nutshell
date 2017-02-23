@@ -22,7 +22,7 @@ namespace Nutshell.Automation.Opc.Tests
 
                         foreach (var name in runtime.OpcServerNames)
                         {
-                                Trace.WriteLine("OPC服务器：" + name);
+                                Trace.WriteLine("Opc服务器：" + name);
                         }
 
                         Assert.AreNotEqual(runtime.OpcServerNames.Count , 0);

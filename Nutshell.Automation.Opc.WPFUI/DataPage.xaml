@@ -1,0 +1,17 @@
+﻿<Page
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Nutshell.Automation.Opc.WPFUI.DataPage"
+        Title="SynthesisPage">
+        <Grid>
+                <ListBox HorizontalAlignment="Stretch" 
+                         ItemTemplate="{StaticResource OpcGroupDataTemplate}"
+                         ItemsSource="{Binding Server.OpcGroups}" Focusable="False" IsTextSearchEnabled="False">
+                        <ListBox.ItemContainerStyle>
+                                <Style>
+                                        
+                                </Style>
+                        </ListBox.ItemContainerStyle>
+                </ListBox>
+        </Grid>
+</Page>

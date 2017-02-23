@@ -12,8 +12,6 @@
 // ***********************************************************************
 
 using System;
-using System.ComponentModel;
-using Nutshell.Aspects.Events;
 using Nutshell.Components.Models;
 using Nutshell.Data;
 
@@ -27,10 +25,10 @@ namespace Nutshell.Components
 	        #region 属性
 
 	        /// <summary>
-	        ///         获取调度状态
+	        ///         获取工作状态
 	        /// </summary>
-	        /// <value>调度状态</value>
-	        WorkState WorkState { get; }
+	        /// <value>工作状态</value>
+	        WorkerState WorkerState { get; }
 
 		#endregion
 
@@ -42,13 +40,13 @@ namespace Nutshell.Components
 		/// 启动
 		/// </summary>
 		/// <returns>成功返回True，失败返回False.</returns>
-		IResult Start(IWorkContext context);
+		IResult Start(IRunableObject runableObject);
 
 		/// <summary>
 		///         停止
 		/// </summary>
 		/// <returns>成功返回True，失败返回False.</returns>
-		IResult Stop(IWorkContext context);
+		IResult Stop(IRunableObject runableObject);
 
                 #endregion
 
@@ -66,38 +64,14 @@ namespace Nutshell.Components
                 event EventHandler<ValueEventArgs<Exception>> Started;
 
                 /// <summary>
-                ///         当启动成功时发生。
-                /// </summary>
-                event EventHandler<EventArgs> StartSuccessed;
-
-
-                /// <summary>
-                ///         当启动失败时发生。
-                /// </summary>
-                event EventHandler<ValueEventArgs<Exception>> StartFailed;
-
-
-                /// <summary>
                 ///         当停止时发生。
                 /// </summary>
                 event EventHandler<EventArgs> Stoping;
-
 
                 /// <summary>
                 ///         当停止完成时发生。
                 /// </summary>
                 event EventHandler<ValueEventArgs<Exception>> Stoped;
-
-                /// <summary>
-                ///         当停止成功时发生。
-                /// </summary>
-                event EventHandler<EventArgs> StopSuccessed;
-
-
-                /// <summary>
-                ///         当停止失败时发生。
-                /// </summary>
-                event EventHandler<ValueEventArgs<Exception>> StopFailed;
 
                 #endregion
         }

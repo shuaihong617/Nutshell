@@ -4,35 +4,30 @@ using System.Collections.ObjectModel;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Methods.Contracts;
 using Nutshell.Automation.Opc;
-using Nutshell.Automation.OPC.Models;
+using Nutshell.Automation.Opc.Models;
 using Nutshell.Components;
 using OPCAutomation;
 
-//重命名OPCDAAuto.dll中类名，禁止删除；
+//重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer; 
 
-namespace Nutshell.Automation.OPC
+namespace Nutshell.Automation.Opc
 {
         /// <summary>
-        ///         OPCServer
+        ///         OpcServer
         /// </summary>
         /// <remarks>
-        ///         处于调试模式下时：
-        ///         1. 启动时不连接物理OPC服务器
-        ///         2. 通过人工写入模拟OPC项值的变化
-        ///         3. OPC项写入请求直接完成
+        ///         处于运行模式下时：
+        ///         1. 启动时不连接物理Opc服务器
+        ///         2. 通过人工写入模拟Opc项值的变化
+        ///         3. Opc项写入请求直接完成
         /// </remarks>
         public class OpcServer : DispatchableComponent, IOpcServer
         {
-                public OpcServer([MustNotEqualNull]IIdentityObject parent, 
-                        string id = null, string name = null, string address = null)
+	        public OpcServer([MustNotEqualNull]IIdentityObject parent, 
+                        string id = null, string address = null, ReadOnlyCollection<IOpcGroup> opcGroups = null)
                         : base(parent, id)
                 {
-                        if (!string.IsNullOrEmpty(name))
-                        {
-                                Name = name;
-                        }
-
                         if (!string.IsNullOrEmpty(address))
                         {
                                 Address = address;                                
@@ -40,24 +35,14 @@ namespace Nutshell.Automation.OPC
 
                         NativeOpcServer = new NativeOpcServer();
 
-                        OpcGroups = new ObservableCollection<IOpcGroup>();
-                        OpcItems = new ObservableCollection<IOpcItem>();
-                        OpcItemsLookupTable = new Dictionary<string, IOpcItem>();
+		        if (opcGroups != null)
+		        {
+				AddGroups(opcGroups);
+			}
 
-                        ConnectWorker = new OpcServerConnectWorker(this);
+			ConnectWorker = new OpcServerConnectWorker(this);
 			DispatchWorker = new OpcServerDispatchWorker(this);
                 }
-
-                #region 字段
-
-                public static int ClientHandleIndex;
-
-                
-
-                public Dictionary<string, IOpcItem> OpcItemsLookupTable { get; private set; }
-
-
-                #endregion
 
                 #region 属性
 
@@ -70,10 +55,9 @@ namespace Nutshell.Automation.OPC
                 public string Address { get; private set; }
 
 
-                public ObservableCollection<IOpcGroup> OpcGroups { get; private set; }
+                public ReadOnlyCollection<IOpcGroup> OpcGroups { get; private set; }
 
-                public ObservableCollection<IOpcItem> OpcItems { get; private set; }
-
+                public ReadOnlyCollection<IOpcItem> OpcItems { get; private set; }
 
                 #endregion
 
@@ -81,26 +65,26 @@ namespace Nutshell.Automation.OPC
                 {
                         base.Load(model);
 
-                        Name = model.Name;
                         Address = model.Address;
                 }
 
-                
-
-                public void Save(IOpcServerModel model)
+		public void Save(IOpcServerModel model)
                 {
                         throw new NotImplementedException();
                 }
 
-                public void AddGroup(IOpcGroup group)
-                {
-                        OpcGroups.Add(group);
+               
 
-                        foreach (var opcItem in group.OpcItems)
-                        {
-                                OpcItems.Add(opcItem);
-                                OpcItemsLookupTable.Add(opcItem.Id, opcItem);
-                        }
-                }                
+	        public void AddGroups(ReadOnlyCollection<IOpcGroup> opcGroups)
+	        {
+		        OpcGroups = opcGroups;
+
+			var opcItems = new List<IOpcItem>();
+		        foreach (var opcGroup in OpcGroups)
+		        {
+			        opcItems.AddRange(opcGroup.OpcItems);
+		        }
+			OpcItems = new ReadOnlyCollection<IOpcItem>(opcItems);
+	        }
         }
 }

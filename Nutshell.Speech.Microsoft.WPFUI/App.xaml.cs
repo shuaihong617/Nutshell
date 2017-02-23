@@ -67,7 +67,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
                 {
                         LogProvider.Instance.Fatal((Exception)e.ExceptionObject);
-                        MessageBox.Show("当前应用程序域发生了一个不曾预料的错误, 操作无法继续, 请联系软件发行方以协助改进这个问题, 非常感谢！");
+                        MessageBox.Show("当前应用程序发生了一个不曾预料的错误, 操作无法继续, 请联系软件发行方以协助改进这个问题, 非常感谢！");
 
                         Current.Shutdown();
                 }

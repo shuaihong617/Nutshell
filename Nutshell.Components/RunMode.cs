@@ -27,7 +27,7 @@ namespace Nutshell.Components
                 Release = 0,
 
                 /// <summary>
-                ///         调试模式，用于模拟测试或其他用途，接受模拟控制信号
+                ///         运行模式，用于模拟测试或其他用途，接受模拟控制信号
                 /// </summary>
                 Debug = 1,
         }

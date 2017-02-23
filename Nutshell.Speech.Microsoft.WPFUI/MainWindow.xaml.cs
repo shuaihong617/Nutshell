@@ -32,7 +32,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         DataContext = _gm;
                 }
 
-                private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+                private void Window_OnClosing(object sender, CancelEventArgs e)
                 {
                         _gm.Stop();
                 }

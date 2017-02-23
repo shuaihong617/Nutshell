@@ -18,9 +18,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using Nutshell.Automation.Vision;
 using Nutshell.Components;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Extensions;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.Models;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
 using Nutshell.Logging.KernelLogging;
@@ -159,7 +161,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 protected override sealed bool StartCaptureCore()
                 {
-                        CreateBitmapPool();
+                        CreatePool();
 
                         if (_captureBufferPtr == IntPtr.Zero)
                         {

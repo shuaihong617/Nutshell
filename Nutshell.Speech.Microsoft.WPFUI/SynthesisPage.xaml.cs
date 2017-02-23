@@ -53,8 +53,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
 			var now = DateTime.Now.ToChineseLongFileName();
 
-			var fileName = Path.Combine(dir, now + title + ".wav");
-				_gm.Synthesizer.OutputMode = OutputMode.文件;
+			var fileName = Path.Combine(dir, now + " " + title + ".wav");
 			_gm.Synthesizer.SynthesizeAsync(content, fileName);
 		}
 	}

@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Aspects.Methods.Contracts;
 
 namespace Nutshell
 {
@@ -72,12 +73,7 @@ namespace Nutshell
                         get { return _id; }
                         protected set
                         {
-                                if (value == _id)
-                                {
-                                        return;
-                                }
                                 _id = value;
-
                                 UpdateGlobalId();
                         }
                 }
@@ -92,12 +88,7 @@ namespace Nutshell
                         get { return _globalId; }
                         private set
                         {
-                                if (value == _globalId)
-                                {
-                                        return;
-                                }
                                 _globalId = value;
-
                                 OnGlobalIdChanged(EventArgs.Empty);
                         }
                 }
@@ -109,19 +100,16 @@ namespace Nutshell
                 public IIdentityObject Parent
                 {
                         get { return _parent; }
-                        private set
+                        set
                         {
+				Debug.Assert(value != null);
                                 if (Parent != null)
                                 {
                                         throw new InvalidOperationException("上级对象已存在，不允许重复赋值。");
                                 }
 
                                 _parent = value;
-
-                                if (Parent != null)
-                                {
-                                        Parent.GlobalIdChanged += (o, a) => UpdateGlobalId();
-                                }
+				_parent.GlobalIdChanged += (o, a) => UpdateGlobalId();
 
                                 UpdateGlobalId();
                         }
@@ -156,6 +144,7 @@ namespace Nutshell
                 ///         返回表示当前对象的字符串。
                 /// </summary>
                 /// <returns>全局标识</returns>
+                [MustReturnNotEqualNullOrEmpty]
                 public override string ToString()
                 {
                         return GlobalId;

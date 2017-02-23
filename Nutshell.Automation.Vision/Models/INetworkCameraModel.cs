@@ -11,7 +11,7 @@
 // </summary>
 // ***********************************************************************
 
-namespace Nutshell.Hardware.Vision.Models
+namespace Nutshell.Automation.Vision.Models
 {
         /// <summary>
         ///         以太网摄像机数据模型

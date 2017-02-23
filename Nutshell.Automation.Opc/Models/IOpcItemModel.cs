@@ -14,7 +14,7 @@
 using System;
 using Nutshell.Data.Models;
 
-namespace Nutshell.Automation.OPC.Models
+namespace Nutshell.Automation.Opc.Models
 {
 	/// <summary>
 	///         已定义主键的对象数据模型

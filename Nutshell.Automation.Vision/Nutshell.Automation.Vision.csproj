@@ -164,6 +164,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapDecodeLooper.cs" />
     <Compile Include="NetworkInformation.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="CameraDecoder.cs" />

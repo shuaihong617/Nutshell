@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:opc="clr-namespace:Nutshell.Automation.Opc;assembly=Nutshell.Automation.Opc">
+        <DataTemplate x:Key="OpcGroupDataTemplate" DataType="{x:Type opc:OpcGroup}">
+                <ContentControl Style="{StaticResource panel-primary}" Margin="10">
+                        <StackPanel>
+                                <ContentControl Style="{StaticResource panel-heading-primary}" Content="{Binding Id}" />
+                                <ContentControl Style="{StaticResource panel-body}">
+                                        <DataGrid Margin="10" ItemsSource="{Binding OpcItems}">
+                                                <DataGrid.Columns>
+                                                        <DataGridTextColumn Width="Auto" Header="名称"
+                                                                            Binding="{Binding Id}"
+                                                                            ElementStyle="{StaticResource DataGridTextCenter}"
+                                                                            IsReadOnly="True" />
+                                                        <DataGridTextColumn Width="Auto" Header="类型"
+                                                                            Binding="{Binding Address}"
+                                                                            ElementStyle="{StaticResource DataGridTextCenter}"
+                                                                            IsReadOnly="True" />
+                                                        <DataGridTextColumn Width="Auto" Header="值"
+                                                                            Binding="{Binding Value}"
+                                                                            ElementStyle="{StaticResource DataGridTextCenter}"
+                                                                            IsReadOnly="True" />
+                                                </DataGrid.Columns>
+                                        </DataGrid>
+                                </ContentControl>
+                        </StackPanel>
+                </ContentControl>
+        </DataTemplate>
+</ResourceDictionary>

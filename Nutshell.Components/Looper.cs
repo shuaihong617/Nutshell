@@ -86,7 +86,7 @@ namespace Nutshell.Components
                         throw new NotImplementedException();
                 }
 
-                protected override IResult Starup(IWorkContext context)
+                protected override IResult Starup(IRunableObject runableObject)
                 {
                         _isRequestWork = true;
 
@@ -114,7 +114,7 @@ namespace Nutshell.Components
                         }
                 }
 
-                protected override IResult Clean(IWorkContext context)
+                protected override IResult Clean(IRunableObject runableObject)
                 {
                         _isRequestWork = false;
 

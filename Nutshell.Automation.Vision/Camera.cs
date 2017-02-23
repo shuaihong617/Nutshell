@@ -12,21 +12,17 @@
 // ***********************************************************************
 
 using System;
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation;
-using Nutshell.Data.Models;
+using Nutshell.Automation.Vision.Models;
 using Nutshell.Drawing;
 using Nutshell.Drawing.Imaging;
-using Nutshell.Hardware.Vision.Models;
 using Nutshell.Threading;
-using PostSharp.Patterns.Model;
 
-namespace Nutshell.Hardware.Vision
+namespace Nutshell.Automation.Vision
 {
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class Camera : CaptureDevice<Bitmap>
+        public abstract class Camera : CapturableDevice<Bitmap>
         {
                 /// <summary>
                 ///         初始化<see cref="Camera" />的实例
@@ -37,7 +33,7 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
                 protected Camera(IdentityObject parent, string id = null, int width = 2, int height = 2,
-                        PixelFormat pixelFormat = Drawing.Imaging.PixelFormat.Mono8)
+                        PixelFormat pixelFormat = PixelFormat.Mono8)
                         : base(parent, id)
                 {
                         Region = new Region(this);
@@ -52,12 +48,28 @@ namespace Nutshell.Hardware.Vision
 		private int _width;
                 private int _height;
 
-                #endregion
+		#endregion
 
-                #region 属性
+		#region 属性
 
 
-                public Resolution CCDResolution { get; private set; }
+		/// <summary>
+		/// 获取像素分辨率.
+		/// </summary>
+		/// <value>像素分辨率.</value>
+		/// <remarks>
+		/// 像素分辨率描述摄像机采集图像时幅面为水平/垂直像素数
+		/// </remarks>
+		public Resolution PixelResolution { get; private set; }
+
+		/// <summary>
+		/// 获取物理分辨率.
+		/// </summary>
+		/// <value>物理分辨率.</value>
+		/// <remarks>
+		/// 物理分辨率描述摄像机采集的图像时水平/垂直1像素代表的实际距离，单位米
+		/// </remarks>
+		public Resolution PhysicalResolution { get; private set; }
 
                 /// <summary>
                 ///         水平采集分辨率, 单位为像素
@@ -104,51 +116,36 @@ namespace Nutshell.Hardware.Vision
                 /// <value>有效图像ROI区域数据模型</value>
                 public Region Region { get; private set; }
 
-                /// <summary>
-                ///         图像池
-                /// </summary>
-                public NSReadWritePool<Bitmap> Buffers { get; private set; }
 
                 #endregion
 
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
-                /// <param name="model">数据模型</param>
-                //public override void Load([MustAssignableFrom(typeof (ICameraModel))] IDataModel model)
-                //{
-                //        base.Load(model);
+                /// <param name = "model" > 数据模型 </ param >
 
-                //        var cameraModel = model as ICameraModel;
+		public void Load(ICameraModel model)
+		{
+			base.Load(model);
 
-                //        Width = cameraModel.Width;
-                //        Height = cameraModel.Height;
-                //        PixelFormat = cameraModel.PixelFormat;
+			PixelFormat = model.PixelFormat;
+		}
 
-                //        //Region.Load(cameraModel.RegionModel);
-                //}
+		/// <summary>
+		///         保存数据到数据模型
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Save(ICameraModel model)
+		{
+			base.Save(model);
 
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                //public override void Save([MustAssignableFrom(typeof (ICameraModel))] IDataModel model)
-                //{
-                //        base.Save(model);
+			model.PixelFormat = PixelFormat;
+		}
 
-                //        var cameraModel = model as ICameraModel;
-
-                //        cameraModel.Width = Width;
-                //        cameraModel.Height = Height;
-                //        cameraModel.PixelFormat = PixelFormat;
-
-                //        //Region.Save(cameraModel.RegionModel);
-                //}
-
-                /// <summary>
-                ///         创建图像缓冲池
-                /// </summary>
-                public void CreateBitmapPool()
+		/// <summary>
+		///         创建图像缓冲池
+		/// </summary>
+		public override void CreatePool()
                 {
                         if (Region.Width == 0 || Region.Height == 0)
                         {

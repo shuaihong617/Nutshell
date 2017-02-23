@@ -2,17 +2,18 @@
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Automation.OPC.Models;
+using Nutshell.Automation.Opc.Models;
 using Nutshell.Components;
 using Nutshell.Data;
+using Nutshell.Extensions;
 using Nutshell.Logging.KernelLogging;
 using OPCAutomation;
-//重命名OPCDAAuto.dll中类名，禁止删除；
+//重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 using NativeOpcItem = OPCAutomation.OPCItem;
 
-namespace Nutshell.Automation.OPC
+namespace Nutshell.Automation.Opc
 {
 	public class OpcItem : StorableObject, IOpcItem
 	{
@@ -27,6 +28,12 @@ namespace Nutshell.Automation.OPC
 			Value = null;
 			UpdateTime = DateTime.MinValue;
 		}
+
+		#region 字段
+
+		private static int _clientHandleIndex;
+
+		#endregion
 
 		#region 字段
 
@@ -75,27 +82,23 @@ namespace Nutshell.Automation.OPC
 
 		public void Attach(string serverAddress, NativeOpcGroup group)
 		{
-			OpcServer.ClientHandleIndex++;
+			_clientHandleIndex++;
 			var name = serverAddress + "." + group.Name + "." + Address;
 			try
 			{
-				ClientHandle = OpcServer.ClientHandleIndex;
-				_item = group.OPCItems.AddItem(name, OpcServer.ClientHandleIndex);
+				ClientHandle = _clientHandleIndex;
+				_item = group.OPCItems.AddItem(name, _clientHandleIndex);
 			}
 			catch (Exception ex)
 			{
-				
-			}
-			finally
-			{
-				
+				this.Fatal(new InvalidOperationException("创建OpcItem失败，错误原因"+ ex));
 			}
 		}
 
 		public object RemoteRead()
 		{
 			var server = Parent.Parent as OpcServer;
-			Debug.Assert(server != null);
+			Trace.Assert(server != null);
 
 			object result = null;
 			try
@@ -108,11 +111,11 @@ namespace Nutshell.Automation.OPC
 				object quality;
 				object timestamp;
 
-				_item.Read((short) OPCDataSource.OPCDevice, out result, out quality, out timestamp);
+				_item?.Read((short)OPCDataSource.OPCDevice, out result, out quality, out timestamp);
 
 				Trace.WriteLine(GlobalId + " : " + result);
-
 				LocalWrite(result);
+
 			}
 			catch (Exception e)
 			{
@@ -153,7 +156,8 @@ namespace Nutshell.Automation.OPC
 				{
 					throw new InvalidOperationException(GlobalId + "读写模式不具备远程数据写入权限");
 				}
-				_item.Write(value);
+
+				_item?.Write(value);
 			}
 			catch (InvalidOperationException e)
 			{
@@ -161,7 +165,7 @@ namespace Nutshell.Automation.OPC
 			}
 			catch (Exception e)
 			{
-				//其他原因写入失败，表示OPC通讯故障
+				//其他原因写入失败，表示Opc通讯故障
 				LocalWrite(null);
 
 				this.Error("写入失败, 错误原因：" + e);

@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
 using Nutshell.Data;
@@ -21,7 +20,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         组件接口
         /// </summary>
-        public interface IComponent : IWorkContext,IStorable<IComponentModel>
+        public interface IComponent : IRunableObject,IStorable<IComponentObjectModel>
         {
                 #region 属性
 

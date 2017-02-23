@@ -27,7 +27,7 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected DispatchableComponent([MustNotEqualNull] IIdentityObject parent,string id)
+                protected DispatchableComponent([MustNotEqualNull] IIdentityObject parent,string id=null)
                         : base(parent, id)
                 {
                 }
@@ -35,7 +35,7 @@ namespace Nutshell.Components
                 #region 属性
 
                 [MustNotEqualNull]
-                public IWorker DispatchWorker { get; protected set; }
+                public IDispatchWorker DispatchWorker { get; protected set; }
 
                 #endregion
 
@@ -58,14 +58,22 @@ namespace Nutshell.Components
                 }
 
 
-                public void Establish()
+		/// <summary>
+		/// 开始调度
+		/// </summary>
+		/// <returns>操作结果</returns>
+		public IResult StartDispath()
                 {
-                        DispatchWorker.Start(this);
+                        return DispatchWorker.Start(this);
                 }
 
-                public void Terminate()
+		/// <summary>
+		/// 停止调度
+		/// </summary>
+		/// <returns>操作结果</returns>
+		public IResult StopDispatch()
                 {
-                        DispatchWorker.Stop(this);
+                       return DispatchWorker.Stop(this);
                 }
         }
 }

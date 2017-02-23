@@ -24,10 +24,5 @@ namespace Nutshell.Automation
         /// </summary>
         public interface IDispatchableDevice : IDispatchableComponent, IStorable<IDispatchableDeviceModel>
         {
-                /// <summary>
-                /// 获取在线工作者,在线工作者负责检查设备在连接后是否依然在线
-                /// </summary>
-                /// <value>在线工作者</value>
-                SurviveLooper SurviveLooper { get; }
         }
 }

@@ -1,42 +1,43 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Automation.Opc;
 using Nutshell.Components;
-//重命名OPCDAAuto.dll中类名，禁止删除；
-using NativeOpcServer = OPCAutomation.OPCServer;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcRuntime : Runtime
-        {
-                protected OpcRuntime(IIdentityObject parent)
-                        : base(parent, "过程控制通讯运行环境")
-                {
-                        DispatchWorker = new OpcRuntimeDispatchWorker(this);
-                }
+	public class OpcRuntime : Runtime
+	{
+		public OpcRuntime(IIdentityObject parent)
+			: base(parent, "Opc运行环境")
+		{
+			InstalledOpcServers = new ReadOnlyCollection<InstalledOpcServer>(new List<InstalledOpcServer>());
+			DispatchWorker = new OpcRuntimeDispatchWorker(this);
+		}
 
 
-                [MustNotEqualNull]
-                public ReadOnlyCollection<string> OpcServerNames { get; private set; }
+		[MustNotEqualNull]
+		public ReadOnlyCollection<InstalledOpcServer> InstalledOpcServers { get; private set; }
 
-	        /// <summary>
-                ///         Starts this instance.
-                /// </summary>
-                public override sealed IResult Start()
-                {
-                        var result = base.Start();
+		/// <summary>
+		///         Starts this instance.
+		/// </summary>
+		public override sealed IResult Start()
+		{
+			var baseResult = base.Start();
+			if (!baseResult.IsSuccessed)
+			{
+				return baseResult;
+			}
 
-	                if (result.IsSuccessed)
-	                {
+			var opcResult = baseResult as OpcRuntimeDispatchResult;
+			Trace.Assert(opcResult != null);
 
-                                var opcResult = result as OpcRuntimeDispatchResult;
-                                if (result.IsSuccessed)
-                                {
-                                        OpcServerNames = opcResult.OpcServerNames;
-                                        RuntimeInformation = new RuntimeInformation(opcResult.OpcVersion);
-                                }
-                        }
+			InstalledOpcServers = opcResult.InstalledOpcServers;
+			RuntimeInformation = new RuntimeInformation(opcResult.OpcVersion);
 
-		        return result;
-                }
-        }
+			return baseResult;
+		}
+	}
 }

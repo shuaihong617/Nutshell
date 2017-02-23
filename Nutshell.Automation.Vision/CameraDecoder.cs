@@ -12,13 +12,13 @@
 // ***********************************************************************
 
 using System;
-using System.Diagnostics;
 using System.Threading;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Hardware.Vision;
 using Nutshell.Threading;
 
-namespace Nutshell.Hardware.Vision
+namespace Nutshell.Automation.Vision
 {
         /// <summary>
         ///         摄像机图像消费者
@@ -92,7 +92,7 @@ namespace Nutshell.Hardware.Vision
 
                 #region 处理流程
 
-                protected override sealed IResult Starup(IWorkContext context)
+                protected override sealed IResult Starup(IRunableObject runableObject)
                 {
                         CreateBitmapPool();
 
@@ -114,7 +114,7 @@ namespace Nutshell.Hardware.Vision
                         Camera.Buffers.ReadLock(_decodeBitmap);
                 }
 
-                protected override sealed IResult Clean(IWorkContext context)
+                protected override sealed IResult Clean(IRunableObject runableObject)
                 {
 			throw new NotImplementedException();
 			// _looper.Stop();

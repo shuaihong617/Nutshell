@@ -13,6 +13,7 @@
 
 using System;
 using System.Speech.Synthesis;
+using System.Threading.Tasks;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data.Models;
@@ -34,25 +35,13 @@ namespace Nutshell.Speech.Microsoft
 		///         数据缓存上下文私有构造函数
 		/// </summary>
 		public MicrosoftSynthesizer(IIdentityObject parent, Language language = Language.中文)
-			: base(parent, "微软语音合成服务", language)
+			: base(parent, "微软语音合成器", language)
 		{
 			Language = language;
 
-			NativeSynthesizer = new NativeSynthesizer();
-			NativeSynthesizer.Volume = 100;
-
-			NativeSynthesizer.StateChanged += (obj, args) =>
+			NativeSynthesizer = new NativeSynthesizer
 			{
-				switch (args.State)
-				{
-					case NativeSynthesizerState.Ready:
-						SynthesizerState = SynthesizerState.空闲;
-						break;
-
-					default:
-						SynthesizerState = SynthesizerState.合成;
-						break;
-				}
+				Volume = 100
 			};
 		}
 
@@ -94,18 +83,27 @@ namespace Nutshell.Speech.Microsoft
 
 		public override IResult SynthesizeAsync(string content, string fileName = null)
 		{
-			switch (OutputMode)
-			{
-				case OutputMode.扬声器:
-					NativeSynthesizer.SetOutputToDefaultAudioDevice();
-					break;
 
-				case OutputMode.文件:
-					NativeSynthesizer.SetOutputToWaveFile(fileName);
-					break;
+			if (fileName == null)
+			{
+				OutputMode = OutputMode.扬声器;
+				NativeSynthesizer.SetOutputToDefaultAudioDevice();
+			}
+			else
+			{
+				OutputMode = OutputMode.文件;
+				NativeSynthesizer.SetOutputToWaveFile(fileName);
 			}
 
-			NativeSynthesizer.SpeakAsync(content);
+			Task.Run(() =>
+			{
+				SynthesizerState = SynthesizerState.合成;
+
+				NativeSynthesizer.Speak(content);
+
+				SynthesizerState = SynthesizerState.空闲;
+			});
+			
 
 			this.Info("合成:" + content);
 

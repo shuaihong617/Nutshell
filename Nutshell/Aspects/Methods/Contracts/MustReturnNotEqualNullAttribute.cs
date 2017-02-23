@@ -6,7 +6,7 @@ namespace Nutshell.Aspects.Methods.Contracts
         [Serializable]
 	public class MustReturnNotEqualNullAttribute : OnMethodBoundaryAspect
 	{
-		public sealed override  void OnExit(MethodExecutionArgs args)
+		public sealed override void OnExit(MethodExecutionArgs args)
 		{
 			// This method is invoked after the execution of the method to which the current aspect is applied (both on success and on exception).
 			// It is equivalent to the 'finally' block.

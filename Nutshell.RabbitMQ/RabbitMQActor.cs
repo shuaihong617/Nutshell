@@ -29,7 +29,7 @@ namespace Nutshell.RabbitMQ
 			throw new System.NotImplementedException();
 		}
 
-		protected override IResult Starup(IWorkContext context)
+		protected override IResult Starup(IRunableObject runableObject)
 		{
 			//_factory = new ConnectionFactory
 			//{
@@ -57,7 +57,7 @@ namespace Nutshell.RabbitMQ
                         throw new NotImplementedException();
 		}
 
-		protected override IResult Clean(IWorkContext context)
+		protected override IResult Clean(IRunableObject runableObject)
 		{
 			//Channel.Close();
 			//Channel.Dispose();

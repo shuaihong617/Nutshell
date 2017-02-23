@@ -14,9 +14,9 @@
 using System.Diagnostics;
 using System.Net;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Automation.Vision;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
-using Nutshell.Hardware.Vision.Models;
 
 namespace Nutshell.Hardware.Vision
 {

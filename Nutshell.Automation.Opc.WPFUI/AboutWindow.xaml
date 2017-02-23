@@ -1,0 +1,20 @@
+﻿<mahapps:MetroWindow x:Class="Nutshell.Automation.Opc.WPFUI.AboutWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+                     Style="{StaticResource MetroWindowStyle}"
+                     WindowStartupLocation="CenterOwner"
+                     Width="480"
+                     Height="200"
+                     Icon="Resources/Images/Icon.ico"
+                     Title="{Binding Application.Id}"
+                     Loaded="Window_OnLoaded">
+        <Grid Style="{StaticResource GridStyle}">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Style="{DynamicResource 'h2 small'}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="果壳机动语音合成软件 V0.1"></Label>
+                <Label Grid.Row="1" Style="{DynamicResource 'h3 small'}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="有金属的地方就有果壳  2005--2017"></Label>
+        </Grid>
+</mahapps:MetroWindow>

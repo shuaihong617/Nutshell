@@ -44,12 +44,12 @@ namespace Nutshell.Communication
 	        public event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
 
 
-                protected override IResult Starup(IWorkContext context)
+                protected override IResult Starup(IRunableObject runableObject)
                 {
                         throw new NotImplementedException();
                 }
 
-                protected override IResult Clean(IWorkContext context)
+                protected override IResult Clean(IRunableObject runableObject)
                 {
                         throw new NotImplementedException();
                 }

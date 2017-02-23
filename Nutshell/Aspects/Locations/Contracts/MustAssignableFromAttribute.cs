@@ -14,11 +14,6 @@ namespace Nutshell.Aspects.Locations.Contracts
 
                 private readonly Type _type;
 
-                protected override string GetErrorMessage()
-                {
-                        return "Value {2} must have a non-zero value.";
-                }
-
                 public Exception ValidateValue([MustNotEqualNull]object value, string name, LocationKind locationKind)
                 {
                         if (!value.GetType().IsAssignableFrom(_type))

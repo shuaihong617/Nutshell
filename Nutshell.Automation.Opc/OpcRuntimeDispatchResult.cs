@@ -14,7 +14,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Components;
+using Nutshell.Automation.Opc;
 
 namespace Nutshell.Automation.Opc
 {
@@ -24,15 +24,15 @@ namespace Nutshell.Automation.Opc
         public class OpcRuntimeDispatchResult : Result
         {
                 public OpcRuntimeDispatchResult([MustNotEqualNull]Version opcVersion, 
-			[MustNotEqualNull]ReadOnlyCollection<string> opcServerNames)
+			[MustNotEqualNull]ReadOnlyCollection<InstalledOpcServer> installedOpcServers)
                         :base(true)
                 {
                         OpcVersion = opcVersion;
-                        OpcServerNames = opcServerNames;
+                        InstalledOpcServers = installedOpcServers;
                 }
 
                 [MustNotEqualNull]
-                public ReadOnlyCollection<string> OpcServerNames { get; private set; }
+                public ReadOnlyCollection<InstalledOpcServer> InstalledOpcServers { get; private set; }
 
                 [MustNotEqualNull]
                 public Version OpcVersion { get; private set; }

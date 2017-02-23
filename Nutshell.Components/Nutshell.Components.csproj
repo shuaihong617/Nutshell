@@ -52,41 +52,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asyncer.cs" />
+    <Compile Include="ConnectWorker.cs" />
+    <Compile Include="IConnectWorker.cs" />
+    <Compile Include="DispatchWorker.cs" />
+    <Compile Include="IDispatchWorker.cs" />
+    <Compile Include="SurviveLooper.cs" />
+    <Compile Include="ISurviveLooper.cs" />
+    <Compile Include="IRunable.cs" />
     <Compile Include="ConnectableComponent.cs" />
     <Compile Include="ConnectState.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="DispatchableComponent.cs" />
     <Compile Include="IConnectableComponent.cs" />
-    <Compile Include="IDebuggable.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IDispatchableComponent.cs" />
-    <Compile Include="IEnable.cs" />
+    <Compile Include="IRunableObject.cs" />
     <Compile Include="IHitTest.cs" />
     <Compile Include="IManufacturingInformation.cs" />
     <Compile Include="IRuntimeInformation.cs" />
     <Compile Include="ManufacturingInformation.cs" />
     <Compile Include="Models\IConnectableComponentModel.cs" />
-    <Compile Include="Models\IDebuggableModel.cs" />
     <Compile Include="IRuntime.cs" />
     <Compile Include="Models\IComponentModel.cs" />
     <Compile Include="Models\IDispatchableComponentModel.cs" />
     <Compile Include="Models\IManufacturingInformationModel.cs" />
+    <Compile Include="Models\ISurviveLooperModel.cs" />
+    <Compile Include="Models\IDispatchWorkerModel.cs" />
+    <Compile Include="Models\IConnectWorkerModel.cs" />
+    <Compile Include="RunableObject.cs" />
     <Compile Include="Runtime.cs" />
     <Compile Include="RuntimeInformation.cs" />
-    <Compile Include="WorkContext.cs" />
-    <Compile Include="IWorkContext.cs" />
     <Compile Include="IWorker.cs" />
     <Compile Include="ILooper.cs" />
     <Compile Include="Looper.cs" />
     <Compile Include="Models\IWorkerModel.cs" />
-    <Compile Include="Models\IEnableModel.cs" />
+    <Compile Include="Models\IRunableObjectModel.cs" />
     <Compile Include="Models\ILooperModel.cs" />
-    <Compile Include="Models\IWatchDogModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorkState.cs" />
+    <Compile Include="WorkerState.cs" />
     <Compile Include="RunMode.cs" />
-    <Compile Include="WatchDog.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,27 +6,44 @@ using PostSharp.Reflection;
 namespace Nutshell.Aspects.Locations.Contracts
 {
         public sealed class MustGreaterThanAttribute : LocationContractAttribute,
-                ILocationValidationAspect<int>
+                ILocationValidationAspect<int>,ILocationValidationAspect<double>
         {
                 public MustGreaterThanAttribute(int compare)
                 {
                         _intCompare = compare;
                 }
 
-                private readonly int _intCompare;
+		public MustGreaterThanAttribute(double compare)
+		{
+			_doubleCompare = compare;
+		}
 
-                protected override string GetErrorMessage()
-                {
-                        return "Value {2} must have a non-zero value.";
-                }
+		private readonly int _intCompare;
 
-                public Exception ValidateValue(int value, string name, LocationKind locationKind)
-                {
-                        if (value < _intCompare)
-                                return CreateArgumentOutOfRangeException(value, name, locationKind);
-                        return null;
-                }
+		private readonly double _doubleCompare;
 
-                
+                public Exception ValidateValue(int value, string locationName, LocationKind locationKind)
+		{
+			return value > _intCompare
+				? null
+				: new ArgumentException(locationKind.ToChineseString() + locationName + "的值必须大于" + _intCompare);
+		}
+
+
+	        /// <summary>
+	        /// Validates the value being assigned to the location to which the current aspect has been applied.
+	        /// </summary>
+	        /// <param name="value">Value being applied to the location.</param><param name="locationName">Name of the location.</param><param name="locationKind">Location kind (<see cref="F:PostSharp.Reflection.LocationKind.Field"/>, <see cref="F:PostSharp.Reflection.LocationKind.Property"/>, or
+	        ///             <see cref="F:PostSharp.Reflection.LocationKind.Parameter"/>).
+	        ///             </param>
+	        /// <returns>
+	        /// The <see cref="T:System.Exception"/> to be thrown, or <c>null</c> if no exception needs to be thrown.
+	        /// </returns>
+	        public Exception ValidateValue(double value, string locationName, LocationKind locationKind)
+	        {
+			return value > _doubleCompare
+				? null
+				: new ArgumentException(locationKind.ToChineseString() + locationName + "的值必须大于" + _doubleCompare);
+		}
         }
 }

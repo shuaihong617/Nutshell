@@ -12,7 +12,7 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Hardware.Vision.Models;
+using Nutshell.Automation.Vision.Models;
 
 namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.Models
 {

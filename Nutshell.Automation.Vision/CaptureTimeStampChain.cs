@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Nutshell.Hardware.Vision
+namespace Nutshell.Automation.Vision
 {
 	/// <summary>
 	///         采集时间戳

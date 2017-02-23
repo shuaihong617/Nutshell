@@ -15,6 +15,7 @@
 using System;
 using System.Windows.Forms;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Automation.Vision;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Hardware.Vision;
 using SharpDX.Direct2D1;

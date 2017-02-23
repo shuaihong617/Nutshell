@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Nutshell.Automation.OPC.Models;
+using Nutshell.Automation.Opc.Models;
 using Nutshell.Data;
 using OPCAutomation;
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 
-namespace Nutshell.Automation.OPC
+namespace Nutshell.Automation.Opc
 {
         public class OpcGroup : StorableObject, IOpcGroup
         {
-                public OpcGroup(IIdentityObject parent, string id = "", string address = "")
+                public OpcGroup(IIdentityObject parent, string id = "", string address = "", ReadOnlyCollection<IOpcItem> opcItems = null)
                         : base(parent, id)
                 {
-                        Address = address;
-                        OpcItems = new ObservableCollection<IOpcItem>();
+	                Address = address;
+
+	                OpcItems = opcItems ?? new ReadOnlyCollection<IOpcItem>(new List<IOpcItem>());
                 }
 
-                #region 字段
+	        #region 字段
 
-                private readonly Dictionary<int, IOpcItem> _subscribeItems = new Dictionary<int, IOpcItem>();
+                private readonly Dictionary<int, IOpcItem> _opcItemsLookupTable = new Dictionary<int, IOpcItem>();
 
                 private NativeOpcGroup _group;
 
@@ -31,7 +32,7 @@ namespace Nutshell.Automation.OPC
 
                 public string Address { get; private set; }
 
-                public ObservableCollection<IOpcItem> OpcItems { get; private set; }
+                public ReadOnlyCollection<IOpcItem> OpcItems { get; private set; }
 
                 #endregion
 
@@ -44,12 +45,14 @@ namespace Nutshell.Automation.OPC
 
                 public void Load(IEnumerable<IOpcItemModel> itemModels)
                 {
+			var items = new List<IOpcItem>();
                         foreach (var itemModel in itemModels)
                         {
                                 var item = new OpcItem(this);
                                 item.Load(itemModel);
-                                AddItem(item);
+                                items.Add(item);
                         }
+	                OpcItems = items.ToReadOnlyCollection();
                 }
 
                 /// <summary>
@@ -62,10 +65,6 @@ namespace Nutshell.Automation.OPC
                 }
 
 
-                public void AddItem(IOpcItem item)
-                {
-                        OpcItems.Add(item);
-                }
 
                 public void Attach(NativeOpcServer server, string serverAddress)
                 {
@@ -75,11 +74,10 @@ namespace Nutshell.Automation.OPC
                         _group.IsSubscribed = true;
                         _group.UpdateRate = 100;
 
-
                         foreach (var item in OpcItems)
                         {
                                 item.Attach(serverAddress, _group);
-                                _subscribeItems.Add(item.ClientHandle, item);
+                                _opcItemsLookupTable.Add(item.ClientHandle, item);
                         }
 
                         _group.DataChange += DataChange;
@@ -98,7 +96,7 @@ namespace Nutshell.Automation.OPC
                                 var handle = int.Parse(clientHandles.GetValue(i).ToString());
                                 var quality = qualities.GetValue(i).ToString() == "192"; //192 == good
 
-                                var item = _subscribeItems[handle];
+                                var item = _opcItemsLookupTable[handle];
                                 var value = quality ? itemValues.GetValue(i) : null;
                                 item.LocalWrite(value);
                         }

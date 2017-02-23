@@ -14,24 +14,13 @@
 using Nutshell.Automation.Models;
 using Nutshell.Drawing.Imaging;
 
-namespace Nutshell.Hardware.Vision.Models
+namespace Nutshell.Automation.Vision.Models
 {
         /// <summary>
         ///         摄像机数据模型
         /// </summary>
-        public interface ICameraModel : IDeviceModel
+        public interface ICameraModel : IDispatchableDeviceModel
         {
-                /// <summary>
-                ///         宽度, 单位为像素
-                /// </summary>
-                /// <value>The width.</value>
-                int Width { get; set; }
-
-                /// <summary>
-                ///         高度, 单位为像素
-                /// </summary>
-                int Height { get; set; }
-
                 /// <summary>
                 ///         像素格式
                 /// </summary>

@@ -32,6 +32,7 @@ namespace Nutshell.Components
                         [MustNotEqualNullOrEmpty] string id)
                         : base(parent, id)
                 {
+			WorkerState = WorkerState.未启动;
                 }
 
                 #region 字段
@@ -46,11 +47,11 @@ namespace Nutshell.Components
                 #region 属性
 
                 /// <summary>
-                ///         获取调度状态
+                ///         获取工作状态
                 /// </summary>
-                /// <value>调度状态</value>
+                /// <value>工作状态</value>
                 [WillNotifyPropertyChanged]
-                public WorkState WorkState { get; private set; }
+                public WorkerState WorkerState { get; private set; }
 
                 #endregion
 
@@ -77,38 +78,26 @@ namespace Nutshell.Components
                 ///         启动
                 /// </summary>
                 /// <returns>成功返回True，失败返回False.</returns>
-                public IResult Start(IWorkContext context)
+                public IResult Start(IRunableObject runableObject)
                 {
                         lock (_syncFlag)
                         {
-                                if (WorkState == WorkState.Started)
+                                if (WorkerState == WorkerState.已启动)
                                 {
                                         return Result.Successed;
                                 }
 
-                                WorkState = WorkState.Starting;
+                                WorkerState = WorkerState.启动中;
 
-                                if (!context.IsEnable)
+                                if (!runableObject.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
 
-                                        WorkState = WorkState.Stoped;
-                                        return new Result(new ArgumentException("启用状态：否"));
+                                        WorkerState = WorkerState.已停止;
+                                        return Result.Failed;
                                 }
 
-
-                                var result = Starup(context);
-
-                                if (!result.IsSuccessed)
-                                {
-                                        WorkState = WorkState.Stoped;
-                                        foreach (var exception in result.Exceptions)
-                                        {
-                                                this.Fatal(exception);
-                                        }
-                                }
-
-                                return result;
+                                return Starup(runableObject);
                         }
                 }
 
@@ -117,34 +106,22 @@ namespace Nutshell.Components
                 ///         停止
                 /// </summary>
                 /// <returns>成功返回True，失败返回False.</returns>
-                public IResult Stop(IWorkContext context)
+                public IResult Stop(IRunableObject runableObject)
                 {
                         lock (_syncFlag)
                         {
-                                if (WorkState == WorkState.Stoped)
+                                if (WorkerState == WorkerState.已停止)
                                 {
                                         return Result.Successed;
                                 }
 
-                                if (!context.IsEnable)
+                                if (!runableObject.IsEnable)
                                 {
                                         this.Warn("启用状态：否");
-                                        return new Result(new ArgumentException("启用状态：否"));
-                                        ;
+	                                return Result.Failed;
                                 }
 
-
-                                var result = Clean(context);
-
-                                if (!result.IsSuccessed)
-                                {
-                                        foreach (var exception in result.Exceptions)
-                                        {
-                                                this.Fatal(exception);
-                                        }
-                                }
-
-                                return result;
+                                return Clean(runableObject);
                         }
                 }
 
@@ -155,16 +132,22 @@ namespace Nutshell.Components
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected abstract IResult Starup([MustNotEqualNull] IWorkContext context);
+                protected virtual IResult Starup([MustNotEqualNull] IRunableObject runableObject)
+		{
+			return Result.Successed;
+		}
 
-                /// <summary>
-                ///         执行退出过程的具体步骤.
-                /// </summary>
-                /// <returns>成功返回True, 否则返回False.</returns>
-                /// <remarks>
-                ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
-                /// </remarks>
-                protected abstract IResult Clean([MustNotEqualNull] IWorkContext context);
+		/// <summary>
+		///         执行退出过程的具体步骤.
+		/// </summary>
+		/// <returns>成功返回True, 否则返回False.</returns>
+		/// <remarks>
+		///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
+		/// </remarks>
+		protected virtual IResult Clean([MustNotEqualNull] IRunableObject runableObject)
+	        {
+		        return Result.Successed;
+	        }
 
                 #region 事件
 
@@ -199,47 +182,6 @@ namespace Nutshell.Components
                 protected virtual void OnStarted(ValueEventArgs<Exception> e)
                 {
                         e.Raise(this, ref Started);
-                        if (e.Value == null)
-                        {
-                                OnStartSuccessed(EventArgs.Empty);
-                        }
-                        else
-                        {
-                                OnStartFailed(e);
-                        }
-                }
-
-                /// <summary>
-                ///         Occurs when [opened].
-                /// </summary>
-                [Description("启动成功事件")]
-                [WillLogEventInvokeHandler]
-                public event EventHandler<EventArgs> StartSuccessed;
-
-                /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
-                /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnStartSuccessed(EventArgs e)
-                {
-                        e.Raise(this, ref StartSuccessed);
-                }
-
-
-                /// <summary>
-                ///         Occurs when [opened].
-                /// </summary>
-                [Description("启动失败事件")]
-                [WillLogEventInvokeHandler]
-                public event EventHandler<ValueEventArgs<Exception>> StartFailed;
-
-                /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
-                /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnStartFailed(ValueEventArgs<Exception> e)
-                {
-                        e.Raise(this, ref StartFailed);
                 }
 
                 /// <summary>
@@ -249,47 +191,29 @@ namespace Nutshell.Components
                 [WillLogEventInvokeHandler]
                 public event EventHandler<EventArgs> Stoping;
 
-                /// <summary>
-                ///         当停止完成时发生。
-                /// </summary>
-                [Description("停止完成事件")]
+		/// <summary>
+		///         Raises the <see cref="E:Opened" /> event.
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnStoping(EventArgs e)
+		{
+			e.Raise(this, ref Stoping);
+		}
+
+		/// <summary>
+		///         当停止完成时发生。
+		/// </summary>
+		[Description("停止完成事件")]
                 [WillLogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<Exception>> Stoped;
 
-
-                /// <summary>
-                ///         当停止成功时发生。
-                /// </summary>
-                [Description("停止成功事件")]
-                [WillLogEventInvokeHandler]
-                public event EventHandler<EventArgs> StopSuccessed;
-
-
                 /// <summary>
                 ///         Raises the <see cref="E:Opened" /> event.
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnStopSuccessed(EventArgs e)
+                protected virtual void OnStoped(ValueEventArgs<Exception> e)
                 {
-                        this.InfoEvent("停止成功");
-                        e.Raise(this, ref StopSuccessed);
-                }
-
-                /// <summary>
-                ///         当停止失败时发生。
-                /// </summary>
-                [Description("停止失败事件")]
-                [WillLogEventInvokeHandler]
-                public event EventHandler<ValueEventArgs<Exception>> StopFailed;
-
-                /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
-                /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnStopFailed(ValueEventArgs<Exception> e)
-                {
-                        this.InfoEvent("停止失败");
-                        e.Raise(this, ref StopFailed);
+                        e.Raise(this, ref Stoped);
                 }
 
                 #endregion
