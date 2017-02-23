@@ -30,13 +30,15 @@ namespace Nutshell.Automation
 		/// <param name="id">The key.</param>
 		/// <param name="capturer">The camera.</param>
 		/// <param name="pixelFormat">The pixel format.</param>
-		public Decoder(string id, CapturableDevice<T> capturer)
+		public Decoder(string id, CapturableDevice<T> capturer, DecodeLooper<T> decodeLooper)
                         : base( id)
                 {
                         capturer.NotNull();
                         Capturer = capturer;
 
-                        _looper = new Looper(this, string.Empty, ThreadPriority.Highest,5, Decode);
+			DecodeLooper = decodeLooper;
+
+                        //_looper = new Looper(this, string.Empty, ThreadPriority.Highest,5, Decode);
                 }
 
                 /// <summary>
@@ -45,6 +47,7 @@ namespace Nutshell.Automation
                 public CapturableDevice<T> Capturer { get; private set; }
 
                
+		public DecodeLooper<T> DecodeLooper { get; private set; } 
 
                 /// <summary>
                 ///         图像池

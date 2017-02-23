@@ -62,7 +62,8 @@ namespace Nutshell.Automation.Opc.WPFUI
                         Runtime = new OpcRuntime(Application);
                         Runtime.Start();
 
-			Server = new OpcServer(Application);
+			Server = new OpcServer();
+	                Server.Parent = Application;
 			XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
 		}
 

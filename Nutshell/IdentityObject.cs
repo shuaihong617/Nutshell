@@ -64,7 +64,7 @@ namespace Nutshell
                 public string Id
                 {
                         get { return _id; }
-                        protected set
+                        set
                         {
                                 _id = value;
                                 UpdateGlobalId();

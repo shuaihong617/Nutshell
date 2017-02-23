@@ -48,7 +48,7 @@ namespace Nutshell.Automation.Opc
 			var items = new List<IOpcItem>();
                         foreach (var itemModel in itemModels)
                         {
-                                var item = new OpcItem(this);
+                                var item = new OpcItem();
                                 item.Load(itemModel);
                                 items.Add(item);
                         }

@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
@@ -26,12 +27,19 @@ namespace Nutshell.Components
                 /// <summary>
                 ///         初始化<see cref="DispatchableComponent" />的新实例.
                 /// </summary> 
-                /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected ConnectableComponent(string id=null)
+                protected ConnectableComponent(string id=null, IConnectWorker connectWorker=null, ISurviveLooper surviveLooper=null)
                         : base( id)
                 {
                         ConnectState = ConnectState.Disconnected; 
+
+			ConnectWorker = connectWorker;
+			ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
+                        ConnectWorker.Started += (obj, args) => ConnectState = ConnectState.Connected;
+                        ConnectWorker.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
+			ConnectWorker.Stoped += (obj, args) => ConnectState = ConnectState.Disconnected;
+
+			SurviveLooper = surviveLooper;
                 }
 
 	        #region 字段
@@ -56,33 +64,10 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <value>连接工作者</value>
                 [MustNotEqualNull]
-                public IConnectWorker ConnectWorker
-                {
-                        get { return _connectWorker; }
-                        protected set
-                        {
-                                _connectWorker = value;
-                                OnPropertyChanged();
-
-                                ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
-                                ConnectWorker.Started += (obj, args) => ConnectState = ConnectState.Connected;
-                                ConnectWorker.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
-                                ConnectWorker.Stoped += (obj, args) => ConnectState = ConnectState.Disconnected;
-                        }
-                }
+                public IConnectWorker ConnectWorker{ get; private set; }
 
 		[MustNotEqualNull]
-	        public ISurviveLooper SurviveLooper
-	        {
-		        get { return _surviveLooper; }
-			set
-			{
-				_surviveLooper = value;
-				OnPropertyChanged();
-
-
-			}
-	        }
+	        public ISurviveLooper SurviveLooper{ get; private set; }
 
 	        #endregion
 
@@ -102,7 +87,7 @@ namespace Nutshell.Components
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
                 public void Save([MustNotEqualNull] IConnectableComponentModel model)
                 {
-                        throw new NotImplementedException();
+                        base.Save(model);
                 }
 
 
@@ -111,7 +96,8 @@ namespace Nutshell.Components
 		/// </summary>
 		/// <returns>操作结果</returns>
 		public IResult StartConnect()
-                {
+		{
+			Trace.Assert(ConnectWorker != null, "连接工作者不能为空！");
                         return ConnectWorker.Start(this);
                 }
 
@@ -120,7 +106,8 @@ namespace Nutshell.Components
 		/// </summary>
 		/// <returns>操作结果</returns>
 		public IResult StopConnect()
-                {
+		{
+			Trace.Assert(ConnectWorker != null, "连接工作者不能为空！");
                         return ConnectWorker.Stop(this);
                 }
 
@@ -135,6 +122,7 @@ namespace Nutshell.Components
 		/// <returns>操作结果</returns>
 		public IResult StartSurvive()
 		{
+			Trace.Assert(SurviveLooper != null, "守护循环工作者不能为空！");
 			return SurviveLooper.Start(this);
 		}
 
@@ -144,6 +132,7 @@ namespace Nutshell.Components
 		/// <returns>操作结果</returns>
 		public IResult StopSurvive()
 		{
+			Trace.Assert(SurviveLooper != null, "守护循环工作者不能为空！");
 			return SurviveLooper.Stop(this);
 		}
 

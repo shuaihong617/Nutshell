@@ -25,17 +25,17 @@ namespace Nutshell.Components
                 /// <summary>
                 ///         初始化<see cref="DispatchableComponent" />的新实例.
                 /// </summary>
-                /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected DispatchableComponent(string id=null)
-                        : base( id)
+                protected DispatchableComponent(string id, IDispatchWorker dispatchWorker)
+                        : base(id)
                 {
+                        DispatchWorker = dispatchWorker;
                 }
 
                 #region 属性
 
                 [MustNotEqualNull]
-                public IDispatchWorker DispatchWorker { get; protected set; }
+                public IDispatchWorker DispatchWorker { get; private set; }
 
                 #endregion
 
@@ -54,7 +54,7 @@ namespace Nutshell.Components
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
                 public void Save([MustNotEqualNull] IDispatchableComponentModel model)
                 {
-                        throw new NotImplementedException();
+                        base.Save(model);
                 }
 
 

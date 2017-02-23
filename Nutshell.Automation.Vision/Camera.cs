@@ -36,7 +36,8 @@ namespace Nutshell.Automation.Vision
                         PixelFormat pixelFormat = PixelFormat.Mono8)
                         : base( id)
                 {
-                        Region = new Region(this);
+                        Region = new Region();
+	                Region.Parent = this;
 
                         Width = width;
                         Height = height;

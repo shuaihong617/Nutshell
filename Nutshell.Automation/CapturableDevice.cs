@@ -38,7 +38,7 @@ namespace Nutshell.Automation
 		/// </summary>
 		public NSReadWritePool<T> Buffers { get; protected set; }
 
-		public CaptureLooper CaptureLooper { get; protected set; }
+		public CaptureLooper CaptureLooper { get; private set; }
 
 		#endregion
 
