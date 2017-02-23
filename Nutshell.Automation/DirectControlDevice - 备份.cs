@@ -10,8 +10,8 @@
 //{
 //        public abstract class DirectControlDevice:IdentityObject
 //        {
-//                protected DirectControlDevice(IdentityObject parent, string id = "直接控制设备")
-//                        : base(parent, id)
+//                protected DirectControlDevice(string id = "直接控制设备")
+//                        : base( id)
 //                {
 //                }
 

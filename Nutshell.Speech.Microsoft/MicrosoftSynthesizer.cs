@@ -35,7 +35,7 @@ namespace Nutshell.Speech.Microsoft
 		///         数据缓存上下文私有构造函数
 		/// </summary>
 		public MicrosoftSynthesizer(IIdentityObject parent, Language language = Language.中文)
-			: base(parent, "微软语音合成器", language)
+			: base( "微软语音合成器", language)
 		{
 			Language = language;
 

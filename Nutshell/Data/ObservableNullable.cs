@@ -26,8 +26,8 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">The item.</param>
-                public ObservableNullable(IdentityObject parent, string id)
-                        :base(parent, id)
+                public ObservableNullable(string id)
+                        :base( id)
                 {
                         Value = new T();
                 }

@@ -5,8 +5,8 @@
         /// </summary>
         public abstract class OpcSwitch : OpcDevice<bool>
         {
-                protected OpcSwitch(IdentityObject parent, string id, OpcItem source)
-                        : base(parent,id, source)
+                protected OpcSwitch(string id, OpcItem source)
+                        : base(id, source)
                 {
                 }
 

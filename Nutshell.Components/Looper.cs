@@ -30,20 +30,20 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Looper : Worker,ILooper
         {
-                protected Looper(IIdentityObject parent, string id)
-                        : this(parent, id, ThreadPriority.Normal, 1000)
+                protected Looper(string id)
+                        : this(id, ThreadPriority.Normal, 1000)
                 {
 
                 }
 
-                protected Looper(IIdentityObject parent, string id, int interval)
-                        : this(parent, id, ThreadPriority.Normal,  interval)
+                protected Looper(string id, int interval)
+                        : this(id, ThreadPriority.Normal,  interval)
                 {
                        
                 }
 
-                protected Looper(IIdentityObject parent, string id, ThreadPriority priority, int interval)
-                        : base(parent, id)
+                protected Looper(string id, ThreadPriority priority, int interval)
+                        : base(id)
                 {
                         Priority = priority;
                         Interval = interval;

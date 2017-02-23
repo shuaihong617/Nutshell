@@ -17,9 +17,9 @@ namespace Nutshell.Automation.Opc
 {
 	public class OpcItem : StorableObject, IOpcItem
 	{
-		public OpcItem(IIdentityObject parent, string id = "", string address = "",
+		public OpcItem(string id = "", string address = "",
 			TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
-			: base(parent, id)
+			: base( id)
 		{
 			Address = address;
 			TypeCode = typeCode;

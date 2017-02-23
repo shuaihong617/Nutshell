@@ -26,8 +26,8 @@ namespace Nutshell.Threading
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public MonopolyBuffer(IdentityObject parent, string id)
-                        : base(parent, id)
+                public MonopolyBuffer(string id)
+                        : base( id)
                 {
                 }
 

@@ -25,8 +25,8 @@ namespace Nutshell.Collections
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                protected Buffer(IdentityObject parent, string id)
-                        :base(parent, id)
+                protected Buffer(string id)
+                        :base( id)
                 {
                         
                 }

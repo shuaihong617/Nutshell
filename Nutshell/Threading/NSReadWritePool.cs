@@ -29,8 +29,8 @@ namespace Nutshell.Threading
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public NSReadWritePool(IdentityObject parent, string id)
-                        : base(parent, id)
+                public NSReadWritePool(string id)
+                        : base( id)
                 {
                 }
 

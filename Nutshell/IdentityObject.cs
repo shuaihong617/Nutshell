@@ -28,16 +28,9 @@ namespace Nutshell
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                protected IdentityObject(IIdentityObject parent = null,
-                        string id = null)
+                protected IdentityObject(string id = null)
                 {
-                        if (parent != null)
-                        {
-                                Parent = parent;
-                        }
-
                         if (!string.IsNullOrEmpty(id))
                         {
                                 Id = id;
@@ -47,17 +40,17 @@ namespace Nutshell
                 #region 字段
 
                 /// <summary>
-                ///         The _id
+                ///         标识
                 /// </summary>
                 private string _id;
 
                 /// <summary>
-                ///         The _global identifier
+                ///        全局标识
                 /// </summary>
                 private string _globalId;
 
                 /// <summary>
-                ///         The _parent
+                ///         上级对象
                 /// </summary>
                 private IIdentityObject _parent;
 
@@ -126,15 +119,11 @@ namespace Nutshell
                         {
                                 if (Parent == null)
                                 {
-                                        
                                                 GlobalId = Id;
-                                        
                                 }
                                 else
                                 {
-                                        
                                                 GlobalId = Parent.GlobalId + "." + Id;
-                                        
                                 }
                         }
                         

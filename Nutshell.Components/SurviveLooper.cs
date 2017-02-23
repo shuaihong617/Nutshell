@@ -21,18 +21,18 @@ namespace Nutshell.Components
 	/// </summary>
 	public class SurviveLooper : Looper,ISurviveLooper
 	{
-		public SurviveLooper(IIdentityObject parent, string id) 
-			: base(parent, id)
+		public SurviveLooper(string id) 
+			: base( id)
 		{
 		}
 
-		public SurviveLooper(IIdentityObject parent, string id, int interval) 
-			: base(parent, id, interval)
+		public SurviveLooper(string id, int interval) 
+			: base( id, interval)
 		{
 		}
 
-		public SurviveLooper(IIdentityObject parent, string id, ThreadPriority priority, int interval) 
-			: base(parent, id, priority, interval)
+		public SurviveLooper(string id, ThreadPriority priority, int interval) 
+			: base( id, priority, interval)
 		{
 		}
 

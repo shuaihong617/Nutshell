@@ -39,9 +39,9 @@ namespace Nutshell.Drawing
                 /// <param name="height">The height.</param>
                 /// <param name="containerWidth">Width of the container.</param>
                 /// <param name="containerHeight">Height of the container.</param>
-                public Region(IdentityObject parent, string id = null, int x = 0, int y = 0, int width = 0, int height = 0,
+                public Region(string id = null, int x = 0, int y = 0, int width = 0, int height = 0,
                         int containerWidth = 0, int containerHeight = 0)
-                        : base(parent, id)
+                        : base( id)
                 {
                         ContainerWidth = containerWidth;
                         ContainerHeight = containerHeight;

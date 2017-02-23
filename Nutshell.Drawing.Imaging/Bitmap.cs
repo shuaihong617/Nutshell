@@ -33,7 +33,7 @@ namespace Nutshell.Drawing.Imaging
                 /// <param name="format">The format.</param>
                 /// <param name="timeStampChain">The time stamp.</param>
                 public Bitmap(IdentityObject parent, String id, int width, int height, PixelFormat format, TimeStampChain timeStampChain = null)
-                        : base(parent, id)
+                        : base( id)
                 {
                         width.MustGreaterThan(0);
                         Width = width;

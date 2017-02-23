@@ -26,8 +26,8 @@ namespace Nutshell.Communication
         /// </summary>
         public abstract class Bus:Worker,IBus
         {
-                protected Bus(IdentityObject parent, string id = null) 
-                        : base(parent, id)
+                protected Bus(string id = null) 
+                        : base( id)
                 {
                 }
 

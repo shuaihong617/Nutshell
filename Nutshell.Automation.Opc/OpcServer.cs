@@ -24,9 +24,9 @@ namespace Nutshell.Automation.Opc
         /// </remarks>
         public class OpcServer : DispatchableComponent, IOpcServer
         {
-	        public OpcServer([MustNotEqualNull]IIdentityObject parent, 
+	        public OpcServer( 
                         string id = null, string address = null, ReadOnlyCollection<IOpcGroup> opcGroups = null)
-                        : base(parent, id)
+                        : base( id)
                 {
                         if (!string.IsNullOrEmpty(address))
                         {

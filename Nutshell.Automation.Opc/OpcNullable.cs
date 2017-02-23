@@ -32,7 +32,7 @@ namespace Nutshell.Automation.Opc
 		public OpcNullable([MustNotEqualNull] IdentityObject parent,
 			[MustNotEqualNull] string id,
 			[MustNotEqualNull] OpcItem opcItem)
-			: base(parent, id)
+			: base( id)
 		{
 			_opcItem = opcItem;
 

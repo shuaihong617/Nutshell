@@ -32,9 +32,9 @@ namespace Nutshell.Automation.Vision
                 /// <param name="width">水平采集分辨率</param>
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
-                protected Camera(IdentityObject parent, string id = null, int width = 2, int height = 2,
+                protected Camera(string id = null, int width = 2, int height = 2,
                         PixelFormat pixelFormat = PixelFormat.Mono8)
-                        : base(parent, id)
+                        : base( id)
                 {
                         Region = new Region(this);
 

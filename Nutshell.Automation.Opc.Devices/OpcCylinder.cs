@@ -8,8 +8,8 @@ namespace Nutshell.Automation.Opc.Devices
         /// </summary>
         public class OpcCylinder : IdentityObject
         {
-                public OpcCylinder(IdentityObject parent, string id, OpcSolenoid solenoid, OpcSensor<bool> openSensor, OpcSensor<bool> closeSensor)
-                        : base(parent, id)
+                public OpcCylinder(string id, OpcSolenoid solenoid, OpcSensor<bool> openSensor, OpcSensor<bool> closeSensor)
+                        : base( id)
                 {
                         _state = CylinderState.未定义;    
 

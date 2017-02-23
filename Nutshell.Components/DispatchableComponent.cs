@@ -27,8 +27,8 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected DispatchableComponent([MustNotEqualNull] IIdentityObject parent,string id=null)
-                        : base(parent, id)
+                protected DispatchableComponent(string id=null)
+                        : base( id)
                 {
                 }
 

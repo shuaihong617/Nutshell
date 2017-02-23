@@ -8,8 +8,8 @@ namespace Nutshell.Automation.Opc.Devices
         /// </summary>
         public class OpcButton:OpcDevice<bool>
         {
-                public OpcButton(IdentityObject parent, string id, OpcItem opcItem)
-                        :base(parent, id, opcItem)
+                public OpcButton(string id, OpcItem opcItem)
+                        :base( id, opcItem)
                 {
                         OpcPoint.ValueChanged += Current_ValueChanged;
                 }

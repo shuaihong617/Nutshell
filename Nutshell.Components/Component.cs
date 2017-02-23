@@ -23,9 +23,8 @@ namespace Nutshell.Components
 	{
 		#region 构造函数
 
-		protected Component([MustNotEqualNull] IIdentityObject parent,
-			string id = null)
-			: base(parent, id)
+		protected Component(string id = null)
+			: base(id)
 		{
 		}
 

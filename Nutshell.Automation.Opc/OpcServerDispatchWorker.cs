@@ -10,7 +10,7 @@ namespace Nutshell.Automation.Opc
         public class OpcServerDispatchWorker : DispatchWorker
         {
                 public OpcServerDispatchWorker(IIdentityObject parent)
-                        : base(parent, "Opc服务器调度工作者")
+                        : base( "Opc服务器调度工作者")
                 {
                 }
 

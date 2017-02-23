@@ -10,7 +10,7 @@ namespace Nutshell.Automation.Opc
 	public class OpcRuntime : Runtime
 	{
 		public OpcRuntime(IIdentityObject parent)
-			: base(parent, "Opc运行环境")
+			: base( "Opc运行环境")
 		{
 			InstalledOpcServers = new ReadOnlyCollection<InstalledOpcServer>(new List<InstalledOpcServer>());
 			DispatchWorker = new OpcRuntimeDispatchWorker(this);

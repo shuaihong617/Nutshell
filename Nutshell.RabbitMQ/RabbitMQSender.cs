@@ -28,8 +28,8 @@ namespace Nutshell.RabbitMQ
 		/// </summary>
 		/// <param name="parent">The parent.</param>
 		/// <param name="id">The identifier.</param>
-		public RabbitMQSender(IdentityObject parent, string id = null)
-			: base(parent, id)
+		public RabbitMQSender(string id = null)
+			: base( id)
 		{
 		}
 

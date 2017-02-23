@@ -33,8 +33,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="camera">The camera.</param>
-                public CameraSence(IdentityObject parent, string id, Control control, Camera camera)
-                        : base(parent, id, control)
+                public CameraSence(string id, Control control, Camera camera)
+                        : base( id, control)
                 {
                         camera.NotNull();
                         Camera = camera;

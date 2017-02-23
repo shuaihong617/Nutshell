@@ -12,8 +12,8 @@ namespace Nutshell.Drawing.Shapes
         /// </summary>
         public class Scale : StorableObject, IHitTest
         {
-                public Scale(IdentityObject parent, string id = null)
-                        : base(parent, id)
+                public Scale(string id = null)
+                        : base( id)
                 {
                         Segment = new Segment(this);
                 }

@@ -21,8 +21,8 @@ namespace Nutshell.Components
 	/// </summary>
 	public class ConnectWorker :Worker, IConnectWorker
 	{
-		public ConnectWorker(IIdentityObject parent, string id) 
-			: base(parent, id)
+		public ConnectWorker(string id) 
+			: base( id)
 		{
 		}
 

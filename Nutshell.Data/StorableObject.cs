@@ -26,11 +26,9 @@ namespace Nutshell.Data
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public StorableObject(IIdentityObject parent = null, 
-			string id = null)
-                        : base(parent, id)
+                public StorableObject(string id = null)
+                        : base( id)
                 {
                 }
 

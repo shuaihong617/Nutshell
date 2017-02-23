@@ -20,8 +20,8 @@ namespace Nutshell.Components
 	/// </summary>
 	public class DispatchWorker : Worker,IDispatchWorker
 	{
-		public DispatchWorker(IIdentityObject parent, string id) 
-			: base(parent, id)
+		public DispatchWorker(string id) 
+			: base( id)
 		{
 		}
 

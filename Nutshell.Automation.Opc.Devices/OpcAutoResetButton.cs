@@ -7,7 +7,7 @@ namespace Nutshell.Automation.Opc.Devices
         /// </summary>
         public class OpcAutoResetButton:OpcButton
         {
-                public OpcAutoResetButton(IdentityObject parent, string id, OpcItem opcItem)
+                public OpcAutoResetButton(string id, OpcItem opcItem)
                         :base( parent, id, opcItem)
                 {
                 }

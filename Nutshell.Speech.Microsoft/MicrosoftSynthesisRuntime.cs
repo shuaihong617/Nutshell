@@ -31,7 +31,7 @@ namespace Nutshell.Speech.Microsoft
                 ///         数据缓存上下文私有构造函数
                 /// </summary>
                 public MicrosoftSynthesisRuntime(IIdentityObject parent)
-                        : base(parent, "微软语音合成运行环境")
+                        : base( "微软语音合成运行环境")
                 {
                         DispatchWorker = new MicrosoftSynthesisRuntimeDispatchWorker(this);
                 }

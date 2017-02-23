@@ -26,8 +26,8 @@
 //                /// </summary>
 //                /// <param name="parent">上级对象</param>
 //                /// <param name="id">The key.</param>
-//                protected CapturableDevice(IdentityObject parent, string id = "采集设备")
-//                        : base(parent, id)
+//                protected CapturableDevice(string id = "采集设备")
+//                        : base( id)
 //                {
 //                        _isConnected = false;
 //                        LastCaptureTime = InvalidLastCaptureTime;

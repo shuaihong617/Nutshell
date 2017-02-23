@@ -13,7 +13,7 @@ namespace Nutshell.Automation.Opc
         public class OpcRuntimeDispatchWorker : Worker
         {
                 public OpcRuntimeDispatchWorker(OpcRuntime parent)
-                        : base(parent, "Opc运行环境工作者")
+                        : base( "Opc运行环境工作者")
                 {
                 }
 

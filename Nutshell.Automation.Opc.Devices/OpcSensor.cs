@@ -5,8 +5,8 @@
         /// </summary>
         public class OpcSensor<T> : OpcDevice<T> where T : struct
         {
-                public OpcSensor(IdentityObject parent, string id, OpcItem opcItem)
-                        : base(parent, id, opcItem)
+                public OpcSensor(string id, OpcItem opcItem)
+                        : base( id, opcItem)
                 {
                 }
         }

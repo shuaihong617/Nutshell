@@ -22,18 +22,18 @@ namespace Nutshell.Automation
 	/// </summary>
 	public class DecodeLooper<T> : Looper,IDecodeLooper
 	{
-		public DecodeLooper(IIdentityObject parent, string id) 
-			: base(parent, id)
+		public DecodeLooper(string id) 
+			: base( id)
 		{
 		}
 
-		public DecodeLooper(IIdentityObject parent, string id, int interval) 
-			: base(parent, id, interval)
+		public DecodeLooper(string id, int interval) 
+			: base( id, interval)
 		{
 		}
 
-		public DecodeLooper(IIdentityObject parent, string id, ThreadPriority priority, int interval) 
-			: base(parent, id, priority, interval)
+		public DecodeLooper(string id, ThreadPriority priority, int interval) 
+			: base( id, priority, interval)
 		{
 		}
 

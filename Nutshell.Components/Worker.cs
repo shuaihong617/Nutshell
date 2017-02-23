@@ -28,9 +28,8 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Worker : StorableObject, IWorker
         {
-                protected Worker(IIdentityObject parent,
-                        [MustNotEqualNullOrEmpty] string id)
-                        : base(parent, id)
+                protected Worker([MustNotEqualNullOrEmpty] string id)
+                        : base(id)
                 {
 			WorkerState = WorkerState.未启动;
                 }

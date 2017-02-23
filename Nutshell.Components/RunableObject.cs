@@ -24,9 +24,9 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class RunableObject:StorableObject,IRunableObject
         {
-                protected RunableObject([MustNotEqualNull]IIdentityObject parent,
+                protected RunableObject(
                         string id=null)
-                        : base(parent, id)
+                        : base( id)
                 {
                         IsEnable = true;
                         RunMode = RunMode.Release;

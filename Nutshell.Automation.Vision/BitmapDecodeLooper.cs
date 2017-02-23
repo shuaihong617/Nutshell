@@ -23,18 +23,18 @@ namespace Nutshell.Automation.Vision
 	/// </summary>
 	public class BitmapDecodeLooper : Looper,IDecodeLooper
 	{
-		public BitmapDecodeLooper(IIdentityObject parent, string id) 
-			: base(parent, id)
+		public BitmapDecodeLooper(string id) 
+			: base( id)
 		{
 		}
 
-		public BitmapDecodeLooper(IIdentityObject parent, string id, int interval) 
-			: base(parent, id, interval)
+		public BitmapDecodeLooper(string id, int interval) 
+			: base( id, interval)
 		{
 		}
 
-		public BitmapDecodeLooper(IIdentityObject parent, string id, ThreadPriority priority, int interval) 
-			: base(parent, id, priority, interval)
+		public BitmapDecodeLooper(string id, ThreadPriority priority, int interval) 
+			: base( id, priority, interval)
 		{
 		}
 

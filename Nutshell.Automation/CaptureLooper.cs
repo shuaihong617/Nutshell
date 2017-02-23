@@ -22,18 +22,18 @@ namespace Nutshell.Automation
 	/// </summary>
 	public class CaptureLooper : Looper,ICaptureLooper
 	{
-		public CaptureLooper(IIdentityObject parent, string id) 
-			: base(parent, id)
+		public CaptureLooper(string id) 
+			: base( id)
 		{
 		}
 
-		public CaptureLooper(IIdentityObject parent, string id, int interval) 
-			: base(parent, id, interval)
+		public CaptureLooper(string id, int interval) 
+			: base( id, interval)
 		{
 		}
 
-		public CaptureLooper(IIdentityObject parent, string id, ThreadPriority priority, int interval) 
-			: base(parent, id, priority, interval)
+		public CaptureLooper(string id, ThreadPriority priority, int interval) 
+			: base( id, priority, interval)
 		{
 		}
 

@@ -5,8 +5,8 @@
         /// </summary>
         public class OpcSolenoid:OpcSwitch
         {
-                public OpcSolenoid(IdentityObject parent, string id, OpcItem opcItem)
-                        : base(parent, id, opcItem)
+                public OpcSolenoid(string id, OpcItem opcItem)
+                        : base( id, opcItem)
                 {
                 }
         }

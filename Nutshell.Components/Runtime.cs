@@ -21,9 +21,9 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Runtime:RunableObject,IRuntime
         {
-                protected Runtime([MustNotEqualNull]IIdentityObject parent,
+                protected Runtime(
                         [MustNotEqualNullOrEmpty] string id)
-                        : base(parent, id)
+                        : base( id)
                 {
                 }
 

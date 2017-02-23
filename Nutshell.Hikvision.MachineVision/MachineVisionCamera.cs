@@ -34,8 +34,8 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         /// </summary>
         public class MachineVisionCamera : NetworkCamera
         {
-                public MachineVisionCamera(IdentityObject parent, string id = null, string ipAddress = "192.168.1.1")
-                        : base(parent, id, 1280, 960, Drawing.Imaging.PixelFormat.Rgb24, ipAddress)
+                public MachineVisionCamera(string id = null, string ipAddress = "192.168.1.1")
+                        : base( id, 1280, 960, Drawing.Imaging.PixelFormat.Rgb24, ipAddress)
                 {
                         _captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
 

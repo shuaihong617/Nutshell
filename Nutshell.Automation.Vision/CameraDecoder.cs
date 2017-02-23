@@ -32,8 +32,8 @@ namespace Nutshell.Automation.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="camera">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                public CameraDecoder(IdentityObject parent, string id, Camera camera, PixelFormat pixelFormat)
-                        : base(parent, id)
+                public CameraDecoder(string id, Camera camera, PixelFormat pixelFormat)
+                        : base( id)
                 {
                         camera.NotNull();
                         Camera = camera;

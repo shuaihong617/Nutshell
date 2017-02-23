@@ -13,8 +13,8 @@ namespace Nutshell.Communication
         /// </summary>
         public sealed class Site:Worker,ISite
         {
-                public Site(IdentityObject parent, string id = null) 
-                        : base(parent, id)
+                public Site(string id = null) 
+                        : base( id)
                 {
                 }
 

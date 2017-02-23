@@ -27,9 +27,9 @@ namespace Nutshell.Automation
         {
                 #region 构造函数
 
-                protected IndependentDevice([MustNotEqualNull]IIdentityObject parent,
+                protected IndependentDevice(
 			string id = null)
-                        : base(parent, id)
+                        : base( id)
                 {
                 }
 

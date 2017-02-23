@@ -33,7 +33,7 @@ namespace Nutshell.Drawing
 			string id,
 			[MustGreaterThan(0f)] double horizontal,
 			[MustGreaterThan(0f)] double vertical)
-			: base(parent, id)
+			: base( id)
 		{
 			Horizontal = horizontal;
 			Vertical = vertical;

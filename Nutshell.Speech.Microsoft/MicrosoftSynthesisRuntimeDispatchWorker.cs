@@ -7,7 +7,7 @@ namespace Nutshell.Speech.Microsoft
 	public class MicrosoftSynthesisRuntimeDispatchWorker : Worker
 	{
 		public MicrosoftSynthesisRuntimeDispatchWorker(IIdentityObject parent)
-			: base(parent, "Opc运行环境工作者")
+			: base( "Opc运行环境工作者")
 		{
 		}
 

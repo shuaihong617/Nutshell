@@ -27,7 +27,7 @@ namespace Nutshell.Automation.Opc
 		/// <param name="address">OpcServer地址.</param>
 		public InstalledOpcServer([MustNotEqualNull]OpcRuntime parent, 
                         [MustNotEqualNullOrEmpty]string address)
-                        : base(parent, address)
+                        : base( address)
                 {
                         Address = address;                                
                 }

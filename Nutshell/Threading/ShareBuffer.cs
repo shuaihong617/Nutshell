@@ -26,8 +26,8 @@ namespace Nutshell.Threading
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public ShareBuffer(IdentityObject parent, string id)
-                        : base(parent, id)
+                public ShareBuffer(string id)
+                        : base( id)
                 {
                 }
 

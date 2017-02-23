@@ -28,9 +28,8 @@ namespace Nutshell.Components
                 /// </summary> 
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected ConnectableComponent([MustNotEqualNull]IIdentityObject parent,
-                                            string id=null)
-                        : base(parent, id)
+                protected ConnectableComponent(string id=null)
+                        : base( id)
                 {
                         ConnectState = ConnectState.Disconnected; 
                 }

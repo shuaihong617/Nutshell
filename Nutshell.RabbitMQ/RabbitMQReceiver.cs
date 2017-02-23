@@ -10,8 +10,8 @@ namespace Nutshell.RabbitMQ
         public class RabbitMQReceiver:RabbitMQActor,IMessageQueueReceiver,IStorable<IRabbitMQReceiverModel>
         {
 
-                public RabbitMQReceiver(IdentityObject parent, string id = null) 
-			: base(parent, id)
+                public RabbitMQReceiver(string id = null) 
+			: base( id)
                 {
                 }
 

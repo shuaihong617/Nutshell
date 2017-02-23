@@ -12,8 +12,8 @@ namespace Nutshell.Automation.Opc
 {
         public class OpcGroup : StorableObject, IOpcGroup
         {
-                public OpcGroup(IIdentityObject parent, string id = "", string address = "", ReadOnlyCollection<IOpcItem> opcItems = null)
-                        : base(parent, id)
+                public OpcGroup(string id = "", string address = "", ReadOnlyCollection<IOpcItem> opcItems = null)
+                        : base( id)
                 {
 	                Address = address;
 

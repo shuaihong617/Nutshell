@@ -28,8 +28,8 @@ namespace Nutshell.Speech
 		/// <param name="parent">The parent.</param>
 		/// <param name="id">The identifier.</param>
 		/// <param name="language">The language.</param>
-		protected Synthesizer(IIdentityObject parent, string id, Language language = Language.中文)
-			: base(parent, id)
+		protected Synthesizer(string id, Language language = Language.中文)
+			: base( id)
 		{
 			Language = language;
 		        Volume = 100;

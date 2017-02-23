@@ -9,8 +9,8 @@ namespace Nutshell.Automation.Opc.Devices
         public class OpcLight:OpcDevice<bool>
         {
 
-                public OpcLight(IdentityObject parent, string id, OpcItem opcItem)
-                        :base(parent, id, opcItem)
+                public OpcLight(string id, OpcItem opcItem)
+                        :base( id, opcItem)
                 {
                         OpcPoint.ValueChanged += Data_ValueChanged;
                 }

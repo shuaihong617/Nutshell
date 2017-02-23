@@ -8,8 +8,8 @@ namespace Nutshell.RabbitMQ
 {
 	public abstract class RabbitMQActor : Worker, IActor
 	{
-		protected RabbitMQActor(IdentityObject parent, string id = null)
-			: base(parent, id)
+		protected RabbitMQActor(string id = null)
+			: base( id)
 		{
 		}
 

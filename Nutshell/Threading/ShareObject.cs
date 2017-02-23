@@ -27,8 +27,8 @@ namespace Nutshell.Threading
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="t">需要锁定的对象</param>
-                public ShareObject(IdentityObject parent, string id, T t)
-                        : base(parent, id)
+                public ShareObject(string id, T t)
+                        : base( id)
                 {
                         Value = t;
                 }

@@ -34,9 +34,9 @@ namespace Nutshell.Hardware.Vision
                 /// <param name="height">高度</param>
                 /// <param name="pixelFormat">图像格式</param>
                 /// <param name="ipAddress">IP地址</param>
-                protected NetworkCamera(IdentityObject parent, string id, int width, int height, PixelFormat pixelFormat,
+                protected NetworkCamera(string id, int width, int height, PixelFormat pixelFormat,
                         string ipAddress)
-                        : base(parent, id, width, height, pixelFormat)
+                        : base( id, width, height, pixelFormat)
                 {
                         IPAddress = IPAddress.Parse(ipAddress);
                 }

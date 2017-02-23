@@ -29,8 +29,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="control">渲染的目标控件</param>
-                protected Sence(IdentityObject parent, string id = null, Control control = null)
-                        :base(parent, id)
+                protected Sence(string id = null, Control control = null)
+                        :base( id)
                 {
                         control.NotNull();
                         Control = control;

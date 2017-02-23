@@ -10,7 +10,7 @@ namespace Nutshell.Automation.Opc
         public class OpcServerConnectWorker : ConnectWorker
         {
                 public OpcServerConnectWorker(OpcServer parent)
-                        : base(parent, "Opc服务器连接工作者")
+                        : base( "Opc服务器连接工作者")
                 {
                 }
 

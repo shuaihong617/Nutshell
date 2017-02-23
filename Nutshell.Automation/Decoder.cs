@@ -30,8 +30,8 @@ namespace Nutshell.Automation
 		/// <param name="id">The key.</param>
 		/// <param name="capturer">The camera.</param>
 		/// <param name="pixelFormat">The pixel format.</param>
-		public Decoder(IdentityObject parent, string id, CapturableDevice<T> capturer)
-                        : base(parent, id)
+		public Decoder(string id, CapturableDevice<T> capturer)
+                        : base( id)
                 {
                         capturer.NotNull();
                         Capturer = capturer;
