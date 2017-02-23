@@ -13,6 +13,7 @@
 
 using System;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
 
 namespace Nutshell.Components
@@ -26,16 +27,17 @@ namespace Nutshell.Components
                 ///         初始化<see cref="DispatchableComponent" />的新实例.
                 /// </summary>
                 /// <param name="id">The identifier.</param>
-                protected DispatchableComponent(string id, IDispatchWorker dispatchWorker)
+                protected DispatchableComponent(string id=null)
                         : base(id)
                 {
-                        DispatchWorker = dispatchWorker;
                 }
 
                 #region 属性
 
                 [MustNotEqualNull]
-                public IDispatchWorker DispatchWorker { get; private set; }
+		[WillSetParentToThis]
+		[OnlySetNotEquelNullOnce]
+		public IDispatchWorker DispatchWorker { get; set; }
 
                 #endregion
 

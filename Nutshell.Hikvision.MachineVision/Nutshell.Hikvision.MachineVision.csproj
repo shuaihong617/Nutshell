@@ -149,6 +149,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MachineVisionCameraConnectWork.cs" />
     <Compile Include="MachineVisionRuntime.cs" />
     <Compile Include="MachineVisionCamera.cs" />
     <Compile Include="Models\IMachineVisionCameraModel.cs" />

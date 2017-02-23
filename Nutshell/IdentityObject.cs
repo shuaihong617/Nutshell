@@ -29,27 +29,19 @@ namespace Nutshell
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
-                protected IdentityObject(string id = null)
+                protected IdentityObject([MustNotEqualNull]string id = "")
                 {
-                        if (!string.IsNullOrEmpty(id))
-                        {
-                                Id = id;
-                        }
+	                Id = string.IsNullOrEmpty(id) ? GetType().Name : id;
                 }
 
-                #region 字段
+	        #region 字段
 
                 /// <summary>
                 ///         标识
                 /// </summary>
                 private string _id;
 
-                /// <summary>
-                ///        全局标识
-                /// </summary>
-                private string _globalId;
-
-                /// <summary>
+	        /// <summary>
                 ///         上级对象
                 /// </summary>
                 private IIdentityObject _parent;
@@ -76,17 +68,9 @@ namespace Nutshell
                 /// </summary>
                 [WillNotifyPropertyChanged]
                 [MustNotEqualNullOrEmpty]
-                public string GlobalId
-                {
-                        get { return _globalId; }
-                        private set
-                        {
-                                _globalId = value;
-                                OnGlobalIdChanged(EventArgs.Empty);
-                        }
-                }
+                public string GlobalId { get; private set; }
 
-                /// <summary>
+	        /// <summary>
                 ///         上级对象
                 /// </summary>
                 [MustNotEqualNull]
@@ -115,21 +99,11 @@ namespace Nutshell
                 /// </summary>
                 private void UpdateGlobalId()
                 {
-                        if (Id != null)
-                        {
-                                if (Parent == null)
-                                {
-                                                GlobalId = Id;
-                                }
-                                else
-                                {
-                                                GlobalId = Parent.GlobalId + "." + Id;
-                                }
-                        }
-                        
+	                GlobalId = Parent == null ? Id : Parent.GlobalId + "." + Id;
+			OnGlobalIdChanged(EventArgs.Empty);
                 }
 
-                /// <summary>
+	        /// <summary>
                 ///         返回表示当前对象的字符串。
                 /// </summary>
                 /// <returns>全局标识</returns>

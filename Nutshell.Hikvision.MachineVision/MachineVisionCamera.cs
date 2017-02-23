@@ -37,7 +37,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 public MachineVisionCamera(string id = null, string ipAddress = "192.168.1.1")
                         : base( id, 1280, 960, Drawing.Imaging.PixelFormat.Rgb24, ipAddress)
                 {
-                        _captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
+                        //_captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
 
                         _exceptionCallback = ExceptionCallBack;
                 }
@@ -85,7 +85,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         Trace.Assert(cameraModel != null);
                 }
 
-                protected override sealed bool ConnectCore()
+                protected  bool ConnectCore()
                 {
                         _deviceInfo =
                                 MachineVisionRuntime.Itance.DeviceInfos.FirstOrDefault(
@@ -138,7 +138,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         }
                 }
 
-                protected override sealed bool DisconnectCore()
+                protected  bool DisconnectCore()
                 {
                         MVErrorCode mvError = MVOfficialAPI.CloseDevice(_handle);
                         if (mvError != MVErrorCode.MV_OK)
@@ -159,7 +159,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         return true;
                 }
 
-                protected override sealed bool StartCaptureCore()
+                protected  bool StartCaptureCore()
                 {
                         CreatePool();
 
@@ -180,14 +180,14 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         //return _captureLooper.Start();
                 }
 
-                protected override bool StopCaptureCore()
+                protected bool StopCaptureCore()
                 {
 			throw new NotImplementedException();
 			//_captureLooper.Stop();
 
-			MVOfficialAPI.StopGrabbing(_handle);
+			//MVOfficialAPI.StopGrabbing(_handle);
 
-                        return true;
+                      //return true;
                 }
 
                 protected override sealed Bitmap CaptureCore()

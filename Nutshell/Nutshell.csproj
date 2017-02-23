@@ -155,6 +155,8 @@
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualZeroAttribute.cs" />
     <Compile Include="Aspects\Locations\Propertys\EuqalSetDirectReturnAttribute.cs" />
+    <Compile Include="Aspects\Locations\Propertys\OnlySetNotEquelNullOnceAttribute.cs" />
+    <Compile Include="Aspects\Locations\Propertys\WillSetParentToThisAttribute.cs" />
     <Compile Include="Aspects\Locations\Propertys\WillNotifyPropertyChangedAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />

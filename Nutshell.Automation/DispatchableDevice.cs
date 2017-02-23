@@ -28,8 +28,8 @@ namespace Nutshell.Automation
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
-                protected DispatchableDevice(string id)
-                        : base( id)
+                protected DispatchableDevice(string id=null)
+                        : base(id)
                 {
                 }
 

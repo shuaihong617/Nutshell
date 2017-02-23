@@ -12,6 +12,8 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Threading;
 
 namespace Nutshell.Automation
@@ -21,24 +23,43 @@ namespace Nutshell.Automation
         /// </summary>
         public abstract class CapturableDevice<T> : DispatchableDevice where T:IIdentityObject
         {
-                /// <summary>
+	        
+
+	        /// <summary>
                 /// 初始化<see cref="T:CaptureDevice" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 protected CapturableDevice(string id = "采集设备")
                         : base( id)
                 {
                 }
 
-                #region 属性
+
+	        #region 字段
+
+	        private NSReadWritePool<T> _buffers;
+
+	        #endregion
+
+
+		#region 属性
 
 		/// <summary>
 		///         图像池
 		/// </summary>
-		public NSReadWritePool<T> Buffers { get; protected set; }
+		public NSReadWritePool<T> Buffers
+	        {
+		        get { return _buffers; }
+		        protected set
+		        {
+				Trace.Assert(value != null);
 
-		public CaptureLooper CaptureLooper { get; private set; }
+			        _buffers = value;
+			        _buffers.Parent = this;
+		        }
+	        }
+
+	        public CaptureLooper CaptureLooper { get; private set; }
 
 		#endregion
 

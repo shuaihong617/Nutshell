@@ -40,7 +40,7 @@ namespace Nutshell.Automation.Vision
 
                         PixelFormat = pixelFormat;
 
-                        _looper = new Looper(this, string.Empty, ThreadPriority.Highest,5, Decode);
+                        //_looper = new Looper(this, string.Empty, ThreadPriority.Highest,5, Decode);
                 }
 
                 /// <summary>
@@ -80,7 +80,7 @@ namespace Nutshell.Automation.Vision
                                 return;
                         }
 
-                        Buffers = new NSReadWritePool<Bitmap>(this, "解码图像缓冲池");
+                        Buffers = new NSReadWritePool<Bitmap>("解码图像缓冲池");
                         for (int i = 1; i < 5; i++)
                         {
 				throw new NotImplementedException();

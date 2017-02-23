@@ -28,24 +28,15 @@ namespace Nutshell.Components
                 ///         初始化<see cref="DispatchableComponent" />的新实例.
                 /// </summary> 
                 /// <param name="id">The identifier.</param>
-                protected ConnectableComponent(string id=null, IConnectWorker connectWorker=null, ISurviveLooper surviveLooper=null)
+                protected ConnectableComponent(string id=null)
                         : base( id)
                 {
                         ConnectState = ConnectState.Disconnected; 
-
-			ConnectWorker = connectWorker;
-			ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
-                        ConnectWorker.Started += (obj, args) => ConnectState = ConnectState.Connected;
-                        ConnectWorker.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
-			ConnectWorker.Stoped += (obj, args) => ConnectState = ConnectState.Disconnected;
-
-			SurviveLooper = surviveLooper;
                 }
 
 	        #region 字段
 
 	        private IConnectWorker _connectWorker;
-	        private ISurviveLooper _surviveLooper;
 
 	        #endregion
 
@@ -59,15 +50,31 @@ namespace Nutshell.Components
                 [WillNotifyPropertyChanged]
                 public ConnectState ConnectState { get; private set; }
 
-                /// <summary>
-                ///         获取连接工作者，连接工作者负责组件的连接\断开
-                /// </summary>
-                /// <value>连接工作者</value>
-                [MustNotEqualNull]
-                public IConnectWorker ConnectWorker{ get; private set; }
+	        /// <summary>
+	        ///         获取连接工作者，连接工作者负责组件的连接\断开
+	        /// </summary>
+	        /// <value>连接工作者</value>
+	        [MustNotEqualNull]
+	        [OnlySetNotEquelNullOnce]
+	        [WillSetParentToThis]
+	        public IConnectWorker ConnectWorker
+	        {
+		        get { return _connectWorker; }
+		        set
+		        {
+			        _connectWorker = value;
 
-		[MustNotEqualNull]
-	        public ISurviveLooper SurviveLooper{ get; private set; }
+				ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
+				ConnectWorker.Started += (obj, args) => ConnectState = ConnectState.Connected;
+				ConnectWorker.Stoping += (obj, args) => ConnectState = ConnectState.Disconnecting;
+				ConnectWorker.Stoped += (obj, args) => ConnectState = ConnectState.Disconnected;
+			}
+	        }
+
+	        [MustNotEqualNull]
+		[OnlySetNotEquelNullOnce]
+		[WillSetParentToThis]
+		public ISurviveLooper SurviveLooper { get; set; }
 
 	        #endregion
 

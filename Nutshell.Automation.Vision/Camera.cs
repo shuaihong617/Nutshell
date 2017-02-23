@@ -155,7 +155,7 @@ namespace Nutshell.Automation.Vision
 
                         if (Buffers == null)
                         {
-                                Buffers = new NSReadWritePool<Bitmap>(this, "采集图像缓冲池");
+                                Buffers = new NSReadWritePool<Bitmap>("采集图像缓冲池");
                                 for (var i = 1; i < 5; i++)
                                 {
 					throw new NotImplementedException();

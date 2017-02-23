@@ -49,10 +49,10 @@ namespace Nutshell.Automation.Vision
 		/// <returns>设备在线返回True，否则返回False</returns>
 		protected virtual IResult Decode()
 		{
-			if (_decodeBitmap == null)
-			{
-				return;
-			}
+			//if (_decodeBitmap == null)
+			//{
+			//	return Result.Failed;
+			//}
 
 			throw new NotImplementedException();
 			//

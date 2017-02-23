@@ -23,10 +23,10 @@ namespace Nutshell
         public interface IIdentityObject
         {
 		/// <summary>
-		/// 获取上级对象
+		/// 获取或设置上级对象
 		/// </summary>
 		/// <value>上级对象</value>
-		IIdentityObject Parent { get; }
+		IIdentityObject Parent { get; set; }
 
 		/// <summary>
 		///         标识
