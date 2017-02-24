@@ -16,7 +16,7 @@ namespace Nutshell.Components.Models
         /// <summary>
         ///         可连接组件数据模型
         /// </summary>
-        public interface IConnectableComponentModel : IComponentObjectModel
+        public interface IConnectableComponentModel : IComponentModel
         {
         }
 }

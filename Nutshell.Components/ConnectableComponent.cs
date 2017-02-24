@@ -37,6 +37,7 @@ namespace Nutshell.Components
 	        #region 字段
 
 	        private IConnectWorker _connectWorker;
+	        private ISurviveLooper _surviveLooper;
 
 	        #endregion
 
@@ -47,7 +48,7 @@ namespace Nutshell.Components
                 ///         获取连接状态
                 /// </summary>
                 /// <value>连接状态</value>
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public ConnectState ConnectState { get; private set; }
 
 	        /// <summary>
@@ -55,14 +56,16 @@ namespace Nutshell.Components
 	        /// </summary>
 	        /// <value>连接工作者</value>
 	        [MustNotEqualNull]
-	        [OnlySetNotEquelNullOnce]
-	        [WillSetParentToThis]
+	        [NotifyPropertyValueChanged]
 	        public IConnectWorker ConnectWorker
 	        {
 		        get { return _connectWorker; }
 		        set
 		        {
+				Trace.Assert(_connectWorker == null);
+
 			        _connectWorker = value;
+			        _connectWorker.Parent = this;
 
 				ConnectWorker.Starting += (obj, args) => ConnectState = ConnectState.Connecting;
 				ConnectWorker.Started += (obj, args) => ConnectState = ConnectState.Connected;
@@ -72,9 +75,18 @@ namespace Nutshell.Components
 	        }
 
 	        [MustNotEqualNull]
-		[OnlySetNotEquelNullOnce]
-		[WillSetParentToThis]
-		public ISurviveLooper SurviveLooper { get; set; }
+	        [NotifyPropertyValueChanged]
+	        public ISurviveLooper SurviveLooper
+	        {
+		        get { return _surviveLooper; }
+		        set
+		        {
+				Trace.Assert(_surviveLooper == null);
+
+			        _surviveLooper = value;
+			        _surviveLooper.Parent = this;
+		        }
+	        }
 
 	        #endregion
 

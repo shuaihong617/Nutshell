@@ -19,7 +19,6 @@ using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
-using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Components
 {
@@ -49,7 +48,7 @@ namespace Nutshell.Components
                 ///         获取工作状态
                 /// </summary>
                 /// <value>工作状态</value>
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public WorkerState WorkerState { get; private set; }
 
                 #endregion
@@ -83,7 +82,7 @@ namespace Nutshell.Components
                         {
                                 if (WorkerState == WorkerState.已启动)
                                 {
-                                        return Result.Successed;
+                                        return Result.SuccessedAndHandled;
                                 }
 
                                 WorkerState = WorkerState.启动中;

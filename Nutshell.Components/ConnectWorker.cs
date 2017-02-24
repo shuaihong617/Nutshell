@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using Nutshell.Components.Models;
-using Nutshell.Data;
 
 namespace Nutshell.Components
 {
@@ -32,7 +31,7 @@ namespace Nutshell.Components
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
 		public void Load(IConnectWorkerModel model)
 		{
-			throw new System.NotImplementedException();
+			base.Load(model);
 		}
 
 		/// <summary>

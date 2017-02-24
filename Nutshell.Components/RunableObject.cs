@@ -38,14 +38,14 @@ namespace Nutshell.Components
 		///         获取是否启用
 		/// </summary>
 		/// <value>是否启用</value>
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public bool IsEnable { get; private set; }
 
 		/// <summary>
 		///         获取运行模式
 		/// </summary>
 		/// <value>运行模式</value>
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public RunMode RunMode { get; private set; }
 
 

@@ -12,8 +12,6 @@
 // ***********************************************************************
 
 using System;
-using System.ComponentModel;
-using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
 
@@ -22,21 +20,63 @@ namespace Nutshell.Data
 	/// <summary>
 	///         封装应用程序标识
 	/// </summary>
-	public class Application : StorableObject,IApplication
+	public class Application : StorableObject, IStorable<IApplicationModel>
 	{
-		public Application(string id = null)
-			: base(null, id)
+		public Application(string id = "")
+			: base(id)
 		{
 		}
 
-	        public void Load(IApplicationModel model)
-	        {
-	                base.Load(model);
-	        }
+		/// <summary>
+		///         获取应用程序名称
+		/// </summary>
+		/// <value>应用程序名称</value>
+		[MustNotEqualNullOrEmpty]
+		public string Name { get; private set; }
 
-	        public void Save(IApplicationModel model)
-	        {
-	                base.Save(model);
-	        }
+		/// <summary>
+		///         获取版本
+		/// </summary>
+		/// <value>版本</value>
+		[MustNotEqualEmptyVersion]
+		public Version Version { get; private set; }
+
+		/// <summary>
+		///         获取应用程序标题
+		/// </summary>
+		/// <value>应用程序标题</value>
+		[MustNotEqualNullOrEmpty]
+		public string Title { get; private set; }
+
+		/// <summary>
+		///         获取公司
+		/// </summary>
+		/// <value>公司</value>
+		[MustNotEqualNullOrEmpty]
+		public string Company { get; private set; }
+
+		/// <summary>
+		///         获取版权信息
+		/// </summary>
+		/// <value>版权信息</value>
+		[MustNotEqualNullOrEmpty]
+		public string CopyRight { get; private set; }
+
+
+		public void Load(IApplicationModel model)
+		{
+			base.Load(model);
+
+			Name = model.Name;
+			Version = Version.Parse(model.Version);
+			Title = model.Title;
+			Company = model.Company;
+			CopyRight = model.CopyRight;
+
+		}
+
+		public void Save(IApplicationModel model)
+		{
+		}
 	}
 }

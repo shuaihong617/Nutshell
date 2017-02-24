@@ -45,12 +45,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 时间戳高32位
                 /// </summary>
-                public uint DevTimeStampHigh;
+                public uint DeviceTimeStampHigh32Bit;
 
                 /// <summary>
                 /// 时间戳低32位
                 /// </summary>
-                public uint DevTimeStampLow;
+                public uint DeviceTimeStampLow32Bit;
 
                 /// <summary>
                 /// 保留

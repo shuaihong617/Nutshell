@@ -26,7 +26,6 @@ namespace Nutshell.Speech.Microsoft
 	/// <summary>
 	///         表示数据环境上下文（缓存）
 	/// </summary>
-	/// <remarks>此类表示系统所有对象在内存中的数据缓存, 唯一, 采用单例模式构造</remarks>
 	public class MicrosoftSynthesizer : Synthesizer
 	{
 		#region 构造函数
@@ -34,8 +33,8 @@ namespace Nutshell.Speech.Microsoft
 		/// <summary>
 		///         数据缓存上下文私有构造函数
 		/// </summary>
-		public MicrosoftSynthesizer(IIdentityObject parent, Language language = Language.中文)
-			: base( "微软语音合成器", language)
+		public MicrosoftSynthesizer(Language language = Language.中文)
+			: base("微软语音合成器", language)
 		{
 			Language = language;
 
@@ -62,7 +61,7 @@ namespace Nutshell.Speech.Microsoft
 		public NativeSynthesizer NativeSynthesizer { get; }
 
 		[MustNotEqualNullOrEmpty]
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public string Content { get; private set; }
 
 		#endregion 属性
@@ -119,7 +118,8 @@ namespace Nutshell.Speech.Microsoft
 			}
 			catch (Exception ex)
 			{
-				return new Result(ex);
+				this.Error("Select voice " + voice +  "失败，失败原因：" + ex);
+				return Result.Failed;
 			}
 			return Result.Successed;
 		}

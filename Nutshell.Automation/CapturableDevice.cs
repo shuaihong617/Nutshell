@@ -74,17 +74,17 @@ namespace Nutshell.Automation
 
                 protected void Capture()
                 {
-                        var t = CaptureCore();
-                        if (t == null)
-                        {
-                                return;
-                        }
+                        //var t = CaptureCore();
+                        //if (t == null)
+                        //{
+                        //        return;
+                        //}
 
-                        //LastCaptureTime = DateTime.Now;
-                        OnCaptureSuccessed(new ValueEventArgs<T>(t));
+                        ////LastCaptureTime = DateTime.Now;
+                        //OnCaptureSuccessed(new ValueEventArgs<T>(t));
                 }
 
-                protected abstract T CaptureCore();
+                //protected abstract T CaptureCore();
 
                 #endregion
 

@@ -150,14 +150,13 @@
     <Compile Include="Aspects\Locations\Contracts\MustGreaterThanOrEqualAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustBetweenOrEqualAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustGreaterThanAttribute.cs" />
+    <Compile Include="Aspects\Locations\Contracts\MustNotEqualEmptyVersionAttribute.cs" />
     <Compile Include="Aspects\Locations\LocationKindExtension.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullOrEmptyAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualNullAttribute.cs" />
     <Compile Include="Aspects\Locations\Contracts\MustNotEqualZeroAttribute.cs" />
-    <Compile Include="Aspects\Locations\Propertys\EuqalSetDirectReturnAttribute.cs" />
-    <Compile Include="Aspects\Locations\Propertys\OnlySetNotEquelNullOnceAttribute.cs" />
-    <Compile Include="Aspects\Locations\Propertys\WillSetParentToThisAttribute.cs" />
-    <Compile Include="Aspects\Locations\Propertys\WillNotifyPropertyChangedAttribute.cs" />
+    <Compile Include="Aspects\Locations\Propertys\DirectReturnIfNewValueEqualCurrentValueAttribute.cs" />
+    <Compile Include="Aspects\Locations\Propertys\NotifyPropertyValueChangedAttribute.cs" />
     <Compile Include="Aspects\LogMethodEntryExitAttribute.cs" />
     <Compile Include="Aspects\LogMethodExceptionAttribute.cs" />
     <Compile Include="Aspects\Methods\Contracts\MustReturnNotEqualNullOrEmptyAttribute.cs" />

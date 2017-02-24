@@ -85,43 +85,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                         Trace.Assert(cameraModel != null);
                 }
 
-                protected  bool ConnectCore()
-                {
-                        _deviceInfo =
-                                MachineVisionRuntime.Itance.DeviceInfos.FirstOrDefault(
-                                        i => Equals(i.GigeDeviceInfo.GetCurrentIpAddress(), IPAddress));
-
-                        if (_deviceInfo.MajorVer == 0)
-                        {
-                                this.WarnFail("枚举摄像机", "未枚举到摄像机信息");
-                                return false;
-                        }
-
-                        MVErrorCode mvError = MVOfficialAPI.CreateHandle(ref _handle, ref _deviceInfo);
-                        if (mvError != MVErrorCode.MV_OK)
-                        {
-                                this.WarnFail("CreateHandle", mvError);
-                                return false;
-                        }
-                        this.InfoSuccess("CreateHandle");
-
-                        if (!MVOfficialAPI.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
-                        {
-                                this.WarnFail("RegisterExceptionCallBack", mvError);
-                                return false;
-                        }
-                        
-
-                        mvError = MVOfficialAPI.OpenDevice(_handle, AccessMode.控制权限);
-                        if (mvError != MVErrorCode.MV_OK)
-                        {
-                                this.WarnFail("OpenDevice", mvError);
-                                return false;
-                        }
-                        this.InfoSuccess("OpenDevice");
-
-                        return true;
-                }
+                
 
                 private void ExceptionCallBack(MVExceptionType mvExceptionType, IntPtr user)
                 {
@@ -136,90 +100,6 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                                         //Start();
                                         break;
                         }
-                }
-
-                protected  bool DisconnectCore()
-                {
-                        MVErrorCode mvError = MVOfficialAPI.CloseDevice(_handle);
-                        if (mvError != MVErrorCode.MV_OK)
-                        {
-                                this.WarnFail("CloseDevice", mvError);
-                                return false;
-                        }
-                        this.InfoSuccess("CloseDevice");
-
-                        mvError = MVOfficialAPI.DestroyHandle(_handle);
-                        if (mvError != MVErrorCode.MV_OK)
-                        {
-                                this.WarnFail("DestroyHandle", mvError);
-                                return false;
-                        }
-                        this.InfoSuccess("DestroyHandle");
-
-                        return true;
-                }
-
-                protected  bool StartCaptureCore()
-                {
-                        CreatePool();
-
-                        if (_captureBufferPtr == IntPtr.Zero)
-                        {
-                                _captureBufferPtr = Marshal.AllocHGlobal(CaptureBufferBytesCount);
-                        }
-
-                        MVErrorCode mvError = MVOfficialAPI.StartGrabbing(_handle);
-                        if (mvError != MVErrorCode.MV_OK)
-                        {
-                                this.WarnFail("StartGrabbing", mvError);
-                                return false;
-                        }
-                        this.InfoSuccess("StartGrabbing");
-
-			throw new NotImplementedException();
-                        //return _captureLooper.Start();
-                }
-
-                protected bool StopCaptureCore()
-                {
-			throw new NotImplementedException();
-			//_captureLooper.Stop();
-
-			//MVOfficialAPI.StopGrabbing(_handle);
-
-                      //return true;
-                }
-
-                protected override sealed Bitmap CaptureCore()
-                {
-			throw new NotImplementedException();
-			//
-			//if (!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured)
-   //                     {
-   //                             Trace.WriteLine("!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured Failed");
-   //                             return null;
-   //                     }
-
-                        Bitmap bitmap = Buffers.WriteLock();
-
-                        MVErrorCode mvError = MVOfficialAPI.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
-                                ref _mvFrameOutInfo);
-                        if (mvError != MVErrorCode.MV_OK)
-                        {
-                                //this.WarnFail("GetOneFrame", error);
-                                Buffers.WriteUnlock(bitmap);
-                                return null;
-                        }
-                        //this.InfoSuccess("GetOneFrame");
-                        Buffers.WriteUnlock(bitmap);
-
-                        var stamp = bitmap.TimeStampChain as CaptureTimeStampChain;
-                        if (stamp != null)
-                        {
-                                stamp.CaptureTime = DateTime.Now;
-                        }
-
-                        return bitmap;
                 }
 
                 public bool IsAccessible()

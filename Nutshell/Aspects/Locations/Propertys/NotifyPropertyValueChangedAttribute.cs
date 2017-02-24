@@ -6,18 +6,16 @@ namespace Nutshell.Aspects.Locations.Propertys
 {
 	[Serializable]
 	[AttributeUsage(AttributeTargets.Property)]
-	public sealed class WillNotifyPropertyChangedAttribute : LocationInterceptionAspect
+	public class NotifyPropertyValueChangedAttribute : DirectReturnIfNewValueEqualCurrentValueAttribute
 	{
-		public override void OnSetValue(LocationInterceptionArgs args)
+		public sealed override void OnSetValue(LocationInterceptionArgs args)
 		{
-			//Trace.WriteLine("args.Value : "  + args.Value);
-			//Trace.WriteLine("args.GetCurrentValue : " +  args.GetCurrentValue());
-			if (Equals(args.Value, args.GetCurrentValue()))
+			base.OnSetValue(args);
+
+			if (!IsSetSuccessed)
 			{
 				return;
 			}
-
-			base.OnSetValue(args);
 
 			var i = args.Instance as NotifyPropertyChangedObject;
 			if (i == null)

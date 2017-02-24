@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using Nutshell.Automation;
 using Nutshell.Components;
+using Nutshell.Extensions;
 using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
 using Nutshell.Logging.KernelLogging;
 
@@ -28,7 +29,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
         public class MachineVisionRuntime:Runtime
         {
                 protected MachineVisionRuntime()
-                        :base(null,"海康威视机器视觉摄像机运行环境")
+                        :base("海康威视机器视觉摄像机运行环境")
                 {
                         
                 }
@@ -38,7 +39,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
                 /// <summary>
                 ///         单例
                 /// </summary>
-                public static readonly MachineVisionRuntime Itance = new MachineVisionRuntime();
+                public static readonly MachineVisionRuntime Instance = new MachineVisionRuntime();
 
                 #endregion
 
@@ -46,40 +47,7 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
 
                 #region 方法
 
-                protected override bool Start()
-                {
-                        if (DeviceInfos != null)
-                        {
-                                return true;
-                        }
-
-                        var deviceInfoList = new MVDeviceInformationList();
-                        var errorCode = MVOfficialAPI.EnumDevices(MVDeviceType.GigeDevice, ref deviceInfoList);
-
-                        if (errorCode != MVErrorCode.MV_OK)
-                        {
-                                this.WarnFail("摄像机枚举", errorCode);
-                                return false;
-                        }
-
-                        var deviceInfos = new List<MVDeviceInformation>();
-
-                        var deviceInfoType = typeof(MVDeviceInformation);
-                        foreach (var deviceInfoPtr in deviceInfoList.DeviceInfoPtrs)
-                        {
-                                if (deviceInfoPtr != IntPtr.Zero)
-                                {
-                                        var di = (MVDeviceInformation)Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
-                                        deviceInfos.Add(di);
-
-                                        this.Info("检测到摄像机：IP" + di.GigeDeviceInfo.GetCurrentIpAddress());
-                                }
-                        }
-
-                        DeviceInfos = new ReadOnlyCollection<MVDeviceInformation>(deviceInfos);
-                        
-                        return true;
-                }
+                
 
                 protected override bool Stop()
                 {

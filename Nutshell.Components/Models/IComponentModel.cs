@@ -16,7 +16,7 @@ namespace Nutshell.Components.Models
         /// <summary>
         ///         组件数据模型接口
         /// </summary>
-        public interface IComponentObjectModel : IRunableObjectModel
+        public interface IComponentModel : IRunableObjectModel
 	{
         }
 }

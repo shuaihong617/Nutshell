@@ -11,6 +11,9 @@
 // </summary>
 // ***********************************************************************
 
+using System;
+using Nutshell.Aspects.Locations.Contracts;
+
 namespace Nutshell.Data.Models
 {
         /// <summary>
@@ -18,5 +21,39 @@ namespace Nutshell.Data.Models
         /// </summary>
         public interface IApplicationModel : IDataModel
         {
-        }
+		/// <summary>
+		/// 获取或设置应用程序名称
+		/// </summary>
+		/// <value>应用程序名称</value>
+		[MustNotEqualNullOrEmpty]
+		string Name { get; set; }
+
+		/// <summary>
+		/// 获取或设置版本
+		/// </summary>
+		/// <value>版本</value>
+		[MustNotEqualNullOrEmpty]
+		string Version { get; set; }
+
+		/// <summary>
+		/// 获取或设置应用程序标题
+		/// </summary>
+		/// <value>应用程序标题</value>
+		[MustNotEqualNullOrEmpty]
+		string Title { get; set; }
+
+		/// <summary>
+		/// 获取或设置公司
+		/// </summary>
+		/// <value>公司</value>
+		[MustNotEqualNullOrEmpty]
+		string Company { get; set; }
+
+		/// <summary>
+		/// 获取或设置版权信息
+		/// </summary>
+		/// <value>版权信息</value>
+		[MustNotEqualNullOrEmpty]
+		string CopyRight { get; set; }
+	}
 }

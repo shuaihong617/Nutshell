@@ -30,15 +30,20 @@ namespace Nutshell.Speech.Microsoft
                 /// <summary>
                 ///         数据缓存上下文私有构造函数
                 /// </summary>
-                public MicrosoftSynthesisRuntime(IIdentityObject parent)
+                private MicrosoftSynthesisRuntime()
                         : base( "微软语音合成运行环境")
                 {
                         DispatchWorker = new MicrosoftSynthesisRuntimeDispatchWorker(this);
                 }
 
-                #endregion 构造函数
+		#endregion 构造函数
 
-                #region 属性
+		#region 属性
+
+		/// <summary>
+		/// 单例
+		/// </summary>
+		public static  readonly MicrosoftSynthesisRuntime Instance = new MicrosoftSynthesisRuntime();
 
                 [MustNotEqualNull]
                 public ReadOnlyCollection<InstalledVoice> ChineseVoices { get; private set; }

@@ -6,7 +6,7 @@ using PostSharp.Reflection;
 
 namespace Nutshell.Data.Aspects.Locations.Contracts
 {
-        public class MustModelIdNotEqualNullOrEmptyAttribute : MustNotEqualNullAttribute,ILocationValidationAspect<IDataModel>
+        public class MustSetModelIdNotEqualNullOrEmptyAttribute : MustNotEqualNullAttribute,ILocationValidationAspect<IDataModel>
         {
                 protected override string GetErrorMessage()
                 {

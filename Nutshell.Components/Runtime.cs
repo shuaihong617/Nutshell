@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Methods.Contracts;
 
@@ -21,8 +22,7 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Runtime:RunableObject,IRuntime
         {
-                protected Runtime(
-                        [MustNotEqualNullOrEmpty] string id)
+                protected Runtime([MustNotEqualNullOrEmpty] string id)
                         : base( id)
                 {
                 }
@@ -48,12 +48,14 @@ namespace Nutshell.Components
                 [MustReturnNotEqualNull]
                 public virtual IResult Start()
                 {
+			Trace.Assert(DispatchWorker != null);
                         return DispatchWorker.Start(this);
                 }
 
                 [MustReturnNotEqualNull]
                 public virtual IResult Stop()
                 {
+			Trace.Assert(DispatchWorker != null);
 			return DispatchWorker.Stop(this);
                 }
 

@@ -33,12 +33,12 @@ namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// MAC地址高32位
                 /// </summary>
-                public uint MacAddrHigh;
+                public uint MacAddressHigh32Bit;
 
                 /// <summary>
                 /// MAC地址低32位
                 /// </summary>
-                public uint MacAddrLow;
+                public uint MacAddressLow32Bit;
 
                 /// <summary>
                 /// 设备类型(通过传输层协议区分)

@@ -43,7 +43,7 @@ namespace Nutshell.Automation
 
                 #region 方法
 
-                public void Load([MustNotEqualNull]IIndependentDeviceObjectModel objectModel)
+                public void Load([MustNotEqualNull]IIndependentDeviceModel model)
                 {
                         
                 }
@@ -51,10 +51,10 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
-                /// <param name="objectModel">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save([MustNotEqualNull]IIndependentDeviceObjectModel objectModel)
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                public void Save([MustNotEqualNull]IIndependentDeviceModel model)
                 {
-                        base.Save(objectModel);
+                        base.Save(model);
 
                         
                 }

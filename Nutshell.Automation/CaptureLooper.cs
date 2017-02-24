@@ -37,7 +37,7 @@ namespace Nutshell.Automation
 		{
 		}
 
-		protected sealed override IResult RepeatWork()
+		protected override IResult RepeatWork()
 		{
 			return IsSurvive();
 		}

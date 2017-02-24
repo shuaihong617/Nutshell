@@ -20,7 +20,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         组件接口
         /// </summary>
-        public interface IComponent : IRunableObject,IStorable<IComponentObjectModel>
+        public interface IComponent : IRunableObject,IStorable<IComponentModel>
         {
                 #region 属性
 

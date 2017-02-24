@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
@@ -23,7 +24,9 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class DispatchableComponent : ConnectableComponent, IDispatchableComponent
         {
-                /// <summary>
+	        private IDispatchWorker _dispatchWorker;
+
+	        /// <summary>
                 ///         初始化<see cref="DispatchableComponent" />的新实例.
                 /// </summary>
                 /// <param name="id">The identifier.</param>
@@ -34,12 +37,21 @@ namespace Nutshell.Components
 
                 #region 属性
 
-                [MustNotEqualNull]
-		[WillSetParentToThis]
-		[OnlySetNotEquelNullOnce]
-		public IDispatchWorker DispatchWorker { get; set; }
+	        [MustNotEqualNull]
+	        [NotifyPropertyValueChanged]
+	        public IDispatchWorker DispatchWorker
+	        {
+		        get { return _dispatchWorker; }
+		        set
+		        {
+				Trace.Assert(_dispatchWorker == null);
 
-                #endregion
+			        _dispatchWorker = value;
+			        _dispatchWorker.Parent = this;
+		        }
+	        }
+
+	        #endregion
 
                 /// <summary>
                 ///         Loads the specified model.

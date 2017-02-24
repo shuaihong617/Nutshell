@@ -22,12 +22,12 @@ namespace Nutshell.Hardware.Vision
         public enum IPConfigType
         {
                 /// <summary>
-                /// 未知设备类型，保留意义
+                /// 静态地址
                 /// </summary>
                 Static = 0x00000000,
 
                 /// <summary>
-                /// 千兆以太网设备
+                /// 动态分配
                 /// </summary>
                 DHCP = 0x00000001,
 

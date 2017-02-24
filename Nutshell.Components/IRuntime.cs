@@ -23,7 +23,6 @@ namespace Nutshell.Components
         {
                 #region 属性
 
-                [MustNotEqualNull]
                 IRuntimeInformation RuntimeInformation { get; }
 
 

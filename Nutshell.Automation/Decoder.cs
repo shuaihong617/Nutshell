@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using System;
-using System.Threading;
 using Nutshell.Components;
 using Nutshell.Threading;
 
@@ -24,12 +23,11 @@ namespace Nutshell.Automation
         public class Decoder<T> : Worker where T:IIdentityObject
         {
 		/// <summary>
-		///         初始化<see cref="Decoder" />的新实例.
+		/// 初始化<see cref="Decoder{T}" />的新实例.
 		/// </summary>
-		/// <param name="parent">上级对象</param>
 		/// <param name="id">The key.</param>
 		/// <param name="capturer">The camera.</param>
-		/// <param name="pixelFormat">The pixel format.</param>
+		/// <param name="decodeLooper">The decode looper.</param>
 		public Decoder(string id, CapturableDevice<T> capturer, DecodeLooper<T> decodeLooper)
                         : base( id)
                 {
@@ -53,8 +51,6 @@ namespace Nutshell.Automation
                 ///         图像池
                 /// </summary>
                 public NSReadWritePool<T> Buffers { get; private set; }
-
-                private readonly Looper _looper;
 
                 private T _decodeBitmap;
 

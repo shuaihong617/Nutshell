@@ -11,14 +11,13 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
 using System.Net;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Vision;
+using Nutshell.Automation.Vision.Models;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
 
-namespace Nutshell.Hardware.Vision
+namespace Nutshell.Automation.Vision
 {
         /// <summary>
         /// 网络摄像机
@@ -28,7 +27,6 @@ namespace Nutshell.Hardware.Vision
                 /// <summary>
                 /// 初始化<see cref="NetworkCamera"/>的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="width">宽度</param>
                 /// <param name="height">高度</param>
@@ -46,29 +44,27 @@ namespace Nutshell.Hardware.Vision
                 /// </summary>
                 public IPAddress IPAddress { get; private set; }
 
-                /// <summary>
-                /// 从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                //public override void Load([MustAssignableFrom(typeof(INetworkCameraModel))]IDataModel model)
-                //{
-                //        base.Load(model);
+		/// <summary>
+		/// 从数据模型加载数据
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Load([MustNotEqualNull]INetworkCameraModel model)
+		{
+			base.Load(model);
 
-                //        var gigeCameraModel = model as INetworkCameraModel;
-                //        IPAddress = IPAddress.Parse(gigeCameraModel.IPAddress);
-                //}
+			IPAddress = IPAddress.Parse(model.IPAddress);
+		}
 
 
-                /// <summary>
-                /// 保存数据到数据模型
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                //public override void Save([MustAssignableFrom(typeof(INetworkCameraModel))]IDataModel model)
-                //{
-                //        base.Save(model);
+		/// <summary>
+		/// 保存数据到数据模型
+		/// </summary>
+		/// <param name="model">数据模型</param>
+		public void Save([MustNotEqualNull]INetworkCameraModel model)
+		{
+			base.Save(model);
 
-                //        var gigeCameraModel = model as INetworkCameraModel;
-                //        gigeCameraModel.IPAddress = IPAddress.ToString();
-                //}
-        }
+			model.IPAddress = IPAddress.ToString();
+		}
+	}
 }

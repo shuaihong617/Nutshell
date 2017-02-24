@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Nutshell.Aspects.Locations.Propertys;
+﻿using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
+using Nutshell.Hardware.Vision.Hikvision.MachineVision;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
 
-namespace Nutshell.Speech.Microsoft.WPFUI
+namespace Nutshell.Hikvision.MachineVision.WPFUI
 {
         public class GlobalManager : NotifyPropertyChangedObject
         {
@@ -19,7 +19,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
 
-	                Runtime = MicrosoftSynthesisRuntime.Instance;
+	                Runtime = MachineVisionRuntime.Instance;
                 }
 
                 #endregion
@@ -44,10 +44,10 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 public LogCollecter LogCollecter { get; private set; }
 
                 [NotifyPropertyValueChanged]
-                public MicrosoftSynthesisRuntime Runtime { get; private set; }
+                public MachineVisionRuntime  Runtime { get; private set; }
 
                 [NotifyPropertyValueChanged]
-                public MicrosoftSynthesizer Synthesizer { get; private set; }
+                public MachineVisionCamera Camera { get; private set; }
 
 
                 public void LoadApplication()
@@ -61,17 +61,13 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         Runtime.Parent = Application;
                         Runtime.Start();
 
-			Synthesizer = new MicrosoftSynthesizer();
-	                Synthesizer.Parent = Runtime;
-
-	                Synthesizer.SelectVoice(Runtime.ChineseVoices.First().VoiceInfo.Name);
+			Camera = new MachineVisionCamera();
                 }
 
 
                 public void Stop()
                 {
-			
-			//Runtime.Stop();
+			Runtime.Stop();
                 }
         }
 }

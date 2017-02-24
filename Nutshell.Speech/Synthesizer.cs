@@ -41,7 +41,7 @@ namespace Nutshell.Speech
 		/// Gets or sets the language.
 		/// </summary>
 		/// <value>The language.</value>
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public Language Language { get; protected set; }
 
 		/// <summary>
@@ -49,7 +49,7 @@ namespace Nutshell.Speech
 		/// </summary>
 		/// <value>The voice.</value>
 		[MustNotEqualNullOrEmpty]
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public string Voice { get; protected set; }
 
 		/// <summary>
@@ -57,14 +57,14 @@ namespace Nutshell.Speech
 		/// </summary>
 		/// <value>The volume.</value>
 		[MustBetweenOrEqual(0,100)]
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
 	        public int Volume { get; set; }
 
 		/// <summary>
 		/// Gets or sets the state of the synthesizer.
 		/// </summary>
 		/// <value>The state of the synthesizer.</value>
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public SynthesizerState SynthesizerState { get; protected set; }
 
 		/// <summary>
@@ -77,7 +77,7 @@ namespace Nutshell.Speech
 		/// Gets or sets the output mode.
 		/// </summary>
 		/// <value>The output mode.</value>
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public OutputMode OutputMode { get; set; }
 
 		/// <summary>

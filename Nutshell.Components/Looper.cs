@@ -61,7 +61,7 @@ namespace Nutshell.Components
                 /// 获取循环调度线程优先级
                 /// </summary>
                 /// <value>循环调度线程优先级</value>
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public ThreadPriority Priority { get; private set; }
 
                 /// <summary>
@@ -69,7 +69,7 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <value>循环调度间隔事件</value>
                 [MustGreaterThanOrEqual(0)]
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public int Interval { get; set; }
 
                 public void Load([MustNotEqualNull]ILooperModel model)

@@ -46,27 +46,29 @@ namespace Nutshell
                 /// </summary>
                 private IIdentityObject _parent;
 
-                #endregion
+		#endregion
 
-                /// <summary>
-                ///         标识
-                /// </summary>
-                [WillNotifyPropertyChanged]
-                [MustNotEqualNullOrEmpty]
+		/// <summary>
+		///         标识
+		/// </summary>
+		[MustNotEqualNullOrEmpty]
+		[NotifyPropertyValueChanged]
                 public string Id
                 {
                         get { return _id; }
-                        set
+                        protected set
                         {
                                 _id = value;
                                 UpdateGlobalId();
+
+
                         }
                 }
 
                 /// <summary>
                 ///         全局标识
                 /// </summary>
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 [MustNotEqualNullOrEmpty]
                 public string GlobalId { get; private set; }
 
@@ -79,11 +81,8 @@ namespace Nutshell
                         get { return _parent; }
                         set
                         {
-				Debug.Assert(value != null);
-                                if (Parent != null)
-                                {
-                                        throw new InvalidOperationException("上级对象已存在，不允许重复赋值。");
-                                }
+				Trace.Assert(value != null);
+				Trace.Assert(_parent == null);
 
                                 _parent = value;
 				_parent.GlobalIdChanged += (o, a) => UpdateGlobalId();

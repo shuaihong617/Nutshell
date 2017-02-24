@@ -52,10 +52,10 @@ namespace Nutshell.Automation.Opc
 
 		public int ClientHandle { get; private set; }
 
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public object Value { get; private set; }
 
-		[WillNotifyPropertyChanged]
+		[NotifyPropertyValueChanged]
 		public DateTime UpdateTime { get; private set; }
 
 		/// <summary>

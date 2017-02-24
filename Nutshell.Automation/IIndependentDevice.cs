@@ -21,7 +21,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         非调度设备接口
         /// </summary>
-        public interface IIndependentDevice : IComponent, IStorable<IIndependentDeviceObjectModel>
+        public interface IIndependentDevice : IComponent, IStorable<IIndependentDeviceModel>
         {
                 #region 属性
 

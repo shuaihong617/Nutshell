@@ -39,15 +39,15 @@ namespace Nutshell.Automation.Opc.WPFUI
                 /// </summary>
                 public string ConfigDirectory { get;private set; }
 
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public IApplication Application { get; private set; }
 
                 public LogCollecter LogCollecter { get; private set; }
 
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public OpcRuntime Runtime { get; private set; }
 
-                [WillNotifyPropertyChanged]
+                [NotifyPropertyValueChanged]
                 public OpcServer Server { get; private set; }
 
 

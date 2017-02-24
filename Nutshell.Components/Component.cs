@@ -23,7 +23,7 @@ namespace Nutshell.Components
 	{
 		#region 构造函数
 
-		protected Component(string id = null)
+		protected Component(string id = "")
 			: base(id)
 		{
 		}
@@ -42,7 +42,7 @@ namespace Nutshell.Components
 
 		#region 方法
 
-		public void Load([MustNotEqualNull] IComponentObjectModel model)
+		public void Load([MustNotEqualNull] IComponentModel model)
 		{
 			base.Load(model);
 		}
@@ -51,7 +51,7 @@ namespace Nutshell.Components
 		///         保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-		public void Save([MustNotEqualNull] IComponentObjectModel model)
+		public void Save([MustNotEqualNull] IComponentModel model)
 		{
 			base.Save(model);
 		}

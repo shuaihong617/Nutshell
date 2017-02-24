@@ -12,7 +12,7 @@ namespace Nutshell.Aspects.Locations.Contracts
                 public Exception ValidateValue(object value, string locationName, LocationKind locationKind)
                 {
                         return value == null
-                                ? new ArgumentException(locationKind.ToChineseString() + locationName + "的值不能为空引用")
+                                ? new ArgumentException(locationKind.ToChineseString() + locationName + "的值不能赋值为空引用")
                                 : null;
                 }
         }
