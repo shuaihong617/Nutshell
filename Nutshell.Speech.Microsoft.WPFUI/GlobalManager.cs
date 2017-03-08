@@ -71,7 +71,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 public void Stop()
                 {
 			
-			//Runtime.Stop();
+			Runtime.Stop();
                 }
         }
 }

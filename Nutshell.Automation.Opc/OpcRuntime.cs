@@ -1,43 +1,69 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Opc;
 using Nutshell.Components;
+using OPCAutomation;
 
 namespace Nutshell.Automation.Opc
 {
 	public class OpcRuntime : Runtime
 	{
-		public OpcRuntime(IIdentityObject parent)
+		private OpcRuntime()
 			: base( "Opc运行环境")
 		{
 			InstalledOpcServers = new ReadOnlyCollection<InstalledOpcServer>(new List<InstalledOpcServer>());
-			DispatchWorker = new OpcRuntimeDispatchWorker(this);
 		}
 
+
+		#region 属性
+
+		/// <summary>
+		///         单例
+		/// </summary>
+		public static readonly OpcRuntime Instance = new OpcRuntime();
 
 		[MustNotEqualNull]
 		public ReadOnlyCollection<InstalledOpcServer> InstalledOpcServers { get; private set; }
 
+		#endregion
+
 		/// <summary>
-		///         Starts this instance.
+		///         执行启动过程的具体步骤.
 		/// </summary>
-		public override sealed IResult Start()
+		/// <returns>成功返回True, 否则返回False.</returns>
+		/// <remarks>
+		///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
+		/// </remarks>
+		protected override Result StartCore()
 		{
-			var baseResult = base.Start();
+			var baseResult = base.StartCore();
 			if (!baseResult.IsSuccessed)
 			{
 				return baseResult;
 			}
 
-			var opcResult = baseResult as OpcRuntimeDispatchResult;
-			Trace.Assert(opcResult != null);
+			var server = new OPCServer();
 
-			InstalledOpcServers = opcResult.InstalledOpcServers;
-			RuntimeInformation = new RuntimeInformation(opcResult.OpcVersion);
+			//此处必须为object类型，使用var自动推导将导致后续转换失败
+			object addresses = server.GetOPCServers();
 
-			return baseResult;
+			var addressList = ((Array)addresses).Cast<string>().ToList();
+			List<InstalledOpcServer> installedOpcServers = new List<InstalledOpcServer>(addressList.Count);
+
+			foreach (var address in addressList)
+			{
+				InstalledOpcServer installedOpcServer = new InstalledOpcServer(address);
+				installedOpcServer.Parent = this;
+				installedOpcServers.Add(installedOpcServer);
+			}
+
+			InstalledOpcServers = installedOpcServers.ToReadOnlyCollection();
+
+			return Result.Successed;
+
 		}
 	}
 }

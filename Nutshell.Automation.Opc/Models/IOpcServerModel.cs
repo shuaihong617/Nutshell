@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 
+using Nutshell.Automation.Models;
 using Nutshell.Components.Models;
 
 namespace Nutshell.Automation.Opc.Models
@@ -19,7 +20,7 @@ namespace Nutshell.Automation.Opc.Models
 	/// <summary>
 	///         已定义主键的xmlOpc服务器数据模型
 	/// </summary>
-	public interface IOpcServerModel : IDispatchableComponentModel
+	public interface IOpcServerModel : IDispatchableDeviceModel
 	{
 		/// <summary>
 		///         地址

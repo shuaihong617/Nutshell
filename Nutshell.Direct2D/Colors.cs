@@ -13,7 +13,7 @@
 
 using SharpDX.Mathematics.Interop;
 
-namespace Nutshell.Presentation.Direct2D
+namespace Nutshell.Direct2D
 {
         /// <summary>
         ///  预定义颜色

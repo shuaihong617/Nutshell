@@ -15,17 +15,12 @@ namespace Nutshell.Aspects.Locations.Contracts
 
                 private readonly int _intCompare;
 
-                protected override string GetErrorMessage()
-                {
-                        return "Value {2} must have a non-zero value.";
-                }
-
                 public Exception ValidateValue(int value, string name, LocationKind locationKind)
                 {
-                        if (value <= _intCompare)
-                                return CreateArgumentOutOfRangeException(value, name, locationKind);
-                        return null;
-                }
+			return value >= _intCompare
+				? null
+				: new ArgumentException(locationKind.ToChineseString() + name + "的值必须大于或等于" + _intCompare);
+		}
 
                 
         }

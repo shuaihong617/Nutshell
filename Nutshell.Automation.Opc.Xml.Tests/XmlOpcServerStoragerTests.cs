@@ -17,7 +17,10 @@ namespace Nutshell.Automation.Opc.Xml.Tests
                 public void LoadTest()
                 {
 			Application application = new Application("Opc测试程序");
-			OpcServer opcServer = new OpcServer(application);
+
+			OpcServer opcServer = new OpcServer();
+	                opcServer.Parent = application;
+
                         XmlOpcServerStorager.Instance.Load(opcServer, "server.config");
                 }
 

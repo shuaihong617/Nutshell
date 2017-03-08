@@ -14,48 +14,35 @@
 namespace Nutshell
 {
 	/// <summary>
-	/// 表示操作的结果.
+	/// 封装操作结果.
 	/// </summary>
-	public class Result:IResult
+	public class Result
         {
 		/// <summary>
 		/// 初始化<see cref="Result" />的新实例.
 		/// </summary>
 		/// <param name="isSuccessed">操作是否成功.</param>
-		/// <param name="isHandled">是否已处理完毕</param>
-		public Result(bool isSuccessed, bool isHandled)
+		public Result(bool isSuccessed)
                 {
                         IsSuccessed = isSuccessed;
-			IsHandled = isHandled;
 
                 }
 
 		/// <summary>
 		/// 操作成功.
 		/// </summary>
-		public static readonly Result Successed = new Result(true, false);
+		public static readonly Result Successed = new Result(true);
 
-		/// <summary>
-		/// 操作成功并且后续流程不用继续处理.
-		/// </summary>
-		public static readonly Result SuccessedAndHandled = new Result(true, true);
 
 		/// <summary>
 		/// 操作失败.
 		/// </summary>
-		public static readonly Result Failed = new Result(false, false);
+		public static readonly Result Failed = new Result(false);
 
 		/// <summary>
 		/// 获取操作成功或失败
 		/// </summary>
 		/// <value>操作成功返回True,否则返回False.</value>
 		public bool IsSuccessed { get; private set; }
-
-		/// <summary>
-		/// 获取操作是否已处理完毕
-		/// </summary>
-		/// <value>操作是否已处理完毕</value>
-		/// <remarks>操作已处理完毕，代表后续流程（例如：后续重载函数）将不用继续处理</remarks>
-		public bool IsHandled { get; private set; }
 	}
 }

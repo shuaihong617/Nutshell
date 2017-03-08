@@ -1,23 +1,20 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
 using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
 
-namespace Nutshell.Presentation.Direct2D.WinForm
+namespace Nutshell.Direct2D.WinForm
 {
         public abstract class CycleRenderer : Worker
         {
-                protected CycleRenderer(string id = null, BitmapSence sence = null)
+                protected CycleRenderer(string id = "", [MustNotEqualNull]BitmapSence sence = null)
                         : base( id)
                 {
-                        if (sence == null)
-                        {
-                                throw new ArgumentException("渲染场景不能为null");
-                        }
                         Sence = sence;
-
-                        _renderLooper = new Looper(this, "显示循环", ThreadPriority.Highest,5, Render);
+                        _renderLooper = new Looper("显示循环", ThreadPriority.Highest,15, Render);
                 }
 
                 protected BitmapSence Sence { get;private set; }
@@ -28,24 +25,22 @@ namespace Nutshell.Presentation.Direct2D.WinForm
 
                 private bool _isRendering;
 
-                protected override bool Start()
+                protected override Result StartCore()
                 {
-			throw new NotImplementedException();
-                        //return _renderLooper.Start();
+                        return _renderLooper.Start();
                 }
 
-                protected override bool Stop()
+                protected override Result StopCore()
                 {
-			throw new NotImplementedException();
-			//return _renderLooper.Stop();
+			return _renderLooper.Stop();
                 }
 
 
-                protected virtual void Render()
+                protected virtual Result Render()
                 {
                         if (_isRendering)
                         {
-                                return;
+                                return Result.Failed;
                         }
 
                         _isRendering = true;
@@ -54,6 +49,8 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         Sence.Render();
 
                         _isRendering = false;
+
+			return Result.Successed;
                 }
         }
 }

@@ -10,12 +10,12 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         ///         刻度
         /// </summary>
-        public class Scale : StorableObject, IHitTest
+        public class Scale : StorableObject, IHitable
         {
-                public Scale(string id = null)
+                public Scale(string id = "")
                         : base( id)
                 {
-                        Segment = new Segment(this);
+                        Segment = new Segment();
                 }
 
                 public Segment Segment { get;private set; }

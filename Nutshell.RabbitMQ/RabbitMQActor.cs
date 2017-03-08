@@ -8,7 +8,7 @@ namespace Nutshell.RabbitMQ
 {
 	public abstract class RabbitMQActor : Worker, IActor
 	{
-		protected RabbitMQActor(string id = null)
+		protected RabbitMQActor(string id = "")
 			: base( id)
 		{
 		}
@@ -29,7 +29,7 @@ namespace Nutshell.RabbitMQ
 			throw new System.NotImplementedException();
 		}
 
-		protected override IResult Starup(IRunableObject runableObject)
+		protected override Result StartCore(ContextBase contextBase)
 		{
 			//_factory = new ConnectionFactory
 			//{
@@ -57,7 +57,7 @@ namespace Nutshell.RabbitMQ
                         throw new NotImplementedException();
 		}
 
-		protected override IResult Clean(IRunableObject runableObject)
+		protected override Result StopCore(ContextBase contextBase)
 		{
 			//Channel.Close();
 			//Channel.Dispose();

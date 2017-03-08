@@ -7,8 +7,8 @@
     <ProjectGuid>{0A1BDCD2-A1E5-4239-9954-7540D789E8C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Presentation.Direct2D.WinForm</RootNamespace>
-    <AssemblyName>Nutshell.Presentation.Direct2D.WinForm</AssemblyName>
+    <RootNamespace>Nutshell.Direct2D.WinForm</RootNamespace>
+    <AssemblyName>Nutshell.Direct2D.WinForm</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>
@@ -118,7 +118,6 @@
   <ItemGroup>
     <Compile Include="BitmapSence.cs" />
     <Compile Include="CycleRenderer.cs" />
-    <Compile Include="NSSwapTimeStamp.cs" />
     <Compile Include="Sence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

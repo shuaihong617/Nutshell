@@ -1,0 +1,47 @@
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Nutshell.Hikvision.MachineVision.Xml;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Nutshell.Components;
+using Nutshell.Drawing.Imaging;
+
+namespace Nutshell.Hikvision.MachineVision.Xml.Tests
+{
+	[TestClass()]
+	public class XmlMachineVisionCameraStoragerTests
+	{
+		[TestMethod()]
+		public void LoadTest()
+		{
+			var camera = XmlMachineVisionCameraStorager.Instance.Load(@"配置/LoadTestCamera.config");
+
+			Assert.AreEqual(camera.Id,"1车液位摄像机");
+			Assert.AreEqual(camera.IsEnable, true);
+			Assert.AreEqual(camera.RunMode, RunMode.Debug);
+			Assert.AreEqual(camera.IPAddress, IPAddress.Parse("192.168.1.60"));
+			Assert.AreEqual(camera.Width, 640);
+			Assert.AreEqual(camera.Height, 480);
+			Assert.AreEqual(camera.PixelFormat, PixelFormat.Mono8);
+
+			Assert.AreEqual(camera.ManufacturingInformation.Manufacturer, "Hikvision");
+			Assert.AreEqual(camera.ManufacturingInformation.Model, "MV-CA060-30GM");
+
+			Assert.AreEqual(camera.Region.Id, "有效区域");
+			Assert.AreEqual(camera.Region.X, 40);
+			Assert.AreEqual(camera.Region.Y, 140);
+			Assert.AreEqual(camera.Region.Width, 320);
+			Assert.AreEqual(camera.Region.Height, 180);
+
+			Assert.AreEqual(camera.CaptureLooper.Id, "采集循环");
+			Assert.AreEqual(camera.CaptureLooper.IsEnable, true);
+			Assert.AreEqual(camera.CaptureLooper.RunMode, RunMode.Release);
+			Assert.AreEqual(camera.CaptureLooper.Priority, ThreadPriority.Highest);
+			Assert.AreEqual(camera.CaptureLooper.Interval, 15);
+		}
+	}
+}

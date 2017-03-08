@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System.Threading;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Components.Models
 {

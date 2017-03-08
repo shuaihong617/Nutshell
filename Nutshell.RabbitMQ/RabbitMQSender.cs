@@ -28,7 +28,7 @@ namespace Nutshell.RabbitMQ
 		/// </summary>
 		/// <param name="parent">The parent.</param>
 		/// <param name="id">The identifier.</param>
-		public RabbitMQSender(string id = null)
+		public RabbitMQSender(string id = "")
 			: base( id)
 		{
 		}

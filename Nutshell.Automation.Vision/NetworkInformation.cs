@@ -11,11 +11,10 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using System.Net;
 using System.Net.NetworkInformation;
 
-namespace Nutshell.Hardware.Vision
+namespace Nutshell.Automation.Vision
 {
         /// <summary>
         /// 设备信息结构体

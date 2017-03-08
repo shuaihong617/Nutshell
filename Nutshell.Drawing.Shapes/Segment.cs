@@ -29,7 +29,7 @@ namespace Nutshell.Drawing.Shapes
                 /// </summary>
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
-                public Segment(string id = null)
+                public Segment(string id = "")
                         : base( id)
                 {
                 }

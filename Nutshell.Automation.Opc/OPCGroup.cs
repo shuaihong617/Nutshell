@@ -10,19 +10,19 @@ using NativeOpcGroup = OPCAutomation.OPCGroup;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcGroup : StorableObject, IOpcGroup
+        public class OpcGroup : StorableObject, IStorable<IOpcGroupModel>
         {
-                public OpcGroup(string id = "", string address = "", ReadOnlyCollection<IOpcItem> opcItems = null)
+                public OpcGroup(string id = "", string address = "", ReadOnlyCollection<OpcItem> opcItems = null)
                         : base( id)
                 {
 	                Address = address;
 
-	                OpcItems = opcItems ?? new ReadOnlyCollection<IOpcItem>(new List<IOpcItem>());
+	                OpcItems = opcItems ?? new ReadOnlyCollection<OpcItem>(new List<OpcItem>());
                 }
 
 	        #region 字段
 
-                private readonly Dictionary<int, IOpcItem> _opcItemsLookupTable = new Dictionary<int, IOpcItem>();
+                private readonly Dictionary<int, OpcItem> _opcItemsLookupTable = new Dictionary<int, OpcItem>();
 
                 private NativeOpcGroup _group;
 
@@ -32,7 +32,7 @@ namespace Nutshell.Automation.Opc
 
                 public string Address { get; private set; }
 
-                public ReadOnlyCollection<IOpcItem> OpcItems { get; private set; }
+                public ReadOnlyCollection<OpcItem> OpcItems { get; private set; }
 
                 #endregion
 
@@ -45,7 +45,7 @@ namespace Nutshell.Automation.Opc
 
                 public void Load(IEnumerable<IOpcItemModel> itemModels)
                 {
-			var items = new List<IOpcItem>();
+			var items = new List<OpcItem>();
                         foreach (var itemModel in itemModels)
                         {
                                 var item = new OpcItem();

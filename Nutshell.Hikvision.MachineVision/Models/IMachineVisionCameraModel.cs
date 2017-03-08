@@ -14,7 +14,7 @@
 using System.Xml.Serialization;
 using Nutshell.Automation.Vision.Models;
 
-namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.Models
+namespace Nutshell.Hikvision.MachineVision.Models
 {
         /// <summary>
         ///         AVT网络摄像机数据模型

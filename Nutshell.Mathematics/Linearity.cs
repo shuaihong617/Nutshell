@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using Nutshell.Data;
 using Nutshell.Data.Models;
+using Nutshell.Extensions;
 using Nutshell.Mathematics.Models;
 
 namespace Nutshell.Mathematics

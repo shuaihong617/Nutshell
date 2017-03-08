@@ -13,100 +13,220 @@
 
 
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading;
+using System.Net;
 using Nutshell.Automation.Vision;
-using Nutshell.Components;
-using Nutshell.Data.Models;
+using Nutshell.Data;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Extensions;
-using Nutshell.Hardware.Vision.Hikvision.MachineVision.Models;
-using Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK;
-using Nutshell.Logging.KernelLogging;
+using Nutshell.Hikvision.MachineVision.Models;
+using Nutshell.Hikvision.MachineVision.SDK;
 
-namespace Nutshell.Hardware.Vision.Hikvision.MachineVision
+namespace Nutshell.Hikvision.MachineVision
 {
-        /// <summary>
-        ///         海康威视机器视觉摄像机
-        /// </summary>
-        public class MachineVisionCamera : NetworkCamera
-        {
-                public MachineVisionCamera(string id = null, string ipAddress = "192.168.1.1")
-                        : base( id, 1280, 960, Drawing.Imaging.PixelFormat.Rgb24, ipAddress)
-                {
-                        //_captureLooper = new Looper(this, "采集循环",ThreadPriority.Highest,20,Capture);
+	/// <summary>
+	///         海康威视机器视觉摄像机
+	/// </summary>
+	public class MachineVisionCamera : NetworkCamera, IStorable<IMachineVisionCameraModel>
+	{
+		public MachineVisionCamera(string id = "", string ipAddress = "0.0.0.0")
+			: base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
+		{
+		}
 
-                        _exceptionCallback = ExceptionCallBack;
-                }
+		#region 常量
 
-                #region 常量
+		#endregion
 
-                #endregion
+		#region 字段
 
-                #region 字段
+		/// <summary>
+		///         播放通道
+		/// </summary>
+		private IntPtr _handle = IntPtr.Zero;
 
-                /// <summary>
-                ///         播放通道
-                /// </summary>
-                private IntPtr _handle;
+		private DeviceInformation _deviceInformation;
 
-                private MVDeviceInformation _deviceInfo;
+		private FrameOutInformation _frameOutInformation;
+
+		#endregion
+
+		#region 方法
+
+		#region 存储
+
+		/// <summary>
+		///         从数据模型加载数据
+		/// </summary>
+		/// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
+		public void Load(IMachineVisionCameraModel model)
+		{
+			base.Load(model);
+		}
+
+		/// <summary>
+		///         保存数据到数据模型
+		/// </summary>
+		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+		public void Save(IMachineVisionCameraModel model)
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
+
+		protected override sealed Result StartConnectCore()
+		{
+			var baseResult = base.StartConnectCore();
+			if (!baseResult.IsSuccessed)
+			{
+				return baseResult;
+			}
+
+			Debug.Assert(!Equals(IPAddress, IPAddress.Any));
+
+			var installedMachineVisionCamera = MachineVisionRuntime.Instance.InstalledMachineVisionCameras.FirstOrDefault(
+				i => Equals(i.IPAddress, IPAddress));
+
+			if (installedMachineVisionCamera == null)
+			{
+				this.WarnFail("获取摄像机", "未检测到摄像机");
+				return Result.Failed;
+			}
+
+			_deviceInformation = installedMachineVisionCamera.DeviceInformation;
+
+			Debug.Assert(_handle == IntPtr.Zero);
+
+			var error = OfficialApi.CreateHandle(ref _handle, ref _deviceInformation);
+			if (error != ErrorCode.MV_OK)
+			{
+				this.WarnFail("创建句柄", error);
+				return Result.Failed;
+			}
+			this.InfoSuccess("创建句柄");
+
+			//if (!MVOfficialAPI.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
+			//{
+			//	this.WarnFail("RegisterExceptionCallBack", mvError);
+			//	return Result.Failed;
+			//}
 
 
-                /// <summary>
-                ///         图像缓冲区指针
-                /// </summary>
-                private IntPtr _captureBufferPtr = IntPtr.Zero;
+			error = OfficialApi.OpenDevice(_handle, AccessMode.控制权限);
+			if (error != ErrorCode.MV_OK)
+			{
+				this.WarnFail("OpenDevice", error);
+				return Result.Failed;
+			}
+			this.InfoSuccess("OpenDevice");
 
-                /// <summary>
-                ///         预备采集图像字节计数
-                /// </summary>
-                private const int CaptureBufferBytesCount = 1024*1024*24;
+			return Result.Successed;
+		}
+
+		protected override sealed Result StopConnectCore()
+		{
+			Debug.Assert(_handle != IntPtr.Zero);
+
+			var error = OfficialApi.CloseDevice(_handle);
+			if (error != ErrorCode.MV_OK)
+			{
+				this.WarnFail("CloseDevice", error);
+				return Result.Failed;
+			}
+			this.InfoSuccess("CloseDevice");
+
+			error = OfficialApi.DestroyHandle(_handle);
+			if (error != ErrorCode.MV_OK)
+			{
+				this.WarnFail("DestroyHandle", error);
+				return Result.Failed;
+			}
+			this.InfoSuccess("DestroyHandle");
+
+			_handle = IntPtr.Zero;
+
+			return base.StopConnectCore();
+		}
+
+		public bool IsAccessible()
+		{
+			return OfficialApi.IsDeviceAccessible(_handle, ref _deviceInformation, AccessMode.独占权限);
+		}
+
+		protected override sealed Result StartDispatchCore()
+		{
+			var baseResult = base.StartDispatchCore();
+			if (!baseResult.IsSuccessed)
+			{
+				return baseResult;
+			}
+
+			Debug.Assert(_handle != IntPtr.Zero);
+
+			var error = OfficialApi.StartGrabbing(_handle);
+			if (error != ErrorCode.MV_OK)
+			{
+				this.WarnFail("StartGrabbing", error);
+				return Result.Failed;
+			}
+			this.InfoSuccess("StartGrabbing");
+
+			return Result.Successed;
+		}
+
+		protected override sealed Result StopDispatchCore()
+		{
+			Debug.Assert(_handle != IntPtr.Zero);
+
+			OfficialApi.StopGrabbing(_handle);
+
+			return base.StopDispatchCore();
+		}
+
+		protected override sealed ValueResult<Bitmap> CaptureCore()
+		{
+			var bitmap = Pool.WriteLock();
+
+			var error = OfficialApi.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
+				ref _frameOutInformation);
+
+			if (error != ErrorCode.MV_OK)
+			{
+				switch (error)
+				{
+					case ErrorCode.MV_E_BUFOVER:
+						this.ErrorFailWithReason("GetOneFrame", error);
+						break;
+
+					case ErrorCode.MV_E_NODATA:
+						break;
+
+					default:
+						this.WarnFail("GetOneFrame", error);
+
+						break;
+				}
+				Pool.WriteUnlock(bitmap);
+				return ValueResult<Bitmap>.Failed;
+			}
+			//this.InfoSuccess("GetOneFrame");
+			Pool.WriteUnlock(bitmap);
+
+			//Debug.WriteLine("BufferLength:" + bitmap.BufferLength);
+			//BitmapStorager.Save(bitmap, DateTime.Now.ToChineseLongFileName() + ".bmp");
+
+			bitmap.TimeStamps["CaptureTime"] = DateTime.Now;
+
+			var result = new ValueResult<Bitmap>(bitmap);
+
+			OnCaptureSuccessed(new ValueEventArgs<Bitmap>(bitmap));
 
 
-                private MVFrameOutInformation _mvFrameOutInfo;
+			return result;
+		}
 
-                private readonly Looper _captureLooper;
-
-                private readonly MVOfficialAPI.ExceptionCallbackFunction _exceptionCallback;
-
-                #endregion
-
-                #region 方法
-
-                public override void Load(IDataModel model)
-                {
-                        base.Load(model);
-
-                        var cameraModel = model as IMachineVisionCameraModel;
-                        Trace.Assert(cameraModel != null);
-                }
-
-                
-
-                private void ExceptionCallBack(MVExceptionType mvExceptionType, IntPtr user)
-                {
-                        this.Info("发生异常");
-                        switch (mvExceptionType)
-                        {
-                                case MVExceptionType.以太网设备断开连接:
-                                        this.Warn("摄像机断开连接");
-
-					throw new NotImplementedException();
-                                        //Stop();
-                                        //Start();
-                                        break;
-                        }
-                }
-
-                public bool IsAccessible()
-                {
-                        return MVOfficialAPI.IsDeviceAccessible(_handle,ref _deviceInfo, AccessMode.独占权限);
-                }
-
-                #endregion
-        }
+		#endregion
+	}
 }

@@ -12,20 +12,24 @@
 // ***********************************************************************
 
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
+using Nutshell.Data;
 
 namespace Nutshell.Components
 {
 	/// <summary>
 	///         组件
 	/// </summary>
-	public abstract class Component : RunableObject, IComponent
+	public abstract class Component : StorableObject, IRunable, IStorable<IComponentModel>
 	{
 		#region 构造函数
 
 		protected Component(string id = "")
 			: base(id)
 		{
+			IsEnable = true;
+			RunMode = RunMode.Release;
 		}
 
 		#endregion
@@ -33,10 +37,18 @@ namespace Nutshell.Components
 		#region 属性
 
 		/// <summary>
-		///         制造信息
+		///         获取是否启用
 		/// </summary>
-		[MustNotEqualNull]
-		public IManufacturingInformation ManufacturingInformation { get; set; }
+		/// <value>是否启用</value>
+		[NotifyPropertyValueChanged]
+		public bool IsEnable { get; private set; }
+
+		/// <summary>
+		///         获取运行模式
+		/// </summary>
+		/// <value>运行模式</value>
+		[NotifyPropertyValueChanged]
+		public RunMode RunMode { get; private set; }
 
 		#endregion
 
@@ -45,6 +57,9 @@ namespace Nutshell.Components
 		public void Load([MustNotEqualNull] IComponentModel model)
 		{
 			base.Load(model);
+
+			IsEnable = model.IsEnable;
+			RunMode = model.RunMode;
 		}
 
 		/// <summary>

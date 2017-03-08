@@ -18,6 +18,8 @@ namespace Nutshell.Automation.Opc.WPFUI
                 {
                         ConfigDirectory = @"配置/";
 
+	                
+
                         LogProvider.Initialize();
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
@@ -40,7 +42,7 @@ namespace Nutshell.Automation.Opc.WPFUI
                 public string ConfigDirectory { get;private set; }
 
                 [NotifyPropertyValueChanged]
-                public IApplication Application { get; private set; }
+                public Application Application { get; private set; }
 
                 public LogCollecter LogCollecter { get; private set; }
 
@@ -59,11 +61,12 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void Start()
                 {
-                        Runtime = new OpcRuntime(Application);
-                        Runtime.Start();
+			Runtime = OpcRuntime.Instance;
+	                Runtime.Parent = Application;
+			Runtime.Start();
 
 			Server = new OpcServer();
-	                Server.Parent = Application;
+	                Server.Parent = Runtime;
 			XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
 		}
 

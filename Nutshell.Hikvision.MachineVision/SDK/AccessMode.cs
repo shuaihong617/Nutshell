@@ -10,7 +10,7 @@
 // <summary>
 // </summary>
 // ***********************************************************************
-namespace Nutshell.Hardware.Vision.Hikvision.MachineVision.SDK
+namespace Nutshell.Hikvision.MachineVision.SDK
 {
         /// <summary>
         /// 访问模式枚举

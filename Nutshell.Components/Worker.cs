@@ -25,9 +25,9 @@ namespace Nutshell.Components
         /// <summary>
         ///         工作者
         /// </summary>
-        public abstract class Worker : StorableObject, IWorker
-        {
-                protected Worker([MustNotEqualNullOrEmpty] string id)
+        public abstract class Worker : Component
+	{
+                protected Worker([MustNotEqualNull] string id)
                         : base(id)
                 {
 			WorkerState = WorkerState.未启动;
@@ -38,64 +38,50 @@ namespace Nutshell.Components
                 /// <summary>
                 ///         线程同步标识
                 /// </summary>
-                private readonly object _syncFlag = new object();
+                private readonly object _lockFlag = new object();
 
-                #endregion
+		#endregion
 
-                #region 属性
+		#region 属性
 
-                /// <summary>
-                ///         获取工作状态
-                /// </summary>
-                /// <value>工作状态</value>
-                [NotifyPropertyValueChanged]
+
+		/// <summary>
+		///         获取工作状态
+		/// </summary>
+		/// <value>工作状态</value>
+		[NotifyPropertyValueChanged]
                 public WorkerState WorkerState { get; private set; }
 
                 #endregion
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Load(IWorkerModel model)
-                {
-                        base.Load(model);
-                }
-
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                /// <returns>成功返回True, 否则返回False</returns>
-                public void Save(IWorkerModel model)
-                {
-                        base.Save(model);
-                }
 
                 /// <summary>
                 ///         启动
                 /// </summary>
                 /// <returns>成功返回True，失败返回False.</returns>
-                public IResult Start(IRunableObject runableObject)
+                public Result Start()
                 {
-                        lock (_syncFlag)
+                        lock (_lockFlag)
                         {
                                 if (WorkerState == WorkerState.已启动)
                                 {
-                                        return Result.SuccessedAndHandled;
+                                        return Result.Successed;
                                 }
 
                                 WorkerState = WorkerState.启动中;
 
-                                if (!runableObject.IsEnable)
+                                if (!IsEnable)
                                 {
-                                        this.Warn("启用状态：否");
+                                        this.Warn("未启用");
 
                                         WorkerState = WorkerState.已停止;
                                         return Result.Failed;
                                 }
 
-                                return Starup(runableObject);
+                                var result = StartCore();
+	                        WorkerState = result.IsSuccessed ? WorkerState.已启动 : WorkerState.已停止;
+
+	                        return result;
                         }
                 }
 
@@ -104,22 +90,29 @@ namespace Nutshell.Components
                 ///         停止
                 /// </summary>
                 /// <returns>成功返回True，失败返回False.</returns>
-                public IResult Stop(IRunableObject runableObject)
+                public Result Stop()
                 {
-                        lock (_syncFlag)
+                        lock (_lockFlag)
                         {
                                 if (WorkerState == WorkerState.已停止)
                                 {
                                         return Result.Successed;
                                 }
 
-                                if (!runableObject.IsEnable)
+				WorkerState = WorkerState.停止中;
+
+				if (!IsEnable)
                                 {
                                         this.Warn("启用状态：否");
+
 	                                return Result.Failed;
                                 }
 
-                                return Clean(runableObject);
+				var result = StopCore();
+
+				WorkerState =  WorkerState.已停止;
+
+	                        return result;
                         }
                 }
 
@@ -130,7 +123,7 @@ namespace Nutshell.Components
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected virtual IResult Starup([MustNotEqualNull] IRunableObject runableObject)
+                protected virtual Result StartCore()
 		{
 			return Result.Successed;
 		}
@@ -142,7 +135,7 @@ namespace Nutshell.Components
 		/// <remarks>
 		///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
 		/// </remarks>
-		protected virtual IResult Clean([MustNotEqualNull] IRunableObject runableObject)
+		protected virtual Result StopCore()
 	        {
 		        return Result.Successed;
 	        }

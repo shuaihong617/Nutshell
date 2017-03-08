@@ -11,12 +11,25 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Data.Models;
+
 namespace Nutshell.Components.Models
 {
         /// <summary>
         ///         组件数据模型接口
         /// </summary>
-        public interface IComponentModel : IRunableObjectModel
+        public interface IComponentModel : IDataModel
 	{
-        }
+		/// <summary>
+		/// 获取或设置是否启用
+		/// </summary>
+		/// <value>是否启用</value>
+		bool IsEnable { get; set; }
+
+		///<summary>
+		/// 获取或设置运行模式
+		/// </summary>
+		/// <value>运行模式</value>
+		RunMode RunMode { get; set; }
+	}
 }

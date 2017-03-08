@@ -7,8 +7,8 @@
     <ProjectGuid>{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision</RootNamespace>
-    <AssemblyName>Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision</AssemblyName>
+    <RootNamespace>Nutshell.Direct2D.WinForm.Vision</RootNamespace>
+    <AssemblyName>Nutshell.Direct2D.WinForm.Vision</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>

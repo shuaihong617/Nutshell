@@ -14,12 +14,13 @@
 using System;
 using System.Windows.Forms;
 using Nutshell.Automation.Vision;
-using Nutshell.Hardware.Vision;
+using Nutshell.Direct2D.WinForm;
+using Nutshell.Extensions;
 using SharpDX.Direct2D1;
 using SharpDX.DirectWrite;
 using SharpDX.Mathematics.Interop;
 
-namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
+namespace Nutshell.Direct2D.WinForm.Vision
 {
         /// <summary>
         ///         Class CameraRender.
@@ -29,12 +30,11 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <summary>
                 /// 初始化<see cref="CameraSence" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="camera">The camera.</param>
                 public CameraSence(string id, Control control, Camera camera)
-                        : base( id, control)
+                        : base(id, control)
                 {
                         camera.NotNull();
                         Camera = camera;
@@ -60,18 +60,28 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 protected TextFormat YaHei36Font;
 
-                protected override void Render(RenderTarget target)
+		
+	        private double _processUsedMilliseconds = 0;
+	        private int _nowSecond = 0;
+
+		protected override void Render(RenderTarget target)
                 {              
                         target.DrawText(Camera.Id,YaHei36Font, _cameraIdLocation, RedBrush);
 
-                        var totalMilliseconds = ProcessTimeSpan.TotalMilliseconds;
-                        //target.DrawText(totalMilliseconds.ToString(), YaHei36Font, new RawRectangleF(20, 120, 500, 120), BlueBrush);
+
+                        target.DrawText("PUM = " + _processUsedMilliseconds.ToString("f0"), YaHei36Font, new RawRectangleF(20, 120, 500, 120), BlueBrush);
 
                         var second = DateTime.Now.Second;
-                        if (second % 2 == 0)
+			if (second != _nowSecond)
+			{
+				_processUsedMilliseconds = ProcessTimeSpan.TotalMilliseconds;
+				_nowSecond = second;
+			}
+
+			if (second % 2 == 0)
                         {
-                                target.DrawText(totalMilliseconds < 1500 ? "在线" : "离线", YaHei36Font,
-                                _cameraOnlineLocation, totalMilliseconds < 1500 ? RedBrush : BlueBrush);
+				target.DrawText(_processUsedMilliseconds < 1500 ? "在线" : "离线", YaHei36Font,
+                                _cameraOnlineLocation, _processUsedMilliseconds < 1500 ? RedBrush : BlueBrush);
                         }
 
                         //target.DrawText(totalMilliseconds < 1500 ? "在线" : "离线", YaHei36Font,

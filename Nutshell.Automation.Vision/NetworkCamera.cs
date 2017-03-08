@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using System.Net;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Vision.Models;
@@ -44,27 +45,41 @@ namespace Nutshell.Automation.Vision
                 /// </summary>
                 public IPAddress IPAddress { get; private set; }
 
-		/// <summary>
-		/// 从数据模型加载数据
-		/// </summary>
-		/// <param name="model">数据模型</param>
-		public void Load([MustNotEqualNull]INetworkCameraModel model)
-		{
-			base.Load(model);
+	        #region 方法
 
-			IPAddress = IPAddress.Parse(model.IPAddress);
+	        #region 存储
+
+	        /// <summary>
+	        /// 从数据模型加载数据
+	        /// </summary>
+	        /// <param name="model">数据模型</param>
+	        public void Load([MustNotEqualNull] INetworkCameraModel model)
+	        {
+		        base.Load(model);
+
+		        IPAddress = IPAddress.Parse(model.IPAddress);
+
+			Trace.Assert(!Equals(IPAddress, IPAddress.Any));
+			Trace.Assert(!Equals(IPAddress, IPAddress.None));
+			Trace.Assert(!Equals(IPAddress, IPAddress.Loopback));
 		}
 
 
-		/// <summary>
-		/// 保存数据到数据模型
-		/// </summary>
-		/// <param name="model">数据模型</param>
-		public void Save([MustNotEqualNull]INetworkCameraModel model)
-		{
-			base.Save(model);
+	        /// <summary>
+	        /// 保存数据到数据模型
+	        /// </summary>
+	        /// <param name="model">数据模型</param>
+	        public void Save([MustNotEqualNull] INetworkCameraModel model)
+	        {
+		        base.Save(model);
 
-			model.IPAddress = IPAddress.ToString();
-		}
+		        model.IPAddress = IPAddress.ToString();
+	        }
+
+	        #endregion
+
+
+	        #endregion
+
 	}
 }

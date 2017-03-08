@@ -1,16 +1,18 @@
 ﻿
+using System;
+
 namespace Nutshell.Logging
 {
         public class LogRecord
         {
                 public LogRecord(LogLevel logLevel, string message)
                 {
-                        TimeStampChain = new TimeStampChain();
+                        CreateTime = DateTime.Now;
                         LogLevel = logLevel;
                         Message = message;
                 }
 
-                public TimeStampChain TimeStampChain { get; private set; }
+                public DateTime CreateTime { get; private set; }
 
                 public LogLevel LogLevel { get; private set; }
 
@@ -19,7 +21,7 @@ namespace Nutshell.Logging
 
                 public override string ToString()
                 {
-                        return $"{TimeStampChain.CreateTime.ToChineseLongMillisecondString()}        {LogLevel}        {Message}";
+                        return $"{CreateTime.ToChineseLongMillisecondString()}        {LogLevel}        {Message}";
                 }
         }
 }

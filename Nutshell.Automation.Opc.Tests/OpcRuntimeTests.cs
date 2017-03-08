@@ -18,14 +18,13 @@ namespace Nutshell.Automation.Opc.Tests
                         var runtime = OpcRuntime.Instance;
                         runtime.Start();
 
-                        Trace.WriteLine("驱动版本：" +  runtime.RuntimeInformation.DriverVersion);
 
-                        foreach (var name in runtime.OpcServerNames)
+                        foreach (var installedOpcServer in runtime.InstalledOpcServers)
                         {
-                                Trace.WriteLine("Opc服务器：" + name);
+                                Trace.WriteLine("Opc服务器：" + installedOpcServer);
                         }
 
-                        Assert.AreNotEqual(runtime.OpcServerNames.Count , 0);
+                        Assert.AreNotEqual(runtime.InstalledOpcServers.Count , 0);
                 }
         }
 }

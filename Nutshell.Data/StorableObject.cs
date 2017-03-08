@@ -27,7 +27,7 @@ namespace Nutshell.Data
                 ///         初始化<see cref="StorableObject" />的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
-                public StorableObject(string id = null)
+                public StorableObject(string id = "")
                         : base( id)
                 {
                 }

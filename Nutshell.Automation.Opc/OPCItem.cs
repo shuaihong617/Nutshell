@@ -15,7 +15,7 @@ using NativeOpcItem = OPCAutomation.OPCItem;
 
 namespace Nutshell.Automation.Opc
 {
-	public class OpcItem : StorableObject, IOpcItem
+	public class OpcItem : StorableObject, IStorable<IOpcItemModel>
 	{
 		public OpcItem(string id = "", string address = "",
 			TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)

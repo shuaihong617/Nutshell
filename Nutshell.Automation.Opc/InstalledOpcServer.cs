@@ -23,11 +23,9 @@ namespace Nutshell.Automation.Opc
 		/// <summary>
 		/// 初始化<see cref="InstalledOpcServer"/>的新实例.
 		/// </summary>
-		/// <param name="parent">Opc运行环境.</param>
 		/// <param name="address">OpcServer地址.</param>
-		public InstalledOpcServer([MustNotEqualNull]OpcRuntime parent, 
-                        [MustNotEqualNullOrEmpty]string address)
-                        : base( address)
+		public InstalledOpcServer([MustNotEqualNullOrEmpty]string address)
+                        : base(address)
                 {
                         Address = address;                                
                 }

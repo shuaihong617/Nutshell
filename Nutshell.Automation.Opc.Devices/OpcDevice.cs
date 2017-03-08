@@ -5,7 +5,7 @@ namespace Nutshell.Automation.Opc.Devices
 	/// <summary>
 	///         基于Opc通讯的元器件
 	/// </summary>
-	public abstract class OpcDevice<T> : IndependentDevice where T : struct
+	public abstract class OpcDevice<T> : Device where T : struct
 	{
 		protected OpcDevice(string id, [MustNotEqualNull] OpcItem opcItem)
 			: base( id)

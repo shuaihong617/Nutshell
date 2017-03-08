@@ -14,7 +14,7 @@
 using System;
 using System.Linq;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         对象扩展方法

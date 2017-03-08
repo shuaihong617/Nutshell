@@ -124,7 +124,6 @@
   <ItemGroup>
     <Compile Include="OutputMode.cs" />
     <Compile Include="Synthesizer.cs" />
-    <Compile Include="ISynthesizer.cs" />
     <Compile Include="Models\ISynthesizerModel.cs" />
     <Compile Include="Models\SynthesizerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

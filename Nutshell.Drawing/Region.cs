@@ -23,7 +23,7 @@ namespace Nutshell.Drawing
         /// <summary>
         ///         区域
         /// </summary>
-        public class Region : StorableObject, IHitTest
+        public class Region : StorableObject, IHitable,IStorable<IRegionModel>
         {
                 private int _x;
                 private int _y;
@@ -31,7 +31,6 @@ namespace Nutshell.Drawing
                 /// <summary>
                 /// 初始化<see cref="Region" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="x">The x.</param>
                 /// <param name="y">The y.</param>
@@ -39,8 +38,8 @@ namespace Nutshell.Drawing
                 /// <param name="height">The height.</param>
                 /// <param name="containerWidth">Width of the container.</param>
                 /// <param name="containerHeight">Height of the container.</param>
-                public Region(string id = null, int x = 0, int y = 0, int width = 0, int height = 0,
-                        int containerWidth = 0, int containerHeight = 0)
+                public Region(string id = "", int x = 0, int y = 0, int width = 4, int height = 4,
+                        int containerWidth = 4, int containerHeight = 4)
                         : base( id)
                 {
                         ContainerWidth = containerWidth;
@@ -58,23 +57,18 @@ namespace Nutshell.Drawing
                 /// <summary>
                 ///         目标图像在源图像中水平起始坐标
                 /// </summary>
+                [MustGreaterThanOrEqual(0)]
                 public int X
                 {
                         get { return _x; }
                         set
                         {
-                                if (value < 0)
-                                {
-                                        value = 0;
-                                }
-
                                 if (value + Width > ContainerWidth)
                                 {
                                         value = ContainerWidth - Width;
                                 }
 
                                 _x = value;
-                                OnPropertyChanged();
                         }
                 }
 
@@ -82,47 +76,46 @@ namespace Nutshell.Drawing
                 ///         目标图像在源图像中垂直起始坐标
                 /// </summary>
                 /// <value>The y.</value>
+                [MustGreaterThanOrEqual(0)]
                 public int Y
                 {
                         get { return _y; }
                         set
                         {
-                                if (value < 0)
-                                {
-                                        value = 0;
-                                }
-
                                 if (value + Height > ContainerHeight)
                                 {
                                         value = ContainerHeight - Height;
                                 }
 
                                 _y = value;
-                                OnPropertyChanged();
                         }
                 }
 
                 /// <summary>
                 ///         宽度
                 /// </summary>
+                [MustGreaterThan(0)]
                 public int Width { get; private set; }
 
-                /// <summary>
-                ///         高度
-                /// </summary>
-                public int Height { get; private set; }
+		/// <summary>
+		///         高度
+		/// </summary>
+		[MustGreaterThan(0)]
+		public int Height { get; private set; }
 
-                /// <summary>
-                ///         容器宽度
-                /// </summary>
-                /// <value>The width.</value>
-                public int ContainerWidth { get;  set; }
+		/// <summary>
+		///         容器宽度
+		/// </summary>
+		/// <value>The width.</value>
+		[MustGreaterThan(0)]
+		public int ContainerWidth { get;  set; }
 
-                /// <summary>
-                ///         容器高度
-                /// </summary>
-                /// <value>The height.</value>
-                public int ContainerHeight { get; set; }
+		/// <summary>
+		///         容器高度
+		/// </summary>
+		/// <value>The height.</value>
+		[MustGreaterThan(0)]
+		public int ContainerHeight { get; set; }
 
                 /// <summary>
                 ///         目标图像水平起始坐标
@@ -244,33 +237,28 @@ namespace Nutshell.Drawing
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Load([MustAssignableFrom(typeof(IRegionModel))]IDataModel model)
+                public void Load(IRegionModel model)
                 {
                         base.Load(model);
 
-                        var regionModel = model as IRegionModel;
-
-                        X = regionModel.X;
-                        Y = regionModel.Y;
-                        Width = regionModel.Width;
-                        Height = regionModel.Height;
+                        X = model.X;
+                        Y = model.Y;
+                        Width = model.Width;
+                        Height = model.Height;
                 }
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Save([MustAssignableFrom(typeof(IRegionModel))]IDataModel model)
+                public void Save(IRegionModel model)
                 {
-                        base.Save(model);
+                        base.Save(model);                        
 
-                        var regionModel = model as IRegionModel;
-                        
-
-                        regionModel.X = X;
-                        regionModel.Y = Y;
-                        regionModel.Width = Width;
-                        regionModel.Height = Height;
+                        model.X = X;
+                        model.Y = Y;
+                        model.Width = Width;
+                        model.Height = Height;
                 }
 
                 #endregion

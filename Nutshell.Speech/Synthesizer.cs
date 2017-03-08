@@ -20,15 +20,14 @@ namespace Nutshell.Speech
 	/// <summary>
 	/// 语音合成器
 	/// </summary>
-	public abstract class Synthesizer : Component, ISynthesizer
+	public abstract class Synthesizer : Component
 	{
 		/// <summary>
 		/// 初始化<see cref="Synthesizer"/>的新实例.
 		/// </summary>
-		/// <param name="parent">The parent.</param>
 		/// <param name="id">The identifier.</param>
 		/// <param name="language">The language.</param>
-		protected Synthesizer(string id, Language language = Language.中文)
+		protected Synthesizer(string id = "", Language language = Language.中文)
 			: base( id)
 		{
 			Language = language;
@@ -85,7 +84,7 @@ namespace Nutshell.Speech
 		/// </summary>
 		/// <param name="voice">The voice.</param>
 		/// <returns>IResult.</returns>
-		public abstract IResult SelectVoice(string voice);
+		public abstract Result SelectVoice(string voice);
 
 		/// <summary>
 		/// Synthesizes the asynchronous.
@@ -93,7 +92,7 @@ namespace Nutshell.Speech
 		/// <param name="content">The content.</param>
 		/// <param name="fileName">Name of the file.</param>
 		/// <returns>IResult.</returns>
-		public abstract IResult SynthesizeAsync(string content, string fileName = null);
+		public abstract Result SynthesizeAsync(string content, string fileName = null);
 
 		/// <summary>
 		/// 当合成启动时发生。

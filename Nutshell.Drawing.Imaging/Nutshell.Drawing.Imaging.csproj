@@ -80,6 +80,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bitmap.cs" />
+    <Compile Include="BitmapConverter.cs" />
+    <Compile Include="BitmapStorager.cs" />
     <Compile Include="MSBitmapExtensions.cs" />
     <Compile Include="PixelFormat.cs" />
     <Compile Include="PixelFormatExtensions.cs" />

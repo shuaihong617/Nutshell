@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Nutshell.Hardware.Vision
+namespace Nutshell.Hikvision.MachineVision.SDK
 {
         /// <summary>
         /// 设备类型枚举

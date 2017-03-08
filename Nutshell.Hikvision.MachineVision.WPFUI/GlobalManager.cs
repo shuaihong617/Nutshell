@@ -1,9 +1,13 @@
-﻿using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Data;
+﻿using System.Windows.Forms;
+using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Automation.Vision;
+using Nutshell.Components;
 using Nutshell.Data.Xml;
-using Nutshell.Hardware.Vision.Hikvision.MachineVision;
+using Nutshell.Drawing.Imaging;
+using Nutshell.Hikvision.MachineVision.Xml;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
+using Application = Nutshell.Data.Application;
 
 namespace Nutshell.Hikvision.MachineVision.WPFUI
 {
@@ -19,7 +23,6 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
 
-	                Runtime = MachineVisionRuntime.Instance;
                 }
 
                 #endregion
@@ -43,14 +46,29 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 
                 public LogCollecter LogCollecter { get; private set; }
 
-                [NotifyPropertyValueChanged]
-                public MachineVisionRuntime  Runtime { get; private set; }
+		#region 界面
 
-                [NotifyPropertyValueChanged]
-                public MachineVisionCamera Camera { get; private set; }
+		public Control CameraPictureControl { get; set; }
+
+	        [NotifyPropertyValueChanged]
+		public int Step { get; set; } = 1;
+
+		#endregion
+
+		#region 摄像机
+
+		[NotifyPropertyValueChanged]
+		public MachineVisionRuntime Runtime { get; private set; }
+
+		[NotifyPropertyValueChanged]
+		public MachineVisionCamera Camera { get; private set; }
 
 
-                public void LoadApplication()
+		
+
+		#endregion
+
+		public void LoadApplication()
                 {
                         Application = new Application();
                         XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
@@ -58,15 +76,30 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 
                 public void Start()
                 {
-                        Runtime.Parent = Application;
+			Runtime = MachineVisionRuntime.Instance;
+			Runtime.Parent = Application;
                         Runtime.Start();
 
-			Camera = new MachineVisionCamera();
+			Camera = XmlMachineVisionCameraStorager.Instance.Load(ConfigDirectory + "Camera.config");
+	                Camera.Parent = Application;
+	                
+
+			
+
+			Camera.StartConnect();
+			Camera.StartDispatch();
+			Camera.StartCaptureLoop();
+
+	                
                 }
 
 
                 public void Stop()
                 {
+	                Camera.StopCaptureLoop();
+	                Camera.StopDispatch();
+	                Camera.StopConnect();
+
 			Runtime.Stop();
                 }
         }

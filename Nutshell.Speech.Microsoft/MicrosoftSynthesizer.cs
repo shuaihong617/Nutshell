@@ -80,7 +80,7 @@ namespace Nutshell.Speech.Microsoft
 			//Language = synthesizerModel.Language;
 		}
 
-		public override IResult SynthesizeAsync(string content, string fileName = null)
+		public override Result SynthesizeAsync(string content, string fileName = null)
 		{
 
 			if (fileName == null)
@@ -109,7 +109,7 @@ namespace Nutshell.Speech.Microsoft
 			return Result.Successed;
 		}
 
-		public override IResult SelectVoice(string voice)
+		public override Result SelectVoice(string voice)
 		{
 			try
 			{

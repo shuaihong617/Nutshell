@@ -182,7 +182,6 @@
     <Compile Include="Logging\ILogProvider.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="IdentityObject.cs" />
-    <Compile Include="IResult.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Data\ObservableNullable.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
@@ -191,8 +190,9 @@
     <Compile Include="Collections\IBuffer.cs" />
     <Compile Include="Collections\Buffer.cs" />
     <Compile Include="DisposableObject.cs" />
-    <Compile Include="IIdentityObject.cs" />
+    <Compile Include="IIdentifiable.cs" />
     <Compile Include="Logging\LogRecord.cs" />
+    <Compile Include="Net\MacAddress.cs" />
     <Compile Include="NotifyPropertyChangedObject.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
@@ -206,7 +206,6 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Logging\KernelLogging\NLoger.cs" />
     <Compile Include="ReadWriteMode.cs" />
-    <Compile Include="ExceptionResult.cs" />
     <Compile Include="Threading\IShareObject.cs" />
     <Compile Include="Threading\INSReadWriteObject.cs" />
     <Compile Include="Threading\IMonopolyObject.cs" />
@@ -215,8 +214,7 @@
     <Compile Include="Threading\ShareObject.cs" />
     <Compile Include="Threading\MonopolyObject.cs" />
     <Compile Include="Threading\MonopolyBuffer.cs" />
-    <Compile Include="Threading\NSReadWritePool.cs" />
-    <Compile Include="TimeStampChain.cs" />
+    <Compile Include="Threading\ReadWritePool.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\NullableExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
@@ -224,6 +222,7 @@
     <Compile Include="Extensions\SingleExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="ValueChangedEventArgs.cs" />
+    <Compile Include="ValueResult.cs" />
     <Compile Include="ValueEventArgs.cs" />
     <Compile Include="Result.cs" />
   </ItemGroup>

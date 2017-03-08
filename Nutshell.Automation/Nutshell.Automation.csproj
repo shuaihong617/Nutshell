@@ -160,25 +160,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapturableDevice - 备份.cs" />
-    <Compile Include="DecodeLooper.cs" />
-    <Compile Include="CaptureLooper.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="ConnectableDevice.cs" />
+    <Compile Include="DispatchState.cs" />
+    <Compile Include="ConnectState.cs" />
     <Compile Include="Decoder.cs" />
     <Compile Include="DispatchableDevice.cs" />
-    <Compile Include="IDecodeLooper.cs" />
-    <Compile Include="ICaptureLooper.cs" />
-    <Compile Include="IDispatchableDevice.cs" />
-    <Compile Include="DirectControlDevice - 备份.cs" />
-    <Compile Include="Models\IDecodeLooperModel.cs" />
-    <Compile Include="Models\ICaptureLooperModel.cs" />
-    <Compile Include="Models\IUpgradeableManufacturingInformation.cs" />
-    <Compile Include="UpgradeableManufacturingInformation.cs" />
-    <Compile Include="IUpgradeableManufacturingInformation.cs" />
+    <Compile Include="ManufacturingInformation.cs" />
     <Compile Include="Models\IDispatchableDeviceModel.cs" />
-    <Compile Include="Models\IIndependentDeviceModel.cs" />
+    <Compile Include="Models\ICapturableDeviceModel.cs" />
+    <Compile Include="Models\IConnectableDeviceModel.cs" />
+    <Compile Include="Models\IDeviceModel.cs" />
+    <Compile Include="Models\IManufacturingInformationModel.cs" />
     <Compile Include="CapturableDevice.cs" />
-    <Compile Include="IIndependentDevice.cs" />
-    <Compile Include="UndispatchableDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

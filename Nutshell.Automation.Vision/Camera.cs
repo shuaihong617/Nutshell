@@ -12,6 +12,9 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.Vision.Models;
 using Nutshell.Drawing;
 using Nutshell.Drawing.Imaging;
@@ -27,12 +30,11 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 ///         初始化<see cref="Camera" />的实例
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="width">水平采集分辨率</param>
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
-                protected Camera(string id = null, int width = 2, int height = 2,
+                protected Camera(string id = "", int width = 2, int height = 2,
                         PixelFormat pixelFormat = PixelFormat.Mono8)
                         : base( id)
                 {
@@ -53,55 +55,32 @@ namespace Nutshell.Automation.Vision
 
 		#region 属性
 
-
-		/// <summary>
-		/// 获取像素分辨率.
-		/// </summary>
-		/// <value>像素分辨率.</value>
-		/// <remarks>
-		/// 像素分辨率描述摄像机采集图像时幅面为水平/垂直像素数
-		/// </remarks>
-		public Resolution PixelResolution { get; private set; }
-
-		/// <summary>
-		/// 获取物理分辨率.
-		/// </summary>
-		/// <value>物理分辨率.</value>
-		/// <remarks>
-		/// 物理分辨率描述摄像机采集的图像时水平/垂直1像素代表的实际距离，单位米
-		/// </remarks>
-		public Resolution PhysicalResolution { get; private set; }
-
                 /// <summary>
                 ///         水平采集分辨率, 单位为像素
                 /// </summary>
+                [MustGreaterThan(0)]
+		[NotifyPropertyValueChanged]
                 public int Width
                 {
                         get { return _width; }
                         private set
                         {
-                                value.MustGreaterThan(0);
-
                                 _width = value;
-                                OnPropertyChanged();
-
                                 Region.ContainerWidth = value;
                         }
                 }
 
-                /// <summary>
-                ///         垂直采集分辨率, 单位为像素
-                /// </summary>
-                public int Height
+		/// <summary>
+		///         垂直采集分辨率, 单位为像素
+		/// </summary>
+		[MustGreaterThan(0)]
+		[NotifyPropertyValueChanged]
+		public int Height
                 {
                         get { return _height; }
                         private set
                         {
-                                value.MustGreaterThan(0);
-
                                 _height = value;
-                                OnPropertyChanged();
-
                                 Region.ContainerHeight = value;
                         }
                 }
@@ -120,54 +99,59 @@ namespace Nutshell.Automation.Vision
 
                 #endregion
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name = "model" > 数据模型 </ param >
+	        #region 存储
 
-		public void Load(ICameraModel model)
-		{
-			base.Load(model);
+	        /// <summary>
+	        ///         从数据模型加载数据
+	        /// </summary>
+	        /// <param name = "model" > 数据模型 </ param >
 
-			PixelFormat = model.PixelFormat;
-		}
+	        public void Load(ICameraModel model)
+	        {
+		        base.Load(model);
 
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">数据模型</param>
-		public void Save(ICameraModel model)
-		{
-			base.Save(model);
+		        Width = model.Width;
+		        Height = model.Height;
+		        PixelFormat = model.PixelFormat;
+	        }
 
-			model.PixelFormat = PixelFormat;
-		}
+	        /// <summary>
+	        ///         保存数据到数据模型
+	        /// </summary>
+	        /// <param name="model">数据模型</param>
+	        public void Save(ICameraModel model)
+	        {
+		        base.Save(model);
+
+		        model.Width = Width;
+		        model.Height = Height;
+		        model.PixelFormat = PixelFormat;
+	        }
+
+	        #endregion
+
 
 		/// <summary>
 		///         创建图像缓冲池
 		/// </summary>
-		public override void CreatePool()
-                {
-                        if (Region.Width == 0 || Region.Height == 0)
-                        {
-                                throw new InvalidOperationException();
-                        }
+		protected override ReadWritePool<Bitmap> CreatePool()
+		{
+			Debug.Assert(Region.Width > 0);
+			Debug.Assert(Region.Height > 0);
 
-                        if (Buffers == null)
-                        {
-                                Buffers = new NSReadWritePool<Bitmap>("采集图像缓冲池");
-                                for (var i = 1; i < 5; i++)
-                                {
-					throw new NotImplementedException();
-					//
-					//var bitmap = new Bitmap(Buffers, i + "号缓冲位图", Region.Width, Region.Height,
-     //                                           PixelFormat, new NSCaptureTimeStamp());
-     //                                   Buffers.Add(bitmap);
-                                }
-                        }
-                }
 
-                public void StartSimulate(string filePath)
+			var pool = new ReadWritePool<Bitmap>("采集图像缓冲池");
+			for (var i = 1; i < 5; i++)
+			{
+				var bitmap = new Bitmap(i + "号缓冲位图", Region.Width, Region.Height,PixelFormat);
+				pool.Add(bitmap);
+			}
+			return pool;
+		}
+
+
+
+		public void StartSimulate(string filePath)
                 {
                         //var bitmap = new Bitmap(filePath);
 

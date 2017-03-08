@@ -18,11 +18,11 @@ using System.Threading;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Vision;
 using Nutshell.Components;
+using Nutshell.Direct2D.WinForm;
 using Nutshell.Drawing.Imaging;
-using Nutshell.Hardware.Vision;
 using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 
-namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
+namespace Nutshell.Direct2D.WinForm.Vision
 {
         /// <summary>
         ///         Class CameraRender.
@@ -32,7 +32,6 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
                 /// <summary>
                 ///         初始化<see cref="CameraRenderer" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">The key.</param>
                 /// <param name="decoder">The decoder.</param>
                 /// <param name="sence">The sence.</param>
@@ -45,27 +44,32 @@ namespace Nutshell.Presentation.Direct2D.WinForm.Hardware.Vision
 
                 private readonly CameraDecoder _decoder;
 
-                protected override bool Start()
+                protected override Result StartCore()
                 {
+	                var baseResult = base.StartCore();
+	                if (!baseResult.IsSuccessed)
+	                {
+		                return baseResult;
+	                }
                         _decoder.DecodeFinished += Decoder_DecodeFinished;
-                        return base.Start();
+			return Result.Successed;
                 }
 
                 private void Decoder_DecodeFinished(object sender, ValueEventArgs<Bitmap> e)
                 {
                         var bitmap = e.Value;
 
-                        _decoder.Buffers.ReadLock(bitmap);
-
+                        _decoder.Pool.ReadLock(bitmap);
                         Sence.Swap(e.Value);
 
-                        _decoder.Buffers.ReadUnlock(bitmap);
+                        _decoder.Pool.ReadUnlock(bitmap);
                 }
 
-                protected override bool Stop()
+                protected override Result StopCore()
                 {
                         _decoder.DecodeFinished -= Decoder_DecodeFinished;
-                        return base.Stop();
+
+			return base.StartCore();
                 }
         }
 }

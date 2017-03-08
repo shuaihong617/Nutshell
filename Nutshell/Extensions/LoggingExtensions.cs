@@ -23,53 +23,53 @@ namespace Nutshell.Extensions
         /// </summary>
         public static class LoggingExtensions
         {
-                public static void Debug(this IIdentityObject identityObject, string message)
+                public static void Debug(this IIdentifiable identifiable, string message)
                 {
-                        LogProvider.Instance.Debug(identityObject.GlobalId + message);
+                        LogProvider.Instance.Debug(identifiable.GlobalId + message);
                 }
 
                 
-                public static void Info(this IIdentityObject identityObject, params object[] args)
+                public static void Info(this IIdentifiable identifiable, params object[] args)
                 {
-                        LogProvider.Instance.Info(identityObject.GlobalId + ":" + string.Concat(args));
+                        LogProvider.Instance.Info(identifiable.GlobalId + ":" + string.Concat(args));
                 }
 
-                public static void InfoFormat(this IIdentityObject identityObject, string format, params object[] args)
+                public static void InfoFormat(this IIdentifiable identifiable, string format, params object[] args)
                 {
                         LogProvider.Instance.Info(string.Format(format, args));
                 }
 
-                public static void InfoEvent(this IIdentityObject identityObject, object eventName, object args = null)
+                public static void InfoEvent(this IIdentifiable identifiable, object eventName, object args = null)
                 {
                         if (args == null)
                         {
-                                Info(identityObject, "引发", eventName, "事件.");
+                                Info(identifiable, "引发", eventName, "事件.");
                         }
                         else
                         {
-                                Info(identityObject, "引发", eventName, "事件.", args);
+                                Info(identifiable, "引发", eventName, "事件.", args);
                         }
                 }
 
-                public static void InfoSuccess(this IIdentityObject identityObject, object operation)
+                public static void InfoSuccess(this IIdentifiable identifiable, object operation)
                 {
-                        Info(identityObject, operation, "成功");
+                        Info(identifiable, operation, "成功");
                 }
 
-                public static void InfoSuccessWithDescription(this IIdentityObject identityObject, string operation,
+                public static void InfoSuccessWithDescription(this IIdentifiable identifiable, string operation,
                         object description)
                 {
-                        Info(identityObject, operation, "成功,", description);
+                        Info(identifiable, operation, "成功,", description);
                 }
 
                 
 
-                public static void Warn(this IIdentityObject identityObject, string message)
+                public static void Warn(this IIdentifiable identifiable, string message)
                 {
-                        LogProvider.Instance.Warn(identityObject.GlobalId + message);
+                        LogProvider.Instance.Warn(identifiable.GlobalId + message);
                 }
 
-                public static void WarnFormat(this IIdentityObject identityObject, string format, params object[] args)
+                public static void WarnFormat(this IIdentifiable identifiable, string format, params object[] args)
                 {
                         LogProvider.Instance.Warn(string.Format(format, args));
                 }
@@ -77,53 +77,53 @@ namespace Nutshell.Extensions
                 /// <summary>
                 ///         Warns the specified key.
                 /// </summary>
-                /// <param name="identityObject">The identity object.</param>
+                /// <param name="identifiable">The identity object.</param>
                 /// <param name="operation">The operation.</param>
                 /// <param name="reason">The reason.</param>
-                public static void WarnFail(this IIdentityObject identityObject, object operation,
+                public static void WarnFail(this IIdentifiable identifiable, object operation,
                         object reason = null)
                 {
-                        Warn(identityObject, operation + "失败,错误原因：" + reason ?? "无");
+                        Warn(identifiable, operation + "失败,错误原因：" + reason ?? "无");
                 }
 
-                public static void InfoSuccessOrWarnFailWithReason(this IIdentityObject identityObject, object operation,
+                public static void InfoSuccessOrWarnFailWithReason(this IIdentifiable identifiable, object operation,
                         bool isSuccess,
                         object reason)
                 {
                         if (isSuccess)
                         {
-                                InfoSuccess(identityObject, operation);
+                                InfoSuccess(identifiable, operation);
                         }
                         else
                         {
-                                WarnFail(identityObject, operation, reason);
+                                WarnFail(identifiable, operation, reason);
                         }
                 }
 
                 
 
-                public static void Error(this IIdentityObject identityObject, string message)
+                public static void Error(this IIdentifiable identifiable, string message)
                 {
-                        LogProvider.Instance.Error(identityObject.GlobalId + message);
+                        LogProvider.Instance.Error(identifiable.GlobalId + message);
                 }
 
-                public static void ErrorFormat(this IIdentityObject identityObject, string format, params object[] args)
+                public static void ErrorFormat(this IIdentifiable identifiable, string format, params object[] args)
                 {
                         LogProvider.Instance.Error(string.Format(format, args));
                 }
 
-                public static void ErrorFail(this IIdentityObject identityObject, string operation)
+                public static void ErrorFail(this IIdentifiable identifiable, string operation)
                 {
-                        ErrorFormat(identityObject, "{0}失败.", operation);
+                        ErrorFormat(identifiable, "{0}失败.", operation);
                 }
 
-                public static void ErrorFailWithReason(this IIdentityObject identityObject, string operation,
+                public static void ErrorFailWithReason(this IIdentifiable identifiable, string operation,
                         object description)
                 {
-                        ErrorFormat(identityObject, "{0}失败, 错误原因:{1}", operation, description);
+                        ErrorFormat(identifiable, "{0}失败, 错误原因:{1}", operation, description);
                 }
 
-                public static void Fatal(this IIdentityObject identityObject, Exception exception)
+                public static void Fatal(this IIdentifiable identifiable, Exception exception)
                 {
                         LogProvider.Instance.Fatal(exception);
                 }

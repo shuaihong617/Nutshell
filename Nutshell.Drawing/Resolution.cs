@@ -25,12 +25,10 @@ namespace Nutshell.Drawing
 		/// <summary>
 		///         初始化<see cref="Resolution" />的新实例.
 		/// </summary>
-		/// <param name="parent">The parent.</param>
 		/// <param name="id">The identifier.</param>
 		/// <param name="horizontal">The horizontal.</param>
 		/// <param name="vertical">The vertical.</param>
-		protected Resolution(IdentityObject parent,
-			string id,
+		protected Resolution(string id,
 			[MustGreaterThan(0f)] double horizontal,
 			[MustGreaterThan(0f)] double vertical)
 			: base( id)

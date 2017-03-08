@@ -12,11 +12,13 @@
 // ***********************************************************************
 
 using System.Windows.Forms;
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Extensions;
 using SharpDX;
 using SharpDX.Direct2D1;
 using SharpDX.DXGI;
 
-namespace Nutshell.Presentation.Direct2D.WinForm
+namespace Nutshell.Direct2D.WinForm
 {
         /// <summary>
         /// 基于Direct2D的Winform控件渲染场景
@@ -26,13 +28,11 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                 /// <summary>
                 /// 初始化<see cref="Sence" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 /// <param name="control">渲染的目标控件</param>
-                protected Sence(string id = null, Control control = null)
+                protected Sence(string id = "", [MustNotEqualNull]Control control = null)
                         :base( id)
                 {
-                        control.NotNull();
                         Control = control;
 
                         Direct2D1Factory = new SharpDX.Direct2D1.Factory();
@@ -53,6 +53,7 @@ namespace Nutshell.Presentation.Direct2D.WinForm
                         DirectWriteFactory = new SharpDX.DirectWrite.Factory();
                 }
 
+		[MustNotEqualNull]
                 protected Control Control { get; private set; }
 
                 /// <summary>

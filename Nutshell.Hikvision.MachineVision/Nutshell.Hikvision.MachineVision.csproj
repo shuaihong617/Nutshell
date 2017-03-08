@@ -7,8 +7,8 @@
     <ProjectGuid>{E4E11986-B3E3-4855-ADEB-9950B96FAA2F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Hardware.Vision.Hikvision.MachineVision</RootNamespace>
-    <AssemblyName>Nutshell.Hardware.Vision.Hikvision.MachineVision</AssemblyName>
+    <RootNamespace>Nutshell.Hikvision.MachineVision</RootNamespace>
+    <AssemblyName>Nutshell.Hikvision.MachineVision</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <CodeContractsAssemblyMode>1</CodeContractsAssemblyMode>
@@ -149,26 +149,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MachineVisionCameraCaptureLooper.cs" />
-    <Compile Include="MachineVisionCameraConnectWork.cs" />
-    <Compile Include="MachineVisionCameraDispatchWork.cs" />
+    <Compile Include="InstalledMachineVisionCamera.cs" />
     <Compile Include="MachineVisionRuntime.cs" />
     <Compile Include="MachineVisionCamera.cs" />
-    <Compile Include="MachineVisionRuntimeDispatchWorker.cs" />
     <Compile Include="Models\IMachineVisionCameraModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SDK\MVOfficialAPI.cs" />
+    <Compile Include="SDK\IntValue.cs" />
+    <Compile Include="SDK\OfficialApi.cs" />
     <Compile Include="SDK\AccessMode.cs" />
     <Compile Include="SDK\FloatValue.cs" />
-    <Compile Include="SDK\MVDeviceInformationList.cs" />
-    <Compile Include="SDK\MVExceptionType.cs" />
+    <Compile Include="SDK\DeviceInformationCollection.cs" />
+    <Compile Include="SDK\ExceptionType.cs" />
     <Compile Include="SDK\IPConfigType.cs" />
-    <Compile Include="SDK\MVPixelType.cs" />
-    <Compile Include="SDK\MVFrameOutInformation.cs" />
-    <Compile Include="SDK\MVErrorCode.cs" />
-    <Compile Include="SDK\MVDeviceInformation.cs" />
-    <Compile Include="SDK\MVGigeDeviceInformation.cs" />
-    <Compile Include="SDK\MVDeviceType.cs" />
+    <Compile Include="SDK\UserSet.cs" />
+    <Compile Include="SDK\PixelType.cs" />
+    <Compile Include="SDK\FrameOutInformation.cs" />
+    <Compile Include="SDK\ErrorCode.cs" />
+    <Compile Include="SDK\DeviceInformation.cs" />
+    <Compile Include="SDK\GigeDeviceInformation.cs" />
+    <Compile Include="SDK\DeviceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -194,6 +193,10 @@
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
       <Project>{ff4c3544-8428-4859-b754-c07442ef562d}</Project>
       <Name>Nutshell.Automation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Drawing\Nutshell.Drawing.csproj">
+      <Project>{4c1af121-a3f6-4c2b-ab35-986d41047e9e}</Project>
+      <Name>Nutshell.Drawing</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{c394aad7-06a2-429b-a3b8-ac531ef77de1}</Project>

@@ -13,7 +13,7 @@ namespace Nutshell.Communication
         /// </summary>
         public sealed class Site:Worker,ISite
         {
-                public Site(string id = null) 
+                public Site(string id = "") 
                         : base( id)
                 {
                 }
@@ -44,12 +44,12 @@ namespace Nutshell.Communication
 	        public event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
 
 
-                protected override IResult Starup(IRunableObject runableObject)
+                protected override Result StartCore()
                 {
                         throw new NotImplementedException();
                 }
 
-                protected override IResult Clean(IRunableObject runableObject)
+                protected override Result StopCore()
                 {
                         throw new NotImplementedException();
                 }

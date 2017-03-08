@@ -13,135 +13,134 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Threading;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
-using Nutshell.Data.Models;
+using Nutshell.Data;
 using Nutshell.Extensions;
-using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Components
 {
-        /// <summary>
-        ///         循环工作者
-        /// </summary>
-        public abstract class Looper : Worker,ILooper
-        {
-                protected Looper(string id)
-                        : this(id, ThreadPriority.Normal, 1000)
-                {
+	/// <summary>
+	///         循环工作者
+	/// </summary>
+	public class Looper : Worker, IStorable<ILooperModel>
+	{
+		public Looper(string id, Func<Result> repeat)
+			: this(id, ThreadPriority.Normal, 1000, repeat)
+		{
+		}
 
-                }
+		public Looper(string id, int interval, Func<Result> repeat)
+			: this(id, ThreadPriority.Normal, interval, repeat)
+		{
+		}
 
-                protected Looper(string id, int interval)
-                        : this(id, ThreadPriority.Normal,  interval)
-                {
-                       
-                }
+		public Looper(string id, ThreadPriority priority, int interval, Func<Result> repeat)
+			: base(id)
+		{
+			Priority = priority;
+			Interval = interval;
+			_repeat = repeat;
+		}
 
-                protected Looper(string id, ThreadPriority priority, int interval)
-                        : base(id)
-                {
-                        Priority = priority;
-                        Interval = interval;
-                }
+		#region 字段
 
-                #region 字段
+		private Thread _thread;
 
-                private Thread _thread;
+		private bool _isContinue;
 
-                private bool _isRequestWork;
+		private readonly Func<Result> _repeat;
 
-                #endregion
+		#endregion
 
-                /// <summary>
-                /// 获取循环调度线程优先级
-                /// </summary>
-                /// <value>循环调度线程优先级</value>
-                [NotifyPropertyValueChanged]
-                public ThreadPriority Priority { get; private set; }
+		#region 属性
 
-                /// <summary>
-                /// 获取循环调度间隔时间
-                /// </summary>
-                /// <value>循环调度间隔事件</value>
-                [MustGreaterThanOrEqual(0)]
-                [NotifyPropertyValueChanged]
-                public int Interval { get; set; }
+		/// <summary>
+		///         获取循环调度线程优先级
+		/// </summary>
+		/// <value>循环调度线程优先级</value>
+		[NotifyPropertyValueChanged]
+		public ThreadPriority Priority { get; private set; }
 
-                public void Load([MustNotEqualNull]ILooperModel model)
-                {
-                        
-                        base.Load(model);
+		/// <summary>
+		///         获取循环调度间隔时间
+		/// </summary>
+		/// <value>循环调度间隔事件</value>
+		[MustGreaterThanOrEqual(0)]
+		[NotifyPropertyValueChanged]
+		public int Interval { get; set; }
 
-                        Priority = model.Priority;
-                        Interval = model.Interval;
-                }
+		#endregion
 
-                public void Save([MustNotEqualNull]ILooperModel model)
-                {
-                        throw new NotImplementedException();
-                }
+		public void Load([MustNotEqualNull] ILooperModel model)
+		{
+			base.Load(model);
 
-                protected override IResult Starup(IRunableObject runableObject)
-                {
-                        _isRequestWork = true;
+			Priority = model.Priority;
+			Interval = model.Interval;
+		}
 
-                        _thread = new Thread(ThreadWork) {Priority = Priority};
-                        _thread.Start();
+		public void Save([MustNotEqualNull] ILooperModel model)
+		{
+			throw new NotImplementedException();
+		}
 
-                        return Result.Successed;
-                }
+		protected override Result StartCore()
+		{
+			_isContinue = true;
 
-                private void ThreadWork()
-                {
-                        this.Info("循环启动,周期", Interval, "毫秒");
-                        for (; ; )
-                        {
-                                var result = RepeatWork();
-                                OnRepeatWorkFinshed(new ValueEventArgs<IResult>(result));
+			_thread = new Thread(ThreadWork) {Priority = Priority};
+			_thread.Start();
 
-                                Thread.Sleep(Interval);
+			return Result.Successed;
+		}
 
-                                if (!_isRequestWork)
-                                {
-                                        this.Info("循环停止");
-                                        break;
-                                }
-                        }
-                }
+		private void ThreadWork()
+		{
+			this.Info("循环启动,周期", Interval, "毫秒");
+			for (;;)
+			{
+				var result = _repeat();
+				OnRepeatFinshed(new ValueEventArgs<Result>(result));
 
-                protected override IResult Clean(IRunableObject runableObject)
-                {
-                        _isRequestWork = false;
+				Thread.Sleep(Interval);
 
-                        return Result.Successed;
-                }
+				if (!_isContinue)
+				{
+					this.Info("循环停止");
+					break;
+				}
+			}
+		}
 
-                protected abstract IResult RepeatWork();
+		protected override Result StopCore()
+		{
+			_isContinue = false;
 
-                #region 事件
+			return Result.Successed;
+		}
 
-                /// <summary>
-                ///         当启动时发生。
-                /// </summary>
-                [Description("启动事件")]
-                [WillLogEventInvokeHandler]
-                public event EventHandler<ValueEventArgs<IResult>> RepeatWorkFinshed;
+		#region 事件
 
-                /// <summary>
-                ///         引发启动事件。
-                /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnRepeatWorkFinshed(ValueEventArgs<IResult> e)
-                {
-                        e.Raise(this, ref RepeatWorkFinshed);
-                }
+		/// <summary>
+		///         当启动时发生。
+		/// </summary>
+		[Description("启动事件")]
+		[WillLogEventInvokeHandler]
+		public event EventHandler<ValueEventArgs<Result>> RepeatFinshed;
 
-                #endregion
+		/// <summary>
+		///         引发启动事件。
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnRepeatFinshed(ValueEventArgs<Result> e)
+		{
+			e.Raise(this, ref RepeatFinshed);
+		}
 
-        }
+		#endregion
+	}
 }

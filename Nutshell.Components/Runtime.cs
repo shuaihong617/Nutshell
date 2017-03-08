@@ -11,56 +11,18 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Aspects.Methods.Contracts;
 
 namespace Nutshell.Components
 {
-        /// <summary>
-        ///         运行环境
-        /// </summary>
-        public abstract class Runtime:RunableObject,IRuntime
-        {
-                protected Runtime([MustNotEqualNullOrEmpty] string id)
-                        : base( id)
-                {
-                }
-
-                #region 属性
-
-
-                [MustNotEqualNull]
-                public IRuntimeInformation RuntimeInformation { get; protected set; }
-
-		[MustNotEqualNull]
-                protected IWorker DispatchWorker { get; set; }
-
-                public WorkerState WorkerState
-                {
-                        get { return DispatchWorker.WorkerState; }
-                }
-
-                #endregion
-
-                #region 方法
-                
-                [MustReturnNotEqualNull]
-                public virtual IResult Start()
-                {
-			Trace.Assert(DispatchWorker != null);
-                        return DispatchWorker.Start(this);
-                }
-
-                [MustReturnNotEqualNull]
-                public virtual IResult Stop()
-                {
-			Trace.Assert(DispatchWorker != null);
-			return DispatchWorker.Stop(this);
-                }
-
-	        #endregion
-
-	        
-        }
+	/// <summary>
+	///         运行环境
+	/// </summary>
+	public abstract class Runtime : Worker
+	{
+		protected Runtime([MustNotEqualNullOrEmpty] string id)
+			: base(id)
+		{
+		}
+	}
 }

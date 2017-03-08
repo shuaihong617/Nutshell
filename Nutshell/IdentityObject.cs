@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
@@ -23,7 +24,7 @@ namespace Nutshell
         /// <summary>
         ///         带有标识的对象
         /// </summary>
-        public abstract class IdentityObject : DisposableObject, IIdentityObject
+        public abstract class IdentityObject : DisposableObject, IIdentifiable
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
@@ -32,7 +33,10 @@ namespace Nutshell
                 protected IdentityObject([MustNotEqualNull]string id = "")
                 {
 	                Id = string.IsNullOrEmpty(id) ? GetType().Name : id;
-                }
+
+			TimeStamps = new Dictionary<string, DateTime>(5);
+			TimeStamps["CreateTime"] = DateTime.Now;
+		}
 
 	        #region 字段
 
@@ -44,7 +48,7 @@ namespace Nutshell
 	        /// <summary>
                 ///         上级对象
                 /// </summary>
-                private IIdentityObject _parent;
+                private IIdentifiable _parent;
 
 		#endregion
 
@@ -60,8 +64,6 @@ namespace Nutshell
                         {
                                 _id = value;
                                 UpdateGlobalId();
-
-
                         }
                 }
 
@@ -76,7 +78,7 @@ namespace Nutshell
                 ///         上级对象
                 /// </summary>
                 [MustNotEqualNull]
-                public IIdentityObject Parent
+                public IIdentifiable Parent
                 {
                         get { return _parent; }
                         set
@@ -90,6 +92,8 @@ namespace Nutshell
                                 UpdateGlobalId();
                         }
                 }
+
+		public Dictionary<string, DateTime> TimeStamps { get; private set; }
 
                 #region 方法
 
