@@ -55,39 +55,39 @@ namespace Nutshell.Drawing.Imaging
 		}
 
                 /// <summary>
-                /// Gets the width.
+                /// 获取宽度
                 /// </summary>
-                /// <value>The width.</value>
+                /// <value>宽度</value>
                 public int Width { get; private set; }
 
                 /// <summary>
-                /// Gets the height.
+                /// 获取高度
                 /// </summary>
-                /// <value>The height.</value>
+                /// <value>高度</value>
                 public int Height { get; private set; }
 
                 /// <summary>
-                /// Gets the pixel format.
+                /// 获取像素格式
                 /// </summary>
-                /// <value>The pixel format.</value>
+                /// <value>像素格式</value>
                 public PixelFormat PixelFormat { get; private set; }
 
                 /// <summary>
-                /// Gets the stride.
+                /// 获取步幅
                 /// </summary>
-                /// <value>The stride.</value>
+                /// <value>步幅</value>
                 public int Stride { get; private set; }
 
                 /// <summary>
-                /// Gets the buffer.
+                /// 获取图像数据缓冲区
                 /// </summary>
-                /// <value>The buffer.</value>
+                /// <value>图像数据缓冲区</value>
                 public IntPtr Buffer { get; private set; }
 
                 /// <summary>
-                /// Gets the length of the buffer.
+                /// 获取图像数据缓冲区长度
                 /// </summary>
-                /// <value>The length of the buffer.</value>
+                /// <value>图像数据缓冲区长度</value>
                 public int BufferLength { get; private set; }
 
                 
@@ -96,9 +96,8 @@ namespace Nutshell.Drawing.Imaging
                 /// Copies to.
                 /// </summary>
                 /// <param name="target">The target.</param>
-                public void CopyTo(Bitmap target)
+                public void CopyTo([MustNotEqualNull]Bitmap target)
                 {
-                        target.NotNull();
                         target.Width.MustEqual(Width);
                         target.Height.MustEqual(Height);
                         target.PixelFormat.MustEqual(PixelFormat);

@@ -3,7 +3,7 @@
 namespace Nutshell.Automation.Opc.Devices
 {
 	/// <summary>
-	///         基于Opc通讯的元器件
+	///         基于Opc通讯的设备
 	/// </summary>
 	public abstract class OpcDevice<T> : Device where T : struct
 	{

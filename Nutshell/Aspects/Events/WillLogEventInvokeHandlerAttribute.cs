@@ -22,7 +22,7 @@ namespace Nutshell.Aspects.Events
         /// 记录事件调用的特性类，该类不能被继承。
         /// </summary>
         [Serializable]
-        public sealed class WillLogEventInvokeHandlerAttribute : EventInterceptionAspect
+        public sealed class LogEventInvokeHandlerAttribute : EventInterceptionAspect
         {
                 /// <summary>
                 /// Method invoked when the event to which the current aspect is applied is fired, <i>for each</i> delegate
@@ -47,7 +47,7 @@ namespace Nutshell.Aspects.Events
                         var d = args.Event.GetCustomAttribute(typeof(DescriptionAttribute), true) as DescriptionAttribute;
                         if (d == null)
                         {
-                                throw new ArgumentException("EventName事件上找不到EventDescriptionAttribute");
+                                throw new ArgumentException("EventName事件上找不到DescriptionAttribute");
                         }
 
                         i.Info("引发" + d.Description);

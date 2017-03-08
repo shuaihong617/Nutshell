@@ -77,7 +77,8 @@ namespace Nutshell.Communication
 		/// 当消息成功接收时发生
 		/// </summary>
 		/// <param name="e">包含消息的事件参数</param>
-		/// <exception cref="System.NotImplementedException"></exception>
+		[Description("消息接收成功事件")]
+		[WillLogEventInvokeHandler]
 		protected virtual void OnReceiveSuccessed(ValueEventArgs<IMessage> e)
 		{
 			e.Raise(this, ref ReceiveSuccessed);

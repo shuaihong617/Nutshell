@@ -46,8 +46,7 @@ namespace Nutshell.Communication
 		/// <summary>
 		///         当消息接收成功时发生。
 		/// </summary>
-		[Description("消息接收成功事件")]
-		[WillLogEventInvokeHandler]
+		
 		event EventHandler<ValueEventArgs<IMessage>> ReceiveSuccessed;
 
 		#endregion
