@@ -14,13 +14,14 @@
 namespace Nutshell.Hikvision.MachineVision.SDK
 {
         /// <summary>
-        ///         用户配置
+        ///         命令类型
         /// </summary>
-        public enum UserSet
+        public enum CommondType
         {
-                Default = 0,
-		UserSet1 = 1,
-		UserSet2 = 2,
-		UserSet3 = 3
-	}
+                // Undefined pixel type
+                UserSetDefault,
+                UserSetSelecter,
+                UserSetLoad,
+                UserSetSave,
+        }
 }
