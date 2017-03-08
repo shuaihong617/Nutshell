@@ -159,6 +159,8 @@ namespace Nutshell.Automation
 
 		#region 事件
 
+		[Description("连接成功")]
+		[WillLogEventInvokeHandler]
 		protected event EventHandler<EventArgs> ConnectSuccessed;
 
 

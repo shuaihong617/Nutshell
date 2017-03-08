@@ -164,6 +164,8 @@ namespace Nutshell.Automation
 		/// <summary>
 		///         Occurs when [snaped].
 		/// </summary>
+		[Description("采集成功")]
+		//[WillLogEventInvokeHandler]
 		public event EventHandler<ValueEventArgs<T>> CaptureSuccessed;
 
 		/// <summary>

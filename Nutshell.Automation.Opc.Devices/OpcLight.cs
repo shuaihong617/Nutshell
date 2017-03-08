@@ -47,6 +47,8 @@ namespace Nutshell.Automation.Opc.Devices
                 /// <summary>
                 ///         Occurs when [opened].
                 /// </summary>
+                [Description("打开")]
+                [LogEventInvokeHandler]
                 public event EventHandler<EventArgs> Opened;
 
                 /// <summary>
@@ -55,13 +57,14 @@ namespace Nutshell.Automation.Opc.Devices
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnOpened(EventArgs e)
                 {
-                        this.InfoEvent("打开");
                         e.Raise(this, ref Opened);
                 }
 
                 /// <summary>
                 ///         Occurs when [opened].
                 /// </summary>
+                [Description("关闭")]
+                [LogEventInvokeHandler]
                 public event EventHandler<EventArgs> Closed;
 
                 /// <summary>
@@ -70,7 +73,6 @@ namespace Nutshell.Automation.Opc.Devices
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnClosed(EventArgs e)
                 {
-                        this.InfoEvent("关闭");
                         e.Raise(this, ref Closed);
                 }
 

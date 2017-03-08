@@ -26,11 +26,9 @@ namespace Nutshell.Automation.Opc
 		/// <summary>
 		///         初始化<see cref="OpcNullable{T}" />的新实例.
 		/// </summary>
-		/// <param name="parent">The parent.</param>
 		/// <param name="id">The item.</param>
 		/// <param name="opcItem">The opc item.</param>
-		public OpcNullable([MustNotEqualNull] IdentityObject parent,
-			[MustNotEqualNull] string id,
+		public OpcNullable([MustNotEqualNull] string id,
 			[MustNotEqualNull] OpcItem opcItem)
 			: base( id)
 		{
