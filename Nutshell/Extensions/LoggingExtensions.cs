@@ -15,6 +15,8 @@
 using System;
 using NLog;
 using Nutshell.Logging;
+using System.Runtime.CompilerServices;
+using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell.Extensions
 {
@@ -29,50 +31,46 @@ namespace Nutshell.Extensions
                 }
 
                 
-                public static void Info(this IIdentifiable identifiable, params object[] args)
+                public static void Info(this IIdentifiable identifiable, [MustNotEqualNullOrEmpty]string message)
                 {
-                        LogProvider.Instance.Info(identifiable.GlobalId + ":" + string.Concat(args));
-                }
-
-                public static void InfoFormat(this IIdentifiable identifiable, string format, params object[] args)
-                {
-                        LogProvider.Instance.Info(string.Format(format, args));
+                        LogProvider.Instance.Info($"{ identifiable.GlobalId}:{message}");
                 }
 
                 public static void InfoEvent(this IIdentifiable identifiable, object eventName, object args = null)
                 {
-                        if (args == null)
-                        {
-                                Info(identifiable, "引发", eventName, "事件.");
-                        }
-                        else
-                        {
-                                Info(identifiable, "引发", eventName, "事件.", args);
-                        }
+                        //if (args == null)
+                        //{
+                        //        Info(identifiable, "引发", eventName, "事件.");
+                        //}
+                        //else
+                        //{
+                        //        Info(identifiable, "引发", eventName, "事件.", args);
+                        //}
                 }
 
-                public static void InfoSuccess(this IIdentifiable identifiable, [CallMemberName]string operation = "")
+                public static void InfoSuccess(this IIdentifiable identifiable, [CallerMemberName]string operation = "")
                 {
-                        Info(identifiable, operation, "成功");
+                        Info(identifiable, $"{operation}成功");
                 }
 
                 public static void InfoSuccessWithDescription(this IIdentifiable identifiable, string operation,
                         object description)
                 {
-                        Info(identifiable, operation, "成功,", description);
+                        Info(identifiable, $"{operation}成功,{description}");
                 }
 
                 
 
                 public static void Warn(this IIdentifiable identifiable, string message)
                 {
-                        LogProvider.Instance.Warn(identifiable.GlobalId + message);
+                        LogProvider.Instance.Warn($"{ identifiable.GlobalId}:{message}");
                 }
 
-                public static void WarnFormat(this IIdentifiable identifiable, string format, params object[] args)
+                public static void WarnFail(this IIdentifiable identifiable, [CallerMemberName]string operation = "")
                 {
-                        LogProvider.Instance.Warn(string.Format(format, args));
+                        Warn(identifiable, $"{operation}失败.");
                 }
+
 
                 /// <summary>
                 ///         Warns the specified key.
@@ -80,42 +78,24 @@ namespace Nutshell.Extensions
                 /// <param name="identifiable">The identity object.</param>
                 /// <param name="operation">The operation.</param>
                 /// <param name="reason">The reason.</param>
-                public static void WarnFail(this IIdentifiable identifiable, object operation,
-                        object reason = null)
+                public static void WarnFailWithReason(this IIdentifiable identifiable,object reason = null,[CallerMemberName]string operation="")
                 {
-                        Warn(identifiable, operation + "失败,错误原因：" + reason ?? "无");
+                        Warn(identifiable, $"{operation}失败, 错误原因:{reason}");
                 }
-
-                public static void InfoSuccessOrWarnFailWithReason(this IIdentifiable identifiable, object operation,
-                        bool isSuccess,
-                        object reason)
-                {
-                        if (isSuccess)
-                        {
-                                InfoSuccess(identifiable, operation);
-                        }
-                        else
-                        {
-                                WarnFail(identifiable, operation, reason);
-                        }
-                }
-
-                
 
                 public static void Error(this IIdentifiable identifiable, string message)
                 {
                         LogProvider.Instance.Error(identifiable.GlobalId + message);
                 }
 
-                public static void ErrorFail(this IIdentifiable identifiable, string operation)
+                public static void ErrorFail(this IIdentifiable identifiable, [CallerMemberName]string operation = "")
                 {
-                        Error(identifiable, "{0}失败.", operation);
+                        Error(identifiable, $"{operation}失败.");
                 }
 
-                public static void ErrorFailWithReason(this IIdentifiable identifiable, string operation,
-                        object description)
+                public static void ErrorFailWithReason(this IIdentifiable identifiable, object reason = null,[CallerMemberName]string operation = "")
                 {
-                        ErrorFormat(identifiable, "{0}失败, 错误原因:{1}", operation, description);
+                        Error(identifiable, $"{operation}失败, 错误原因:{reason}");
                 }
 
                 public static void Fatal(this IIdentifiable identifiable, Exception exception)

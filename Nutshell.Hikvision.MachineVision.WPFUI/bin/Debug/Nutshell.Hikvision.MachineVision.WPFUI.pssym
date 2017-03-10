@@ -1,25 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="209" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="211" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#2=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Application()" Id="bad94bfa830aaf6c">
+    <Instance Declaration="#2=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Application()" Id="bad94bfa117d33b8">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::get_Application()" Advising="#1" Description="#4=Intercepted by advice " Semantic="Getter" Ordinal="0" />
         <JoinPoint Advised="#5=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::set_Application(Nutshell.Data.Application)" Advising="#1" Description="#6=Intercepted by advice OnSetValue" Semantic="Setter" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Step()" Id="bad94bfaac4b0f88">
+    <Instance Declaration="#7=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Step()" Id="bad94bfa79945d28">
       <Target>
         <JoinPoint Advised="#8=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::get_Step()" Advising="#1" Description="#4" Semantic="Getter" Ordinal="2" />
         <JoinPoint Advised="#9=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::set_Step(System.Int32)" Advising="#1" Description="#6" Semantic="Setter" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Runtime()" Id="bad94bfae41e43a9">
+    <Instance Declaration="#10=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Runtime()" Id="bad94bfa67995d33">
       <Target>
         <JoinPoint Advised="#11=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::get_Runtime()" Advising="#1" Description="#4" Semantic="Getter" Ordinal="4" />
         <JoinPoint Advised="#12=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::set_Runtime(Nutshell.Hikvision.MachineVision.MachineVisionRuntime)" Advising="#1" Description="#6" Semantic="Setter" Ordinal="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#13=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Camera()" Id="bad94bfac9f4a02d">
+    <Instance Declaration="#13=P:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::Camera()" Id="bad94bfa8f19cb39">
       <Target>
         <JoinPoint Advised="#14=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::get_Camera()" Advising="#1" Description="#4" Semantic="Getter" Ordinal="6" />
         <JoinPoint Advised="#15=M:[Nutshell.Hikvision.MachineVision.WPFUI]Nutshell.Hikvision.MachineVision.WPFUI.GlobalManager::set_Camera(Nutshell.Hikvision.MachineVision.MachineVisionCamera)" Advising="#1" Description="#6" Semantic="Setter" Ordinal="7" />

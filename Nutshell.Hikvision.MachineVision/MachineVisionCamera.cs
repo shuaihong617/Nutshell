@@ -91,21 +91,17 @@ namespace Nutshell.Hikvision.MachineVision
 
 			if (installedMachineVisionCamera == null)
 			{
-				this.WarnFail("获取摄像机", "未检测到摄像机");
+				this.WarnFailWithReason("获取摄像机", "未检测到摄像机");
 				return Result.Failed;
 			}
 
 			_deviceInformation = installedMachineVisionCamera.DeviceInformation;
 
-			Debug.Assert(_handle == IntPtr.Zero);
-
-			var error = OfficialApi.CreateHandle(ref _handle, ref _deviceInformation);
-			if (error != ErrorCode.MV_OK)
+			var errorCode = CreateHandle();
+			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFail("创建句柄", error);
 				return Result.Failed;
 			}
-			this.InfoSuccess("创建句柄");
 
 			//if (!MVOfficialAPI.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
 			//{
@@ -114,38 +110,27 @@ namespace Nutshell.Hikvision.MachineVision
 			//}
 
 
-			error = OfficialApi.OpenDevice(_handle, AccessMode.控制权限);
-			if (error != ErrorCode.MV_OK)
+			errorCode = OpenDevice();
+			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFail("OpenDevice", error);
 				return Result.Failed;
 			}
-			this.InfoSuccess("OpenDevice");
-
 			return Result.Successed;
 		}
 
 		protected override sealed Result StopConnectCore()
 		{
-			Debug.Assert(_handle != IntPtr.Zero);
-
-			var error = OfficialApi.CloseDevice(_handle);
-			if (error != ErrorCode.MV_OK)
+			var errorCode = CloseDevice();
+			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFail("CloseDevice", error);
 				return Result.Failed;
 			}
-			this.InfoSuccess("CloseDevice");
 
-			error = OfficialApi.DestroyHandle(_handle);
-			if (error != ErrorCode.MV_OK)
+			errorCode = DestroyHandle();
+			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFail("DestroyHandle", error);
 				return Result.Failed;
 			}
-			this.InfoSuccess("DestroyHandle");
-
-			_handle = IntPtr.Zero;
 
 			return base.StopConnectCore();
 		}
@@ -163,24 +148,17 @@ namespace Nutshell.Hikvision.MachineVision
 				return baseResult;
 			}
 
-			Debug.Assert(_handle != IntPtr.Zero);
-
-			var error = OfficialApi.StartGrabbing(_handle);
-			if (error != ErrorCode.MV_OK)
+			var errorCode = StartGrabbing();
+			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFail("StartGrabbing", error);
 				return Result.Failed;
 			}
-			this.InfoSuccess("StartGrabbing");
-
 			return Result.Successed;
 		}
 
 		protected override sealed Result StopDispatchCore()
 		{
-			Debug.Assert(_handle != IntPtr.Zero);
-
-			OfficialApi.StopGrabbing(_handle);
+			StopGrabbing();
 
 			return base.StopDispatchCore();
 		}
@@ -189,32 +167,16 @@ namespace Nutshell.Hikvision.MachineVision
 		{
 			var bitmap = Pool.WriteLock();
 
-			var error = OfficialApi.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
-				ref _frameOutInformation);
+			var error = GetOneFrame(bitmap);
 
 			if (error != ErrorCode.MV_OK)
 			{
-				switch (error)
-				{
-					case ErrorCode.MV_E_BUFOVER:
-						this.ErrorFailWithReason("GetOneFrame", error);
-						break;
-
-					case ErrorCode.MV_E_NODATA:
-						break;
-
-					default:
-						this.WarnFail("GetOneFrame", error);
-
-						break;
-				}
 				Pool.WriteUnlock(bitmap);
 				return ValueResult<Bitmap>.Failed;
 			}
-			//this.InfoSuccess("GetOneFrame");
-			Pool.WriteUnlock(bitmap);
 
-			//Debug.WriteLine("BufferLength:" + bitmap.BufferLength);
+                        Pool.WriteUnlock(bitmap);
+
 			//BitmapStorager.Save(bitmap, DateTime.Now.ToChineseLongFileName() + ".bmp");
 
 			bitmap.TimeStamps["CaptureTime"] = DateTime.Now;
@@ -222,7 +184,6 @@ namespace Nutshell.Hikvision.MachineVision
 			var result = new ValueResult<Bitmap>(bitmap);
 
 			OnCaptureSuccessed(new ValueEventArgs<Bitmap>(bitmap));
-
 
 			return result;
 		}
@@ -238,39 +199,35 @@ namespace Nutshell.Hikvision.MachineVision
 
               	private ErrorCode CreateHandle()
               	{
-                      	string operation = "创建句柄";
-
-                      	Debug.Assert(_handle == null);
+                      	Debug.Assert(_handle == IntPtr.Zero);
 
                      	var errorCode = OfficialApi.CreateHandle(ref _handle, ref _deviceInformation);
                        	if (errorCode != ErrorCode.MV_OK)
                      	{
-                             	this.ErrorFailWithReason(operation, errorCode);
+                             	this.ErrorFailWithReason(errorCode);
                      	}
                      	else
                     	{
-                           	this.InfoSuccess(operation);
+                           	this.InfoSuccess();
                     	}
                     	return errorCode;
             	}
 
 	        private ErrorCode DestroyHandle()
 	        {
-	        	string operation = "销毁句柄";
-
-			Debug.Assert(_handle != null);
+			Debug.Assert(_handle != IntPtr.Zero);
 
                      	var errorCode = OfficialApi.DestroyHandle(_handle);
                        	if (errorCode != ErrorCode.MV_OK)
                      	{
-                             	this.ErrorFailWithReason(operation, errorCode);
+                             	this.ErrorFailWithReason(errorCode);
                      	}
                      	else
                     	{
-                           	this.InfoSuccess(operation);
+                           	this.InfoSuccess();
                     	}
 
-                    	_handle = null;
+                    	_handle = IntPtr.Zero;
 
                     	return errorCode;
 	        }
@@ -278,51 +235,111 @@ namespace Nutshell.Hikvision.MachineVision
 
                	private ErrorCode OpenDevice()
                	{
-               		string operation = "打开设备";
-
-               		Debug.Assert(_handle != null);
+               		Debug.Assert(_handle != IntPtr.Zero);
 
                      	var errorCode = OfficialApi.OpenDevice(_handle, AccessMode.独占权限);
                        	if (errorCode != ErrorCode.MV_OK)
                      	{
-                             	this.ErrorFailWithReason(operation, errorCode);
+                             	this.ErrorFailWithReason(errorCode);
                      	}
                      	else
                     	{
-                           	this.InfoSuccess(operation);
+                           	this.InfoSuccess();
                     	}
                     	return errorCode;
                	}
 
-  //              public static extern ErrorCode CloseDevice(IntPtr handle);
+                private ErrorCode CloseDevice()
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-  //              public static extern ErrorCode StartGrabbing(IntPtr handle);
+                        var errorCode = OfficialApi.CloseDevice(_handle);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
-  //              public static extern ErrorCode StopGrabbing(IntPtr handle);
+                private ErrorCode StartGrabbing()
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-  //              public static extern ErrorCode GetOneFrame(IntPtr handle, IntPtr pData, int nDataSize,
-  //                      ref FrameOutInformation pFrameInfo);
+                        var errorCode = OfficialApi.StartGrabbing(_handle);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
-		//#region 万能接口
+                private ErrorCode StopGrabbing()
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-		//public static extern ErrorCode SetIntValue(IntPtr handle, string strValue, uint value);
-
-		//public static extern ErrorCode SetEnumValue(IntPtr handle, string strValue, uint value);
-
-		//public static extern ErrorCode SetCommandValue(IntPtr handle, string strValue);
-
-		//#endregion
-
-		//#region GIGE独有接口
-
-		//public static extern ErrorCode GetGevSCPSPacketSize(IntPtr handle, ref IntValue value);
-
-		//public static extern ErrorCode SetGevSCPSPacketSize(IntPtr handle, uint value);
-
-		//#endregion
+                        var errorCode = OfficialApi.StopGrabbing(_handle);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
 
 
-		#endregion
-	}
+                private ErrorCode GetOneFrame(Bitmap bitmap)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
+
+                        var errorCode = OfficialApi.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
+                                ref _frameOutInformation);
+
+                                switch (errorCode)
+                                {
+                                        case ErrorCode.MV_OK:
+                                                return errorCode;
+
+                                        case ErrorCode.MV_E_NODATA:
+                                                return errorCode;
+
+                                        default:
+                                                this.ErrorFailWithReason(errorCode);
+                                                return errorCode;
+                                }
+                }
+
+                //#region 万能接口
+
+                //public static extern ErrorCode SetIntValue(IntPtr handle, string strValue, uint value);
+
+                //public static extern ErrorCode SetEnumValue(IntPtr handle, string strValue, uint value);
+
+                //public static extern ErrorCode SetCommandValue(IntPtr handle, string strValue);
+
+                //#endregion
+
+                //#region GIGE独有接口
+
+                //public static extern ErrorCode GetGevSCPSPacketSize(IntPtr handle, ref IntValue value);
+
+                //public static extern ErrorCode SetGevSCPSPacketSize(IntPtr handle, uint value);
+
+                //#endregion
+
+
+
+                #endregion
+        }
 }

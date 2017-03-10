@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows;
@@ -30,13 +31,15 @@ namespace Nutshell.Drawing.Imaging.WPFUI
 		private void LoadBitmapButton_Click(object sender, RoutedEventArgs e)
 		{
 			OpenFileDialog dialog = new OpenFileDialog();
+                        dialog.DefaultExt = ".bmp"; // Default file extension
+                        dialog.Filter = "位图文件 (.bmp)|*.bmp"; // Filter files by extension
 
-			if(!dialog.Show())
+                        if (!dialog.ShowDialog().GetValueOrDefault(false))
 			{
 				return;
 			}
 
-		        _gm.SourceBitmap = new Bitmap(@"测试图像\9.bmp");
+		        _gm.SourceBitmap = new Bitmap(dialog.FileName);
 
                         PictureBox.Width = _gm.SourceBitmap.Width;
                         PictureBox.Height = _gm.SourceBitmap.Height;

@@ -100,7 +100,7 @@ namespace Nutshell.Components
 
 		private void ThreadWork()
 		{
-			this.Info("循环启动,周期", Interval, "毫秒");
+			this.Info($"循环启动,周期{Interval}毫秒");
 			for (;;)
 			{
 				var result = _repeat();

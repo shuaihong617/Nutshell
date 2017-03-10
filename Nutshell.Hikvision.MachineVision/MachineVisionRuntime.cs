@@ -68,7 +68,7 @@ namespace Nutshell.Hikvision.MachineVision
 
 			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFail(enumDevices, errorCode);
+				this.WarnFailWithReason(errorCode, "EnumDevices");
 				return Result.Failed;
 			}
 

@@ -1,46 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="16" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Data.Xml]Nutshell.Data.Xml.XmlApplicationStorager::Load(Nutshell.Data.Application, System.String)@application" Id="d3c6527304061749">
+    <Instance Declaration="#2=R:[Nutshell.Data.Xml]Nutshell.Data.Xml.XmlApplicationStorager::Load(Nutshell.Data.Application, System.String)@application" Id="d3c6527309f4c245">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.XmlApplicationStorager::Load(Nutshell.Data.Application, System.String)" Advising="#1" Description="#4=Validates the value passed to parameter 'application'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#5=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#6=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Name()" Id="d3c65273eba47854">
+    <Instance Declaration="#6=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Name()" Id="d3c6527352a28bc0">
       <Target>
         <JoinPoint Advised="#7=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::set_Name(System.String)" Advising="#5" Description="#8=Validates the assigned value" Ordinal="3" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Version()" Id="d3c65273114c149b">
+    <Instance Declaration="#9=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Version()" Id="d3c65273938d7543">
       <Target>
         <JoinPoint Advised="#10=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::set_Version(System.String)" Advising="#5" Description="#8" Ordinal="4" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#11=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Title()" Id="d3c65273c24e37cc">
+    <Instance Declaration="#11=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Title()" Id="d3c652731cc88acc">
       <Target>
         <JoinPoint Advised="#12=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::set_Title(System.String)" Advising="#5" Description="#8" Ordinal="5" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#13=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Company()" Id="d3c652735c8e7b15">
+    <Instance Declaration="#13=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::Company()" Id="d3c6527352ae5e03">
       <Target>
         <JoinPoint Advised="#14=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::set_Company(System.String)" Advising="#5" Description="#8" Ordinal="6" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#15=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::CopyRight()" Id="d3c65273f5c3c421">
+    <Instance Declaration="#15=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::CopyRight()" Id="d3c65273d20cc5c8">
       <Target>
         <JoinPoint Advised="#16=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlApplicationModel::set_CopyRight(System.String)" Advising="#5" Description="#8" Ordinal="7" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#17=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlDataModel::Id()" Id="d3c65273272873a3">
+    <Instance Declaration="#17=P:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlDataModel::Id()" Id="d3c652738e136099">
       <Target>
         <JoinPoint Advised="#18=M:[Nutshell.Data.Xml]Nutshell.Data.Xml.Models.XmlDataModel::set_Id(System.String)" Advising="#5" Description="#8" Ordinal="2" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#19=T:[Nutshell.IO]Nutshell.IO.Aspects.Locations.Contracts.MustFileExistAttribute">
-    <Instance Declaration="#20=R:[Nutshell.Data.Xml]Nutshell.Data.Xml.XmlApplicationStorager::Load(Nutshell.Data.Application, System.String)@fileName" Id="d3c65273470102d7">
+    <Instance Declaration="#20=R:[Nutshell.Data.Xml]Nutshell.Data.Xml.XmlApplicationStorager::Load(Nutshell.Data.Application, System.String)@fileName" Id="d3c652730de32a28">
       <Target>
         <JoinPoint Advised="#3" Advising="#19" Description="#21=Validates the value passed to parameter 'fileName'" LinesAvoided="1" />
       </Target>
