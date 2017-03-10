@@ -16,7 +16,7 @@ TestResults
 *.exe.config
 
 #忽略编译生成的应用程序动态链接库文件
-#*.dll
+*.dll
 
 #忽略编译生成的应用程序调试文件
 *.pdb

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="275" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::#ctor([Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.SDK.DeviceInformation)@deviceInformation" Id="d57085e3c3fe34da">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::#ctor([Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.SDK.DeviceInformation)" Advising="#1" Description="#4=Validates the value passed to parameter 'deviceInformation'" Ordinal="9" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=P:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::MacAddress()" Id="d57085e306d8d6e5">
+      <Target>
+        <JoinPoint Advised="#6=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::set_MacAddress(Nutshell.Net.MacAddress)" Advising="#1" Description="#7=Validates the assigned value" Semantic="Setter" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#8=P:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::IPAddress()" Id="d57085e3dd985854">
+      <Target>
+        <JoinPoint Advised="#9=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::set_IPAddress(System.Net.IPAddress)" Advising="#1" Description="#7" Semantic="Setter" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10=P:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::UserDefineName()" Id="d57085e39a43a9e2">
+      <Target>
+        <JoinPoint Advised="#11=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::set_UserDefineName(System.String)" Advising="#1" Description="#7" Semantic="Setter" Ordinal="7" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#12=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
+    <Instance Declaration="#5" Id="d57085e3a4fdeef0">
+      <Target>
+        <JoinPoint Advised="#13=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::get_MacAddress()" Advising="#12" Description="#14=Intercepted by advice " Semantic="Getter" Ordinal="0" />
+        <JoinPoint Advised="#6" Advising="#12" Description="#15=Intercepted by advice OnSetValue" Semantic="Setter" Ordinal="2" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#8" Id="d57085e3d7ab2c30">
+      <Target>
+        <JoinPoint Advised="#16=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::get_IPAddress()" Advising="#12" Description="#14" Semantic="Getter" Ordinal="3" />
+        <JoinPoint Advised="#9" Advising="#12" Description="#15" Semantic="Setter" Ordinal="5" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10" Id="d57085e3d0ec8762">
+      <Target>
+        <JoinPoint Advised="#17=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera::get_UserDefineName()" Advising="#12" Description="#14" Semantic="Getter" Ordinal="6" />
+        <JoinPoint Advised="#11" Advising="#12" Description="#15" Semantic="Setter" Ordinal="8" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#18=P:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionRuntime::InstalledMachineVisionCameras()" Id="d57085e3bfe33df5">
+      <Target>
+        <JoinPoint Advised="#19=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionRuntime::get_InstalledMachineVisionCameras()" Advising="#12" Description="#14" Semantic="Getter" Ordinal="12" />
+        <JoinPoint Advised="#20=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionRuntime::set_InstalledMachineVisionCameras(System.Collections.ObjectModel.ReadOnlyCollection{[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.InstalledMachineVisionCamera})" Advising="#12" Description="#15" Semantic="Setter" Ordinal="13" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#1">
+    <Instance Declaration="#21=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Load(T)@model" Id="cc0368d92005447">
+      <Target Target="#22=R:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionCamera::Load([Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.Models.IMachineVisionCameraModel)@model">
+        <JoinPoint Advised="#23=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionCamera::Load([Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.Models.IMachineVisionCameraModel)" Advising="#1" Description="#24=Validates the value passed to parameter 'model'" Ordinal="10" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#25=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Save(T)@model" Id="cc0368d8cb7af7a">
+      <Target Target="#26=R:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionCamera::Save([Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.Models.IMachineVisionCameraModel)@model">
+        <JoinPoint Advised="#27=M:[Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.MachineVisionCamera::Save([Nutshell.Hikvision.MachineVision]Nutshell.Hikvision.MachineVision.Models.IMachineVisionCameraModel)" Advising="#1" Description="#24" Ordinal="11" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Annotation Target="#28=M:[PostSharp]PostSharp.Aspects.LocationInterceptionAspect::OnGetValue([PostSharp]PostSharp.Aspects.LocationInterceptionArgs)" Arguments="#29=2" Description="#30=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
+</Symbols>

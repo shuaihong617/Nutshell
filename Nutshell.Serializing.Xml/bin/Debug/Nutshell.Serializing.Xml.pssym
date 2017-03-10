@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="19" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Serializing]Nutshell.Serializing.Serializer{T}::Serialize(T)@t" Id="ef36f728fb3cb3a8">
+      <Target Target="#3=R:[Nutshell.Serializing.Xml]Nutshell.Serializing.Xml.XmlSerializer{T}::Serialize(T)@t">
+        <JoinPoint Advised="#4=M:[Nutshell.Serializing.Xml]Nutshell.Serializing.Xml.XmlSerializer{T}::Serialize(T)" Advising="#1" Description="#5=Validates the value passed to parameter 't'" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#6=R:[Nutshell.Serializing]Nutshell.Serializing.Serializer{T}::Deserialize(System.Byte[])@content" Id="ef36f728b6c20089">
+      <Target Target="#7=R:[Nutshell.Serializing.Xml]Nutshell.Serializing.Xml.XmlSerializer{T}::Deserialize(System.Byte[])@content">
+        <JoinPoint Advised="#8=M:[Nutshell.Serializing.Xml]Nutshell.Serializing.Xml.XmlSerializer{T}::Deserialize(System.Byte[])" Advising="#1" Description="#9=Validates the value passed to parameter 'content'" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

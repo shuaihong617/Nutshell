@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="32" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlConnectableComponentStorager::Load(Nutshell.Components.IConnectableComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlConnectableComponentModel)@component" Id="3830188494c3b010">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlConnectableComponentStorager::Load(Nutshell.Components.IConnectableComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlConnectableComponentModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'component'" Ordinal="2" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=R:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlConnectableComponentStorager::Load(Nutshell.Components.IConnectableComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlConnectableComponentModel)@model" Id="383018841c352311">
+      <Target>
+        <JoinPoint Advised="#3" Advising="#1" Description="#6=Validates the value passed to parameter 'model'" Ordinal="3" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7=R:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlDispatchableComponentStorager::Load(Nutshell.Components.IDispatchableComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlDispatchableComponentModel)@component" Id="3830188494c8e7b1">
+      <Target>
+        <JoinPoint Advised="#8=M:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlDispatchableComponentStorager::Load(Nutshell.Components.IDispatchableComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlDispatchableComponentModel)" Advising="#1" Description="#4" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9=R:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlDispatchableComponentStorager::Load(Nutshell.Components.IDispatchableComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlDispatchableComponentModel)@model" Id="383018848b16d39d">
+      <Target>
+        <JoinPoint Advised="#8" Advising="#1" Description="#6" Ordinal="5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10=R:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlComponentStorager::Load(Nutshell.Components.IComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlComponentObjectModel)@component" Id="38301884ed57751b">
+      <Target>
+        <JoinPoint Advised="#11=M:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlComponentStorager::Load(Nutshell.Components.IComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlComponentObjectModel)" Advising="#1" Description="#4" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#12=R:[Nutshell.Components.Xml]Nutshell.Components.Xml.XmlComponentStorager::Load(Nutshell.Components.IComponent, [Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlComponentObjectModel)@model" Id="3830188419992a99">
+      <Target>
+        <JoinPoint Advised="#11" Advising="#1" Description="#6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#13=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanAttribute">
+    <Instance Declaration="#14=P:[Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlLooperModel::Interval()" Id="38301884a597efd0">
+      <Target>
+        <JoinPoint Advised="#15=M:[Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlLooperModel::set_Interval(System.Int32)" Advising="#13" Description="#16=Validates the assigned value" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

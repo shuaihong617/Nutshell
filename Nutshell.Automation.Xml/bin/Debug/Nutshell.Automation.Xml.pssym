@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="24" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlCapturableDeviceStorager::Load{T}(Nutshell.Automation.CapturableDevice{T}, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlCapturableDeviceModel)@device" Id="d00cbba519017f80">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlCapturableDeviceStorager::Load{T}(Nutshell.Automation.CapturableDevice{T}, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlCapturableDeviceModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'device'" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlCapturableDeviceStorager::Load{T}(Nutshell.Automation.CapturableDevice{T}, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlCapturableDeviceModel)@model" Id="d00cbba58a0532e6">
+      <Target>
+        <JoinPoint Advised="#3" Advising="#1" Description="#6=Validates the value passed to parameter 'model'" Ordinal="7" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlDispatchableDeviceStorager::Load(Nutshell.Automation.DispatchableDevice, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlDispatchableDeviceModel)@device" Id="d00cbba507d291be">
+      <Target>
+        <JoinPoint Advised="#8=M:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlDispatchableDeviceStorager::Load(Nutshell.Automation.DispatchableDevice, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlDispatchableDeviceModel)" Advising="#1" Description="#4" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlDispatchableDeviceStorager::Load(Nutshell.Automation.DispatchableDevice, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlDispatchableDeviceModel)@model" Id="d00cbba5ad807f8f">
+      <Target>
+        <JoinPoint Advised="#8" Advising="#1" Description="#6" Ordinal="5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlConnectableDeviceStorager::Load(Nutshell.Automation.ConnectableDevice, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlConnectableDeviceModel)@device" Id="d00cbba56cca1f0f">
+      <Target>
+        <JoinPoint Advised="#11=M:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlConnectableDeviceStorager::Load(Nutshell.Automation.ConnectableDevice, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlConnectableDeviceModel)" Advising="#1" Description="#4" Ordinal="2" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#12=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlConnectableDeviceStorager::Load(Nutshell.Automation.ConnectableDevice, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlConnectableDeviceModel)@model" Id="d00cbba53e02776f">
+      <Target>
+        <JoinPoint Advised="#11" Advising="#1" Description="#6" Ordinal="3" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#13=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlDeviceStorager::Load(Nutshell.Automation.Device, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlDeviceModel)@device" Id="d00cbba50973222c">
+      <Target>
+        <JoinPoint Advised="#14=M:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlDeviceStorager::Load(Nutshell.Automation.Device, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlDeviceModel)" Advising="#1" Description="#4" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#15=R:[Nutshell.Automation.Xml]Nutshell.Automation.Xml.XmlDeviceStorager::Load(Nutshell.Automation.Device, [Nutshell.Automation.Xml]Nutshell.Automation.Xml.Models.XmlDeviceModel)@model" Id="d00cbba5c22018fd">
+      <Target>
+        <JoinPoint Advised="#14" Advising="#1" Description="#6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

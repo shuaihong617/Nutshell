@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="1129" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
+    <Instance Declaration="#2=P:[Nutshell]Nutshell.IdentityObject::Id()" Id="697f997882309976">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell]Nutshell.IdentityObject::set_Id(System.String)" Description="#4=Validates the assigned value" Semantic="Setter" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=P:[Nutshell]Nutshell.IdentityObject::GlobalId()" Id="697f99787803dadf">
+      <Target>
+        <JoinPoint Advised="#6=M:[Nutshell]Nutshell.IdentityObject::set_GlobalId(System.String)" Description="#4" Semantic="Setter" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#7=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#8=R:[Nutshell]Nutshell.IdentityObject::#ctor(System.String)@id" Id="697f9978d981640c">
+      <Target>
+        <JoinPoint Advised="#9=M:[Nutshell]Nutshell.IdentityObject::#ctor(System.String)" Description="#10=Validates the value passed to parameter 'id'" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#11=P:[Nutshell]Nutshell.IdentityObject::Parent()" Id="697f9978d35f7b2e">
+      <Target>
+        <JoinPoint Advised="#12=M:[Nutshell]Nutshell.IdentityObject::set_Parent([Nutshell]Nutshell.IIdentifiable)" Description="#4" Ordinal="7" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#13=R:[Nutshell]Nutshell.Logging.LogProvider::Debug(System.Object)@message" Id="697f9978851266ba">
+      <Target>
+        <JoinPoint Advised="#14=M:[Nutshell]Nutshell.Logging.LogProvider::Debug(System.Object)" Description="#15=Validates the value passed to parameter 'message'" Ordinal="9" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#16=R:[Nutshell]Nutshell.Logging.LogProvider::Info(System.Object)@message" Id="697f99785b911538">
+      <Target>
+        <JoinPoint Advised="#17=M:[Nutshell]Nutshell.Logging.LogProvider::Info(System.Object)" Description="#15" Ordinal="10" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#18=R:[Nutshell]Nutshell.Logging.LogProvider::Warn(System.Object)@message" Id="697f9978332090c2">
+      <Target>
+        <JoinPoint Advised="#19=M:[Nutshell]Nutshell.Logging.LogProvider::Warn(System.Object)" Description="#15" Ordinal="11" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#20=R:[Nutshell]Nutshell.Logging.LogProvider::Error(System.Object)@message" Id="697f9978e558a23b">
+      <Target>
+        <JoinPoint Advised="#21=M:[Nutshell]Nutshell.Logging.LogProvider::Error(System.Object)" Description="#15" Ordinal="12" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#22=R:[Nutshell]Nutshell.Logging.LogProvider::Fatal(System.Object)@message" Id="697f9978c1f66d0b">
+      <Target>
+        <JoinPoint Advised="#23=M:[Nutshell]Nutshell.Logging.LogProvider::Fatal(System.Object)" Description="#15" Ordinal="13" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#24=R:[Nutshell]Nutshell.Extensions.ExceptionExtensions::FormatMessage(System.Exception, System.Boolean)@exception" Id="697f99789e1d78ac">
+      <Target>
+        <JoinPoint Advised="#25=M:[Nutshell]Nutshell.Extensions.ExceptionExtensions::FormatMessage(System.Exception, System.Boolean)" Description="#26=Validates the value passed to parameter 'exception'" Ordinal="14" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#27=R:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)@trueString" Id="697f9978c141795d">
+      <Target>
+        <JoinPoint Advised="#28=M:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)" Description="#29=Validates the value passed to parameter 'trueString'" Ordinal="15" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#30=R:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)@falseString" Id="697f9978ece1da1e">
+      <Target>
+        <JoinPoint Advised="#28" Description="#31=Validates the value passed to parameter 'falseString'" Ordinal="16" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#32=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)@dist" Id="697f9978f0552d15">
+      <Target>
+        <JoinPoint Advised="#33=M:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)" Description="#34=Validates the value passed to parameter 'dist'" Ordinal="17" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#35=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustNotContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)@dictionary" Id="697f99780a7f804b">
+      <Target>
+        <JoinPoint Advised="#36=M:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustNotContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)" Description="#37=Validates the value passed to parameter 'dictionary'" Ordinal="18" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#38=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::ToReadOnlyDictionary{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue})@dictionary" Id="697f9978109e2374">
+      <Target>
+        <JoinPoint Advised="#39=M:[Nutshell]Nutshell.Extensions.DictionaryExtensions::ToReadOnlyDictionary{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue})" Description="#37" Ordinal="19" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#40=T:[Nutshell]Nutshell.Aspects.Methods.Contracts.MustReturnNotEqualNullOrEmptyAttribute">
+    <Instance Declaration="#41=M:[Nutshell]Nutshell.IdentityObject::ToString()" Id="697f9978416016d7">
+      <Target>
+        <JoinPoint Description="#42=Wrapped by advice(s) OnExit" Ordinal="8" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#43=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
+    <Instance Declaration="#2" Id="697f9978b9ddc051">
+      <Target>
+        <JoinPoint Advised="#44=M:[Nutshell]Nutshell.IdentityObject::get_Id()" Description="#45=Intercepted by advice " Semantic="Getter" Ordinal="0" />
+        <JoinPoint Advised="#3" Description="#46=Intercepted by advice OnSetValue" Semantic="Setter" Ordinal="2" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5" Id="697f9978f5ec78cb">
+      <Target>
+        <JoinPoint Advised="#47=M:[Nutshell]Nutshell.IdentityObject::get_GlobalId()" Description="#45" Semantic="Getter" Ordinal="3" />
+        <JoinPoint Advised="#6" Description="#46" Semantic="Setter" Ordinal="5" />
+      </Target>
+    </Instance>
+  </Class>
+  <Annotation Target="#48=M:[PostSharp]PostSharp.Aspects.LocationInterceptionAspect::OnGetValue([PostSharp]PostSharp.Aspects.LocationInterceptionArgs)" Arguments="#49=2" Description="#50=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
+  <Annotation Target="#51=M:[Nutshell]Nutshell.Aspects.Methods.Contracts.MustReturnNotEqualNullOrEmptyAttribute::OnExit(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#49" Description="#50" />
+</Symbols>

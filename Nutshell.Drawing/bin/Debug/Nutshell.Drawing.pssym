@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="121" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanOrEqualAttribute">
+    <Instance Declaration="#2=P:[Nutshell.Drawing]Nutshell.Drawing.Region::X()" Id="c89678404a5069e0">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Drawing]Nutshell.Drawing.Region::set_X(System.Int32)" Advising="#1" Description="#4=Validates the assigned value" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=P:[Nutshell.Drawing]Nutshell.Drawing.Region::Y()" Id="c8967840373b6402">
+      <Target>
+        <JoinPoint Advised="#6=M:[Nutshell.Drawing]Nutshell.Drawing.Region::set_Y(System.Int32)" Advising="#1" Description="#4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#7=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanAttribute">
+    <Instance Declaration="#8=P:[Nutshell.Drawing]Nutshell.Drawing.Region::Width()" Id="c8967840cfcf89af">
+      <Target>
+        <JoinPoint Advised="#9=M:[Nutshell.Drawing]Nutshell.Drawing.Region::set_Width(System.Int32)" Advising="#7" Description="#4" Ordinal="2" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10=P:[Nutshell.Drawing]Nutshell.Drawing.Region::Height()" Id="c89678403b6145c7">
+      <Target>
+        <JoinPoint Advised="#11=M:[Nutshell.Drawing]Nutshell.Drawing.Region::set_Height(System.Int32)" Advising="#7" Description="#4" Ordinal="3" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#12=P:[Nutshell.Drawing]Nutshell.Drawing.Region::ContainerWidth()" Id="c8967840fbd6fff0">
+      <Target>
+        <JoinPoint Advised="#13=M:[Nutshell.Drawing]Nutshell.Drawing.Region::set_ContainerWidth(System.Int32)" Advising="#7" Description="#4" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#14=P:[Nutshell.Drawing]Nutshell.Drawing.Region::ContainerHeight()" Id="c8967840cdbaa9e1">
+      <Target>
+        <JoinPoint Advised="#15=M:[Nutshell.Drawing]Nutshell.Drawing.Region::set_ContainerHeight(System.Int32)" Advising="#7" Description="#4" Ordinal="5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#16=P:[Nutshell.Drawing]Nutshell.Drawing.Resolution::Horizontal()" Id="c8967840e703ae8a">
+      <Target>
+        <JoinPoint Advised="#17=M:[Nutshell.Drawing]Nutshell.Drawing.Resolution::set_Horizontal(System.Double)" Advising="#7" Description="#4" Ordinal="10" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#18=R:[Nutshell.Drawing]Nutshell.Drawing.Resolution::#ctor(System.String, System.Double, System.Double)@horizontal" Id="c896784046ce3968">
+      <Target>
+        <JoinPoint Advised="#19=M:[Nutshell.Drawing]Nutshell.Drawing.Resolution::#ctor(System.String, System.Double, System.Double)" Advising="#7" Description="#20=Validates the value passed to parameter 'horizontal'" Ordinal="8" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#21=P:[Nutshell.Drawing]Nutshell.Drawing.Resolution::Vertical()" Id="c8967840774dd6b6">
+      <Target>
+        <JoinPoint Advised="#22=M:[Nutshell.Drawing]Nutshell.Drawing.Resolution::set_Vertical(System.Double)" Advising="#7" Description="#4" Ordinal="11" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#23=R:[Nutshell.Drawing]Nutshell.Drawing.Resolution::#ctor(System.String, System.Double, System.Double)@vertical" Id="c89678405f82e036">
+      <Target>
+        <JoinPoint Advised="#19" Advising="#7" Description="#24=Validates the value passed to parameter 'vertical'" Ordinal="9" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#25=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#26=R:[Nutshell.Drawing]Nutshell.Drawing.Resolution::Load([Nutshell.Drawing]Nutshell.Drawing.Models.IResolutionModel)@model" Id="c8967840edd8dd52">
+      <Target>
+        <JoinPoint Advised="#27=M:[Nutshell.Drawing]Nutshell.Drawing.Resolution::Load([Nutshell.Drawing]Nutshell.Drawing.Models.IResolutionModel)" Advising="#25" Description="#28=Validates the value passed to parameter 'model'" Ordinal="12" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#29=R:[Nutshell.Drawing]Nutshell.Drawing.Resolution::Save([Nutshell.Drawing]Nutshell.Drawing.Models.IResolutionModel)@model" Id="c89678405254fe63">
+      <Target>
+        <JoinPoint Advised="#30=M:[Nutshell.Drawing]Nutshell.Drawing.Resolution::Save([Nutshell.Drawing]Nutshell.Drawing.Models.IResolutionModel)" Advising="#25" Description="#28" Ordinal="13" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#25">
+    <Instance Declaration="#31=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Load(T)@model" Id="cc0368d92005447">
+      <Target Target="#32=R:[Nutshell.Drawing]Nutshell.Drawing.Region::Load([Nutshell.Drawing]Nutshell.Drawing.Models.IRegionModel)@model">
+        <JoinPoint Advised="#33=M:[Nutshell.Drawing]Nutshell.Drawing.Region::Load([Nutshell.Drawing]Nutshell.Drawing.Models.IRegionModel)" Advising="#25" Description="#28" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#34=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Save(T)@model" Id="cc0368d8cb7af7a">
+      <Target Target="#35=R:[Nutshell.Drawing]Nutshell.Drawing.Region::Save([Nutshell.Drawing]Nutshell.Drawing.Models.IRegionModel)@model">
+        <JoinPoint Advised="#36=M:[Nutshell.Drawing]Nutshell.Drawing.Region::Save([Nutshell.Drawing]Nutshell.Drawing.Models.IRegionModel)" Advising="#25" Description="#28" Ordinal="7" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

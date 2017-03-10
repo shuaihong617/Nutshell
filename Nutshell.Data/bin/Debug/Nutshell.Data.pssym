@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="42" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Load(T)@model" Id="cc0368d92005447">
+      <Target Target="#3=R:[Nutshell.Data]Nutshell.Data.Application::Load([Nutshell.Data]Nutshell.Data.Models.IApplicationModel)@model">
+        <JoinPoint Advised="#4=M:[Nutshell.Data]Nutshell.Data.Application::Load([Nutshell.Data]Nutshell.Data.Models.IApplicationModel)" Advising="#1" Description="#5=Validates the value passed to parameter 'model'" Ordinal="7" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#6=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Save(T)@model" Id="cc0368d8cb7af7a">
+      <Target Target="#7=R:[Nutshell.Data]Nutshell.Data.Application::Save([Nutshell.Data]Nutshell.Data.Models.IApplicationModel)@model">
+        <JoinPoint Advised="#8=M:[Nutshell.Data]Nutshell.Data.Application::Save([Nutshell.Data]Nutshell.Data.Models.IApplicationModel)" Advising="#1" Description="#5" Ordinal="8" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9=R:[Nutshell.Data]Nutshell.Data.StorableObject::Load([Nutshell.Data]Nutshell.Data.Models.IDataModel)@model" Id="cc0368d0c0f6c9e">
+      <Target>
+        <JoinPoint Advised="#10=M:[Nutshell.Data]Nutshell.Data.StorableObject::Load([Nutshell.Data]Nutshell.Data.Models.IDataModel)" Advising="#1" Description="#5" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#11=R:[Nutshell.Data]Nutshell.Data.StorableObject::Save([Nutshell.Data]Nutshell.Data.Models.IDataModel)@model" Id="cc0368dfb572705">
+      <Target>
+        <JoinPoint Advised="#12=M:[Nutshell.Data]Nutshell.Data.StorableObject::Save([Nutshell.Data]Nutshell.Data.Models.IDataModel)" Advising="#1" Description="#5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#13=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
+    <Instance Declaration="#14=P:[Nutshell.Data]Nutshell.Data.Application::Name()" Id="cc0368d5865cd52">
+      <Target>
+        <JoinPoint Advised="#15=M:[Nutshell.Data]Nutshell.Data.Application::set_Name(System.String)" Advising="#13" Description="#16=Validates the assigned value" Ordinal="2" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#17=P:[Nutshell.Data]Nutshell.Data.Application::Title()" Id="cc0368d1c6560ad">
+      <Target>
+        <JoinPoint Advised="#18=M:[Nutshell.Data]Nutshell.Data.Application::set_Title(System.String)" Advising="#13" Description="#16" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#19=P:[Nutshell.Data]Nutshell.Data.Application::Company()" Id="cc0368d4d08a7ab">
+      <Target>
+        <JoinPoint Advised="#20=M:[Nutshell.Data]Nutshell.Data.Application::set_Company(System.String)" Advising="#13" Description="#16" Ordinal="5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#21=P:[Nutshell.Data]Nutshell.Data.Application::CopyRight()" Id="cc0368d0efb0748">
+      <Target>
+        <JoinPoint Advised="#22=M:[Nutshell.Data]Nutshell.Data.Application::set_CopyRight(System.String)" Advising="#13" Description="#16" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#23=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualEmptyVersionAttribute">
+    <Instance Declaration="#24=P:[Nutshell.Data]Nutshell.Data.Application::Version()" Id="cc0368d73250e9c">
+      <Target>
+        <JoinPoint Advised="#25=M:[Nutshell.Data]Nutshell.Data.Application::set_Version(System.Version)" Advising="#23" Description="#16" Ordinal="3" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="5" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Tests]Nutshell.Tests.Aspects.LocationContracts.NotEqualNullAttributeTests::Test(System.Object)@data" Id="2569b2d7c10d8d9">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Tests]Nutshell.Tests.Aspects.LocationContracts.NotEqualNullAttributeTests::Test(System.Object)" Advising="#1" Description="#4=Validates the value passed to parameter 'data'" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

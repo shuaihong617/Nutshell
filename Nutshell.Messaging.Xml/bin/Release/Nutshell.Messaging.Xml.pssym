@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="80" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2=P:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.XmlValueMessage{T}::Value()" Id="bc08cdcf3ae6a8d8">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.XmlValueMessage{T}::set_Value(T)" Advising="#1" Description="#4=Validates the assigned value" Ordinal="2" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=R:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.XmlValueMessage{T}::#ctor(System.String, System.String, T)@t" Id="bc08cdcf4a444446">
+      <Target>
+        <JoinPoint Advised="#6=M:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.XmlValueMessage{T}::#ctor(System.String, System.String, T)" Advising="#1" Description="#7=Validates the value passed to parameter 't'" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#8=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
+    <Instance Declaration="#9=R:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.XmlMessage::#ctor(System.String, System.String)@categroy" Id="bc08cdcf0708f35f">
+      <Target>
+        <JoinPoint Advised="#10=M:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.XmlMessage::#ctor(System.String, System.String)" Advising="#8" Description="#11=Validates the value passed to parameter 'categroy'" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

@@ -1,0 +1,56 @@
+﻿<mahapps:MetroWindow x:Class="Nutshell.Drawing.Imaging.WPFUI.CannyEdgeDetectWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:form="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+                     xmlns:mahapps="http://metro.mahapps.com/winfx/xaml/controls"
+                     Style="{StaticResource MetroWindowStyle}"
+                     WindowStartupLocation="CenterScreen"
+                     Width="1600"
+                     Height="800"
+                     WindowState="Maximized"
+                     Icon="Resources/Images/Icon.ico"
+                     Title="Canny边缘检测"
+                     Loaded="Window_Loaded">
+        <Grid Style="{StaticResource GridStyle}">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                
+                <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                        <WindowsFormsHost Width="{Binding Size.Width, ElementName=PictureBox}" Height="{Binding Size.Height, ElementName=PictureBox}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                                <form:PictureBox x:Name="PictureBox" />
+                        </WindowsFormsHost>
+                </ScrollViewer>
+                <Border Grid.Row="1" Height="1" Width="Auto" Background="LightGray" />
+                
+                <ContentControl Grid.Row="1" Style="{StaticResource Panel-Primary}" Margin="10">
+                    <StackPanel>
+                            <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="参数"/>
+                            <ContentControl Style="{StaticResource Panel-Body}">
+                                    <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="100" />
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="100" />
+                                                    <ColumnDefinition Width="100" />
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="100" />
+                                                    <ColumnDefinition Width="100" />
+                                                    </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" Style="{StaticResource H3 Small}"  Content="LowThreshold"/>
+                                            <TextBox Grid.Column="1" Name="LowThresholdTextBox" Margin="10"  Width="240" Height="24"></TextBox>
+                                            
+                                            <Label Grid.Column="3" Style="{StaticResource H3 Small}"  Content="HighThreshold"/>
+                                            <TextBox Grid.Column="4" Name="HighThresholdTextBox" Margin="10"  Width="Auto" Height="24"></TextBox>
+                                            
+                                            <Button Grid.Column="6" Style="{StaticResource ButtonStyle}" Foreground="Azure"
+                                                    Content="确认" Click="AcceptButton_Click" />
+                                    </Grid>
+                            </ContentControl>
+                    </StackPanel>
+                </ContentControl>
+                        
+        </Grid>
+</mahapps:MetroWindow>

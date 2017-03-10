@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="12" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell.IO]Nutshell.IO.Aspects.Locations.Contracts.MustFileExistAttribute">
+    <Instance Declaration="#2=R:[Nutshell.Hikvision.MachineVision.Xml]Nutshell.Hikvision.MachineVision.Xml.XmlMachineVisionCameraStorager::Load(System.String)@fileName" Id="1dceaf4d68aa84fc">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Hikvision.MachineVision.Xml]Nutshell.Hikvision.MachineVision.Xml.XmlMachineVisionCameraStorager::Load(System.String)" Advising="#1" Description="#4=Validates the value passed to parameter 'fileName'" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>
