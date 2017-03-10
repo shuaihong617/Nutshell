@@ -104,7 +104,7 @@ namespace Nutshell.Components
 			for (;;)
 			{
 				var result = _repeat();
-				OnRepeatFinshed(new ValueEventArgs<Result>(result));
+				//OnRepeatFinshed(new ValueEventArgs<Result>(result));
 
 				Thread.Sleep(Interval);
 
@@ -129,7 +129,7 @@ namespace Nutshell.Components
 		///         当启动时发生。
 		/// </summary>
 		[Description("启动事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		public event EventHandler<ValueEventArgs<Result>> RepeatFinshed;
 
 		/// <summary>

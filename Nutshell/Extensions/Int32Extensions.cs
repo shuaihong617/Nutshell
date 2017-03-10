@@ -14,7 +14,7 @@
 
 using System;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         32位整数扩展方法

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using Nutshell.Aspects.Locations.Propertys;
+﻿using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.Opc.Xml;
-using Nutshell.Automation.Opc;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
 using Nutshell.Logging;
@@ -18,7 +15,6 @@ namespace Nutshell.Automation.Opc.WPFUI
                 {
                         ConfigDirectory = @"配置/";
 
-	                
 
                         LogProvider.Initialize();
                         LogCollecter = new LogCollecter();
@@ -39,12 +35,12 @@ namespace Nutshell.Automation.Opc.WPFUI
                 /// <summary>
                 ///         配置文件目录
                 /// </summary>
-                public string ConfigDirectory { get;private set; }
+                public string ConfigDirectory { get; }
 
                 [NotifyPropertyValueChanged]
                 public Application Application { get; private set; }
 
-                public LogCollecter LogCollecter { get; private set; }
+                public LogCollecter LogCollecter { get; }
 
                 [NotifyPropertyValueChanged]
                 public OpcRuntime Runtime { get; private set; }
@@ -61,20 +57,19 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void Start()
                 {
-			Runtime = OpcRuntime.Instance;
-	                Runtime.Parent = Application;
-			Runtime.Start();
+                        Runtime = OpcRuntime.Instance;
+                        Runtime.Parent = Application;
+                        Runtime.Start();
 
-			Server = new OpcServer();
-	                Server.Parent = Runtime;
-			XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
-		}
+                        Server = new OpcServer();
+                        Server.Parent = Runtime;
+                        XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
+                }
 
 
                 public void Stop()
                 {
-			
-			//Runtime.Stop();
+                        //Runtime.Stop();
                 }
         }
 }

@@ -9,10 +9,10 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ContentControl Grid.Row="0" Style="{StaticResource panel-primary}" Margin="10">
+                <ContentControl Grid.Row="0" Style="{StaticResource Panel-Primary}" Margin="10">
                         <StackPanel>
-                                <ContentControl Style="{StaticResource panel-heading-primary}" Content="角色  (暂不支持选择，默认汉语)"/>
-                                <ContentControl Style="{StaticResource panel-body}">
+                                <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="角色  (暂不支持选择，默认汉语)"/>
+                                <ContentControl Style="{StaticResource Panel-Body}">
                                         <Grid>
                                                 <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"/>
@@ -34,13 +34,13 @@
                                                 </DataGrid>
                                         </Grid>
                                 </ContentControl>
-                                <ContentControl Style="{StaticResource panel-footer-primary}" Content="共计：2"/>
+                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2"/>
                         </StackPanel>
                 </ContentControl>
-                <ContentControl Grid.Row="1" Style="{StaticResource panel-primary}" Margin="10">
+                <ContentControl Grid.Row="1" Style="{StaticResource Panel-Primary}" Margin="10">
                         <StackPanel>
-                                <ContentControl Style="{StaticResource panel-heading-primary}" Content="音量"/>
-                                <ContentControl Style="{StaticResource panel-body}">
+                                <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="音量"/>
+                                <ContentControl Style="{StaticResource Panel-Body}">
                                         <Grid>
                                                 <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*"/>
@@ -49,7 +49,7 @@
                                                         </Grid.ColumnDefinitions>
                                                 <Slider Grid.Column="0" Style="{DynamicResource FlatSlider}" Name="VolumeSlider" Margin="10"  Width="Auto" Height="24" 
                                                         SmallChange="1" TickFrequency="10" TickPlacement="TopLeft" Value="{Binding Synthesizer.Volume, Mode=TwoWay}"></Slider>
-                                                <Label Grid.Column="2" Style="{StaticResource h3 small}"  Content="{Binding Synthesizer.Volume}"/>
+                                                <Label Grid.Column="2" Style="{StaticResource H3 Small}"  Content="{Binding Synthesizer.Volume}"/>
                                         </Grid>
                                 </ContentControl>
                         </StackPanel>

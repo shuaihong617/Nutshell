@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
+using Nutshell.Extensions;
 using OPCAutomation;
 
 namespace Nutshell.Automation.Opc

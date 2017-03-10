@@ -14,7 +14,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         列表扩展方法

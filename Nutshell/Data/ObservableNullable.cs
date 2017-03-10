@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Extensions;
 
 namespace Nutshell.Data
 {
@@ -24,7 +25,6 @@ namespace Nutshell.Data
                 /// <summary>
                 /// 初始化<see cref="ObservableNullable{T}" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">The item.</param>
                 public ObservableNullable(string id)
                         :base( id)

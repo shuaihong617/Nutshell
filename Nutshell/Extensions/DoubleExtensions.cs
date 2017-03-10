@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         双精度浮点数扩展方法

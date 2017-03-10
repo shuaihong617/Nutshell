@@ -12,16 +12,15 @@
 // ***********************************************************************
 
 using System;
-using Nutshell.Data;
+using Nutshell.Extensions;
 
 namespace Nutshell.Components
 {
         /// <summary>
         ///         消费者
         /// </summary>
-        public abstract class Consumer<T> :IConsumer<T> where T : class
+        public abstract class Consumer<T> : IConsumer<T> where T : class
         {
-                
                 /// <summary>
                 ///         获得产品
                 /// </summary>

@@ -91,11 +91,12 @@ namespace Nutshell.Drawing.Imaging
 			nativeBitmap.Save(fileName);
 		}
 
-		/// <summary>
-		/// Saves the BGR24.
-		/// </summary>
-		/// <param name="filePath">The file path.</param>
-		private static void SaveBgr24(Bitmap bitmap, string filePath)
+                /// <summary>
+                /// Saves the BGR24.
+                /// </summary>
+                /// <param name="bitmap">The bitmap.</param>
+                /// <param name="filePath">The file path.</param>
+                private static void SaveBgr24(Bitmap bitmap, string filePath)
 		{
 			bitmap.PixelFormat.MustEqual(PixelFormat.Bgr24);
 

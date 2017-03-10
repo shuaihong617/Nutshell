@@ -62,7 +62,10 @@ namespace Nutshell.Data
 		[MustNotEqualNullOrEmpty]
 		public string CopyRight { get; private set; }
 
-
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
 		public void Load(IApplicationModel model)
 		{
 			base.Load(model);

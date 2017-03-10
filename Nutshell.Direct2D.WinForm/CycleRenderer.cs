@@ -17,7 +17,7 @@ namespace Nutshell.Direct2D.WinForm
                         _renderLooper = new Looper("显示循环", ThreadPriority.Highest,15, Render);
                 }
 
-                protected BitmapSence Sence { get;private set; }
+                protected BitmapSence Sence { get; }
 
                 private readonly Looper _renderLooper;
 

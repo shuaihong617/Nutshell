@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         枚举扩展方法

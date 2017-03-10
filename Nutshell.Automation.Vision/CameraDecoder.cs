@@ -66,7 +66,6 @@ namespace Nutshell.Automation.Vision
 		protected override void DecodeCore(Bitmap source, Bitmap target)
 		{
 			BitmapConverter.ConvertTo(source,target);
-			//BitmapStorager.Save(target, DateTime.Now.ToChineseLongFileName() + ".bmp");
 		}
 	}
 }

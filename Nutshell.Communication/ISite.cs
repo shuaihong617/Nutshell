@@ -45,14 +45,14 @@ namespace Nutshell.Communication
 		///         当数据发送成功时发生。
 		/// </summary>
 		[Description("数据发送成功事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		event EventHandler<EventArgs> SendSuccessed;
 
 		/// <summary>
 		///         当数据发送成功时发生。
 		/// </summary>
 		[Description("数据发送成功事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		event EventHandler<EventArgs> SendFailed;
 
 		#endregion
@@ -74,7 +74,7 @@ namespace Nutshell.Communication
 		///         当数据接收成功时发生。
 		/// </summary>
 		[Description("数据接收成功事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
 
 		#endregion

@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 
-using System.Xml.Serialization;
 using Nutshell.Data.Models;
 
 namespace Nutshell.Drawing.Models

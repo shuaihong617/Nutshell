@@ -18,7 +18,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
 
                 public override string ToString()
                 {
-                        return String.Format("当前值：{0}，最大值：{1}，最小值：{2}，增量：{3}", Current,Maximum, Minimum, Increase);
+                        return $"当前值：{Current}，最大值：{Maximum}，最小值：{Minimum}，增量：{Increase}";
                 }
         }
 }

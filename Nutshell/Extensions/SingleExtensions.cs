@@ -14,9 +14,8 @@
 using System;
 using System.Diagnostics;
 using System.Diagnostics.Contracts;
-using Nutshell.Extensions;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         浮点数据类型扩展方法

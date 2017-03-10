@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         DateTime struce extensions

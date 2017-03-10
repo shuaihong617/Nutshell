@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:machineVision1="clr-namespace:Nutshell.Hikvision.MachineVision;assembly=Nutshell.Hikvision.MachineVision">
         <DataTemplate x:Key="MachineVisionRuntimeDataTemplate" DataType="{x:Type machineVision1:MachineVisionRuntime}">
-                <ContentControl Style="{StaticResource panel-primary}" Margin="10">
+                <ContentControl Style="{StaticResource Panel-Primary}" Margin="10">
                         <StackPanel>
-                                <ContentControl Style="{StaticResource panel-heading-primary}" Content="{Binding Id}" />
-                                <ContentControl Style="{StaticResource panel-body}">
+                                <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="{Binding Id}" />
+                                <ContentControl Style="{StaticResource Panel-Body}">
                                         <DataGrid Margin="10" ItemsSource="{Binding InstalledMachineVisionCameras}">
                                                 <DataGrid.Columns>
                                                         <DataGridTextColumn Width="Auto" Header="名称"

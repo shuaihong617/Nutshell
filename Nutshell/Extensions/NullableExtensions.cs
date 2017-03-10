@@ -11,7 +11,7 @@
 // </summary>
 // ***********************************************************************
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         可空短整形扩展方法

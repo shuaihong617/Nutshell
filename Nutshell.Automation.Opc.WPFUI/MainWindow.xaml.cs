@@ -49,9 +49,8 @@ namespace Nutshell.Automation.Opc.WPFUI
 
 		private void AboutButton_Click(object sender, RoutedEventArgs e)
 		{
-			var window = new AboutWindow();
-			window.Owner = this;
-			window.ShowDialog();
+		        var window = new AboutWindow {Owner = this};
+		        window.ShowDialog();
 		}
 
 		private void DataButton_Click(object sender, RoutedEventArgs e)

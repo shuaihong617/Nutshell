@@ -1,6 +1,7 @@
 ﻿using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
+using Nutshell.Extensions;
 using PostSharp.Aspects;
 using PostSharp.Reflection;
 

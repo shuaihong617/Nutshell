@@ -13,7 +13,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace Nutshell
@@ -41,10 +40,7 @@ namespace Nutshell
                 public void OnPropertyChanged([CallerMemberName] string propertyName = null)
                 {
                         PropertyChangedEventHandler handler = PropertyChanged;
-                        if (handler != null)
-                        {
-                                handler.Invoke(this,new PropertyChangedEventArgs(propertyName));
-                        }
+                        handler?.Invoke(this,new PropertyChangedEventArgs(propertyName));
                 }
 
                 /// <summary>

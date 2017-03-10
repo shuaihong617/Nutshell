@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
@@ -165,7 +166,7 @@ namespace Nutshell.Automation
 		///         Occurs when [snaped].
 		/// </summary>
 		[Description("采集成功")]
-		//[WillLogEventInvokeHandler]
+		//[LogEventInvokeHandler]
 		public event EventHandler<ValueEventArgs<T>> CaptureSuccessed;
 
 		/// <summary>

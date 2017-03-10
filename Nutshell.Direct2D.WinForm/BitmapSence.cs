@@ -17,6 +17,7 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Extensions;
 using SharpDX.Direct2D1;
 using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 using DXBitmap = SharpDX.Direct2D1.Bitmap;

@@ -59,7 +59,7 @@ namespace Nutshell.Direct2D.WinForm
                 /// <summary>
                 /// 图像渲染工厂
                 /// </summary>
-                public SharpDX.Direct2D1.Factory Direct2D1Factory { get; private set; }
+                public SharpDX.Direct2D1.Factory Direct2D1Factory { get; }
 
                 /// <summary>
                 /// 控件表面渲染

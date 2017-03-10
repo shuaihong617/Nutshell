@@ -14,13 +14,13 @@ namespace Nutshell.Data.Binding
                         Converter = converter;
                 }
 
-                public object Instance { get; private set; }
+                public object Instance { get; }
 
-                public string PropertyName { get; private set; }
+                public string PropertyName { get; }
 
-                public PropertyInfo PropertyInfo { get; private set; }
+                public PropertyInfo PropertyInfo { get; }
 
-                public object Converter { get; private set; }
+                public object Converter { get; }
 
                 public void Update(string source)
                 {

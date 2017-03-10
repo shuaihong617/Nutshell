@@ -26,15 +26,15 @@ namespace Nutshell.Data
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
-                /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
                 void Load([MustNotEqualNull]T model);
 
 
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-		void Save([MustNotEqualNull] T model);
+                /// <summary>
+                ///         保存数据到数据模型
+                /// </summary>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
+                void Save([MustNotEqualNull] T model);
 
                 #endregion
         }

@@ -50,11 +50,15 @@ namespace Nutshell.Components
 		[NotifyPropertyValueChanged]
 		public RunMode RunMode { get; private set; }
 
-		#endregion
+                #endregion
 
-		#region 方法
+                #region 方法
 
-		public void Load([MustNotEqualNull] IComponentModel model)
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
+                public void Load([MustNotEqualNull] IComponentModel model)
 		{
 			base.Load(model);
 

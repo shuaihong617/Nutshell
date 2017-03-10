@@ -228,5 +228,101 @@ namespace Nutshell.Hikvision.MachineVision
 		}
 
 		#endregion
+
+		#region 私有API
+
+		//              public static extern ErrorCode EnumDevices(DeviceType nTLayerType, ref DeviceInformationCollection deviceInfoCollection);
+
+  //              public static extern bool IsDeviceAccessible(IntPtr handle, ref DeviceInformation pstDevInfo,
+  //                      AccessMode accessMode);
+
+              	private ErrorCode CreateHandle()
+              	{
+                      	string operation = "创建句柄";
+
+                      	Debug.Assert(_handle == null);
+
+                     	var errorCode = OfficialApi.CreateHandle(ref _handle, ref _deviceInformation);
+                       	if (errorCode != ErrorCode.MV_OK)
+                     	{
+                             	this.ErrorFailWithReason(operation, errorCode);
+                     	}
+                     	else
+                    	{
+                           	this.InfoSuccess(operation);
+                    	}
+                    	return errorCode;
+            	}
+
+	        private ErrorCode DestroyHandle()
+	        {
+	        	string operation = "销毁句柄";
+
+			Debug.Assert(_handle != null);
+
+                     	var errorCode = OfficialApi.DestroyHandle(_handle);
+                       	if (errorCode != ErrorCode.MV_OK)
+                     	{
+                             	this.ErrorFailWithReason(operation, errorCode);
+                     	}
+                     	else
+                    	{
+                           	this.InfoSuccess(operation);
+                    	}
+
+                    	_handle = null;
+
+                    	return errorCode;
+	        }
+
+
+               	private ErrorCode OpenDevice()
+               	{
+               		string operation = "打开设备";
+
+               		Debug.Assert(_handle != null);
+
+                     	var errorCode = OfficialApi.OpenDevice(_handle, AccessMode.独占权限);
+                       	if (errorCode != ErrorCode.MV_OK)
+                     	{
+                             	this.ErrorFailWithReason(operation, errorCode);
+                     	}
+                     	else
+                    	{
+                           	this.InfoSuccess(operation);
+                    	}
+                    	return errorCode;
+               	}
+
+  //              public static extern ErrorCode CloseDevice(IntPtr handle);
+
+  //              public static extern ErrorCode StartGrabbing(IntPtr handle);
+
+  //              public static extern ErrorCode StopGrabbing(IntPtr handle);
+
+  //              public static extern ErrorCode GetOneFrame(IntPtr handle, IntPtr pData, int nDataSize,
+  //                      ref FrameOutInformation pFrameInfo);
+
+		//#region 万能接口
+
+		//public static extern ErrorCode SetIntValue(IntPtr handle, string strValue, uint value);
+
+		//public static extern ErrorCode SetEnumValue(IntPtr handle, string strValue, uint value);
+
+		//public static extern ErrorCode SetCommandValue(IntPtr handle, string strValue);
+
+		//#endregion
+
+		//#region GIGE独有接口
+
+		//public static extern ErrorCode GetGevSCPSPacketSize(IntPtr handle, ref IntValue value);
+
+		//public static extern ErrorCode SetGevSCPSPacketSize(IntPtr handle, uint value);
+
+		//#endregion
+
+
+
+		#endregion
 	}
 }

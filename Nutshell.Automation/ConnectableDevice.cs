@@ -12,7 +12,9 @@
 // ***********************************************************************
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.Models;
@@ -56,15 +58,15 @@ namespace Nutshell.Automation
                 [NotifyPropertyValueChanged]
                 public ConnectState ConnectState { get; private set; }
 
-		#endregion
+                #endregion
 
-	        #region 存储
+                #region 存储
 
-	        /// <summary>
-	        ///         从数据模型加载数据
-	        /// </summary>
-	        /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-	        public void Load(IConnectableDeviceModel model)
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
+                public void Load(IConnectableDeviceModel model)
 	        {
 		        base.Load(model);
 	        }
@@ -160,7 +162,7 @@ namespace Nutshell.Automation
 		#region 事件
 
 		[Description("连接成功")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		protected event EventHandler<EventArgs> ConnectSuccessed;
 
 

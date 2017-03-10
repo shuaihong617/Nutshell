@@ -18,7 +18,6 @@ using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Models;
 using Nutshell.Automation.Xml.Models;
-using Nutshell.Components.Xml.Models;
 
 namespace Nutshell.Automation.Opc.Xml.Models
 {

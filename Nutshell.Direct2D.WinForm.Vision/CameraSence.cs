@@ -41,9 +41,11 @@ namespace Nutshell.Direct2D.WinForm.Vision
 
                         RedBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.Red);
                         BlueBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.Blue);
+                        LawnGreenBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.LawnGreen);
 
                         TextFactory = new SharpDX.DirectWrite.Factory();
                         YaHei36Font = new TextFormat(TextFactory, "Microsoft YaHei", FontWeight.Light, FontStyle.Normal, 36);
+                        YaHei18Font = new TextFormat(TextFactory, "Microsoft YaHei", FontWeight.Light, FontStyle.Normal, 18);
 
                         _cameraOnlineLocation = new RawRectangleF(Camera.Region.Width - 96, Camera.Region.Height - 60, Camera.Region.Width, Camera.Region.Height);
                 }
@@ -55,13 +57,15 @@ namespace Nutshell.Direct2D.WinForm.Vision
 
                 protected SolidColorBrush RedBrush;
                 protected SolidColorBrush BlueBrush;
+                protected SolidColorBrush LawnGreenBrush;
 
                 protected SharpDX.DirectWrite.Factory TextFactory;
 
                 protected TextFormat YaHei36Font;
+                protected TextFormat YaHei18Font;
 
-		
-	        private double _processUsedMilliseconds = 0;
+
+                private double _processUsedMilliseconds = 0;
 	        private int _nowSecond = 0;
 
 		protected override void Render(RenderTarget target)
@@ -83,12 +87,6 @@ namespace Nutshell.Direct2D.WinForm.Vision
 				target.DrawText(_processUsedMilliseconds < 1500 ? "在线" : "离线", YaHei36Font,
                                 _cameraOnlineLocation, _processUsedMilliseconds < 1500 ? RedBrush : BlueBrush);
                         }
-
-                        //target.DrawText(totalMilliseconds < 1500 ? "在线" : "离线", YaHei36Font,
-                        //        _cameraOnlineLocation, totalMilliseconds < 1500 ? BlueBrush : RedBrush);
-
-                        //target.DrawText(Camera.IsConnected ? "在线" :"离线", YaHei36Font, 
-                        //        new RawRectangleF(Camera.Region.Width - 120, 20, Camera.Region.Width, 120), Camera.IsConnected? BlueBrush:RedBrush);
                 }                
         }
 }

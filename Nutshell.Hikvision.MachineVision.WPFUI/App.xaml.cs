@@ -19,9 +19,9 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 		{
 			NLoger.Instance.Separate();
 
-			//AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-			//DispatcherUnhandledException += Application_DispatcherUnhandledException;
-		}
+                        AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+                        DispatcherUnhandledException += Application_DispatcherUnhandledException;
+                }
 
 		private void Application_Startup(object sender, StartupEventArgs e)
 		{

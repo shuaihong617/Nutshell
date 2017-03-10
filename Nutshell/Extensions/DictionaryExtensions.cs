@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Nutshell.Aspects.Locations.Contracts;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         字典接口扩展方法

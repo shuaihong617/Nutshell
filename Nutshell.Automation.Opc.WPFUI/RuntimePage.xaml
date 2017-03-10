@@ -9,10 +9,10 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ContentControl Grid.Row="0" Style="{StaticResource panel-primary}" Margin="10">
+                <ContentControl Grid.Row="0" Style="{StaticResource Panel-Primary}" Margin="10">
                         <StackPanel>
-                                <ContentControl Style="{StaticResource panel-heading-primary}" Content="系统Opc服务器列表"/>
-                                <ContentControl Style="{StaticResource panel-body}">
+                                <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="系统Opc服务器列表"/>
+                                <ContentControl Style="{StaticResource Panel-Body}">
                                         <Grid>
                                                 <Grid.RowDefinitions>
                                                         <RowDefinition Height="Auto"/>
@@ -25,7 +25,7 @@
                                                 </DataGrid>
                                         </Grid>
                                 </ContentControl>
-                                <ContentControl Style="{StaticResource panel-footer-primary}" Content="共计：2"/>
+                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2"/>
                         </StackPanel>
                 </ContentControl>
         </Grid>

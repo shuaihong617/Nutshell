@@ -3,15 +3,15 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Nutshell.Automation.Opc.WPFUI.LoggingPage"
       Title="SynthesisPage">
-        <ContentControl Style="{StaticResource panel-primary}" Margin="10">
+        <ContentControl Style="{StaticResource Panel-Primary}" Margin="10">
                 <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <ContentControl Grid.Row="0" Style="{StaticResource panel-heading-primary}" Content="系统日志"/>
-                        <ContentControl Grid.Row="1" Style="{StaticResource panel-body}">
+                        <ContentControl Grid.Row="0" Style="{StaticResource Panel-Heading-Primary}" Content="系统日志"/>
+                        <ContentControl Grid.Row="1" Style="{StaticResource Panel-Body}">
                                 <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding LogCollecter.LogRecords}">
                                         <DataGrid.Columns>
                                                 <DataGridTextColumn Width="Auto" Binding="{Binding TimeStampChain.CreateTime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" ElementStyle="{StaticResource DataGridTextCenter}" Header="时间" IsReadOnly="True"/>
@@ -20,7 +20,7 @@
                                         </DataGrid.Columns>
                                 </DataGrid>
                         </ContentControl>
-                        <ContentControl Grid.Row="2" Style="{StaticResource panel-footer-primary}">
+                        <ContentControl Grid.Row="2" Style="{StaticResource Panel-Footer-Primary}">
                                 <Grid>
                                         <Grid.ColumnDefinitions>
                                                 <ColumnDefinition />

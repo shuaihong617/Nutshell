@@ -2,7 +2,7 @@
 using System.Text;
 using Nutshell.Aspects.Locations.Contracts;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
 	public static class ExceptionExtensions
 	{
@@ -23,18 +23,17 @@ namespace Nutshell
 				{
 					appString += "  ";
 				}
-				sb.AppendLine(string.Format("{0}异常消息：{1}", appString, exception.Message));
-				sb.AppendLine(string.Format("{0}异常类型：{1}", appString, exception.GetType().FullName));
-				sb.AppendLine(string.Format("{0}异常方法：{1}", appString,
-					(exception.TargetSite == null ? null : exception.TargetSite.Name)));
-				sb.AppendLine(string.Format("{0}异常源：{1}", appString, exception.Source));
+				sb.AppendLine($"{appString}异常消息：{exception.Message}");
+				sb.AppendLine($"{appString}异常类型：{exception.GetType().FullName}");
+				sb.AppendLine($"{appString}异常方法：{exception.TargetSite?.Name}");
+				sb.AppendLine($"{appString}异常源：{exception.Source}");
 				if (!isHideStackTrace && exception.StackTrace != null)
 				{
-					sb.AppendLine(string.Format("{0}异常堆栈：{1}", appString, exception.StackTrace));
+					sb.AppendLine($"{appString}异常堆栈：{exception.StackTrace}");
 				}
 				if (exception.InnerException != null)
 				{
-					sb.AppendLine(string.Format("{0}内部异常：", appString));
+					sb.AppendLine($"{appString}内部异常：");
 					count++;
 				}
 				exception = exception.InnerException;

@@ -34,5 +34,8 @@ namespace Nutshell.Direct2D
                 /// 蓝色
                 /// </summary>
                 public static readonly RawColor4 Blue = new RawColor4(0, 0, 1, 1);
+
+
+                public static readonly RawColor4 LawnGreen = new RawColor4(0.5f, 1, 0,1);
         }
 }

@@ -25,8 +25,8 @@ namespace Nutshell.Components
         /// <summary>
         ///         工作者
         /// </summary>
-        public abstract class Worker : Component
-	{
+        public abstract class Worker : Component,IStorable<IWorkerModel>
+        {
                 protected Worker([MustNotEqualNull] string id)
                         : base(id)
                 {
@@ -54,6 +54,15 @@ namespace Nutshell.Components
 
                 #endregion
 
+                public void Load(IWorkerModel model)
+                {
+                        base.Load(model);
+                }
+
+                public void Save(IWorkerModel model)
+                {
+                        base.Save(model);
+                }
 
                 /// <summary>
                 ///         启动
@@ -146,7 +155,7 @@ namespace Nutshell.Components
                 ///         当启动时发生。
                 /// </summary>
                 [Description("启动事件")]
-                [WillLogEventInvokeHandler]
+                [LogEventInvokeHandler]
                 public event EventHandler<EventArgs> Starting;
 
                 /// <summary>
@@ -163,7 +172,7 @@ namespace Nutshell.Components
                 ///         当启动完成时发生。
                 /// </summary>
                 [Description("启动完成事件")]
-                [WillLogEventInvokeHandler]
+                [LogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<Exception>> Started;
 
                 /// <summary>
@@ -179,7 +188,7 @@ namespace Nutshell.Components
                 ///         当停止时发生。
                 /// </summary>
                 [Description("停止事件")]
-                [WillLogEventInvokeHandler]
+                [LogEventInvokeHandler]
                 public event EventHandler<EventArgs> Stoping;
 
 		/// <summary>
@@ -195,7 +204,7 @@ namespace Nutshell.Components
 		///         当停止完成时发生。
 		/// </summary>
 		[Description("停止完成事件")]
-                [WillLogEventInvokeHandler]
+                [LogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<Exception>> Stoped;
 
                 /// <summary>
@@ -208,5 +217,7 @@ namespace Nutshell.Components
                 }
 
                 #endregion
+
+                
         }
 }

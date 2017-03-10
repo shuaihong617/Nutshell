@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         类型扩展方法

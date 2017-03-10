@@ -41,17 +41,17 @@ namespace Nutshell.Automation
 		[MustNotEqualNull]
 		public ManufacturingInformation ManufacturingInformation { get; set; }
 
-		#endregion
+                #endregion
 
-		#region 方法
+                #region 方法
 
-		#region 存储
+                #region 存储
 
-		/// <summary>
-		///         从数据模型加载数据
-		/// </summary>
-		/// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-		public void Load(IDeviceModel model)
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
+                public void Load(IDeviceModel model)
 		{
 			base.Load(model);
 		}

@@ -51,7 +51,7 @@ namespace Nutshell.Extensions
                         }
                 }
 
-                public static void InfoSuccess(this IIdentifiable identifiable, object operation)
+                public static void InfoSuccess(this IIdentifiable identifiable, [CallMemberName]string operation = "")
                 {
                         Info(identifiable, operation, "成功");
                 }
@@ -107,14 +107,9 @@ namespace Nutshell.Extensions
                         LogProvider.Instance.Error(identifiable.GlobalId + message);
                 }
 
-                public static void ErrorFormat(this IIdentifiable identifiable, string format, params object[] args)
-                {
-                        LogProvider.Instance.Error(string.Format(format, args));
-                }
-
                 public static void ErrorFail(this IIdentifiable identifiable, string operation)
                 {
-                        ErrorFormat(identifiable, "{0}失败.", operation);
+                        Error(identifiable, "{0}失败.", operation);
                 }
 
                 public static void ErrorFailWithReason(this IIdentifiable identifiable, string operation,

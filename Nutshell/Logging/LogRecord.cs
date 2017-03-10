@@ -1,5 +1,6 @@
 ﻿
 using System;
+using Nutshell.Extensions;
 
 namespace Nutshell.Logging
 {
@@ -12,11 +13,11 @@ namespace Nutshell.Logging
                         Message = message;
                 }
 
-                public DateTime CreateTime { get; private set; }
+                public DateTime CreateTime { get; }
 
-                public LogLevel LogLevel { get; private set; }
+                public LogLevel LogLevel { get; }
 
-                public string Message { get; private set; }
+                public string Message { get; }
 
 
                 public override string ToString()

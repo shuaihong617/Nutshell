@@ -39,12 +39,12 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                 /// <summary>
                 ///         配置文件目录
                 /// </summary>
-                public string ConfigDirectory { get;private set; }
+                public string ConfigDirectory { get; }
 
                 [NotifyPropertyValueChanged]
                 public Application Application { get; private set; }
 
-                public LogCollecter LogCollecter { get; private set; }
+                public LogCollecter LogCollecter { get; }
 
 		#region 界面
 

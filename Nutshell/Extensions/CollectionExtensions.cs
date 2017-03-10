@@ -15,9 +15,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Nutshell.Extensions;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         集合扩展方法

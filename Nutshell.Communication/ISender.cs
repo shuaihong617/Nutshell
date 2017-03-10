@@ -35,14 +35,14 @@ namespace Nutshell.Communication
 		///         当数据发送成功时发生。
 		/// </summary>
 		[Description("数据发送成功事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		event EventHandler<ValueEventArgs<Exception>> SendSuccessed;
 
 		/// <summary>
 		///         当数据发送失败时发生。
 		/// </summary>
 		[Description("数据发送失败事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		event EventHandler<ValueEventArgs<Exception>> SendFailed;
 
 		#endregion

@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Nutshell.Automation.Opc.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nutshell.Automation.Opc;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nutshell.Data;
 
 namespace Nutshell.Automation.Opc.Xml.Tests
 {
-        [TestClass()]
+        [TestClass]
         public class XmlOpcServerStoragerTests
         {
-                [TestMethod()]
+                [TestMethod]
                 public void LoadTest()
                 {
-			Application application = new Application("Opc测试程序");
+                        var application = new Application("Opc测试程序");
 
-			OpcServer opcServer = new OpcServer();
-	                opcServer.Parent = application;
+                        var opcServer = new OpcServer();
+                        opcServer.Parent = application;
 
                         XmlOpcServerStorager.Instance.Load(opcServer, "server.config");
                 }
 
-                [TestMethod()]
+                [TestMethod]
                 public void SaveTest()
                 {
                         Assert.Fail();

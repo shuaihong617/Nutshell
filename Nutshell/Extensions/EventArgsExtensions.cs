@@ -15,7 +15,7 @@
 using System;
 using System.Threading;
 
-namespace Nutshell
+namespace Nutshell.Extensions
 {
         /// <summary>
         ///         事件参数扩展方法

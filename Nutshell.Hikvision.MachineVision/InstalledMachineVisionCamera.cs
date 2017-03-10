@@ -41,7 +41,7 @@ namespace Nutshell.Hikvision.MachineVision
 
 		#region 属性
 
-		public DeviceInformation DeviceInformation { get; private set; }
+		public DeviceInformation DeviceInformation { get; }
 
 		/// <summary>
 		/// 获取OpcServer地址.

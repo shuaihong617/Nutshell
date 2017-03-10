@@ -27,17 +27,17 @@ namespace Nutshell.Automation.Opc.Devices
                 /// <summary>
                 ///         电磁阀
                 /// </summary>
-                public OpcSolenoid Solenoid { get; private set; }
+                public OpcSolenoid Solenoid { get; }
 
                 /// <summary>
                 ///         开启光电开关
                 /// </summary>
-                public OpcSensor<bool> OpenSensor { get; private set; }
+                public OpcSensor<bool> OpenSensor { get; }
 
                 /// <summary>
                 ///         关闭完成光电开关
                 /// </summary>
-                public OpcSensor<bool> CloseSensor { get; private set; }
+                public OpcSensor<bool> CloseSensor { get; }
 
                 public CylinderState State
                 {

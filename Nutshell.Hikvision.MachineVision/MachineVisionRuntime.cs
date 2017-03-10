@@ -80,7 +80,7 @@ namespace Nutshell.Hikvision.MachineVision
 				if (deviceInfoPtr != IntPtr.Zero)
 				{
 					var di = (DeviceInformation) Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
-					cameras.Add(new InstalledMachineVisionCamera(di));;
+					cameras.Add(new InstalledMachineVisionCamera(di));
 
 					this.Info("检测到摄像机,IP地址" + di.GigeDeviceInformation.GetCurrentIpAddress());
 				}

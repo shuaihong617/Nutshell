@@ -22,7 +22,13 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 
 		private void CameraForm_Load(object sender, EventArgs e)
 		{
-			Decoder = new CameraDecoder("1号液位解码单元", _gm.Camera, PixelFormat.Bgra32);
+		        Width = _gm.Camera.Width + 40;
+		        Height = _gm.Camera.Height + 40;
+
+                        CameraPictureBox.Width = _gm.Camera.Width;
+                        CameraPictureBox.Height = _gm.Camera.Height;
+
+                        Decoder = new CameraDecoder("1号液位解码单元", _gm.Camera, PixelFormat.Bgra32);
 
 			Sence = new CameraSence("1号液位场景单元", CameraPictureBox, _gm.Camera);
 

@@ -145,7 +145,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="has-warning" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="Has-Warning" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning3}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -200,7 +200,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="has-error" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
+    <Style x:Key="Has-Error" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type Control}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger3}"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -645,15 +645,15 @@
         </Setter>
     </Style>
     <Style BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}"/>
-    <Style x:Key="checkbox has-success" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+    <Style x:Key="Checkbox Has-Success" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}"/>
     </Style>
-    <Style x:Key="checkbox has-warning" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+    <Style x:Key="Checkbox Has-Warning" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Warning}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}"/>
     </Style>
-    <Style x:Key="checkbox has-error" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+    <Style x:Key="Checkbox Has-Error" BasedOn="{StaticResource CheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
         <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Danger}"/>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}"/>
     </Style>

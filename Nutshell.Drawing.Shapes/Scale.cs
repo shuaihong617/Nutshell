@@ -1,46 +1,41 @@
 ﻿using System;
-using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Data;
-using Nutshell.Data.Models;
 using Nutshell.Drawing.Shapes.Models;
+using Nutshell.Extensions;
 
 namespace Nutshell.Drawing.Shapes
 {
         /// <summary>
         ///         刻度
         /// </summary>
-        public class Scale : StorableObject, IHitable
+        public class Scale : StorableObject, IHitable, IStorable<IScaleModel>
         {
                 public Scale(string id = "")
-                        : base( id)
+                        : base(id)
                 {
                         Segment = new Segment();
                 }
 
-                public Segment Segment { get;private set; }
+                public Segment Segment { get; }
 
                 public virtual int Value { get; private set; }
 
-                public override void Load([MustAssignableFrom(typeof(IScaleModel))]IDataModel model)
+                public void Load(IScaleModel model)
                 {
-
                         base.Load(model);
 
-                        var scaleModel = model as IScaleModel;
-                        Value = scaleModel.Value;
+                        Value = model.Value;
 
                         //scaleModel.SegmentModel.NotNull();
                         //Segment.Load(scaleModel.SegmentModel);
-
                 }
 
-                public override void Save([MustAssignableFrom(typeof(IScaleModel))]IDataModel model)
+                public void Save(IScaleModel model)
                 {
                         base.Save(model);
 
-                        var scaleModel = model as IScaleModel;
-                        scaleModel.Value = Value;
+                        model.Value = Value;
 
                         //Segment.Save(scaleModel.SegmentModel);
                 }

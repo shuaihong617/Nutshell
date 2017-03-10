@@ -27,7 +27,6 @@ namespace Nutshell.Drawing.Shapes
                 /// <summary>
                 /// 初始化<see cref="Segment" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 public Segment(string id = "")
                         : base( id)

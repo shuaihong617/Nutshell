@@ -13,6 +13,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using Nutshell.Aspects.Events;
 using Nutshell.Communication.Models;
 using Nutshell.Components;
 using Nutshell.Data;
@@ -78,7 +80,7 @@ namespace Nutshell.Communication
 		/// </summary>
 		/// <param name="e">包含消息的事件参数</param>
 		[Description("消息接收成功事件")]
-		[WillLogEventInvokeHandler]
+		[LogEventInvokeHandler]
 		protected virtual void OnReceiveSuccessed(ValueEventArgs<IMessage> e)
 		{
 			e.Raise(this, ref ReceiveSuccessed);

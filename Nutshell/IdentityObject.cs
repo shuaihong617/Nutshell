@@ -18,6 +18,7 @@ using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Aspects.Methods.Contracts;
+using Nutshell.Extensions;
 
 namespace Nutshell
 {
@@ -93,7 +94,7 @@ namespace Nutshell
                         }
                 }
 
-		public Dictionary<string, DateTime> TimeStamps { get; private set; }
+		public Dictionary<string, DateTime> TimeStamps { get; }
 
                 #region 方法
 

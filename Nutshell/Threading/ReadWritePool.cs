@@ -27,7 +27,6 @@ namespace Nutshell.Threading
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
-                /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 public ReadWritePool(string id)
                         : base( id)

@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using Nutshell.Aspects.Locations.Propertys;
 
 namespace Nutshell.Logging.UserLogging
 {
@@ -13,7 +12,7 @@ namespace Nutshell.Logging.UserLogging
                         LogRecords = new ObservableCollection<LogRecord>();
                 }
 
-                public ObservableCollection<LogRecord> LogRecords { get; private set; }
+                public ObservableCollection<LogRecord> LogRecords { get; }
 
                 protected override void Consume(LogRecord t)
                 {

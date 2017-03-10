@@ -29,7 +29,7 @@ namespace Nutshell.RabbitMQ
 			throw new System.NotImplementedException();
 		}
 
-		protected override Result StartCore(ContextBase contextBase)
+		protected override Result StartCore()
 		{
 			//_factory = new ConnectionFactory
 			//{
@@ -57,7 +57,7 @@ namespace Nutshell.RabbitMQ
                         throw new NotImplementedException();
 		}
 
-		protected override Result StopCore(ContextBase contextBase)
+		protected override Result StopCore()
 		{
 			//Channel.Close();
 			//Channel.Dispose();

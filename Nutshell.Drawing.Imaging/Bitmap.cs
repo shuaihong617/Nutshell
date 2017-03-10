@@ -13,8 +13,8 @@
 
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Runtime.InteropServices;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Extensions;
 
 namespace Nutshell.Drawing.Imaging
@@ -58,19 +58,19 @@ namespace Nutshell.Drawing.Imaging
                 /// 获取宽度
                 /// </summary>
                 /// <value>宽度</value>
-                public int Width { get; private set; }
+                public int Width { get; }
 
                 /// <summary>
                 /// 获取高度
                 /// </summary>
                 /// <value>高度</value>
-                public int Height { get; private set; }
+                public int Height { get; }
 
                 /// <summary>
                 /// 获取像素格式
                 /// </summary>
                 /// <value>像素格式</value>
-                public PixelFormat PixelFormat { get; private set; }
+                public PixelFormat PixelFormat { get; }
 
                 /// <summary>
                 /// 获取步幅
@@ -82,13 +82,13 @@ namespace Nutshell.Drawing.Imaging
                 /// 获取图像数据缓冲区
                 /// </summary>
                 /// <value>图像数据缓冲区</value>
-                public IntPtr Buffer { get; private set; }
+                public IntPtr Buffer { get; }
 
                 /// <summary>
                 /// 获取图像数据缓冲区长度
                 /// </summary>
                 /// <value>图像数据缓冲区长度</value>
-                public int BufferLength { get; private set; }
+                public int BufferLength { get; }
 
                 
 

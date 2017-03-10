@@ -19,7 +19,7 @@ namespace Nutshell.Components
         ///         生产者接口
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface IProducer<T>
+        public interface IProducer<T> where T :class 
         {
                 bool Register(IConsumer<T> consumer);
 

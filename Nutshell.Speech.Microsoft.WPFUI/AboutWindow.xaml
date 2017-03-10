@@ -14,7 +14,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Style="{DynamicResource 'h2 small'}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="果壳机动语音合成软件 V0.1"></Label>
-                <Label Grid.Row="1" Style="{DynamicResource 'h3 small'}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="有金属的地方就有果壳  2005--2017"></Label>
+                <Label Grid.Row="0" Style="{DynamicResource 'H2 Small'}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="果壳机动语音合成软件 V0.1"></Label>
+                <Label Grid.Row="1" Style="{DynamicResource 'H3 Small'}" HorizontalAlignment="Center" VerticalAlignment="Center" Content="有金属的地方就有果壳  2005--2017"></Label>
         </Grid>
 </mahapps:MetroWindow>

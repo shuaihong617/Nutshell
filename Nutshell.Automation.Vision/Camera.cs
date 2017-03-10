@@ -104,8 +104,7 @@ namespace Nutshell.Automation.Vision
 	        /// <summary>
 	        ///         从数据模型加载数据
 	        /// </summary>
-	        /// <param name = "model" > 数据模型 </ param >
-
+	        /// <param name = "model" >数据模型</param >
 	        public void Load(ICameraModel model)
 	        {
 		        base.Load(model);

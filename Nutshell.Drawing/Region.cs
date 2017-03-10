@@ -15,7 +15,6 @@ using System.Drawing;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Data;
-using Nutshell.Data.Models;
 using Nutshell.Drawing.Models;
 
 namespace Nutshell.Drawing

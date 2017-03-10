@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using Nutshell.Aspects.Events;
-using Nutshell.Data;
 using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Methods
@@ -15,7 +12,7 @@ namespace Nutshell.Aspects.Methods
                         EventName = evnetName;
                 }
 
-                public string EventName { get; private set; }
+                public string EventName { get; }
 
                 public override void OnEntry(MethodExecutionArgs args)
                 {
@@ -32,8 +29,6 @@ namespace Nutshell.Aspects.Methods
                         {
                                 throw new ArgumentException("必须定义EventName事件");
                         }
-
-                        
                 }
         }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Nutshell.Automation.Opc.Models;
 using Nutshell.Data;
+using Nutshell.Extensions;
 using OPCAutomation;
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;

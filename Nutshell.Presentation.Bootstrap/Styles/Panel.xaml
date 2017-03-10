@@ -59,74 +59,74 @@
         </Setter>
     </Style>
     <!--panel-->
-    <Style x:Key="panel-default" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Default" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Default2}"></Setter>
     </Style>
-    <Style x:Key="panel-primary" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Primary" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Primary2}"></Setter>
     </Style>
-    <Style x:Key="panel-success" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Success" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success2}"></Setter>
     </Style>
-    <Style x:Key="panel-info" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Info" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Info2}"></Setter>
     </Style>
-    <Style x:Key="panel-warning" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Warning" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning2}"></Setter>
     </Style>
-    <Style x:Key="panel-danger" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Danger" BasedOn="{StaticResource PanelBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger2}"></Setter>
     </Style>
     <!--panel-heading-->
-    <Style x:Key="panel-heading-default" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Heading-Default" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="Background" Value="{DynamicResource Background-Default2}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Default2}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Default}"></Setter>
     </Style>
-    <Style x:Key="panel-heading-primary" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Heading-Primary" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="Background" Value="{DynamicResource Background-Primary2}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Primary2}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Primary1}"></Setter>
     </Style>
-    <Style x:Key="panel-heading-success" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Heading-Success" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="Background" Value="{DynamicResource Background-Success2}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success2}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}"></Setter>
     </Style>
-    <Style x:Key="panel-heading-info" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Heading-Info" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="Background" Value="{DynamicResource Background-Info2}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Info2}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Info}"></Setter>
     </Style>
-    <Style x:Key="panel-heading-warning" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Heading-Warning" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="Background" Value="{DynamicResource Background-Warning2}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning2}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Warning}"></Setter>
     </Style>
-    <Style x:Key="panel-heading-danger" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Heading-Danger" BasedOn="{StaticResource PanelHeadingBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="Background" Value="{DynamicResource Background-Danger2}"></Setter>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger2}"></Setter>
         <Setter Property="Foreground" Value="{DynamicResource Foreground-Danger}"></Setter>
     </Style>
     <!--panel-body-->
-    <Style x:Key="panel-body" BasedOn="{StaticResource PanelBodyBase}" TargetType="{x:Type ContentControl}"></Style>
+    <Style x:Key="Panel-Body" BasedOn="{StaticResource PanelBodyBase}" TargetType="{x:Type ContentControl}"></Style>
     <!--panel-footer-->
-    <Style x:Key="panel-footer-default" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Footer-Default" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Default2}"></Setter>
     </Style>
-    <Style x:Key="panel-footer-primary" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Footer-Primary" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Primary2}"></Setter>
     </Style>
-    <Style x:Key="panel-footer-success" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Footer-Success" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Success2}"></Setter>
     </Style>
-    <Style x:Key="panel-footer-info" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Footer-Info" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Info2}"></Setter>
     </Style>
-    <Style x:Key="panel-footer-warning" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Footer-Warning" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Warning2}"></Setter>
     </Style>
-    <Style x:Key="panel-footer-danger" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
+    <Style x:Key="Panel-Footer-Danger" BasedOn="{StaticResource PanelFooterBase}" TargetType="{x:Type ContentControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush-Danger2}"></Setter>
     </Style>
 </ResourceDictionary>

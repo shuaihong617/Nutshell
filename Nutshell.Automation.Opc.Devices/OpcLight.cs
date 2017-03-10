@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using Nutshell.Aspects.Events;
 using Nutshell.Extensions;
 
 namespace Nutshell.Automation.Opc.Devices
