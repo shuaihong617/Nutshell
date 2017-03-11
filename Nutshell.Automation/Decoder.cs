@@ -109,7 +109,13 @@ namespace Nutshell.Automation
 				return ValueResult<T>.Failed;
 			}
 
-			var target = Pool.WriteLock();
+                        if (Capturer.Pool.GetLock(_decodeSource) < 1)
+                        {
+                                return ValueResult<T>.Failed;
+                        }
+
+
+                        var target = Pool.WriteLock();
 
 			DecodeCore(_decodeSource, target);
 

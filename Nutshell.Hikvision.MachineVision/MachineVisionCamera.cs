@@ -16,6 +16,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Nutshell.Automation;
 using Nutshell.Automation.Vision;
 using Nutshell.Data;
 using Nutshell.Drawing.Imaging;
@@ -28,7 +29,7 @@ namespace Nutshell.Hikvision.MachineVision
 	/// <summary>
 	///         海康威视机器视觉摄像机
 	/// </summary>
-	public class MachineVisionCamera : NetworkCamera, IStorable<IMachineVisionCameraModel>
+	public partial class MachineVisionCamera : NetworkCamera, IStorable<IMachineVisionCameraModel>
 	{
 		public MachineVisionCamera(string id = "", string ipAddress = "0.0.0.0")
 			: base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
@@ -42,7 +43,7 @@ namespace Nutshell.Hikvision.MachineVision
 		#region 字段
 
 		/// <summary>
-		///         播放通道
+		///         设备句柄
 		/// </summary>
 		private IntPtr _handle = IntPtr.Zero;
 
@@ -97,25 +98,21 @@ namespace Nutshell.Hikvision.MachineVision
 
 			_deviceInformation = installedMachineVisionCamera.DeviceInformation;
 
-			var errorCode = CreateHandle();
-			if (errorCode != ErrorCode.MV_OK)
-			{
-				return Result.Failed;
-			}
+                        var errorCode = CreateHandle();
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                return Result.Failed;
+                        }
 
-			//if (!MVOfficialAPI.RegisterExceptionCallBack(_handle, _exceptionCallback, IntPtr.Zero))
-			//{
-			//	this.WarnFail("RegisterExceptionCallBack", mvError);
-			//	return Result.Failed;
-			//}
+                        errorCode = OpenDevice();
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                return Result.Failed;
+                        }
 
+                        AdjustSCPSPacketSize();
 
-			errorCode = OpenDevice();
-			if (errorCode != ErrorCode.MV_OK)
-			{
-				return Result.Failed;
-			}
-			return Result.Successed;
+                        return Result.Successed;
 		}
 
 		protected override sealed Result StopConnectCore()
@@ -148,12 +145,12 @@ namespace Nutshell.Hikvision.MachineVision
 				return baseResult;
 			}
 
-			var errorCode = StartGrabbing();
-			if (errorCode != ErrorCode.MV_OK)
-			{
-				return Result.Failed;
-			}
-			return Result.Successed;
+                        var errorCode = StartGrabbing();
+                        if(errorCode != ErrorCode.MV_OK)
+                        {
+                                return Result.Failed;
+                        }
+                        return Result.Successed;
 		}
 
 		protected override sealed Result StopDispatchCore()
@@ -165,11 +162,14 @@ namespace Nutshell.Hikvision.MachineVision
 
 		protected override sealed ValueResult<Bitmap> CaptureCore()
 		{
-			var bitmap = Pool.WriteLock();
+                        Debug.Assert(ConnectState == ConnectState.Connected);
+                        Debug.Assert(DispatchState == DispatchState.Established);
 
-			var error = GetOneFrame(bitmap);
+                        var bitmap = Pool.WriteLock();
 
-			if (error != ErrorCode.MV_OK)
+                        ErrorCode error = GetOneFrame(bitmap);
+                        
+                        if (error != ErrorCode.MV_OK)
 			{
 				Pool.WriteUnlock(bitmap);
 				return ValueResult<Bitmap>.Failed;
@@ -188,66 +188,68 @@ namespace Nutshell.Hikvision.MachineVision
 			return result;
 		}
 
-		#endregion
+                #endregion
 
-		#region 私有API
+                #region 扩展API
 
-		//              public static extern ErrorCode EnumDevices(DeviceType nTLayerType, ref DeviceInformationCollection deviceInfoCollection);
+                //              public static extern ErrorCode EnumDevices(DeviceType nTLayerType, ref DeviceInformationCollection deviceInfoCollection);
 
-  //              public static extern bool IsDeviceAccessible(IntPtr handle, ref DeviceInformation pstDevInfo,
-  //                      AccessMode accessMode);
+                //              public static extern bool IsDeviceAccessible(IntPtr handle, ref DeviceInformation pstDevInfo,
+                //                      AccessMode accessMode);
 
-              	private ErrorCode CreateHandle()
-              	{
-                      	Debug.Assert(_handle == IntPtr.Zero);
+                private ErrorCode CreateHandle()
+                {
+                        Debug.Assert(_handle == IntPtr.Zero);
 
-                     	var errorCode = OfficialApi.CreateHandle(ref _handle, ref _deviceInformation);
-                       	if (errorCode != ErrorCode.MV_OK)
-                     	{
-                             	this.ErrorFailWithReason(errorCode);
-                     	}
-                     	else
-                    	{
-                           	this.InfoSuccess();
-                    	}
-                    	return errorCode;
-            	}
+                        var errorCode = OfficialApi.CreateHandle(ref _handle, ref _deviceInformation);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                Debug.Assert(_handle != IntPtr.Zero);
 
-	        private ErrorCode DestroyHandle()
-	        {
-			Debug.Assert(_handle != IntPtr.Zero);
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
-                     	var errorCode = OfficialApi.DestroyHandle(_handle);
-                       	if (errorCode != ErrorCode.MV_OK)
-                     	{
-                             	this.ErrorFailWithReason(errorCode);
-                     	}
-                     	else
-                    	{
-                           	this.InfoSuccess();
-                    	}
+                private ErrorCode DestroyHandle()
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-                    	_handle = IntPtr.Zero;
+                        var errorCode = OfficialApi.DestroyHandle(_handle);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
 
-                    	return errorCode;
-	        }
+                        _handle = IntPtr.Zero;
+
+                        return errorCode;
+                }
 
 
-               	private ErrorCode OpenDevice()
-               	{
-               		Debug.Assert(_handle != IntPtr.Zero);
+                private ErrorCode OpenDevice()
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-                     	var errorCode = OfficialApi.OpenDevice(_handle, AccessMode.独占权限);
-                       	if (errorCode != ErrorCode.MV_OK)
-                     	{
-                             	this.ErrorFailWithReason(errorCode);
-                     	}
-                     	else
-                    	{
-                           	this.InfoSuccess();
-                    	}
-                    	return errorCode;
-               	}
+                        var errorCode = OfficialApi.OpenDevice(_handle, AccessMode.独占权限);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
                 private ErrorCode CloseDevice()
                 {
@@ -306,18 +308,18 @@ namespace Nutshell.Hikvision.MachineVision
                         var errorCode = OfficialApi.GetOneFrame(_handle, bitmap.Buffer, bitmap.BufferLength,
                                 ref _frameOutInformation);
 
-                                switch (errorCode)
-                                {
-                                        case ErrorCode.MV_OK:
-                                                return errorCode;
+                        switch (errorCode)
+                        {
+                                case ErrorCode.MV_OK:
+                                        return errorCode;
 
-                                        case ErrorCode.MV_E_NODATA:
-                                                return errorCode;
+                                case ErrorCode.MV_E_NODATA:
+                                        return errorCode;
 
-                                        default:
-                                                this.ErrorFailWithReason(errorCode);
-                                                return errorCode;
-                                }
+                                default:
+                                        this.ErrorFailWithReason(errorCode);
+                                        return errorCode;
+                        }
                 }
 
                 //#region 万能接口
@@ -330,13 +332,62 @@ namespace Nutshell.Hikvision.MachineVision
 
                 //#endregion
 
-                //#region GIGE独有接口
+                #region GIGE独有接口
 
-                //public static extern ErrorCode GetGevSCPSPacketSize(IntPtr handle, ref IntValue value);
+                private ErrorCode AdjustSCPSPacketSize()
+                {
+                        IntValue packetSize = new IntValue();
 
-                //public static extern ErrorCode SetGevSCPSPacketSize(IntPtr handle, uint value);
+                        var errorCode = GetGevSCPSPacketSize(ref packetSize);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                return errorCode;
+                        }
 
-                //#endregion
+                        errorCode = SetGevSCPSPacketSize();
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                return errorCode;
+                        }
+
+                        this.InfoSuccess();
+
+                        return errorCode;
+                }
+
+                private ErrorCode GetGevSCPSPacketSize(ref IntValue value)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
+
+                        var errorCode = OfficialApi.GetGevSCPSPacketSize(_handle, ref value);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccessWithDescription(value);
+                        }
+                        return errorCode;
+                }
+
+                private ErrorCode SetGevSCPSPacketSize(uint value = 8164)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
+
+                        var errorCode = OfficialApi.SetGevSCPSPacketSize(_handle, value);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
+
+                #endregion
 
 
 

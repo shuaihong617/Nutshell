@@ -51,9 +51,9 @@ namespace Nutshell.Drawing.Imaging
 			var nativeBitmap = new NativeBitmap(bitmap.Width, bitmap.Height,
 				System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-			for (int x = 0; x < bitmap.Width; x++)
+			for (int y = 0; y < bitmap.Height; y++)
 			{
-				for (int y = 0; y < bitmap.Height; y++)
+				for (int x = 0; x < bitmap.Width; x++)
 				{
 					byte g = *sourcePtr++;
 					nativeBitmap.SetPixel(x, y, Color.FromArgb(255, g, g, g));
@@ -77,10 +77,10 @@ namespace Nutshell.Drawing.Imaging
 			var nativeBitmap = new NativeBitmap(bitmap.Width, bitmap.Height,
 				System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-			for (int x = 0; x < bitmap.Width; x++)
-			{
-				for (int y = 0; y < bitmap.Height; y++)
-				{
+                        for (int y = 0; y < bitmap.Height; y++)
+                        {
+                                for (int x = 0; x < bitmap.Width; x++)
+                                {
 					byte r = *sourcePtr++;
 					byte g = *sourcePtr++;
 					byte b = *sourcePtr++;
@@ -105,10 +105,10 @@ namespace Nutshell.Drawing.Imaging
 			var nativeBitmap = new NativeBitmap(bitmap.Width, bitmap.Height,
 				System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-			for (int x = 0; x < bitmap.Width; x++)
-			{
-				for (int y = 0; y < bitmap.Height; y++)
-				{
+                        for (int y = 0; y < bitmap.Height; y++)
+                        {
+                                for (int x = 0; x < bitmap.Width; x++)
+                                {
 					byte b = *sourcePtr++;
 					byte g = *sourcePtr++;
 					byte r = *sourcePtr++;
@@ -133,15 +133,15 @@ namespace Nutshell.Drawing.Imaging
 			var nativeBitmap = new NativeBitmap(bitmap.Width, bitmap.Height,
 				System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
-			for (int i = 0; i < bitmap.Width; i++)
-			{
-				for (int j = 0; j < bitmap.Height; j++)
-				{
-					byte b = *sourcePtr++;
+                        for (int y = 0; y < bitmap.Height; y++)
+                        {
+                                for (int x = 0; x < bitmap.Width; x++)
+                                { 
+                                        byte b = *sourcePtr++;
 					byte g = *sourcePtr++;
 					byte r = *sourcePtr++;
 					byte a = *sourcePtr++;
-					nativeBitmap.SetPixel(i, j, Color.FromArgb(a, r, g, b));
+					nativeBitmap.SetPixel(x, y, Color.FromArgb(a, r, g, b));
 				}
 			}
 

@@ -53,8 +53,7 @@ namespace Nutshell.Extensions
                         Info(identifiable, $"{operation}成功");
                 }
 
-                public static void InfoSuccessWithDescription(this IIdentifiable identifiable, string operation,
-                        object description)
+                public static void InfoSuccessWithDescription(this IIdentifiable identifiable, object description, [CallerMemberName]string operation="")
                 {
                         Info(identifiable, $"{operation}成功,{description}");
                 }

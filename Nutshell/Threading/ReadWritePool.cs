@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,8 +37,7 @@ namespace Nutshell.Threading
                 /// <summary>
                 ///         The _usage
                 /// </summary>
-                private readonly Dictionary<T, int> _buffers =
-                        new Dictionary<T, int>();
+                private readonly Dictionary<T, int> _buffers = new Dictionary<T, int>(7);
 
                 private readonly object _lockObject = new object();
 
@@ -45,7 +45,7 @@ namespace Nutshell.Threading
                 ///         添加缓冲对象到缓冲池
                 /// </summary>
                 /// <param name="t">缓冲对象</param>
-                public void Add(T t)
+                public void Add([MustNotEqualNull]T t)
                 {
                         lock (_lockObject)
                         {
@@ -54,15 +54,31 @@ namespace Nutshell.Threading
                         }
                 }
 
+
+                /// <summary>
+                /// 获取当前对象锁的值
+                /// </summary>
+                /// <param name="t">当前对象锁的值</param>
+                /// <returns>
+                /// 0:未加锁
+                /// -1：写锁
+                /// >0:读锁
+                /// </returns>
+                public int GetLock([MustNotEqualNull]T t)
+                {
+                        lock (_lockObject)
+                        {
+                                return _buffers[t];
+                        }
+                }
+
                 /// <summary>
                 ///         Enters the read.
                 /// </summary>
                 /// <param name="t">The t.</param>
                 /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-                public void ReadLock(T t)
+                public void ReadLock([MustNotEqualNull]T t)
                 {
-                        Debug.Assert(t != null);
-
                         lock (_lockObject)
                         {
                                 if (_buffers[t] < 0)
@@ -77,11 +93,8 @@ namespace Nutshell.Threading
                 ///         Exits the read.
                 /// </summary>
                 /// <param name="t">The t.</param>
-                public void ReadUnlock(T t)
+                public void ReadUnlock([MustNotEqualNull]T t)
                 {
-                        Contract.Requires(t != null);
-                        //Trace.WriteLine(Id + "释放读锁");
-
                         lock (_lockObject)
                         {
                                 if (_buffers[t] < 1)

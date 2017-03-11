@@ -161,14 +161,14 @@ namespace Nutshell.Automation.Opc
 			}
 			catch (InvalidOperationException e)
 			{
-				this.ErrorFailWithReason("写入",e);
+				this.ErrorFailWithReason(e);
 			}
 			catch (Exception e)
 			{
 				//其他原因写入失败，表示Opc通讯故障
 				LocalWrite(null);
 
-				this.ErrorFailWithReason("写入",e);
+				this.ErrorFailWithReason(e);
 			}
 		}
 

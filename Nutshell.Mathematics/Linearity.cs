@@ -57,9 +57,15 @@ namespace Nutshell.Mathematics
                         Intercept = linearityModel.Intercept;
                 }
 
+                /// <summary>
+                ///         返回表示当前对象的字符串。
+                /// </summary>
+                /// <returns>
+                ///         表示当前对象的字符串。
+                /// </returns>
                 public override string ToString()
                 {
-                        return String.Format("{0}  斜率:{1:F3}， 截距：{2:F3}",Id, Slope, Intercept);
+                        return $"{Id}  斜率:{Slope:F3}， 截距：{Intercept:F3}";
                 }
         }
 }

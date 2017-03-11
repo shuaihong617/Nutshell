@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="134" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.CameraDecoderConsumer::#ctor(System.String, [Nutshell.Automation.Vision]Nutshell.Automation.Vision.CameraDecoder)@decoder" Id="7d6bc7fd2dcd73d2">
+    <Instance Declaration="#2=R:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.CameraDecoderConsumer::#ctor(System.String, [Nutshell.Automation.Vision]Nutshell.Automation.Vision.CameraDecoder)@decoder" Id="7d6bc7fd43cd33a0">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.CameraDecoderConsumer::#ctor(System.String, [Nutshell.Automation.Vision]Nutshell.Automation.Vision.CameraDecoder)" Advising="#1" Description="#4=Validates the value passed to parameter 'decoder'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.NetworkCamera::Load([Nutshell.Automation.Vision]Nutshell.Automation.Vision.Models.INetworkCameraModel)@model" Id="7d6bc7fd4deefa49">
+    <Instance Declaration="#5=R:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.NetworkCamera::Load([Nutshell.Automation.Vision]Nutshell.Automation.Vision.Models.INetworkCameraModel)@model" Id="7d6bc7fd578fa213">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.NetworkCamera::Load([Nutshell.Automation.Vision]Nutshell.Automation.Vision.Models.INetworkCameraModel)" Advising="#1" Description="#7=Validates the value passed to parameter 'model'" Ordinal="7" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=R:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.NetworkCamera::Save([Nutshell.Automation.Vision]Nutshell.Automation.Vision.Models.INetworkCameraModel)@model" Id="7d6bc7fd29f5f63c">
+    <Instance Declaration="#8=R:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.NetworkCamera::Save([Nutshell.Automation.Vision]Nutshell.Automation.Vision.Models.INetworkCameraModel)@model" Id="7d6bc7fd65f6a15f">
       <Target>
         <JoinPoint Advised="#9=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.NetworkCamera::Save([Nutshell.Automation.Vision]Nutshell.Automation.Vision.Models.INetworkCameraModel)" Advising="#1" Description="#7" Ordinal="8" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#10=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanAttribute">
-    <Instance Declaration="#11=P:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::Width()" Id="7d6bc7fd9b29de2c">
+    <Instance Declaration="#11=P:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::Width()" Id="7d6bc7fdcae2e212">
       <Target>
         <JoinPoint Advised="#12=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::set_Width(System.Int32)" Advising="#10" Description="#13=Validates the assigned value" Semantic="Setter" Ordinal="2" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#14=P:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::Height()" Id="7d6bc7fdd899c359">
+    <Instance Declaration="#14=P:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::Height()" Id="7d6bc7fd21f78cca">
       <Target>
         <JoinPoint Advised="#15=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::set_Height(System.Int32)" Advising="#10" Description="#13" Semantic="Setter" Ordinal="5" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#16=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#11" Id="7d6bc7fd3c218fd7">
+    <Instance Declaration="#11" Id="7d6bc7fda6db61c1">
       <Target>
         <JoinPoint Advised="#17=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::get_Width()" Advising="#16" Description="#18=Intercepted by advice " Semantic="Getter" />
         <JoinPoint Advised="#12" Advising="#16" Description="#19=Intercepted by advice OnSetValue" Semantic="Setter" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#14" Id="7d6bc7fde48a5426">
+    <Instance Declaration="#14" Id="7d6bc7fd08fb9f3b">
       <Target>
         <JoinPoint Advised="#20=M:[Nutshell.Automation.Vision]Nutshell.Automation.Vision.Camera::get_Height()" Advising="#16" Description="#18" Semantic="Getter" Ordinal="4" />
         <JoinPoint Advised="#15" Advising="#16" Description="#19" Semantic="Setter" Ordinal="6" />
