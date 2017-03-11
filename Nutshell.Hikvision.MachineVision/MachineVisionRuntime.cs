@@ -55,8 +55,6 @@ namespace Nutshell.Hikvision.MachineVision
 		/// </remarks>
 		protected override Result StartCore()
 		{
-			const string enumDevices = "检测摄像机";
-
 			var baseResult = base.StartCore();
 			if (!baseResult.IsSuccessed)
 			{
@@ -64,11 +62,10 @@ namespace Nutshell.Hikvision.MachineVision
 			}
 
 			var deviceInfoList = new DeviceInformationCollection();
-			var errorCode = OfficialApi.EnumDevices(DeviceType.GigeDevice, ref deviceInfoList);
+			var errorCode = EnumDevices(ref deviceInfoList);
 
 			if (errorCode != ErrorCode.MV_OK)
 			{
-				this.WarnFailWithReason(errorCode, "EnumDevices");
 				return Result.Failed;
 			}
 
@@ -82,7 +79,7 @@ namespace Nutshell.Hikvision.MachineVision
 					var di = (DeviceInformation) Marshal.PtrToStructure(deviceInfoPtr, deviceInfoType);
 					cameras.Add(new InstalledMachineVisionCamera(di));
 
-					this.Info("检测到摄像机,IP地址" + di.GigeDeviceInformation.GetCurrentIpAddress());
+					this.Info("检测到摄像机" + di.GigeDeviceInformation.GetCurrentIpAddress());
 				}
 			}
 
@@ -110,6 +107,24 @@ namespace Nutshell.Hikvision.MachineVision
 			return Result.Successed;
 		}
 
-		#endregion
-	}
+                #endregion
+
+                #region 扩展API
+
+                private ErrorCode EnumDevices(ref DeviceInformationCollection deviceInfoCollection)
+                {
+                        var errorCode = OfficialApi.EnumDevices(DeviceType.GigeDevice, ref deviceInfoCollection);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
+
+                #endregion
+        }
 }

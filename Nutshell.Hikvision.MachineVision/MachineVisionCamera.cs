@@ -26,77 +26,77 @@ using Nutshell.Hikvision.MachineVision.SDK;
 
 namespace Nutshell.Hikvision.MachineVision
 {
-	/// <summary>
-	///         海康威视机器视觉摄像机
-	/// </summary>
-	public partial class MachineVisionCamera : NetworkCamera, IStorable<IMachineVisionCameraModel>
-	{
-		public MachineVisionCamera(string id = "", string ipAddress = "0.0.0.0")
-			: base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
-		{
-		}
+        /// <summary>
+        ///         海康威视机器视觉摄像机
+        /// </summary>
+        public partial class MachineVisionCamera : NetworkCamera, IStorable<IMachineVisionCameraModel>
+        {
+                public MachineVisionCamera(string id = "", string ipAddress = "0.0.0.0")
+                        : base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
+                {
+                }
 
-		#region 常量
+                #region 常量
 
-		#endregion
+                #endregion
 
-		#region 字段
+                #region 字段
 
-		/// <summary>
-		///         设备句柄
-		/// </summary>
-		private IntPtr _handle = IntPtr.Zero;
+                /// <summary>
+                ///         设备句柄
+                /// </summary>
+                private IntPtr _handle = IntPtr.Zero;
 
-		private DeviceInformation _deviceInformation;
+                private DeviceInformation _deviceInformation;
 
-		private FrameOutInformation _frameOutInformation;
+                private FrameOutInformation _frameOutInformation;
 
-		#endregion
+                #endregion
 
-		#region 方法
+                #region 方法
 
-		#region 存储
+                #region 存储
 
-		/// <summary>
-		///         从数据模型加载数据
-		/// </summary>
-		/// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-		public void Load(IMachineVisionCameraModel model)
-		{
-			base.Load(model);
-		}
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
+                public void Load(IMachineVisionCameraModel model)
+                {
+                        base.Load(model);
+                }
 
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-		public void Save(IMachineVisionCameraModel model)
-		{
-			throw new NotImplementedException();
-		}
+                /// <summary>
+                ///         保存数据到数据模型
+                /// </summary>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                public void Save(IMachineVisionCameraModel model)
+                {
+                        throw new NotImplementedException();
+                }
 
-		#endregion
+                #endregion
 
-		protected override sealed Result StartConnectCore()
-		{
-			var baseResult = base.StartConnectCore();
-			if (!baseResult.IsSuccessed)
-			{
-				return baseResult;
-			}
+                protected override sealed Result StartConnectCore()
+                {
+                        var baseResult = base.StartConnectCore();
+                        if (!baseResult.IsSuccessed)
+                        {
+                                return baseResult;
+                        }
 
-			Debug.Assert(!Equals(IPAddress, IPAddress.Any));
+                        Debug.Assert(!Equals(IPAddress, IPAddress.Any));
 
-			var installedMachineVisionCamera = MachineVisionRuntime.Instance.InstalledMachineVisionCameras.FirstOrDefault(
-				i => Equals(i.IPAddress, IPAddress));
+                        var installedMachineVisionCamera = MachineVisionRuntime.Instance.InstalledMachineVisionCameras.FirstOrDefault(
+                                i => Equals(i.IPAddress, IPAddress));
 
-			if (installedMachineVisionCamera == null)
-			{
-				this.WarnFailWithReason("获取摄像机", "未检测到摄像机");
-				return Result.Failed;
-			}
+                        if (installedMachineVisionCamera == null)
+                        {
+                                this.Warn("未检测到摄像机");
+                                return Result.Failed;
+                        }
 
-			_deviceInformation = installedMachineVisionCamera.DeviceInformation;
+                        _deviceInformation = installedMachineVisionCamera.DeviceInformation;
 
                         var errorCode = CreateHandle();
                         if (errorCode != ErrorCode.MV_OK)
@@ -112,90 +112,120 @@ namespace Nutshell.Hikvision.MachineVision
 
                         AdjustSCPSPacketSize();
 
+                        //errorCode = SetEnumValue("UserSetDefault", 1);
+                        //if (errorCode != ErrorCode.MV_OK)
+                        //{
+                        //        this.WarnFail("设置默认用户", error);
+                        //        return false;
+                        //}
+                        //this.InfoSuccess("设置默认用户");
+
+                        //errorCode = SetEnumValue("UserSetSelector", 1);
+                        //if (errorCode != ErrorCode.MV_OK)
+                        //{
+                        //        this.WarnFail("设置当前用户", error);
+                        //        return false;
+                        //}
+                        //this.InfoSuccess("设置当前用户");
+
+                        //errorCode = SetCommandValue("UserSetLoad");
+                        //if (errorCode != ErrorCode.MV_OK)
+                        //{
+                        //        this.WarnFail("加载当前用户", error);
+                        //        return false;
+                        //}
+                        //this.InfoSuccess("加载当前用户");
+
                         return Result.Successed;
-		}
+                }
 
-		protected override sealed Result StopConnectCore()
-		{
-			var errorCode = CloseDevice();
-			if (errorCode != ErrorCode.MV_OK)
-			{
-				return Result.Failed;
-			}
+                protected override sealed Result StopConnectCore()
+                {
+                        var errorCode = CloseDevice();
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                return Result.Failed;
+                        }
 
-			errorCode = DestroyHandle();
-			if (errorCode != ErrorCode.MV_OK)
-			{
-				return Result.Failed;
-			}
+                        errorCode = DestroyHandle();
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                return Result.Failed;
+                        }
 
-			return base.StopConnectCore();
-		}
+                        return base.StopConnectCore();
+                }
 
-		public bool IsAccessible()
-		{
-			return OfficialApi.IsDeviceAccessible(_handle, ref _deviceInformation, AccessMode.独占权限);
-		}
+                public bool IsAccessible()
+                {
+                        return IsDeviceAccessible();
+                }
 
-		protected override sealed Result StartDispatchCore()
-		{
-			var baseResult = base.StartDispatchCore();
-			if (!baseResult.IsSuccessed)
-			{
-				return baseResult;
-			}
+                protected override sealed Result StartDispatchCore()
+                {
+                        var baseResult = base.StartDispatchCore();
+                        if (!baseResult.IsSuccessed)
+                        {
+                                return baseResult;
+                        }
 
                         var errorCode = StartGrabbing();
-                        if(errorCode != ErrorCode.MV_OK)
+                        if (errorCode != ErrorCode.MV_OK)
                         {
                                 return Result.Failed;
                         }
                         return Result.Successed;
-		}
+                }
 
-		protected override sealed Result StopDispatchCore()
-		{
-			StopGrabbing();
+                protected override sealed Result StopDispatchCore()
+                {
+                        StopGrabbing();
 
-			return base.StopDispatchCore();
-		}
+                        return base.StopDispatchCore();
+                }
 
-		protected override sealed ValueResult<Bitmap> CaptureCore()
-		{
+                protected override sealed ValueResult<Bitmap> CaptureCore()
+                {
                         Debug.Assert(ConnectState == ConnectState.Connected);
                         Debug.Assert(DispatchState == DispatchState.Established);
 
                         var bitmap = Pool.WriteLock();
 
                         ErrorCode error = GetOneFrame(bitmap);
-                        
+
                         if (error != ErrorCode.MV_OK)
-			{
-				Pool.WriteUnlock(bitmap);
-				return ValueResult<Bitmap>.Failed;
-			}
+                        {
+                                Pool.WriteUnlock(bitmap);
+                                return ValueResult<Bitmap>.Failed;
+                        }
 
                         Pool.WriteUnlock(bitmap);
 
-			//BitmapStorager.Save(bitmap, DateTime.Now.ToChineseLongFileName() + ".bmp");
+                        //BitmapStorager.Save(bitmap, DateTime.Now.ToChineseLongFileName() + ".bmp");
 
-			bitmap.TimeStamps["CaptureTime"] = DateTime.Now;
+                        bitmap.TimeStamps["CaptureTime"] = DateTime.Now;
 
-			var result = new ValueResult<Bitmap>(bitmap);
+                        var result = new ValueResult<Bitmap>(bitmap);
 
-			OnCaptureSuccessed(new ValueEventArgs<Bitmap>(bitmap));
+                        OnCaptureSuccessed(new ValueEventArgs<Bitmap>(bitmap));
 
-			return result;
-		}
+                        return result;
+                }
 
                 #endregion
 
                 #region 扩展API
 
-                //              public static extern ErrorCode EnumDevices(DeviceType nTLayerType, ref DeviceInformationCollection deviceInfoCollection);
+                private bool IsDeviceAccessible()
+                {
+                        Debug.Assert(_handle == IntPtr.Zero);
 
-                //              public static extern bool IsDeviceAccessible(IntPtr handle, ref DeviceInformation pstDevInfo,
-                //                      AccessMode accessMode);
+                        var isAccessible = OfficialApi.IsDeviceAccessible(_handle, ref _deviceInformation, AccessMode.独占权限);
+
+                        this.InfoSuccessWithDescription(isAccessible);
+
+                        return isAccessible;
+                }
 
                 private ErrorCode CreateHandle()
                 {
@@ -322,19 +352,91 @@ namespace Nutshell.Hikvision.MachineVision
                         }
                 }
 
-                //#region 万能接口
+                #region 万能接口
 
-                //public static extern ErrorCode SetIntValue(IntPtr handle, string strValue, uint value);
+                private ErrorCode SetIntValue(string strValue, uint value)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-                //public static extern ErrorCode SetEnumValue(IntPtr handle, string strValue, uint value);
+                        var errorCode = OfficialApi.SetIntValue(_handle, strValue, value);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccessWithDescription(value);
+                        }
+                        return errorCode;
+                }
 
-                //public static extern ErrorCode SetCommandValue(IntPtr handle, string strValue);
+                private ErrorCode SetEnumValue(string strValue, uint value)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-                //#endregion
+                        var errorCode = OfficialApi.SetEnumValue(_handle, strValue, value);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccessWithDescription(value);
+                        }
+                        return errorCode;
+                }
 
-                #region GIGE独有接口
+                private ErrorCode SetCommandValue(string strValue)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
 
-                private ErrorCode AdjustSCPSPacketSize()
+                        var errorCode = OfficialApi.SetCommandValue(_handle, strValue);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccessWithDescription(strValue);
+                        }
+                        return errorCode;
+                }
+
+                #endregion
+
+                #region UserSet相关
+
+        //        private ErrorCode SetUserSetDefault
+
+        //        errorCode = SetEnumValue("UserSetDefault", 1);
+        //                if (errorCode != ErrorCode.MV_OK)
+        //                {
+        //                        this.WarnFail("设置默认用户", error);
+        //                        return false;
+        //                }
+        //                this.InfoSuccess("设置默认用户");
+
+        //errorCode = SetEnumValue("UserSetSelector", 1);
+        //                if (errorCode != ErrorCode.MV_OK)
+        //                {
+        //        this.WarnFail("设置当前用户", error);
+        //        return false;
+        //}
+        //                this.InfoSuccess("设置当前用户");
+
+        //errorCode = SetCommandValue("UserSetLoad");
+        //                if (errorCode != ErrorCode.MV_OK)
+        //                {
+        //        this.WarnFail("加载当前用户", error);
+        //        return false;
+        //}
+        //                this.InfoSuccess("加载当前用户");
+
+        #endregion
+
+        #region GIGE独有接口
+
+        private ErrorCode AdjustSCPSPacketSize()
                 {
                         IntValue packetSize = new IntValue();
 
