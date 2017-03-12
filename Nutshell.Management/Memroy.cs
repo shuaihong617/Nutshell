@@ -11,8 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System.Collections.ObjectModel;
-
 namespace Nutshell.Management
 {
         /// <summary>

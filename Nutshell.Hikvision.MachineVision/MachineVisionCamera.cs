@@ -38,9 +38,15 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 常量
 
+                private const int DefaultStreamChannelPacketSize = 8164;
+
                 #endregion
 
                 #region 字段
+
+                private UserSet _userSet = UserSet.UserSet1;
+
+                private int _streamChannelPacketSize = DefaultStreamChannelPacketSize;
 
                 /// <summary>
                 ///         设备句柄
@@ -50,6 +56,12 @@ namespace Nutshell.Hikvision.MachineVision
                 private DeviceInformation _deviceInformation;
 
                 private FrameOutInformation _frameOutInformation;
+
+                #endregion
+
+                #region 属性
+
+                
 
                 #endregion
 
@@ -64,6 +76,9 @@ namespace Nutshell.Hikvision.MachineVision
                 public void Load(IMachineVisionCameraModel model)
                 {
                         base.Load(model);
+
+                        _userSet = model.UserSet;
+                        _streamChannelPacketSize = model.StreamChannelPacketSize;
                 }
 
                 /// <summary>
@@ -112,29 +127,9 @@ namespace Nutshell.Hikvision.MachineVision
 
                         AdjustSCPSPacketSize();
 
-                        //errorCode = SetEnumValue("UserSetDefault", 1);
-                        //if (errorCode != ErrorCode.MV_OK)
-                        //{
-                        //        this.WarnFail("设置默认用户", error);
-                        //        return false;
-                        //}
-                        //this.InfoSuccess("设置默认用户");
-
-                        //errorCode = SetEnumValue("UserSetSelector", 1);
-                        //if (errorCode != ErrorCode.MV_OK)
-                        //{
-                        //        this.WarnFail("设置当前用户", error);
-                        //        return false;
-                        //}
-                        //this.InfoSuccess("设置当前用户");
-
-                        //errorCode = SetCommandValue("UserSetLoad");
-                        //if (errorCode != ErrorCode.MV_OK)
-                        //{
-                        //        this.WarnFail("加载当前用户", error);
-                        //        return false;
-                        //}
-                        //this.InfoSuccess("加载当前用户");
+                        SetDefaultUserSet(UserSet.UserSet1);
+                        SetCurrentUserSet(UserSet.UserSet1);
+                        LoadCurrentUserSet();
 
                         return Result.Successed;
                 }
@@ -357,81 +352,68 @@ namespace Nutshell.Hikvision.MachineVision
                 private ErrorCode SetIntValue(string strValue, uint value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
-
-                        var errorCode = OfficialApi.SetIntValue(_handle, strValue, value);
-                        if (errorCode != ErrorCode.MV_OK)
-                        {
-                                this.ErrorFailWithReason(errorCode);
-                        }
-                        else
-                        {
-                                this.InfoSuccessWithDescription(value);
-                        }
-                        return errorCode;
+                        return OfficialApi.SetIntValue(_handle, strValue, value);
                 }
 
-                private ErrorCode SetEnumValue(string strValue, uint value)
+                private ErrorCode SetEnumValue(CommondType commond, uint value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
-
-                        var errorCode = OfficialApi.SetEnumValue(_handle, strValue, value);
-                        if (errorCode != ErrorCode.MV_OK)
-                        {
-                                this.ErrorFailWithReason(errorCode);
-                        }
-                        else
-                        {
-                                this.InfoSuccessWithDescription(value);
-                        }
-                        return errorCode;
+                        return OfficialApi.SetEnumValue(_handle, commond.ToString(), value);
                 }
 
-                private ErrorCode SetCommandValue(string strValue)
+                private ErrorCode SetCommandValue(CommondType commond)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
-
-                        var errorCode = OfficialApi.SetCommandValue(_handle, strValue);
-                        if (errorCode != ErrorCode.MV_OK)
-                        {
-                                this.ErrorFailWithReason(errorCode);
-                        }
-                        else
-                        {
-                                this.InfoSuccessWithDescription(strValue);
-                        }
-                        return errorCode;
+                        return OfficialApi.SetCommandValue(_handle, commond.ToString());
                 }
 
                 #endregion
 
                 #region UserSet相关
 
-        //        private ErrorCode SetUserSetDefault
+                private ErrorCode SetDefaultUserSet(UserSet userSet)
+                {
+                       var errorCode = SetEnumValue(CommondType.UserSetDefault, (uint)userSet);
+                       if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
-        //        errorCode = SetEnumValue("UserSetDefault", 1);
-        //                if (errorCode != ErrorCode.MV_OK)
-        //                {
-        //                        this.WarnFail("设置默认用户", error);
-        //                        return false;
-        //                }
-        //                this.InfoSuccess("设置默认用户");
+                private ErrorCode SetCurrentUserSet(UserSet userSet)
+                {
+                       var errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint)userSet);
+                       if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
-        //errorCode = SetEnumValue("UserSetSelector", 1);
-        //                if (errorCode != ErrorCode.MV_OK)
-        //                {
-        //        this.WarnFail("设置当前用户", error);
-        //        return false;
-        //}
-        //                this.InfoSuccess("设置当前用户");
+        private ErrorCode LoadCurrentUserSet()
+                {
+                       var errorCode = SetCommandValue(CommondType.UserSetLoad);
+                       if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
 
-        //errorCode = SetCommandValue("UserSetLoad");
-        //                if (errorCode != ErrorCode.MV_OK)
-        //                {
-        //        this.WarnFail("加载当前用户", error);
-        //        return false;
-        //}
-        //                this.InfoSuccess("加载当前用户");
-
+        
         #endregion
 
         #region GIGE独有接口
@@ -446,7 +428,7 @@ namespace Nutshell.Hikvision.MachineVision
                                 return errorCode;
                         }
 
-                        errorCode = SetGevSCPSPacketSize();
+                        errorCode = SetGevSCPSPacketSize((uint)_streamChannelPacketSize);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 return errorCode;

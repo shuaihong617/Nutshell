@@ -11,17 +11,15 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Data.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
 
 namespace Nutshell.Data
 {
-        /// <summary>
-        ///         可存储对象
-        /// </summary>
-        public class StorableObject: IdentityObject,IStorable<IDataModel>
+    /// <summary>
+    ///         可存储对象
+    /// </summary>
+    public class StorableObject: IdentityObject,IStorable<IDataModel>
         {
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.

@@ -12,6 +12,8 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Hikvision.MachineVision.SDK;
 using Nutshell.Hikvision.MachineVision.Models;
 using NutshellAutomation.Vision.Xml.Models;
 
@@ -23,5 +25,20 @@ namespace Nutshell.Hikvision.MachineVision.Xml.Models
         [XmlType]
         public class XmlMachineVisionCameraModel : XmlNetworkCameraModel,IMachineVisionCameraModel
         {
+                /// <summary>
+                /// 获取或设置用户
+                /// </summary>
+                /// <value>用户</value>
+                [XmlAttribute]
+                public UserSet UserSet { get; set; }
+
+                /// <summary>
+                /// 获取或设置图像数据包大小
+                /// </summary>
+                /// <value>图像数据包大小</value>
+                [MustGreaterThanOrEqual(8000)]
+                [MustLessThanOrEqualAttribute(10000)]
+                [XmlAttribute]
+                public int SCPSPacketSize { get; set; }
         }
 }

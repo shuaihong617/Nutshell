@@ -31,11 +31,11 @@ namespace Nutshell.Hikvision.MachineVision.Models
                 UserSet UserSet { get; set; }
 
                 /// <summary>
-                /// 获取或设置图像数据包大小
+                /// 获取或设置图像传输数据包大小
                 /// </summary>
-                /// <value>图像数据包大小</value>
+                /// <value>图像传输数据包大小</value>
                 [MustGreaterThanOrEqual(8000)]
-                [MustLessThanOrEqualAttribute(10000)]
-                int SCPSPacketSize { get; set; }
+                [MustLessThanOrEqual(10000)]
+                int StreamChannelPacketSize { get; set; }
         }
 }

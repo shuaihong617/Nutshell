@@ -16,7 +16,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
         /// <summary>
         ///         用户配置
         /// </summary>
-        public enum UserSet
+        public enum UserSet:uint
         {
                 Default = 0,
 		UserSet1 = 1,

@@ -11,10 +11,7 @@
 // </summary>
 // ***********************************************************************
 
-
-using System;
 using System.Diagnostics;
-using System.Xml.Serialization;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Extensions;
@@ -65,7 +62,7 @@ namespace Nutshell.Mathematics
                 /// </returns>
                 public override string ToString()
                 {
-                        return $"{Id}  斜率:{Slope:F3}， 截距：{Intercept:F3}";
+                        return $"{GlobalId}  斜率:{Slope:F3}， 截距：{Intercept:F3}";
                 }
         }
 }
