@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Xml.Serialization;
-using Nutshell.Data.Xml.Models;
+﻿using Nutshell.Data.Xml.Models;
 using Nutshell.Drawing.Shapes.Models;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Nutshell.Drawing.Shapes.Xml.Models
 {
@@ -9,7 +9,7 @@ namespace Nutshell.Drawing.Shapes.Xml.Models
         ///         标尺数据模型
         /// </summary>
         [XmlRoot]
-        public class XmlRulerModel : XmlDataModel,IRulerModel
+        public class XmlRulerModel : XmlDataModel, IRulerModel
         {
                 /// <summary>
                 ///         方向

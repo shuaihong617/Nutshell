@@ -1,6 +1,6 @@
-﻿using System;
-using Nutshell.Aspects.Locations.Contracts;
+﻿using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Drawing.Imaging
 {
@@ -84,8 +84,8 @@ namespace Nutshell.Drawing.Imaging
                         target.PixelFormat.MustEqual(PixelFormat.Bgra32);
 
                         //逐字节扩展复制
-                        var sourcePtr = (byte*) source.Buffer.ToPointer();
-                        var targetPtr = (byte*) target.Buffer.ToPointer();
+                        var sourcePtr = (byte*)source.Buffer.ToPointer();
+                        var targetPtr = (byte*)target.Buffer.ToPointer();
 
                         var length = source.BufferLength;
 
@@ -116,10 +116,10 @@ namespace Nutshell.Drawing.Imaging
                         target.PixelFormat.MustEqual(PixelFormat.Bgra32);
 
                         //逐字节复制
-                        var sourcePtr = (byte*) source.Buffer.ToPointer();
-                        var targetPtr = (byte*) target.Buffer.ToPointer();
+                        var sourcePtr = (byte*)source.Buffer.ToPointer();
+                        var targetPtr = (byte*)target.Buffer.ToPointer();
 
-                        var length = source.BufferLength/3;
+                        var length = source.BufferLength / 3;
 
                         for (var i = 0; i < length; i++)
                         {
@@ -149,10 +149,10 @@ namespace Nutshell.Drawing.Imaging
                         target.Height.MustEqual(source.Height);
                         target.PixelFormat.MustEqual(PixelFormat.Bgra32);
 
-                        var sourcePtr = (byte*) source.Buffer.ToPointer();
-                        var targetPtr = (byte*) target.Buffer.ToPointer();
+                        var sourcePtr = (byte*)source.Buffer.ToPointer();
+                        var targetPtr = (byte*)target.Buffer.ToPointer();
 
-                        var length = source.BufferLength/3;
+                        var length = source.BufferLength / 3;
 
                         for (var i = 0; i < length; i++)
                         {

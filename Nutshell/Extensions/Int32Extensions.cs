@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-
 using System;
 
 namespace Nutshell.Extensions
@@ -28,14 +27,13 @@ namespace Nutshell.Extensions
                 /// <returns>Int16.</returns>
                 public static Byte ToByte(this int value)
                 {
-                        int t = value%256;
+                        int t = value % 256;
                         if (t < 0)
                         {
                                 t += 256;
                         }
                         return Convert.ToByte(t);
                 }
-
 
                 /// <summary>
                 ///         Requires the not null.
@@ -85,7 +83,6 @@ namespace Nutshell.Extensions
                         return value;
                 }
 
-
                 /// <summary>
                 ///         Requires the not null.
                 /// </summary>
@@ -100,7 +97,6 @@ namespace Nutshell.Extensions
                         }
                         return value;
                 }
-
 
                 /// <summary>
                 ///         Requires the not null.
@@ -208,7 +204,7 @@ namespace Nutshell.Extensions
                 public static bool IsDoubleDirectionBetween(this int value, int max, string name = "")
                 {
                         max.MustGreaterThanOrEqual(0);
-                        return IsBetween(value, max, max*-1, name);
+                        return IsBetween(value, max, max * -1, name);
                 }
 
                 /// <summary>
@@ -242,7 +238,7 @@ namespace Nutshell.Extensions
                 /// <returns>System.Object.</returns>
                 public static int MustEvenNumber(this int value)
                 {
-                        if (value%2 != 0)
+                        if (value % 2 != 0)
                         {
                                 throw new ArgumentOutOfRangeException();
                         }
@@ -256,7 +252,7 @@ namespace Nutshell.Extensions
                 /// <returns>System.Object.</returns>
                 public static int MustOddNumber(this int value)
                 {
-                        if (value%2 == 0)
+                        if (value % 2 == 0)
                         {
                                 throw new ArgumentOutOfRangeException();
                         }

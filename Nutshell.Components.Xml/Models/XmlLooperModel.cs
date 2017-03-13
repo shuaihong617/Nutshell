@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
-using System.Threading;
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
+using System.Threading;
+using System.Xml.Serialization;
 
 namespace Nutshell.Components.Xml.Models
 {
@@ -22,20 +22,20 @@ namespace Nutshell.Components.Xml.Models
         ///         循环序列化数据模型
         /// </summary>
         [XmlType]
-        public class XmlLooperModel:XmlWorkerModel,ILooperModel
+        public class XmlLooperModel : XmlWorkerModel, ILooperModel
         {
-	        /// <summary>
-	        /// 获取循环调度线程优先级
-	        /// </summary>
-	        /// <value>循环调度线程优先级</value>
-	        [XmlAttribute]
-	        public ThreadPriority Priority { get; set; }
+                /// <summary>
+                /// 获取循环调度线程优先级
+                /// </summary>
+                /// <value>循环调度线程优先级</value>
+                [XmlAttribute]
+                public ThreadPriority Priority { get; set; }
 
-	        /// <summary>
+                /// <summary>
                 ///         工作线程休眠时间间隔（毫秒）
                 /// </summary>
                 [XmlAttribute]
-		[MustGreaterThan(0)]
+                [MustGreaterThan(0)]
                 public int Interval { get; set; }
         }
 }

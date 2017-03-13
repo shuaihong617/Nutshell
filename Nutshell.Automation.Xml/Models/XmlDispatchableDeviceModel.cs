@@ -11,10 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
 using Nutshell.Automation.Models;
-using Nutshell.Components.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Xml.Models
 {
@@ -22,7 +20,7 @@ namespace Nutshell.Automation.Xml.Models
         ///         独立设备数据模型
         /// </summary>
         [XmlType]
-        public class XmlDispatchableDeviceModel : XmlConnectableDeviceModel,IDispatchableDeviceModel
+        public class XmlDispatchableDeviceModel : XmlConnectableDeviceModel, IDispatchableDeviceModel
         {
-	}
+        }
 }

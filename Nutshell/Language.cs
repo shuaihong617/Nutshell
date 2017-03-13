@@ -16,7 +16,7 @@ namespace Nutshell
         /// <summary>
         ///         语言类型枚举
         /// </summary>
-        public enum Language               
+        public enum Language
         {
                 未定义 = 0,
 

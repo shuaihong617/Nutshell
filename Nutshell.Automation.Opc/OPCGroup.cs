@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Nutshell.Automation.Opc.Models;
+﻿using Nutshell.Automation.Opc.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
-using OPCAutomation;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using NativeOpcGroup = OPCAutomation.OPCGroup;
+
 //重命名OPCDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
-using NativeOpcGroup = OPCAutomation.OPCGroup;
 
 namespace Nutshell.Automation.Opc
 {
         public class OpcGroup : StorableObject, IStorable<IOpcGroupModel>
         {
                 public OpcGroup(string id = "", string address = "", ReadOnlyCollection<OpcItem> opcItems = null)
-                        : base( id)
+                        : base(id)
                 {
-	                Address = address;
+                        Address = address;
 
-	                OpcItems = opcItems ?? new ReadOnlyCollection<OpcItem>(new List<OpcItem>());
+                        OpcItems = opcItems ?? new ReadOnlyCollection<OpcItem>(new List<OpcItem>());
                 }
 
-	        #region 字段
+                #region 字段
 
                 private readonly Dictionary<int, OpcItem> _opcItemsLookupTable = new Dictionary<int, OpcItem>();
 
                 private NativeOpcGroup _group;
 
-                #endregion
+                #endregion 字段
 
                 #region 属性
 
@@ -35,7 +35,7 @@ namespace Nutshell.Automation.Opc
 
                 public ReadOnlyCollection<OpcItem> OpcItems { get; private set; }
 
-                #endregion
+                #endregion 属性
 
                 public void Load(IOpcGroupModel model)
                 {
@@ -46,14 +46,14 @@ namespace Nutshell.Automation.Opc
 
                 public void Load(IEnumerable<IOpcItemModel> itemModels)
                 {
-			var items = new List<OpcItem>();
+                        var items = new List<OpcItem>();
                         foreach (var itemModel in itemModels)
                         {
                                 var item = new OpcItem();
                                 item.Load(itemModel);
                                 items.Add(item);
                         }
-	                OpcItems = items.ToReadOnlyCollection();
+                        OpcItems = items.ToReadOnlyCollection();
                 }
 
                 /// <summary>
@@ -64,8 +64,6 @@ namespace Nutshell.Automation.Opc
                 {
                         throw new NotImplementedException();
                 }
-
-
 
                 public void Attach(NativeOpcServer server, string serverAddress)
                 {

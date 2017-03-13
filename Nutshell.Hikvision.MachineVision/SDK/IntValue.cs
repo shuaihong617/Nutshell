@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace Nutshell.Hikvision.MachineVision.SDK
@@ -26,14 +25,17 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// 当前值
                 /// </summary>
                 public uint Current;
+
                 /// <summary>
                 /// 最大值
                 /// </summary>
                 public uint Maximum;
+
                 /// <summary>
                 /// 最小值
                 /// </summary>
                 public uint Minimum;
+
                 /// <summary>
                 /// 增量
                 /// </summary>
@@ -42,10 +44,8 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 保留
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
                 public uint[] Reserved;
-
-
 
                 /// <summary>
                 ///         返回表示当前对象的字符串。

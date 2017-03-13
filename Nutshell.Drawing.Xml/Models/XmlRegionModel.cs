@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Xml.Models;
 using Nutshell.Drawing.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Drawing.Xml.Models
 {
@@ -22,29 +22,37 @@ namespace Nutshell.Drawing.Xml.Models
         ///         区域数据模型
         /// </summary>
         [XmlType]
-        public class XmlRegionModel : XmlDataModel,IRegionModel
+        public class XmlRegionModel : XmlDataModel, IRegionModel
         {
                 /// <summary>
                 ///         水平坐标
                 /// </summary>
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
                 [XmlAttribute]
                 public int X { get; set; }
 
                 /// <summary>
                 ///         垂直坐标
                 /// </summary>
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
                 [XmlAttribute]
                 public int Y { get; set; }
 
                 /// <summary>
                 ///         宽度
                 /// </summary>
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
                 [XmlAttribute]
                 public int Width { get; set; }
 
                 /// <summary>
                 ///         高度
                 /// </summary>
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
                 [XmlAttribute]
                 public int Height { get; set; }
         }

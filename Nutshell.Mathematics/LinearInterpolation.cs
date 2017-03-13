@@ -12,11 +12,11 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using Nutshell.Extensions;
 
 namespace Nutshell.Mathematics
 {
@@ -55,7 +55,7 @@ namespace Nutshell.Mathematics
                                 return y2;
                         }
 
-                        return y1 - (y1 - y2)*(x1 - x)/(x1 - x2);
+                        return y1 - (y1 - y2) * (x1 - x) / (x1 - x2);
                 }
 
                 /// <summary>
@@ -113,7 +113,7 @@ namespace Nutshell.Mathematics
                                 }
                         }
 
-                        return great.Y - (great.Y - small.Y)*(great.X - x)/(great.X - small.X);
+                        return great.Y - (great.Y - small.Y) * (great.X - x) / (great.X - small.X);
                 }
         }
 }

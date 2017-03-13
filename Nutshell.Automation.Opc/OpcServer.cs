@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Aspects.Methods.Contracts;
-using Nutshell.Automation.Opc;
+﻿using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Models;
-using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Extensions;
-using OPCAutomation;
+using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 //重命名OpcDAAuto.dll中类名，禁止删除；
-using NativeOpcServer = OPCAutomation.OPCServer; 
+using NativeOpcServer = OPCAutomation.OPCServer;
 
 namespace Nutshell.Automation.Opc
 {
@@ -26,57 +21,49 @@ namespace Nutshell.Automation.Opc
         ///         3. Opc项写入请求直接完成
         /// </remarks>
         public class OpcServer : DispatchableDevice, IStorable<IOpcServerModel>
-	{
-	        
-
-	        public OpcServer(string id = "", string address = "")
+        {
+                public OpcServer(string id = "", string address = "")
                         : base(id)
                 {
                         if (!string.IsNullOrEmpty(address))
                         {
-                                Address = address;                                
+                                Address = address;
                         }
 
                         _nativeOpcServer = new NativeOpcServer();
-
-		        
                 }
 
-		#region 字段
+                #region 字段
 
-	        private readonly NativeOpcServer _nativeOpcServer;
+                private readonly NativeOpcServer _nativeOpcServer;
 
-		private ReadOnlyCollection<OpcGroup> _opcGroups;
+                private ReadOnlyCollection<OpcGroup> _opcGroups;
 
-	        #endregion
+                #endregion 字段
 
+                #region 属性
 
-		#region 属性
-
-		
-
-		[MustNotEqualNullOrEmpty]
+                [MustNotEqualNullOrEmpty]
                 public string Address { get; private set; }
 
+                public ReadOnlyCollection<OpcGroup> OpcGroups
+                {
+                        get { return _opcGroups; }
+                        set
+                        {
+                                Debug.Assert(_opcGroups == null);
+                                Debug.Assert(value != null);
 
-	        public ReadOnlyCollection<OpcGroup> OpcGroups
-	        {
-		        get { return _opcGroups; }
-		        set
-		        {
-				Debug.Assert(_opcGroups == null);
-				Debug.Assert(value != null);
+                                _opcGroups = value;
 
-			        _opcGroups = value;
+                                foreach (var opcGroup in _opcGroups)
+                                {
+                                        opcGroup.Parent = this;
+                                }
+                        }
+                }
 
-			        foreach (var opcGroup in _opcGroups)
-			        {
-				        opcGroup.Parent = this;
-			        }
-		        }
-	        }
-
-	        #endregion
+                #endregion 属性
 
                 public void Load([MustNotEqualNull] IOpcServerModel model)
                 {
@@ -85,86 +72,86 @@ namespace Nutshell.Automation.Opc
                         Address = model.Address;
                 }
 
-		public void Save(IOpcServerModel model)
+                public void Save(IOpcServerModel model)
                 {
                         throw new NotImplementedException();
                 }
 
-		protected override Result StartConnectCore()
-		{
-			try
-			{
-				_nativeOpcServer.Connect(Address);
-			}
-			catch (Exception ex)
-			{
-				this.Error(Id + " " + Address + "  连接失败," + ex);
-				return Result.Failed;
-			}
+                protected override Result StartConnectCore()
+                {
+                        try
+                        {
+                                _nativeOpcServer.Connect(Address);
+                        }
+                        catch (Exception ex)
+                        {
+                                this.Error(Id + " " + Address + "  连接失败," + ex);
+                                return Result.Failed;
+                        }
 
-			this.InfoSuccess("连接" + Address);
+                        this.InfoSuccess("连接" + Address);
 
-			return Result.Successed;
-		}
+                        return Result.Successed;
+                }
 
-		protected override Result StopConnectCore()
-		{
-			try
-			{
-				_nativeOpcServer.Disconnect();
-			}
-			catch (Exception ex)
-			{
-				this.Error(Id + " " + Address + "  断开失败," + ex);
-				return Result.Failed;
-			}
+                protected override Result StopConnectCore()
+                {
+                        try
+                        {
+                                _nativeOpcServer.Disconnect();
+                        }
+                        catch (Exception ex)
+                        {
+                                this.Error(Id + " " + Address + "  断开失败," + ex);
+                                return Result.Failed;
+                        }
 
-			this.InfoSuccess("断开" + Address);
+                        this.InfoSuccess("断开" + Address);
 
-			return Result.Successed;
-		}
+                        return Result.Successed;
+                }
 
-		protected override Result StartDispatchCore()
-		{
-			try
-			{
-				foreach (var group in OpcGroups)
-				{
-					group.Attach(_nativeOpcServer, Address);
-				};
-			}
-			catch (Exception ex)
-			{
-				this.Error(Address + "  操作失败," + ex);
-			}
+                protected override Result StartDispatchCore()
+                {
+                        try
+                        {
+                                foreach (var group in OpcGroups)
+                                {
+                                        group.Attach(_nativeOpcServer, Address);
+                                };
+                        }
+                        catch (Exception ex)
+                        {
+                                this.Error(Address + "  操作失败," + ex);
+                        }
 
-			foreach (var opcGroup in OpcGroups)
-			{
-				foreach (var opcItem in opcGroup.OpcItems)
-				{
-					opcItem.RemoteRead();
-				}
-			}
+                        foreach (var opcGroup in OpcGroups)
+                        {
+                                foreach (var opcItem in opcGroup.OpcItems)
+                                {
+                                        opcItem.RemoteRead();
+                                }
+                        }
 
-			this.InfoSuccess("Attach" + Address);
+                        this.InfoSuccess("Attach" + Address);
 
-			return Result.Successed;
-		}
+                        return Result.Successed;
+                }
 
-		protected override Result StopDispatchCore()
-		{
-			try
-			{
-				_nativeOpcServer.Disconnect();
-			}
-			catch (Exception ex)
-			{
-				this.Error(Id + " " + Address + "  断开失败," + ex);
-			}
+                protected override Result StopDispatchCore()
+                {
+                        try
+                        {
+                                _nativeOpcServer.Disconnect();
+                        }
+                        catch (Exception ex)
+                        {
+                                this.Error(Id + " " + Address + "  断开失败," + ex);
+                        }
 
-			this.InfoSuccess("断开" + Address);
+                        this.InfoSuccess("断开" + Address);
 
-			return Result.Successed;
-		}
-	}
+                        return Result.Successed;
+                }
+        }
 }

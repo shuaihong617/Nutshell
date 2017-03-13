@@ -11,6 +11,6 @@ namespace Nutshell.IO
                         {
                                 throw new InvalidOperationException("文件 " + path + " 不存在");
                         }
-                }                
+                }
         }
 }

@@ -1,20 +1,17 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading;
-using Nutshell.Aspects.Locations.Contracts;
+﻿using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
-using SharpDXBitmap = SharpDX.Direct2D1.Bitmap;
+using System.Threading;
 
 namespace Nutshell.Direct2D.WinForm
 {
         public abstract class CycleRenderer : Worker
         {
                 protected CycleRenderer(string id = "", [MustNotEqualNull]BitmapSence sence = null)
-                        : base( id)
+                        : base(id)
                 {
                         Sence = sence;
-                        _renderLooper = new Looper("显示循环", ThreadPriority.Highest,15, Render);
+                        _renderLooper = new Looper("显示循环", ThreadPriority.Highest, 15, Render);
                 }
 
                 protected BitmapSence Sence { get; }
@@ -32,9 +29,8 @@ namespace Nutshell.Direct2D.WinForm
 
                 protected override Result StopCore()
                 {
-			return _renderLooper.Stop();
+                        return _renderLooper.Stop();
                 }
-
 
                 protected virtual Result Render()
                 {
@@ -50,7 +46,7 @@ namespace Nutshell.Direct2D.WinForm
 
                         _isRendering = false;
 
-			return Result.Successed;
+                        return Result.Successed;
                 }
         }
 }

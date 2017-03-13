@@ -11,10 +11,9 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Extensions;
 using System;
 using System.Collections.Generic;
-using Nutshell.Data;
-using Nutshell.Extensions;
 
 namespace Nutshell.Components
 {
@@ -23,8 +22,7 @@ namespace Nutshell.Components
         /// </summary>
         public abstract class Producer<T> : IProducer<T> where T : class
         {
-                private readonly List<IConsumer<T>> _consumers = new List<IConsumer<T>>(); 
-
+                private readonly List<IConsumer<T>> _consumers = new List<IConsumer<T>>();
 
                 public bool Register(IConsumer<T> consumer)
                 {
@@ -42,7 +40,6 @@ namespace Nutshell.Components
                 {
                         OnProducted(new ValueEventArgs<T>(t));
                 }
-
 
                 protected void Dispatch(T t)
                 {
@@ -83,8 +80,6 @@ namespace Nutshell.Components
                         e.Raise(this, ref Dispatched);
                 }
 
-                #endregion
-
-                
+                #endregion 事件
         }
 }

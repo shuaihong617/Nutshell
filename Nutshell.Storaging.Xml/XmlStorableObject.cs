@@ -27,10 +27,10 @@ namespace Nutshell.Storaging.Xml
                 /// <param name="parent">上级对象</param>
                 /// <param name="id">标识</param>
                 public XmlStorableObject(IdentityObject parent = null, string id = null)
-                        :base( id)
+                        : base(id)
                 {
                 }
-               
+
                 #region 方法
 
                 /// <summary>
@@ -44,7 +44,7 @@ namespace Nutshell.Storaging.Xml
                 //        Load(model);
                 //}
 
-                public void Save<T>(string filePath) where T : class, IDataModel,new()
+                public void Save<T>(string filePath) where T : class, IDataModel, new()
                 {
                         var t = new T();
                         Save(t);
@@ -52,8 +52,6 @@ namespace Nutshell.Storaging.Xml
                         //XmlStorager.Save<T>(t,filePath);
                 }
 
-                #endregion
-
-               
+                #endregion 方法
         }
 }

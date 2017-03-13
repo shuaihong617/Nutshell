@@ -11,10 +11,9 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
 using Nutshell.Data.Xml.Models;
 using Nutshell.Drawing.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Drawing.Xml.Models
 {
@@ -22,18 +21,18 @@ namespace Nutshell.Drawing.Xml.Models
         ///         分辨率数据模型
         /// </summary>
         [XmlType]
-        public class XmlResolutionModel : XmlDataModel,IResolutionModel
+        public class XmlResolutionModel : XmlDataModel, IResolutionModel
         {
-		/// <summary>
-		///         水平分辨率
-		/// </summary>
-		[XmlAttribute]
-		public double Horizontal { get; set; }
+                /// <summary>
+                ///         水平分辨率
+                /// </summary>
+                [XmlAttribute]
+                public double Horizontal { get; set; }
 
-		/// <summary>
-		///         垂直分辨率
-		/// </summary>
-		[XmlAttribute]
-		public double Vertical { get; set; }
+                /// <summary>
+                ///         垂直分辨率
+                /// </summary>
+                [XmlAttribute]
+                public double Vertical { get; set; }
         }
 }

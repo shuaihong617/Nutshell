@@ -1,7 +1,7 @@
-﻿using System;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Reflection;
+using System;
 
 namespace Nutshell.Aspects.Locations.Contracts
 {
@@ -17,11 +17,9 @@ namespace Nutshell.Aspects.Locations.Contracts
 
                 public Exception ValidateValue(int value, string name, LocationKind locationKind)
                 {
-			return value >= _intCompare
-				? null
-				: new ArgumentException(locationKind.ToChineseString() + name + "的值必须大于或等于" + _intCompare);
-		}
-
-                
+                        return value >= _intCompare
+                                ? null
+                                : new ArgumentException(locationKind.ToChineseString() + name + "的值必须大于或等于" + _intCompare);
+                }
         }
 }

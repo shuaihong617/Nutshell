@@ -1,6 +1,6 @@
-﻿using System.Xml.Serialization;
-using Nutshell.Data.Xml.Models;
+﻿using Nutshell.Data.Xml.Models;
 using Nutshell.Drawing.Shapes.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Drawing.Shapes.Xml.Models
 {
@@ -8,7 +8,7 @@ namespace Nutshell.Drawing.Shapes.Xml.Models
         ///         线段数据模型
         /// </summary>
         [XmlType]
-        public class XmlSegmentModel : XmlDataModel,ISegmentModel
+        public class XmlSegmentModel : XmlDataModel, ISegmentModel
         {
                 /// <summary>
                 ///         端点1水平坐标
@@ -21,7 +21,6 @@ namespace Nutshell.Drawing.Shapes.Xml.Models
                 /// </summary>
                 [XmlAttribute]
                 public int Y1 { get; set; }
-
 
                 /// <summary>
                 ///         端点2水平坐标

@@ -13,36 +13,34 @@
 
 namespace Nutshell
 {
-	/// <summary>
-	/// 封装操作结果.
-	/// </summary>
-	public class Result
+        /// <summary>
+        /// 封装操作结果.
+        /// </summary>
+        public class Result
         {
-		/// <summary>
-		/// 初始化<see cref="Result" />的新实例.
-		/// </summary>
-		/// <param name="isSuccessed">操作是否成功.</param>
-		public Result(bool isSuccessed)
+                /// <summary>
+                /// 初始化<see cref="Result" />的新实例.
+                /// </summary>
+                /// <param name="isSuccessed">操作是否成功.</param>
+                public Result(bool isSuccessed)
                 {
                         IsSuccessed = isSuccessed;
-
                 }
 
-		/// <summary>
-		/// 操作成功.
-		/// </summary>
-		public static readonly Result Successed = new Result(true);
+                /// <summary>
+                /// 操作成功.
+                /// </summary>
+                public static readonly Result Successed = new Result(true);
 
+                /// <summary>
+                /// 操作失败.
+                /// </summary>
+                public static readonly Result Failed = new Result(false);
 
-		/// <summary>
-		/// 操作失败.
-		/// </summary>
-		public static readonly Result Failed = new Result(false);
-
-		/// <summary>
-		/// 获取操作成功或失败
-		/// </summary>
-		/// <value>操作成功返回True,否则返回False.</value>
-		public bool IsSuccessed { get; private set; }
-	}
+                /// <summary>
+                /// 获取操作成功或失败
+                /// </summary>
+                /// <value>操作成功返回True,否则返回False.</value>
+                public bool IsSuccessed { get; private set; }
+        }
 }

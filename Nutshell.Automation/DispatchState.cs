@@ -18,25 +18,24 @@ namespace Nutshell.Automation
         /// </summary>
         public enum DispatchState
         {
-		/// <summary>
-		/// 已断开
-		/// </summary>
-		Terminated = 0,
+                /// <summary>
+                /// 已断开
+                /// </summary>
+                Terminated = 0,
 
-		/// <summary>
-		/// 正在连接        
-		/// </summary>
-		Establishing = 1,
+                /// <summary>
+                /// 正在连接
+                /// </summary>
+                Establishing = 1,
 
-		/// <summary>
-		/// 已连接        
-		/// </summary>
-		Established = 2,
+                /// <summary>
+                /// 已连接
+                /// </summary>
+                Established = 2,
 
-		/// <summary>
-		/// 正在断开
-		/// </summary>
-		Terminating = 3
-
+                /// <summary>
+                /// 正在断开
+                /// </summary>
+                Terminating = 3
         }
 }

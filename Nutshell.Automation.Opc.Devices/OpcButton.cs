@@ -1,20 +1,18 @@
-﻿using System;
-using Nutshell.Extensions;
+﻿using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Automation.Opc.Devices
 {
         /// <summary>
         /// 按钮
         /// </summary>
-        public class OpcButton:OpcDevice<bool>
+        public class OpcButton : OpcDevice<bool>
         {
                 public OpcButton(string id, OpcItem opcItem)
-                        :base( id, opcItem)
+                        : base(id, opcItem)
                 {
                         OpcPoint.ValueChanged += Current_ValueChanged;
                 }
-
-                
 
                 public void Press()
                 {
@@ -75,8 +73,6 @@ namespace Nutshell.Automation.Opc.Devices
                         e.Raise(this, ref Raised);
                 }
 
-                #endregion
-
-                
+                #endregion 事件
         }
 }

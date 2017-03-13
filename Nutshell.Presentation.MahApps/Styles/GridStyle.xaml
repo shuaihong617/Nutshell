@@ -5,11 +5,10 @@
                 <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
                 <Setter Property="Background" Value="Transparent"></Setter>
         </Style>
-        
+
         <Style x:Key="SplitGridStyle" TargetType="Grid">
                 <Setter Property="Height" Value="2"></Setter>
                 <Setter Property="Background" Value="DodgerBlue">
                 </Setter>
         </Style>
-
 </ResourceDictionary>

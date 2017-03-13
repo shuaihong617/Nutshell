@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Reflection;
+using System;
+using System.IO;
 
 namespace Nutshell.IO.Aspects.Locations.Contracts
 {
@@ -24,7 +24,6 @@ namespace Nutshell.IO.Aspects.Locations.Contracts
                                 default:
                                         return null;
                         }
-
                 }
         }
 }

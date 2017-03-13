@@ -1,18 +1,17 @@
-﻿using System;
-using System.ComponentModel;
-using Nutshell.Aspects.Events;
+﻿using Nutshell.Aspects.Events;
 using Nutshell.Extensions;
+using System;
+using System.ComponentModel;
 
 namespace Nutshell.Automation.Opc.Devices
 {
         /// <summary>
         /// 电灯
         /// </summary>
-        public class OpcLight:OpcDevice<bool>
+        public class OpcLight : OpcDevice<bool>
         {
-
                 public OpcLight(string id, OpcItem opcItem)
-                        :base( id, opcItem)
+                        : base(id, opcItem)
                 {
                         OpcPoint.ValueChanged += Data_ValueChanged;
                 }
@@ -78,6 +77,6 @@ namespace Nutshell.Automation.Opc.Devices
                         e.Raise(this, ref Closed);
                 }
 
-                #endregion
+                #endregion 事件
         }
 }

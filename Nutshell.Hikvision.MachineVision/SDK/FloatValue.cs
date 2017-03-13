@@ -36,9 +36,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// </summary>
                 public float Minimum;
 
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
                 public uint[] Reserved;
-
-                
         }
 }

@@ -11,11 +11,7 @@
 // </summary>
 // ***********************************************************************
 
-
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation;
 using Nutshell.Automation.Vision;
 using Nutshell.Data;
@@ -23,6 +19,10 @@ using Nutshell.Drawing.Imaging;
 using Nutshell.Extensions;
 using Nutshell.Hikvision.MachineVision.Models;
 using Nutshell.Hikvision.MachineVision.SDK;
+using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Net;
 
 namespace Nutshell.Hikvision.MachineVision
 {
@@ -36,17 +36,7 @@ namespace Nutshell.Hikvision.MachineVision
                 {
                 }
 
-                #region 常量
-
-                private const int DefaultStreamChannelPacketSize = 8164;
-
-                #endregion
-
                 #region 字段
-
-                private UserSet _userSet = UserSet.UserSet1;
-
-                private int _streamChannelPacketSize = DefaultStreamChannelPacketSize;
 
                 /// <summary>
                 ///         设备句柄
@@ -57,13 +47,17 @@ namespace Nutshell.Hikvision.MachineVision
 
                 private FrameOutInformation _frameOutInformation;
 
-                #endregion
+                #endregion 字段
 
                 #region 属性
 
-                
+                [MustNotEqual(UserSet.Default)]
+                public UserSet UserSet { get; private set; } = UserSet.UserSet1;
 
-                #endregion
+                [MustBetween(OfficialApi.MinStreamChannelPacketSize, OfficialApi.MaxStreamChannelPacketSize)]
+                public int StreamChannelPacketSize { get; private set; } = OfficialApi.DefaultStreamChannelPacketSize;
+
+                #endregion 属性
 
                 #region 方法
 
@@ -77,8 +71,11 @@ namespace Nutshell.Hikvision.MachineVision
                 {
                         base.Load(model);
 
-                        _userSet = model.UserSet;
-                        _streamChannelPacketSize = model.StreamChannelPacketSize;
+                        UserSet = model.UserSet;
+                        StreamChannelPacketSize = model.StreamChannelPacketSize;
+
+                        Debug.WriteLine(UserSet);
+                        Debug.WriteLine(StreamChannelPacketSize);
                 }
 
                 /// <summary>
@@ -90,7 +87,7 @@ namespace Nutshell.Hikvision.MachineVision
                         throw new NotImplementedException();
                 }
 
-                #endregion
+                #endregion 存储
 
                 protected override sealed Result StartConnectCore()
                 {
@@ -181,8 +178,11 @@ namespace Nutshell.Hikvision.MachineVision
 
                 protected override sealed ValueResult<Bitmap> CaptureCore()
                 {
-                        Debug.Assert(ConnectState == ConnectState.Connected);
-                        Debug.Assert(DispatchState == DispatchState.Established);
+                        if (ConnectState != ConnectState.Connected
+                                || DispatchState != DispatchState.Established)
+                        {
+                                return ValueResult<Bitmap>.Failed;
+                        }
 
                         var bitmap = Pool.WriteLock();
 
@@ -207,7 +207,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return result;
                 }
 
-                #endregion
+                #endregion 方法
 
                 #region 扩展API
 
@@ -258,7 +258,6 @@ namespace Nutshell.Hikvision.MachineVision
 
                         return errorCode;
                 }
-
 
                 private ErrorCode OpenDevice()
                 {
@@ -324,8 +323,6 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-
-
                 private ErrorCode GetOneFrame(Bitmap bitmap)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
@@ -367,14 +364,14 @@ namespace Nutshell.Hikvision.MachineVision
                         return OfficialApi.SetCommandValue(_handle, commond.ToString());
                 }
 
-                #endregion
+                #endregion 万能接口
 
                 #region UserSet相关
 
                 private ErrorCode SetDefaultUserSet(UserSet userSet)
                 {
-                       var errorCode = SetEnumValue(CommondType.UserSetDefault, (uint)userSet);
-                       if (errorCode != ErrorCode.MV_OK)
+                        var errorCode = SetEnumValue(CommondType.UserSetDefault, (uint)userSet);
+                        if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
                         }
@@ -387,8 +384,8 @@ namespace Nutshell.Hikvision.MachineVision
 
                 private ErrorCode SetCurrentUserSet(UserSet userSet)
                 {
-                       var errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint)userSet);
-                       if (errorCode != ErrorCode.MV_OK)
+                        var errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint)userSet);
+                        if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
                         }
@@ -399,10 +396,10 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-        private ErrorCode LoadCurrentUserSet()
+                private ErrorCode LoadCurrentUserSet()
                 {
-                       var errorCode = SetCommandValue(CommondType.UserSetLoad);
-                       if (errorCode != ErrorCode.MV_OK)
+                        var errorCode = SetCommandValue(CommondType.UserSetLoad);
+                        if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
                         }
@@ -413,12 +410,11 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-        
-        #endregion
+                #endregion UserSet相关
 
-        #region GIGE独有接口
+                #region GIGE独有接口
 
-        private ErrorCode AdjustSCPSPacketSize()
+                private ErrorCode AdjustSCPSPacketSize()
                 {
                         IntValue packetSize = new IntValue();
 
@@ -428,7 +424,7 @@ namespace Nutshell.Hikvision.MachineVision
                                 return errorCode;
                         }
 
-                        errorCode = SetGevSCPSPacketSize((uint)_streamChannelPacketSize);
+                        errorCode = SetGevSCPSPacketSize((uint)StreamChannelPacketSize);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 return errorCode;
@@ -471,10 +467,8 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                #endregion
+                #endregion GIGE独有接口
 
-
-
-                #endregion
+                #endregion 扩展API
         }
 }

@@ -50,7 +50,6 @@ namespace Nutshell.Extensions
                         return dt.ToString("yyyy年MM月dd日 HH_mm_ss");
                 }
 
-
                 /// <summary>
                 ///         To the long string ex.
                 /// </summary>

@@ -11,7 +11,7 @@
 // </summary>
 // ***********************************************************************
 
-
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
 
 namespace Nutshell.Drawing.Models
@@ -24,21 +24,29 @@ namespace Nutshell.Drawing.Models
                 /// <summary>
                 ///         水平坐标
                 /// </summary>
-                 int X { get; set; }
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
+                int X { get; set; }
 
                 /// <summary>
                 ///         垂直坐标
                 /// </summary>
-                 int Y { get; set; }
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
+                int Y { get; set; }
 
                 /// <summary>
                 ///         宽度
                 /// </summary>
-                 int Width { get; set; }
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
+                int Width { get; set; }
 
                 /// <summary>
                 ///         高度
                 /// </summary>
-                 int Height { get; set; }
+                [MustGreaterThanOrEqual(0)]
+                [MustMultiplesOf(4)]
+                int Height { get; set; }
         }
 }

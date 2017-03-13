@@ -37,31 +37,30 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         _gm.Stop();
                 }
 
-		private void FeedbackButton_Click(object sender, RoutedEventArgs e)
-		{
+                private void FeedbackButton_Click(object sender, RoutedEventArgs e)
+                {
+                }
 
-		}
+                private void AboutButton_Click(object sender, RoutedEventArgs e)
+                {
+                        var window = new AboutWindow();
+                        window.Owner = this;
+                        window.ShowDialog();
+                }
 
-		private void AboutButton_Click(object sender, RoutedEventArgs e)
-		{
-			var window = new AboutWindow();
-			window.Owner = this;
-			window.ShowDialog();
-		}
+                private void SynthesisButton_Click(object sender, RoutedEventArgs e)
+                {
+                        MainFrame.Navigate(new Uri("SynthesisPage.xaml", UriKind.Relative));
+                }
 
-		private void SynthesisButton_Click(object sender, RoutedEventArgs e)
-		{
-			MainFrame.Navigate(new Uri("SynthesisPage.xaml", UriKind.Relative));
-		}
+                private void SettingsButton_Click(object sender, RoutedEventArgs e)
+                {
+                        MainFrame.Navigate(new Uri("SettingsPage.xaml", UriKind.Relative));
+                }
 
-		private void SettingsButton_Click(object sender, RoutedEventArgs e)
-		{
-			MainFrame.Navigate(new Uri("SettingsPage.xaml", UriKind.Relative));
-		}
-
-		private void LogButton_Click(object sender, RoutedEventArgs e)
-		{
-			MainFrame.Navigate(new Uri("LoggingPage.xaml", UriKind.Relative));
-		}
-	}
+                private void LogButton_Click(object sender, RoutedEventArgs e)
+                {
+                        MainFrame.Navigate(new Uri("LoggingPage.xaml", UriKind.Relative));
+                }
+        }
 }

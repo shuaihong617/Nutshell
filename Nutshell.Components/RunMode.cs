@@ -12,8 +12,6 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-
 namespace Nutshell.Components
 {
         /// <summary>

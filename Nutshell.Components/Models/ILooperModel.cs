@@ -12,14 +12,13 @@
 // ***********************************************************************
 
 using System.Threading;
-using Nutshell.Data.Models;
 
 namespace Nutshell.Components.Models
 {
         /// <summary>
         ///         循环工作者数据模型接口
         /// </summary>
-        public interface ILooperModel:IWorkerModel
+        public interface ILooperModel : IWorkerModel
         {
                 /// <summary>
                 /// 获取循环调度线程优先级

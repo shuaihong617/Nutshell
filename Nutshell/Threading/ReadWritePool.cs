@@ -14,7 +14,6 @@
 using Nutshell.Aspects.Locations.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.Contracts;
 
 namespace Nutshell.Threading
@@ -30,7 +29,7 @@ namespace Nutshell.Threading
                 /// </summary>
                 /// <param name="id">标识</param>
                 public ReadWritePool(string id)
-                        : base( id)
+                        : base(id)
                 {
                 }
 
@@ -49,11 +48,10 @@ namespace Nutshell.Threading
                 {
                         lock (_lockObject)
                         {
-	                        t.Parent = this;
+                                t.Parent = this;
                                 _buffers[t] = 0;
                         }
                 }
-
 
                 /// <summary>
                 /// 获取当前对象锁的值
@@ -136,7 +134,6 @@ namespace Nutshell.Threading
                 public void WriteUnlock(T t)
                 {
                         Contract.Requires(t != null);
-                        
 
                         lock (_lockObject)
                         {

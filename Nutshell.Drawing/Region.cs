@@ -11,18 +11,18 @@
 // </summary>
 // ***********************************************************************
 
-using System.Drawing;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Drawing.Models;
+using System.Drawing;
 
 namespace Nutshell.Drawing
 {
         /// <summary>
         ///         区域
         /// </summary>
-        public class Region : StorableObject, IHitable,IStorable<IRegionModel>
+        public class Region : StorableObject, IHitable, IStorable<IRegionModel>
         {
                 private int _x;
                 private int _y;
@@ -39,7 +39,7 @@ namespace Nutshell.Drawing
                 /// <param name="containerHeight">Height of the container.</param>
                 public Region(string id = "", int x = 0, int y = 0, int width = 4, int height = 4,
                         int containerWidth = 4, int containerHeight = 4)
-                        : base( id)
+                        : base(id)
                 {
                         ContainerWidth = containerWidth;
                         ContainerHeight = containerHeight;
@@ -49,8 +49,6 @@ namespace Nutshell.Drawing
 
                         X = x;
                         Y = y;
-                        
-                       
                 }
 
                 /// <summary>
@@ -96,25 +94,25 @@ namespace Nutshell.Drawing
                 [MustGreaterThan(0)]
                 public int Width { get; private set; }
 
-		/// <summary>
-		///         高度
-		/// </summary>
-		[MustGreaterThan(0)]
-		public int Height { get; private set; }
+                /// <summary>
+                ///         高度
+                /// </summary>
+                [MustGreaterThan(0)]
+                public int Height { get; private set; }
 
-		/// <summary>
-		///         容器宽度
-		/// </summary>
-		/// <value>The width.</value>
-		[MustGreaterThan(0)]
-		public int ContainerWidth { get;  set; }
+                /// <summary>
+                ///         容器宽度
+                /// </summary>
+                /// <value>The width.</value>
+                [MustGreaterThan(0)]
+                public int ContainerWidth { get; set; }
 
-		/// <summary>
-		///         容器高度
-		/// </summary>
-		/// <value>The height.</value>
-		[MustGreaterThan(0)]
-		public int ContainerHeight { get; set; }
+                /// <summary>
+                ///         容器高度
+                /// </summary>
+                /// <value>The height.</value>
+                [MustGreaterThan(0)]
+                public int ContainerHeight { get; set; }
 
                 /// <summary>
                 ///         目标图像水平起始坐标
@@ -134,7 +132,6 @@ namespace Nutshell.Drawing
                 {
                         get { return Left + Width; }
                 }
-
 
                 /// <summary>
                 ///         目标图像垂直起始坐标
@@ -161,9 +158,8 @@ namespace Nutshell.Drawing
                 /// <value>The horizontal center.</value>
                 public int HorizontalCenter
                 {
-                        get { return (Left + Right)/2; }
+                        get { return (Left + Right) / 2; }
                 }
-
 
                 /// <summary>
                 ///         垂直中间坐标
@@ -171,7 +167,7 @@ namespace Nutshell.Drawing
                 /// <value>The vertical center.</value>
                 public int VerticalCenter
                 {
-                        get { return (Top + Bottom)/2; }
+                        get { return (Top + Bottom) / 2; }
                 }
 
                 public Size OffsetSize
@@ -252,7 +248,7 @@ namespace Nutshell.Drawing
                 /// <param name="model">数据模型</param>
                 public void Save(IRegionModel model)
                 {
-                        base.Save(model);                        
+                        base.Save(model);
 
                         model.X = X;
                         model.Y = Y;
@@ -260,6 +256,6 @@ namespace Nutshell.Drawing
                         model.Height = Height;
                 }
 
-                #endregion
+                #endregion 方法
         }
 }

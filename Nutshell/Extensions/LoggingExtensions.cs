@@ -12,11 +12,10 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using NLog;
-using Nutshell.Logging;
-using System.Runtime.CompilerServices;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Logging;
+using System;
+using System.Runtime.CompilerServices;
 
 namespace Nutshell.Extensions
 {
@@ -30,7 +29,6 @@ namespace Nutshell.Extensions
                         LogProvider.Instance.Debug(identifiable.GlobalId + message);
                 }
 
-                
                 public static void Info(this IIdentifiable identifiable, [MustNotEqualNullOrEmpty]string message)
                 {
                         LogProvider.Instance.Info($"{ identifiable.GlobalId}:{message}");
@@ -53,12 +51,10 @@ namespace Nutshell.Extensions
                         Info(identifiable, $"{operation}成功");
                 }
 
-                public static void InfoSuccessWithDescription(this IIdentifiable identifiable, object description, [CallerMemberName]string operation="")
+                public static void InfoSuccessWithDescription(this IIdentifiable identifiable, object description, [CallerMemberName]string operation = "")
                 {
                         Info(identifiable, $"{operation}成功,{description}");
                 }
-
-                
 
                 public static void Warn(this IIdentifiable identifiable, string message)
                 {
@@ -70,14 +66,13 @@ namespace Nutshell.Extensions
                         Warn(identifiable, $"{operation}失败.");
                 }
 
-
                 /// <summary>
                 ///         Warns the specified key.
                 /// </summary>
                 /// <param name="identifiable">The identity object.</param>
                 /// <param name="operation">The operation.</param>
                 /// <param name="reason">The reason.</param>
-                public static void WarnFailWithReason(this IIdentifiable identifiable,object reason = null,[CallerMemberName]string operation="")
+                public static void WarnFailWithReason(this IIdentifiable identifiable, object reason = null, [CallerMemberName]string operation = "")
                 {
                         Warn(identifiable, $"{operation}失败, 错误原因:{reason}");
                 }
@@ -92,7 +87,7 @@ namespace Nutshell.Extensions
                         Error(identifiable, $"{operation}失败.");
                 }
 
-                public static void ErrorFailWithReason(this IIdentifiable identifiable, object reason = null,[CallerMemberName]string operation = "")
+                public static void ErrorFailWithReason(this IIdentifiable identifiable, object reason = null, [CallerMemberName]string operation = "")
                 {
                         Error(identifiable, $"{operation}失败, 错误原因:{reason}");
                 }

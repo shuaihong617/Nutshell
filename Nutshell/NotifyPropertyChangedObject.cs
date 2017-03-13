@@ -21,7 +21,7 @@ namespace Nutshell
         ///         实现属性更改通知接口
         /// </summary>
         public abstract class NotifyPropertyChangedObject : INotifyPropertyChanged
-        {                
+        {
                 #region 事件
 
                 /// <summary>
@@ -29,7 +29,7 @@ namespace Nutshell
                 /// </summary>
                 public event PropertyChangedEventHandler PropertyChanged;
 
-                #endregion
+                #endregion 事件
 
                 #region 方法
 
@@ -40,7 +40,7 @@ namespace Nutshell
                 public void OnPropertyChanged([CallerMemberName] string propertyName = null)
                 {
                         PropertyChangedEventHandler handler = PropertyChanged;
-                        handler?.Invoke(this,new PropertyChangedEventArgs(propertyName));
+                        handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
                 }
 
                 /// <summary>
@@ -64,6 +64,6 @@ namespace Nutshell
                         return true;
                 }
 
-                #endregion
+                #endregion 方法
         }
 }

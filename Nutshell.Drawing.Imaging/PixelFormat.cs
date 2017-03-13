@@ -20,12 +20,12 @@ namespace Nutshell.Drawing.Imaging
         public enum PixelFormat
         {
                 Mono8,
+
                 /// <summary>
                 ///         未知
                 /// </summary>
-                /// 
+                ///
                 Yuv422,
-
 
                 Rgb24,
 

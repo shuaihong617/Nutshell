@@ -1,5 +1,5 @@
-﻿using System;
-using Nutshell.Extensions;
+﻿using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Automation.Opc.Devices
 {
@@ -9,9 +9,9 @@ namespace Nutshell.Automation.Opc.Devices
         public class OpcCylinder : IdentityObject
         {
                 public OpcCylinder(string id, OpcSolenoid solenoid, OpcSensor<bool> openSensor, OpcSensor<bool> closeSensor)
-                        : base( id)
+                        : base(id)
                 {
-                        _state = CylinderState.未定义;    
+                        _state = CylinderState.未定义;
 
                         Solenoid = solenoid;
 
@@ -174,6 +174,6 @@ namespace Nutshell.Automation.Opc.Devices
                         e.Raise(this, ref CloseCompleted);
                 }
 
-                #endregion
+                #endregion 事件
         }
 }

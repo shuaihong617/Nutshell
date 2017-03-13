@@ -11,8 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System.ComponentModel;
-using Nutshell.Automation.Models;
 using Nutshell.Components.Models;
 using Nutshell.Drawing.Imaging;
 
@@ -23,19 +21,19 @@ namespace Nutshell.Automation.Vision.Models
         /// </summary>
         public interface ICameraModel : IComponentModel
         {
-		/// <summary>
-		///         像素格式
-		/// </summary>
-		int Width { get; set; }
+                /// <summary>
+                ///         像素格式
+                /// </summary>
+                int Width { get; set; }
 
-		/// <summary>
-		///         像素格式
-		/// </summary>
-		int Height { get; set; }
+                /// <summary>
+                ///         像素格式
+                /// </summary>
+                int Height { get; set; }
 
-		/// <summary>
-		///         像素格式
-		/// </summary>
-		PixelFormat PixelFormat { get; set; }
+                /// <summary>
+                ///         像素格式
+                /// </summary>
+                PixelFormat PixelFormat { get; set; }
         }
 }

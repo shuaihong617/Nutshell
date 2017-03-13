@@ -11,10 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
-using Nutshell.Automation.Models;
 using Nutshell.Components.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Xml.Models
 {
@@ -24,10 +22,10 @@ namespace Nutshell.Automation.Xml.Models
         [XmlType]
         public class XmlDeviceModel : XmlComponentModel
         {
-		/// <summary>
-		///         制造信息
-		/// </summary>
-		[XmlElement]
-		public XmlManufacturingInformationModel XmlManufacturingInformationModel { get; set; }
-	}
+                /// <summary>
+                ///         制造信息
+                /// </summary>
+                [XmlElement]
+                public XmlManufacturingInformationModel XmlManufacturingInformationModel { get; set; }
+        }
 }

@@ -11,9 +11,9 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.IO.Aspects.Locations.Contracts;
 using System.IO;
 using System.Text;
-using Nutshell.IO.Aspects.Locations.Contracts;
 
 namespace Nutshell.Storaging.Xml
 {
@@ -41,9 +41,9 @@ namespace Nutshell.Storaging.Xml
                 /// </summary>
                 public static readonly XmlStorager Instance = new XmlStorager();
 
-                #endregion
+                #endregion 单例
 
-                #endregion
+                #endregion 属性
 
                 /// <summary>
                 ///         加载指定路径的文件并转换成字节数组，可用于反序列化。

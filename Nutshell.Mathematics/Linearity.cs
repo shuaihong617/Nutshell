@@ -11,11 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Extensions;
 using Nutshell.Mathematics.Models;
+using System.Diagnostics;
 
 namespace Nutshell.Mathematics
 {
@@ -33,13 +33,12 @@ namespace Nutshell.Mathematics
                 /// <summary>
                 ///         斜率
                 /// </summary>
-                public float Slope { get;private set; }
+                public float Slope { get; private set; }
 
                 /// <summary>
                 ///         截距
                 /// </summary>
-                public float Intercept { get;private set; }
-
+                public float Intercept { get; private set; }
 
                 public override void Load(IDataModel model)
                 {

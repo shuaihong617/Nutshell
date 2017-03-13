@@ -11,12 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System.Windows.Forms;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Extensions;
 using SharpDX;
 using SharpDX.Direct2D1;
 using SharpDX.DXGI;
+using System.Windows.Forms;
 
 namespace Nutshell.Direct2D.WinForm
 {
@@ -31,7 +30,7 @@ namespace Nutshell.Direct2D.WinForm
                 /// <param name="id">标识</param>
                 /// <param name="control">渲染的目标控件</param>
                 protected Sence(string id = "", [MustNotEqualNull]Control control = null)
-                        :base( id)
+                        : base(id)
                 {
                         Control = control;
 
@@ -48,12 +47,13 @@ namespace Nutshell.Direct2D.WinForm
                                         Hwnd = Control.Handle,
                                         PixelSize = new Size2(Control.Width, Control.Height),
                                         PresentOptions = PresentOptions.None,
-                                }) {AntialiasMode = AntialiasMode.PerPrimitive};
+                                })
+                        { AntialiasMode = AntialiasMode.PerPrimitive };
 
                         DirectWriteFactory = new SharpDX.DirectWrite.Factory();
                 }
 
-		[MustNotEqualNull]
+                [MustNotEqualNull]
                 protected Control Control { get; private set; }
 
                 /// <summary>

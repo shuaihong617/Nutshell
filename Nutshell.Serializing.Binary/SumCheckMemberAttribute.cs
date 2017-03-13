@@ -13,10 +13,10 @@
 
 namespace Nutshell.Serializing.Binary
 {
-	/// <summary>
-	///         和校验成员特性
-	/// </summary>
-	public class SumCheckMemberAttribute : CheckMemberAttribute
-	{
-	}
+        /// <summary>
+        ///         和校验成员特性
+        /// </summary>
+        public class SumCheckMemberAttribute : CheckMemberAttribute
+        {
+        }
 }

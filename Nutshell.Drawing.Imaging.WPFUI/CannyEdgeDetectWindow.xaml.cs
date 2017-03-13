@@ -1,19 +1,6 @@
 ﻿using AForge.Imaging.Filters;
 using Nutshell.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Nutshell.Drawing.Imaging.WPFUI
 {
@@ -36,7 +23,7 @@ namespace Nutshell.Drawing.Imaging.WPFUI
 
                 private void AcceptButton_Click(object sender, RoutedEventArgs e)
                 {
-                        if(_gm.SourceBitmap == null)
+                        if (_gm.SourceBitmap == null)
                         {
                                 MessageBox.Show("NO SourcePicture");
                                 return;
@@ -45,7 +32,6 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                         var low = LowThresholdTextBox.Text.Trim().ToByte();
                         var high = HighThresholdTextBox.Text.Trim().ToByte();
 
-
                         CannyEdgeDetector filter = new CannyEdgeDetector(low, high);
                         _gm.CannyBitmap = filter.Apply(_gm.SourceBitmap);
 
@@ -53,7 +39,5 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                         PictureBox.Height = _gm.CannyBitmap.Height;
                         PictureBox.Image = _gm.CannyBitmap;
                 }
-
-                
         }
 }

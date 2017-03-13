@@ -3,10 +3,10 @@
         /// <summary>
         /// 电磁阀
         /// </summary>
-        public class OpcSolenoid:OpcSwitch
+        public class OpcSolenoid : OpcSwitch
         {
                 public OpcSolenoid(string id, OpcItem opcItem)
-                        : base( id, opcItem)
+                        : base(id, opcItem)
                 {
                 }
         }

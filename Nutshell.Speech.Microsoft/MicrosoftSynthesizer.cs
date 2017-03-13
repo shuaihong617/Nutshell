@@ -11,117 +11,110 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Speech.Synthesis;
-using System.Threading.Tasks;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data.Models;
 using Nutshell.Extensions;
+using System;
+using System.Speech.Synthesis;
+using System.Threading.Tasks;
 using NativeSynthesizer = System.Speech.Synthesis.SpeechSynthesizer;
-using NativeSynthesizerState = System.Speech.Synthesis.SynthesizerState;
 
 namespace Nutshell.Speech.Microsoft
 {
-	/// <summary>
-	///         表示数据环境上下文（缓存）
-	/// </summary>
-	public class MicrosoftSynthesizer : Synthesizer
-	{
-		#region 构造函数
+        /// <summary>
+        ///         表示数据环境上下文（缓存）
+        /// </summary>
+        public class MicrosoftSynthesizer : Synthesizer
+        {
+                #region 构造函数
 
-		/// <summary>
-		///         数据缓存上下文私有构造函数
-		/// </summary>
-		public MicrosoftSynthesizer(Language language = Language.中文)
-			: base("微软语音合成器", language)
-		{
-			Language = language;
+                /// <summary>
+                ///         数据缓存上下文私有构造函数
+                /// </summary>
+                public MicrosoftSynthesizer(Language language = Language.中文)
+                        : base("微软语音合成器", language)
+                {
+                        Language = language;
 
-			NativeSynthesizer = new NativeSynthesizer
-			{
-				Volume = 100
-			};
-		}
+                        NativeSynthesizer = new NativeSynthesizer
+                        {
+                                Volume = 100
+                        };
+                }
 
-		#endregion 构造函数
+                #endregion 构造函数
 
-		#region 属性
+                #region 属性
 
-		/// <summary>
-		///         当前语音合成引擎
-		/// </summary>
-		/// <value>The voice info.</value>
-		public VoiceInfo VoiceInfo { get; private set; }
+                /// <summary>
+                ///         当前语音合成引擎
+                /// </summary>
+                /// <value>The voice info.</value>
+                public VoiceInfo VoiceInfo { get; private set; }
 
-		/// <summary>
-		///         当前语音合成器
-		/// </summary>
-		/// <value>The speech synthesizer.</value>
-		public NativeSynthesizer NativeSynthesizer { get; }
+                /// <summary>
+                ///         当前语音合成器
+                /// </summary>
+                /// <value>The speech synthesizer.</value>
+                public NativeSynthesizer NativeSynthesizer { get; }
 
-		[MustNotEqualNullOrEmpty]
-		[NotifyPropertyValueChanged]
-		public string Content { get; private set; }
+                [MustNotEqualNullOrEmpty]
+                [NotifyPropertyValueChanged]
+                public string Content { get; private set; }
 
-		#endregion 属性
+                #endregion 属性
 
-		#region 方法
+                public override void Load(IDataModel model)
+                {
+                        //base.Load(model);
 
-		#endregion 方法
+                        //var synthesizerModel = model as ISpeechSynthesizerModel;
+                        //Trace.Assert(synthesizerModel != null);
 
-		public override void Load(IDataModel model)
-		{
-			//base.Load(model);
+                        //Language = synthesizerModel.Language;
+                }
 
-			//var synthesizerModel = model as ISpeechSynthesizerModel;
-			//Trace.Assert(synthesizerModel != null);
+                public override Result SynthesizeAsync(string content, string fileName = null)
+                {
+                        if (fileName == null)
+                        {
+                                OutputMode = OutputMode.扬声器;
+                                NativeSynthesizer.SetOutputToDefaultAudioDevice();
+                        }
+                        else
+                        {
+                                OutputMode = OutputMode.文件;
+                                NativeSynthesizer.SetOutputToWaveFile(fileName);
+                        }
 
-			//Language = synthesizerModel.Language;
-		}
+                        Task.Run(() =>
+                        {
+                                SynthesizerState = SynthesizerState.合成;
 
-		public override Result SynthesizeAsync(string content, string fileName = null)
-		{
+                                NativeSynthesizer.Speak(content);
 
-			if (fileName == null)
-			{
-				OutputMode = OutputMode.扬声器;
-				NativeSynthesizer.SetOutputToDefaultAudioDevice();
-			}
-			else
-			{
-				OutputMode = OutputMode.文件;
-				NativeSynthesizer.SetOutputToWaveFile(fileName);
-			}
+                                SynthesizerState = SynthesizerState.空闲;
+                        });
 
-			Task.Run(() =>
-			{
-				SynthesizerState = SynthesizerState.合成;
+                        this.Info("合成:" + content);
 
-				NativeSynthesizer.Speak(content);
+                        return Result.Successed;
+                }
 
-				SynthesizerState = SynthesizerState.空闲;
-			});
-			
-
-			this.Info("合成:" + content);
-
-			return Result.Successed;
-		}
-
-		public override Result SelectVoice(string voice)
-		{
-			try
-			{
-				NativeSynthesizer.SelectVoice(voice);
-				Voice = NativeSynthesizer.Voice.Name;
-			}
-			catch (Exception ex)
-			{
-				this.Error("Select voice " + voice +  "失败，失败原因：" + ex);
-				return Result.Failed;
-			}
-			return Result.Successed;
-		}
-	}
+                public override Result SelectVoice(string voice)
+                {
+                        try
+                        {
+                                NativeSynthesizer.SelectVoice(voice);
+                                Voice = NativeSynthesizer.Voice.Name;
+                        }
+                        catch (Exception ex)
+                        {
+                                this.Error("Select voice " + voice + "失败，失败原因：" + ex);
+                                return Result.Failed;
+                        }
+                        return Result.Successed;
+                }
+        }
 }

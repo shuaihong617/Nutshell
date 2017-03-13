@@ -10,8 +10,8 @@
 // <summary>
 // </summary>
 // ***********************************************************************
-using System;
 using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Collections
 {
@@ -19,16 +19,15 @@ namespace Nutshell.Collections
         /// Class Buffer.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public abstract class Buffer<T>:IdentityObject,IBuffer<T>
+        public abstract class Buffer<T> : IdentityObject, IBuffer<T>
         {
                 /// <summary>
                 /// 初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
                 protected Buffer(string id)
-                        :base( id)
+                        : base(id)
                 {
-                        
                 }
 
                 public abstract int Length { get; }
@@ -94,7 +93,6 @@ namespace Nutshell.Collections
                         e.Raise(this, ref Cleared);
                 }
 
-                #endregion
-
+                #endregion 事件
         }
 }

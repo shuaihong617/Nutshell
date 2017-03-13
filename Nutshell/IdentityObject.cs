@@ -11,14 +11,14 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Aspects.Methods.Contracts;
 using Nutshell.Extensions;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Nutshell
 {
@@ -33,31 +33,31 @@ namespace Nutshell
                 /// <param name="id">标识</param>
                 protected IdentityObject([MustNotEqualNull]string id = "")
                 {
-	                Id = string.IsNullOrEmpty(id) ? GetType().Name : id;
+                        Id = string.IsNullOrEmpty(id) ? GetType().Name : id;
 
-			TimeStamps = new Dictionary<string, DateTime>(5);
-			TimeStamps["CreateTime"] = DateTime.Now;
-		}
+                        TimeStamps = new Dictionary<string, DateTime>(5);
+                        TimeStamps["CreateTime"] = DateTime.Now;
+                }
 
-	        #region 字段
+                #region 字段
 
                 /// <summary>
                 ///         标识
                 /// </summary>
                 private string _id;
 
-	        /// <summary>
+                /// <summary>
                 ///         上级对象
                 /// </summary>
                 private IIdentifiable _parent;
 
-		#endregion
+                #endregion 字段
 
-		/// <summary>
-		///         标识
-		/// </summary>
-		[MustNotEqualNullOrEmpty]
-		[NotifyPropertyValueChanged]
+                /// <summary>
+                ///         标识
+                /// </summary>
+                [MustNotEqualNullOrEmpty]
+                [NotifyPropertyValueChanged]
                 public string Id
                 {
                         get { return _id; }
@@ -75,7 +75,7 @@ namespace Nutshell
                 [MustNotEqualNullOrEmpty]
                 public string GlobalId { get; private set; }
 
-	        /// <summary>
+                /// <summary>
                 ///         上级对象
                 /// </summary>
                 [MustNotEqualNull]
@@ -84,17 +84,17 @@ namespace Nutshell
                         get { return _parent; }
                         set
                         {
-				Trace.Assert(value != null);
-				Trace.Assert(_parent == null);
+                                Trace.Assert(value != null);
+                                Trace.Assert(_parent == null);
 
                                 _parent = value;
-				_parent.GlobalIdChanged += (o, a) => UpdateGlobalId();
+                                _parent.GlobalIdChanged += (o, a) => UpdateGlobalId();
 
                                 UpdateGlobalId();
                         }
                 }
 
-		public Dictionary<string, DateTime> TimeStamps { get; }
+                public Dictionary<string, DateTime> TimeStamps { get; }
 
                 #region 方法
 
@@ -103,11 +103,11 @@ namespace Nutshell
                 /// </summary>
                 private void UpdateGlobalId()
                 {
-	                GlobalId = Parent == null ? Id : Parent.GlobalId + "." + Id;
-			OnGlobalIdChanged(EventArgs.Empty);
+                        GlobalId = Parent == null ? Id : Parent.GlobalId + "." + Id;
+                        OnGlobalIdChanged(EventArgs.Empty);
                 }
 
-	        /// <summary>
+                /// <summary>
                 ///         返回表示当前对象的字符串。
                 /// </summary>
                 /// <returns>全局标识</returns>
@@ -117,7 +117,7 @@ namespace Nutshell
                         return GlobalId;
                 }
 
-                #endregion
+                #endregion 方法
 
                 #region 事件
 
@@ -126,7 +126,6 @@ namespace Nutshell
                 /// </summary>
                 [Description("全局标识改变事件")]
                 public event EventHandler<EventArgs> GlobalIdChanged;
-
 
                 /// <summary>
                 ///         引发全局标识改变事件
@@ -137,6 +136,6 @@ namespace Nutshell
                         e.Raise(this, ref GlobalIdChanged);
                 }
 
-                #endregion
+                #endregion 事件
         }
 }

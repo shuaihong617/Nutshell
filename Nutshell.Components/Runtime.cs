@@ -15,14 +15,14 @@ using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell.Components
 {
-	/// <summary>
-	///         运行环境
-	/// </summary>
-	public abstract class Runtime : Worker
-	{
-		protected Runtime([MustNotEqualNullOrEmpty] string id)
-			: base(id)
-		{
-		}
-	}
+        /// <summary>
+        ///         运行环境
+        /// </summary>
+        public abstract class Runtime : Worker
+        {
+                protected Runtime([MustNotEqualNullOrEmpty] string id)
+                        : base(id)
+                {
+                }
+        }
 }

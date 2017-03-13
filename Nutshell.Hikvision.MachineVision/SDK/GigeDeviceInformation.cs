@@ -32,19 +32,19 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// 当前IP配置选项
                 /// </summary>
                 /// <remark>
-                /// bit31-static bit30-dhcp bit29-lla 
+                /// bit31-static bit30-dhcp bit29-lla
                 /// </remark>
-                public uint IpCfgCurrent; 
+                public uint IpCfgCurrent;
 
                 /// <summary>
                 /// 当前IP地址（整型形式）
                 /// </summary>
-                public uint CurrentIPAddress; 
+                public uint CurrentIPAddress;
 
                 /// <summary>
                 /// 当前子网掩码（整型形式）
                 /// </summary>
-                public uint CurrentSubNetMask;    
+                public uint CurrentSubNetMask;
 
                 /// <summary>
                 /// 当前默认网关掩码（整型形式）
@@ -54,7 +54,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 制造商名称
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)] 
+                [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
                 public string ManufacturerName;
 
                 /// <summary>
@@ -90,12 +90,12 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 网口IP地址  什么东西？不明白.
                 /// </summary>
-                public uint NetExport; // 
+                public uint NetExport; //
 
                 /// <summary>
                 /// 保留
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
                 public uint[] Reserved;
 
                 /// <summary>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {
@@ -16,9 +14,9 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         InitializeComponent();
                 }
 
-		private void Window_OnLoaded(object sender, RoutedEventArgs e)
-		{
-			DataContext = _gm;
-		}
-	}
+                private void Window_OnLoaded(object sender, RoutedEventArgs e)
+                {
+                        DataContext = _gm;
+                }
+        }
 }

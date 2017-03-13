@@ -19,7 +19,7 @@ namespace Nutshell.Threading
         ///         缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class MonopolyBuffer<T> : QueueBuffer<T> where T : IdentityObject,IMonopolyObject
+        public class MonopolyBuffer<T> : QueueBuffer<T> where T : IdentityObject, IMonopolyObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
@@ -43,12 +43,10 @@ namespace Nutshell.Threading
                                 }
                                 else
                                 {
-                                        Enqueue(t);                                        
+                                        Enqueue(t);
                                 }
                         }
                         return null;
                 }
-
-                
         }
 }

@@ -24,12 +24,12 @@ namespace Nutshell.Automation
                 Disconnected = 0,
 
                 /// <summary>
-                /// 正在连接        
+                /// 正在连接
                 /// </summary>
                 Connecting = 1,
 
                 /// <summary>
-                /// 已连接        
+                /// 已连接
                 /// </summary>
                 Connected = 2,
 
@@ -37,6 +37,5 @@ namespace Nutshell.Automation
                 /// 正在断开
                 /// </summary>
                 Disconnecting = 3
-
         }
 }

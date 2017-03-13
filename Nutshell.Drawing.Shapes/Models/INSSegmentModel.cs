@@ -17,7 +17,6 @@ namespace Nutshell.Drawing.Shapes.Models
                 /// </summary>
                 int Y1 { get; set; }
 
-
                 /// <summary>
                 ///         端点2水平坐标
                 /// </summary>

@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.Drawing.Shapes.Models;
+using System;
 
 namespace Nutshell.Drawing.Shapes
 {
@@ -23,13 +23,12 @@ namespace Nutshell.Drawing.Shapes
         /// </summary>
         public class Segment : StorableObject
         {
-
                 /// <summary>
                 /// 初始化<see cref="Segment" />的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
                 public Segment(string id = "")
-                        : base( id)
+                        : base(id)
                 {
                 }
 
@@ -73,7 +72,6 @@ namespace Nutshell.Drawing.Shapes
                         X2 = segmentModel.X2;
                         Y2 = segmentModel.Y2;
                 }
-
 
                 /// <summary>
                 /// 保存数据到数据模型

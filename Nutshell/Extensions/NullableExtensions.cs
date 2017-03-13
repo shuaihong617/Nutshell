@@ -69,7 +69,7 @@ namespace Nutshell.Extensions
                                 return false;
                         }
 
-                        return IsBetween(s, max, (short) (max*-1), name);
+                        return IsBetween(s, max, (short)(max * -1), name);
                 }
         }
 }

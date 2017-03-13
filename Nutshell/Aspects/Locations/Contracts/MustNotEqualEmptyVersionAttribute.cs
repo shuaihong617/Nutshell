@@ -1,14 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Reflection;
+using System;
 
 namespace Nutshell.Aspects.Locations.Contracts
 {
-        public class MustNotEqualEmptyVersionAttribute : LocationContractAttribute,ILocationValidationAspect<Version>
+        public class MustNotEqualEmptyVersionAttribute : LocationContractAttribute, ILocationValidationAspect<Version>
         {
-
                 public Exception ValidateValue(Version value, string locationName, LocationKind locationKind)
                 {
                         return value == new Version()

@@ -20,24 +20,21 @@ namespace Nutshell.Collections
         /// 队列缓冲区
         /// </summary>
         /// <typeparam name="T">缓冲数据类型</typeparam>
-        public class QueueBuffer<T>:Buffer<T> where T:class 
+        public class QueueBuffer<T> : Buffer<T> where T : class
         {
-
                 /// <summary>
                 /// 初始化<see cref="QueueBuffer{T}"/>的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
                 public QueueBuffer(string id = "")
-                        :base( id)
+                        : base(id)
                 {
-                        
                 }
 
                 /// <summary>
                 /// The _buffer
                 /// </summary>
                 private readonly ConcurrentQueue<T> _buffer = new ConcurrentQueue<T>();
-
 
                 public override int Length
                 {
@@ -57,7 +54,6 @@ namespace Nutshell.Collections
                         _buffer.Enqueue(t);
                 }
 
-
                 /// <summary>
                 /// 从缓冲区中移除并返回对象。
                 /// </summary>
@@ -76,7 +72,5 @@ namespace Nutshell.Collections
                 {
                         throw new NotSupportedException();
                 }
-
-               
         }
 }

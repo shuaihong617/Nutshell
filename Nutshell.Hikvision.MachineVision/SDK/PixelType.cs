@@ -20,6 +20,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
         {
                 // Undefined pixel type
                 Undefined = -1,
+
                 Mono8 = 0x01080001,
                 Mono10 = 0x01100003,
                 Mono10Packed = 0x010C0004,

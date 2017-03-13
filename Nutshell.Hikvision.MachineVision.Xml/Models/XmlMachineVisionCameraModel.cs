@@ -11,24 +11,25 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Hikvision.MachineVision.SDK;
 using Nutshell.Hikvision.MachineVision.Models;
+using Nutshell.Hikvision.MachineVision.SDK;
 using NutshellAutomation.Vision.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Hikvision.MachineVision.Xml.Models
 {
         /// <summary>
-        ///         AVT网络摄像机数据模型
+        ///         海康威视机器视觉摄像机数据模型
         /// </summary>
         [XmlType]
-        public class XmlMachineVisionCameraModel : XmlNetworkCameraModel,IMachineVisionCameraModel
+        public class XmlMachineVisionCameraModel : XmlNetworkCameraModel, IMachineVisionCameraModel
         {
                 /// <summary>
                 /// 获取或设置用户
                 /// </summary>
                 /// <value>用户</value>
+                [MustNotEqual(UserSet.Default)]
                 [XmlAttribute]
                 public UserSet UserSet { get; set; }
 
@@ -36,9 +37,8 @@ namespace Nutshell.Hikvision.MachineVision.Xml.Models
                 /// 获取或设置图像数据包大小
                 /// </summary>
                 /// <value>图像数据包大小</value>
-                [MustGreaterThanOrEqual(8000)]
-                [MustLessThanOrEqualAttribute(10000)]
+                [MustBetween(OfficialApi.MinStreamChannelPacketSize, OfficialApi.MaxStreamChannelPacketSize)]
                 [XmlAttribute]
-                public int SCPSPacketSize { get; set; }
+                public int StreamChannelPacketSize { get; set; }
         }
 }

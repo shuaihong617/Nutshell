@@ -11,11 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Threading.Tasks;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
+using System;
+using System.Threading.Tasks;
 
 namespace Nutshell.Automation.Vision
 {
@@ -34,7 +34,7 @@ namespace Nutshell.Automation.Vision
                 {
                         Decoder = decoder;
 
-                        ProcessImage = new Bitmap(String.Empty,  Decoder.Region.Width, Decoder.Region.Height, Decoder.PixelFormat);
+                        ProcessImage = new Bitmap(String.Empty, Decoder.Region.Width, Decoder.Region.Height, Decoder.PixelFormat);
                 }
 
                 /// <summary>
@@ -46,7 +46,6 @@ namespace Nutshell.Automation.Vision
                 ///         待处理图像
                 /// </summary>
                 public Bitmap ProcessImage { get; private set; }
-
 
                 #region 处理流程
 
@@ -99,7 +98,6 @@ namespace Nutshell.Automation.Vision
                         if (Decoder.RunMode == RunMode.Release)
                         {
                                 Decoder.Pool.ReadUnlock(bitmap);
-                                
                         }
 
                         _processTask = Task.Run(() => Process());
@@ -120,6 +118,6 @@ namespace Nutshell.Automation.Vision
 
                 protected abstract void ProcessCore();
 
-                #endregion
+                #endregion 处理流程
         }
 }

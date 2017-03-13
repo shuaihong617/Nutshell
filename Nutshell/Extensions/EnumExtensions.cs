@@ -29,10 +29,10 @@ namespace Nutshell.Extensions
                 /// <returns>包含该枚举类型所有成员的列表</returns>
                 public static List<T> CreateList<T>() where T : struct
                 {
-                        Type t = typeof (T);
+                        Type t = typeof(T);
                         List<string> names = Enum.GetNames(t).ToList();
 
-                        return names.Select(name => (T) Enum.Parse(t, name)).ToList();
+                        return names.Select(name => (T)Enum.Parse(t, name)).ToList();
                 }
 
                 /// <summary>

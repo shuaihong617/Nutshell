@@ -11,34 +11,33 @@
 // </summary>
 // ***********************************************************************
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Opc;
 
 namespace Nutshell.Automation.Opc
 {
-	/// <summary>
-	/// 系统已安装OpcServer
-	/// </summary>
-	public class InstalledOpcServer : IdentityObject
+        /// <summary>
+        /// 系统已安装OpcServer
+        /// </summary>
+        public class InstalledOpcServer : IdentityObject
         {
-		/// <summary>
-		/// 初始化<see cref="InstalledOpcServer"/>的新实例.
-		/// </summary>
-		/// <param name="address">OpcServer地址.</param>
-		public InstalledOpcServer([MustNotEqualNullOrEmpty]string address)
+                /// <summary>
+                /// 初始化<see cref="InstalledOpcServer"/>的新实例.
+                /// </summary>
+                /// <param name="address">OpcServer地址.</param>
+                public InstalledOpcServer([MustNotEqualNullOrEmpty]string address)
                         : base(address)
                 {
-                        Address = address;                                
+                        Address = address;
                 }
 
-		#region 属性
+                #region 属性
 
-		/// <summary>
-		/// 获取OpcServer地址.
-		/// </summary>
-		/// <value>OpcServer地址.</value>
-		[MustNotEqualNullOrEmpty]
+                /// <summary>
+                /// 获取OpcServer地址.
+                /// </summary>
+                /// <value>OpcServer地址.</value>
+                [MustNotEqualNullOrEmpty]
                 public string Address { get; private set; }
 
-                #endregion
+                #endregion 属性
         }
 }

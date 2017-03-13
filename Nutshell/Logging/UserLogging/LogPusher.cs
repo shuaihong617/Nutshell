@@ -3,8 +3,7 @@
         /// <summary>
         /// 日志推送者接口
         /// </summary>
-        public class LogPusher:LogConsumer
+        public class LogPusher : LogConsumer
         {
-
         }
 }

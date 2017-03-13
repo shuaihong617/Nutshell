@@ -8,7 +8,7 @@ namespace Nutshell.Presentation.Converters
         {
                 public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
                 {
-                        var b = (bool) value;
+                        var b = (bool)value;
                         return b ? "是" : "否";
                 }
 

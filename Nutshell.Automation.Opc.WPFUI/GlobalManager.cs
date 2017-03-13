@@ -15,13 +15,12 @@ namespace Nutshell.Automation.Opc.WPFUI
                 {
                         ConfigDirectory = @"配置/";
 
-
                         LogProvider.Initialize();
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
                 }
 
-                #endregion
+                #endregion 构造函数
 
                 #region 单例
 
@@ -30,7 +29,7 @@ namespace Nutshell.Automation.Opc.WPFUI
                 /// </summary>
                 public static readonly GlobalManager Instance = new GlobalManager();
 
-                #endregion
+                #endregion 单例
 
                 /// <summary>
                 ///         配置文件目录
@@ -48,7 +47,6 @@ namespace Nutshell.Automation.Opc.WPFUI
                 [NotifyPropertyValueChanged]
                 public OpcServer Server { get; private set; }
 
-
                 public void LoadApplication()
                 {
                         Application = new Application();
@@ -65,7 +63,6 @@ namespace Nutshell.Automation.Opc.WPFUI
                         Server.Parent = Runtime;
                         XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
                 }
-
 
                 public void Stop()
                 {

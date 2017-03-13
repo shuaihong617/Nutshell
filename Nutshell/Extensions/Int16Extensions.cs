@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-
 using System;
 
 namespace Nutshell.Extensions
@@ -89,7 +88,7 @@ namespace Nutshell.Extensions
                 public static bool IsDoubleDirectionBetween(this short value, short max, string name = "")
                 {
                         max.MustGreaterThanOrEqual(0);
-                        return IsBetween(value, max, (short) (max*-1), name);
+                        return IsBetween(value, max, (short)(max * -1), name);
                 }
         }
 }

@@ -11,8 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Components
 {
@@ -65,6 +65,6 @@ namespace Nutshell.Components
                         e.Raise(this, ref Consumed);
                 }
 
-                #endregion
+                #endregion 事件
         }
 }

@@ -15,10 +15,10 @@ using Nutshell.Components.Models;
 
 namespace Nutshell.Automation.Models
 {
-	/// <summary>
-	///         设备信息结构体
-	/// </summary>
-	public interface IDeviceModel : IComponentModel
-	{
-	}
+        /// <summary>
+        ///         设备信息结构体
+        /// </summary>
+        public interface IDeviceModel : IComponentModel
+        {
+        }
 }

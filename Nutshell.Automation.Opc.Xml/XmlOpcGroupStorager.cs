@@ -1,6 +1,5 @@
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Xml.Models;
-using Nutshell.Automation.Opc;
 
 namespace Nutshell.Automation.Opc.Xml
 {
@@ -17,13 +16,13 @@ namespace Nutshell.Automation.Opc.Xml
                 /// </summary>
                 public static readonly XmlOpcGroupStorager Instance = new XmlOpcGroupStorager();
 
-                #endregion
+                #endregion 单例
 
                 public void Load([MustNotEqualNull] OpcGroup opcGroup,
                         [MustNotEqualNull] XmlOpcGroupModel model)
                 {
                         opcGroup.Load(model);
-			opcGroup.Load(model.XmlOpcItemModels);                        
+                        opcGroup.Load(model.XmlOpcItemModels);
                 }
 
                 public void Save([MustNotEqualNull] OpcGroup opcGroup,

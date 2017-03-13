@@ -11,11 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Automation.Vision.Models;
 using Nutshell.Automation.Xml.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Drawing.Xml.Models;
+using System.Xml.Serialization;
 
 namespace NutshellAutomation.Vision.Xml.Models
 {
@@ -23,7 +23,7 @@ namespace NutshellAutomation.Vision.Xml.Models
         ///         摄像机数据模型
         /// </summary>
         [XmlType]
-        public class XmlCameraModel : XmlCapturableDeviceModel,ICameraModel
+        public class XmlCameraModel : XmlCapturableDeviceModel, ICameraModel
         {
                 /// <summary>
                 ///         宽度, 单位为像素

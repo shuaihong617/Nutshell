@@ -32,7 +32,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <remark>
                 /// 最多支持256台设备
                 /// </remark>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 256)] 
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 256)]
                 public IntPtr[] DeviceInfoPtrs;
         }
 }

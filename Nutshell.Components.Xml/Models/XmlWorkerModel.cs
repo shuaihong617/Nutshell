@@ -11,10 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
 using Nutshell.Components.Models;
-using Nutshell.Data.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Components.Xml.Models
 {
@@ -24,7 +22,5 @@ namespace Nutshell.Components.Xml.Models
         [XmlType]
         public class XmlWorkerModel : XmlComponentModel, IWorkerModel
         {
-		
-		
         }
 }

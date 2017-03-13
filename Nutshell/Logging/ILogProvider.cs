@@ -19,7 +19,7 @@ namespace Nutshell.Logging
         /// <summary>
         ///         日志服务提供者接口
         /// </summary>
-        public interface ILogProvider:IProducer<LogRecord>
+        public interface ILogProvider : IProducer<LogRecord>
         {
                 /// <summary>
                 ///         Debugs the specified message.
@@ -50,6 +50,5 @@ namespace Nutshell.Logging
                 /// </summary>
                 /// <param name="message">The message.</param>
                 void Fatal([MustNotEqualNull]object message);
-
         }
 }

@@ -19,7 +19,7 @@ namespace Nutshell.Threading
         ///         独占锁对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class MonopolyObject<T> : IdentityObject,IMonopolyObject where T : IdentityObject
+        public class MonopolyObject<T> : IdentityObject, IMonopolyObject where T : IdentityObject
         {
                 /// <summary>
                 /// 初始化<see cref="IdentityObject" />的新实例.
@@ -27,7 +27,7 @@ namespace Nutshell.Threading
                 /// <param name="id">标识</param>
                 /// <param name="t">需要锁定的对象</param>
                 public MonopolyObject(string id, T t)
-                        : base( id)
+                        : base(id)
                 {
                         Value = t;
                 }
@@ -35,7 +35,6 @@ namespace Nutshell.Threading
                 private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 
                 public T Value { get; private set; }
-
 
                 /// <summary>
                 /// 锁定

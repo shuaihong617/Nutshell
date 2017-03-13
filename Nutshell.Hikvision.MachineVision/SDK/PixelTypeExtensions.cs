@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using System.ComponentModel;
 
 namespace Nutshell.Hikvision.MachineVision.SDK
@@ -36,6 +35,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
 
                                 case PixelType.RGB8Packed:
                                         return 24;
+
                                 default:
                                         throw new InvalidEnumArgumentException("不支持的像素格式");
                         }

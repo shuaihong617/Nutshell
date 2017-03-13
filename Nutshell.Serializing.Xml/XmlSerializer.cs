@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Data.Models;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using Nutshell.Data.Models;
 using MSXmlSerializer = System.Xml.Serialization.XmlSerializer;
 
 namespace Nutshell.Serializing.Xml
@@ -23,25 +23,25 @@ namespace Nutshell.Serializing.Xml
         ///  Xml序列化器
         /// </summary>
         public class XmlSerializer<T> : Serializer<T> where T : IDataModel
-	{
-		#region 构造函数
+        {
+                #region 构造函数
 
-		private XmlSerializer()
-		{
-		}
+                private XmlSerializer()
+                {
+                }
 
-		#endregion
+                #endregion 构造函数
 
-		#region 单例
+                #region 单例
 
-		/// <summary>
-		///         单例
-		/// </summary>
-		public static readonly XmlSerializer<T> Instance = new XmlSerializer<T>();
+                /// <summary>
+                ///         单例
+                /// </summary>
+                public static readonly XmlSerializer<T> Instance = new XmlSerializer<T>();
 
-		#endregion
+                #endregion 单例
 
-		private static readonly MSXmlSerializer MSXmlSerializer = new MSXmlSerializer(typeof(T));
+                private static readonly MSXmlSerializer MSXmlSerializer = new MSXmlSerializer(typeof(T));
 
                 /// <summary>
                 /// 定义命名空间为空
@@ -49,13 +49,13 @@ namespace Nutshell.Serializing.Xml
                 private static readonly XmlSerializerNamespaces Namespaces = new XmlSerializerNamespaces(
                         new[] { new XmlQualifiedName(string.Empty, string.Empty) });
 
-		/// <summary>
-		///         将对象序列化为字节数组
-		/// </summary>
-		/// <typeparam name="T">类型参数</typeparam>
-		/// <param name="t">序列化对象</param>
-		/// <returns>序列化完成后的字节数组</returns>
-		public override byte[] Serialize(T t)
+                /// <summary>
+                ///         将对象序列化为字节数组
+                /// </summary>
+                /// <typeparam name="T">类型参数</typeparam>
+                /// <param name="t">序列化对象</param>
+                /// <returns>序列化完成后的字节数组</returns>
+                public override byte[] Serialize(T t)
                 {
                         using (var ms = new MemoryStream())
                         {
@@ -74,13 +74,13 @@ namespace Nutshell.Serializing.Xml
                 {
                         using (var stream = new MemoryStream(content))
                         {
-	                        return Deserialize(stream);
+                                return Deserialize(stream);
                         }
                 }
 
-		public T Deserialize(Stream stream)
-		{
-			return (T)MSXmlSerializer.Deserialize(stream);
-		}
-	}
+                public T Deserialize(Stream stream)
+                {
+                        return (T)MSXmlSerializer.Deserialize(stream);
+                }
+        }
 }

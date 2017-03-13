@@ -1,7 +1,7 @@
-﻿using System;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Reflection;
+using System;
 
 namespace Nutshell.Aspects.Locations.Contracts
 {
@@ -9,7 +9,6 @@ namespace Nutshell.Aspects.Locations.Contracts
                 ILocationValidationAspect<int>,
                 ILocationValidationAspect<uint>
         {
-
                 protected override string GetErrorMessage()
                 {
                         return "Value {2} must have a non-zero value.";

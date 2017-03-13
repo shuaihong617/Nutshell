@@ -11,15 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Threading;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Vision;
-using Nutshell.Components;
-using Nutshell.Direct2D.WinForm;
-using Nutshell.Drawing.Imaging;
 using Bitmap = Nutshell.Drawing.Imaging.Bitmap;
 
 namespace Nutshell.Direct2D.WinForm.Vision
@@ -37,7 +30,7 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 /// <param name="sence">The sence.</param>
                 /// <exception cref="System.ArgumentException">摄像机解码单元不能为null</exception>
                 public CameraRenderer(string id, [MustNotEqualNull]CameraDecoder decoder, CameraSence sence)
-                        : base( id, sence)
+                        : base(id, sence)
                 {
                         _decoder = decoder;
                 }
@@ -46,13 +39,13 @@ namespace Nutshell.Direct2D.WinForm.Vision
 
                 protected override Result StartCore()
                 {
-	                var baseResult = base.StartCore();
-	                if (!baseResult.IsSuccessed)
-	                {
-		                return baseResult;
-	                }
+                        var baseResult = base.StartCore();
+                        if (!baseResult.IsSuccessed)
+                        {
+                                return baseResult;
+                        }
                         _decoder.DecodeFinished += Decoder_DecodeFinished;
-			return Result.Successed;
+                        return Result.Successed;
                 }
 
                 private void Decoder_DecodeFinished(object sender, ValueEventArgs<Bitmap> e)
@@ -69,7 +62,7 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 {
                         _decoder.DecodeFinished -= Decoder_DecodeFinished;
 
-			return base.StartCore();
+                        return base.StartCore();
                 }
         }
 }

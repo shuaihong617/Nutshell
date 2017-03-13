@@ -11,11 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Models;
 using Nutshell.Data.Xml.Models;
+using System;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Opc.Xml.Models
 {
@@ -23,7 +23,7 @@ namespace Nutshell.Automation.Opc.Xml.Models
         ///         已定义主键的对象数据模型
         /// </summary>
         [XmlType]
-        public class XmlOpcItemModel : XmlDataModel,IOpcItemModel
+        public class XmlOpcItemModel : XmlDataModel, IOpcItemModel
         {
                 public XmlOpcItemModel()
                 {
@@ -35,7 +35,7 @@ namespace Nutshell.Automation.Opc.Xml.Models
                 ///   地址
                 /// </summary>
                 [XmlAttribute]
-		[MustNotEqualNullOrEmpty]
+                [MustNotEqualNullOrEmpty]
                 public string Address { get; set; }
 
                 /// <summary>
@@ -49,7 +49,5 @@ namespace Nutshell.Automation.Opc.Xml.Models
                 /// </summary>
                 [XmlAttribute]
                 public ReadWriteMode ReadWriteMode { get; set; }
-
-                
         }
 }

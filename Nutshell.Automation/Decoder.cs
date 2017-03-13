@@ -11,147 +11,141 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Diagnostics;
-using System.Threading;
 using Nutshell.Components;
 using Nutshell.Extensions;
 using Nutshell.Threading;
+using System;
+using System.Threading;
 
 namespace Nutshell.Automation
 {
-	/// <summary>
-	///         摄像机图像消费者
-	/// </summary>
-	public abstract class Decoder<T> : Worker where T : IIdentifiable
-	{
-		/// <summary>
-		///         初始化<see cref="Decoder{T}" />的新实例.
-		/// </summary>
-		/// <param name="id">The key.</param>
-		/// <param name="capturer">The camera.</param>
-		protected Decoder(string id, CapturableDevice<T> capturer)
-			: base(id)
-		{
-			capturer.NotNull();
-			Capturer = capturer;
+        /// <summary>
+        ///         摄像机图像消费者
+        /// </summary>
+        public abstract class Decoder<T> : Worker where T : IIdentifiable
+        {
+                /// <summary>
+                ///         初始化<see cref="Decoder{T}" />的新实例.
+                /// </summary>
+                /// <param name="id">The key.</param>
+                /// <param name="capturer">The camera.</param>
+                protected Decoder(string id, CapturableDevice<T> capturer)
+                        : base(id)
+                {
+                        capturer.NotNull();
+                        Capturer = capturer;
 
+                        DecodeLooper = new Looper("解码循环", ThreadPriority.Highest, 10, Decode);
+                        DecodeLooper.Parent = this;
+                }
 
-			DecodeLooper = new Looper("解码循环", ThreadPriority.Highest, 10, Decode);
-			DecodeLooper.Parent = this;
-		}
+                /// <summary>
+                ///         摄像机
+                /// </summary>
+                public CapturableDevice<T> Capturer { get; }
 
-		/// <summary>
-		///         摄像机
-		/// </summary>
-		public CapturableDevice<T> Capturer { get; }
+                public Looper DecodeLooper { get; }
 
+                /// <summary>
+                ///         图像池
+                /// </summary>
+                public ReadWritePool<T> Pool { get; private set; }
 
-		public Looper DecodeLooper { get; }
+                private T _decodeSource;
 
-		/// <summary>
-		///         图像池
-		/// </summary>
-		public ReadWritePool<T> Pool { get; private set; }
+                /// <summary>
+                ///         创建图像缓冲池
+                /// </summary>
+                protected abstract ReadWritePool<T> CreatePool();
 
-		private T _decodeSource;
+                #region 处理流程
 
-		/// <summary>
-		///         创建图像缓冲池
-		/// </summary>
-		protected abstract ReadWritePool<T> CreatePool();
+                protected override Result StartCore()
+                {
+                        if (Pool == null)
+                        {
+                                Pool = CreatePool();
+                                Pool.Parent = this;
+                        }
 
-		#region 处理流程
+                        Capturer.CaptureSuccessed += Capturer_CaptureSuccessed;
 
-		protected override Result StartCore()
-		{
-			if (Pool == null)
-			{
-				Pool = CreatePool();
-				Pool.Parent = this;
-			}
+                        return DecodeLooper.Start();
+                }
 
-			Capturer.CaptureSuccessed += Capturer_CaptureSuccessed;
+                private void Capturer_CaptureSuccessed(object sender, ValueEventArgs<T> e)
+                {
+                        if (_decodeSource != null)
+                        {
+                                return;
+                        }
 
-			return DecodeLooper.Start();
-		}
+                        _decodeSource = e.Value;
 
-		private void Capturer_CaptureSuccessed(object sender, ValueEventArgs<T> e)
-		{
-			if (_decodeSource != null)
-			{
-				return;
-			}
+                        Capturer.Pool.ReadLock(_decodeSource);
+                }
 
-			_decodeSource = e.Value;
+                protected override Result StopCore()
+                {
+                        DecodeLooper.Stop();
+                        Capturer.CaptureSuccessed -= Capturer_CaptureSuccessed;
+                        return Result.Successed;
+                }
 
-			Capturer.Pool.ReadLock(_decodeSource);
-		}
+                private ValueResult<T> Decode()
+                {
+                        if (_decodeSource == null)
+                        {
+                                return ValueResult<T>.Failed;
+                        }
 
-		protected override Result StopCore()
-		{
-			DecodeLooper.Stop();
-			Capturer.CaptureSuccessed -= Capturer_CaptureSuccessed;
-			return Result.Successed;
-		}
-
-		private ValueResult<T> Decode()
-		{
-			if (_decodeSource == null)
-			{
-				return ValueResult<T>.Failed;
-			}
-
-			if (!IsEnable || WorkerState != WorkerState.已启动)
-			{
-				Capturer.Pool.ReadUnlock(_decodeSource);
-				_decodeSource = default(T);
-				return ValueResult<T>.Failed;
-			}
+                        if (!IsEnable || WorkerState != WorkerState.已启动)
+                        {
+                                Capturer.Pool.ReadUnlock(_decodeSource);
+                                _decodeSource = default(T);
+                                return ValueResult<T>.Failed;
+                        }
 
                         if (Capturer.Pool.GetLock(_decodeSource) < 1)
                         {
                                 return ValueResult<T>.Failed;
                         }
 
-
                         var target = Pool.WriteLock();
 
-			DecodeCore(_decodeSource, target);
+                        DecodeCore(_decodeSource, target);
 
+                        target.TimeStamps["CaptureTime"] = _decodeSource.TimeStamps["CaptureTime"];
+                        target.TimeStamps["DecodeTime"] = DateTime.Now;
 
-			target.TimeStamps["CaptureTime"] = _decodeSource.TimeStamps["CaptureTime"];
-			target.TimeStamps["DecodeTime"] = DateTime.Now;
+                        Pool.WriteUnlock(target);
 
+                        Capturer.Pool.ReadUnlock(_decodeSource);
 
-			Pool.WriteUnlock(target);
+                        OnDecodeFinished(new ValueEventArgs<T>(target));
 
-			Capturer.Pool.ReadUnlock(_decodeSource);
+                        _decodeSource = default(T);
 
-			OnDecodeFinished(new ValueEventArgs<T>(target));
+                        return new ValueResult<T>(target);
+                }
 
-			_decodeSource = default(T);
+                protected abstract void DecodeCore(T source, T target);
 
-			return new ValueResult<T>(target);
-		}
+                #endregion 处理流程
 
-		protected abstract void DecodeCore(T source, T target);
+                #region 事件
 
-		#endregion
+                public event EventHandler<ValueEventArgs<T>> DecodeFinished;
 
-		#region 事件
+                /// <summary>
+                ///         引发 <see cref="E:Opened" /> 事件.
+                /// </summary>
+                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+                protected virtual void OnDecodeFinished(ValueEventArgs<T> e)
+                {
+                        e.Raise(this, ref DecodeFinished);
+                }
 
-		public event EventHandler<ValueEventArgs<T>> DecodeFinished;
-
-		/// <summary>
-		///         引发 <see cref="E:Opened" /> 事件.
-		/// </summary>
-		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-		protected virtual void OnDecodeFinished(ValueEventArgs<T> e)
-		{
-			e.Raise(this, ref DecodeFinished);
-		}
-
-		#endregion
-	}
+                #endregion 事件
+        }
 }

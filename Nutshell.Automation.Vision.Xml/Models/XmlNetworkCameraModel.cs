@@ -11,8 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Automation.Vision.Models;
+using System.Xml.Serialization;
 
 namespace NutshellAutomation.Vision.Xml.Models
 {
@@ -20,7 +20,7 @@ namespace NutshellAutomation.Vision.Xml.Models
         ///         网络摄像机数据模型
         /// </summary>
         [XmlType]
-        public class XmlNetworkCameraModel : XmlCameraModel,INetworkCameraModel
+        public class XmlNetworkCameraModel : XmlCameraModel, INetworkCameraModel
         {
                 /// <summary>
                 ///         IP地址

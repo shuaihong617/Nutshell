@@ -30,12 +30,12 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto" >
-                        <WindowsFormsHost Width="{Binding Size.Width, ElementName=PictureBox}" Height="{Binding Size.Height, ElementName=PictureBox}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                <ScrollViewer Grid.Row="0" ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <WindowsFormsHost Width="{Binding Size.Width, ElementName=PictureBox}" Height="{Binding Size.Height, ElementName=PictureBox}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
                                 <form:PictureBox x:Name="PictureBox" />
                         </WindowsFormsHost>
                 </ScrollViewer>
-                
+
                 <Border Grid.Row="1" Height="1" Width="Auto" Background="LightGray" />
                 <Grid Grid.Row="2" Style="{StaticResource GridStyle}">
                         <Grid Style="{StaticResource GridStyle}" Margin="8">

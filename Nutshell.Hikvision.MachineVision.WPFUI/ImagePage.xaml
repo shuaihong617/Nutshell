@@ -4,12 +4,11 @@
         x:Class="Nutshell.Hikvision.MachineVision.WPFUI.ImagePage"
         Title="SynthesisPage">
         <Grid>
-                <!--<ListBox HorizontalAlignment="Stretch" 
+                <!--<ListBox HorizontalAlignment="Stretch"
                          ItemTemplate="{StaticResource OpcGroupDataTemplate}"
                          ItemsSource="{Binding Server.OpcGroups}" Focusable="False" IsTextSearchEnabled="False">
                         <ListBox.ItemContainerStyle>
                                 <Style>
-                                        
                                 </Style>
                         </ListBox.ItemContainerStyle>
                 </ListBox>-->

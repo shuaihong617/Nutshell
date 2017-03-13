@@ -34,7 +34,7 @@ namespace Nutshell.Extensions
                                 return 0;
                         }
 
-                        return Convert.ToInt16(value%32768);
+                        return Convert.ToInt16(value % 32768);
                 }
 
                 /// <summary>
@@ -47,9 +47,8 @@ namespace Nutshell.Extensions
                 {
                         max.MustNotNegative();
 
-                        short min = Convert.ToInt16(-1*max);
+                        short min = Convert.ToInt16(-1 * max);
                         short r = value.ToInt16();
-
 
                         if (r > max)
                         {
@@ -64,7 +63,6 @@ namespace Nutshell.Extensions
                         return r;
                 }
 
-
                 /// <summary>
                 ///         Convert datetime struct to byte array.
                 /// </summary>
@@ -77,7 +75,7 @@ namespace Nutshell.Extensions
                                 return 0;
                         }
 
-                        return Convert.ToInt32(value%32768);
+                        return Convert.ToInt32(value % 32768);
                 }
 
                 /// <summary>
@@ -90,9 +88,8 @@ namespace Nutshell.Extensions
                 {
                         max.MustNotNegative();
 
-                        short min = Convert.ToInt16(-1*max);
+                        short min = Convert.ToInt16(-1 * max);
                         int r = value.ToInt32();
-
 
                         if (r > max)
                         {
@@ -103,7 +100,6 @@ namespace Nutshell.Extensions
                         {
                                 return min;
                         }
-
 
                         return r;
                 }
@@ -141,7 +137,6 @@ namespace Nutshell.Extensions
 
                         return value;
                 }
-
 
                 /// <summary>
                 ///         将一个浮点数转化为一个可进行数学运算的浮点数
@@ -187,7 +182,6 @@ namespace Nutshell.Extensions
                         {
                                 return true;
                         }
-
 
                         return false;
                 }

@@ -1,6 +1,5 @@
-﻿
+﻿using Nutshell.Extensions;
 using System;
-using Nutshell.Extensions;
 
 namespace Nutshell.Logging
 {

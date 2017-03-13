@@ -28,19 +28,19 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 图像高度
                 /// </summary>
-                public ushort Height; 
+                public ushort Height;
 
                 /// <summary>
                 /// 像素格式
                 /// </summary>
-                public PixelType PixelType; 
+                public PixelType PixelType;
 
                 /*以下字段暂不支持*/
 
                 /// <summary>
                 /// 帧编号
                 /// </summary>
-                public uint FrameNum; 
+                public uint FrameNum;
 
                 /// <summary>
                 /// 时间戳高32位
@@ -55,7 +55,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 保留
                 /// </summary>
-                public uint Reserved0; 
+                public uint Reserved0;
 
                 /// <summary>
                 /// 主机生成的时间戳
@@ -65,7 +65,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// // 保留
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
-                public uint[] Reserved; 
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+                public uint[] Reserved;
         }
 }

@@ -10,8 +10,8 @@
 // <summary>
 // </summary>
 // ***********************************************************************
-using System.Runtime.InteropServices;
 using Nutshell.Net;
+using System.Runtime.InteropServices;
 
 namespace Nutshell.Hikvision.MachineVision.SDK
 {
@@ -49,7 +49,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <summary>
                 /// 保留
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] 
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
                 public uint[] Reserved;
 
                 /// <summary>
@@ -57,10 +57,9 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// </summary>
                 public GigeDeviceInformation GigeDeviceInformation;
 
-	        public MacAddress GetMacAddress()
-	        {
-		        return new MacAddress(MacAddressHigh32Bit, MacAddressLow32Bit);
-	        }
-               
+                public MacAddress GetMacAddress()
+                {
+                        return new MacAddress(MacAddressHigh32Bit, MacAddressLow32Bit);
+                }
         }
 }

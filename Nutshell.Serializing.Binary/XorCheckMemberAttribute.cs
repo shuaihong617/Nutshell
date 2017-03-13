@@ -13,10 +13,10 @@
 
 namespace Nutshell.Serializing.Binary
 {
-	/// <summary>
-	///         异或校验特性
-	/// </summary>
-	public class XorCheckMemberAttribute : CheckMemberAttribute
-	{
-	}
+        /// <summary>
+        ///         异或校验特性
+        /// </summary>
+        public class XorCheckMemberAttribute : CheckMemberAttribute
+        {
+        }
 }

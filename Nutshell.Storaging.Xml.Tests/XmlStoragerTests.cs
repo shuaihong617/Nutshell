@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Nutshell.Storaging.Xml.Tests
 {
@@ -16,7 +16,7 @@ namespace Nutshell.Storaging.Xml.Tests
                 }
 
                 [TestMethod]
-                [ExpectedException(typeof (ArgumentException))]
+                [ExpectedException(typeof(ArgumentException))]
                 public void LoadNotExistTest()
                 {
                         var bytes = XmlStorager.Instance.Load(@"c:\2.config");

@@ -11,10 +11,9 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
 using Nutshell.Components.Models;
 using Nutshell.Data.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Components.Xml.Models
 {
@@ -24,19 +23,18 @@ namespace Nutshell.Components.Xml.Models
         [XmlType]
         public class XmlComponentModel : XmlDataModel, IComponentModel
         {
-		/// <summary>
-		/// 获取或设置是否启用
-		/// </summary>
-		/// <value>是否启用</value>
-		[XmlAttribute]
-		public bool IsEnable { get; set; }
+                /// <summary>
+                /// 获取或设置是否启用
+                /// </summary>
+                /// <value>是否启用</value>
+                [XmlAttribute]
+                public bool IsEnable { get; set; }
 
-		///<summary>
-		/// 获取或设置运行模式
-		/// </summary>
-		/// <value>运行模式</value>
-		[XmlAttribute]
-		public RunMode RunMode { get; set; }
-		
+                ///<summary>
+                /// 获取或设置运行模式
+                /// </summary>
+                /// <value>运行模式</value>
+                [XmlAttribute]
+                public RunMode RunMode { get; set; }
         }
 }

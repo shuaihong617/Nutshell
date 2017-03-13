@@ -1,6 +1,6 @@
-﻿using System.Xml.Serialization;
-using Nutshell.Data.Xml.Models;
+﻿using Nutshell.Data.Xml.Models;
 using Nutshell.Drawing.Shapes.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Drawing.Shapes.Xml.Models
 {
@@ -8,7 +8,7 @@ namespace Nutshell.Drawing.Shapes.Xml.Models
         ///         刻度
         /// </summary>
         [XmlType]
-        public class XmlScaleModel : XmlDataModel,IScaleModel
+        public class XmlScaleModel : XmlDataModel, IScaleModel
         {
                 public XmlScaleModel()
                 {

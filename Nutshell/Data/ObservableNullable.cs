@@ -11,8 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Data
 {
@@ -27,7 +27,7 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <param name="id">The item.</param>
                 public ObservableNullable(string id)
-                        :base( id)
+                        : base(id)
                 {
                         Value = new T();
                 }
@@ -39,14 +39,14 @@ namespace Nutshell.Data
                 /// </summary>
                 private T? _value;
 
-                #endregion
+                #endregion 字段
 
                 /// <summary>
                 ///         Gets or sets the data.
                 /// </summary>
                 /// <value>The data.</value>
-                public T? Value 
-                { 
+                public T? Value
+                {
                         get { return _value; }
                         set
                         {
@@ -79,7 +79,6 @@ namespace Nutshell.Data
                         e.Raise(this, ref ValueChanged);
                 }
 
-                #endregion
+                #endregion 事件
         }
-
 }

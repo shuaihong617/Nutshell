@@ -27,7 +27,5 @@ namespace Nutshell.Drawing.Imaging
                 ///         BMP文件信息节大小（字节）
                 /// </summary>
                 public const int InfoHeaderTotalBytes = 40;
-
-                
         }
 }

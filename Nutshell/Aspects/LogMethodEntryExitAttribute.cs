@@ -1,5 +1,5 @@
-﻿using System;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
+using System;
 
 namespace Nutshell.Aspects
 {

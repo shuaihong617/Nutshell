@@ -17,7 +17,7 @@ namespace Nutshell.Collections
         /// 缓冲区接口
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface  IBuffer<T>
+        public interface IBuffer<T>
         {
                 /// <summary>
                 /// 将对象添加到缓冲区中。

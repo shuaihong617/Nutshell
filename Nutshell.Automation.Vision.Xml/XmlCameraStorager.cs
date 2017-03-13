@@ -5,17 +5,17 @@ using NutshellAutomation.Vision.Xml.Models;
 
 namespace NutshellAutomation.Vision.Xml
 {
-	public class XmlCameraStorager : XmlCapturableDeviceStorager
-	{
-		protected XmlCameraStorager()
-		{
-		}
+        public class XmlCameraStorager : XmlCapturableDeviceStorager
+        {
+                protected XmlCameraStorager()
+                {
+                }
 
-		public void Load([MustNotEqualNull] Camera camera,
-			[MustNotEqualNull] XmlCameraModel model)
-		{
-			base.Load(camera,model);
-			camera.Region.Load(model.RegionModel);
-		}
-	}
+                public void Load([MustNotEqualNull] Camera camera,
+                        [MustNotEqualNull] XmlCameraModel model)
+                {
+                        base.Load(camera, model);
+                        camera.Region.Load(model.RegionModel);
+                }
+        }
 }

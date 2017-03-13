@@ -16,17 +16,17 @@ using Nutshell.Data.Models;
 
 namespace Nutshell.Data
 {
-    /// <summary>
-    ///         可存储对象
-    /// </summary>
-    public class StorableObject: IdentityObject,IStorable<IDataModel>
+        /// <summary>
+        ///         可存储对象
+        /// </summary>
+        public class StorableObject : IdentityObject, IStorable<IDataModel>
         {
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
                 public StorableObject(string id = "")
-                        : base( id)
+                        : base(id)
                 {
                 }
 
@@ -41,7 +41,6 @@ namespace Nutshell.Data
                         Id = model.Id;
                 }
 
-
                 /// <summary>
 		///         保存数据到数据模型
 		/// </summary>
@@ -51,6 +50,6 @@ namespace Nutshell.Data
                         model.Id = Id;
                 }
 
-                #endregion
+                #endregion 方法
         }
 }

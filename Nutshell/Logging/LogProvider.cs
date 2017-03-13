@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Logging.KernelLogging;
@@ -21,7 +20,7 @@ namespace Nutshell.Logging
         /// <summary>
         ///         日志服务提供者接口
         /// </summary>
-        public class LogProvider: DirectProducer<LogRecord>,ILogProvider 
+        public class LogProvider : DirectProducer<LogRecord>, ILogProvider
         {
                 protected LogProvider()
                 {
@@ -34,13 +33,12 @@ namespace Nutshell.Logging
                 /// </summary>
                 public static readonly LogProvider Instance = new LogProvider();
 
-                #endregion
+                #endregion 单例
 
                 public static void Initialize()
                 {
                         Instance.Register(NLoger.Instance);
                 }
-
 
                 /// <summary>
                 ///         Debugs the specified message.

@@ -1,11 +1,11 @@
-﻿using System;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Reflection;
+using System;
 
 namespace Nutshell.Aspects.Locations.Contracts
 {
-        public class MustAssignableFromAttribute : LocationContractAttribute,ILocationValidationAspect<object>
+        public class MustAssignableFromAttribute : LocationContractAttribute, ILocationValidationAspect<object>
         {
                 public MustAssignableFromAttribute(Type type)
                 {

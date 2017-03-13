@@ -5,28 +5,28 @@
       Title="RuntimePage">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <ContentControl Grid.Row="0" Style="{StaticResource Panel-Primary}" Margin="10">
                         <StackPanel>
-                                <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="系统Opc服务器列表"/>
+                                <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="系统Opc服务器列表" />
                                 <ContentControl Style="{StaticResource Panel-Body}">
                                         <Grid>
                                                 <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding Runtime.InstalledMachineVisionCameras}">
                                                         <DataGrid.Columns>
-                                                                <DataGridTextColumn Width="*" Header="IP地址" Binding="{Binding IPAddress}" ElementStyle="{StaticResource DataGridTextCenter}" IsReadOnly="True"/>
-                                                                <DataGridTextColumn Width="*" Header="MAC地址" Binding="{Binding MacAddress}" ElementStyle="{StaticResource DataGridTextCenter}" IsReadOnly="True"/>
+                                                                <DataGridTextColumn Width="*" Header="IP地址" Binding="{Binding IPAddress}" ElementStyle="{StaticResource DataGridTextCenter}" IsReadOnly="True" />
+                                                                <DataGridTextColumn Width="*" Header="MAC地址" Binding="{Binding MacAddress}" ElementStyle="{StaticResource DataGridTextCenter}" IsReadOnly="True" />
                                                         </DataGrid.Columns>
                                                 </DataGrid>
                                         </Grid>
                                 </ContentControl>
-                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2"/>
+                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2" />
                         </StackPanel>
                 </ContentControl>
         </Grid>

@@ -7,7 +7,7 @@
                         <ResourceDictionary.MergedDictionaries>
 
                                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatSlider.xaml" />
-                                
+
                                 <ResourceDictionary
                                         Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/MetroWindowStyle.xaml" />
                                 <ResourceDictionary
@@ -16,14 +16,11 @@
                                         Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/ButtonStyle.xaml" />
                                 <ResourceDictionary
                                         Source="pack://application:,,,/Nutshell.Presentation.MahApps;component/Styles/TextBlockStyle.xaml" />
-                                
-                                
-                                
+
                                 <ResourceDictionary
                                         Source="pack://application:,,,/Nutshell.Presentation.Bootstrap;component/Styles/Bootstrap.xaml" />
 
-                                <ResourceDictionary Source="Resources/DataTemplate/MachineVisionRuntimeDataTemplate.xaml"/>
-
+                                <ResourceDictionary Source="Resources/DataTemplate/MachineVisionRuntimeDataTemplate.xaml" />
                         </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
         </Application.Resources>

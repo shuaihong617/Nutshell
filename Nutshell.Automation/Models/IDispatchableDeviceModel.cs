@@ -11,14 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
-
 namespace Nutshell.Automation.Models
 {
-	/// <summary>
-	///         可调度设备信息结构体
-	/// </summary>
-	public interface IDispatchableDeviceModel : IConnectableDeviceModel
-	{
-	}
+        /// <summary>
+        ///         可调度设备信息结构体
+        /// </summary>
+        public interface IDispatchableDeviceModel : IConnectableDeviceModel
+        {
+        }
 }

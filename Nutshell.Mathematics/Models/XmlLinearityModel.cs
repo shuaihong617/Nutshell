@@ -11,11 +11,8 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
-using System.Xml.XPath;
-using Nutshell.Data.Models;
 using Nutshell.Data.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Mathematics.Models
 {

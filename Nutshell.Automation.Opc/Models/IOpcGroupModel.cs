@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-
 using Nutshell.Data.Models;
 
 namespace Nutshell.Automation.Opc.Models
@@ -21,6 +20,6 @@ namespace Nutshell.Automation.Opc.Models
         /// </summary>
         public interface IOpcGroupModel : IDataModel
         {
-                 string Address { get; set; }
+                string Address { get; set; }
         }
 }

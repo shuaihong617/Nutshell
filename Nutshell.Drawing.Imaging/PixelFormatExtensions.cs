@@ -62,7 +62,7 @@ namespace Nutshell.Drawing.Imaging
                 /// <exception cref="System.ComponentModel.InvalidEnumArgumentException">不支持的像素格式</exception>
                 public static int GetBytes(this PixelFormat format)
                 {
-                        return GetBits(format)/8;
+                        return GetBits(format) / 8;
                 }
 
                 /// <summary>

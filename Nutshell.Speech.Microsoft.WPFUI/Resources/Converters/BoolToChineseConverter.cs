@@ -8,7 +8,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI.Resources.Converters
         {
                 public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
                 {
-                        var b = (SynthesizerState) value;
+                        var b = (SynthesizerState)value;
                         return b == SynthesizerState.空闲;
                 }
 

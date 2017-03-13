@@ -26,7 +26,7 @@ namespace Nutshell
                 /// </summary>
                 /// <param name="newValue">The new value.</param>
                 /// <param name="oldValue">The old value.</param>
-                public ValueChangedEventArgs(T newValue, T oldValue = default (T))
+                public ValueChangedEventArgs(T newValue, T oldValue = default(T))
                 {
                         NewValue = newValue;
                         OldValue = oldValue;

@@ -1,2 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="8" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols" />
+<Symbols LinesOfCode="8" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanOrEqualAttribute">
+    <Instance Declaration="#2=P:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::X()" Id="1ea406957d3c258">
+      <Target>
+        <JoinPoint Advised="#3=M:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::set_X(System.Int32)" Advising="#1" Description="#4=Validates the assigned value" Ordinal="0" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5=P:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::Y()" Id="1ea4069486aa96b">
+      <Target>
+        <JoinPoint Advised="#6=M:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::set_Y(System.Int32)" Advising="#1" Description="#4" Ordinal="2" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7=P:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::Width()" Id="1ea4069ba0b915e">
+      <Target>
+        <JoinPoint Advised="#8=M:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::set_Width(System.Int32)" Advising="#1" Description="#4" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9=P:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::Height()" Id="1ea40696ec51256">
+      <Target>
+        <JoinPoint Advised="#10=M:[Nutshell.Drawing.Xml]Nutshell.Drawing.Xml.Models.XmlRegionModel::set_Height(System.Int32)" Advising="#1" Description="#4" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#11=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustMultiplesOfAttribute">
+    <Instance Declaration="#2" Id="1ea40694e495797">
+      <Target>
+        <JoinPoint Advised="#3" Advising="#11" Description="#4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5" Id="1ea40694dad870b">
+      <Target>
+        <JoinPoint Advised="#6" Advising="#11" Description="#4" Ordinal="3" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7" Id="1ea4069dbaaaef9">
+      <Target>
+        <JoinPoint Advised="#8" Advising="#11" Description="#4" Ordinal="5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9" Id="1ea40693d243622">
+      <Target>
+        <JoinPoint Advised="#10" Advising="#11" Description="#4" Ordinal="7" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+</Symbols>

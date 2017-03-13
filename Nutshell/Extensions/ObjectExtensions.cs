@@ -47,7 +47,6 @@ namespace Nutshell.Extensions
                         return value == null;
                 }
 
-
                 /// <summary>
                 ///         判断当前对象是否不为空引用
                 /// </summary>
@@ -58,7 +57,6 @@ namespace Nutshell.Extensions
                 {
                         return value != null;
                 }
-
 
                 /// <summary>
                 ///         Musts the in.
@@ -74,7 +72,6 @@ namespace Nutshell.Extensions
                                 throw new ArgumentException("必须在给定值范围内！");
                         }
                 }
-
 
                 /// <summary>
                 ///         Musts the equal.

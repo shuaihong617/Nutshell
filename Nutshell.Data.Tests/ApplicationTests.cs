@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nutshell.Data.Models;
 using Nutshell.Data.Xml.Models;
+using System;
 
 namespace Nutshell.Data.Tests
 {
@@ -11,14 +11,14 @@ namespace Nutshell.Data.Tests
                 public string TestId = "测试应用程序标识";
 
                 [TestMethod]
-                [ExpectedException(typeof (ArgumentException))]
+                [ExpectedException(typeof(ArgumentException))]
                 public void ConstructorNullIdTest()
                 {
                         var application = new Application(null);
                 }
 
                 [TestMethod]
-                [ExpectedException(typeof (ArgumentException))]
+                [ExpectedException(typeof(ArgumentException))]
                 public void ConstructorEmptyIdTest()
                 {
                         var application = new Application(string.Empty);
@@ -33,9 +33,8 @@ namespace Nutshell.Data.Tests
                         Assert.AreEqual(application.GlobalId, TestId);
                 }
 
-
                 [TestMethod]
-                [ExpectedException(typeof (ArgumentException))]
+                [ExpectedException(typeof(ArgumentException))]
                 public void LoadEmptyIdTest()
                 {
                         var application = new Application(TestId);

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Nutshell.Extensions;
+using PostSharp.Aspects;
+using System;
 using System.ComponentModel;
 using System.Reflection;
-using Nutshell.Extensions;
-using PostSharp.Aspects;
 
 namespace Nutshell.Aspects.Events
 {
@@ -45,7 +45,5 @@ namespace Nutshell.Aspects.Events
 
                         i.Info("卸载" + d.Description);
                 }
-
-                
         }
 }

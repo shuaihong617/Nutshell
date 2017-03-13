@@ -11,9 +11,9 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Data.Xml.Models
 {

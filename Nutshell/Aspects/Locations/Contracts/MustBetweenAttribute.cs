@@ -5,10 +5,10 @@ using System;
 
 namespace Nutshell.Aspects.Locations.Contracts
 {
-        public sealed class MustBetweenOrEqualAttribute : LocationContractAttribute,
+        public sealed class MustBetweenAttribute : LocationContractAttribute,
                 ILocationValidationAspect<int>
         {
-                public MustBetweenOrEqualAttribute(int min, int max)
+                public MustBetweenAttribute(int min, int max)
                 {
                         _min = min;
                         _max = max;
@@ -20,7 +20,7 @@ namespace Nutshell.Aspects.Locations.Contracts
                 public Exception ValidateValue(int value, string name, LocationKind locationKind)
                 {
                         if (value < _min || value > _max)
-                                return new ArgumentException("参数" + name + "必须大于" + _min + "且小于" + _max);
+                                return new ArgumentException($"{locationKind.ToChineseString()}{name}的值必须大于{_min}且小于{_max}");
                         return null;
                 }
         }

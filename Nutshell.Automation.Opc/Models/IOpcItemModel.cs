@@ -11,29 +11,29 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using Nutshell.Data.Models;
+using System;
 
 namespace Nutshell.Automation.Opc.Models
 {
-	/// <summary>
-	///         已定义主键的对象数据模型
-	/// </summary>
-	public interface IOpcItemModel : IDataModel
-	{
-		/// <summary>
-		///         地址
-		/// </summary>
-		string Address { get; set; }
+        /// <summary>
+        ///         已定义主键的对象数据模型
+        /// </summary>
+        public interface IOpcItemModel : IDataModel
+        {
+                /// <summary>
+                ///         地址
+                /// </summary>
+                string Address { get; set; }
 
-		/// <summary>
-		///         数据类型
-		/// </summary>
-		TypeCode TypeCode { get; set; }
+                /// <summary>
+                ///         数据类型
+                /// </summary>
+                TypeCode TypeCode { get; set; }
 
-		/// <summary>
-		///         读写模式
-		/// </summary>
-		ReadWriteMode ReadWriteMode { get; set; }
-	}
+                /// <summary>
+                ///         读写模式
+                /// </summary>
+                ReadWriteMode ReadWriteMode { get; set; }
+        }
 }

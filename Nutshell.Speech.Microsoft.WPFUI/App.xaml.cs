@@ -1,11 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using Nutshell.Logging;
+using Nutshell.Logging.KernelLogging;
+using System;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
-using Nutshell.Logging;
-using Nutshell.Logging.KernelLogging;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {

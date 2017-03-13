@@ -49,7 +49,6 @@ namespace Nutshell.Extensions
                         return value.Length == 0;
                 }
 
-
                 /// <summary>
                 ///         Determines whether the specified value is empty.
                 /// </summary>
@@ -59,7 +58,6 @@ namespace Nutshell.Extensions
                 {
                         return string.IsNullOrEmpty(value);
                 }
-
 
                 /// <summary>
                 ///         Determines whether [is not null or empty] [the specified value].
@@ -121,7 +119,7 @@ namespace Nutshell.Extensions
 
                 public static T ToEnum<T>(this string source) where T : struct
                 {
-                        return (T) Enum.Parse(typeof (T), source);
+                        return (T)Enum.Parse(typeof(T), source);
                 }
 
                 public static bool ToBool(this string source)

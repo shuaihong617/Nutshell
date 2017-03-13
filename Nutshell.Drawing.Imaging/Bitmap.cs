@@ -11,11 +11,11 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Extensions;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Extensions;
 
 namespace Nutshell.Drawing.Imaging
 {
@@ -42,17 +42,16 @@ namespace Nutshell.Drawing.Imaging
 
                         PixelFormat = format;
 
-                        Stride = Width*PixelFormat.GetBytes();
+                        Stride = Width * PixelFormat.GetBytes();
 
-                        BufferLength = Width*Height*PixelFormat.GetBytes();
+                        BufferLength = Width * Height * PixelFormat.GetBytes();
 
                         Buffer = Marshal.AllocHGlobal(BufferLength);
 
-			TimeStamps["CaptureTime"] =DateTime.Now;
-			TimeStamps["DecodeTime"] = DateTime.Now;
-			TimeStamps["SwapTime"] = DateTime.Now;
-
-		}
+                        TimeStamps["CaptureTime"] = DateTime.Now;
+                        TimeStamps["DecodeTime"] = DateTime.Now;
+                        TimeStamps["SwapTime"] = DateTime.Now;
+                }
 
                 /// <summary>
                 /// 获取宽度
@@ -90,8 +89,6 @@ namespace Nutshell.Drawing.Imaging
                 /// <value>图像数据缓冲区长度</value>
                 public int BufferLength { get; }
 
-                
-
                 /// <summary>
                 /// Copies to.
                 /// </summary>
@@ -102,8 +99,8 @@ namespace Nutshell.Drawing.Imaging
                         target.Height.MustEqual(Height);
                         target.PixelFormat.MustEqual(PixelFormat);
 
-                        var sourcePtr = (byte*) Buffer.ToPointer();
-                        var targetPtr = (byte*) target.Buffer.ToPointer();
+                        var sourcePtr = (byte*)Buffer.ToPointer();
+                        var targetPtr = (byte*)target.Buffer.ToPointer();
 
                         int length = target.BufferLength;
 
@@ -121,8 +118,8 @@ namespace Nutshell.Drawing.Imaging
                 {
                         Trace.Assert(souceIntPtr != IntPtr.Zero);
 
-                        var sourcePtr = (byte*) souceIntPtr.ToPointer();
-                        var targetPtr = (byte*) Buffer.ToPointer();
+                        var sourcePtr = (byte*)souceIntPtr.ToPointer();
+                        var targetPtr = (byte*)Buffer.ToPointer();
 
                         int length = BufferLength;
 
@@ -131,7 +128,6 @@ namespace Nutshell.Drawing.Imaging
                                 *targetPtr++ = *sourcePtr++;
                         }
                 }
-
 
                 /// <summary>
                 /// Clears the specified r.
@@ -143,7 +139,7 @@ namespace Nutshell.Drawing.Imaging
                 {
                         PixelFormat.MustEqual(PixelFormat.Rgb24);
 
-                        var sourcePtr = (byte*) Buffer.ToPointer();
+                        var sourcePtr = (byte*)Buffer.ToPointer();
 
                         for (int i = 0; i < Width; i++)
                         {

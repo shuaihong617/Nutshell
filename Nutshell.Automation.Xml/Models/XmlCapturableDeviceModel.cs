@@ -11,10 +11,9 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Xml.Serialization;
 using Nutshell.Automation.Models;
 using Nutshell.Components.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Xml.Models
 {
@@ -24,10 +23,10 @@ namespace Nutshell.Automation.Xml.Models
         [XmlType]
         public class XmlCapturableDeviceModel : XmlDispatchableDeviceModel, ICapturableDeviceModel
         {
-		/// <summary>
-		///         采集循环
-		/// </summary>
-		[XmlElement]
-		public XmlLooperModel XmlCaptureLooperModel { get; set; }
-	}
+                /// <summary>
+                ///         采集循环
+                /// </summary>
+                [XmlElement]
+                public XmlLooperModel XmlCaptureLooperModel { get; set; }
+        }
 }

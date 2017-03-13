@@ -1,11 +1,9 @@
-﻿using System.Drawing;
-using System.Windows.Media;
-using Nutshell.Aspects.Locations.Propertys;
+﻿using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using System;
+using System.Drawing;
 
 namespace Nutshell.Drawing.Imaging.WPFUI
 {
@@ -22,7 +20,7 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                         LogProvider.Instance.Register(LogCollecter);
                 }
 
-                #endregion
+                #endregion 构造函数
 
                 #region 单例
 
@@ -31,7 +29,7 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                 /// </summary>
                 public static readonly GlobalManager Instance = new GlobalManager();
 
-                #endregion
+                #endregion 单例
 
                 /// <summary>
                 ///         配置文件目录
@@ -48,11 +46,10 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                 [NotifyPropertyValueChanged]
                 public int Step { get; set; } = 1;
 
-                #endregion 图像
+                #endregion 界面
 
                 [NotifyPropertyValueChanged]
                 public Bitmap SourceBitmap { get; set; }
-
 
                 #region Canny边缘检测
 
@@ -65,7 +62,7 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                 [NotifyPropertyValueChanged]
                 public Bitmap CannyBitmap { get; set; }
 
-                #endregion
+                #endregion Canny边缘检测
 
                 #region 摄像机
 
@@ -75,6 +72,6 @@ namespace Nutshell.Drawing.Imaging.WPFUI
                         XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
                 }
 
-                #endregion
+                #endregion 摄像机
         }
 }

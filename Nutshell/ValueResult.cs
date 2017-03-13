@@ -11,8 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-
 namespace Nutshell
 {
         /// <summary>
@@ -25,23 +23,24 @@ namespace Nutshell
                 /// </summary>
                 /// <param name="value">The result.</param>
                 public ValueResult(T value)
-			:base(true)
+                        : base(true)
                 {
                         Value = value;
                 }
 
-		/// <summary>
-		///         初始化<see cref="ValueEventArgs{T}" />的新实例.
-		/// </summary>
-		private ValueResult()
-			: base(false)
-		{
-		}
-		/// <summary>
-		///         数据
-		/// </summary>
-		public T Value { get; private set; }
+                /// <summary>
+                ///         初始化<see cref="ValueEventArgs{T}" />的新实例.
+                /// </summary>
+                private ValueResult()
+                        : base(false)
+                {
+                }
 
-		public new static readonly ValueResult<T> Failed = new ValueResult<T>(); 
+                /// <summary>
+                ///         数据
+                /// </summary>
+                public T Value { get; private set; }
+
+                public new static readonly ValueResult<T> Failed = new ValueResult<T>();
         }
 }

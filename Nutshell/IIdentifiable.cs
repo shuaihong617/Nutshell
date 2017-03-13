@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell
 {
@@ -22,39 +22,39 @@ namespace Nutshell
         ///         可唯一标识对象接口
         /// </summary>
         public interface IIdentifiable
-	{
-		/// <summary>
-		/// 获取或设置上级对象
-		/// </summary>
-		/// <value>上级对象</value>
-		IIdentifiable Parent { get; set; }
+        {
+                /// <summary>
+                /// 获取或设置上级对象
+                /// </summary>
+                /// <value>上级对象</value>
+                IIdentifiable Parent { get; set; }
 
-		/// <summary>
-		///         标识
-		/// </summary>
-		[MustNotEqualNullOrEmpty]
+                /// <summary>
+                ///         标识
+                /// </summary>
+                [MustNotEqualNullOrEmpty]
                 String Id { get; }
 
                 /// <summary>
                 ///         全局标识
                 /// </summary>
                 [MustNotEqualNullOrEmpty]
-                String GlobalId { get;}
+                String GlobalId { get; }
 
-		/// <summary>
-		/// 获取时间戳集合
-		/// </summary>
-		/// <value>时间戳集合</value>
-		Dictionary<string, DateTime> TimeStamps { get; }
+                /// <summary>
+                /// 获取时间戳集合
+                /// </summary>
+                /// <value>时间戳集合</value>
+                Dictionary<string, DateTime> TimeStamps { get; }
 
-	        #region 事件
+                #region 事件
 
-			/// <summary>
-			///         当全局标识改变时发生
-			/// </summary>
-			[Description("全局标识改变事件")]
-		event EventHandler<EventArgs> GlobalIdChanged;
+                /// <summary>
+                ///         当全局标识改变时发生
+                /// </summary>
+                [Description("全局标识改变事件")]
+                event EventHandler<EventArgs> GlobalIdChanged;
 
-		#endregion
-	}
+                #endregion 事件
+        }
 }

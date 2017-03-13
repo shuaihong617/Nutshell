@@ -11,12 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Models;
 using Nutshell.Data.Xml.Models;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Opc.Xml.Models
 {
@@ -24,10 +23,10 @@ namespace Nutshell.Automation.Opc.Xml.Models
         ///         已定义主键的对象数据模型
         /// </summary>
         [XmlType]
-        public class XmlOpcGroupModel : XmlDataModel,IOpcGroupModel
+        public class XmlOpcGroupModel : XmlDataModel, IOpcGroupModel
         {
                 [XmlAttribute]
-		[MustNotEqualNullOrEmpty]
+                [MustNotEqualNullOrEmpty]
                 public string Address { get; set; }
 
                 [XmlArray]

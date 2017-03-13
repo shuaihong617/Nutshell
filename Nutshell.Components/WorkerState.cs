@@ -13,35 +13,34 @@
 
 namespace Nutshell.Components
 {
-	/// <summary>
-	///         工作状态枚举
-	/// </summary>
-	public enum WorkerState
-	{
-		/// <summary>
-		/// 未启动
-		/// </summary>
-		未启动 = 0,
+        /// <summary>
+        ///         工作状态枚举
+        /// </summary>
+        public enum WorkerState
+        {
+                /// <summary>
+                /// 未启动
+                /// </summary>
+                未启动 = 0,
 
+                /// <summary>
+                ///         启动中
+                /// </summary>
+                启动中 = 1,
 
-		/// <summary>
-		///         启动中
-		/// </summary>
-		启动中 = 1,
+                /// <summary>
+                ///         已启动
+                /// </summary>
+                已启动 = 2,
 
-		/// <summary>
-		///         已启动
-		/// </summary>
-		已启动 = 2,
+                /// <summary>
+                ///         停止中
+                /// </summary>
+                停止中 = 3,
 
-		/// <summary>
-		///         停止中
-		/// </summary>
-		停止中 = 3,
-
-		/// <summary>
-		///         已停止
-		/// </summary>
-		已停止 = 4
-	}
+                /// <summary>
+                ///         已停止
+                /// </summary>
+                已停止 = 4
+        }
 }

@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-
 using System;
 using System.Threading;
 
@@ -36,9 +35,8 @@ namespace Nutshell.Extensions
                         EventHandler<TEventArgs> handler = Interlocked.CompareExchange(ref eventDelegate, null, null);
                         if (handler != null)
                         {
-                                handler.Invoke(sender,e);
+                                handler.Invoke(sender, e);
                         }
-                        
                 }
         }
 }

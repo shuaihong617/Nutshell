@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using Nutshell.Aspects.Locations.Propertys;
+﻿using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Data;
 using Nutshell.Data.Xml;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
+using System.Linq;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {
@@ -19,10 +19,10 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
 
-	                Runtime = MicrosoftSynthesisRuntime.Instance;
+                        Runtime = MicrosoftSynthesisRuntime.Instance;
                 }
 
-                #endregion
+                #endregion 构造函数
 
                 #region 单例
 
@@ -31,7 +31,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 /// </summary>
                 public static readonly GlobalManager Instance = new GlobalManager();
 
-                #endregion
+                #endregion 单例
 
                 /// <summary>
                 ///         配置文件目录
@@ -49,7 +49,6 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                 [NotifyPropertyValueChanged]
                 public MicrosoftSynthesizer Synthesizer { get; private set; }
 
-
                 public void LoadApplication()
                 {
                         Application = new Application();
@@ -61,17 +60,15 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                         Runtime.Parent = Application;
                         Runtime.Start();
 
-			Synthesizer = new MicrosoftSynthesizer();
-	                Synthesizer.Parent = Runtime;
+                        Synthesizer = new MicrosoftSynthesizer();
+                        Synthesizer.Parent = Runtime;
 
-	                Synthesizer.SelectVoice(Runtime.ChineseVoices.First().VoiceInfo.Name);
+                        Synthesizer.SelectVoice(Runtime.ChineseVoices.First().VoiceInfo.Name);
                 }
-
 
                 public void Stop()
                 {
-			
-			Runtime.Stop();
+                        Runtime.Stop();
                 }
         }
 }

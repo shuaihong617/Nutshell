@@ -10,7 +10,6 @@ namespace Nutshell.Data.Xml
         {
                 protected XmlApplicationStorager()
                 {
-
                 }
 
                 #region 单例
@@ -20,17 +19,15 @@ namespace Nutshell.Data.Xml
                 /// </summary>
                 public static readonly XmlApplicationStorager Instance = new XmlApplicationStorager();
 
-                #endregion
+                #endregion 单例
 
                 public void Load([MustNotEqualNull]Application application,
                         [MustFileExist]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model= XmlSerializer<XmlApplicationModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<XmlApplicationModel>.Instance.Deserialize(bytes);
 
-			application.Load(model);
-		}
-
-                
+                        application.Load(model);
+                }
         }
 }

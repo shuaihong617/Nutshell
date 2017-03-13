@@ -11,26 +11,26 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.ComponentModel;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
+using System;
+using System.ComponentModel;
 
 namespace Nutshell.Components
 {
         /// <summary>
         ///         工作者
         /// </summary>
-        public abstract class Worker : Component,IStorable<IWorkerModel>
+        public abstract class Worker : Component, IStorable<IWorkerModel>
         {
                 protected Worker([MustNotEqualNull] string id)
                         : base(id)
                 {
-			WorkerState = WorkerState.未启动;
+                        WorkerState = WorkerState.未启动;
                 }
 
                 #region 字段
@@ -40,19 +40,18 @@ namespace Nutshell.Components
                 /// </summary>
                 private readonly object _lockFlag = new object();
 
-		#endregion
+                #endregion 字段
 
-		#region 属性
+                #region 属性
 
-
-		/// <summary>
-		///         获取工作状态
-		/// </summary>
-		/// <value>工作状态</value>
-		[NotifyPropertyValueChanged]
+                /// <summary>
+                ///         获取工作状态
+                /// </summary>
+                /// <value>工作状态</value>
+                [NotifyPropertyValueChanged]
                 public WorkerState WorkerState { get; private set; }
 
-                #endregion
+                #endregion 属性
 
                 public void Load(IWorkerModel model)
                 {
@@ -88,12 +87,11 @@ namespace Nutshell.Components
                                 }
 
                                 var result = StartCore();
-	                        WorkerState = result.IsSuccessed ? WorkerState.已启动 : WorkerState.已停止;
+                                WorkerState = result.IsSuccessed ? WorkerState.已启动 : WorkerState.已停止;
 
-	                        return result;
+                                return result;
                         }
                 }
-
 
                 /// <summary>
                 ///         停止
@@ -108,20 +106,20 @@ namespace Nutshell.Components
                                         return Result.Successed;
                                 }
 
-				WorkerState = WorkerState.停止中;
+                                WorkerState = WorkerState.停止中;
 
-				if (!IsEnable)
+                                if (!IsEnable)
                                 {
                                         this.Warn("启用状态：否");
 
-	                                return Result.Failed;
+                                        return Result.Failed;
                                 }
 
-				var result = StopCore();
+                                var result = StopCore();
 
-				WorkerState =  WorkerState.已停止;
+                                WorkerState = WorkerState.已停止;
 
-	                        return result;
+                                return result;
                         }
                 }
 
@@ -133,21 +131,21 @@ namespace Nutshell.Components
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
                 protected virtual Result StartCore()
-		{
-			return Result.Successed;
-		}
+                {
+                        return Result.Successed;
+                }
 
-		/// <summary>
-		///         执行退出过程的具体步骤.
-		/// </summary>
-		/// <returns>成功返回True, 否则返回False.</returns>
-		/// <remarks>
-		///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
-		/// </remarks>
-		protected virtual Result StopCore()
-	        {
-		        return Result.Successed;
-	        }
+                /// <summary>
+                ///         执行退出过程的具体步骤.
+                /// </summary>
+                /// <returns>成功返回True, 否则返回False.</returns>
+                /// <remarks>
+                ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
+                /// </remarks>
+                protected virtual Result StopCore()
+                {
+                        return Result.Successed;
+                }
 
                 #region 事件
 
@@ -166,7 +164,6 @@ namespace Nutshell.Components
                 {
                         e.Raise(this, ref Starting);
                 }
-
 
                 /// <summary>
                 ///         当启动完成时发生。
@@ -191,19 +188,19 @@ namespace Nutshell.Components
                 [LogEventInvokeHandler]
                 public event EventHandler<EventArgs> Stoping;
 
-		/// <summary>
-		///         Raises the <see cref="E:Opened" /> event.
-		/// </summary>
-		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-		protected virtual void OnStoping(EventArgs e)
-		{
-			e.Raise(this, ref Stoping);
-		}
+                /// <summary>
+                ///         Raises the <see cref="E:Opened" /> event.
+                /// </summary>
+                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+                protected virtual void OnStoping(EventArgs e)
+                {
+                        e.Raise(this, ref Stoping);
+                }
 
-		/// <summary>
-		///         当停止完成时发生。
-		/// </summary>
-		[Description("停止完成事件")]
+                /// <summary>
+                ///         当停止完成时发生。
+                /// </summary>
+                [Description("停止完成事件")]
                 [LogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<Exception>> Stoped;
 
@@ -216,8 +213,6 @@ namespace Nutshell.Components
                         e.Raise(this, ref Stoped);
                 }
 
-                #endregion
-
-                
+                #endregion 事件
         }
 }

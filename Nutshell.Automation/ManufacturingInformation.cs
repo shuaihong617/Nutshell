@@ -11,17 +11,17 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Data;
+using System;
 
 namespace Nutshell.Automation
 {
         /// <summary>
         /// 制造信息
         /// </summary>
-        public class ManufacturingInformation : StorableObject,IStorable<IManufacturingInformationModel>
+        public class ManufacturingInformation : StorableObject, IStorable<IManufacturingInformationModel>
         {
                 /// <summary>
                 /// 制造商

@@ -7,7 +7,6 @@ namespace Nutshell.Drawing.Shapes.Models
         /// </summary>
         public interface IScaleModel : IDataModel
         {
-               
                 /// <summary>
                 ///         刻度值
                 /// </summary>

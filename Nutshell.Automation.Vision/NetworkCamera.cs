@@ -11,12 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
-using System.Net;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Vision.Models;
-using Nutshell.Data.Models;
 using Nutshell.Drawing.Imaging;
+using System.Diagnostics;
+using System.Net;
 
 namespace Nutshell.Automation.Vision
 {
@@ -35,7 +34,7 @@ namespace Nutshell.Automation.Vision
                 /// <param name="ipAddress">IP地址</param>
                 protected NetworkCamera(string id, int width, int height, PixelFormat pixelFormat,
                         string ipAddress)
-                        : base( id, width, height, pixelFormat)
+                        : base(id, width, height, pixelFormat)
                 {
                         IPAddress = IPAddress.Parse(ipAddress);
                 }
@@ -45,41 +44,38 @@ namespace Nutshell.Automation.Vision
                 /// </summary>
                 public IPAddress IPAddress { get; private set; }
 
-	        #region 方法
+                #region 方法
 
-	        #region 存储
+                #region 存储
 
-	        /// <summary>
-	        /// 从数据模型加载数据
-	        /// </summary>
-	        /// <param name="model">数据模型</param>
-	        public void Load([MustNotEqualNull] INetworkCameraModel model)
-	        {
-		        base.Load(model);
+                /// <summary>
+                /// 从数据模型加载数据
+                /// </summary>
+                /// <param name="model">数据模型</param>
+                public void Load([MustNotEqualNull] INetworkCameraModel model)
+                {
+                        base.Load(model);
 
-		        IPAddress = IPAddress.Parse(model.IPAddress);
+                        IPAddress = IPAddress.Parse(model.IPAddress);
 
-			Trace.Assert(!Equals(IPAddress, IPAddress.Any));
-			Trace.Assert(!Equals(IPAddress, IPAddress.None));
-			Trace.Assert(!Equals(IPAddress, IPAddress.Loopback));
-		}
+                        Trace.Assert(!Equals(IPAddress, IPAddress.Any));
+                        Trace.Assert(!Equals(IPAddress, IPAddress.None));
+                        Trace.Assert(!Equals(IPAddress, IPAddress.Loopback));
+                }
 
+                /// <summary>
+                /// 保存数据到数据模型
+                /// </summary>
+                /// <param name="model">数据模型</param>
+                public void Save([MustNotEqualNull] INetworkCameraModel model)
+                {
+                        base.Save(model);
 
-	        /// <summary>
-	        /// 保存数据到数据模型
-	        /// </summary>
-	        /// <param name="model">数据模型</param>
-	        public void Save([MustNotEqualNull] INetworkCameraModel model)
-	        {
-		        base.Save(model);
+                        model.IPAddress = IPAddress.ToString();
+                }
 
-		        model.IPAddress = IPAddress.ToString();
-	        }
+                #endregion 存储
 
-	        #endregion
-
-
-	        #endregion
-
-	}
+                #endregion 方法
+        }
 }

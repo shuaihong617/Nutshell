@@ -1,8 +1,8 @@
-﻿using System;
-using Nutshell.Components;
+﻿using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Drawing.Shapes.Models;
 using Nutshell.Extensions;
+using System;
 
 namespace Nutshell.Drawing.Shapes
 {
@@ -39,7 +39,6 @@ namespace Nutshell.Drawing.Shapes
 
                         //Segment.Save(scaleModel.SegmentModel);
                 }
-
 
                 /// <summary>
                 ///         命中测试

@@ -11,36 +11,35 @@
 // </summary>
 // ***********************************************************************
 
-
-using System.Diagnostics;
 using NLog;
+using System.Diagnostics;
 
 namespace Nutshell.Logging.KernelLogging
 {
-	/// <summary>
-	/// Class NLogDebuger.
-	/// </summary>
-	public class NLoger : LogConsumer
+        /// <summary>
+        /// Class NLogDebuger.
+        /// </summary>
+        public class NLoger : LogConsumer
         {
-		#region 单例
+                #region 单例
 
-		/// <summary>
-		/// 单例
-		/// </summary>
-		public static readonly NLoger Instance = new NLoger();
+                /// <summary>
+                /// 单例
+                /// </summary>
+                public static readonly NLoger Instance = new NLoger();
 
-		#endregion
+                #endregion 单例
 
-		/// <summary>
-		/// The _logger
-		/// </summary>
-		private readonly Logger _logger = LogManager.GetLogger("NLoger");
+                /// <summary>
+                /// The _logger
+                /// </summary>
+                private readonly Logger _logger = LogManager.GetLogger("NLoger");
 
-		/// <summary>
-		/// Consumes the specified t.
-		/// </summary>
-		/// <param name="t">The t.</param>
-		protected override void Consume(LogRecord t)
+                /// <summary>
+                /// Consumes the specified t.
+                /// </summary>
+                /// <param name="t">The t.</param>
+                protected override void Consume(LogRecord t)
                 {
                         base.Consume(t);
 
@@ -85,10 +84,10 @@ namespace Nutshell.Logging.KernelLogging
                         }
                 }
 
-		/// <summary>
-		/// Informations the star.
-		/// </summary>
-		public void Separate()
+                /// <summary>
+                /// Informations the star.
+                /// </summary>
+                public void Separate()
                 {
                         if (_logger != null && _logger.IsInfoEnabled)
                         {

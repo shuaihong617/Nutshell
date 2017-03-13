@@ -21,6 +21,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// 以太网设备断开连接
                 /// </summary>
                 以太网设备断开连接 = 0x00008001,
+
                 /// <summary>
                 /// 开发包与驱动版本不匹配
                 /// </summary>

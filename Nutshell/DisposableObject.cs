@@ -20,10 +20,6 @@ namespace Nutshell
         /// </summary>
         public abstract class DisposableObject : NotifyPropertyChangedObject, IDisposable
         {
-                #region 构造函数
-
-                #endregion
-
                 #region 终结函数
 
                 /// <summary>
@@ -35,7 +31,7 @@ namespace Nutshell
                         Dispose(false);
                 }
 
-                #endregion
+                #endregion 终结函数
 
                 #region 字段
 
@@ -44,7 +40,7 @@ namespace Nutshell
                 /// </summary>
                 private bool _isDisposed;
 
-                #endregion
+                #endregion 字段
 
                 #region 方法
 
@@ -74,7 +70,6 @@ namespace Nutshell
                                 t = null;
                         }
                 }
-
 
                 /// <summary>
                 ///         释放资源.
@@ -126,6 +121,6 @@ namespace Nutshell
                         }
                 }
 
-                #endregion
+                #endregion 方法
         }
 }

@@ -11,9 +11,9 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Data.Xml.Models;
 using Nutshell.Speech.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Speech.Xml.Models
 {

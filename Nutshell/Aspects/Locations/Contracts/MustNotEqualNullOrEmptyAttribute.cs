@@ -1,8 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using PostSharp.Aspects;
+﻿using PostSharp.Aspects;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Reflection;
+using System;
 
 namespace Nutshell.Aspects.Locations.Contracts
 {

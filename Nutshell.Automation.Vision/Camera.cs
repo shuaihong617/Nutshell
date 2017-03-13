@@ -11,14 +11,13 @@
 // </summary>
 // ***********************************************************************
 
-using System;
-using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.Vision.Models;
 using Nutshell.Drawing;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Threading;
+using System.Diagnostics;
 
 namespace Nutshell.Automation.Vision
 {
@@ -36,30 +35,30 @@ namespace Nutshell.Automation.Vision
                 /// <param name="pixelFormat">采集图像像素格式</param>
                 protected Camera(string id = "", int width = 2, int height = 2,
                         PixelFormat pixelFormat = PixelFormat.Mono8)
-                        : base( id)
+                        : base(id)
                 {
                         Region = new Region();
-	                Region.Parent = this;
+                        Region.Parent = this;
 
                         Width = width;
                         Height = height;
                         PixelFormat = pixelFormat;
                 }
 
-		#region 字段
+                #region 字段
 
-		private int _width;
+                private int _width;
                 private int _height;
 
-		#endregion
+                #endregion 字段
 
-		#region 属性
+                #region 属性
 
                 /// <summary>
                 ///         水平采集分辨率, 单位为像素
                 /// </summary>
                 [MustGreaterThan(0)]
-		[NotifyPropertyValueChanged]
+                [NotifyPropertyValueChanged]
                 public int Width
                 {
                         get { return _width; }
@@ -70,12 +69,12 @@ namespace Nutshell.Automation.Vision
                         }
                 }
 
-		/// <summary>
-		///         垂直采集分辨率, 单位为像素
-		/// </summary>
-		[MustGreaterThan(0)]
-		[NotifyPropertyValueChanged]
-		public int Height
+                /// <summary>
+                ///         垂直采集分辨率, 单位为像素
+                /// </summary>
+                [MustGreaterThan(0)]
+                [NotifyPropertyValueChanged]
+                public int Height
                 {
                         get { return _height; }
                         private set
@@ -96,61 +95,56 @@ namespace Nutshell.Automation.Vision
                 /// <value>有效图像ROI区域数据模型</value>
                 public Region Region { get; private set; }
 
+                #endregion 属性
 
-                #endregion
+                #region 存储
 
-	        #region 存储
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name = "model" >数据模型</param >
+                public void Load(ICameraModel model)
+                {
+                        base.Load(model);
 
-	        /// <summary>
-	        ///         从数据模型加载数据
-	        /// </summary>
-	        /// <param name = "model" >数据模型</param >
-	        public void Load(ICameraModel model)
-	        {
-		        base.Load(model);
+                        Width = model.Width;
+                        Height = model.Height;
+                        PixelFormat = model.PixelFormat;
+                }
 
-		        Width = model.Width;
-		        Height = model.Height;
-		        PixelFormat = model.PixelFormat;
-	        }
+                /// <summary>
+                ///         保存数据到数据模型
+                /// </summary>
+                /// <param name="model">数据模型</param>
+                public void Save(ICameraModel model)
+                {
+                        base.Save(model);
 
-	        /// <summary>
-	        ///         保存数据到数据模型
-	        /// </summary>
-	        /// <param name="model">数据模型</param>
-	        public void Save(ICameraModel model)
-	        {
-		        base.Save(model);
+                        model.Width = Width;
+                        model.Height = Height;
+                        model.PixelFormat = PixelFormat;
+                }
 
-		        model.Width = Width;
-		        model.Height = Height;
-		        model.PixelFormat = PixelFormat;
-	        }
+                #endregion 存储
 
-	        #endregion
+                /// <summary>
+                ///         创建图像缓冲池
+                /// </summary>
+                protected override ReadWritePool<Bitmap> CreatePool()
+                {
+                        Debug.Assert(Region.Width > 0);
+                        Debug.Assert(Region.Height > 0);
 
+                        var pool = new ReadWritePool<Bitmap>("采集图像缓冲池");
+                        for (var i = 1; i < 5; i++)
+                        {
+                                var bitmap = new Bitmap(i + "号缓冲位图", Region.Width, Region.Height, PixelFormat);
+                                pool.Add(bitmap);
+                        }
+                        return pool;
+                }
 
-		/// <summary>
-		///         创建图像缓冲池
-		/// </summary>
-		protected override ReadWritePool<Bitmap> CreatePool()
-		{
-			Debug.Assert(Region.Width > 0);
-			Debug.Assert(Region.Height > 0);
-
-
-			var pool = new ReadWritePool<Bitmap>("采集图像缓冲池");
-			for (var i = 1; i < 5; i++)
-			{
-				var bitmap = new Bitmap(i + "号缓冲位图", Region.Width, Region.Height,PixelFormat);
-				pool.Add(bitmap);
-			}
-			return pool;
-		}
-
-
-
-		public void StartSimulate(string filePath)
+                public void StartSimulate(string filePath)
                 {
                         //var bitmap = new Bitmap(filePath);
 

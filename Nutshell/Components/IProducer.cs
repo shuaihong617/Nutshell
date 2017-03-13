@@ -11,15 +11,13 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Data;
-
 namespace Nutshell.Components
 {
         /// <summary>
         ///         生产者接口
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public interface IProducer<T> where T :class 
+        public interface IProducer<T> where T : class
         {
                 bool Register(IConsumer<T> consumer);
 

@@ -10,7 +10,7 @@ namespace Nutshell.Net
                 }
 
                 public MacAddress(uint addressHigh32Bit, uint addressLow32Bit)
-                        : this(((ulong) addressHigh32Bit << 32) + addressLow32Bit)
+                        : this(((ulong)addressHigh32Bit << 32) + addressLow32Bit)
                 {
                 }
 

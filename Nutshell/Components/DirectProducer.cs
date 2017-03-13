@@ -11,9 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using System.Diagnostics;
-using Nutshell.Data;
-
 namespace Nutshell.Components
 {
         /// <summary>
@@ -26,7 +23,5 @@ namespace Nutshell.Components
                         base.Product(t);
                         Dispatch(t);
                 }
-
-                
         }
 }

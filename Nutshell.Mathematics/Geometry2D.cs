@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Nutshell.Extensions;
+using System;
 using System.Drawing;
-using Nutshell.Extensions;
 
 namespace Nutshell.Mathematics
 {
@@ -16,7 +16,7 @@ namespace Nutshell.Mathematics
                 /// <returns>System.Int32.</returns>
                 public static int PointToPointSquareDistance(int x1, int y1, int x2, int y2)
                 {
-                        return (x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2);
+                        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
                 }
 
                 /// <summary>
@@ -54,22 +54,22 @@ namespace Nutshell.Mathematics
 
                         if (Math.Abs(x1 - x2) < threshold)
                         {
-                                return Math.Abs((x1 + x2)/2 - x);
+                                return Math.Abs((x1 + x2) / 2 - x);
                         }
 
                         if (Math.Abs(y1 - y2) < threshold)
                         {
-                                return Math.Abs((y1 + y2)/2 - y);
+                                return Math.Abs((y1 + y2) / 2 - y);
                         }
 
-                        float a = 1/(x1 - x2);
-                        float b = 1/(y2 - y1);
-                        float c = y1/(y1 - y2) - x1/(x1 - x2);
+                        float a = 1 / (x1 - x2);
+                        float b = 1 / (y2 - y1);
+                        float c = y1 / (y1 - y2) - x1 / (x1 - x2);
 
-                        float top = Math.Abs(a*x + b*y + c);
-                        double bottom = Math.Sqrt(a*a + b*b);
+                        float top = Math.Abs(a * x + b * y + c);
+                        double bottom = Math.Sqrt(a * a + b * b);
 
-                        return top/(float) bottom;
+                        return top / (float)bottom;
                 }
 
                 /// <summary>

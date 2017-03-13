@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell.Extensions
 {
@@ -33,14 +33,13 @@ namespace Nutshell.Extensions
                 /// <exception cref="System.InvalidOperationException">必须包含指定的键</exception>
                 public static void MustContainsKey<TKey, TValue>(
                         [MustNotEqualNull]this IDictionary<TKey, TValue> dist,
-			TKey key)
+                        TKey key)
                 {
                         if (!dist.ContainsKey(key))
                         {
                                 throw new InvalidOperationException("必须包含指定的键");
                         }
                 }
-
 
                 /// <summary>
                 /// 当前字典必须不包含指定的键
@@ -50,9 +49,9 @@ namespace Nutshell.Extensions
                 /// <param name="dictionary">字典</param>
                 /// <param name="key">键</param>
                 /// <exception cref="System.InvalidOperationException">不能包含指定的键</exception>
-                public static  void MustNotContainsKey<TKey, TValue>(
+                public static void MustNotContainsKey<TKey, TValue>(
                         [MustNotEqualNull]this IDictionary<TKey, TValue> dictionary,
-			TKey key)
+                        TKey key)
                 {
                         if (dictionary.ContainsKey(key))
                         {
@@ -60,17 +59,17 @@ namespace Nutshell.Extensions
                         }
                 }
 
-		/// <summary>
-		/// 返回字典的只读形式
-		/// </summary>
-		/// <typeparam name="TKey">键类型</typeparam>
-		/// <typeparam name="TValue">值类型</typeparam>
-		/// <param name="dictionary">字典</param>
-		/// <returns>字典的只读形式</returns>
-		public static ReadOnlyDictionary<TKey,TValue> ToReadOnlyDictionary<TKey, TValue>(
-			[MustNotEqualNull]this IDictionary<TKey, TValue> dictionary)
-		{
-			return new ReadOnlyDictionary<TKey,TValue>(dictionary);
-		}
-	}
+                /// <summary>
+                /// 返回字典的只读形式
+                /// </summary>
+                /// <typeparam name="TKey">键类型</typeparam>
+                /// <typeparam name="TValue">值类型</typeparam>
+                /// <param name="dictionary">字典</param>
+                /// <returns>字典的只读形式</returns>
+                public static ReadOnlyDictionary<TKey, TValue> ToReadOnlyDictionary<TKey, TValue>(
+                        [MustNotEqualNull]this IDictionary<TKey, TValue> dictionary)
+                {
+                        return new ReadOnlyDictionary<TKey, TValue>(dictionary);
+                }
+        }
 }

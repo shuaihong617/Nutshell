@@ -12,11 +12,10 @@
 // </summary>
 // ***********************************************************************
 
-
+using Nutshell.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Nutshell.Extensions;
 
 namespace Nutshell.Mathematics
 {
@@ -48,7 +47,7 @@ namespace Nutshell.Mathematics
                                 return h2;
                         }
 
-                        return h1 - (h1 - h2)*(y1 - y)/(y1 - y2);
+                        return h1 - (h1 - h2) * (y1 - y) / (y1 - y2);
                 }
 
                 /// <summary>
@@ -73,10 +72,10 @@ namespace Nutshell.Mathematics
 
                         if (Math.Abs(x1 - x2) < threshold)
                         {
-                                return (x1 + x2)/2;
+                                return (x1 + x2) / 2;
                         }
 
-                        return x1 - (x1 - x2)*(y1 - y)/(y1 - y2);
+                        return x1 - (x1 - x2) * (y1 - y) / (y1 - y2);
                 }
 
                 /// <summary>
@@ -101,10 +100,10 @@ namespace Nutshell.Mathematics
 
                         if (Math.Abs(x1 - x2) < threshold)
                         {
-                                return (x1 + x2)/2;
+                                return (x1 + x2) / 2;
                         }
 
-                        return y1 - (y1 - y2)*(x1 - x)/(x1 - x2);
+                        return y1 - (y1 - y2) * (x1 - x) / (x1 - x2);
                 }
 
                 /// <summary>
@@ -117,7 +116,7 @@ namespace Nutshell.Mathematics
                 /// <returns>System.Int32.</returns>
                 public static int PointToPointSquareDistance(int x1, int y1, int x2, int y2)
                 {
-                        return (x1 - x2)*(x1 - x2) + (y1 - y2)*(y1 - y2);
+                        return (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
                 }
 
                 /// <summary>
@@ -130,7 +129,6 @@ namespace Nutshell.Mathematics
                 {
                         return PointToPointSquareDistance(p1.X, p1.Y, p2.X, p2.Y);
                 }
-
 
                 /// <summary>
                 ///         已知横坐标求一阶线性插值纵坐标
@@ -156,22 +154,22 @@ namespace Nutshell.Mathematics
 
                         if (Math.Abs(x1 - x2) < threshold)
                         {
-                                return Math.Abs((x1 + x2)/2 - x);
+                                return Math.Abs((x1 + x2) / 2 - x);
                         }
 
                         if (Math.Abs(y1 - y2) < threshold)
                         {
-                                return Math.Abs((y1 + y2)/2 - y);
+                                return Math.Abs((y1 + y2) / 2 - y);
                         }
 
-                        float a = 1/(x1 - x2);
-                        float b = 1/(y2 - y1);
-                        float c = y1/(y1 - y2) - x1/(x1 - x2);
+                        float a = 1 / (x1 - x2);
+                        float b = 1 / (y2 - y1);
+                        float c = y1 / (y1 - y2) - x1 / (x1 - x2);
 
-                        float top = Math.Abs(a*x + b*y + c);
-                        double bottom = Math.Sqrt(a*a + b*b);
+                        float top = Math.Abs(a * x + b * y + c);
+                        double bottom = Math.Sqrt(a * a + b * b);
 
-                        return top/(float) bottom;
+                        return top / (float)bottom;
                 }
 
                 /// <summary>
@@ -211,7 +209,7 @@ namespace Nutshell.Mathematics
 
                         float r = PointToLineDistance(x1, y1, x2, y2, x, y, threshold);
                         float x3 = HorizontalIntrpolate(x1, y1, x2, y2, y, threshold);
-                        return r*Math.Sign(x - x3);
+                        return r * Math.Sign(x - x3);
                 }
 
                 /// <summary>
@@ -239,7 +237,7 @@ namespace Nutshell.Mathematics
                         float r = PointToLineDistance(x1, y1, x2, y2, x, y, threshold);
                         float y3 = VerticalIntrpolate(x1, y1, x2, y2, x, threshold);
 
-                        return r*Math.Sign(y3 - y);
+                        return r * Math.Sign(y3 - y);
                 }
 
                 /// <summary>
@@ -261,20 +259,20 @@ namespace Nutshell.Mathematics
 
                         foreach (Point point in points)
                         {
-                                sumX2 += point.X*point.X;
+                                sumX2 += point.X * point.X;
                                 sumX += point.X;
-                                sumXy += point.X*point.Y;
+                                sumXy += point.X * point.Y;
                                 sumY += point.Y;
                         }
 
-                        float deta = sumX2*points.Count - sumX*sumX;
+                        float deta = sumX2 * points.Count - sumX * sumX;
 
                         //斜率
-                        float k = (sumXy*points.Count - sumX*sumY)/deta;
+                        float k = (sumXy * points.Count - sumX * sumY) / deta;
                         k = k.WillNumber();
 
                         //截距
-                        float d = (sumX2*sumY - sumXy*sumX)/deta;
+                        float d = (sumX2 * sumY - sumXy * sumX) / deta;
                         d = d.WillNumber();
 
                         return Tuple.Create(k, d);
@@ -309,8 +307,8 @@ namespace Nutshell.Mathematics
                         float dy43 = y4 - y3;
                         float dy21 = y2 - y1;
 
-                        float x = (dx43*(x1*y2 - x2*y1) - dx21*(x3*y4 - x4*y3))/(dy21*dx43 - dy43*dx21);
-                        float y = (x - x1)*dy21/dx21 + y1;
+                        float x = (dx43 * (x1 * y2 - x2 * y1) - dx21 * (x3 * y4 - x4 * y3)) / (dy21 * dx43 - dy43 * dx21);
+                        float y = (x - x1) * dy21 / dx21 + y1;
 
                         return new PointF(x, y);
                 }

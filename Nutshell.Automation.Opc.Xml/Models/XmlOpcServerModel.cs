@@ -11,13 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-
-using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Models;
 using Nutshell.Automation.Xml.Models;
+using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Opc.Xml.Models
 {
@@ -25,20 +24,20 @@ namespace Nutshell.Automation.Opc.Xml.Models
         ///         已定义主键的xmlOpc服务器数据模型
         /// </summary>
         [XmlType]
-        public class XmlOpcServerModel : XmlDispatchableDeviceModel,IOpcServerModel
-	{
+        public class XmlOpcServerModel : XmlDispatchableDeviceModel, IOpcServerModel
+        {
                 /// <summary>
                 ///         名称
                 /// </summary>
                 [XmlAttribute]
-		[MustNotEqualNullOrEmpty]
+                [MustNotEqualNullOrEmpty]
                 public String Name { get; set; }
 
                 /// <summary>
                 ///         名称
                 /// </summary>
                 [XmlAttribute]
-		[MustNotEqualNullOrEmpty]
+                [MustNotEqualNullOrEmpty]
                 public String Address { get; set; }
 
                 [XmlArray]

@@ -19,14 +19,14 @@ namespace Nutshell.Threading
         ///         共享锁对象缓冲池
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ShareBuffer<T> : QueueBuffer<T> where T : IdentityObject,IShareObject
+        public class ShareBuffer<T> : QueueBuffer<T> where T : IdentityObject, IShareObject
         {
                 /// <summary>
                 ///         初始化<see cref="IdentityObject" />的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
                 public ShareBuffer(string id)
-                        : base( id)
+                        : base(id)
                 {
                 }
 
@@ -43,12 +43,10 @@ namespace Nutshell.Threading
                                 }
                                 else
                                 {
-                                        Enqueue(t);                                        
+                                        Enqueue(t);
                                 }
                         }
                         return null;
                 }
-
-                
         }
 }

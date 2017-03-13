@@ -18,39 +18,39 @@ using Nutshell.Data;
 
 namespace Nutshell.Components
 {
-	/// <summary>
-	///         组件
-	/// </summary>
-	public abstract class Component : StorableObject, IRunable, IStorable<IComponentModel>
-	{
-		#region 构造函数
+        /// <summary>
+        ///         组件
+        /// </summary>
+        public abstract class Component : StorableObject, IRunable, IStorable<IComponentModel>
+        {
+                #region 构造函数
 
-		protected Component(string id = "")
-			: base(id)
-		{
-			IsEnable = true;
-			RunMode = RunMode.Release;
-		}
+                protected Component(string id = "")
+                        : base(id)
+                {
+                        IsEnable = true;
+                        RunMode = RunMode.Release;
+                }
 
-		#endregion
+                #endregion 构造函数
 
-		#region 属性
+                #region 属性
 
-		/// <summary>
-		///         获取是否启用
-		/// </summary>
-		/// <value>是否启用</value>
-		[NotifyPropertyValueChanged]
-		public bool IsEnable { get; private set; }
+                /// <summary>
+                ///         获取是否启用
+                /// </summary>
+                /// <value>是否启用</value>
+                [NotifyPropertyValueChanged]
+                public bool IsEnable { get; private set; }
 
-		/// <summary>
-		///         获取运行模式
-		/// </summary>
-		/// <value>运行模式</value>
-		[NotifyPropertyValueChanged]
-		public RunMode RunMode { get; private set; }
+                /// <summary>
+                ///         获取运行模式
+                /// </summary>
+                /// <value>运行模式</value>
+                [NotifyPropertyValueChanged]
+                public RunMode RunMode { get; private set; }
 
-                #endregion
+                #endregion 属性
 
                 #region 方法
 
@@ -59,22 +59,22 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
                 public void Load([MustNotEqualNull] IComponentModel model)
-		{
-			base.Load(model);
+                {
+                        base.Load(model);
 
-			IsEnable = model.IsEnable;
-			RunMode = model.RunMode;
-		}
+                        IsEnable = model.IsEnable;
+                        RunMode = model.RunMode;
+                }
 
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-		public void Save([MustNotEqualNull] IComponentModel model)
-		{
-			base.Save(model);
-		}
+                /// <summary>
+                ///         保存数据到数据模型
+                /// </summary>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                public void Save([MustNotEqualNull] IComponentModel model)
+                {
+                        base.Save(model);
+                }
 
-		#endregion
-	}
+                #endregion 方法
+        }
 }

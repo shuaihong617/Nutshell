@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="18" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlNetworkCameraStorager::Load(Nutshell.Automation.Vision.NetworkCamera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlNetworkCameraModel)@camera" Id="b343f1ee4457b7c">
+    <Instance Declaration="#2=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlNetworkCameraStorager::Load(Nutshell.Automation.Vision.NetworkCamera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlNetworkCameraModel)@camera" Id="b343f1e9e93f53c">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlNetworkCameraStorager::Load(Nutshell.Automation.Vision.NetworkCamera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlNetworkCameraModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'camera'" Ordinal="2" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlNetworkCameraStorager::Load(Nutshell.Automation.Vision.NetworkCamera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlNetworkCameraModel)@model" Id="b343f1e481b3bdf">
+    <Instance Declaration="#5=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlNetworkCameraStorager::Load(Nutshell.Automation.Vision.NetworkCamera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlNetworkCameraModel)@model" Id="b343f1e0e7be924">
       <Target>
         <JoinPoint Advised="#3" Advising="#1" Description="#6=Validates the value passed to parameter 'model'" Ordinal="3" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlCameraStorager::Load(Nutshell.Automation.Vision.Camera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlCameraModel)@camera" Id="b343f1e79cb89ee">
+    <Instance Declaration="#7=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlCameraStorager::Load(Nutshell.Automation.Vision.Camera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlCameraModel)@camera" Id="b343f1eb06c79c9">
       <Target>
         <JoinPoint Advised="#8=M:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlCameraStorager::Load(Nutshell.Automation.Vision.Camera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlCameraModel)" Advising="#1" Description="#4" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlCameraStorager::Load(Nutshell.Automation.Vision.Camera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlCameraModel)@model" Id="b343f1e9b043fd2">
+    <Instance Declaration="#9=R:[Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.XmlCameraStorager::Load(Nutshell.Automation.Vision.Camera, [Nutshell.Automation.Vision.Xml]NutshellAutomation.Vision.Xml.Models.XmlCameraModel)@model" Id="b343f1e75b5f368">
       <Target>
         <JoinPoint Advised="#8" Advising="#1" Description="#6" LinesAvoided="1" />
       </Target>

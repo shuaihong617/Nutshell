@@ -6,7 +6,7 @@
         public class OpcSensor<T> : OpcDevice<T> where T : struct
         {
                 public OpcSensor(string id, OpcItem opcItem)
-                        : base( id, opcItem)
+                        : base(id, opcItem)
                 {
                 }
         }

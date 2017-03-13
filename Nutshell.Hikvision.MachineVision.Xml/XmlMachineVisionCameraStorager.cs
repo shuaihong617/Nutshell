@@ -1,5 +1,3 @@
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Vision;
 using Nutshell.Hikvision.MachineVision.Xml.Models;
 using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
@@ -12,7 +10,6 @@ namespace Nutshell.Hikvision.MachineVision.Xml
         {
                 protected XmlMachineVisionCameraStorager()
                 {
-
                 }
 
                 #region 单例
@@ -22,19 +19,19 @@ namespace Nutshell.Hikvision.MachineVision.Xml
                 /// </summary>
                 public static readonly XmlMachineVisionCameraStorager Instance = new XmlMachineVisionCameraStorager();
 
-                #endregion
+                #endregion 单例
 
                 public MachineVisionCamera Load([MustFileExist]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model= XmlSerializer<XmlMachineVisionCameraModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<XmlMachineVisionCameraModel>.Instance.Deserialize(bytes);
 
-			var camera = new MachineVisionCamera();
+                        var camera = new MachineVisionCamera();
 
-			camera.Load(model);
-			Load(camera, model);
+                        camera.Load(model);
+                        Load(camera, model);
 
-	                return camera;
+                        return camera;
                 }
         }
 }

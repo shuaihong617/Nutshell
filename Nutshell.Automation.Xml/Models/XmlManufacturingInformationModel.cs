@@ -11,9 +11,9 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Automation.Models;
 using Nutshell.Data.Xml.Models;
+using System.Xml.Serialization;
 
 namespace Nutshell.Automation.Xml.Models
 {
@@ -21,7 +21,7 @@ namespace Nutshell.Automation.Xml.Models
         ///         设备制造信息结构体
         /// </summary>
         [XmlType]
-        public class XmlManufacturingInformationModel:XmlDataModel, IManufacturingInformationModel
+        public class XmlManufacturingInformationModel : XmlDataModel, IManufacturingInformationModel
         {
                 /// <summary>
                 ///         制造商

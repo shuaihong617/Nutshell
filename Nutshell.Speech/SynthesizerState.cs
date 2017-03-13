@@ -11,21 +11,21 @@
 // </summary>
 // ***********************************************************************
 
-
 namespace Nutshell.Speech
 {
-	/// <summary>
-	/// 语音合成器状态枚举
-	/// </summary>
-	public enum SynthesizerState
-	{
-		/// <summary>
-		/// 空闲
-		/// </summary>
-		空闲,
-		/// <summary>
-		/// 合成
-		/// </summary>
-		合成
-	}
+        /// <summary>
+        /// 语音合成器状态枚举
+        /// </summary>
+        public enum SynthesizerState
+        {
+                /// <summary>
+                /// 空闲
+                /// </summary>
+                空闲,
+
+                /// <summary>
+                /// 合成
+                /// </summary>
+                合成
+        }
 }

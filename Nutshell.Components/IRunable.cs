@@ -13,22 +13,22 @@
 
 namespace Nutshell.Components
 {
-	/// <summary>
-	///         可运行接口
-	/// </summary>
-	/// b
-	public interface IRunable
-	{
-		/// <summary>
-		///         获取是否启用
-		/// </summary>
-		/// <value>是否启用</value>
-		bool IsEnable { get; }
+        /// <summary>
+        ///         可运行接口
+        /// </summary>
+        /// b
+        public interface IRunable
+        {
+                /// <summary>
+                ///         获取是否启用
+                /// </summary>
+                /// <value>是否启用</value>
+                bool IsEnable { get; }
 
-		/// <summary>
-		///         获取运行模式
-		/// </summary>
-		/// <value>运行模式</value>
-		RunMode RunMode { get; }
-	}
+                /// <summary>
+                ///         获取运行模式
+                /// </summary>
+                /// <value>运行模式</value>
+                RunMode RunMode { get; }
+        }
 }

@@ -13,7 +13,7 @@
                 /// </summary>
                 public static readonly StringToBoolConverter Itance = new StringToBoolConverter();
 
-                #endregion
+                #endregion 单例
 
                 public override bool Convert(string source)
                 {
