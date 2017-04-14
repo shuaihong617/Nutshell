@@ -96,7 +96,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.3.10\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.5\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
@@ -141,6 +141,14 @@
     <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
       <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
       <Name>Nutshell.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>

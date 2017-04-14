@@ -14,13 +14,15 @@
 using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
+using Nutshell.Messaging;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.Communication
 {
 	/// <summary>
 	///         接收器接口
 	/// </summary>
-	public interface IReceiver : IActor
+	public interface IReceiver<T> : IActor<T> where T : IMessageModel
 	{
 		#region 事件
 
@@ -29,7 +31,7 @@ namespace Nutshell.Communication
 		/// </summary>
 		[Description("数据接收成功事件")]
 		[LogEventInvokeHandler]
-		event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
+		event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
 
 		/// <summary>
 		///         当数据接收失败时发生。

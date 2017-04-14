@@ -11,17 +11,14 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
-using Nutshell.Data.Models;
 
 namespace Nutshell.Communication.Models
 {
-        /// <summary>
-        ///         数据模型接口
-        /// </summary>
-        public interface IActorModel:IWorkerModel
-        {
-                
-        }
+	/// <summary>
+	///         数据模型接口
+	/// </summary>
+	public interface IActorModel : IWorkerModel
+	{
+	}
 }

@@ -85,7 +85,7 @@ namespace Nutshell.Collections
                 protected event EventHandler<EventArgs> Cleared;
 
                 /// <summary>
-                /// Raises the <see cref="E:Opened" /> event.
+                /// 引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
                 protected virtual void OnCleared(EventArgs e)

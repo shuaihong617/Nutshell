@@ -18,7 +18,7 @@ using Nutshell.Data.Models;
 namespace Nutshell.Communication.Models
 {
         /// <summary>
-        ///         数据模型接口
+        ///         总线数据模型接口
         /// </summary>
         public interface IBusModel:IWorkerModel
         {

@@ -19,7 +19,7 @@ using System.Reflection;
 namespace Nutshell.Aspects.Events
 {
         /// <summary>
-        /// 记录事件调用的特性类，该类不能被继承。
+        /// 当事件被调用时记录的特性类，该类不能被继承。
         /// </summary>
         [Serializable]
         public sealed class LogEventInvokeHandlerAttribute : EventInterceptionAspect

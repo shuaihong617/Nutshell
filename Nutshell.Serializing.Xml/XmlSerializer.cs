@@ -15,6 +15,7 @@ using Nutshell.Data.Models;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using Nutshell.Storaging.Models;
 using MSXmlSerializer = System.Xml.Serialization.XmlSerializer;
 
 namespace Nutshell.Serializing.Xml

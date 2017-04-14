@@ -2,6 +2,8 @@
 using Nutshell.Data.Models;
 using Nutshell.Data.Xml.Models;
 using System;
+using Nutshell.Storaging.Models;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Data.Tests
 {

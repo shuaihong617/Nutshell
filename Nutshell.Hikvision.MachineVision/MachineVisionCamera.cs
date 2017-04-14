@@ -23,6 +23,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Nutshell.Storaging;
 
 namespace Nutshell.Hikvision.MachineVision
 {
@@ -122,11 +123,11 @@ namespace Nutshell.Hikvision.MachineVision
                                 return Result.Failed;
                         }
 
-                        AdjustSCPSPacketSize();
+                        //AdjustSCPSPacketSize();
 
-                        SetDefaultUserSet(UserSet.UserSet1);
-                        SetCurrentUserSet(UserSet.UserSet1);
-                        LoadCurrentUserSet();
+                        //SetDefaultUserSet(UserSet.UserSet1);
+                        //SetCurrentUserSet(UserSet.UserSet1);
+                        //LoadCurrentUserSet();
 
                         return Result.Successed;
                 }

@@ -1,24 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="206" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="238" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap::CopyTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@target" Id="42b4ba378ad6e5db">
+    <Instance Declaration="#2=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap::CopyTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@target" Id="42b4ba37819aa4fb">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap::CopyTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)" Advising="#1" Description="#4=Validates the value passed to parameter 'target'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@source" Id="42b4ba3751b9e1aa">
+    <Instance Declaration="#5=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@source" Id="42b4ba374966b2b1">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)" Advising="#1" Description="#7=Validates the value passed to parameter 'source'" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@target" Id="42b4ba377c5ea0d4">
+    <Instance Declaration="#8=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@target" Id="42b4ba3769922011">
       <Target>
         <JoinPoint Advised="#6" Advising="#1" Description="#4" Ordinal="2" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapStorager::Save([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, System.String)@bitmap" Id="42b4ba37766fe49f">
+    <Instance Declaration="#9=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@source" Id="42b4ba37597ac114">
       <Target>
-        <JoinPoint Advised="#10=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapStorager::Save([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, System.String)" Advising="#1" Description="#11=Validates the value passed to parameter 'bitmap'" Ordinal="3" LinesAvoided="1" />
+        <JoinPoint Advised="#10=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)" Advising="#1" Description="#7" Ordinal="3" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#11=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertTo(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@target" Id="42b4ba37aee96eb1">
+      <Target>
+        <JoinPoint Advised="#10" Advising="#1" Description="#4" Ordinal="4" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#12=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertFormat8bppIndexedToMono8(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@source" Id="42b4ba37728128ec">
+      <Target>
+        <JoinPoint Advised="#13=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertFormat8bppIndexedToMono8(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)" Advising="#1" Description="#7" Ordinal="5" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#14=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertFormat24bppRgbToMono8(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)@source" Id="42b4ba37e4934d84">
+      <Target>
+        <JoinPoint Advised="#15=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapConverter::ConvertFormat24bppRgbToMono8(System.Drawing.Bitmap, [Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap)" Advising="#1" Description="#7" Ordinal="6" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#16=R:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapStorager::Save([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, System.String)@bitmap" Id="42b4ba37f4bbfcdc">
+      <Target>
+        <JoinPoint Advised="#17=M:[Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.BitmapStorager::Save([Nutshell.Drawing.Imaging]Nutshell.Drawing.Imaging.Bitmap, System.String)" Advising="#1" Description="#18=Validates the value passed to parameter 'bitmap'" Ordinal="7" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>

@@ -1,4 +1,5 @@
 ﻿using Nutshell.Data.Models;
+using Nutshell.Storaging.Models;
 
 namespace Nutshell.Drawing.Shapes.Models
 {

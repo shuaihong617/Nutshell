@@ -14,6 +14,7 @@
 using Nutshell.Automation.Models;
 using Nutshell.Data.Xml.Models;
 using System.Xml.Serialization;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Automation.Xml.Models
 {

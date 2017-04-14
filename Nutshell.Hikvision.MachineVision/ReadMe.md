@@ -13,8 +13,6 @@
         目标开发包：V2.2.1 Build20170217
         更新内容：
 
-
-
 ## 其他
 1 关于SCPSPacketSize的说明
         SCPSPacketSize是机器视觉摄像机向客户端发送数据包的大小。

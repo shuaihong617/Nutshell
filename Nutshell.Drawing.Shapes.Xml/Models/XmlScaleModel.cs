@@ -1,6 +1,7 @@
 ﻿using Nutshell.Data.Xml.Models;
 using Nutshell.Drawing.Shapes.Models;
 using System.Xml.Serialization;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Drawing.Shapes.Xml.Models
 {

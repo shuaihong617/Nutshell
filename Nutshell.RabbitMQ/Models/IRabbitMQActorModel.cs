@@ -12,17 +12,13 @@
 // ***********************************************************************
 
 using Nutshell.Communication.Models;
-using Nutshell.MessageQueue.RabbitMQ.Models;
 
 namespace Nutshell.RabbitMQ.Models
 {
         /// <summary>
-        ///         数据模型接口
+        ///         RabbitMQ角色数据模型接口
         /// </summary>
         public interface IRabbitMQActorModel:IActorModel
         {
-                IRabbitMQAuthenticationModel RabbitMQAuthenticationModel { get; set; }
-
-		IRabbitMQExchangeModel RabbitMQExchangeModel { get; set; }
         }
 }

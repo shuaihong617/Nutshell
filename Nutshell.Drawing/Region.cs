@@ -16,6 +16,7 @@ using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Drawing.Models;
 using System.Drawing;
+using Nutshell.Storaging;
 
 namespace Nutshell.Drawing
 {

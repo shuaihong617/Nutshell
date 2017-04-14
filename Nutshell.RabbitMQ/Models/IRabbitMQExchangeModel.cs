@@ -11,18 +11,41 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
+using Nutshell.RabbitMQ.SDK;
+using Nutshell.Storaging.Models;
 
-namespace Nutshell.MessageQueue.RabbitMQ.Models
+namespace Nutshell.RabbitMQ.Models
 {
 	/// <summary>
-	///         RabbitMQ认证数据模型接口
+	///         RabbitMQ交换机数据模型接口
 	/// </summary>
 	public interface IRabbitMQExchangeModel : IDataModel
 	{
+		/// <summary>
+		///         获取或设置名称
+		/// </summary>
+		/// <value>名称</value>
+		[MustNotEqualNullOrEmpty]
 		string Name { get; set; }
-		string Type { get; set; }
-		string Durable { get; set; }
-		string AutoDelete { get; set; }
+
+		/// <summary>
+		///         获取或设置交换类型
+		/// </summary>
+		/// <value>交换类型</value>
+		ExchangeType ExchangeType { get; set; }
+
+		/// <summary>
+		///         获取或设置是否持久化
+		/// </summary>
+		/// <value>是否持久化</value>
+		bool IsDurable { get; set; }
+
+		/// <summary>
+		///         获取或设置是否自动删除
+		/// </summary>
+		/// <value>是否自动删除</value>
+		bool IsAutoDelete { get; set; }
 	}
 }

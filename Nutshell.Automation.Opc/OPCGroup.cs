@@ -4,6 +4,7 @@ using Nutshell.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Nutshell.Storaging;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 
 //重命名OPCDAAuto.dll中类名，禁止删除；

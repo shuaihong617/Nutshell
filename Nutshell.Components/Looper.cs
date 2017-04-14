@@ -20,6 +20,7 @@ using Nutshell.Extensions;
 using System;
 using System.ComponentModel;
 using System.Threading;
+using Nutshell.Storaging;
 
 namespace Nutshell.Components
 {

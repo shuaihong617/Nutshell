@@ -11,9 +11,10 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
-using System;
+using Nutshell.Storaging;
 
 namespace Nutshell.Data
 {

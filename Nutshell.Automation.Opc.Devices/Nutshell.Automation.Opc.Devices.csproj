@@ -82,6 +82,10 @@
       <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
       <Name>Nutshell.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>

@@ -53,23 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XmlSingleMessage.cs" />
-    <Compile Include="XmlBoolMessage.cs" />
-    <Compile Include="MultiStringKeyStringValueMessageExtension.cs" />
-    <Compile Include="KeyValueMessage.cs" />
-    <Compile Include="KeyValuePairModel.cs" />
-    <Compile Include="LogMessage.cs" />
-    <Compile Include="XmlMessage.cs" />
-    <Compile Include="MultiKeyValueMessage.cs" />
-    <Compile Include="MultiSingleMessageModel.cs" />
-    <Compile Include="MultiStringKeySingleValueMessage.cs" />
-    <Compile Include="MultiStringKeyStringValueMessage.cs" />
-    <Compile Include="MultiStringMessage.cs" />
-    <Compile Include="MultiValueMessageModel.cs" />
+    <Compile Include="Models\XmlSingleValueMessage.cs" />
+    <Compile Include="Models\XmlMultiStringKeyStringValueMessageExtension.cs" />
+    <Compile Include="Models\KeyValueMessageModel.cs" />
+    <Compile Include="Models\XmlKeyValuePairModel.cs" />
+    <Compile Include="Models\XmlLogMessageModel.cs" />
+    <Compile Include="Models\XmlMessageModel.cs" />
+    <Compile Include="Models\XmlMultiKeyValueMessageModel.cs" />
+    <Compile Include="Models\XmlMultiSingleMessageModel.cs" />
+    <Compile Include="Models\XmlMultiStringKeySingleValueMessageModel.cs" />
+    <Compile Include="Models\XmlMultiStringKeyStringValueMessageModel.cs" />
+    <Compile Include="Models\XmlMultiStringMessageModel.cs" />
+    <Compile Include="Models\XmlMultiValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringKeyStringValueMessage.cs" />
-    <Compile Include="StringMessageModel.cs" />
-    <Compile Include="XmlValueMessage.cs" />
+    <Compile Include="Models\XmlStringKeyStringValueMessageModel.cs" />
+    <Compile Include="Models\XmlValueMessageModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
@@ -84,6 +82,14 @@
       <Project>{58d4115c-c811-499f-811d-5f4debc514dc}</Project>
       <Name>Nutshell.Messaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>
@@ -92,6 +98,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\PostSharp.4.2.27\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.27\tools\PostSharp.targets')" />
   <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">

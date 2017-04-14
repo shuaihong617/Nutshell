@@ -11,14 +11,12 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
 using Nutshell.MessageQueue.Models;
-using Nutshell.RabbitMQ.Models;
 
-namespace Nutshell.MessageQueue.RabbitMQ.Models
+namespace Nutshell.RabbitMQ.Models
 {
         /// <summary>
-        ///         数据模型接口
+        ///         RabbitMQ发送者数据模型接口
         /// </summary>
         public interface IRabbitMQSenderModel:IMessageQueueSenderModel,IRabbitMQActorModel
         {

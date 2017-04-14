@@ -14,6 +14,7 @@
 using Nutshell.Data.Xml.Models;
 using Nutshell.Speech.Models;
 using System.Xml.Serialization;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Speech.Xml.Models
 {

@@ -1,79 +1,98 @@
 ﻿using System;
+using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Communication.Models;
 using Nutshell.Components;
+using Nutshell.Messaging.Models;
+using Nutshell.Serializing;
+using Nutshell.Serializing.Xml;
 using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-	public abstract class RabbitMQActor : Worker, IActor
+	public abstract class RabbitMQActor<T> : Worker, IActor<T> where T : IMessageModel
 	{
 		protected RabbitMQActor(string id = "")
-			: base( id)
+			: base(id)
 		{
+			Serializer = XmlSerializer<T>.Instance;
 		}
 
-		private ConnectionFactory _factory;
+		#region 字段
 
-		private IConnection _connection;
+		[MustNotEqualNull] private IConnection _connection;
 
+		#endregion
+
+
+		#region 属性
+
+		[MustNotEqualNull]
+		protected RabbitMQExchange Exchange { get; private set; }
+
+		[MustNotEqualNull]
+		public ISerializer<T> Serializer { get; private set; }
+
+		
+
+		[MustNotEqualNull]
 		protected IModel Channel { get; private set; }
 
-		public void Load(IActorModel model)
+		#endregion
+
+
+
+
+
+
+
+		public void Load([MustNotEqualNull]IActorModel model)
 		{
-			throw new System.NotImplementedException();
+			base.Load(model);
 		}
 
-		public void Save(IActorModel model)
+		public void Save([MustNotEqualNull]IActorModel model)
 		{
-			throw new System.NotImplementedException();
+			base.Save(model);
 		}
 
 		protected override Result StartCore()
 		{
-			//_factory = new ConnectionFactory
-			//{
-			//	HostName = "127.0.0.1",
-			//	Port = 15536,
-			//	UserName = "guest",
-			//	Password = "guest"
-			//};
+			Channel = _connection.CreateModel();
 
-			//_connection = _factory.CreateConnection();
+			//设置消息持久化
+			var properties = Channel.CreateBasicProperties();
+			properties.DeliveryMode = 2;
 
-			//Channel = _connection.CreateModel();
+			Channel.ExchangeDeclare(Exchange.Name, Exchange.ExchangeType.ToString().ToLower(), Exchange.IsDurable, Exchange.IsAutoDelete);
 
-			////设置消息持久化
-			//IBasicProperties properties = Channel.CreateBasicProperties();
-			//properties.DeliveryMode = 2;
-
-			//Channel.ExchangeDeclare(exchange: "ExchangeName",
-			//			type: "Topic",
-			//			durable: true,
-			//			autoDelete: false);
-
-			//return true;
-
-                        throw new NotImplementedException();
+			return Result.Successed;
 		}
 
 		protected override Result StopCore()
 		{
-			//Channel.Close();
-			//Channel.Dispose();
-			//Channel = null;
+			Channel.Close();
+			Channel.Dispose();
+			Channel = null;
 
-			//_connection.Close();
-			//_connection.Dispose();
-			//_connection = null;
+			return Result.Successed;
+		}
 
-			//_factory = null;
+		public IActor<T> SetBus([MustNotEqualNull]Bus bus)
+		{
+		        var rabbitBus = bus as RabbitMQBus;
+		        Trace.Assert(rabbitBus != null);
+		        Trace.Assert(rabbitBus.Connection != null);
 
-			//return true;
+			_connection = rabbitBus.Connection;
+			return this;
+		}
 
-                        throw new NotImplementedException();
-                }
 
-		
+		public void SetExchange([MustNotEqualNull]RabbitMQExchange exchange)
+		{
+			Exchange = exchange;
+		}
 	}
 }

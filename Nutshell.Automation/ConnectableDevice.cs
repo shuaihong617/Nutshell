@@ -18,6 +18,7 @@ using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
 using System.ComponentModel;
+using Nutshell.Storaging;
 
 namespace Nutshell.Automation
 {
@@ -213,7 +214,7 @@ namespace Nutshell.Automation
                 public event EventHandler<EventArgs> StartCaptured;
 
                 /// <summary>
-                ///         Raises the <see cref="E:OpenCaptur" /> event.
+                ///         引发<see cref="E:OpenCaptur" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
                 protected virtual void OnStartCaptured(EventArgs e)
@@ -227,7 +228,7 @@ namespace Nutshell.Automation
                 public event EventHandler<EventArgs> StopCaptured;
 
                 /// <summary>
-                ///         Raises the <see cref="E:OpenCaptur" /> event.
+                ///         引发<see cref="E:OpenCaptur" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
                 protected virtual void OnStopCaptured(EventArgs e)

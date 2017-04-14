@@ -1,28 +1,45 @@
-﻿using Nutshell.Aspects.Locations.Contracts;
+﻿// ***********************************************************************
+// 作者           : 阿尔卑斯 shuaihong617@qq.com
+// 创建           : 2017-03-08
+//
+// 编辑           : 阿尔卑斯 shuaihong617@qq.com
+// 日期           : 2017-03-13
+// 内容           : 创建文件
+// ***********************************************************************
+// Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
+// <summary>
+// </summary>
+// ***********************************************************************
+
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Opc.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Nutshell.Storaging;
 
 //重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
 
 namespace Nutshell.Automation.Opc
 {
-        /// <summary>
-        ///         OpcServer
-        /// </summary>
-        /// <remarks>
-        ///         处于运行模式下时：
-        ///         1. 启动时不连接物理Opc服务器
-        ///         2. 通过人工写入模拟Opc项值的变化
-        ///         3. Opc项写入请求直接完成
-        /// </remarks>
-        public class OpcServer : DispatchableDevice, IStorable<IOpcServerModel>
+	/// <summary>
+	/// OpcServer
+	/// </summary>
+	/// <remarks>处于运行模式下时：
+	/// 1. 启动时不连接物理Opc服务器
+	/// 2. 通过人工写入模拟Opc项值的变化
+	/// 3. Opc项写入请求直接完成</remarks>
+	public class OpcServer : DispatchableDevice, IStorable<IOpcServerModel>
         {
-                public OpcServer(string id = "", string address = "")
+		/// <summary>
+		/// 初始化<see cref="OpcServer"/>的新实例.
+		/// </summary>
+		/// <param name="id">The identifier.</param>
+		/// <param name="address">The address.</param>
+		public OpcServer(string id = "", string address = "")
                         : base(id)
                 {
                         if (!string.IsNullOrEmpty(address))
@@ -33,20 +50,34 @@ namespace Nutshell.Automation.Opc
                         _nativeOpcServer = new NativeOpcServer();
                 }
 
-                #region 字段
+		#region 字段
 
-                private readonly NativeOpcServer _nativeOpcServer;
+		/// <summary>
+		/// The _native opc server
+		/// </summary>
+		private readonly NativeOpcServer _nativeOpcServer;
 
-                private ReadOnlyCollection<OpcGroup> _opcGroups;
+		/// <summary>
+		/// The _opc groups
+		/// </summary>
+		private ReadOnlyCollection<OpcGroup> _opcGroups;
 
-                #endregion 字段
+		#endregion 字段
 
-                #region 属性
+		#region 属性
 
-                [MustNotEqualNullOrEmpty]
+		/// <summary>
+		/// Gets the address.
+		/// </summary>
+		/// <value>The address.</value>
+		[MustNotEqualNullOrEmpty]
                 public string Address { get; private set; }
 
-                public ReadOnlyCollection<OpcGroup> OpcGroups
+		/// <summary>
+		/// Gets or sets the opc groups.
+		/// </summary>
+		/// <value>The opc groups.</value>
+		public ReadOnlyCollection<OpcGroup> OpcGroups
                 {
                         get { return _opcGroups; }
                         set
@@ -63,21 +94,34 @@ namespace Nutshell.Automation.Opc
                         }
                 }
 
-                #endregion 属性
+		#endregion 属性
 
-                public void Load([MustNotEqualNull] IOpcServerModel model)
+		/// <summary>
+		/// 从数据模型加载数据
+		/// </summary>
+		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
+		public void Load([MustNotEqualNull] IOpcServerModel model)
                 {
                         base.Load(model);
 
                         Address = model.Address;
                 }
 
-                public void Save(IOpcServerModel model)
+		/// <summary>
+		/// 保存数据到数据模型
+		/// </summary>
+		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
+		/// <exception cref="System.NotImplementedException"></exception>
+		public void Save(IOpcServerModel model)
                 {
                         throw new NotImplementedException();
                 }
 
-                protected override Result StartConnectCore()
+		/// <summary>
+		/// Starts the connect core.
+		/// </summary>
+		/// <returns>Result.</returns>
+		protected override Result StartConnectCore()
                 {
                         try
                         {
@@ -89,12 +133,16 @@ namespace Nutshell.Automation.Opc
                                 return Result.Failed;
                         }
 
-                        this.InfoSuccess("连接" + Address);
+                        this.InfoSuccess($"连接{Address}");
 
                         return Result.Successed;
                 }
 
-                protected override Result StopConnectCore()
+		/// <summary>
+		/// Stops the connect core.
+		/// </summary>
+		/// <returns>Result.</returns>
+		protected override Result StopConnectCore()
                 {
                         try
                         {
@@ -111,7 +159,11 @@ namespace Nutshell.Automation.Opc
                         return Result.Successed;
                 }
 
-                protected override Result StartDispatchCore()
+		/// <summary>
+		/// Starts the dispatch core.
+		/// </summary>
+		/// <returns>Result.</returns>
+		protected override Result StartDispatchCore()
                 {
                         try
                         {
@@ -138,7 +190,11 @@ namespace Nutshell.Automation.Opc
                         return Result.Successed;
                 }
 
-                protected override Result StopDispatchCore()
+		/// <summary>
+		/// Stops the dispatch core.
+		/// </summary>
+		/// <returns>Result.</returns>
+		protected override Result StopDispatchCore()
                 {
                         try
                         {

@@ -120,7 +120,7 @@ namespace Nutshell.Automation.Opc.Devices
                 public event EventHandler<EventArgs> Opening;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnOpening(EventArgs e)
@@ -135,7 +135,7 @@ namespace Nutshell.Automation.Opc.Devices
                 public event EventHandler<EventArgs> Closing;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnClosing(EventArgs e)
@@ -150,7 +150,7 @@ namespace Nutshell.Automation.Opc.Devices
                 public event EventHandler<EventArgs> OpenCompleted;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnOpenCompleted(EventArgs e)
@@ -165,7 +165,7 @@ namespace Nutshell.Automation.Opc.Devices
                 public event EventHandler<EventArgs> CloseCompleted;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnCloseCompleted(EventArgs e)

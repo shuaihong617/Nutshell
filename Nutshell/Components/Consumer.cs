@@ -43,7 +43,7 @@ namespace Nutshell.Components
                 public event EventHandler<ValueEventArgs<T>> Acquired;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnAcquired(ValueEventArgs<T> e)
@@ -57,7 +57,7 @@ namespace Nutshell.Components
                 protected event EventHandler<ValueEventArgs<T>> Consumed;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnConsumed(ValueEventArgs<T> e)

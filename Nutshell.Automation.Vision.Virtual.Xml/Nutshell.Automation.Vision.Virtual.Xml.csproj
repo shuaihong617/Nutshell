@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6A850771-E54C-47F8-837B-98FC8777F1F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nutshell.Automation.Vision.Virtual.Xml</RootNamespace>
+    <AssemblyName>Nutshell.Automation.Vision.Virtual.Xml</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\XmlVirtualVideoCameraModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlVirtualVideoCameraStorager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Automation.Vision.Virtual\Nutshell.Automation.Vision.Virtual.csproj">
+      <Project>{c3cc8226-89ec-40d2-a430-c9a39e93c0b8}</Project>
+      <Name>Nutshell.Automation.Vision.Virtual</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation.Vision.Xml\Nutshell.Automation.Vision.Xml.csproj">
+      <Project>{d721bcfc-4575-4b76-9709-cc1671d40090}</Project>
+      <Name>Nutshell.Automation.Vision.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation.Vision\Nutshell.Automation.Vision.csproj">
+      <Project>{6ea29297-e045-4e00-b6a4-0b2a139c450b}</Project>
+      <Name>Nutshell.Automation.Vision</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation.Xml\Nutshell.Automation.Xml.csproj">
+      <Project>{de2c3f5b-04cf-46e2-ad61-1b3e451e6d73}</Project>
+      <Name>Nutshell.Automation.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
+      <Project>{ff4c3544-8428-4859-b754-c07442ef562d}</Project>
+      <Name>Nutshell.Automation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Components.Xml\Nutshell.Components.Xml.csproj">
+      <Project>{b58be410-a6f0-4c0f-ad8d-884ab376a8c4}</Project>
+      <Name>Nutshell.Components.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
+      <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
+      <Name>Nutshell.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
+      <Project>{b18778a6-3e38-470f-9d73-702553f426e4}</Project>
+      <Name>Nutshell.Data.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
+      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
+      <Name>Nutshell.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
+      <Project>{5e9ec531-b6ea-4ba9-a3a5-dd40436860d7}</Project>
+      <Name>Nutshell.Drawing.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
+      <Project>{6713896c-f159-4999-9d47-41792ddca5f0}</Project>
+      <Name>Nutshell.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
+      <Project>{238c3467-8aa4-4749-b00f-4528550734bf}</Project>
+      <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
+      <Project>{24c687d9-0212-49a6-8664-c908fd09fa40}</Project>
+      <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537b35b-85f7-4730-aded-518a7d0e814a}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell\Nutshell.csproj">
+      <Project>{c394aad7-06a2-429b-a3b8-ac531ef77de1}</Project>
+      <Name>Nutshell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

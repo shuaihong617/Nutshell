@@ -53,7 +53,7 @@ namespace Nutshell.Automation.Opc.Devices
                 public event EventHandler<EventArgs> Opened;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnOpened(EventArgs e)
@@ -69,7 +69,7 @@ namespace Nutshell.Automation.Opc.Devices
                 public event EventHandler<EventArgs> Closed;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnClosed(EventArgs e)

@@ -6,28 +6,28 @@ using Nutshell.Storaging.Xml;
 
 namespace Nutshell.Data.Xml
 {
-        public class XmlApplicationStorager
-        {
-                protected XmlApplicationStorager()
-                {
-                }
+	public class XmlApplicationStorager
+	{
+		protected XmlApplicationStorager()
+		{
+		}
 
-                #region 单例
+		#region 单例
 
-                /// <summary>
-                ///         单例
-                /// </summary>
-                public static readonly XmlApplicationStorager Instance = new XmlApplicationStorager();
+		/// <summary>
+		///         单例
+		/// </summary>
+		public static readonly XmlApplicationStorager Instance = new XmlApplicationStorager();
 
-                #endregion 单例
+		#endregion 单例
 
-                public void Load([MustNotEqualNull]Application application,
-                        [MustFileExist]string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<XmlApplicationModel>.Instance.Deserialize(bytes);
+		public void Load([MustNotEqualNull] Application application,
+			[MustFileExist] string fileName)
+		{
+			var bytes = XmlStorager.Instance.Load(fileName);
+			var model = XmlSerializer<XmlApplicationModel>.Instance.Deserialize(bytes);
 
-                        application.Load(model);
-                }
-        }
+			application.Load(model);
+		}
+	}
 }

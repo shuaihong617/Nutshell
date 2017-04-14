@@ -64,6 +64,10 @@
       <Project>{24c687d9-0212-49a6-8664-c908fd09fa40}</Project>
       <Name>Nutshell.Serializing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

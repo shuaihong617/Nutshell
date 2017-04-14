@@ -22,7 +22,7 @@ namespace Nutshell.Extensions
         public static class EventArgsExtensions
         {
                 /// <summary>
-                ///         Raises the specified decimal.
+                ///         引发specified decimal.
                 /// </summary>
                 /// <typeparam name="TEventArgs">The type of the event arguments.</typeparam>
                 /// <param name="e">The decimal.</param>

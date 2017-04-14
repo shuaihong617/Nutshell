@@ -13,6 +13,7 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
+using Nutshell.Storaging.Models;
 
 namespace Nutshell.Serializing
 {

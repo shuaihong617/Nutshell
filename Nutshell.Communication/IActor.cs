@@ -12,15 +12,19 @@
 // ***********************************************************************
 
 using Nutshell.Communication.Models;
-using Nutshell.Components;
-using Nutshell.Data;
+using Nutshell.Messaging.Models;
+using Nutshell.Serializing;
+using Nutshell.Storaging;
 
 namespace Nutshell.Communication
 {
 	/// <summary>
 	///         发送器和接收器基础接口
 	/// </summary>
-	public interface IActor : IWorker,IStorable<IActorModel>
+	public interface IActor<T> :IStorable<IActorModel> where T:IMessageModel
 	{
+		ISerializer<T> Serializer { get; }
+
+		IActor<T> SetBus(Bus bus);
 	}
 }

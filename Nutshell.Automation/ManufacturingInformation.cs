@@ -15,6 +15,7 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Data;
 using System;
+using Nutshell.Storaging;
 
 namespace Nutshell.Automation
 {

@@ -14,6 +14,8 @@
 using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.MessageQueue;
+using Nutshell.Messaging;
+using Nutshell.Messaging.Models;
 using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
@@ -21,12 +23,11 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	/// RabbitMQ发送者
 	/// </summary>
-	public class RabbitMQSender : RabbitMQActor, IMessageQueueSender
+	public class RabbitMQSender<T> : RabbitMQActor<T>, IMessageQueueSender<T> where T : IMessageModel
 	{
 		/// <summary>
-		/// 初始化<see cref="RabbitMQSender"/>的新实例.
+		/// 初始化<see cref="RabbitMQSender{T}"/>的新实例.
 		/// </summary>
-		/// <param name="parent">The parent.</param>
 		/// <param name="id">The identifier.</param>
 		public RabbitMQSender(string id = "")
 			: base( id)
@@ -34,41 +35,28 @@ namespace Nutshell.RabbitMQ
 		}
 
 		/// <summary>
-		/// Starts the core.
+		///         发送字节数组数据
 		/// </summary>
-		/// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-		//protected override bool Start()
-		//{
-		//	base.Start();
-
-		//	Channel.ExchangeDeclare("ExchangeName",
-		//		"Topic",
-		//		true,
-		//		false);
-
-		//	return true;
-		//}
-
-
-
-
-		/// <summary>
-		/// Sends the specified data.
-		/// </summary>
-		/// <param name="data">The data.</param>
-		public void Send([MustNotEqualNull] byte[] data)
+		/// <param name="messageModel">待发送消息数据</param>
+		public void Send(T messageModel)
 		{
-			Channel.BasicPublish("ExchangName",
-				"key",
+			var data = Serializer.Serialize(messageModel);
+			
+			Channel.BasicPublish(Exchange.Name,
+				"1.FirstBuggy.2",
 				false,
 				null,
 				data);
+
+
+
+			
 		}
 
 		/// <summary>
 		/// Occurs when [send successed].
 		/// </summary>
-		public event EventHandler<ValueEventArgs<Exception>> SendSuccessed;
+		public event EventHandler<ValueEventArgs<T>> SendSuccessed;
 
 		/// <summary>
 		/// Occurs when [send failed].

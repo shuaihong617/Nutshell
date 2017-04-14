@@ -1109,7 +1109,7 @@
         </xs:attribute>
         <xs:attribute name="keepFileOpen" type="xs:boolean">
           <xs:annotation>
-            <xs:documentation>Indicates whether to keep log file open Itead of opening and closing it on each logging event.</xs:documentation>
+            <xs:documentation>Indicates whether to keep log file open Itead of opening and closing it on each logging事件</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="concurrentWrites" type="xs:boolean">

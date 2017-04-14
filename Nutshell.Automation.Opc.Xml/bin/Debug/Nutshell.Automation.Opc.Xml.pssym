@@ -1,56 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="44" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Load(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@opcGroup" Id="4721595f27da07c7">
+    <Instance Declaration="#2=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Load(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@opcGroup" Id="4721595f31ed7bc7">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Load(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'opcGroup'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Load(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@model" Id="4721595f09b4b869">
+    <Instance Declaration="#5=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Load(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@model" Id="4721595ff8759b1e">
       <Target>
         <JoinPoint Advised="#3" Advising="#1" Description="#6=Validates the value passed to parameter 'model'" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Save(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@opcGroup" Id="4721595fd5de72bc">
+    <Instance Declaration="#7=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Save(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@opcGroup" Id="4721595fd9a94e54">
       <Target>
         <JoinPoint Advised="#8=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Save(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)" Advising="#1" Description="#4" Ordinal="2" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Save(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@model" Id="4721595f8ba74215">
+    <Instance Declaration="#9=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcGroupStorager::Save(Nutshell.Automation.Opc.OpcGroup, [Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel)@model" Id="4721595f4e739d3c">
       <Target>
         <JoinPoint Advised="#8" Advising="#1" Description="#6" Ordinal="3" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcServerStorager::Load(Nutshell.Automation.Opc.OpcServer, System.String)@opcServer" Id="4721595f487da09d">
+    <Instance Declaration="#10=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcServerStorager::Load(Nutshell.Automation.Opc.OpcServer, System.String)@opcServer" Id="4721595fd6c85112">
       <Target>
         <JoinPoint Advised="#11=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcServerStorager::Load(Nutshell.Automation.Opc.OpcServer, System.String)" Advising="#1" Description="#12=Validates the value passed to parameter 'opcServer'" Ordinal="4" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#13=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#14=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel::Address()" Id="4721595f44287da4">
+    <Instance Declaration="#14=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel::Address()" Id="4721595f61948c3d">
       <Target>
         <JoinPoint Advised="#15=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcGroupModel::set_Address(System.String)" Advising="#13" Description="#16=Validates the assigned value" Ordinal="6" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#17=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcItemModel::Address()" Id="4721595fa45eeff0">
+    <Instance Declaration="#17=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcItemModel::Address()" Id="4721595fbe3bca31">
       <Target>
         <JoinPoint Advised="#18=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcItemModel::set_Address(System.String)" Advising="#13" Description="#16" Ordinal="7" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#19=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcServerModel::Name()" Id="4721595f9f9fbc8b">
+    <Instance Declaration="#19=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcServerModel::Name()" Id="4721595faf7acac6">
       <Target>
         <JoinPoint Advised="#20=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcServerModel::set_Name(System.String)" Advising="#13" Description="#16" Ordinal="8" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#21=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcServerModel::Address()" Id="4721595fac666747">
+    <Instance Declaration="#21=P:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcServerModel::Address()" Id="4721595f7a6eb80c">
       <Target>
         <JoinPoint Advised="#22=M:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.Models.XmlOpcServerModel::set_Address(System.String)" Advising="#13" Description="#16" Ordinal="9" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#23=T:[Nutshell.IO]Nutshell.IO.Aspects.Locations.Contracts.MustFileExistAttribute">
-    <Instance Declaration="#24=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcServerStorager::Load(Nutshell.Automation.Opc.OpcServer, System.String)@fileName" Id="4721595fc757c8cb">
+    <Instance Declaration="#24=R:[Nutshell.Automation.Opc.Xml]Nutshell.Automation.Opc.Xml.XmlOpcServerStorager::Load(Nutshell.Automation.Opc.OpcServer, System.String)@fileName" Id="4721595fe4c609e6">
       <Target>
         <JoinPoint Advised="#11" Advising="#23" Description="#25=Validates the value passed to parameter 'fileName'" Ordinal="5" LinesAvoided="1" />
       </Target>

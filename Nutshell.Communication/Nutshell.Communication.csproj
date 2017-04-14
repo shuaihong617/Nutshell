@@ -51,13 +51,11 @@
     <Compile Include="Models\ISenderModel.cs" />
     <Compile Include="Models\IReceiverModel.cs" />
     <Compile Include="Models\IBusModel.cs" />
-    <Compile Include="Site.cs" />
-    <Compile Include="ISite.cs" />
     <Compile Include="Bus.cs" />
     <Compile Include="IReceiver.cs" />
     <Compile Include="ISender.cs" />
     <Compile Include="IActor.cs" />
-    <Compile Include="IBus.cs" />
+    <Compile Include="EthernetPortExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +74,10 @@
     <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
       <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
       <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>

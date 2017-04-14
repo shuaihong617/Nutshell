@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using Nutshell.Data.Xml.Models;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Speech.Models
 {

@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Text;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
+using Nutshell.Extensions;
 using Nutshell.MessageQueue;
-using Nutshell.MessageQueue.RabbitMQ.Models;
+using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Models;
+using Nutshell.Storaging;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 namespace Nutshell.RabbitMQ
 {
-        public class RabbitMQReceiver:RabbitMQActor,IMessageQueueReceiver,IStorable<IRabbitMQReceiverModel>
-        {
+        public class RabbitMQReceiver<T>:RabbitMQActor<T>,IMessageQueueReceiver<T>,IStorable<IRabbitMQReceiverModel> where T : IMessageModel
+	{
 
                 public RabbitMQReceiver(string id = "") 
 			: base( id)
@@ -18,43 +24,72 @@ namespace Nutshell.RabbitMQ
 
 	        private EventingBasicConsumer _consumer;
 
+		[MustNotEqualNull]
+		protected RabbitMQQueue Queue { get; private set; }
+
 		public void Load(IRabbitMQReceiverModel model)
 		{
-			throw new System.NotImplementedException();
+			base.Load(model);
 		}
 
 		public void Save(IRabbitMQReceiverModel model)
 		{
-			throw new System.NotImplementedException();
+			base.Save(model);
 		}
 
-		//protected override bool Start()
-  //              {
-  //                      _consumer = new EventingBasicConsumer(Channel);
-		//	//Channel.BasicConsume("queueName", false, _consumer);
+	        /// <summary>
+	        /// 执行启动过程的具体步骤.
+	        /// </summary>
+	        /// <returns>
+	        /// 成功返回True, 否则返回False.
+	        /// </returns>
+	        /// <remarks>
+	        /// 若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
+	        /// </remarks>
+	        protected override Result StartCore()
+	        {
+		        var baseResult = base.StartCore();
+		        if (!baseResult.IsSuccessed)
+		        {
+			        return baseResult;
+		        }
 
-		//	var consumer = new EventingBasicConsumer(Channel);
-		//	consumer.Received += (model, ea) =>
-		//	{
-		//		//var body = ea.Body;
-		//		//var message = Encoding.UTF8.GetString(body);
-		//		//Console.WriteLine(" [x] Received {0}", message);
-		//	};
-		//	Channel.BasicConsume(queue: "hello",
-		//			     noAck: true,
-		//			     consumer: consumer);
+		        Channel.QueueDeclare(Queue.Name, Queue.IsDurable, Queue.IsExclusive, Queue.IsAutoDelete, null);
+			
+			_consumer = new EventingBasicConsumer(Channel);
+			_consumer.Received += (model, ea) =>
+			{
+				var body = ea.Body;
+				var messageModel = Serializer.Deserialize(body);
 
-		//	return true;
-  //              }
+				Trace.WriteLine(messageModel.Id);
+				
+				OnReceiveSuccessed(new ValueEventArgs<T>(messageModel));
+			};
+			Channel.BasicConsume(Queue.Name,
+					     noAck: true,
+					     consumer: _consumer);
 
-                
+			return Result.Successed;
+	        }
 
-                public byte[] Receive()
-                {
-                        throw new System.NotImplementedException();
-                }
 
-	        public event EventHandler<ValueEventArgs<byte[]>> ReceiveSuccessed;
-	        public event EventHandler<ValueEventArgs<Exception>> ReceiveFailed;
+		public void Attach([MustNotEqualNull]RabbitMQQueue queue)
+		{
+			Queue = queue;
+		}
+
+		public event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
+
+		/// <summary>
+		///         引发启动事件。
+		/// </summary>
+		/// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+		protected virtual void OnReceiveSuccessed(ValueEventArgs<T> e)
+		{
+			e.Raise(this, ref ReceiveSuccessed);
+		}
+
+		public event EventHandler<ValueEventArgs<Exception>> ReceiveFailed;
         }
 }

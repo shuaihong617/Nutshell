@@ -16,6 +16,7 @@ using Nutshell.Automation.Opc.Models;
 using Nutshell.Data.Xml.Models;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Automation.Opc.Xml.Models
 {

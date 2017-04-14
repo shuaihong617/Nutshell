@@ -14,6 +14,7 @@
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
 using Nutshell.Drawing.Models;
+using Nutshell.Storaging;
 
 namespace Nutshell.Drawing
 {

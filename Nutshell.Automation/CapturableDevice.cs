@@ -19,6 +19,7 @@ using Nutshell.Extensions;
 using Nutshell.Threading;
 using System;
 using System.ComponentModel;
+using Nutshell.Storaging;
 
 namespace Nutshell.Automation
 {

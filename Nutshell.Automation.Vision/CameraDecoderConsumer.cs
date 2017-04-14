@@ -77,7 +77,7 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 ///         处理摄像机图像采集完成事件
                 /// </summary>
-                /// <param name="sender">The source of the event.</param>
+                /// <param name="sender">The source of the事件</param>
                 /// <param name="e">The e.</param>
                 private void Camera_CaptureSuccessed(object sender, ValueEventArgs<Bitmap> e)
                 {

@@ -3,6 +3,7 @@ using Nutshell.Data;
 using Nutshell.Drawing.Shapes.Models;
 using Nutshell.Extensions;
 using System;
+using Nutshell.Storaging;
 
 namespace Nutshell.Drawing.Shapes
 {

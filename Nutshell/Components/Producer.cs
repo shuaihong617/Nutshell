@@ -58,7 +58,7 @@ namespace Nutshell.Components
                 protected event EventHandler<ValueEventArgs<T>> Producted;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnProducted(ValueEventArgs<T> e)
@@ -72,7 +72,7 @@ namespace Nutshell.Components
                 public event EventHandler<ValueEventArgs<T>> Dispatched;
 
                 /// <summary>
-                ///         Raises the <see cref="E:Opened" /> event.
+                ///         引发<see cref="E:Opened" />事件
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
                 protected virtual void OnDispatched(ValueEventArgs<T> e)

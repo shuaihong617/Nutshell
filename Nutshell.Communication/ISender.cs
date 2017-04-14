@@ -15,19 +15,25 @@ using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Messaging;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.Communication
 {
 	/// <summary>
-	///         发送器接口
+	/// 发送器接口
 	/// </summary>
-	public interface ISender : IActor
+	/// <typeparam name="T"></typeparam>
+	/// <seealso cref="Nutshell.Communication.IActor{T}" />
+	public interface ISender<T> : IActor<T> where T:IMessageModel
 	{
+		
+
 		/// <summary>
 		///         发送字节数组数据
 		/// </summary>
-		/// <param name="data">待发送数据</param>
-		void Send([MustNotEqualNull] byte[] data);
+		/// <param name="messageModel">待发送消息数据</param>
+		void Send([MustNotEqualNull]T messageModel);
 
 		#region 事件
 
@@ -36,7 +42,7 @@ namespace Nutshell.Communication
 		/// </summary>
 		[Description("数据发送成功事件")]
 		[LogEventInvokeHandler]
-		event EventHandler<ValueEventArgs<Exception>> SendSuccessed;
+		event EventHandler<ValueEventArgs<T>> SendSuccessed;
 
 		/// <summary>
 		///         当数据发送失败时发生。

@@ -13,6 +13,7 @@
 
 using Nutshell.Data.Models;
 using System;
+using Nutshell.Storaging.Models;
 
 namespace Nutshell.Automation.Opc.Models
 {

@@ -36,8 +36,15 @@ namespace Nutshell
                         Id = string.IsNullOrEmpty(id) ? GetType().Name : id;
 
                         TimeStamps = new Dictionary<string, DateTime>(5);
-                        TimeStamps["CreateTime"] = DateTime.Now;
+                        TimeStamps[CreateTimeStampKey] = DateTime.Now;
                 }
+
+	        #region 常量
+
+	        public const string CreateTimeStampKey = "CreateTime";
+
+	        #endregion
+
 
                 #region 字段
 

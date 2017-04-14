@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Storaging.Models;
 
 namespace Nutshell.Data.Models
 {

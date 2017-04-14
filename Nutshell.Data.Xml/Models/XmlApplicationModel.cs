@@ -11,56 +11,57 @@
 // </summary>
 // ***********************************************************************
 
+using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
-using System.Xml.Serialization;
+using Nutshell.Storaging.Xml.Models;
 
 namespace Nutshell.Data.Xml.Models
 {
-        /// <summary>
-        ///         Xml应用程序数据模型
-        /// </summary>
-        [XmlRoot]
-        public class XmlApplicationModel : XmlDataModel, IApplicationModel
-        {
-                /// <summary>
-                /// 获取或设置应用程序名称
-                /// </summary>
-                /// <value>应用程序名称</value>
-                [XmlAttribute]
-                [MustNotEqualNullOrEmpty]
-                public string Name { get; set; }
+	/// <summary>
+	///         Xml应用程序数据模型
+	/// </summary>
+	[XmlRoot]
+	public class XmlApplicationModel : XmlDataModel, IApplicationModel
+	{
+		/// <summary>
+		///         获取或设置应用程序名称
+		/// </summary>
+		/// <value>应用程序名称</value>
+		[XmlAttribute]
+		[MustNotEqualNullOrEmpty]
+		public string Name { get; set; }
 
-                /// <summary>
-                /// 获取或设置版本
-                /// </summary>
-                /// <value>版本</value>
-                [XmlAttribute]
-                [MustNotEqualNullOrEmpty]
-                public string Version { get; set; }
+		/// <summary>
+		///         获取或设置版本
+		/// </summary>
+		/// <value>版本</value>
+		[XmlAttribute]
+		[MustNotEqualNullOrEmpty]
+		public string Version { get; set; }
 
-                /// <summary>
-                /// 获取或设置应用程序标题
-                /// </summary>
-                /// <value>应用程序标题</value>
-                [XmlAttribute]
-                [MustNotEqualNullOrEmpty]
-                public string Title { get; set; }
+		/// <summary>
+		///         获取或设置应用程序标题
+		/// </summary>
+		/// <value>应用程序标题</value>
+		[XmlAttribute]
+		[MustNotEqualNullOrEmpty]
+		public string Title { get; set; }
 
-                /// <summary>
-                /// 获取或设置公司
-                /// </summary>
-                /// <value>公司</value>
-                [XmlAttribute]
-                [MustNotEqualNullOrEmpty]
-                public string Company { get; set; }
+		/// <summary>
+		///         获取或设置公司
+		/// </summary>
+		/// <value>公司</value>
+		[XmlAttribute]
+		[MustNotEqualNullOrEmpty]
+		public string Company { get; set; }
 
-                /// <summary>
-                /// 获取或设置版权信息
-                /// </summary>
-                /// <value>版权信息</value>
-                [XmlAttribute]
-                [MustNotEqualNullOrEmpty]
-                public string CopyRight { get; set; }
-        }
+		/// <summary>
+		///         获取或设置版权信息
+		/// </summary>
+		/// <value>版权信息</value>
+		[XmlAttribute]
+		[MustNotEqualNullOrEmpty]
+		public string CopyRight { get; set; }
+	}
 }

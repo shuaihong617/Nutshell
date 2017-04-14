@@ -178,6 +178,7 @@
     <Compile Include="Data\Converting\StringToBoolValueConverter.cs" />
     <Compile Include="Data\Converting\Converter.cs" />
     <Compile Include="Data\Converting\IConverter.cs" />
+    <Compile Include="Data\ObservableValue.cs" />
     <Compile Include="Extensions\LoggingExtensions.cs" />
     <Compile Include="Logging\UserLogging\LogPusher.cs" />
     <Compile Include="Logging\UserLogging\LogCollecter.cs" />
@@ -245,7 +246,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.4.1\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.4.5\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">

@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="55" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Data]Nutshell.Data.StorableObject::Load([Nutshell.Data]Nutshell.Data.Models.IDataModel)@model" Id="cc0368d26a3dd2c">
-      <Target Target="#3=R:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Load(Nutshell.Data.Models.IDataModel)@model">
-        <JoinPoint Advised="#4=M:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Load(Nutshell.Data.Models.IDataModel)" Advising="#1" Description="#5=Validates the value passed to parameter 'model'" Ordinal="0" LinesAvoided="1" />
+    <Instance Declaration="#2=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)@model" Id="1753401cc27a20a2">
+      <Target Target="#3=R:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Load(Nutshell.Storaging.Models.IDataModel)@model">
+        <JoinPoint Advised="#4=M:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Load(Nutshell.Storaging.Models.IDataModel)" Advising="#1" Description="#5=Validates the value passed to parameter 'model'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#6=R:[Nutshell.Data]Nutshell.Data.StorableObject::Save([Nutshell.Data]Nutshell.Data.Models.IDataModel)@model" Id="cc0368d309bb981">
-      <Target Target="#7=R:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Save(Nutshell.Data.Models.IDataModel)@model">
-        <JoinPoint Advised="#8=M:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Save(Nutshell.Data.Models.IDataModel)" Advising="#1" Description="#5" LinesAvoided="1" />
+    <Instance Declaration="#6=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)@model" Id="1753401c2bd58abb">
+      <Target Target="#7=R:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Save(Nutshell.Storaging.Models.IDataModel)@model">
+        <JoinPoint Advised="#8=M:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Segment::Save(Nutshell.Storaging.Models.IDataModel)" Advising="#1" Description="#5" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Load(T)@model" Id="cc0368dfa2ec51f">
+    <Instance Declaration="#9=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401ca5072393">
       <Target Target="#10=R:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Scale::Load([Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Models.IScaleModel)@model">
         <JoinPoint Advised="#11=M:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Scale::Load([Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Models.IScaleModel)" Advising="#1" Description="#5" Ordinal="2" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#12=R:[Nutshell.Data]Nutshell.Data.IStorable{T}::Save(T)@model" Id="cc0368d40e3d0c2">
+    <Instance Declaration="#12=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c43517686">
       <Target Target="#13=R:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Scale::Save([Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Models.IScaleModel)@model">
         <JoinPoint Advised="#14=M:[Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Scale::Save([Nutshell.Drawing.Shapes]Nutshell.Drawing.Shapes.Models.IScaleModel)" Advising="#1" Description="#5" Ordinal="3" LinesAvoided="1" />
       </Target>

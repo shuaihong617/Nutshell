@@ -13,53 +13,55 @@
 
 using Nutshell.Extensions;
 using System;
+using Nutshell.Aspects.Locations.Propertys;
 
 namespace Nutshell.Data
 {
         /// <summary>
-        ///         跟踪值更新前后变化的对象
+        ///         跟踪可空值更新前后变化的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ObservableNullable<T> : IdentityObject where T : struct
+        public class ObservableNullable<T> where T : struct
         {
-                /// <summary>
-                /// 初始化<see cref="ObservableNullable{T}" />的新实例.
-                /// </summary>
-                /// <param name="id">The item.</param>
-                public ObservableNullable(string id)
-                        : base(id)
+		/// <summary>
+		/// 初始化<see cref="ObservableNullable{T}" />的新实例.
+		/// </summary>
+		public ObservableNullable()
+		{
+			_value = null;
+		}
+
+		/// <summary>
+		/// 初始化<see cref="ObservableNullable{T}" />的新实例.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		public ObservableNullable(T value)
                 {
-                        Value = new T();
+                        _value = value;
                 }
 
                 #region 字段
 
                 /// <summary>
-                ///         The _data
+                ///         值
                 /// </summary>
                 private T? _value;
 
                 #endregion 字段
 
                 /// <summary>
-                ///         Gets or sets the data.
+                ///         获取或设置值
                 /// </summary>
-                /// <value>The data.</value>
+                /// <value>值</value>
+                [NotifyPropertyValueChanged]
                 public T? Value
                 {
                         get { return _value; }
                         set
                         {
                                 _value = value;
-                                OnPropertyChanged();
-
                                 OnValueChanged(new ValueEventArgs<T?>(value));
                         }
-                }
-
-                public override string ToString()
-                {
-                        return GlobalId + " : " + Value;
                 }
 
                 #region 事件
@@ -75,7 +77,6 @@ namespace Nutshell.Data
                 /// <param name="e">The <see cref="ValueChangedEventArgs{T}" /> Itance containing the event data.</param>
                 protected virtual void OnValueChanged(ValueEventArgs<T?> e)
                 {
-                        //this.InfoEvent("数据更新", e.Data);
                         e.Raise(this, ref ValueChanged);
                 }
 
