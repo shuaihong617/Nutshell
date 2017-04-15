@@ -28,24 +28,19 @@ namespace Nutshell.Data
 		/// </summary>
 		public ObservableNullable()
 		{
-			_value = null;
+			Data = null;
 		}
 
 		/// <summary>
 		/// 初始化<see cref="ObservableNullable{T}" />的新实例.
 		/// </summary>
-		/// <param name="value">The value.</param>
-		public ObservableNullable(T value)
+		/// <param name="data">The value.</param>
+		public ObservableNullable(T data)
                 {
-                        _value = value;
+                        Data = data;
                 }
 
                 #region 字段
-
-                /// <summary>
-                ///         值
-                /// </summary>
-                private T? _value;
 
                 #endregion 字段
 
@@ -54,30 +49,34 @@ namespace Nutshell.Data
                 /// </summary>
                 /// <value>值</value>
                 [NotifyPropertyValueChanged]
-                public T? Value
+                public T? Data { get; private set; }
+
+
+                public void SetData(T? value)
                 {
-                        get { return _value; }
-                        set
+                        if (Equals(Data, value))
                         {
-                                _value = value;
-                                OnValueChanged(new ValueEventArgs<T?>(value));
+                               return; 
                         }
+
+                        Data = value;
+                        OnDataChanged(new ValueEventArgs<T?>(value));
                 }
 
                 #region 事件
 
                 /// <summary>
-                ///         Occurs when [opened].
+                ///         当值改变时发生.
                 /// </summary>
-                public event EventHandler<ValueEventArgs<T?>> ValueChanged;
+                public event EventHandler<ValueEventArgs<T?>> DataChanged;
 
                 /// <summary>
-                ///         引发 <see cref="E:Opened" /> 事件.
+                ///         引发 <see cref="E:ValueChanged" /> 事件.
                 /// </summary>
                 /// <param name="e">The <see cref="ValueChangedEventArgs{T}" /> Itance containing the event data.</param>
-                protected virtual void OnValueChanged(ValueEventArgs<T?> e)
+                protected virtual void OnDataChanged(ValueEventArgs<T?> e)
                 {
-                        e.Raise(this, ref ValueChanged);
+                        e.Raise(this, ref DataChanged);
                 }
 
                 #endregion 事件

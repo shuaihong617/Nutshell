@@ -49,12 +49,17 @@ namespace Nutshell.Data
 		public T Value
 		{
 			get { return _value; }
-			set
+			private set
 			{
 				_value = value;
 				OnValueChanged(new ValueEventArgs<T>(value));
 			}
 		}
+
+	        public void SetValue(T value)
+	        {
+	                Value = value;
+	        }
 
 		#region 事件
 
