@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\MessageNullable.cs" />
+    <Compile Include="Data\Messager.cs" />
     <Compile Include="Models\IActorModel.cs" />
     <Compile Include="Models\ISenderModel.cs" />
     <Compile Include="Models\IReceiverModel.cs" />

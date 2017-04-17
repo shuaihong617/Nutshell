@@ -3,40 +3,57 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Communication;
+using Nutshell.Communication.Data;
 using Nutshell.Extensions;
-using Nutshell.Messaging.Models;
 using Nutshell.Messaging.Xml.Models;
+using PostSharp.Extensibility;
 
-namespace Nutshell.Automation.MicroDevices
+namespace Nutshell.Automation
 {
         /// <summary>
         /// 按钮
         /// </summary>
-        public class Button : DualStateDualControlDevice
+        public class Button : Device
         {
                 public Button(string id)
                         : base(id)
                 {
-			_state.ValueChanged += (obj, args) =>
-			{
-				if (!args.Value.HasValue)
-				{
-					return;
-				}
-
-				switch (args.Value.Value)
-				{
-					case true:
-						OnPressed(EventArgs.Empty);
-						break;
-
-					case false:
-						OnRaised(EventArgs.Empty);
-						break;
-				}
-			};
+			
 		}
+
+                public bool? State { get; private set; }
+
+                [MustNotEqualNull]
+                private Messager<bool> _messager;
+
+                public Button SetMessager([MustNotEqualNull]Messager<bool> messager)
+                {
+                        Trace.Assert(_messager != null);
+
+                        _messager = messager;
+                        _messager.DataChanged += (obj, args) =>
+                        {
+                                State = args.Value;
+
+                                if (!args.Value.HasValue)
+                                {
+                                        return;
+                                }
+
+                                switch (args.Value.Value)
+                                {
+                                        case true:
+                                                OnPressed(EventArgs.Empty);
+                                                break;
+
+                                        case false:
+                                                OnRaised(EventArgs.Empty);
+                                                break;
+                                }
+                        };
+
+                        return this;
+                }
 
 		public void Press()
                 {
@@ -46,7 +63,7 @@ namespace Nutshell.Automation.MicroDevices
 				Category = Id,
 				Value = true
 			};
-			CommandSender.Send(message);
+			_messager.ToLowerSender.Send(message);
 		}
 
                 public void Raise()
@@ -57,7 +74,7 @@ namespace Nutshell.Automation.MicroDevices
 				Category = Id,
 				Value = false
 			};
-			CommandSender.Send(message);
+			_messager.ToLowerSender.Send(message);
 		}
 
 		#region 事件

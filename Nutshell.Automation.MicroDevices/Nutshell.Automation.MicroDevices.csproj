@@ -54,12 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DualStateDualControlDevice.cs" />
-    <Compile Include="CylinderState.cs" />
-    <Compile Include="Button.cs" />
-    <Compile Include="Cylinder.cs" />
-    <Compile Include="Lamp.cs" />
-    <Compile Include="Sensor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

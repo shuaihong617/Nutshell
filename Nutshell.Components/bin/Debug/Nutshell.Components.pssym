@@ -1,99 +1,99 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="136" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Components]Nutshell.Components.Component::Load([Nutshell.Components]Nutshell.Components.Models.IComponentModel)@model" Id="fccc9e9974ec9c8c">
+    <Instance Declaration="#2=R:[Nutshell.Components]Nutshell.Components.Component::Load([Nutshell.Components]Nutshell.Components.Models.IComponentModel)@model" Id="fccc9e99f817151b">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Components]Nutshell.Components.Component::Load([Nutshell.Components]Nutshell.Components.Models.IComponentModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'model'" Ordinal="4" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Components]Nutshell.Components.Component::Save([Nutshell.Components]Nutshell.Components.Models.IComponentModel)@model" Id="fccc9e9922e71bd6">
+    <Instance Declaration="#5=R:[Nutshell.Components]Nutshell.Components.Component::Save([Nutshell.Components]Nutshell.Components.Models.IComponentModel)@model" Id="fccc9e997288bd5b">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell.Components]Nutshell.Components.Component::Save([Nutshell.Components]Nutshell.Components.Models.IComponentModel)" Advising="#1" Description="#4" Ordinal="5" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=R:[Nutshell.Components]Nutshell.Components.Looper::Load([Nutshell.Components]Nutshell.Components.Models.ILooperModel)@model" Id="fccc9e996836bb37">
+    <Instance Declaration="#7=R:[Nutshell.Components]Nutshell.Components.Looper::Load([Nutshell.Components]Nutshell.Components.Models.ILooperModel)@model" Id="fccc9e99e01fd9bc">
       <Target>
         <JoinPoint Advised="#8=M:[Nutshell.Components]Nutshell.Components.Looper::Load([Nutshell.Components]Nutshell.Components.Models.ILooperModel)" Advising="#1" Description="#4" Ordinal="21" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#9=R:[Nutshell.Components]Nutshell.Components.Looper::Save([Nutshell.Components]Nutshell.Components.Models.ILooperModel)@model" Id="fccc9e999fc2a85b">
+    <Instance Declaration="#9=R:[Nutshell.Components]Nutshell.Components.Looper::Save([Nutshell.Components]Nutshell.Components.Models.ILooperModel)@model" Id="fccc9e99267ab466">
       <Target>
         <JoinPoint Advised="#10=M:[Nutshell.Components]Nutshell.Components.Looper::Save([Nutshell.Components]Nutshell.Components.Models.ILooperModel)" Advising="#1" Description="#4" Ordinal="22" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#11=R:[Nutshell.Components]Nutshell.Components.Worker::#ctor(System.String)@id" Id="fccc9e9903bd3173">
+    <Instance Declaration="#11=R:[Nutshell.Components]Nutshell.Components.Worker::#ctor(System.String)@id" Id="fccc9e99bc9fbf42">
       <Target>
         <JoinPoint Advised="#12=M:[Nutshell.Components]Nutshell.Components.Worker::#ctor(System.String)" Advising="#1" Description="#13=Validates the value passed to parameter 'id'" Ordinal="12" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#14=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanOrEqualAttribute">
-    <Instance Declaration="#15=P:[Nutshell.Components]Nutshell.Components.Looper::Interval()" Id="fccc9e9990c82db3">
+    <Instance Declaration="#15=P:[Nutshell.Components]Nutshell.Components.Looper::Interval()" Id="fccc9e99f4cad8df">
       <Target>
         <JoinPoint Advised="#16=M:[Nutshell.Components]Nutshell.Components.Looper::set_Interval(System.Int32)" Advising="#14" Description="#17=Validates the assigned value" Semantic="Setter" Ordinal="18" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#18=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#19=R:[Nutshell.Components]Nutshell.Components.Runtime::#ctor(System.String)@id" Id="fccc9e994ad915f7">
+    <Instance Declaration="#19=R:[Nutshell.Components]Nutshell.Components.Runtime::#ctor(System.String)@id" Id="fccc9e9983cf71c3">
       <Target>
         <JoinPoint Advised="#20=M:[Nutshell.Components]Nutshell.Components.Runtime::#ctor(System.String)" Advising="#18" Description="#13" Ordinal="23" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#21=T:[Nutshell]Nutshell.Aspects.Events.LogEventInvokeHandlerAttribute">
-    <Instance Declaration="#22=E:[Nutshell.Components]Nutshell.Components.Looper::RepeatFinshed" Id="fccc9e99b0778811">
+    <Instance Declaration="#22=E:[Nutshell.Components]Nutshell.Components.Looper::RepeatFinshed" Id="fccc9e999e1f2592">
       <Target>
         <JoinPoint Advising="#21" Description="#23=Intercepted by advice OnInvokeHandler" Semantic="Fire" Ordinal="20" />
       </Target>
     </Instance>
-    <Instance Declaration="#24=E:[Nutshell.Components]Nutshell.Components.Worker::Starting" Id="fccc9e9993b23419">
+    <Instance Declaration="#24=E:[Nutshell.Components]Nutshell.Components.Worker::Starting" Id="fccc9e990524d724">
       <Target>
         <JoinPoint Advising="#21" Description="#23" Semantic="Fire" Ordinal="8" />
       </Target>
     </Instance>
-    <Instance Declaration="#25=E:[Nutshell.Components]Nutshell.Components.Worker::Started" Id="fccc9e997d3e42f1">
+    <Instance Declaration="#25=E:[Nutshell.Components]Nutshell.Components.Worker::Started" Id="fccc9e998fc99971">
       <Target>
         <JoinPoint Advising="#21" Description="#23" Semantic="Fire" Ordinal="9" />
       </Target>
     </Instance>
-    <Instance Declaration="#26=E:[Nutshell.Components]Nutshell.Components.Worker::Stoping" Id="fccc9e9946d58ad1">
+    <Instance Declaration="#26=E:[Nutshell.Components]Nutshell.Components.Worker::Stoping" Id="fccc9e999cbd3cc2">
       <Target>
         <JoinPoint Advising="#21" Description="#23" Semantic="Fire" Ordinal="10" />
       </Target>
     </Instance>
-    <Instance Declaration="#27=E:[Nutshell.Components]Nutshell.Components.Worker::Stoped" Id="fccc9e99e1a3dfec">
+    <Instance Declaration="#27=E:[Nutshell.Components]Nutshell.Components.Worker::Stoped" Id="fccc9e9958de87b1">
       <Target>
         <JoinPoint Advising="#21" Description="#23" Semantic="Fire" Ordinal="11" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#28=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#29=P:[Nutshell.Components]Nutshell.Components.Component::IsEnable()" Id="fccc9e9956358a58">
+    <Instance Declaration="#29=P:[Nutshell.Components]Nutshell.Components.Component::IsEnable()" Id="fccc9e996ba1ea86">
       <Target>
         <JoinPoint Advised="#30=M:[Nutshell.Components]Nutshell.Components.Component::get_IsEnable()" Advising="#28" Description="#31=Intercepted by advice " Semantic="Getter" Ordinal="0" />
         <JoinPoint Advised="#32=M:[Nutshell.Components]Nutshell.Components.Component::set_IsEnable(System.Boolean)" Advising="#28" Description="#33=Intercepted by advice OnSetValue" Semantic="Setter" />
       </Target>
     </Instance>
-    <Instance Declaration="#34=P:[Nutshell.Components]Nutshell.Components.Component::RunMode()" Id="fccc9e993565f260">
+    <Instance Declaration="#34=P:[Nutshell.Components]Nutshell.Components.Component::RunMode()" Id="fccc9e99aef93c21">
       <Target>
         <JoinPoint Advised="#35=M:[Nutshell.Components]Nutshell.Components.Component::get_RunMode()" Advising="#28" Description="#31" Semantic="Getter" Ordinal="2" />
         <JoinPoint Advised="#36=M:[Nutshell.Components]Nutshell.Components.Component::set_RunMode([Nutshell.Components]Nutshell.Components.RunMode)" Advising="#28" Description="#33" Semantic="Setter" Ordinal="3" />
       </Target>
     </Instance>
-    <Instance Declaration="#37=P:[Nutshell.Components]Nutshell.Components.Looper::Priority()" Id="fccc9e99eb27330f">
+    <Instance Declaration="#37=P:[Nutshell.Components]Nutshell.Components.Looper::Priority()" Id="fccc9e9975127fec">
       <Target>
         <JoinPoint Advised="#38=M:[Nutshell.Components]Nutshell.Components.Looper::get_Priority()" Advising="#28" Description="#31" Semantic="Getter" Ordinal="15" />
         <JoinPoint Advised="#39=M:[Nutshell.Components]Nutshell.Components.Looper::set_Priority(System.Threading.ThreadPriority)" Advising="#28" Description="#33" Semantic="Setter" Ordinal="16" />
       </Target>
     </Instance>
-    <Instance Declaration="#15" Id="fccc9e9980020561">
+    <Instance Declaration="#15" Id="fccc9e99a297fe18">
       <Target>
         <JoinPoint Advised="#40=M:[Nutshell.Components]Nutshell.Components.Looper::get_Interval()" Advising="#28" Description="#31" Semantic="Getter" Ordinal="17" />
         <JoinPoint Advised="#16" Advising="#28" Description="#33" Semantic="Setter" Ordinal="19" />
       </Target>
     </Instance>
-    <Instance Declaration="#41=P:[Nutshell.Components]Nutshell.Components.Worker::WorkerState()" Id="fccc9e99b7f16d58">
+    <Instance Declaration="#41=P:[Nutshell.Components]Nutshell.Components.Worker::WorkerState()" Id="fccc9e99e7af270d">
       <Target>
         <JoinPoint Advised="#42=M:[Nutshell.Components]Nutshell.Components.Worker::get_WorkerState()" Advising="#28" Description="#31" Semantic="Getter" Ordinal="6" />
         <JoinPoint Advised="#43=M:[Nutshell.Components]Nutshell.Components.Worker::set_WorkerState([Nutshell.Components]Nutshell.Components.WorkerState)" Advising="#28" Description="#33" Semantic="Setter" Ordinal="7" />
@@ -101,12 +101,12 @@
     </Instance>
   </Class>
   <Class Class="#1">
-    <Instance Declaration="#44=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401ca5072393">
+    <Instance Declaration="#44=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401c10b8f32e">
       <Target Target="#45=R:[Nutshell.Components]Nutshell.Components.Worker::Load([Nutshell.Components]Nutshell.Components.Models.IWorkerModel)@model">
         <JoinPoint Advised="#46=M:[Nutshell.Components]Nutshell.Components.Worker::Load([Nutshell.Components]Nutshell.Components.Models.IWorkerModel)" Advising="#1" Description="#4" Ordinal="13" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#47=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c43517686">
+    <Instance Declaration="#47=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401cd0e24449">
       <Target Target="#48=R:[Nutshell.Components]Nutshell.Components.Worker::Save([Nutshell.Components]Nutshell.Components.Models.IWorkerModel)@model">
         <JoinPoint Advised="#49=M:[Nutshell.Components]Nutshell.Components.Worker::Save([Nutshell.Components]Nutshell.Components.Models.IWorkerModel)" Advising="#1" Description="#4" Ordinal="14" LinesAvoided="1" />
       </Target>

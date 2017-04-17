@@ -1,136 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="1177" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="1175" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#2=P:[Nutshell]Nutshell.IdentityObject::Id()" Id="697f997880d2f965">
+    <Instance Declaration="#2=P:[Nutshell]Nutshell.IdentityObject::Id()" Id="697f99786d4c7495">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell]Nutshell.IdentityObject::set_Id(System.String)" Description="#4=Validates the assigned value" Semantic="Setter" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=P:[Nutshell]Nutshell.IdentityObject::GlobalId()" Id="697f99785b4c9a35">
+    <Instance Declaration="#5=P:[Nutshell]Nutshell.IdentityObject::GlobalId()" Id="697f997829087f89">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell]Nutshell.IdentityObject::set_GlobalId(System.String)" Description="#4" Semantic="Setter" Ordinal="4" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#7=R:[Nutshell]Nutshell.Extensions.LoggingExtensions::Info([Nutshell]Nutshell.IIdentifiable, System.String)@message" Id="697f9978da2bed3b">
+    <Instance Declaration="#7=R:[Nutshell]Nutshell.Extensions.LoggingExtensions::Info([Nutshell]Nutshell.IIdentifiable, System.String)@message" Id="697f997830cfc549">
       <Target>
         <JoinPoint Advised="#8=M:[Nutshell]Nutshell.Extensions.LoggingExtensions::Info([Nutshell]Nutshell.IIdentifiable, System.String)" Description="#9=Validates the value passed to parameter 'message'" Ordinal="9" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#10=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#11=R:[Nutshell]Nutshell.IdentityObject::#ctor(System.String)@id" Id="697f9978233322fb">
+    <Instance Declaration="#11=R:[Nutshell]Nutshell.IdentityObject::#ctor(System.String)@id" Id="697f99782fcf7c31">
       <Target>
         <JoinPoint Advised="#12=M:[Nutshell]Nutshell.IdentityObject::#ctor(System.String)" Description="#13=Validates the value passed to parameter 'id'" Ordinal="6" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#14=P:[Nutshell]Nutshell.IdentityObject::Parent()" Id="697f9978d21456bc">
+    <Instance Declaration="#14=P:[Nutshell]Nutshell.IdentityObject::Parent()" Id="697f9978dae3e96f">
       <Target>
         <JoinPoint Advised="#15=M:[Nutshell]Nutshell.IdentityObject::set_Parent([Nutshell]Nutshell.IIdentifiable)" Description="#4" Ordinal="7" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#16=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::Add(T)@t" Id="697f9978f0989b74">
+    <Instance Declaration="#16=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::Add(T)@t" Id="697f9978dc989cd8">
       <Target>
         <JoinPoint Advised="#17=M:[Nutshell]Nutshell.Threading.ReadWritePool{T}::Add(T)" Description="#18=Validates the value passed to parameter 't'" Ordinal="10" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#19=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::GetLock(T)@t" Id="697f99780397f391">
+    <Instance Declaration="#19=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::GetLock(T)@t" Id="697f99786d07f889">
       <Target>
         <JoinPoint Advised="#20=M:[Nutshell]Nutshell.Threading.ReadWritePool{T}::GetLock(T)" Description="#18" Ordinal="11" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#21=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::ReadLock(T)@t" Id="697f9978999aafa7">
+    <Instance Declaration="#21=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::ReadLock(T)@t" Id="697f99781867a789">
       <Target>
         <JoinPoint Advised="#22=M:[Nutshell]Nutshell.Threading.ReadWritePool{T}::ReadLock(T)" Description="#18" Ordinal="12" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#23=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::ReadUnlock(T)@t" Id="697f9978c7b7588a">
+    <Instance Declaration="#23=R:[Nutshell]Nutshell.Threading.ReadWritePool{T}::ReadUnlock(T)@t" Id="697f9978e44a956a">
       <Target>
         <JoinPoint Advised="#24=M:[Nutshell]Nutshell.Threading.ReadWritePool{T}::ReadUnlock(T)" Description="#18" Ordinal="13" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#25=R:[Nutshell]Nutshell.Logging.LogProvider::Debug(System.Object)@message" Id="697f99781db3f9bd">
+    <Instance Declaration="#25=R:[Nutshell]Nutshell.Logging.LogProvider::Debug(System.Object)@message" Id="697f9978cdc726bc">
       <Target>
         <JoinPoint Advised="#26=M:[Nutshell]Nutshell.Logging.LogProvider::Debug(System.Object)" Description="#9" Ordinal="14" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#27=R:[Nutshell]Nutshell.Logging.LogProvider::Info(System.Object)@message" Id="697f99788486fffb">
+    <Instance Declaration="#27=R:[Nutshell]Nutshell.Logging.LogProvider::Info(System.Object)@message" Id="697f99787cb0f762">
       <Target>
         <JoinPoint Advised="#28=M:[Nutshell]Nutshell.Logging.LogProvider::Info(System.Object)" Description="#9" Ordinal="15" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#29=R:[Nutshell]Nutshell.Logging.LogProvider::Warn(System.Object)@message" Id="697f9978fdfe8375">
+    <Instance Declaration="#29=R:[Nutshell]Nutshell.Logging.LogProvider::Warn(System.Object)@message" Id="697f99783e768e00">
       <Target>
         <JoinPoint Advised="#30=M:[Nutshell]Nutshell.Logging.LogProvider::Warn(System.Object)" Description="#9" Ordinal="16" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#31=R:[Nutshell]Nutshell.Logging.LogProvider::Error(System.Object)@message" Id="697f99786c41ec02">
+    <Instance Declaration="#31=R:[Nutshell]Nutshell.Logging.LogProvider::Error(System.Object)@message" Id="697f997811d5882a">
       <Target>
         <JoinPoint Advised="#32=M:[Nutshell]Nutshell.Logging.LogProvider::Error(System.Object)" Description="#9" Ordinal="17" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#33=R:[Nutshell]Nutshell.Logging.LogProvider::Fatal(System.Object)@message" Id="697f997864c7a09e">
+    <Instance Declaration="#33=R:[Nutshell]Nutshell.Logging.LogProvider::Fatal(System.Object)@message" Id="697f9978edfe2fe2">
       <Target>
         <JoinPoint Advised="#34=M:[Nutshell]Nutshell.Logging.LogProvider::Fatal(System.Object)" Description="#9" Ordinal="18" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#35=R:[Nutshell]Nutshell.Extensions.ExceptionExtensions::FormatMessage(System.Exception, System.Boolean)@exception" Id="697f99789656734b">
+    <Instance Declaration="#35=R:[Nutshell]Nutshell.Extensions.ExceptionExtensions::FormatMessage(System.Exception, System.Boolean)@exception" Id="697f99783c0353ef">
       <Target>
         <JoinPoint Advised="#36=M:[Nutshell]Nutshell.Extensions.ExceptionExtensions::FormatMessage(System.Exception, System.Boolean)" Description="#37=Validates the value passed to parameter 'exception'" Ordinal="19" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#38=R:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)@trueString" Id="697f9978fce00a28">
+    <Instance Declaration="#38=R:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)@trueString" Id="697f9978d226e27d">
       <Target>
         <JoinPoint Advised="#39=M:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)" Description="#40=Validates the value passed to parameter 'trueString'" Ordinal="20" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#41=R:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)@falseString" Id="697f997834e816a2">
+    <Instance Declaration="#41=R:[Nutshell]Nutshell.Extensions.BooleanExtensions::ToChineseString(System.Boolean, System.String, System.String)@falseString" Id="697f9978942812fd">
       <Target>
         <JoinPoint Advised="#39" Description="#42=Validates the value passed to parameter 'falseString'" Ordinal="21" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#43=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)@dist" Id="697f9978b79fb540">
+    <Instance Declaration="#43=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)@dist" Id="697f99787290691b">
       <Target>
         <JoinPoint Advised="#44=M:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)" Description="#45=Validates the value passed to parameter 'dist'" Ordinal="22" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#46=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustNotContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)@dictionary" Id="697f9978e7ceb56f">
+    <Instance Declaration="#46=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustNotContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)@dictionary" Id="697f99789132054d">
       <Target>
         <JoinPoint Advised="#47=M:[Nutshell]Nutshell.Extensions.DictionaryExtensions::MustNotContainsKey{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue}, TKey)" Description="#48=Validates the value passed to parameter 'dictionary'" Ordinal="23" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#49=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::ToReadOnlyDictionary{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue})@dictionary" Id="697f9978a8e4bf56">
+    <Instance Declaration="#49=R:[Nutshell]Nutshell.Extensions.DictionaryExtensions::ToReadOnlyDictionary{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue})@dictionary" Id="697f997892485a77">
       <Target>
         <JoinPoint Advised="#50=M:[Nutshell]Nutshell.Extensions.DictionaryExtensions::ToReadOnlyDictionary{TKey,TValue}(System.Collections.Generic.IDictionary{TKey,TValue})" Description="#48" Ordinal="24" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#51=T:[Nutshell]Nutshell.Aspects.Methods.Contracts.MustReturnNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#52=M:[Nutshell]Nutshell.IdentityObject::ToString()" Id="697f9978ec064afe">
+    <Instance Declaration="#52=M:[Nutshell]Nutshell.IdentityObject::ToString()" Id="697f9978e164c6e1">
       <Target>
         <JoinPoint Description="#53=Wrapped by advice(s) OnExit" Ordinal="8" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#54=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#2" Id="697f9978f0c3cf9d">
+    <Instance Declaration="#2" Id="697f99780132b099">
       <Target>
         <JoinPoint Advised="#55=M:[Nutshell]Nutshell.IdentityObject::get_Id()" Description="#56=Intercepted by advice " Semantic="Getter" Ordinal="0" />
         <JoinPoint Advised="#3" Description="#57=Intercepted by advice OnSetValue" Semantic="Setter" Ordinal="2" />
       </Target>
     </Instance>
-    <Instance Declaration="#5" Id="697f9978fc7215b7">
+    <Instance Declaration="#5" Id="697f997837ea1dbb">
       <Target>
         <JoinPoint Advised="#58=M:[Nutshell]Nutshell.IdentityObject::get_GlobalId()" Description="#56" Semantic="Getter" Ordinal="3" />
         <JoinPoint Advised="#6" Description="#57" Semantic="Setter" Ordinal="5" />
       </Target>
     </Instance>
-    <Instance Declaration="#59=P:[Nutshell]Nutshell.Data.ObservableValue{T}::Value()" Id="697f997834f43758">
+    <Instance Declaration="#59=P:[Nutshell]Nutshell.Data.ObservableValue{T}::Value()" Id="697f9978bf48e6c6">
       <Target>
         <JoinPoint Advised="#60=M:[Nutshell]Nutshell.Data.ObservableValue{T}::get_Value()" Description="#56" Semantic="Getter" Ordinal="25" />
         <JoinPoint Advised="#61=M:[Nutshell]Nutshell.Data.ObservableValue{T}::set_Value(T)" Description="#57" Semantic="Setter" Ordinal="26" />
       </Target>
     </Instance>
-    <Instance Declaration="#62=P:[Nutshell]Nutshell.Data.ObservableNullable{T}::Data()" Id="697f9978fde69649">
+    <Instance Declaration="#62=P:[Nutshell]Nutshell.Data.ObservableNullable{T}::Data()" Id="697f997826cb3dee">
       <Target>
         <JoinPoint Advised="#63=M:[Nutshell]Nutshell.Data.ObservableNullable{T}::get_Data()" Description="#56" Semantic="Getter" Ordinal="27" />
         <JoinPoint Advised="#64=M:[Nutshell]Nutshell.Data.ObservableNullable{T}::set_Data(System.Nullable{T})" Description="#57" Semantic="Setter" Ordinal="28" />
