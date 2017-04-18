@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="12" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)@model" Id="1753401c10ecf64d">
+    <Instance Declaration="#2=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)@model" Id="1753401c34c4089a">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'model'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)@model" Id="1753401cbffe3bd7">
+    <Instance Declaration="#5=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)@model" Id="1753401ca3835c2d">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.IDataModel)" Advising="#1" Description="#4" LinesAvoided="1" />
       </Target>

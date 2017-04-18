@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="93" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#2=P:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.Models.XmlMessageModel::Category()" Id="bc08cdcfdc7d5a8e">
+    <Instance Declaration="#2=P:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.Models.XmlMessageModel::Category()" Id="bc08cdcf834c11b3">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.Models.XmlMessageModel::set_Category(System.String)" Advising="#1" Description="#4=Validates the assigned value" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#5=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#6=P:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.Models.XmlValueMessageModel{T}::Value()" Id="bc08cdcf2458b854">
+    <Instance Declaration="#6=P:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.Models.XmlValueMessageModel{T}::Value()" Id="bc08cdcf2fef728b">
       <Target>
         <JoinPoint Advised="#7=M:[Nutshell.Messaging.Xml]Nutshell.Messaging.Xml.Models.XmlValueMessageModel{T}::set_Value(T)" Advising="#5" Description="#4" LinesAvoided="1" />
       </Target>
