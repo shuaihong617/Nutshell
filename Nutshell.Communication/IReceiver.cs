@@ -23,7 +23,7 @@ namespace Nutshell.Communication
 	///         接收器接口
 	/// </summary>
 	public interface IReceiver<T> : IActor<T> where T : IMessageModel
-	{
+        {
 		#region 事件
 
 		/// <summary>

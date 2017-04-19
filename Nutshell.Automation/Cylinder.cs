@@ -4,8 +4,10 @@ using System.Diagnostics;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Communication;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
+using Nutshell.Messaging.Models;
 using Nutshell.Messaging.Xml.Models;
 
 namespace Nutshell.Automation
@@ -20,27 +22,21 @@ namespace Nutshell.Automation
                 {
                 }
 
-                [MustNotEqualNull] private Messager<byte> _stateMessager;
+                [MustNotEqualNull] private IReceiver<IValueMessageModel<byte>> _stateReceiver;
 
-                [MustNotEqualNull] private Messager<bool> _controlMessager;
+                [MustNotEqualNull] private ISender<IValueMessageModel<bool>> _controlSender;
 
 
                 [NotifyPropertyValueChanged]
                 public CylinderState? State { get; private set; }
 
-                public Cylinder SetStateMessager([MustNotEqualNull] Messager<byte> messager)
+                public Cylinder SetStateReceiver([MustNotEqualNull] IReceiver<IValueMessageModel<byte>> receiver)
                 {
-                        Trace.Assert(_stateMessager != null);
+                        Trace.Assert(_stateReceiver == null);
 
-                        _stateMessager = messager;
-                        _stateMessager.DataChanged += (obj, args) =>
+                        _stateReceiver = receiver;
+                        _stateReceiver.ReceiveSuccessed += (obj, args) =>
                         {
-                                if (!args.Value.HasValue)
-                                {
-                                        State = null;
-                                        return;
-                                }
-
                                 State = (CylinderState) args.Value.Value;
 
                                 switch (State)
@@ -66,28 +62,11 @@ namespace Nutshell.Automation
                         return this;
                 }
 
-                public Cylinder SetControlMessager([MustNotEqualNull] Messager<bool> messager)
+                public Cylinder SetControlSender([MustNotEqualNull] ISender<IValueMessageModel<bool>> sender)
                 {
-                        Trace.Assert(_stateMessager != null);
+                        Trace.Assert(_stateReceiver == null);
 
-                        _controlMessager = messager;
-                        _controlMessager.DataChanged += (obj, args) =>
-                        {
-                                if (!args.Value.HasValue)
-                                {
-                                        return;
-                                }
-
-                                if (args.Value.Value)
-                                {
-                                        Open();
-                                }
-                                else
-                                {
-                                        Close();
-                                }
-                        };
-
+                        _controlSender = sender;
                         return this;
                 }
 
@@ -100,7 +79,7 @@ namespace Nutshell.Automation
                                 Category = Id,
                                 Value = true
                         };
-                        _controlMessager.ToLowerSender.Send(message);
+                        _controlSender.Send(message);
                 }
 
                 public void Close()
@@ -111,7 +90,7 @@ namespace Nutshell.Automation
                                 Category = Id,
                                 Value = false
                         };
-                        _controlMessager.ToLowerSender.Send(message);
+                        _controlSender.Send(message);
                 }
 
                 #region 事件

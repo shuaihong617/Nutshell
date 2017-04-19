@@ -10,7 +10,7 @@ using Nutshell.Messaging.Xml.Models;
 namespace Nutshell.Automation
 {
 	/// <summary>
-	///         电灯
+	///         信号灯
 	/// </summary>
 	public class Lamp : Device
 	{

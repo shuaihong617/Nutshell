@@ -1,78 +1,184 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="253" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
-  <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=P:[Nutshell.Automation]Nutshell.Automation.Device::ManufacturingInformation()" Id="1f7830dfe474fcf0">
+<Symbols LinesOfCode="350" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Evolution Source="#1=F:[Nutshell.Automation]Nutshell.Automation.Button::_messager" Target="#2=F:[Nutshell.Automation]Nutshell.Automation.Button::&lt;_messager&gt;k__OriginalField" />
+  <Evolution Source="#2" Target="#3=P:[Nutshell.Automation]Nutshell.Automation.Button::_messager()" />
+  <Evolution Source="#4=F:[Nutshell.Automation]Nutshell.Automation.Cylinder::_stateMessager" Target="#5=F:[Nutshell.Automation]Nutshell.Automation.Cylinder::&lt;_stateMessager&gt;k__OriginalField" />
+  <Evolution Source="#5" Target="#6=P:[Nutshell.Automation]Nutshell.Automation.Cylinder::_stateMessager()" />
+  <Evolution Source="#7=F:[Nutshell.Automation]Nutshell.Automation.Cylinder::_controlMessager" Target="#8=F:[Nutshell.Automation]Nutshell.Automation.Cylinder::&lt;_controlMessager&gt;k__OriginalField" />
+  <Evolution Source="#8" Target="#9=P:[Nutshell.Automation]Nutshell.Automation.Cylinder::_controlMessager()" />
+  <Evolution Source="#10=F:[Nutshell.Automation]Nutshell.Automation.Lamp::_messager" Target="#11=F:[Nutshell.Automation]Nutshell.Automation.Lamp::&lt;_messager&gt;k__OriginalField" />
+  <Evolution Source="#11" Target="#12=P:[Nutshell.Automation]Nutshell.Automation.Lamp::_messager()" />
+  <Evolution Source="#13=F:[Nutshell.Automation]Nutshell.Automation.Sensor{T}::_messager" Target="#14=F:[Nutshell.Automation]Nutshell.Automation.Sensor{T}::&lt;_messager&gt;k__OriginalField" />
+  <Evolution Source="#14" Target="#15=P:[Nutshell.Automation]Nutshell.Automation.Sensor{T}::_messager()" />
+  <Class Class="#16=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#2" Id="1f7830dfcc1a54d8">
       <Target>
-        <JoinPoint Advised="#3=M:[Nutshell.Automation]Nutshell.Automation.Device::set_ManufacturingInformation([Nutshell.Automation]Nutshell.Automation.ManufacturingInformation)" Advising="#1" Description="#4=Validates the assigned value" Ordinal="0" LinesAvoided="1" />
+        <JoinPoint Advising="#16" Description="#17=Validates the assigned value" Semantic="Setter" Ordinal="6" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)@model" Id="1f7830df52321eb7">
+    <Instance Declaration="#18=R:[Nutshell.Automation]Nutshell.Automation.Button::SetMessager(Nutshell.Communication.Data.Messager{System.Boolean})@messager" Id="1f7830df3a99f54a">
       <Target>
-        <JoinPoint Advised="#6=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)" Advising="#1" Description="#7=Validates the value passed to parameter 'model'" Ordinal="10" LinesAvoided="1" />
+        <JoinPoint Advised="#19=M:[Nutshell.Automation]Nutshell.Automation.Button::SetMessager(Nutshell.Communication.Data.Messager{System.Boolean})" Advising="#16" Description="#20=Validates the value passed to parameter 'messager'" Ordinal="5" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=R:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Load([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)@model" Id="1f7830dfac5240c7">
+    <Instance Declaration="#21=P:[Nutshell.Automation]Nutshell.Automation.Device::ManufacturingInformation()" Id="1f7830df82f90a6b">
       <Target>
-        <JoinPoint Advised="#9=M:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Load([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)" Advising="#1" Description="#7" Ordinal="12" LinesAvoided="1" />
+        <JoinPoint Advised="#22=M:[Nutshell.Automation]Nutshell.Automation.Device::set_ManufacturingInformation([Nutshell.Automation]Nutshell.Automation.ManufacturingInformation)" Advising="#16" Description="#17" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=R:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Save([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)@model" Id="1f7830dfd8c5cb73">
+    <Instance Declaration="#5" Id="1f7830df1cbaf819">
       <Target>
-        <JoinPoint Advised="#11=M:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Save([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)" Advising="#1" Description="#7" Ordinal="13" LinesAvoided="1" />
+        <JoinPoint Advising="#16" Description="#17" Semantic="Setter" Ordinal="15" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#12=R:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Load([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)@model" Id="1f7830dfe8d92d56">
+    <Instance Declaration="#8" Id="1f7830dfbe9bc277">
       <Target>
-        <JoinPoint Advised="#13=M:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Load([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)" Advising="#1" Description="#7" Ordinal="14" LinesAvoided="1" />
+        <JoinPoint Advising="#16" Description="#17" Semantic="Setter" Ordinal="16" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#23=R:[Nutshell.Automation]Nutshell.Automation.Cylinder::SetStateMessager(Nutshell.Communication.Data.Messager{System.Byte})@messager" Id="1f7830dfc39eb580">
+      <Target>
+        <JoinPoint Advised="#24=M:[Nutshell.Automation]Nutshell.Automation.Cylinder::SetStateMessager(Nutshell.Communication.Data.Messager{System.Byte})" Advising="#16" Description="#20" Ordinal="13" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#25=R:[Nutshell.Automation]Nutshell.Automation.Cylinder::SetControlMessager(Nutshell.Communication.Data.Messager{System.Boolean})@messager" Id="1f7830df15ff7395">
+      <Target>
+        <JoinPoint Advised="#26=M:[Nutshell.Automation]Nutshell.Automation.Cylinder::SetControlMessager(Nutshell.Communication.Data.Messager{System.Boolean})" Advising="#16" Description="#20" Ordinal="14" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#11" Id="1f7830dfceaf0b22">
+      <Target>
+        <JoinPoint Advising="#16" Description="#17" Semantic="Setter" Ordinal="20" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#14" Id="1f7830df6ba7b8ab">
+      <Target>
+        <JoinPoint Advising="#16" Description="#17" Semantic="Setter" Ordinal="22" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#27=R:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)@model" Id="1f7830dfc8b25a84">
+      <Target>
+        <JoinPoint Advised="#28=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)" Advising="#16" Description="#29=Validates the value passed to parameter 'model'" Ordinal="30" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#30=R:[Nutshell.Automation]Nutshell.Automation.Lamp::SetMessager(Nutshell.Communication.Data.Messager{System.Boolean})@messager" Id="1f7830df025756d6">
+      <Target>
+        <JoinPoint Advised="#31=M:[Nutshell.Automation]Nutshell.Automation.Lamp::SetMessager(Nutshell.Communication.Data.Messager{System.Boolean})" Advising="#16" Description="#20" Ordinal="19" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#32=R:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Load([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)@model" Id="1f7830dfd8233c4e">
+      <Target>
+        <JoinPoint Advised="#33=M:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Load([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)" Advising="#16" Description="#29" Ordinal="32" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#34=R:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Save([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)@model" Id="1f7830df02e01b7f">
+      <Target>
+        <JoinPoint Advised="#35=M:[Nutshell.Automation]Nutshell.Automation.ManufacturingInformation::Save([Nutshell.Automation]Nutshell.Automation.Models.IManufacturingInformationModel)" Advising="#16" Description="#29" Ordinal="33" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#36=R:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Load([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)@model" Id="1f7830dfe4308308">
+      <Target>
+        <JoinPoint Advised="#37=M:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Load([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)" Advising="#16" Description="#29" Ordinal="34" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#38=R:[Nutshell.Automation]Nutshell.Automation.Sensor{T}::SetMessager(Nutshell.Communication.Data.Messager{T})@messager" Id="1f7830dfba61bff4">
+      <Target>
+        <JoinPoint Advised="#39=M:[Nutshell.Automation]Nutshell.Automation.Sensor{T}::SetMessager(Nutshell.Communication.Data.Messager{T})" Advising="#16" Description="#20" Ordinal="21" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
-  <Class Class="#14=T:[Nutshell]Nutshell.Aspects.Events.LogEventInvokeHandlerAttribute">
-    <Instance Declaration="#15=E:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::ConnectSuccessed" Id="1f7830df397abfa6">
+  <Class Class="#40=T:[Nutshell]Nutshell.Aspects.Events.LogEventInvokeHandlerAttribute">
+    <Instance Declaration="#41=E:[Nutshell.Automation]Nutshell.Automation.Button::Pressed" Id="1f7830df56e92b3a">
       <Target>
-        <JoinPoint Advising="#14" Description="#16=Intercepted by advice OnInvokeHandler" Semantic="Fire" Ordinal="5" />
+        <JoinPoint Advising="#40" Description="#42=Intercepted by advice OnInvokeHandler" Semantic="Fire" Ordinal="3" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#43=E:[Nutshell.Automation]Nutshell.Automation.Button::Raised" Id="1f7830dfd7c9f8c9">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="4" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#44=E:[Nutshell.Automation]Nutshell.Automation.Cylinder::Opening" Id="1f7830df9ae5585f">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="9" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#45=E:[Nutshell.Automation]Nutshell.Automation.Cylinder::Closing" Id="1f7830dfbb6c925d">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="10" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#46=E:[Nutshell.Automation]Nutshell.Automation.Cylinder::OpenCompleted" Id="1f7830df09580e1b">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="11" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#47=E:[Nutshell.Automation]Nutshell.Automation.Cylinder::CloseCompleted" Id="1f7830df2467db79">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="12" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#48=E:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::ConnectSuccessed" Id="1f7830dfa9f70a5b">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="25" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#49=E:[Nutshell.Automation]Nutshell.Automation.Lamp::Opened" Id="1f7830df2b95b5b2">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="17" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#50=E:[Nutshell.Automation]Nutshell.Automation.Lamp::Closed" Id="1f7830df7e2300c3">
+      <Target>
+        <JoinPoint Advising="#40" Description="#42" Semantic="Fire" Ordinal="18" />
       </Target>
     </Instance>
   </Class>
-  <Class Class="#17=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#18=P:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::ConnectState()" Id="1f7830df81c4b3cf">
+  <Class Class="#51=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
+    <Instance Declaration="#52=P:[Nutshell.Automation]Nutshell.Automation.Cylinder::State()" Id="1f7830df1e99ff41">
       <Target>
-        <JoinPoint Advised="#19=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::get_ConnectState()" Advising="#17" Description="#20=Intercepted by advice " Semantic="Getter" Ordinal="3" />
-        <JoinPoint Advised="#21=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::set_ConnectState([Nutshell.Automation]Nutshell.Automation.ConnectState)" Advising="#17" Description="#22=Intercepted by advice OnSetValue" Semantic="Setter" Ordinal="4" />
+        <JoinPoint Advised="#53=M:[Nutshell.Automation]Nutshell.Automation.Cylinder::get_State()" Advising="#51" Description="#54=Intercepted by advice " Semantic="Getter" Ordinal="7" />
+        <JoinPoint Advised="#55=M:[Nutshell.Automation]Nutshell.Automation.Cylinder::set_State(System.Nullable{[Nutshell.Automation]Nutshell.Automation.CylinderState})" Advising="#51" Description="#56=Intercepted by advice OnSetValue" Semantic="Setter" Ordinal="8" />
       </Target>
     </Instance>
-    <Instance Declaration="#23=P:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::DispatchState()" Id="1f7830df1d481519">
+    <Instance Declaration="#57=P:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::ConnectState()" Id="1f7830dff16630de">
       <Target>
-        <JoinPoint Advised="#24=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::get_DispatchState()" Advising="#17" Description="#20" Semantic="Getter" Ordinal="8" />
-        <JoinPoint Advised="#25=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::set_DispatchState([Nutshell.Automation]Nutshell.Automation.DispatchState)" Advising="#17" Description="#22" Semantic="Setter" Ordinal="9" />
+        <JoinPoint Advised="#58=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::get_ConnectState()" Advising="#51" Description="#54" Semantic="Getter" Ordinal="23" />
+        <JoinPoint Advised="#59=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::set_ConnectState([Nutshell.Automation]Nutshell.Automation.ConnectState)" Advising="#51" Description="#56" Semantic="Setter" Ordinal="24" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#60=P:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::DispatchState()" Id="1f7830df6868da65">
+      <Target>
+        <JoinPoint Advised="#61=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::get_DispatchState()" Advising="#51" Description="#54" Semantic="Getter" Ordinal="28" />
+        <JoinPoint Advised="#62=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::set_DispatchState([Nutshell.Automation]Nutshell.Automation.DispatchState)" Advising="#51" Description="#56" Semantic="Setter" Ordinal="29" />
       </Target>
     </Instance>
   </Class>
-  <Class Class="#1">
-    <Instance Declaration="#26=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401ca5072393">
-      <Target Target="#27=R:[Nutshell.Automation]Nutshell.Automation.Device::Load([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)@model">
-        <JoinPoint Advised="#28=M:[Nutshell.Automation]Nutshell.Automation.Device::Load([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)" Advising="#1" Description="#7" LinesAvoided="1" />
+  <Class Class="#16">
+    <Instance Declaration="#63=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401c30280655">
+      <Target Target="#64=R:[Nutshell.Automation]Nutshell.Automation.Device::Load([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)@model">
+        <JoinPoint Advised="#65=M:[Nutshell.Automation]Nutshell.Automation.Device::Load([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)" Advising="#16" Description="#29" LinesAvoided="1" />
       </Target>
-      <Target Target="#29=R:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)@model">
-        <JoinPoint Advised="#30=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)" Advising="#1" Description="#7" Ordinal="6" LinesAvoided="1" />
+      <Target Target="#66=R:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)@model">
+        <JoinPoint Advised="#67=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Load([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)" Advising="#16" Description="#29" Ordinal="26" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#31=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c43517686">
-      <Target Target="#32=R:[Nutshell.Automation]Nutshell.Automation.Device::Save([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)@model">
-        <JoinPoint Advised="#33=M:[Nutshell.Automation]Nutshell.Automation.Device::Save([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)" Advising="#1" Description="#7" Ordinal="2" LinesAvoided="1" />
+    <Instance Declaration="#68=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c7c9b5358">
+      <Target Target="#69=R:[Nutshell.Automation]Nutshell.Automation.Device::Save([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)@model">
+        <JoinPoint Advised="#70=M:[Nutshell.Automation]Nutshell.Automation.Device::Save([Nutshell.Automation]Nutshell.Automation.Models.IDeviceModel)" Advising="#16" Description="#29" Ordinal="2" LinesAvoided="1" />
       </Target>
-      <Target Target="#34=R:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)@model">
-        <JoinPoint Advised="#35=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)" Advising="#1" Description="#7" Ordinal="7" LinesAvoided="1" />
+      <Target Target="#71=R:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)@model">
+        <JoinPoint Advised="#72=M:[Nutshell.Automation]Nutshell.Automation.ConnectableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IConnectableDeviceModel)" Advising="#16" Description="#29" Ordinal="27" LinesAvoided="1" />
       </Target>
-      <Target Target="#36=R:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)@model">
-        <JoinPoint Advised="#37=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)" Advising="#1" Description="#7" Ordinal="11" LinesAvoided="1" />
+      <Target Target="#73=R:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)@model">
+        <JoinPoint Advised="#74=M:[Nutshell.Automation]Nutshell.Automation.DispatchableDevice::Save([Nutshell.Automation]Nutshell.Automation.Models.IDispatchableDeviceModel)" Advising="#16" Description="#29" Ordinal="31" LinesAvoided="1" />
       </Target>
-      <Target Target="#38=R:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Save([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)@model">
-        <JoinPoint Advised="#39=M:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Save([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)" Advising="#1" Description="#7" Ordinal="15" LinesAvoided="1" />
+      <Target Target="#75=R:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Save([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)@model">
+        <JoinPoint Advised="#76=M:[Nutshell.Automation]Nutshell.Automation.CapturableDevice{T}::Save([Nutshell.Automation]Nutshell.Automation.Models.ICapturableDeviceModel)" Advising="#16" Description="#29" Ordinal="35" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
-  <Annotation Target="#40=M:[PostSharp]PostSharp.Aspects.LocationInterceptionAspect::OnGetValue([PostSharp]PostSharp.Aspects.LocationInterceptionArgs)" Arguments="#41=2" Description="#42=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
-  <Annotation Target="#43=M:[PostSharp]PostSharp.Aspects.EventInterceptionAspect::OnAddHandler([PostSharp]PostSharp.Aspects.EventInterceptionArgs)" Arguments="#41" Description="#42" />
-  <Annotation Target="#44=M:[PostSharp]PostSharp.Aspects.EventInterceptionAspect::OnRemoveHandler([PostSharp]PostSharp.Aspects.EventInterceptionArgs)" Arguments="#41" Description="#42" />
+  <Annotation Target="#77=M:[PostSharp]PostSharp.Aspects.EventInterceptionAspect::OnAddHandler([PostSharp]PostSharp.Aspects.EventInterceptionArgs)" Arguments="#78=2" Description="#79=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
+  <Annotation Target="#80=M:[PostSharp]PostSharp.Aspects.EventInterceptionAspect::OnRemoveHandler([PostSharp]PostSharp.Aspects.EventInterceptionArgs)" Arguments="#78" Description="#79" />
+  <Annotation Target="#81=M:[PostSharp]PostSharp.Aspects.LocationInterceptionAspect::OnGetValue([PostSharp]PostSharp.Aspects.LocationInterceptionArgs)" Arguments="#78" Description="#79" />
 </Symbols>
