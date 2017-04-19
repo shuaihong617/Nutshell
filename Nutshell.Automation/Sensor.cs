@@ -2,8 +2,11 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Communication;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.Automation
 {
@@ -17,29 +20,30 @@ namespace Nutshell.Automation
                 {
                 }
 
+		[NotifyPropertyValueChanged]
                 public T? Value { get; private set; }
 
                 [MustNotEqualNull]
-                private Messager<T> _messager;
+                private IReceiver<IValueMessageModel<T>> _receiver;
 
-                public Sensor<T> SetMessager([MustNotEqualNull] Messager<T> messager)
+                public Sensor<T> SetReceiver([MustNotEqualNull] IReceiver<IValueMessageModel<T>> receiver)
                 {
-                        Trace.Assert(_messager != null);
+                        Trace.Assert(_receiver != null);
 
-                        _messager = messager;
-                        _messager.DataChanged += (obj, args) =>
+                        _receiver = receiver;
+                        _receiver.ReceiveSuccessed += (obj, args) =>
                         {
-                                Value = args.Value;
-
-                                if (!args.Value.HasValue)
-                                {
-                                        return;
-                                }
+                                Value = args.Value.Value;
                                 OnValueChanged(new ValueEventArgs<T>(args.Value.Value));
                         };
 
                         return this;
                 }
+
+	        public void Clear()
+	        {
+		        Value = null;
+	        }
 
                 #region 事件
 
