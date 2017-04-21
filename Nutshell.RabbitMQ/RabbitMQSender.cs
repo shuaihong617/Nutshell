@@ -12,7 +12,9 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Extensions;
 using Nutshell.MessageQueue;
 using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
@@ -52,12 +54,10 @@ namespace Nutshell.RabbitMQ
                 public void Load(XmlRabbitMQSenderModel model)
                 {
                         base.Load(model);
-                        Exchange.Load(model.XmlRabbitMQExchangeModel);
                 }
 
                 public void Save(XmlRabbitMQSenderModel model)
                 {
-                        Exchange.Save(model.XmlRabbitMQExchangeModel);
                         base.Save(model);
                 }
 
@@ -68,9 +68,11 @@ namespace Nutshell.RabbitMQ
                 public void Send(T messageModel)
 		{
 			var data = Serializer.Serialize(messageModel);
-			
+
+			Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + messageModel.Id);
+
 			Channel.BasicPublish(Exchange.Name,
-				"1.FirstBuggy.2",
+				messageModel.Category,
 				false,
 				null,
 				data);

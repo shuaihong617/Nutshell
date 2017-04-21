@@ -12,10 +12,10 @@
 // ***********************************************************************
 
 using Nutshell.Automation.Vision.Models;
-using Nutshell.Automation.Xml.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Drawing.Xml.Models;
 using System.Xml.Serialization;
+using Nutshell.Automation.Models.Xml;
 
 namespace NutshellAutomation.Vision.Xml.Models
 {

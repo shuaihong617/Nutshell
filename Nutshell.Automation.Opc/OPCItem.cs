@@ -7,6 +7,7 @@ using Nutshell.Extensions;
 using OPCAutomation;
 using System;
 using System.Diagnostics;
+using Nutshell.Automation.Opc.Models.Xml;
 using Nutshell.Storaging;
 
 //重命名OpcDAAuto.dll中类名，禁止删除；
@@ -15,7 +16,7 @@ using NativeOpcItem = OPCAutomation.OPCItem;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcItem : StorableObject, IStorable<IOpcItemModel>
+        public class OpcItem : StorableObject, IStorable<XmlOpcItemModel>
         {
                 public OpcItem(string id = "", string address = "",
                         TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
@@ -62,7 +63,7 @@ namespace Nutshell.Automation.Opc
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull] IOpcItemModel model)
+                public void Load([MustNotEqualNull] XmlOpcItemModel model)
                 {
                         base.Load(model);
 
@@ -75,7 +76,7 @@ namespace Nutshell.Automation.Opc
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(IOpcItemModel model)
+                public void Save(XmlOpcItemModel model)
                 {
                         throw new NotImplementedException();
                 }

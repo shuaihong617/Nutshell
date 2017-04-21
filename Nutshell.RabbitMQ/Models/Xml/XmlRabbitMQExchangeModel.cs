@@ -21,6 +21,7 @@ namespace Nutshell.RabbitMQ.Models.Xml
         /// <summary>
         ///         RabbitMQ交换机Xml数据模型
         /// </summary>
+        [XmlType]
         public class XmlRabbitMQExchangeModel : XmlDataModel
         {
                 /// <summary>

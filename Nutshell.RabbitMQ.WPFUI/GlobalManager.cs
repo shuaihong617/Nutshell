@@ -21,8 +21,6 @@ namespace Nutshell.RabbitMQ.WPFUI
                         LogProvider.Initialize();
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
-
-                        //Runtime = MicrosoftSynthesisRuntime.Instance;
                 }
 
                 #endregion 构造函数
@@ -71,11 +69,6 @@ namespace Nutshell.RabbitMQ.WPFUI
 			Receiver.SetBus(Bus);
 			Receiver.Start();
 
-                }
-
-                private void LoadBus()
-                {
-                        
                 }
 
                 public void Stop()

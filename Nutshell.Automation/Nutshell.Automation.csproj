@@ -176,12 +176,12 @@
     <Compile Include="Lamp.cs" />
     <Compile Include="Limiter.cs" />
     <Compile Include="ManufacturingInformation.cs" />
-    <Compile Include="Models\IDispatchableDeviceModel.cs" />
-    <Compile Include="Models\ICapturableDeviceModel.cs" />
-    <Compile Include="Models\IConnectableDeviceModel.cs" />
-    <Compile Include="Models\IDeviceModel.cs" />
-    <Compile Include="Models\IManufacturingInformationModel.cs" />
     <Compile Include="CapturableDevice.cs" />
+    <Compile Include="Models\Xml\XmlCapturableDeviceModel.cs" />
+    <Compile Include="Models\Xml\XmlConnectableDeviceModel.cs" />
+    <Compile Include="Models\Xml\XmlDeviceModel.cs" />
+    <Compile Include="Models\Xml\XmlDispatchableDeviceModel.cs" />
+    <Compile Include="Models\Xml\XmlManufacturingInformationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sensor.cs" />
   </ItemGroup>

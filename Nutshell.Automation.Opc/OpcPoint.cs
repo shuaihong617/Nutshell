@@ -34,8 +34,8 @@ namespace Nutshell.Automation.Opc
                 {
                         _opcItem = opcItem;
 
-                        _opcItem.ReadSuccessed += (obj, args) => { Value = ConvertFrom(args.Value, _opcItem.TypeCode); };
-                        _opcItem.ReadFailed += (obj, args) => { Value = null; };
+                        _opcItem.ReadSuccessed += (obj, args) => { SetData(ConvertFrom(args.Value, _opcItem.TypeCode)); };
+                        _opcItem.ReadFailed += (obj, args) => { SetData(null); };
                 }
 
                 private readonly OpcItem _opcItem;
@@ -48,7 +48,7 @@ namespace Nutshell.Automation.Opc
                 public void RemoteRead()
                 {
                         var result = _opcItem.RemoteRead();
-                        Value = ConvertFrom(result, _opcItem.TypeCode);
+                        SetData(ConvertFrom(result, _opcItem.TypeCode));
                 }
 
                 private T? ConvertFrom(object value, TypeCode typeCode)

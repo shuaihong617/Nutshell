@@ -13,6 +13,7 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
+using Nutshell.Automation.Models.Xml;
 using Nutshell.Components;
 using Nutshell.Storaging;
 
@@ -21,7 +22,7 @@ namespace Nutshell.Automation
 	/// <summary>
 	///         设备
 	/// </summary>
-	public abstract class Device : Component, IStorable<IDeviceModel>
+	public abstract class Device : Component, IStorable<XmlDeviceModel>
 	{
 		/// <summary>
 		///         初始化<see cref="Device" />的新实例.
@@ -37,8 +38,7 @@ namespace Nutshell.Automation
 		/// <summary>
 		///         制造信息
 		/// </summary>
-		[MustNotEqualNull]
-		public ManufacturingInformation ManufacturingInformation { get; set; }
+		public ManufacturingInformation ManufacturingInformation { get;} = new ManufacturingInformation();
 
 		#endregion 属性
 
@@ -50,16 +50,18 @@ namespace Nutshell.Automation
 		///         从数据模型加载数据
 		/// </summary>
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(IDeviceModel model)
+		public void Load(XmlDeviceModel model)
 		{
 			base.Load(model);
+
+			ManufacturingInformation.Load(model.XmlManufacturingInformationModel);
 		}
 
 		/// <summary>
 		///         保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-		public void Save(IDeviceModel model)
+		public void Save(XmlDeviceModel model)
 		{
 			base.Save(model);
 		}

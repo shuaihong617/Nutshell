@@ -16,10 +16,9 @@ using Nutshell.Components.Xml.Models;
 namespace Nutshell.RabbitMQ.Models.Xml
 {
         /// <summary>
-        ///         Xml RabbitMQ角色数据模型接口
+        ///         RabbitMQ角色Xml数据模型
         /// </summary>
         public class XmlRabbitMQActorModel:XmlWorkerModel
         {
-		public XmlRabbitMQExchangeModel XmlRabbitMQExchangeModel { get; set; }
         }
 }

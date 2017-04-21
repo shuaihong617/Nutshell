@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2014-10-16
+// 创建           : 2015-04-14
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2014-10-17
+// 日期           : 2015-04-14
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,27 +11,24 @@
 // </summary>
 // ***********************************************************************
 
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Data.Xml.Models;
-using Nutshell.Messaging.Models;
 using Nutshell.Storaging.Xml.Models;
 
-namespace Nutshell.Messaging.Xml.Models
+namespace Nutshell.Automation.Opc.Models.Xml
 {
-	/// <summary>
-	///         Xml格式的消息
-	/// </summary>
-	[XmlType]
-	public class XmlMessageModel : XmlDataModel, IMessageModel
-	{
-		/// <summary>
-		///         获取消息的类型
-		/// </summary>
-		/// <value>消息类型</value>
-		/// <remarks>RabbitMQ消息队列中作为RoutingKey使用,可为空字符串</remarks>
-		[XmlAttribute]
-		[MustNotEqualNull]
-		public string Category { get; set; }
-	}
+        /// <summary>
+        ///         OPC组Xml数据模型
+        /// </summary>
+        [XmlType]
+        public class XmlOpcGroupModel : XmlDataModel
+        {
+                [XmlAttribute]
+                [MustNotEqualNullOrEmpty]
+                public string Address { get; set; }
+
+                [XmlArray]
+                public List<XmlOpcItemModel> XmlOpcItemModels { get; set; }
+        }
 }

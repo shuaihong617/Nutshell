@@ -9,7 +9,7 @@ namespace Nutshell.IO
                 {
                         if (!File.Exists(path))
                         {
-                                throw new InvalidOperationException("文件 " + path + " 不存在");
+                                throw new InvalidOperationException($"文件{path}不存在");
                         }
                 }
         }

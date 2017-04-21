@@ -4,6 +4,7 @@ using Nutshell.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Nutshell.Automation.Opc.Models.Xml;
 using Nutshell.Storaging;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 
@@ -12,7 +13,7 @@ using NativeOpcServer = OPCAutomation.OPCServer;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcGroup : StorableObject, IStorable<IOpcGroupModel>
+        public class OpcGroup : StorableObject, IStorable<XmlOpcGroupModel>
         {
                 public OpcGroup(string id = "", string address = "", ReadOnlyCollection<OpcItem> opcItems = null)
                         : base(id)
@@ -38,30 +39,27 @@ namespace Nutshell.Automation.Opc
 
                 #endregion 属性
 
-                public void Load(IOpcGroupModel model)
+                public void Load(XmlOpcGroupModel model)
                 {
                         base.Load(model);
 
                         Address = model.Address;
-                }
 
-                public void Load(IEnumerable<IOpcItemModel> itemModels)
-                {
-                        var items = new List<OpcItem>();
-                        foreach (var itemModel in itemModels)
-                        {
-                                var item = new OpcItem();
-                                item.Load(itemModel);
-                                items.Add(item);
-                        }
-                        OpcItems = items.ToReadOnlyCollection();
-                }
+			var items = new List<OpcItem>();
+			foreach (var itemModel in model.XmlOpcItemModels)
+			{
+				var item = new OpcItem();
+				item.Load(itemModel);
+				items.Add(item);
+			}
+			OpcItems = items.ToReadOnlyCollection();
+		}
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(IOpcGroupModel model)
+                public void Save(XmlOpcGroupModel model)
                 {
                         throw new NotImplementedException();
                 }

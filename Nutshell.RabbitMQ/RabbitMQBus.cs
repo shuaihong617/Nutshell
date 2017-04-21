@@ -12,26 +12,36 @@ namespace Nutshell.RabbitMQ
 {
         public class RabbitMQBus : Bus, IStorable<XmlRabbitMQBusModel>
         {
-                [MustNotEqualNull] private ConnectionFactory _factory;
+		/// <summary>
+		/// 连接工厂
+		/// </summary>
+		private ConnectionFactory _factory;
 
                 #region 属性
 
-                [NotifyPropertyValueChanged]
                 public RabbitMQAuthorization Authorization { get; } = new RabbitMQAuthorization();
 
-                [MustNotEqualNull]
+		/// <summary>
+		/// 获取连接
+		/// </summary>
+		/// <value>连接</value>
+		/// <remarks>
+		/// 1 连接可以Dispose，所以必须可为null。
+		/// 2 连接比较消耗资源，所以多个发送和接收单元尽量共享通道。（官方文档上说的）
+		/// </remarks>
                 public IConnection Connection { get; private set; }
 
-                #endregion
+		public RabbitMQExchange Exchange { get; } = new RabbitMQExchange();
 
-                public static RabbitMQBus Load([MustNotEqualNullOrEmpty]string fileName)
+		#endregion
+
+		public static RabbitMQBus Load([MustNotEqualNullOrEmpty]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
                         var model = XmlSerializer<XmlRabbitMQBusModel>.Instance.Deserialize(bytes);
 
                         var bus = new RabbitMQBus();
                         bus.Load(model);
-
                         return bus;
                 }
 
@@ -44,6 +54,7 @@ namespace Nutshell.RabbitMQ
                         base.Load(model);
 
                         Authorization.Load(model.XmlRabbitMQAuthorizationModel);
+			Exchange.Load(model.XmlRabbitMQExchangeModel);
                 }
 
 

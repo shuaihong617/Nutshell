@@ -40,7 +40,7 @@ namespace Nutshell.Communication
 
                 public void Load(XmlBusModel model)
                 {
-                        throw new NotImplementedException();
+                        base.Load(model);
                 }
 
                 public void Save(XmlBusModel model)

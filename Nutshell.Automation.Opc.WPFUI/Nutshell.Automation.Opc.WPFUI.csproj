@@ -154,17 +154,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Automation.Opc.Xml\Nutshell.Automation.Opc.Xml.csproj">
-      <Project>{a37e5d99-11f8-4a0e-b447-208eaba376a9}</Project>
-      <Name>Nutshell.Automation.Opc.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation.Opc\Nutshell.Automation.Opc.csproj">
       <Project>{f7d1b8c5-5f18-435d-9e22-59d8960b44c3}</Project>
       <Name>Nutshell.Automation.Opc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Automation.Xml\Nutshell.Automation.Xml.csproj">
-      <Project>{de2c3f5b-04cf-46e2-ad61-1b3e451e6d73}</Project>
-      <Name>Nutshell.Automation.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
       <Project>{ff4c3544-8428-4859-b754-c07442ef562d}</Project>

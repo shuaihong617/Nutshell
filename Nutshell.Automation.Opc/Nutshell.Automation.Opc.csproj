@@ -55,11 +55,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Xml\XmlOpcGroupModel.cs" />
+    <Compile Include="Models\Xml\XmlOpcItemModel.cs" />
+    <Compile Include="Models\Xml\XmlOpcServerModel.cs" />
     <Compile Include="OpcRuntime.cs" />
     <Compile Include="InstalledOpcServer.cs" />
-    <Compile Include="Models\IOpcGroupModel.cs" />
-    <Compile Include="Models\IOpcItemModel.cs" />
-    <Compile Include="Models\IOpcServerModel.cs" />
     <Compile Include="OpcGroup.cs" />
     <Compile Include="OpcItem.cs" />
     <Compile Include="OpcPoint.cs" />
@@ -71,6 +71,10 @@
       <Project>{ff4c3544-8428-4859-b754-c07442ef562d}</Project>
       <Name>Nutshell.Automation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Components.Xml\Nutshell.Components.Xml.csproj">
+      <Project>{B58BE410-A6F0-4C0F-AD8D-884AB376A8C4}</Project>
+      <Name>Nutshell.Components.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
@@ -78,6 +82,22 @@
     <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
       <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
       <Name>Nutshell.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
+      <Project>{6713896C-F159-4999-9D47-41792DDCA5F0}</Project>
+      <Name>Nutshell.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
+      <Project>{238C3467-8AA4-4749-B00F-4528550734BF}</Project>
+      <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
+      <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
+      <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>

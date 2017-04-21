@@ -27,8 +27,7 @@ namespace Nutshell.RabbitMQ
 
 	        private EventingBasicConsumer _consumer;
 
-		[MustNotEqualNull]
-		protected RabbitMQQueue Queue { get; private set; } = new RabbitMQQueue();
+		private readonly RabbitMQQueue _queue = new RabbitMQQueue();
 
                 public static RabbitMQReceiver<T> Load([MustNotEqualNullOrEmpty]string fileName)
                 {
@@ -37,19 +36,17 @@ namespace Nutshell.RabbitMQ
 
                         var receiver = new RabbitMQReceiver<T>();
                         receiver.Load(model);
-
                         return receiver;
                 }
                 public void Load(XmlRabbitMQReceiverModel model)
 		{
 			base.Load(model);
-
-                        Exchange.Load(model.XmlRabbitMQExchangeModel);
-                        Queue.Load(model.XmlRabbitMQQueueModel);
+                        _queue.Load(model.XmlRabbitMQQueueModel);
                 }
 
 		public void Save(XmlRabbitMQReceiverModel model)
 		{
+			_queue.Save(model.XmlRabbitMQQueueModel);
 			base.Save(model);
 		}
 
@@ -70,7 +67,7 @@ namespace Nutshell.RabbitMQ
 			        return baseResult;
 		        }
 
-		        Channel.QueueDeclare(Queue.Name, Queue.IsDurable, Queue.IsExclusive, Queue.IsAutoDelete, null);
+		        Channel.QueueDeclare(_queue.Name, _queue.IsDurable, _queue.IsExclusive, _queue.IsAutoDelete, null);
 			
 			_consumer = new EventingBasicConsumer(Channel);
 			_consumer.Received += (model, ea) =>
@@ -78,11 +75,11 @@ namespace Nutshell.RabbitMQ
 				var body = ea.Body;
 				var messageModel = Serializer.Deserialize(body);
 
-				Trace.WriteLine(messageModel.Id);
+				Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + messageModel.Id);
 				
 				OnReceiveSuccessed(new ValueEventArgs<T>(messageModel));
 			};
-			Channel.BasicConsume(Queue.Name,
+			Channel.BasicConsume(_queue.Name,
 					     noAck: true,
 					     consumer: _consumer);
 

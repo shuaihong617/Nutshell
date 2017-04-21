@@ -20,6 +20,7 @@ namespace Nutshell.RabbitMQ.Models.Xml
         /// <summary>
         ///         RabbitMQ队列Xml数据模型
         /// </summary>
+        [XmlType]
         public class XmlRabbitMQQueueModel : XmlDataModel
         {
                 /// <summary>
@@ -36,7 +37,7 @@ namespace Nutshell.RabbitMQ.Models.Xml
                 /// <value>路由键</value>
                 [MustNotEqualNull]
                 [XmlAttribute]
-                public string RouterKey { get; set; }
+                public string RoutingKey { get; set; }
 
                 /// <summary>
                 ///         获取或设置是否持久化

@@ -16,7 +16,6 @@ namespace Nutshell.RabbitMQ
 		protected RabbitMQActor(string id = "")
 			: base(id)
 		{
-			Serializer = XmlSerializer<T>.Instance;
 		}
 
 		#region 字段
@@ -28,15 +27,19 @@ namespace Nutshell.RabbitMQ
 
 		#region 属性
 
+		public ISerializer<T> Serializer { get; } = XmlSerializer<T>.Instance;
+
 		[MustNotEqualNull]
 		protected RabbitMQExchange Exchange { get; private set; }
 
-		[MustNotEqualNull]
-		public ISerializer<T> Serializer { get; private set; }
-
-		
-
-		[MustNotEqualNull]
+		/// <summary>
+		/// 获取通道
+		/// </summary>
+		/// <value>通道</value>
+		/// <remarks>
+		/// 1 通道可以Dispose，所以必须可为null。
+		/// 2 多个发送和接收单元尽量不要共享通道。
+		/// </remarks>
 		protected IModel Channel { get; private set; }
 
 		#endregion
@@ -75,18 +78,15 @@ namespace Nutshell.RabbitMQ
 
 		public IActor<T> SetBus([MustNotEqualNull]Bus bus)
 		{
+			Trace.Assert(_connection == null);
+
 		        var rabbitBus = bus as RabbitMQBus;
 		        Trace.Assert(rabbitBus != null);
 		        Trace.Assert(rabbitBus.Connection != null);
 
 			_connection = rabbitBus.Connection;
+			Exchange = rabbitBus.Exchange;
 			return this;
-		}
-
-
-		public void SetExchange([MustNotEqualNull]RabbitMQExchange exchange)
-		{
-			Exchange = exchange;
 		}
 	}
 }

@@ -16,9 +16,14 @@ using Nutshell.Automation.Opc.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using Nutshell.Automation.Opc.Models.Xml;
+using Nutshell.IO.Aspects.Locations.Contracts;
+using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
+using Nutshell.Storaging.Xml;
 
 //重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
@@ -32,7 +37,7 @@ namespace Nutshell.Automation.Opc
 	/// 1. 启动时不连接物理Opc服务器
 	/// 2. 通过人工写入模拟Opc项值的变化
 	/// 3. Opc项写入请求直接完成</remarks>
-	public class OpcServer : DispatchableDevice, IStorable<IOpcServerModel>
+	public class OpcServer : DispatchableDevice, IStorable<XmlOpcServerModel>
         {
 		/// <summary>
 		/// 初始化<see cref="OpcServer"/>的新实例.
@@ -96,23 +101,44 @@ namespace Nutshell.Automation.Opc
 
 		#endregion 属性
 
+		public static OpcServer Load([MustFileExist]string fileName)
+		{
+			var bytes = XmlStorager.Instance.Load(fileName);
+			var model = XmlSerializer<XmlOpcServerModel>.Instance.Deserialize(bytes);
+
+			var opcServer = new OpcServer();
+			opcServer.Load(model);
+
+			return opcServer;
+		}
+
 		/// <summary>
 		/// 从数据模型加载数据
 		/// </summary>
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load([MustNotEqualNull] IOpcServerModel model)
+		public void Load([MustNotEqualNull] XmlOpcServerModel model)
                 {
                         base.Load(model);
 
                         Address = model.Address;
-                }
+
+			var groups = new List<OpcGroup>(model.XmlOpcGroupModels.Count);
+			foreach (var groupModel in model.XmlOpcGroupModels)
+			{
+				var group = new OpcGroup();
+				group.Load(groupModel);
+
+				groups.Add(group);
+			}
+			OpcGroups = groups.AsReadOnly();
+		}
 
 		/// <summary>
 		/// 保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
 		/// <exception cref="System.NotImplementedException"></exception>
-		public void Save(IOpcServerModel model)
+		public void Save(XmlOpcServerModel model)
                 {
                         throw new NotImplementedException();
                 }

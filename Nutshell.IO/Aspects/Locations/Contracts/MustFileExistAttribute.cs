@@ -19,7 +19,7 @@ namespace Nutshell.IO.Aspects.Locations.Contracts
                         switch (locationKind)
                         {
                                 case LocationKind.Parameter:
-                                        return new ArgumentException("参数" + name + "当前值" + value + "所指定的文件不存在.");
+                                        return new ArgumentException($"参数{name}所指定的文件{value}不存在.");
 
                                 default:
                                         return null;

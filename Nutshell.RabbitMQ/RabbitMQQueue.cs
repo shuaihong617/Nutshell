@@ -37,7 +37,7 @@ namespace Nutshell.RabbitMQ
 		/// </summary>
 		/// <value>路由键</value>
 		[MustNotEqualNull]
-		public string RouterKey { get; set; }
+		public string RoutingKey { get; set; }
 
 		/// <summary>
 		///         获取或设置是否持久化
@@ -66,7 +66,7 @@ namespace Nutshell.RabbitMQ
 			base.Load(model);
 
 			Name = model.Name;
-			RouterKey = model.RouterKey;
+			RoutingKey = model.RoutingKey;
 			IsDurable = model.IsDurable;
 			IsExclusive = model.IsExclusive;
 			IsAutoDelete = model.IsAutoDelete;

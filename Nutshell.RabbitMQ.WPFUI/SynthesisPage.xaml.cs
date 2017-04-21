@@ -25,7 +25,7 @@ namespace Nutshell.RabbitMQ.WPFUI
 	                var messageModel = new XmlValueMessageModel<float>()
 	                {
 		                Id = Guid.NewGuid().ToString(),
-		                Category = "1.FirstBuggy.a",
+		                Category = "S1200Write",
 		                Value = 3000f
 	                };
 			_gm.Sender.Send(messageModel);

@@ -9,7 +9,7 @@ namespace Nutshell.IO
                 {
                         if (!Directory.Exists(path))
                         {
-                                throw new InvalidOperationException("目录 " + path + " 不存在");
+                                throw new InvalidOperationException($"目录{path}不存在");
                         }
                 }
         }

@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2015-01-05
+// 创建           : 2015-04-14
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2015-01-05
+// 日期           : 2015-04-14
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -12,20 +12,14 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Communication.Models;
 
-namespace Nutshell.RabbitMQ.Models.Xml
+namespace Nutshell.Automation.Models.Xml
 {
-	/// <summary>
-	///         Xml RabbitMQ总线数据模型接口
-	/// </summary>
-	[XmlType]
-	public class XmlRabbitMQBusModel : XmlBusModel
-	{
-                [XmlElement]
-		public XmlRabbitMQAuthorizationModel XmlRabbitMQAuthorizationModel { get; set; }
-
-		[XmlElement]
-		public XmlRabbitMQExchangeModel XmlRabbitMQExchangeModel { get; set; }
-	}
+        /// <summary>
+        ///         独立设备数据模型
+        /// </summary>
+        [XmlType]
+        public class XmlConnectableDeviceModel : XmlDeviceModel
+        {
+        }
 }

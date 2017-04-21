@@ -15,6 +15,7 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Data;
 using System;
+using Nutshell.Automation.Models.Xml;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation
@@ -22,7 +23,7 @@ namespace Nutshell.Automation
         /// <summary>
         /// 制造信息
         /// </summary>
-        public class ManufacturingInformation : StorableObject, IStorable<IManufacturingInformationModel>
+        public class ManufacturingInformation : StorableObject, IStorable<XmlManufacturingInformationModel>
         {
                 /// <summary>
                 /// 制造商
@@ -34,13 +35,15 @@ namespace Nutshell.Automation
                 /// </summary>
                 public string Model { get; private set; }
 
-                public void Load([MustNotEqualNull]IManufacturingInformationModel model)
+                public void Load([MustNotEqualNull]XmlManufacturingInformationModel model)
                 {
+			base.Load(model);
+
                         Manufacturer = model.Manufacturer;
                         Model = model.Model;
                 }
 
-                public void Save([MustNotEqualNull]IManufacturingInformationModel model)
+                public void Save([MustNotEqualNull]XmlManufacturingInformationModel model)
                 {
                         throw new NotImplementedException();
                 }

@@ -63,10 +63,6 @@
       <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
       <Name>Nutshell.Automation.Vision</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Automation.Xml\Nutshell.Automation.Xml.csproj">
-      <Project>{DE2C3F5B-04CF-46E2-AD61-1B3E451E6D73}</Project>
-      <Name>Nutshell.Automation.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
       <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>
       <Name>Nutshell.Automation</Name>

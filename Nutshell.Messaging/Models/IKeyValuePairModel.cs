@@ -23,6 +23,6 @@ namespace Nutshell.Messaging.Models
         {
                 TK Key { get; set; }
 
-                TV Value { get; set; }
+                TV Value { get; set; }             
         }
 }
