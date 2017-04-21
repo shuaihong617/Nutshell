@@ -53,20 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\XmlSingleValueMessage.cs" />
-    <Compile Include="Models\XmlMultiStringKeyStringValueMessageExtension.cs" />
-    <Compile Include="Models\KeyValueMessageModel.cs" />
     <Compile Include="Models\XmlKeyValuePairModel.cs" />
     <Compile Include="Models\XmlLogMessageModel.cs" />
     <Compile Include="Models\XmlMessageModel.cs" />
-    <Compile Include="Models\XmlMultiKeyValueMessageModel.cs" />
-    <Compile Include="Models\XmlMultiSingleMessageModel.cs" />
-    <Compile Include="Models\XmlMultiStringKeySingleValueMessageModel.cs" />
-    <Compile Include="Models\XmlMultiStringKeyStringValueMessageModel.cs" />
-    <Compile Include="Models\XmlMultiStringMessageModel.cs" />
+    <Compile Include="Models\XmlMultiStringKeyValuePairsMessageModel.cs" />
+    <Compile Include="Models\XmlMultiKeyValuePairsMessageModel.cs" />
     <Compile Include="Models\XmlMultiValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\XmlStringKeyStringValueMessageModel.cs" />
     <Compile Include="Models\XmlValueMessageModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,13 +10,13 @@ namespace Nutshell.Automation.Opc.Devices
                 protected OpcDevice(string id, [MustNotEqualNull] OpcItem opcItem)
                         : base(id)
                 {
-                        OpcPoint = new OpcNullable<T>("Opc点", opcItem);
-                        OpcPoint.Parent = this;
+                        //OpcPoint = new OpcNullable<T>("Opc点", opcItem);
+                        //OpcPoint.Parent = this;
                 }
 
                 /// <summary>
                 ///         数据
                 /// </summary>
-                public OpcNullable<T> OpcPoint { get; private set; }
+                //public OpcNullable<T> OpcPoint { get; private set; }
         }
 }

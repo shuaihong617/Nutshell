@@ -7,13 +7,16 @@ using Nutshell.Extensions;
 using Nutshell.MessageQueue;
 using Nutshell.Messaging.Models;
 using Nutshell.RabbitMQ.Models;
+using Nutshell.RabbitMQ.Models.Xml;
+using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
+using Nutshell.Storaging.Xml;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 namespace Nutshell.RabbitMQ
 {
-        public class RabbitMQReceiver<T>:RabbitMQActor<T>,IMessageQueueReceiver<T>,IStorable<IRabbitMQReceiverModel> where T : IMessageModel
+        public class RabbitMQReceiver<T>:RabbitMQActor<T>,IMessageQueueReceiver<T>,IStorable<XmlRabbitMQReceiverModel> where T : IMessageModel
 	{
 
                 public RabbitMQReceiver(string id = "") 
@@ -25,14 +28,27 @@ namespace Nutshell.RabbitMQ
 	        private EventingBasicConsumer _consumer;
 
 		[MustNotEqualNull]
-		protected RabbitMQQueue Queue { get; private set; }
+		protected RabbitMQQueue Queue { get; private set; } = new RabbitMQQueue();
 
-		public void Load(IRabbitMQReceiverModel model)
+                public static RabbitMQReceiver<T> Load([MustNotEqualNullOrEmpty]string fileName)
+                {
+                        var bytes = XmlStorager.Instance.Load(fileName);
+                        var model = XmlSerializer<XmlRabbitMQReceiverModel>.Instance.Deserialize(bytes);
+
+                        var receiver = new RabbitMQReceiver<T>();
+                        receiver.Load(model);
+
+                        return receiver;
+                }
+                public void Load(XmlRabbitMQReceiverModel model)
 		{
 			base.Load(model);
-		}
 
-		public void Save(IRabbitMQReceiverModel model)
+                        Exchange.Load(model.XmlRabbitMQExchangeModel);
+                        Queue.Load(model.XmlRabbitMQQueueModel);
+                }
+
+		public void Save(XmlRabbitMQReceiverModel model)
 		{
 			base.Save(model);
 		}
@@ -74,10 +90,7 @@ namespace Nutshell.RabbitMQ
 	        }
 
 
-		public void Attach([MustNotEqualNull]RabbitMQQueue queue)
-		{
-			Queue = queue;
-		}
+		
 
 		public event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
 

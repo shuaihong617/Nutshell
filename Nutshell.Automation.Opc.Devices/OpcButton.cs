@@ -11,17 +11,17 @@ namespace Nutshell.Automation.Opc.Devices
                 public OpcButton(string id, OpcItem opcItem)
                         : base(id, opcItem)
                 {
-                        OpcPoint.ValueChanged += Current_ValueChanged;
+                        //OpcPoint.ValueChanged += Current_ValueChanged;
                 }
 
                 public void Press()
                 {
-                        OpcPoint.RemoteWrite(true);
+                        //OpcPoint.RemoteWrite(true);
                 }
 
                 public void Raise()
                 {
-                        OpcPoint.RemoteWrite(false);
+                        //OpcPoint.RemoteWrite(false);
                 }
 
                 private void Current_ValueChanged(object sender, ValueEventArgs<bool?> e)

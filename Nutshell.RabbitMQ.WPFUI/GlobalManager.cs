@@ -4,8 +4,9 @@ using Nutshell.Data.Xml;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
 using Nutshell.Messaging.Xml.Models;
-using Nutshell.RabbitMQ.Xml;
+using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
+using Nutshell.Storaging.Xml;
 
 namespace Nutshell.RabbitMQ.WPFUI
 {
@@ -47,9 +48,9 @@ namespace Nutshell.RabbitMQ.WPFUI
 
 	        public RabbitMQBus Bus { get; private set; }
 
-		public RabbitMQSender<XmlSingleValueMessageModel> Sender { get;private set; }
+		public RabbitMQSender<XmlValueMessageModel<float>> Sender { get;private set; }
 
-	        public RabbitMQReceiver<XmlSingleValueMessageModel> Receiver { get; private set; }
+	        public RabbitMQReceiver<XmlValueMessageModel<float>> Receiver { get; private set; }
                 
                 public void LoadApplication()
                 {
@@ -59,20 +60,22 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 public void Start()
                 {
-			Bus = new RabbitMQBus();
-			XmlRabbitMQBusStorager.Instance.Load(Bus, ConfigDirectory + "Bus.config");
+                        Bus = RabbitMQBus.Load(ConfigDirectory + "Bus.config");
 	                Bus.Start();
 
-			Sender = new RabbitMQSender<XmlSingleValueMessageModel>("Sender");
-			XmlRabbitMQSenderStorager<XmlSingleValueMessageModel>.Instance.Load(Sender, ConfigDirectory + "Sender.config");
-			Sender.SetExchange(Bus);
+			Sender = RabbitMQSender<XmlValueMessageModel<float>>.Load(ConfigDirectory + "Sender.config");
+			Sender.SetBus(Bus);
 			Sender.Start();
 
-			Receiver = new RabbitMQReceiver<XmlSingleValueMessageModel>("Receiver");
-			XmlRabbitMQReceiverStorager<XmlSingleValueMessageModel>.Instance.Load(Receiver, ConfigDirectory + "Receiver.config");
-			Receiver.Attach(Bus);
+			Receiver = RabbitMQReceiver<XmlValueMessageModel<float>>.Load(ConfigDirectory + "Receiver.config");
+			Receiver.SetBus(Bus);
 			Receiver.Start();
 
+                }
+
+                private void LoadBus()
+                {
+                        
                 }
 
                 public void Stop()

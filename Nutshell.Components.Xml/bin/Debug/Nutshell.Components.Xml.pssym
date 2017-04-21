@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="7" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustGreaterThanAttribute">
-    <Instance Declaration="#2=P:[Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlLooperModel::Interval()" Id="383018847487f794">
+    <Instance Declaration="#2=P:[Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlLooperModel::Interval()" Id="3830188465306bbd">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Components.Xml]Nutshell.Components.Xml.Models.XmlLooperModel::set_Interval(System.Int32)" Advising="#1" Description="#4=Validates the assigned value" Ordinal="0" LinesAvoided="1" />
       </Target>

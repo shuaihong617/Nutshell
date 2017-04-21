@@ -41,12 +41,6 @@ namespace Nutshell.RabbitMQ
 
 		#endregion
 
-
-
-
-
-
-
 		public void Load([MustNotEqualNull]IActorModel model)
 		{
 			base.Load(model);

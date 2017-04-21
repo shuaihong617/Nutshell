@@ -14,14 +14,15 @@
 
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.Messaging.Xml.Models
 {
         /// <summary>
-        ///         Xml多值消息数据模型
+        ///         多值消息Xml数据模型
         /// </summary>
         [XmlType]
-        public class XmlMultiValueMessageModel<T> : XmlMessageModel
+        public class XmlMultiValueMessageModel<T> : XmlMessageModel,IMultiValueMessageModel<T>
         {
                 public XmlMultiValueMessageModel()
                         :this(null)

@@ -53,12 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\IBoolValueMessageModel.cs" />
+    <Compile Include="Models\IKeyValuePairModel.cs" />
     <Compile Include="Models\IMessageModel.cs" />
-    <Compile Include="Models\ISingleValueMessageModel.cs" />
-    <Compile Include="Models\IStringValueMessageModel.cs" />
     <Compile Include="Models\IValueMessageModel.cs" />
     <Compile Include="Models\ILogMessageModel.cs" />
+    <Compile Include="Models\IMultiValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

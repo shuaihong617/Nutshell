@@ -52,15 +52,19 @@
     <Compile Include="Models\IActorModel.cs" />
     <Compile Include="Models\ISenderModel.cs" />
     <Compile Include="Models\IReceiverModel.cs" />
-    <Compile Include="Models\IBusModel.cs" />
     <Compile Include="Bus.cs" />
     <Compile Include="IReceiver.cs" />
     <Compile Include="ISender.cs" />
     <Compile Include="IActor.cs" />
     <Compile Include="EthernetPortExtensions.cs" />
+    <Compile Include="Models\Xml\XmlBusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Components.Xml\Nutshell.Components.Xml.csproj">
+      <Project>{B58BE410-A6F0-4C0F-AD8D-884AB376A8C4}</Project>
+      <Name>Nutshell.Components.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
@@ -76,6 +80,10 @@
     <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
       <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
       <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>

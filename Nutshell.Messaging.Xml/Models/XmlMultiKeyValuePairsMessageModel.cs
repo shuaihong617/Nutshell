@@ -12,32 +12,21 @@
 // ***********************************************************************
 
 
+using System.Collections.Generic;
 using System.Xml.Serialization;
 using Nutshell.Messaging.Models;
 
 namespace Nutshell.Messaging.Xml.Models
 {
         /// <summary>
-        ///         键-值数据模型
+        ///         自动装包开始消息数据模型
         /// </summary>
         [XmlType]
-        public class XmlKeyValuePairModel<TK, TV>:IKeyValuePairModel<TK,TV>
+        public class XmlMultiKeyValuePairsMessageModel<TK,TV> : XmlMultiValueMessageModel<XmlKeyValuePairModel<TK,TV>>
         {
-                public XmlKeyValuePairModel()
+                public void Add(TK k, TV v)
                 {
-                        
+                        Add(new XmlKeyValuePairModel<TK, TV>(k, v));
                 }
-
-                public XmlKeyValuePairModel(TK k, TV v)
-                {
-                        Key = k;
-                        Value = v;
-                }
-
-                [XmlAttribute]
-                public TK Key { get; set; }
-
-                [XmlAttribute]
-                public TV Value { get; set; }
         }
 }

@@ -15,6 +15,7 @@ using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
 using Nutshell.RabbitMQ.Models;
+using Nutshell.RabbitMQ.Models.Xml;
 using Nutshell.RabbitMQ.SDK;
 using Nutshell.Storaging;
 
@@ -23,7 +24,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ交换机
 	/// </summary>
-	public class RabbitMQExchange : StorableObject, IStorable<IRabbitMQExchangeModel>
+	public class RabbitMQExchange : StorableObject, IStorable<XmlRabbitMQExchangeModel>
 	{
 		/// <summary>
 		///         获取或设置名称
@@ -54,7 +55,7 @@ namespace Nutshell.RabbitMQ
 		///         从数据模型加载数据
 		/// </summary>
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(IRabbitMQExchangeModel model)
+		public void Load(XmlRabbitMQExchangeModel model)
 		{
 			base.Load(model);
 
@@ -68,7 +69,7 @@ namespace Nutshell.RabbitMQ
 		///         保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-		public void Save(IRabbitMQExchangeModel model)
+		public void Save(XmlRabbitMQExchangeModel model)
 		{
 			throw new NotImplementedException();
 		}

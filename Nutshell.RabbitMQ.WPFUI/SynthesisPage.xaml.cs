@@ -22,7 +22,7 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 private void SendButton_Click(object sender, RoutedEventArgs e)
                 {
-	                var messageModel = new XmlSingleValueMessageModel()
+	                var messageModel = new XmlValueMessageModel<float>()
 	                {
 		                Id = Guid.NewGuid().ToString(),
 		                Category = "1.FirstBuggy.a",

@@ -164,6 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Button.cs" />
+    <Compile Include="LimitMode.cs" />
     <Compile Include="Cylinder.cs" />
     <Compile Include="CylinderState.cs" />
     <Compile Include="Device.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Decoder.cs" />
     <Compile Include="DispatchableDevice.cs" />
     <Compile Include="Lamp.cs" />
+    <Compile Include="Limiter.cs" />
     <Compile Include="ManufacturingInformation.cs" />
     <Compile Include="Models\IDispatchableDeviceModel.cs" />
     <Compile Include="Models\ICapturableDeviceModel.cs" />

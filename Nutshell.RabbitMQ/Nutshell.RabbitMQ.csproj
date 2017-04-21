@@ -59,17 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Xml\XmlRabbitMQActorModel.cs" />
+    <Compile Include="Models\Xml\XmlRabbitMQAuthorizationModel.cs" />
+    <Compile Include="Models\Xml\XmlRabbitMQExchangeModel.cs" />
+    <Compile Include="Models\Xml\XmlRabbitMQQueueModel.cs" />
+    <Compile Include="Models\Xml\XmlRabbitMQReceiverModel.cs" />
+    <Compile Include="Models\Xml\XmlRabbitMQSenderModel.cs" />
     <Compile Include="RabbitMQExchange.cs" />
     <Compile Include="RabbitMQQueue.cs" />
     <Compile Include="SDK\ExchangeType.cs" />
     <Compile Include="RabbitMQAuthorization.cs" />
-    <Compile Include="Models\IRabbitMQAuthorizationModel.cs" />
-    <Compile Include="Models\IRabbitMQQueueModel.cs" />
-    <Compile Include="Models\IRabbitMQExchangeModel.cs" />
-    <Compile Include="Models\IRabbitMQBusModel.cs" />
-    <Compile Include="Models\IRabbitMQActorModel.cs" />
-    <Compile Include="Models\IRabbitMQReceiverModel.cs" />
-    <Compile Include="Models\IRabbitMQSenderModel.cs" />
+    <Compile Include="Models\Xml\XmlRabbitMQBusModel.cs" />
     <Compile Include="RabbitMQActor.cs" />
     <Compile Include="RabbitMQBus.cs" />
     <Compile Include="RabbitMQSender.cs" />
@@ -83,6 +83,10 @@
     <ProjectReference Include="..\Nutshell.Communication\Nutshell.Communication.csproj">
       <Project>{4b22f550-25b2-4f7e-a8a7-8181a3f10494}</Project>
       <Name>Nutshell.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Components.Xml\Nutshell.Components.Xml.csproj">
+      <Project>{B58BE410-A6F0-4C0F-AD8D-884AB376A8C4}</Project>
+      <Name>Nutshell.Components.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
@@ -107,6 +111,10 @@
     <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
       <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
       <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
