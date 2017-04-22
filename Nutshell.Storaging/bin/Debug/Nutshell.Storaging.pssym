@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="12" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#2=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.DataModel)@model" Id="1753401cd572c221">
+    <Instance Declaration="#2=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.DataModel)@model" Id="1753401c8a0662cf">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Load([Nutshell.Storaging]Nutshell.Storaging.Models.DataModel)" Advising="#1" Description="#4=Validates the value passed to parameter 'model'" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#5=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.DataModel)@model" Id="1753401c42beee3f">
+    <Instance Declaration="#5=R:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.DataModel)@model" Id="1753401cc850a6c5">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell.Storaging]Nutshell.Storaging.StorableObject::Save([Nutshell.Storaging]Nutshell.Storaging.Models.DataModel)" Advising="#1" Description="#4" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#7=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#8=P:[Nutshell.Storaging]Nutshell.Storaging.Models.DataModel::Id()" Id="1753401cd74a710a">
+    <Instance Declaration="#8=P:[Nutshell.Storaging]Nutshell.Storaging.Models.DataModel::Id()" Id="1753401c437e18e6">
       <Target>
         <JoinPoint Advised="#9=M:[Nutshell.Storaging]Nutshell.Storaging.Models.DataModel::set_Id(System.String)" Advising="#7" Description="#10=Validates the assigned value" Ordinal="2" LinesAvoided="1" />
       </Target>
