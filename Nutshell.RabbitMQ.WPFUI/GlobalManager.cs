@@ -42,9 +42,9 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 public RabbitMQBus Bus { get; private set; }
 
-                public RabbitMQSender<ValueMessageModel<float>> Sender { get; private set; }
+                public RabbitMQSender<MultiStringKeyValuePairsMessageModel> Sender { get; private set; }
 
-                public RabbitMQReceiver<ValueMessageModel<float>> Receiver { get; private set; }
+                public RabbitMQReceiver<MultiStringKeyValuePairsMessageModel> Receiver { get; private set; }
 
                 public void LoadApplication()
                 {
@@ -56,11 +56,11 @@ namespace Nutshell.RabbitMQ.WPFUI
                         Bus = RabbitMQBus.Load(ConfigDirectory + "Bus.config");
                         Bus.Start();
 
-                        Sender = RabbitMQSender<ValueMessageModel<float>>.Load(ConfigDirectory + "Sender.config");
+                        Sender = RabbitMQSender<MultiStringKeyValuePairsMessageModel>.Load(ConfigDirectory + "Sender.config");
                         Sender.SetBus(Bus);
                         Sender.Start();
 
-                        Receiver = RabbitMQReceiver<ValueMessageModel<float>>.Load(ConfigDirectory + "Receiver.config");
+                        Receiver = RabbitMQReceiver<MultiStringKeyValuePairsMessageModel>.Load(ConfigDirectory + "Receiver.config");
                         Receiver.SetBus(Bus);
                         Receiver.Start();
                 }
