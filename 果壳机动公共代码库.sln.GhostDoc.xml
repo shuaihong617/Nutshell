@@ -1,0 +1,95 @@
+<GhostDoc>
+<IgnoreFilePatterns>
+  <IgnoreFilePattern>*.min.js</IgnoreFilePattern>
+  <IgnoreFilePattern>jquery*.js</IgnoreFilePattern>
+</IgnoreFilePatterns>
+  <SpellChecker>
+    <IncludeExtensions>
+    </IncludeExtensions>
+    <IgnoreExtensions>
+    </IgnoreExtensions>
+    <IgnoreFiles>
+    </IgnoreFiles>
+  </SpellChecker>
+<HelpConfigurations selected="HelpFile">
+  <HelpConfiguration name="HelpFile">
+    <OutputPath>.\Help</OutputPath>
+    <CleanupOutputPath>true</CleanupOutputPath>
+    <ImageFolderPath />
+    <HtmlFormats>
+      <HtmlHelp>true</HtmlHelp>
+      <MSHelpViewer>false</MSHelpViewer>
+      <MSHelp2>false</MSHelp2>
+      <Website>true</Website>
+    </HtmlFormats>
+    <IncludeScopes>
+      <Public>true</Public>
+      <Internal>true</Internal>
+      <Protected>false</Protected>
+      <Private>false</Private>
+      <Inherited>true</Inherited>
+      <InheritedFromReferences>true</InheritedFromReferences>
+      <EnableTags>false</EnableTags>
+      <TagList />
+    </IncludeScopes>
+    <SyntaxLanguages>
+      <CSharp>true</CSharp>
+      <VisualBasic>true</VisualBasic>
+      <CPlusPlus>true</CPlusPlus>
+    </SyntaxLanguages>
+    <ResolveCrefLinks>true</ResolveCrefLinks>
+    <HeaderText />
+    <FooterText />
+    <SelectedProjects>
+      <SelectedProject>Nutshell</SelectedProject>
+      <SelectedProject>Nutshell.Data</SelectedProject>
+      <SelectedProject>Nutshell.Storaging</SelectedProject>
+      <SelectedProject>Nutshell.Components</SelectedProject>
+      <SelectedProject>Nutshell.Messaging</SelectedProject>
+      <SelectedProject>Nutshell.Serializing</SelectedProject>
+      <SelectedProject>Nutshell.Communication</SelectedProject>
+      <SelectedProject>Nutshell.Serializing.Xml</SelectedProject>
+      <SelectedProject>Nutshell.MessageQueue</SelectedProject>
+      <SelectedProject>Nutshell.MessageQueue.RabbitMQ</SelectedProject>
+      <SelectedProject>Nutshell.Storaging.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Data.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Messaging.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Distributing</SelectedProject>
+      <SelectedProject>Nutshell.Components.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Automation</SelectedProject>
+      <SelectedProject>Nutshell.Drawing.Shapes</SelectedProject>
+      <SelectedProject>Nutshell.Drawing.Imaging</SelectedProject>
+      <SelectedProject>Nutshell.Drawing</SelectedProject>
+      <SelectedProject>Nutshell.Automation.Vision</SelectedProject>
+      <SelectedProject>Nutshell.Speech</SelectedProject>
+      <SelectedProject>Nutshell.Drawing.Imaging.Tests</SelectedProject>
+      <SelectedProject>Nutshell.Hikvision.MachineVision</SelectedProject>
+      <SelectedProject>Nutshell.Direct2D</SelectedProject>
+      <SelectedProject>Nutshell.Direct2D.WinForm</SelectedProject>
+      <SelectedProject>Nutshell.Direct2D.WinForm.Vision</SelectedProject>
+      <SelectedProject>Nutshell.Presentation.MahApps.Metro</SelectedProject>
+      <SelectedProject>Nutshell.Tests</SelectedProject>
+      <SelectedProject>Nutshell.Authoritys</SelectedProject>
+      <SelectedProject>Nutshell.Windows</SelectedProject>
+      <SelectedProject>Nutshell.Organizations</SelectedProject>
+      <SelectedProject>Nutshell.IO</SelectedProject>
+      <SelectedProject>Nutshell.Management</SelectedProject>
+      <SelectedProject>Nutshell.Diagnostics</SelectedProject>
+      <SelectedProject>Nutshell.Mathematics</SelectedProject>
+      <SelectedProject>Nutshell.Serializing.Protobuf</SelectedProject>
+      <SelectedProject>Nutshell.Storaging.MongoDB</SelectedProject>
+      <SelectedProject>Nutshell.Storaging.Sqlite</SelectedProject>
+      <SelectedProject>Nutshell.Automation.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Drawing.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Automation.Vision.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Data.Sql</SelectedProject>
+      <SelectedProject>Nutshell.Drawing.Shapes.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Hikvision.MachineVision.Xml</SelectedProject>
+      <SelectedProject>Nutshell.Presentation</SelectedProject>
+    </SelectedProjects>
+  </HelpConfiguration>
+</HelpConfigurations>
+<GeneralProperties>
+  <SearchInheritedCommentsOnlyWithinProject>False</SearchInheritedCommentsOnlyWithinProject>
+</GeneralProperties>
+</GhostDoc>
