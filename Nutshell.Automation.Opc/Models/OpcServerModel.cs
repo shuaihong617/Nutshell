@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Models.Xml;
+using Nutshell.Automation.Models;
 
 namespace Nutshell.Automation.Opc.Models
 {

@@ -10,13 +10,8 @@
 // <summary>
 // </summary>
 // ***********************************************************************
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Nutshell.Automation
+namespace Nutshell.Components
 {
         /// <summary>
         /// 限位

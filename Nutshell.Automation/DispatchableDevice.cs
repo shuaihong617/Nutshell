@@ -17,7 +17,6 @@ using Nutshell.Automation.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
-using Nutshell.Automation.Models.Xml;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation

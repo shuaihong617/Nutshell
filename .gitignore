@@ -4,6 +4,10 @@ obj
 #忽略编译输出目录
 bin
 
+#不忽略编译输出目录下的配置文件目录
+!*.config
+!*.config
+
 #忽略测试结果目录
 TestResults
 

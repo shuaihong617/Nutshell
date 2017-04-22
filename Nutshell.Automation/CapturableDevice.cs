@@ -19,7 +19,6 @@ using Nutshell.Extensions;
 using Nutshell.Threading;
 using System;
 using System.ComponentModel;
-using Nutshell.Automation.Models.Xml;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation

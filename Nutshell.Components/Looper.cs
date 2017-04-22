@@ -15,7 +15,6 @@ using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
-using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
 using System.ComponentModel;

@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2015-04-14
+// 创建           : 2014-10-24
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2015-04-14
+// 日期           : 2014-10-24
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -11,15 +11,19 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
-
-namespace Nutshell.Automation.Models.Xml
+namespace Nutshell.Components
 {
         /// <summary>
-        ///         独立设备数据模型
+        ///         限位模式枚举
         /// </summary>
-        [XmlType]
-        public class DispatchableDeviceModel : ConnectableDeviceModel
+        public enum LimitMode
         {
+                上限 = 0,
+
+                下限 = 1,
+
+                居中 = 2,
+
+                远离
         }
 }

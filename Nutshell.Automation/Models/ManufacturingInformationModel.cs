@@ -1,9 +1,9 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2015-04-14
+// 创建           : 2016-07-17
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2015-04-14
+// 日期           : 2016-07-31
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
@@ -12,20 +12,26 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Components.Models;
+using Nutshell.Storaging.Models;
 
-namespace Nutshell.Automation.Models.Xml
+namespace Nutshell.Automation.Models
 {
         /// <summary>
-        ///         独立设备数据模型
+        ///         设备制造信息结构体
         /// </summary>
         [XmlType]
-        public class CapturableDeviceModel : DispatchableDeviceModel
+        public class ManufacturingInformationModel : DataModel
         {
                 /// <summary>
-                ///         采集循环
+                ///         制造商
                 /// </summary>
-                [XmlElement]
-                public LooperModel CaptureLooperModel { get; set; }
+                [XmlAttribute]
+                public string Manufacturer { get; set; }
+
+                /// <summary>
+                ///         型号
+                /// </summary>
+                [XmlAttribute]
+                public string Model { get; set; }
         }
 }

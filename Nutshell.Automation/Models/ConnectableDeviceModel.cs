@@ -13,7 +13,7 @@
 
 using System.Xml.Serialization;
 
-namespace Nutshell.Automation.Models.Xml
+namespace Nutshell.Automation.Models
 {
         /// <summary>
         ///         独立设备数据模型

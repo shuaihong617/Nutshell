@@ -13,7 +13,6 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
-using Nutshell.Automation.Models.Xml;
 using Nutshell.Components;
 using Nutshell.Storaging;
 

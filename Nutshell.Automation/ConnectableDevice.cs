@@ -18,7 +18,6 @@ using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
 using System.ComponentModel;
-using Nutshell.Automation.Models.Xml;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation

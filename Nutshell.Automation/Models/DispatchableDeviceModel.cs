@@ -12,20 +12,14 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Components.Models;
 
-namespace Nutshell.Automation.Models.Xml
+namespace Nutshell.Automation.Models
 {
         /// <summary>
         ///         独立设备数据模型
         /// </summary>
         [XmlType]
-        public class DeviceModel : ComponentModel
+        public class DispatchableDeviceModel : ConnectableDeviceModel
         {
-                /// <summary>
-                ///         制造信息
-                /// </summary>
-                [XmlElement]
-                public ManufacturingInformationModel ManufacturingInformationModel { get; set; }
         }
 }

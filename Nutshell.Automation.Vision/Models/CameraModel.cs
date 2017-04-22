@@ -12,7 +12,7 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Automation.Models.Xml;
+using Nutshell.Automation.Models;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Drawing.Models;
 
