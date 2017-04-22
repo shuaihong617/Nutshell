@@ -1,10 +1,8 @@
-﻿using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Data.Xml;
-using Nutshell.Hikvision.MachineVision.Xml;
+﻿using System.Windows.Forms;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using System.Windows.Forms;
-using Application = Nutshell.Data.Application;
+using Application = Nutshell.Components.Application;
 
 namespace Nutshell.Hikvision.MachineVision.WPFUI
 {
@@ -63,8 +61,7 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = new Application();
-                        XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
+                        Application = Application.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()
@@ -73,7 +70,7 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                         Runtime.Parent = Application;
                         Runtime.Start();
 
-                        Camera = XmlMachineVisionCameraStorager.Instance.Load(ConfigDirectory + "Camera.config");
+                        Camera = MachineVisionCamera.Load(ConfigDirectory + "Camera.config");
                         Camera.Parent = Application;
 
                         Camera.StartConnect();

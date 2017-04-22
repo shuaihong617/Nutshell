@@ -2,7 +2,7 @@
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Communication;
-using Nutshell.RabbitMQ.Models.Xml;
+using Nutshell.RabbitMQ.Models;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
 using Nutshell.Storaging.Xml;
@@ -10,7 +10,7 @@ using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-        public class RabbitMQBus : Bus, IStorable<XmlRabbitMQBusModel>
+        public class RabbitMQBus : Bus, IStorable<RabbitMQBusModel>
         {
 		/// <summary>
 		/// 连接工厂
@@ -38,7 +38,7 @@ namespace Nutshell.RabbitMQ
 		public static RabbitMQBus Load([MustNotEqualNullOrEmpty]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<XmlRabbitMQBusModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<RabbitMQBusModel>.Instance.Deserialize(bytes);
 
                         var bus = new RabbitMQBus();
                         bus.Load(model);
@@ -49,12 +49,12 @@ namespace Nutshell.RabbitMQ
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(XmlRabbitMQBusModel model)
+                public void Load(RabbitMQBusModel model)
                 {
                         base.Load(model);
 
-                        Authorization.Load(model.XmlRabbitMQAuthorizationModel);
-			Exchange.Load(model.XmlRabbitMQExchangeModel);
+                        Authorization.Load(model.RabbitMQAuthorizationModel);
+			Exchange.Load(model.RabbitMQExchangeModel);
                 }
 
 
@@ -62,7 +62,7 @@ namespace Nutshell.RabbitMQ
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-                public void Save(XmlRabbitMQBusModel model)
+                public void Save(RabbitMQBusModel model)
                 {
                         throw new NotImplementedException();
                 }

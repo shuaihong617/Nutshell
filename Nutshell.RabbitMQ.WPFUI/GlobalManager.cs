@@ -1,12 +1,8 @@
 ﻿using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Data;
-using Nutshell.Data.Xml;
+using Nutshell.Components;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using Nutshell.Messaging.Xml.Models;
-using Nutshell.Serializing.Xml;
-using Nutshell.Storaging;
-using Nutshell.Storaging.Xml;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.RabbitMQ.WPFUI
 {
@@ -44,39 +40,37 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 public LogCollecter LogCollecter { get; }
 
-	        public RabbitMQBus Bus { get; private set; }
+                public RabbitMQBus Bus { get; private set; }
 
-		public RabbitMQSender<XmlValueMessageModel<float>> Sender { get;private set; }
+                public RabbitMQSender<ValueMessageModel<float>> Sender { get; private set; }
 
-	        public RabbitMQReceiver<XmlValueMessageModel<float>> Receiver { get; private set; }
-                
+                public RabbitMQReceiver<ValueMessageModel<float>> Receiver { get; private set; }
+
                 public void LoadApplication()
                 {
-                        Application = new Application();
-                        XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
+                        Application = Application.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()
                 {
                         Bus = RabbitMQBus.Load(ConfigDirectory + "Bus.config");
-	                Bus.Start();
+                        Bus.Start();
 
-			Sender = RabbitMQSender<XmlValueMessageModel<float>>.Load(ConfigDirectory + "Sender.config");
-			Sender.SetBus(Bus);
-			Sender.Start();
+                        Sender = RabbitMQSender<ValueMessageModel<float>>.Load(ConfigDirectory + "Sender.config");
+                        Sender.SetBus(Bus);
+                        Sender.Start();
 
-			Receiver = RabbitMQReceiver<XmlValueMessageModel<float>>.Load(ConfigDirectory + "Receiver.config");
-			Receiver.SetBus(Bus);
-			Receiver.Start();
-
+                        Receiver = RabbitMQReceiver<ValueMessageModel<float>>.Load(ConfigDirectory + "Receiver.config");
+                        Receiver.SetBus(Bus);
+                        Receiver.Start();
                 }
 
                 public void Stop()
                 {
-	                Sender.Stop();
-	                Receiver.Stop();
+                        Sender.Stop();
+                        Receiver.Stop();
 
-	                Bus.Stop();
+                        Bus.Stop();
                 }
         }
 }

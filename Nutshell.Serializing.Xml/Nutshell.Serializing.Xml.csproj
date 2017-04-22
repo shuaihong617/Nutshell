@@ -56,10 +56,6 @@
     <Compile Include="XmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
       <Project>{24c687d9-0212-49a6-8664-c908fd09fa40}</Project>
       <Name>Nutshell.Serializing</Name>

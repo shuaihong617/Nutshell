@@ -8,7 +8,6 @@ using Nutshell.Communication;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;
-using Nutshell.Messaging.Xml.Models;
 
 namespace Nutshell.Automation
 {
@@ -22,15 +21,15 @@ namespace Nutshell.Automation
                 {
                 }
 
-                [MustNotEqualNull] private IReceiver<IValueMessageModel<byte>> _stateReceiver;
+                [MustNotEqualNull] private IReceiver<ValueMessageModel<byte>> _stateReceiver;
 
-                [MustNotEqualNull] private ISender<IValueMessageModel<bool>> _controlSender;
+                [MustNotEqualNull] private ISender<ValueMessageModel<bool>> _controlSender;
 
 
                 [NotifyPropertyValueChanged]
                 public CylinderState? State { get; private set; }
 
-                public Cylinder SetStateReceiver([MustNotEqualNull] IReceiver<IValueMessageModel<byte>> receiver)
+                public Cylinder SetStateReceiver([MustNotEqualNull] IReceiver<ValueMessageModel<byte>> receiver)
                 {
                         Trace.Assert(_stateReceiver == null);
 
@@ -62,7 +61,7 @@ namespace Nutshell.Automation
                         return this;
                 }
 
-                public Cylinder SetControlSender([MustNotEqualNull] ISender<IValueMessageModel<bool>> sender)
+                public Cylinder SetControlSender([MustNotEqualNull] ISender<ValueMessageModel<bool>> sender)
                 {
                         Trace.Assert(_stateReceiver == null);
 
@@ -73,7 +72,7 @@ namespace Nutshell.Automation
 
                 public void Open()
                 {
-                        var message = new XmlValueMessageModel<bool>
+                        var message = new ValueMessageModel<bool>
                         {
                                 Id = Guid.NewGuid().ToString(),
                                 Category = Id,
@@ -84,7 +83,7 @@ namespace Nutshell.Automation
 
                 public void Close()
                 {
-                        var message = new XmlValueMessageModel<bool>
+                        var message = new ValueMessageModel<bool>
                         {
                                 Id = Guid.NewGuid().ToString(),
                                 Category = Id,

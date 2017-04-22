@@ -23,7 +23,7 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         /// 线段
         /// </summary>
-        public class Segment : StorableObject
+        public class Segment : StorableObject,IStorable<SegmentModel>
         {
                 /// <summary>
                 /// 初始化<see cref="Segment" />的新实例.
@@ -58,21 +58,14 @@ namespace Nutshell.Drawing.Shapes
                 /// 从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public override void Load(IDataModel model)
+                public void Load(SegmentModel model)
                 {
                         base.Load(model);
 
-                        var segmentModel = model as ISegmentModel;
-                        if (segmentModel == null)
-                        {
-                                throw new ArgumentException(model.Id + "加载失败：无法转换为SegmentModel");
-                        }
-
-                        X1 = segmentModel.X1;
-                        Y1 = segmentModel.Y1;
-
-                        X2 = segmentModel.X2;
-                        Y2 = segmentModel.Y2;
+                        X1 = model.X1;
+                        Y1 = model.Y1;
+                        X2 = model.X2;
+                        Y2 = model.Y2;
                 }
 
                 /// <summary>
@@ -80,21 +73,14 @@ namespace Nutshell.Drawing.Shapes
                 /// </summary>
                 /// <param name="model">数据模型</param>
                 /// <returns>成功返回True, 否则返回False</returns>
-                public override void Save(IDataModel model)
+                public void Save(SegmentModel model)
                 {
                         base.Save(model);
 
-                        var segmentModel = model as ISegmentModel;
-                        if (segmentModel == null)
-                        {
-                                throw new ArgumentException(model.Id + "加载失败：无法转换为SegmentModel");
-                        }
-
-                        segmentModel.X1 = X1;
-                        segmentModel.Y1 = Y1;
-
-                        segmentModel.X2 = X2;
-                        segmentModel.Y2 = Y2;
+                        model.X1 = X1;
+                        model.Y1 = Y1;
+                        model.X2 = X2;
+                        model.Y2 = Y2;
                 }
         }
 }

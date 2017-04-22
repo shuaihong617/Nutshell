@@ -14,11 +14,11 @@
 using System;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Communication;
 using Nutshell.Extensions;
-using Nutshell.MessageQueue;
 using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
-using Nutshell.RabbitMQ.Models.Xml;
+using Nutshell.RabbitMQ.Models;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
 using Nutshell.Storaging.Xml;
@@ -29,7 +29,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	/// RabbitMQ发送者
 	/// </summary>
-	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<XmlRabbitMQSenderModel>, IMessageQueueSender<T> where T : IMessageModel
+	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : MessageModel
 	{
 		/// <summary>
 		/// 初始化<see cref="RabbitMQSender{T}"/>的新实例.
@@ -43,7 +43,7 @@ namespace Nutshell.RabbitMQ
                 public static RabbitMQSender<T> Load([MustNotEqualNullOrEmpty]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<XmlRabbitMQSenderModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<RabbitMQSenderModel>.Instance.Deserialize(bytes);
 
                         var sender = new RabbitMQSender<T>();
                         sender.Load(model);
@@ -51,12 +51,12 @@ namespace Nutshell.RabbitMQ
                         return sender;
                 }
 
-                public void Load(XmlRabbitMQSenderModel model)
+                public void Load(RabbitMQSenderModel model)
                 {
                         base.Load(model);
                 }
 
-                public void Save(XmlRabbitMQSenderModel model)
+                public void Save(RabbitMQSenderModel model)
                 {
                         base.Save(model);
                 }

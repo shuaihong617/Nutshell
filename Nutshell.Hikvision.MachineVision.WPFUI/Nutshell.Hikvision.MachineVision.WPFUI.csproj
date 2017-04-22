@@ -157,10 +157,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Automation.Vision.Xml\Nutshell.Automation.Vision.Xml.csproj">
-      <Project>{D721BCFC-4575-4B76-9709-CC1671D40090}</Project>
-      <Name>Nutshell.Automation.Vision.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation.Vision\Nutshell.Automation.Vision.csproj">
       <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
       <Name>Nutshell.Automation.Vision</Name>
@@ -172,14 +168,6 @@
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
-      <Project>{b18778a6-3e38-470f-9d73-702553f426e4}</Project>
-      <Name>Nutshell.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Direct2D.WinForm.Vision\Nutshell.Direct2D.WinForm.Vision.csproj">
       <Project>{C9E8F277-819B-4AF6-91C2-1EB64DAA64FB}</Project>
@@ -197,10 +185,6 @@
       <Project>{5e9ec531-b6ea-4ba9-a3a5-dd40436860d7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Hikvision.MachineVision.Xml\Nutshell.Hikvision.MachineVision.Xml.csproj">
-      <Project>{495923AF-FF8C-40D4-A4FD-A4A52D93ABA9}</Project>
-      <Name>Nutshell.Hikvision.MachineVision.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Hikvision.MachineVision\Nutshell.Hikvision.MachineVision.csproj">
       <Project>{e4e11986-b3e3-4855-adeb-9950b96faa2f}</Project>
       <Name>Nutshell.Hikvision.MachineVision</Name>
@@ -212,6 +196,10 @@
     <ProjectReference Include="..\Nutshell.Presentation.MahApps\Nutshell.Presentation.MahApps.csproj">
       <Project>{bd530e64-a243-494b-9c8c-5362c8a36e8c}</Project>
       <Name>Nutshell.Presentation.MahApps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{c394aad7-06a2-429b-a3b8-ac531ef77de1}</Project>

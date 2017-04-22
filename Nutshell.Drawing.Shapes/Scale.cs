@@ -10,7 +10,7 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         ///         刻度
         /// </summary>
-        public class Scale : StorableObject, IHitable, IStorable<IScaleModel>
+        public class Scale : StorableObject, IHitable, IStorable<ScaleModel>
         {
                 public Scale(string id = "")
                         : base(id)
@@ -22,7 +22,7 @@ namespace Nutshell.Drawing.Shapes
 
                 public virtual int Value { get; private set; }
 
-                public void Load(IScaleModel model)
+                public void Load(ScaleModel model)
                 {
                         base.Load(model);
 
@@ -32,7 +32,7 @@ namespace Nutshell.Drawing.Shapes
                         //Segment.Load(scaleModel.SegmentModel);
                 }
 
-                public void Save(IScaleModel model)
+                public void Save(ScaleModel model)
                 {
                         base.Save(model);
 

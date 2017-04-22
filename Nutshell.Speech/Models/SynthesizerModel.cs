@@ -11,15 +11,14 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Data.Xml.Models;
-using Nutshell.Storaging.Xml.Models;
+using Nutshell.Storaging.Models;
 
 namespace Nutshell.Speech.Models
 {
         /// <summary>
-        ///         主键对象Xml序列化数据模型
+        ///         语音合成器数据模型
         /// </summary>
-        public class SynthesizerModel : XmlDataModel, ISynthesizerModel
+        public class SynthesizerModel : DataModel
         {
                 /// <summary>
                 ///         主键

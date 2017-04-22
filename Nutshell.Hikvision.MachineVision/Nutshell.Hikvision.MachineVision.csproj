@@ -152,7 +152,7 @@
     <Compile Include="InstalledMachineVisionCamera.cs" />
     <Compile Include="MachineVisionRuntime.cs" />
     <Compile Include="MachineVisionCamera.cs" />
-    <Compile Include="Models\IMachineVisionCameraModel.cs" />
+    <Compile Include="Models\MachineVisionCameraModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\CommondType.cs" />
     <Compile Include="SDK\IntValue.cs" />
@@ -180,10 +180,6 @@
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
       <Project>{5E9EC531-B6EA-4BA9-A3A5-DD40436860D7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>
@@ -199,6 +195,22 @@
     <ProjectReference Include="..\Nutshell.Drawing\Nutshell.Drawing.csproj">
       <Project>{4c1af121-a3f6-4c2b-ab35-986d41047e9e}</Project>
       <Name>Nutshell.Drawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
+      <Project>{6713896C-F159-4999-9D47-41792DDCA5F0}</Project>
+      <Name>Nutshell.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
+      <Project>{238C3467-8AA4-4749-B00F-4528550734BF}</Project>
+      <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
+      <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
+      <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>

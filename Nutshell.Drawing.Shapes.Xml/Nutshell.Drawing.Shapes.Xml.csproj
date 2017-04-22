@@ -55,20 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\XmlScaleModel.cs" />
-    <Compile Include="Models\XmlSegmentModel.cs" />
-    <Compile Include="Models\XmlRulerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
-      <Project>{B18778A6-3E38-470F-9D73-702553F426E4}</Project>
-      <Name>Nutshell.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Drawing.Shapes\Nutshell.Drawing.Shapes.csproj">
       <Project>{F86ED66F-E231-44D5-A33D-BD29663A7C57}</Project>
       <Name>Nutshell.Drawing.Shapes</Name>
@@ -88,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\PostSharp.4.2.27\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.2.27\tools\PostSharp.targets')" />

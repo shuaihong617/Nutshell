@@ -21,14 +21,16 @@ using Nutshell.Drawing.Imaging;
 using Nutshell.Data;
 using Nutshell.Automation.Vision.Virtual.Models;
 using System;
+using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
+using Nutshell.Storaging.Xml;
 
 namespace Nutshell.Automation.Vision.Virtual
 {
         /// <summary>
         ///         Class AVTCamera.
         /// </summary>
-        public class VirtualVideoCamera : Camera,IStorable<IVirtualVideoCameraModel>
+        public class VirtualVideoCamera : Camera,IStorable<VirtualVideoCameraModel>
         {
                 /// <summary>
                 ///         初始化<see cref="VirtualVideoCamera" />的新实例.
@@ -47,15 +49,27 @@ namespace Nutshell.Automation.Vision.Virtual
 
                 public string FileName { get; private set; }
 
+                public static VirtualVideoCamera Load(string fileName)
+                {
+                        var bytes = XmlStorager.Instance.Load(fileName);
+                        var model = XmlSerializer<VirtualVideoCameraModel>.Instance.Deserialize(bytes);
 
-                public void Load(IVirtualVideoCameraModel model)
+                        var camera = new VirtualVideoCamera();
+
+                        camera.Load(model);
+
+                        return camera;
+                }
+
+
+                public void Load(VirtualVideoCameraModel model)
                 {
                         base.Load(model);
 
                         FileName = model.FileName;
                 }
 
-                public void Save(IVirtualVideoCameraModel model)
+                public void Save(VirtualVideoCameraModel model)
                 {
                         throw new NotImplementedException();
                 }

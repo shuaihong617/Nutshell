@@ -16,7 +16,6 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Data;
 using Nutshell.RabbitMQ.Models;
-using Nutshell.RabbitMQ.Models.Xml;
 using Nutshell.Storaging;
 
 namespace Nutshell.RabbitMQ
@@ -24,7 +23,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ连接授权
 	/// </summary>
-	public class RabbitMQAuthorization : StorableObject, IStorable<XmlRabbitMQAuthorizationModel>
+	public class RabbitMQAuthorization : StorableObject, IStorable<RabbitMQAuthorizationModel>
 	{
 		/// <summary>
 		/// 获取主机名称
@@ -60,7 +59,7 @@ namespace Nutshell.RabbitMQ
 		///         从数据模型加载数据
 		/// </summary>
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(XmlRabbitMQAuthorizationModel model)
+		public void Load(RabbitMQAuthorizationModel model)
 		{
 			base.Load(model);
 
@@ -74,7 +73,7 @@ namespace Nutshell.RabbitMQ
 		///         保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-		public void Save(XmlRabbitMQAuthorizationModel model)
+		public void Save(RabbitMQAuthorizationModel model)
 		{
 			throw new NotImplementedException();
 		}

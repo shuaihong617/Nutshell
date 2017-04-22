@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using Nutshell.Automation.Opc.Models.Xml;
 using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
@@ -37,7 +36,7 @@ namespace Nutshell.Automation.Opc
 	/// 1. 启动时不连接物理Opc服务器
 	/// 2. 通过人工写入模拟Opc项值的变化
 	/// 3. Opc项写入请求直接完成</remarks>
-	public class OpcServer : DispatchableDevice, IStorable<XmlOpcServerModel>
+	public class OpcServer : DispatchableDevice, IStorable<OpcServerModel>
         {
 		/// <summary>
 		/// 初始化<see cref="OpcServer"/>的新实例.
@@ -104,7 +103,7 @@ namespace Nutshell.Automation.Opc
 		public static OpcServer Load([MustFileExist]string fileName)
 		{
 			var bytes = XmlStorager.Instance.Load(fileName);
-			var model = XmlSerializer<XmlOpcServerModel>.Instance.Deserialize(bytes);
+			var model = XmlSerializer<OpcServerModel>.Instance.Deserialize(bytes);
 
 			var opcServer = new OpcServer();
 			opcServer.Load(model);
@@ -116,7 +115,7 @@ namespace Nutshell.Automation.Opc
 		/// 从数据模型加载数据
 		/// </summary>
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load([MustNotEqualNull] XmlOpcServerModel model)
+		public void Load([MustNotEqualNull] OpcServerModel model)
                 {
                         base.Load(model);
 
@@ -138,7 +137,7 @@ namespace Nutshell.Automation.Opc
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
 		/// <exception cref="System.NotImplementedException"></exception>
-		public void Save(XmlOpcServerModel model)
+		public void Save(OpcServerModel model)
                 {
                         throw new NotImplementedException();
                 }

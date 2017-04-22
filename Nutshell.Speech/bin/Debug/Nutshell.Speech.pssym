@@ -1,50 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Symbols LinesOfCode="31" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#2=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Voice()" Id="40aa2a095d40abe1">
+    <Instance Declaration="#2=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Voice()" Id="40aa2a09424bd4d4">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::set_Voice(System.String)" Advising="#1" Description="#4=Validates the assigned value" Semantic="Setter" Ordinal="3" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#5=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustBetweenOrEqualAttribute">
-    <Instance Declaration="#6=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Volume()" Id="40aa2a09a128d92e">
+    <Instance Declaration="#6=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Volume()" Id="40aa2a09288c6e65">
       <Target>
         <JoinPoint Advised="#7=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::set_Volume(System.Int32)" Advising="#5" Description="#4" Semantic="Setter" Ordinal="6" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#8=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#9=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Language()" Id="40aa2a098e006587">
+    <Instance Declaration="#9=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Language()" Id="40aa2a09c2e5480b">
       <Target>
         <JoinPoint Advised="#10=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::get_Language()" Advising="#8" Description="#11=Intercepted by advice " Semantic="Getter" Ordinal="0" />
         <JoinPoint Advised="#12=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::set_Language(Nutshell.Language)" Advising="#8" Description="#13=Intercepted by advice OnSetValue" Semantic="Setter" />
       </Target>
     </Instance>
-    <Instance Declaration="#2" Id="40aa2a0901bc7c8b">
+    <Instance Declaration="#2" Id="40aa2a098aa01363">
       <Target>
         <JoinPoint Advised="#14=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::get_Voice()" Advising="#8" Description="#11" Semantic="Getter" Ordinal="2" />
         <JoinPoint Advised="#3" Advising="#8" Description="#13" Semantic="Setter" Ordinal="4" />
       </Target>
     </Instance>
-    <Instance Declaration="#6" Id="40aa2a0952ca180b">
+    <Instance Declaration="#6" Id="40aa2a090777f77d">
       <Target>
         <JoinPoint Advised="#15=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::get_Volume()" Advising="#8" Description="#11" Semantic="Getter" Ordinal="5" />
         <JoinPoint Advised="#7" Advising="#8" Description="#13" Semantic="Setter" Ordinal="7" />
       </Target>
     </Instance>
-    <Instance Declaration="#16=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::SynthesizerState()" Id="40aa2a090b9ebee0">
+    <Instance Declaration="#16=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::SynthesizerState()" Id="40aa2a09b8c09b26">
       <Target>
         <JoinPoint Advised="#17=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::get_SynthesizerState()" Advising="#8" Description="#11" Semantic="Getter" Ordinal="8" />
         <JoinPoint Advised="#18=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::set_SynthesizerState([Nutshell.Speech]Nutshell.Speech.SynthesizerState)" Advising="#8" Description="#13" Semantic="Setter" Ordinal="9" />
       </Target>
     </Instance>
-    <Instance Declaration="#19=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::OutputMode()" Id="40aa2a09550a9272">
+    <Instance Declaration="#19=P:[Nutshell.Speech]Nutshell.Speech.Synthesizer::OutputMode()" Id="40aa2a09ead0f368">
       <Target>
         <JoinPoint Advised="#20=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::get_OutputMode()" Advising="#8" Description="#11" Semantic="Getter" Ordinal="10" />
         <JoinPoint Advised="#21=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::set_OutputMode([Nutshell.Speech]Nutshell.Speech.OutputMode)" Advising="#8" Description="#13" Semantic="Setter" Ordinal="11" />
       </Target>
     </Instance>
   </Class>
-  <Annotation Target="#22=M:[PostSharp]PostSharp.Aspects.LocationInterceptionAspect::OnGetValue([PostSharp]PostSharp.Aspects.LocationInterceptionArgs)" Arguments="#23=2" Description="#24=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
+  <Class Class="#22=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
+    <Instance Declaration="#23=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401c2aef8448">
+      <Target Target="#24=R:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Load([Nutshell.Speech]Nutshell.Speech.Models.SynthesizerModel)@model">
+        <JoinPoint Advised="#25=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Load([Nutshell.Speech]Nutshell.Speech.Models.SynthesizerModel)" Advising="#22" Description="#26=Validates the value passed to parameter 'model'" Ordinal="12" LinesAvoided="1" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#27=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c0c4e1642">
+      <Target Target="#28=R:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Save([Nutshell.Speech]Nutshell.Speech.Models.SynthesizerModel)@model">
+        <JoinPoint Advised="#29=M:[Nutshell.Speech]Nutshell.Speech.Synthesizer::Save([Nutshell.Speech]Nutshell.Speech.Models.SynthesizerModel)" Advising="#22" Description="#26" Ordinal="13" LinesAvoided="1" />
+      </Target>
+    </Instance>
+  </Class>
+  <Annotation Target="#30=M:[PostSharp]PostSharp.Aspects.LocationInterceptionAspect::OnGetValue([PostSharp]PostSharp.Aspects.LocationInterceptionArgs)" Arguments="#31=2" Description="#32=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
 </Symbols>

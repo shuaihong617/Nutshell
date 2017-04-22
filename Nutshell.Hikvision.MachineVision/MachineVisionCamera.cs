@@ -17,20 +17,23 @@ using Nutshell.Automation.Vision;
 using Nutshell.Data;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Extensions;
-using Nutshell.Hikvision.MachineVision.Models;
 using Nutshell.Hikvision.MachineVision.SDK;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Nutshell.Hikvision.MachineVision.Models;
+using Nutshell.IO.Aspects.Locations.Contracts;
+using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
+using Nutshell.Storaging.Xml;
 
 namespace Nutshell.Hikvision.MachineVision
 {
         /// <summary>
         ///         海康威视机器视觉摄像机
         /// </summary>
-        public partial class MachineVisionCamera : NetworkCamera, IStorable<IMachineVisionCameraModel>
+        public partial class MachineVisionCamera : NetworkCamera, IStorable<MachineVisionCameraModel>
         {
                 public MachineVisionCamera(string id = "", string ipAddress = "0.0.0.0")
                         : base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
@@ -64,11 +67,23 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 存储
 
+                public static MachineVisionCamera  Load([MustFileExist]string fileName)
+                {
+                        var bytes = XmlStorager.Instance.Load(fileName);
+                        var model = XmlSerializer<MachineVisionCameraModel>.Instance.Deserialize(bytes);
+
+                        var camera = new MachineVisionCamera();
+
+                        camera.Load(model);
+
+                        return camera;
+                }
+
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-                public void Load(IMachineVisionCameraModel model)
+                public void Load(MachineVisionCameraModel model)
                 {
                         base.Load(model);
 
@@ -83,7 +98,7 @@ namespace Nutshell.Hikvision.MachineVision
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(IMachineVisionCameraModel model)
+                public void Save(MachineVisionCameraModel model)
                 {
                         throw new NotImplementedException();
                 }

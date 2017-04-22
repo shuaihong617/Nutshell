@@ -19,7 +19,7 @@ namespace Nutshell.Storaging
         /// <summary>
         ///         可存储对象接口
         /// </summary>
-        public interface IStorable<in T> : IIdentifiable where T : IDataModel
+        public interface IStorable<in T> : IIdentifiable where T : DataModel
         {
                 #region 方法
 

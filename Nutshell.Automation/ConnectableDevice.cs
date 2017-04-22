@@ -26,7 +26,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         可连接组件
         /// </summary>
-        public abstract class ConnectableDevice : Device, IStorable<XmlConnectableDeviceModel>
+        public abstract class ConnectableDevice : Device, IStorable<ConnectableDeviceModel>
         {
                 /// <summary>
                 ///         初始化<see cref="ConnectableDevice" />的新实例.
@@ -64,7 +64,7 @@ namespace Nutshell.Automation
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(XmlConnectableDeviceModel model)
+                public void Load(ConnectableDeviceModel model)
                 {
                         base.Load(model);
                 }
@@ -73,7 +73,7 @@ namespace Nutshell.Automation
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(XmlConnectableDeviceModel model)
+                public void Save(ConnectableDeviceModel model)
                 {
                         throw new NotImplementedException();
                 }

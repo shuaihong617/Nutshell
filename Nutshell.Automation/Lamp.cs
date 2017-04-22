@@ -5,7 +5,7 @@ using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
-using Nutshell.Messaging.Xml.Models;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.Automation
 {
@@ -55,7 +55,7 @@ namespace Nutshell.Automation
 
                 public void TurnOn()
 		{
-			var message = new XmlValueMessageModel<bool>
+			var message = new ValueMessageModel<bool>
 			{
 				Id = Guid.NewGuid().ToString(),
 				Category = Id,
@@ -66,7 +66,7 @@ namespace Nutshell.Automation
 
 		public void TurnOff()
 		{
-			var message = new XmlValueMessageModel<bool>
+			var message = new ValueMessageModel<bool>
 			{
 				Id = Guid.NewGuid().ToString(),
 				Category = Id,

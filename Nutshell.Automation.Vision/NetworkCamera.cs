@@ -16,13 +16,14 @@ using Nutshell.Automation.Vision.Models;
 using Nutshell.Drawing.Imaging;
 using System.Diagnostics;
 using System.Net;
+using Nutshell.Storaging;
 
 namespace Nutshell.Automation.Vision
 {
         /// <summary>
         /// 网络摄像机
         /// </summary>
-        public abstract class NetworkCamera : Camera
+        public abstract class NetworkCamera : Camera,IStorable<NetworkCameraModel>
         {
                 /// <summary>
                 /// 初始化<see cref="NetworkCamera"/>的新实例.
@@ -52,7 +53,7 @@ namespace Nutshell.Automation.Vision
                 /// 从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull] INetworkCameraModel model)
+                public void Load([MustNotEqualNull] NetworkCameraModel model)
                 {
                         base.Load(model);
 
@@ -67,7 +68,7 @@ namespace Nutshell.Automation.Vision
                 /// 保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Save([MustNotEqualNull] INetworkCameraModel model)
+                public void Save([MustNotEqualNull] NetworkCameraModel model)
                 {
                         base.Save(model);
 

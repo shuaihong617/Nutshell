@@ -1,9 +1,8 @@
-﻿using Nutshell.Data.Models;
-using Nutshell.Storaging.Models;
+﻿using Nutshell.Storaging.Models;
 
 namespace Nutshell.Serializing.Binary
 {
-        public class BinarySerializer<T> : Serializer<T> where T : IDataModel
+        public class BinarySerializer<T> : Serializer<T> where T : DataModel
         {
                 public override byte[] Serialize(T t)
                 {

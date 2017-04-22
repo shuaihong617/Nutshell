@@ -157,25 +157,9 @@
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
-      <Project>{b18778a6-3e38-470f-9d73-702553f426e4}</Project>
-      <Name>Nutshell.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
       <Project>{6713896c-f159-4999-9d47-41792ddca5f0}</Project>
       <Name>Nutshell.IO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.MessageQueue\Nutshell.MessageQueue.csproj">
-      <Project>{0A50CAFF-497A-45DF-A0C2-5D8D5473334E}</Project>
-      <Name>Nutshell.MessageQueue</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Messaging.Xml\Nutshell.Messaging.Xml.csproj">
-      <Project>{FA079D95-0CA9-49C1-BA86-90555AF91CDF}</Project>
-      <Name>Nutshell.Messaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
       <Project>{58D4115C-C811-499F-811D-5F4DEBC514DC}</Project>

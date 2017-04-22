@@ -24,9 +24,9 @@ namespace Nutshell.Automation
                 public T? Value { get; private set; }
 
                 [MustNotEqualNull]
-                private IReceiver<IValueMessageModel<T>> _receiver;
+                private IReceiver<ValueMessageModel<T>> _receiver;
 
-                public Sensor<T> SetReceiver([MustNotEqualNull] IReceiver<IValueMessageModel<T>> receiver)
+                public Sensor<T> SetReceiver([MustNotEqualNull] IReceiver<ValueMessageModel<T>> receiver)
                 {
                         Trace.Assert(_receiver != null);
 

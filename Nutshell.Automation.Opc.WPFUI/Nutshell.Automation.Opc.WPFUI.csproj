@@ -162,21 +162,9 @@
       <Project>{ff4c3544-8428-4859-b754-c07442ef562d}</Project>
       <Name>Nutshell.Automation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Components.Xml\Nutshell.Components.Xml.csproj">
-      <Project>{b58be410-a6f0-4c0f-ad8d-884ab376a8c4}</Project>
-      <Name>Nutshell.Components.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
       <Name>Nutshell.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
-      <Project>{b18778a6-3e38-470f-9d73-702553f426e4}</Project>
-      <Name>Nutshell.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Presentation.Bootstrap\Nutshell.Presentation.Bootstrap.csproj">
       <Project>{fc47fdad-024f-4fd1-b629-9a20ba7f76b5}</Project>
@@ -185,6 +173,10 @@
     <ProjectReference Include="..\Nutshell.Presentation.MahApps\Nutshell.Presentation.MahApps.csproj">
       <Project>{bd530e64-a243-494b-9c8c-5362c8a36e8c}</Project>
       <Name>Nutshell.Presentation.MahApps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{c394aad7-06a2-429b-a3b8-ac531ef77de1}</Project>

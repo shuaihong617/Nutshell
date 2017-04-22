@@ -4,7 +4,6 @@ using Nutshell.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Nutshell.Automation.Opc.Models.Xml;
 using Nutshell.Storaging;
 using NativeOpcGroup = OPCAutomation.OPCGroup;
 
@@ -13,7 +12,7 @@ using NativeOpcServer = OPCAutomation.OPCServer;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcGroup : StorableObject, IStorable<XmlOpcGroupModel>
+        public class OpcGroup : StorableObject, IStorable<OpcGroupModel>
         {
                 public OpcGroup(string id = "", string address = "", ReadOnlyCollection<OpcItem> opcItems = null)
                         : base(id)
@@ -39,7 +38,7 @@ namespace Nutshell.Automation.Opc
 
                 #endregion 属性
 
-                public void Load(XmlOpcGroupModel model)
+                public void Load(OpcGroupModel model)
                 {
                         base.Load(model);
 
@@ -59,7 +58,7 @@ namespace Nutshell.Automation.Opc
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(XmlOpcGroupModel model)
+                public void Save(OpcGroupModel model)
                 {
                         throw new NotImplementedException();
                 }

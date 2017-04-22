@@ -21,7 +21,7 @@ namespace Nutshell.Drawing
         /// <summary>
         ///         Class NSBitmap.
         /// </summary>
-        public abstract class Resolution : StorableObject, IStorable<IResolutionModel>
+        public abstract class Resolution : StorableObject, IStorable<ResolutionModel>
         {
                 /// <summary>
                 ///         初始化<see cref="Resolution" />的新实例.
@@ -55,7 +55,7 @@ namespace Nutshell.Drawing
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull] IResolutionModel model)
+                public void Load([MustNotEqualNull] ResolutionModel model)
                 {
                         base.Load(model);
 
@@ -67,7 +67,7 @@ namespace Nutshell.Drawing
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Save([MustNotEqualNull] IResolutionModel model)
+                public void Save([MustNotEqualNull] ResolutionModel model)
                 {
                         base.Save(model);
 

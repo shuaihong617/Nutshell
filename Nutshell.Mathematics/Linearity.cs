@@ -12,10 +12,10 @@
 // ***********************************************************************
 
 using Nutshell.Data;
-using Nutshell.Data.Models;
 using Nutshell.Extensions;
 using Nutshell.Mathematics.Models;
 using System.Diagnostics;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Storaging;
 using Nutshell.Storaging.Models;
 
@@ -24,7 +24,7 @@ namespace Nutshell.Mathematics
         /// <summary>
         ///         线性参数
         /// </summary>
-        public class Linearity : StorableObject
+        public class Linearity : StorableObject,IStorable<LinearityModel>
         {
                 public Linearity(float slope = 0f, float intercept = 0f)
                 {
@@ -42,17 +42,20 @@ namespace Nutshell.Mathematics
                 /// </summary>
                 public float Intercept { get; private set; }
 
-                public override void Load(IDataModel model)
+                public void Load([MustNotEqualNull]LinearityModel model)
                 {
-                        model.NotNull();
-
                         base.Load(model);
 
-                        var linearityModel = model as XmlLinearityModel;
-                        Trace.Assert(linearityModel != null);
+                        Slope = model.Slope;
+                        Intercept = model.Intercept;
+                }
 
-                        Slope = linearityModel.Slope;
-                        Intercept = linearityModel.Intercept;
+                public void Save([MustNotEqualNull] LinearityModel model)
+                {
+                        model.Slope = Slope;
+                        model.Intercept = Intercept;
+
+                        base.Save(model);
                 }
 
                 /// <summary>

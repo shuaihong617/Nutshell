@@ -1,9 +1,8 @@
-﻿using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Data;
-using Nutshell.Data.Xml;
+﻿using System.Linq;
+using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Components;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using System.Linq;
 
 namespace Nutshell.Speech.Microsoft.WPFUI
 {
@@ -51,8 +50,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = new Application();
-                        XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
+                        Application = Application.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()

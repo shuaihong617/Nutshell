@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Nutshell.Messaging.Xml.Models;
+using Nutshell.Messaging.Models;
 
 namespace Nutshell.RabbitMQ.WPFUI
 {
@@ -22,7 +22,7 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 private void SendButton_Click(object sender, RoutedEventArgs e)
                 {
-	                var messageModel = new XmlValueMessageModel<float>()
+	                var messageModel = new ValueMessageModel<float>()
 	                {
 		                Id = Guid.NewGuid().ToString(),
 		                Category = "S1200Write",

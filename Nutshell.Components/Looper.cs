@@ -27,7 +27,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         循环工作者
         /// </summary>
-        public class Looper : Worker, IStorable<ILooperModel>
+        public class Looper : Worker, IStorable<LooperModel>
         {
                 public Looper(string id, Func<Result> repeat)
                         : this(id, ThreadPriority.Normal, 1000, repeat)
@@ -76,7 +76,7 @@ namespace Nutshell.Components
 
                 #endregion 属性
 
-                public void Load([MustNotEqualNull] ILooperModel model)
+                public void Load([MustNotEqualNull] LooperModel model)
                 {
                         base.Load(model);
 
@@ -84,7 +84,7 @@ namespace Nutshell.Components
                         Interval = model.Interval;
                 }
 
-                public void Save([MustNotEqualNull] ILooperModel model)
+                public void Save([MustNotEqualNull] LooperModel model)
                 {
                         throw new NotImplementedException();
                 }

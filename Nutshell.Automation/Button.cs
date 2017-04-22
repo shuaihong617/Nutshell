@@ -5,7 +5,7 @@ using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
-using Nutshell.Messaging.Xml.Models;
+using Nutshell.Messaging.Models;
 using PostSharp.Extensibility;
 
 namespace Nutshell.Automation
@@ -57,7 +57,7 @@ namespace Nutshell.Automation
 
 		public void Press()
                 {
-			var message = new XmlValueMessageModel<bool>
+			var message = new ValueMessageModel<bool>
 			{
 				Id = Guid.NewGuid().ToString(),
 				Category = Id,
@@ -68,7 +68,7 @@ namespace Nutshell.Automation
 
                 public void Raise()
                 {
-			var message = new XmlValueMessageModel<bool>
+			var message = new ValueMessageModel<bool>
 			{
 				Id = Guid.NewGuid().ToString(),
 				Category = Id,

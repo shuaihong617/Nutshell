@@ -66,16 +66,6 @@ namespace Nutshell.Speech.Microsoft
 
                 #endregion 属性
 
-                public override void Load(IDataModel model)
-                {
-                        //base.Load(model);
-
-                        //var synthesizerModel = model as ISpeechSynthesizerModel;
-                        //Trace.Assert(synthesizerModel != null);
-
-                        //Language = synthesizerModel.Language;
-                }
-
                 public override Result SynthesizeAsync(string content, string fileName = null)
                 {
                         if (fileName == null)

@@ -63,14 +63,6 @@
     <Compile Include="XmlStoragerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Data.Xml\Nutshell.Data.Xml.csproj">
-      <Project>{b18778a6-3e38-470f-9d73-702553f426e4}</Project>
-      <Name>Nutshell.Data.Xml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
       <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
       <Name>Nutshell.Storaging.Xml</Name>

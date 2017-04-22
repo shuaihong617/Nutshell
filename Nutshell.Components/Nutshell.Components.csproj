@@ -53,23 +53,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application.cs" />
     <Compile Include="IRunable.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="IHitable.cs" />
-    <Compile Include="Models\IWorkerModel.cs" />
-    <Compile Include="Models\IComponentModel.cs" />
+    <Compile Include="Models\ApplicationModel.cs" />
+    <Compile Include="Models\ComponentModel.cs" />
+    <Compile Include="Models\LooperModel.cs" />
+    <Compile Include="Models\WorkerModel.cs" />
     <Compile Include="Runtime.cs" />
     <Compile Include="Looper.cs" />
-    <Compile Include="Models\ILooperModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkerState.cs" />
     <Compile Include="RunMode.cs" />
     <Compile Include="Worker.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
+    <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
+      <Project>{6713896C-F159-4999-9D47-41792DDCA5F0}</Project>
+      <Name>Nutshell.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
+      <Project>{238C3467-8AA4-4749-B00F-4528550734BF}</Project>
+      <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
+      <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
+      <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>

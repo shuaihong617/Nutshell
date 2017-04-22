@@ -11,7 +11,6 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Data.Models;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
@@ -23,7 +22,7 @@ namespace Nutshell.Serializing.Xml
         /// <summary>
         ///  Xml序列化器
         /// </summary>
-        public class XmlSerializer<T> : Serializer<T> where T : IDataModel
+        public class XmlSerializer<T> : Serializer<T> where T : DataModel
         {
                 #region 构造函数
 

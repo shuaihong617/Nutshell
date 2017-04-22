@@ -3,160 +3,160 @@
   <Evolution Source="#1=F:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::_connection" Target="#2=F:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::&lt;_connection&gt;k__OriginalField" />
   <Evolution Source="#2" Target="#3=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::_connection()" />
   <Class Class="#4=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullOrEmptyAttribute">
-    <Instance Declaration="#5=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Name()" Id="305e2649c303057d">
+    <Instance Declaration="#5=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Name()" Id="305e26491a440798">
       <Target>
         <JoinPoint Advised="#6=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::set_Name(System.String)" Advising="#4" Description="#7=Validates the assigned value" Ordinal="0" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#8=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Name()" Id="305e2649fdb93751">
+    <Instance Declaration="#8=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Name()" Id="305e2649e80931e6">
       <Target>
         <JoinPoint Advised="#9=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::set_Name(System.String)" Advising="#4" Description="#7" Ordinal="3" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#10=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::HostName()" Id="305e264950231ee3">
+    <Instance Declaration="#10=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::HostName()" Id="305e26496dd94447">
       <Target>
         <JoinPoint Advised="#11=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::set_HostName(System.String)" Advising="#4" Description="#7" Ordinal="7" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#12=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::UserName()" Id="305e2649140815f7">
+    <Instance Declaration="#12=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::UserName()" Id="305e2649e41de568">
       <Target>
         <JoinPoint Advised="#13=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::set_UserName(System.String)" Advising="#4" Description="#7" Ordinal="9" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#14=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Password()" Id="305e2649207440b5">
+    <Instance Declaration="#14=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Password()" Id="305e2649517695c1">
       <Target>
         <JoinPoint Advised="#15=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::set_Password(System.String)" Advising="#4" Description="#7" Ordinal="10" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#16=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::HostName()" Id="305e26491a9ec499">
+    <Instance Declaration="#16=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::HostName()" Id="305e2649e78d96de">
       <Target>
-        <JoinPoint Advised="#17=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::set_HostName(System.String)" Advising="#4" Description="#7" Ordinal="13" LinesAvoided="1" />
+        <JoinPoint Advised="#17=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::set_HostName(System.String)" Advising="#4" Description="#7" Ordinal="13" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#18=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::UserName()" Id="305e2649c8949f55">
+    <Instance Declaration="#18=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::UserName()" Id="305e2649a1688d7d">
       <Target>
-        <JoinPoint Advised="#19=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::set_UserName(System.String)" Advising="#4" Description="#7" Ordinal="15" LinesAvoided="1" />
+        <JoinPoint Advised="#19=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::set_UserName(System.String)" Advising="#4" Description="#7" Ordinal="15" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#20=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::Password()" Id="305e2649c593ddb6">
+    <Instance Declaration="#20=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::Password()" Id="305e2649307fa677">
       <Target>
-        <JoinPoint Advised="#21=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::set_Password(System.String)" Advising="#4" Description="#7" Ordinal="16" LinesAvoided="1" />
+        <JoinPoint Advised="#21=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::set_Password(System.String)" Advising="#4" Description="#7" Ordinal="16" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#22=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQExchangeModel::Name()" Id="305e2649eb635859">
+    <Instance Declaration="#22=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQExchangeModel::Name()" Id="305e26498ce4165f">
       <Target>
-        <JoinPoint Advised="#23=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQExchangeModel::set_Name(System.String)" Advising="#4" Description="#7" Ordinal="17" LinesAvoided="1" />
+        <JoinPoint Advised="#23=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQExchangeModel::set_Name(System.String)" Advising="#4" Description="#7" Ordinal="17" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#24=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load(System.String)@fileName" Id="305e2649af327845">
+    <Instance Declaration="#24=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load(System.String)@fileName" Id="305e2649ccc176c5">
       <Target>
         <JoinPoint Advised="#25=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load(System.String)" Advising="#4" Description="#26=Validates the value passed to parameter 'fileName'" Ordinal="20" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#27=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel::Name()" Id="305e264939d1b06e">
+    <Instance Declaration="#27=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel::Name()" Id="305e2649c83be9b4">
       <Target>
-        <JoinPoint Advised="#28=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel::set_Name(System.String)" Advising="#4" Description="#7" Ordinal="18" LinesAvoided="1" />
+        <JoinPoint Advised="#28=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel::set_Name(System.String)" Advising="#4" Description="#7" Ordinal="18" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#29=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load(System.String)@fileName" Id="305e2649fc77a92b">
+    <Instance Declaration="#29=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load(System.String)@fileName" Id="305e2649228db744">
       <Target>
         <JoinPoint Advised="#30=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load(System.String)" Advising="#4" Description="#26" Ordinal="28" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#31=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load(System.String)@fileName" Id="305e2649a4b7fa35">
+    <Instance Declaration="#31=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load(System.String)@fileName" Id="305e2649519319f1">
       <Target>
         <JoinPoint Advised="#32=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load(System.String)" Advising="#4" Description="#26" Ordinal="31" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#33=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustNotEqualNullAttribute">
-    <Instance Declaration="#34=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::RoutingKey()" Id="305e26495dfe2cf7">
+    <Instance Declaration="#34=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::RoutingKey()" Id="305e26493350fbdd">
       <Target>
         <JoinPoint Advised="#35=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::set_RoutingKey(System.String)" Advising="#33" Description="#7" Ordinal="4" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#2" Id="305e2649fe3a4716">
+    <Instance Declaration="#2" Id="305e26491c00a256">
       <Target>
         <JoinPoint Advising="#33" Description="#7" Semantic="Setter" Ordinal="27" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#36=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Exchange()" Id="305e264922506d1b">
+    <Instance Declaration="#36=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Exchange()" Id="305e26498c68a9fa">
       <Target>
         <JoinPoint Advised="#37=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::set_Exchange([Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange)" Advising="#33" Description="#7" Ordinal="23" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#38=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Load(Nutshell.Communication.Models.IActorModel)@model" Id="305e26494a5dd6f3">
+    <Instance Declaration="#38=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQActorModel)@model" Id="305e2649488811bb">
       <Target>
-        <JoinPoint Advised="#39=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Load(Nutshell.Communication.Models.IActorModel)" Advising="#33" Description="#40=Validates the value passed to parameter 'model'" Ordinal="24" LinesAvoided="1" />
+        <JoinPoint Advised="#39=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQActorModel)" Advising="#33" Description="#40=Validates the value passed to parameter 'model'" Ordinal="24" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#41=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Save(Nutshell.Communication.Models.IActorModel)@model" Id="305e26499c3f9dec">
+    <Instance Declaration="#41=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQActorModel)@model" Id="305e2649fa837d0e">
       <Target>
-        <JoinPoint Advised="#42=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Save(Nutshell.Communication.Models.IActorModel)" Advising="#33" Description="#40" Ordinal="25" LinesAvoided="1" />
+        <JoinPoint Advised="#42=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQActorModel)" Advising="#33" Description="#40" Ordinal="25" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#43=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::SetBus(Nutshell.Communication.Bus)@bus" Id="305e26492e78d78b">
+    <Instance Declaration="#43=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::SetBus(Nutshell.Communication.Bus)@bus" Id="305e2649791a140e">
       <Target>
         <JoinPoint Advised="#44=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQActor{T}::SetBus(Nutshell.Communication.Bus)" Advising="#33" Description="#45=Validates the value passed to parameter 'bus'" Ordinal="26" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#46=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel::RoutingKey()" Id="305e264954617157">
+    <Instance Declaration="#46=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel::RoutingKey()" Id="305e2649dcedf5eb">
       <Target>
-        <JoinPoint Advised="#47=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel::set_RoutingKey(System.String)" Advising="#33" Description="#7" Ordinal="19" LinesAvoided="1" />
+        <JoinPoint Advised="#47=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel::set_RoutingKey(System.String)" Advising="#33" Description="#7" Ordinal="19" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#48=T:[Nutshell]Nutshell.Aspects.Locations.Contracts.MustBetweenOrEqualAttribute">
-    <Instance Declaration="#49=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::PortNumber()" Id="305e26496ddc8c63">
+    <Instance Declaration="#49=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::PortNumber()" Id="305e264969340e79">
       <Target>
         <JoinPoint Advised="#50=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::set_PortNumber(System.Int32)" Advising="#48" Description="#7" Ordinal="8" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#51=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::PortNumber()" Id="305e26492eb789af">
+    <Instance Declaration="#51=P:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::PortNumber()" Id="305e2649b7ceaefa">
       <Target>
-        <JoinPoint Advised="#52=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel::set_PortNumber(System.Int32)" Advising="#48" Description="#7" Ordinal="14" LinesAvoided="1" />
+        <JoinPoint Advised="#52=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel::set_PortNumber(System.Int32)" Advising="#48" Description="#7" Ordinal="14" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>
   <Class Class="#33">
-    <Instance Declaration="#53=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401ca3a857b4">
-      <Target Target="#54=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQExchangeModel)@model">
-        <JoinPoint Advised="#55=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQExchangeModel)" Advising="#33" Description="#40" LinesAvoided="1" />
+    <Instance Declaration="#53=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Load(T)@model" Id="1753401c0a847294">
+      <Target Target="#54=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQExchangeModel)@model">
+        <JoinPoint Advised="#55=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQExchangeModel)" Advising="#33" Description="#40" LinesAvoided="1" />
       </Target>
-      <Target Target="#56=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel)@model">
-        <JoinPoint Advised="#57=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel)" Advising="#33" Description="#40" Ordinal="5" LinesAvoided="1" />
+      <Target Target="#56=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel)@model">
+        <JoinPoint Advised="#57=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel)" Advising="#33" Description="#40" Ordinal="5" LinesAvoided="1" />
       </Target>
-      <Target Target="#58=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel)@model">
-        <JoinPoint Advised="#59=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel)" Advising="#33" Description="#40" Ordinal="11" LinesAvoided="1" />
+      <Target Target="#58=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel)@model">
+        <JoinPoint Advised="#59=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel)" Advising="#33" Description="#40" Ordinal="11" LinesAvoided="1" />
       </Target>
-      <Target Target="#60=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQBusModel)@model">
-        <JoinPoint Advised="#61=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQBusModel)" Advising="#33" Description="#40" Ordinal="21" LinesAvoided="1" />
+      <Target Target="#60=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQBusModel)@model">
+        <JoinPoint Advised="#61=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQBusModel)" Advising="#33" Description="#40" Ordinal="21" LinesAvoided="1" />
       </Target>
-      <Target Target="#62=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQSenderModel)@model">
-        <JoinPoint Advised="#63=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQSenderModel)" Advising="#33" Description="#40" Ordinal="29" LinesAvoided="1" />
+      <Target Target="#62=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQSenderModel)@model">
+        <JoinPoint Advised="#63=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQSenderModel)" Advising="#33" Description="#40" Ordinal="29" LinesAvoided="1" />
       </Target>
-      <Target Target="#64=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQReceiverModel)@model">
-        <JoinPoint Advised="#65=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQReceiverModel)" Advising="#33" Description="#40" Ordinal="32" LinesAvoided="1" />
+      <Target Target="#64=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQReceiverModel)@model">
+        <JoinPoint Advised="#65=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Load([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQReceiverModel)" Advising="#33" Description="#40" Ordinal="32" LinesAvoided="1" />
       </Target>
     </Instance>
-    <Instance Declaration="#66=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c4a6036c3">
-      <Target Target="#67=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQExchangeModel)@model">
-        <JoinPoint Advised="#68=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQExchangeModel)" Advising="#33" Description="#40" Ordinal="2" LinesAvoided="1" />
+    <Instance Declaration="#66=R:[Nutshell.Storaging]Nutshell.Storaging.IStorable{T}::Save(T)@model" Id="1753401c742d6716">
+      <Target Target="#67=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQExchangeModel)@model">
+        <JoinPoint Advised="#68=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQExchange::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQExchangeModel)" Advising="#33" Description="#40" Ordinal="2" LinesAvoided="1" />
       </Target>
-      <Target Target="#69=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel)@model">
-        <JoinPoint Advised="#70=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQQueueModel)" Advising="#33" Description="#40" Ordinal="6" LinesAvoided="1" />
+      <Target Target="#69=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel)@model">
+        <JoinPoint Advised="#70=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQQueue::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQQueueModel)" Advising="#33" Description="#40" Ordinal="6" LinesAvoided="1" />
       </Target>
-      <Target Target="#71=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel)@model">
-        <JoinPoint Advised="#72=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQAuthorizationModel)" Advising="#33" Description="#40" Ordinal="12" LinesAvoided="1" />
+      <Target Target="#71=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel)@model">
+        <JoinPoint Advised="#72=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQAuthorization::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQAuthorizationModel)" Advising="#33" Description="#40" Ordinal="12" LinesAvoided="1" />
       </Target>
-      <Target Target="#73=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQBusModel)@model">
-        <JoinPoint Advised="#74=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQBusModel)" Advising="#33" Description="#40" Ordinal="22" LinesAvoided="1" />
+      <Target Target="#73=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQBusModel)@model">
+        <JoinPoint Advised="#74=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQBus::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQBusModel)" Advising="#33" Description="#40" Ordinal="22" LinesAvoided="1" />
       </Target>
-      <Target Target="#75=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQSenderModel)@model">
-        <JoinPoint Advised="#76=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQSenderModel)" Advising="#33" Description="#40" Ordinal="30" LinesAvoided="1" />
+      <Target Target="#75=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQSenderModel)@model">
+        <JoinPoint Advised="#76=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQSender{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQSenderModel)" Advising="#33" Description="#40" Ordinal="30" LinesAvoided="1" />
       </Target>
-      <Target Target="#77=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQReceiverModel)@model">
-        <JoinPoint Advised="#78=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.Xml.XmlRabbitMQReceiverModel)" Advising="#33" Description="#40" Ordinal="33" LinesAvoided="1" />
+      <Target Target="#77=R:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQReceiverModel)@model">
+        <JoinPoint Advised="#78=M:[Nutshell.RabbitMQ]Nutshell.RabbitMQ.RabbitMQReceiver{T}::Save([Nutshell.RabbitMQ]Nutshell.RabbitMQ.Models.RabbitMQReceiverModel)" Advising="#33" Description="#40" Ordinal="33" LinesAvoided="1" />
       </Target>
     </Instance>
   </Class>

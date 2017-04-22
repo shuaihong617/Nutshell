@@ -22,7 +22,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         组件
         /// </summary>
-        public abstract class Component : StorableObject, IRunable, IStorable<IComponentModel>
+        public abstract class Component : StorableObject, IRunable, IStorable<ComponentModel>
         {
                 #region 构造函数
 
@@ -59,7 +59,7 @@ namespace Nutshell.Components
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load([MustNotEqualNull] IComponentModel model)
+                public void Load([MustNotEqualNull] ComponentModel model)
                 {
                         base.Load(model);
 
@@ -71,9 +71,12 @@ namespace Nutshell.Components
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save([MustNotEqualNull] IComponentModel model)
+                public void Save([MustNotEqualNull] ComponentModel model)
                 {
                         base.Save(model);
+
+                        model.IsEnable = IsEnable;
+                        model.RunMode = RunMode;
                 }
 
                 #endregion 方法

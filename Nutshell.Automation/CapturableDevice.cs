@@ -27,7 +27,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         采集设备
         /// </summary>
-        public abstract class CapturableDevice<T> : DispatchableDevice, IStorable<XmlCapturableDeviceModel> where T : IIdentifiable
+        public abstract class CapturableDevice<T> : DispatchableDevice, IStorable<CapturableDeviceModel> where T : IIdentifiable
         {
                 /// <summary>
                 ///         初始化<see cref="T:CaptureDevice" />的新实例.
@@ -68,17 +68,17 @@ namespace Nutshell.Automation
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-                public void Load([MustNotEqualNull]XmlCapturableDeviceModel model)
+                public void Load([MustNotEqualNull]CapturableDeviceModel model)
                 {
                         base.Load(model);
-			CaptureLooper.Load(model.XmlCaptureLooperModel);
+			CaptureLooper.Load(model.CaptureLooperModel);
 		}
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(XmlCapturableDeviceModel model)
+                public void Save(CapturableDeviceModel model)
                 {
                         throw new NotImplementedException();
                 }

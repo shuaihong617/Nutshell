@@ -59,17 +59,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Xml\XmlRabbitMQActorModel.cs" />
-    <Compile Include="Models\Xml\XmlRabbitMQAuthorizationModel.cs" />
-    <Compile Include="Models\Xml\XmlRabbitMQExchangeModel.cs" />
-    <Compile Include="Models\Xml\XmlRabbitMQQueueModel.cs" />
-    <Compile Include="Models\Xml\XmlRabbitMQReceiverModel.cs" />
-    <Compile Include="Models\Xml\XmlRabbitMQSenderModel.cs" />
+    <Compile Include="Models\RabbitMQActorModel.cs" />
+    <Compile Include="Models\RabbitMQAuthorizationModel.cs" />
+    <Compile Include="Models\RabbitMQExchangeModel.cs" />
+    <Compile Include="Models\RabbitMQQueueModel.cs" />
+    <Compile Include="Models\RabbitMQReceiverModel.cs" />
+    <Compile Include="Models\RabbitMQSenderModel.cs" />
     <Compile Include="RabbitMQExchange.cs" />
     <Compile Include="RabbitMQQueue.cs" />
     <Compile Include="SDK\ExchangeType.cs" />
     <Compile Include="RabbitMQAuthorization.cs" />
-    <Compile Include="Models\Xml\XmlRabbitMQBusModel.cs" />
+    <Compile Include="Models\RabbitMQBusModel.cs" />
     <Compile Include="RabbitMQActor.cs" />
     <Compile Include="RabbitMQBus.cs" />
     <Compile Include="RabbitMQSender.cs" />
@@ -84,21 +84,9 @@
       <Project>{4b22f550-25b2-4f7e-a8a7-8181a3f10494}</Project>
       <Name>Nutshell.Communication</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Components.Xml\Nutshell.Components.Xml.csproj">
-      <Project>{B58BE410-A6F0-4C0F-AD8D-884AB376A8C4}</Project>
-      <Name>Nutshell.Components.Xml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
       <Name>Nutshell.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85A5464D-5268-4B78-BDAA-621E55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.MessageQueue\Nutshell.MessageQueue.csproj">
-      <Project>{0a50caff-497a-45df-a0c2-5d8d5473334e}</Project>
-      <Name>Nutshell.MessageQueue</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
       <Project>{58d4115c-c811-499f-811d-5f4debc514dc}</Project>

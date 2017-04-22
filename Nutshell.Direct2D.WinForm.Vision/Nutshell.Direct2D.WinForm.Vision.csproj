@@ -117,10 +117,6 @@
       <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
       <Name>Nutshell.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Direct2D.WinForm\Nutshell.Direct2D.WinForm.csproj">
       <Project>{0a1bdcd2-a1e5-4239-9954-7540d789e8c7}</Project>
       <Name>Nutshell.Direct2D.WinForm</Name>

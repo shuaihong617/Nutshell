@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
 using Nutshell.Communication.Models;
+using Nutshell.Communication.Models.Xml;
 using Nutshell.Components;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;
@@ -27,7 +28,7 @@ namespace Nutshell.Communication
         /// <summary>
         ///         总线
         /// </summary>
-        public abstract class Bus : Worker, IStorable<XmlBusModel>
+        public abstract class Bus : Worker, IStorable<BusModel>
         {
                 protected Bus(string id = "")
                         : base(id)
@@ -38,12 +39,12 @@ namespace Nutshell.Communication
 
                 //private ISite _site;
 
-                public void Load(XmlBusModel model)
+                public void Load(BusModel model)
                 {
                         base.Load(model);
                 }
 
-                public void Save(XmlBusModel model)
+                public void Save(BusModel model)
                 {
                         throw new NotImplementedException();
                 }
@@ -54,7 +55,7 @@ namespace Nutshell.Communication
                 /// <typeparam name="T">消息泛型</typeparam>
                 /// <param name="category">消息类型</param>
                 /// <param name="serializer">序列化器</param>
-                public void RegisterSerializer<T>(string category, ISerializer<T> serializer) where T : IMessageModel
+                public void RegisterSerializer<T>(string category, ISerializer<T> serializer) where T : MessageModel
                 {
                         _serializers[category] = serializer;
                 }
@@ -63,7 +64,7 @@ namespace Nutshell.Communication
                 ///         发送消息
                 /// </summary>
                 /// <param name="messageModel">待发送的消息</param>
-                public void Send(IMessageModel messageModel)
+                public void Send(MessageModel messageModel)
                 {
                         dynamic serializer = _serializers[messageModel.Category];
                         var btyes = serializer.Serialize(messageModel);
@@ -77,13 +78,13 @@ namespace Nutshell.Communication
                 /// </summary>
                 [Description("消息接收成功事件")]
                 [LogEventInvokeHandler]
-                public event EventHandler<ValueEventArgs<IMessageModel>> ReceiveSuccessed;
+                public event EventHandler<ValueEventArgs<MessageModel>> ReceiveSuccessed;
 
                 /// <summary>
                 ///         当消息成功接收时发生
                 /// </summary>
                 /// <param name="e">包含消息的事件参数</param>
-                protected virtual void OnReceiveSuccessed(ValueEventArgs<IMessageModel> e)
+                protected virtual void OnReceiveSuccessed(ValueEventArgs<MessageModel> e)
                 {
                         e.Raise(this, ref ReceiveSuccessed);
                 }

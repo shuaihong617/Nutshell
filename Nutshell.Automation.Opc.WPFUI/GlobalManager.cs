@@ -1,7 +1,5 @@
 ﻿using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Automation.Opc.Xml;
-using Nutshell.Data;
-using Nutshell.Data.Xml;
+using Nutshell.Components;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
 
@@ -49,8 +47,7 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = new Application();
-                        XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
+                        Application = Application.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()
@@ -59,9 +56,8 @@ namespace Nutshell.Automation.Opc.WPFUI
                         Runtime.Parent = Application;
                         Runtime.Start();
 
-                        Server = new OpcServer();
-                        Server.Parent = Runtime;
-                        XmlOpcServerStorager.Instance.Load(Server, ConfigDirectory + "OpcServer.config");
+                        Server = OpcServer.Load(ConfigDirectory + "OpcServer.config");
+                        Server.Parent = Application;
                 }
 
                 public void Stop()

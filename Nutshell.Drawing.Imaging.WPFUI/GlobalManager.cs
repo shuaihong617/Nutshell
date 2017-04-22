@@ -1,9 +1,8 @@
-﻿using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Data;
-using Nutshell.Data.Xml;
+﻿using System.Drawing;
+using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Components;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using System.Drawing;
 
 namespace Nutshell.Drawing.Imaging.WPFUI
 {
@@ -68,8 +67,7 @@ namespace Nutshell.Drawing.Imaging.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = new Application();
-                        XmlApplicationStorager.Instance.Load(Application, ConfigDirectory + "Application.config");
+                        Application = Application.Load(ConfigDirectory + "Application.config");
                 }
 
                 #endregion 摄像机

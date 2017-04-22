@@ -130,10 +130,6 @@
       <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
       <Name>Nutshell.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
       <Project>{5e9ec531-b6ea-4ba9-a3a5-dd40436860d7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>

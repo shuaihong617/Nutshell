@@ -2,12 +2,11 @@
 using System.Diagnostics;
 using System.Text;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Communication;
 using Nutshell.Data;
 using Nutshell.Extensions;
-using Nutshell.MessageQueue;
 using Nutshell.Messaging.Models;
 using Nutshell.RabbitMQ.Models;
-using Nutshell.RabbitMQ.Models.Xml;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
 using Nutshell.Storaging.Xml;
@@ -16,7 +15,7 @@ using RabbitMQ.Client.Events;
 
 namespace Nutshell.RabbitMQ
 {
-        public class RabbitMQReceiver<T>:RabbitMQActor<T>,IMessageQueueReceiver<T>,IStorable<XmlRabbitMQReceiverModel> where T : IMessageModel
+        public class RabbitMQReceiver<T>:RabbitMQActor<T>,IReceiver<T>,IStorable<RabbitMQReceiverModel> where T : MessageModel
 	{
 
                 public RabbitMQReceiver(string id = "") 
@@ -32,21 +31,21 @@ namespace Nutshell.RabbitMQ
                 public static RabbitMQReceiver<T> Load([MustNotEqualNullOrEmpty]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<XmlRabbitMQReceiverModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<RabbitMQReceiverModel>.Instance.Deserialize(bytes);
 
                         var receiver = new RabbitMQReceiver<T>();
                         receiver.Load(model);
                         return receiver;
                 }
-                public void Load(XmlRabbitMQReceiverModel model)
+                public void Load(RabbitMQReceiverModel model)
 		{
 			base.Load(model);
-                        _queue.Load(model.XmlRabbitMQQueueModel);
+                        _queue.Load(model.RabbitMQQueueModel);
                 }
 
-		public void Save(XmlRabbitMQReceiverModel model)
+		public void Save(RabbitMQReceiverModel model)
 		{
-			_queue.Save(model.XmlRabbitMQQueueModel);
+			_queue.Save(model.RabbitMQQueueModel);
 			base.Save(model);
 		}
 

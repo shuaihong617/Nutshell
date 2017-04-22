@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Symbols LinesOfCode="169" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+<Symbols LinesOfCode="168" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
   <Class Class="#1=T:[Nutshell]Nutshell.Aspects.Locations.Propertys.NotifyPropertyValueChangedAttribute">
-    <Instance Declaration="#2=P:[Nutshell.RabbitMQ.WPFUI]Nutshell.RabbitMQ.WPFUI.GlobalManager::Application()" Id="aa342e369f2a53f0">
+    <Instance Declaration="#2=P:[Nutshell.RabbitMQ.WPFUI]Nutshell.RabbitMQ.WPFUI.GlobalManager::Application()" Id="aa342e36b1f40214">
       <Target>
         <JoinPoint Advised="#3=M:[Nutshell.RabbitMQ.WPFUI]Nutshell.RabbitMQ.WPFUI.GlobalManager::get_Application()" Advising="#1" Description="#4=Intercepted by advice " Semantic="Getter" Ordinal="0" />
-        <JoinPoint Advised="#5=M:[Nutshell.RabbitMQ.WPFUI]Nutshell.RabbitMQ.WPFUI.GlobalManager::set_Application(Nutshell.Data.Application)" Advising="#1" Description="#6=Intercepted by advice OnSetValue" Semantic="Setter" />
+        <JoinPoint Advised="#5=M:[Nutshell.RabbitMQ.WPFUI]Nutshell.RabbitMQ.WPFUI.GlobalManager::set_Application(Nutshell.Components.Application)" Advising="#1" Description="#6=Intercepted by advice OnSetValue" Semantic="Setter" />
       </Target>
     </Instance>
   </Class>

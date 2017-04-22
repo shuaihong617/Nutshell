@@ -5,13 +5,15 @@ using Nutshell.Communication;
 using Nutshell.Communication.Models;
 using Nutshell.Components;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Models;
 using Nutshell.Serializing;
 using Nutshell.Serializing.Xml;
+using Nutshell.Storaging;
 using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-	public abstract class RabbitMQActor<T> : Worker, IActor<T> where T : IMessageModel
+	public abstract class RabbitMQActor<T> : Worker,IStorable<RabbitMQActorModel>, IActor<T> where T : MessageModel
 	{
 		protected RabbitMQActor(string id = "")
 			: base(id)
@@ -44,12 +46,12 @@ namespace Nutshell.RabbitMQ
 
 		#endregion
 
-		public void Load([MustNotEqualNull]IActorModel model)
+		public void Load([MustNotEqualNull]RabbitMQActorModel model)
 		{
 			base.Load(model);
 		}
 
-		public void Save([MustNotEqualNull]IActorModel model)
+		public void Save([MustNotEqualNull]RabbitMQActorModel model)
 		{
 			base.Save(model);
 		}

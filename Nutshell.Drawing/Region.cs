@@ -23,7 +23,7 @@ namespace Nutshell.Drawing
         /// <summary>
         ///         区域
         /// </summary>
-        public class Region : StorableObject, IHitable, IStorable<IRegionModel>
+        public class Region : StorableObject, IHitable, IStorable<RegionModel>
         {
                 private int _x;
                 private int _y;
@@ -233,7 +233,7 @@ namespace Nutshell.Drawing
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Load(IRegionModel model)
+                public void Load(RegionModel model)
                 {
                         base.Load(model);
 
@@ -247,7 +247,7 @@ namespace Nutshell.Drawing
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Save(IRegionModel model)
+                public void Save(RegionModel model)
                 {
                         base.Save(model);
 

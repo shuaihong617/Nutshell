@@ -14,13 +14,15 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components;
 using System;
+using Nutshell.Speech.Models;
+using Nutshell.Storaging;
 
 namespace Nutshell.Speech
 {
         /// <summary>
         /// 语音合成器
         /// </summary>
-        public abstract class Synthesizer : Component
+        public abstract class Synthesizer : Component,IStorable<SynthesizerModel>
         {
                 /// <summary>
                 /// 初始化<see cref="Synthesizer"/>的新实例.
@@ -79,6 +81,16 @@ namespace Nutshell.Speech
                 [NotifyPropertyValueChanged]
                 public OutputMode OutputMode { get; set; }
 
+                public void Load(SynthesizerModel model)
+                {
+                        throw new NotImplementedException();
+                }
+
+                public void Save(SynthesizerModel model)
+                {
+                        throw new NotImplementedException();
+                }
+
                 /// <summary>
                 /// Selects the voice.
                 /// </summary>
@@ -113,5 +125,7 @@ namespace Nutshell.Speech
                 /// 当合成停止完成时发生。
                 /// </summary>
                 public event EventHandler<ValueEventArgs<Exception>> SynthesizeStoped;
+
+                
         }
 }

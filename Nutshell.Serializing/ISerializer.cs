@@ -12,7 +12,6 @@
 // ***********************************************************************
 
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Data.Models;
 using Nutshell.Storaging.Models;
 
 namespace Nutshell.Serializing
@@ -20,7 +19,7 @@ namespace Nutshell.Serializing
         /// <summary>
         ///         序列化器抽象基类
         /// </summary>
-        public interface ISerializer<T> where T : IDataModel
+        public interface ISerializer<T> where T : DataModel
         {
                 /// <summary>
                 ///         将对象序列化为字节数组

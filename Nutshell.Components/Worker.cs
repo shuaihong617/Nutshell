@@ -25,7 +25,7 @@ namespace Nutshell.Components
 	/// <summary>
 	///         工作者
 	/// </summary>
-	public abstract class Worker : Component, IStorable<IWorkerModel>
+	public abstract class Worker : Component, IStorable<WorkerModel>
 	{
 		protected Worker([MustNotEqualNull] string id)
 			: base(id)
@@ -53,12 +53,12 @@ namespace Nutshell.Components
 
 		#endregion 属性
 
-		public void Load(IWorkerModel model)
+		public void Load(WorkerModel model)
 		{
 			base.Load(model);
 		}
 
-		public void Save(IWorkerModel model)
+		public void Save(WorkerModel model)
 		{
 			base.Save(model);
 		}

@@ -23,7 +23,7 @@ namespace Nutshell.Automation
         /// <summary>
         /// 制造信息
         /// </summary>
-        public class ManufacturingInformation : StorableObject, IStorable<XmlManufacturingInformationModel>
+        public class ManufacturingInformation : StorableObject, IStorable<ManufacturingInformationModel>
         {
                 /// <summary>
                 /// 制造商
@@ -35,7 +35,7 @@ namespace Nutshell.Automation
                 /// </summary>
                 public string Model { get; private set; }
 
-                public void Load([MustNotEqualNull]XmlManufacturingInformationModel model)
+                public void Load([MustNotEqualNull]ManufacturingInformationModel model)
                 {
 			base.Load(model);
 
@@ -43,7 +43,7 @@ namespace Nutshell.Automation
                         Model = model.Model;
                 }
 
-                public void Save([MustNotEqualNull]XmlManufacturingInformationModel model)
+                public void Save([MustNotEqualNull]ManufacturingInformationModel model)
                 {
                         throw new NotImplementedException();
                 }

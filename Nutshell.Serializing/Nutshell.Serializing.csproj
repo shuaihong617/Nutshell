@@ -60,10 +60,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Data\Nutshell.Data.csproj">
-      <Project>{85a5464d-5268-4b78-bdaa-621e55070712}</Project>
-      <Name>Nutshell.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
       <Name>Nutshell.Storaging</Name>

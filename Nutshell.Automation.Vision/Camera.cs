@@ -18,13 +18,14 @@ using Nutshell.Drawing;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Threading;
 using System.Diagnostics;
+using Nutshell.Storaging;
 
 namespace Nutshell.Automation.Vision
 {
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class Camera : CapturableDevice<Bitmap>
+        public abstract class Camera : CapturableDevice<Bitmap>,IStorable<CameraModel>
         {
                 /// <summary>
                 ///         初始化<see cref="Camera" />的实例
@@ -103,26 +104,30 @@ namespace Nutshell.Automation.Vision
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name = "model" >数据模型</param >
-                public void Load(ICameraModel model)
+                public void Load(CameraModel model)
                 {
                         base.Load(model);
 
                         Width = model.Width;
                         Height = model.Height;
                         PixelFormat = model.PixelFormat;
+
+                        Region.Load(model.RegionModel);
                 }
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Save(ICameraModel model)
+                public void Save(CameraModel model)
                 {
                         base.Save(model);
 
                         model.Width = Width;
                         model.Height = Height;
                         model.PixelFormat = PixelFormat;
+
+                        Region.Save(model.RegionModel);
                 }
 
                 #endregion 存储
