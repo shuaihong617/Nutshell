@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
-using Nutshell.RabbitMQ.WPFUI;
 
 namespace Nutshell.RabbitMQ.WPFUI
 {

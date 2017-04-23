@@ -23,7 +23,7 @@ namespace Nutshell.Automation
 
                 [MustNotEqualNull] private IReceiver<ValueMessageModel<byte>> _stateReceiver;
 
-                [MustNotEqualNull] private ISender<ValueMessageModel<bool>> _controlSender;
+                [MustNotEqualNull] private ISender<MultiStringKeyValuePairsMessageModel> _controlSender;
 
 
                 [NotifyPropertyValueChanged]
@@ -61,9 +61,9 @@ namespace Nutshell.Automation
                         return this;
                 }
 
-                public Cylinder SetControlSender([MustNotEqualNull] ISender<ValueMessageModel<bool>> sender)
+                public Cylinder SetControlSender([MustNotEqualNull] ISender<MultiStringKeyValuePairsMessageModel> sender)
                 {
-                        Trace.Assert(_stateReceiver == null);
+                        Trace.Assert(_controlSender == null);
 
                         _controlSender = sender;
                         return this;
@@ -72,24 +72,22 @@ namespace Nutshell.Automation
 
                 public void Open()
                 {
-                        var message = new ValueMessageModel<bool>
+                        var message = new MultiStringKeyValuePairsMessageModel()
                         {
                                 Id = Guid.NewGuid().ToString(),
-                                Category = Id,
-                                Value = true
                         };
+			message.Add($"{Id}控制", true);
                         _controlSender.Send(message);
                 }
 
                 public void Close()
                 {
-                        var message = new ValueMessageModel<bool>
-                        {
-                                Id = Guid.NewGuid().ToString(),
-                                Category = Id,
-                                Value = false
-                        };
-                        _controlSender.Send(message);
+			var message = new MultiStringKeyValuePairsMessageModel()
+			{
+				Id = Guid.NewGuid().ToString(),
+			};
+			message.Add($"{Id}控制", false);
+			_controlSender.Send(message);
                 }
 
                 #region 事件

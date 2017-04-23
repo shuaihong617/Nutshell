@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Communication;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;
@@ -22,57 +23,52 @@ namespace Nutshell.Automation
                 public bool? State { get; private set; }
 
                 [MustNotEqualNull]
-                private Messager<bool> _messager;
+                private ISender<MultiStringKeyValuePairsMessageModel> _sender;
 
-                public Lamp SetMessager([MustNotEqualNull]Messager<bool> messager)
+		private IReceiver<ValueMessageModel<bool>> _receiver; 
+
+                public Lamp SetReceiver([MustNotEqualNull]IReceiver<ValueMessageModel<bool>> receiver)
                 {
-                        Trace.Assert(_messager != null);
+			Trace.Assert(_receiver == null);
 
-                        _messager = messager;
-                        _messager.DataChanged += (obj, args) =>
-                        {
-                                State = args.Value;
+	                _receiver = receiver;
+			_receiver.ReceiveSuccessed += (obj, args) =>
+			{
+				State = args.Value.Value;
 
-                                if (!args.Value.HasValue)
-                                {
-                                        return;
-                                }
+				switch (args.Value.Value)
+				{
+					case true:
+						OnOpened(EventArgs.Empty);
+						break;
 
-                                switch (args.Value.Value)
-                                {
-                                        case true:
-                                                OnOpened(EventArgs.Empty);
-                                                break;
+					case false:
+						OnClosed(EventArgs.Empty);
+						break;
+				}
+			};
 
-                                        case false:
-                                                OnClosed(EventArgs.Empty);
-                                                break;
-                                }
-                        };
-
-                        return this;
+			return this;
                 }
 
                 public void TurnOn()
 		{
-			var message = new ValueMessageModel<bool>
+			var message = new MultiStringKeyValuePairsMessageModel()
 			{
 				Id = Guid.NewGuid().ToString(),
-				Category = Id,
-				Value = true
 			};
-			_messager.ToLowerSender.Send(message);
+			message.Add($"{Id}控制", true);
+			_sender.Send(message);
 		}
 
 		public void TurnOff()
 		{
-			var message = new ValueMessageModel<bool>
+			var message = new MultiStringKeyValuePairsMessageModel()
 			{
 				Id = Guid.NewGuid().ToString(),
-				Category = Id,
-				Value = false
 			};
-                        _messager.ToLowerSender.Send(message);
+			message.Add($"{Id}控制", false);
+			_sender.Send(message);
 		}
 
 		#region 事件

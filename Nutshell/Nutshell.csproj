@@ -239,7 +239,6 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Nutshell.psproj" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

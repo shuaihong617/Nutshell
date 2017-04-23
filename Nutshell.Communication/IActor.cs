@@ -11,17 +11,15 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Communication.Models;
 using Nutshell.Messaging.Models;
 using Nutshell.Serializing;
-using Nutshell.Storaging;
 
 namespace Nutshell.Communication
 {
 	/// <summary>
 	///         发送器和接收器基础接口
 	/// </summary>
-	public interface IActor<T> where T:MessageModel
+	public interface IActor<T> where T : MessageModel
 	{
 		ISerializer<T> Serializer { get; }
 

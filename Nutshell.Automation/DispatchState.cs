@@ -19,7 +19,7 @@ namespace Nutshell.Automation
         public enum DispatchState
         {
                 /// <summary>
-                /// 已断开
+                /// 已经断开
                 /// </summary>
                 Terminated = 0,
 
@@ -29,7 +29,7 @@ namespace Nutshell.Automation
                 Establishing = 1,
 
                 /// <summary>
-                /// 已连接
+                /// 已经连接
                 /// </summary>
                 Established = 2,
 
