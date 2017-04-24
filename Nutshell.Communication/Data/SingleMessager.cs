@@ -22,7 +22,7 @@ namespace Nutshell.Communication.Data
         ///         跟踪可空值更新前后变化的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class SingleMessager<T> : ObservableNullable<T> where T : struct
+        public class SingleMessager<T> : ObservableNullableValue<T> where T : struct
         {
                 /// <summary>
                 ///         初始化<see cref="Messager{T}" />的新实例.

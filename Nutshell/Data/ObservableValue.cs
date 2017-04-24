@@ -24,7 +24,7 @@ namespace Nutshell.Data
 	public class ObservableValue<T> where T : struct
 	{
 		/// <summary>
-		///         初始化<see cref="ObservableNullable{T}" />的新实例.
+		///         初始化<see cref="ObservableNullableValue{T}" />的新实例.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		public ObservableValue(T value = default(T))

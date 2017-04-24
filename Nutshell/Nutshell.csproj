@@ -189,7 +189,7 @@
     <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="IdentityObject.cs" />
     <Compile Include="Logging\LogLevel.cs" />
-    <Compile Include="Data\ObservableNullable.cs" />
+    <Compile Include="Data\ObservableNullableValue.cs" />
     <Compile Include="Extensions\BooleanExtensions.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Collections\QueueBuffer.cs" />

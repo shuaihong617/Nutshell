@@ -21,21 +21,21 @@ namespace Nutshell.Data
         ///         跟踪可空值更新前后变化的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class ObservableNullable<T> where T : struct
+        public class ObservableNullableValue<T> where T : struct
         {
 		/// <summary>
-		/// 初始化<see cref="ObservableNullable{T}" />的新实例.
+		/// 初始化<see cref="ObservableNullableValue{T}" />的新实例.
 		/// </summary>
-		public ObservableNullable()
+		public ObservableNullableValue()
 		{
 			Data = null;
 		}
 
 		/// <summary>
-		/// 初始化<see cref="ObservableNullable{T}" />的新实例.
+		/// 初始化<see cref="ObservableNullableValue{T}" />的新实例.
 		/// </summary>
 		/// <param name="data">The value.</param>
-		public ObservableNullable(T data)
+		public ObservableNullableValue(T data)
                 {
                         Data = data;
                 }
