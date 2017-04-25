@@ -16,56 +16,54 @@ using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Extensions;
-using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
 using Nutshell.RabbitMQ.Models;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
 using Nutshell.Storaging.Xml;
-using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
 	/// <summary>
-	/// RabbitMQ发送者
+	///         RabbitMQ发送者
 	/// </summary>
 	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : MessageModel
 	{
 		/// <summary>
-		/// 初始化<see cref="RabbitMQSender{T}"/>的新实例.
+		///         初始化<see cref="RabbitMQSender{T}" />的新实例.
 		/// </summary>
 		/// <param name="id">The identifier.</param>
 		public RabbitMQSender(string id = "")
-			: base( id)
+			: base(id)
 		{
 		}
 
-                public static RabbitMQSender<T> Load([MustNotEqualNullOrEmpty]string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<RabbitMQSenderModel>.Instance.Deserialize(bytes);
+		public static RabbitMQSender<T> Load([MustNotEqualNullOrEmpty] string fileName)
+		{
+			var bytes = XmlStorager.Instance.Load(fileName);
+			var model = XmlSerializer<RabbitMQSenderModel>.Instance.Deserialize(bytes);
 
-                        var sender = new RabbitMQSender<T>();
-                        sender.Load(model);
+			var sender = new RabbitMQSender<T>();
+			sender.Load(model);
 
-                        return sender;
-                }
+			return sender;
+		}
 
-                public void Load(RabbitMQSenderModel model)
-                {
-                        base.Load(model);
-                }
+		public void Load(RabbitMQSenderModel model)
+		{
+			base.Load(model);
+		}
 
-                public void Save(RabbitMQSenderModel model)
-                {
-                        base.Save(model);
-                }
+		public void Save(RabbitMQSenderModel model)
+		{
+			base.Save(model);
+		}
 
-                /// <summary>
-                ///         发送字节数组数据
-                /// </summary>
-                /// <param name="messageModel">待发送消息数据</param>
-                public void Send(T messageModel)
+		/// <summary>
+		///         发送字节数组数据
+		/// </summary>
+		/// <param name="messageModel">待发送消息数据</param>
+		public void Send(T messageModel)
 		{
 			var data = Serializer.Serialize(messageModel);
 
@@ -79,15 +77,13 @@ namespace Nutshell.RabbitMQ
 		}
 
 		/// <summary>
-		/// Occurs when [send successed].
+		///         Occurs when [send successed].
 		/// </summary>
 		public event EventHandler<ValueEventArgs<T>> SendSuccessed;
 
 		/// <summary>
-		/// Occurs when [send failed].
+		///         Occurs when [send failed].
 		/// </summary>
 		public event EventHandler<ValueEventArgs<Exception>> SendFailed;
-
-	        
 	}
 }
