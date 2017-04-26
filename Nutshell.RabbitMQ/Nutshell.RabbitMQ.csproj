@@ -88,6 +88,10 @@
       <Project>{4838a2a5-ef64-491c-bc25-8d89344e35e2}</Project>
       <Name>Nutshell.Components</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
+      <Project>{6713896C-F159-4999-9D47-41792DDCA5F0}</Project>
+      <Name>Nutshell.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
       <Project>{58d4115c-c811-499f-811d-5f4debc514dc}</Project>
       <Name>Nutshell.Messaging</Name>
