@@ -11,12 +11,15 @@
 // </summary>
 // ***********************************************************************
 
+using Nutshell.Components.Models;
+using Nutshell.Storaging;
+
 namespace Nutshell.Components
 {
         /// <summary>
         /// 限位
         /// </summary>
-        public class Limiter
+        public class Limiter:StorableObject,IStorable<LimiterModel>
         {
                 /// <summary>
                 /// Gets the mode.
@@ -41,11 +44,35 @@ namespace Nutshell.Components
                 /// Gets a value indicating whether this instance is over.
                 /// </summary>
                 /// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
-                public double IsSuitable { get; private set; }
+                public bool IsSuitable { get; private set; }
 
-                public void SetParcticeValue(double value)
+		/// <summary>
+		///         从数据模型加载数据
+		/// </summary>
+		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
+		public void Load(LimiterModel model)
+		{
+			base.Load(model);
+
+			Mode = model.Mode;
+			Accuracy = model.Accuracy;
+			StandardValue = model.StandardValue;
+		}
+
+		/// <summary>
+		///         保存数据到数据模型
+		/// </summary>
+		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
+		public void Save(LimiterModel model)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public virtual void SetParcticeValue(double value)
                 {
                         
                 }
+
+	        
         }
 }
