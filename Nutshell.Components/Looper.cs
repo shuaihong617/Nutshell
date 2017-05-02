@@ -28,17 +28,17 @@ namespace Nutshell.Components
         /// </summary>
         public class Looper : Worker, IStorable<LooperModel>
         {
-                public Looper(string id, Func<Result> repeat)
+                public Looper(string id, Action repeat)
                         : this(id, ThreadPriority.Normal, 1000, repeat)
                 {
                 }
 
-                public Looper(string id, int interval, Func<Result> repeat)
+                public Looper(string id, int interval, Action repeat)
                         : this(id, ThreadPriority.Normal, interval, repeat)
                 {
                 }
 
-                public Looper(string id, ThreadPriority priority, int interval, Func<Result> repeat)
+                public Looper(string id, ThreadPriority priority, int interval, Action repeat)
                         : base(id)
                 {
                         Priority = priority;
@@ -52,7 +52,7 @@ namespace Nutshell.Components
 
                 private bool _isContinue;
 
-                private readonly Func<Result> _repeat;
+                private readonly Action _repeat;
 
                 #endregion 字段
 
@@ -88,14 +88,14 @@ namespace Nutshell.Components
                         throw new NotImplementedException();
                 }
 
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
                         _isContinue = true;
 
                         _thread = new Thread(ThreadWork) { Priority = Priority };
                         _thread.Start();
 
-                        return Result.Successed;
+                        return true;
                 }
 
                 private void ThreadWork()
@@ -103,7 +103,7 @@ namespace Nutshell.Components
                         this.Info($"循环启动,周期{Interval}毫秒");
                         for (;;)
                         {
-                                var result = _repeat();
+                                _repeat();
                                 //OnRepeatFinshed(new ValueEventArgs<Result>(result));
 
                                 Thread.Sleep(Interval);
@@ -116,11 +116,11 @@ namespace Nutshell.Components
                         }
                 }
 
-                protected override Result StopCore()
+                protected override bool StopCore()
                 {
                         _isContinue = false;
 
-                        return Result.Successed;
+                        return true;
                 }
 
                 #region 事件

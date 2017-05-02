@@ -22,21 +22,21 @@ namespace Nutshell.Direct2D.WinForm
 
                 private bool _isRendering;
 
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
                         return _renderLooper.Start();
                 }
 
-                protected override Result StopCore()
+                protected override bool StopCore()
                 {
                         return _renderLooper.Stop();
                 }
 
-                protected virtual Result Render()
+                protected virtual void Render()
                 {
                         if (_isRendering)
                         {
-                                return Result.Failed;
+                                return;
                         }
 
                         _isRendering = true;
@@ -45,8 +45,6 @@ namespace Nutshell.Direct2D.WinForm
                         Sence.Render();
 
                         _isRendering = false;
-
-                        return Result.Successed;
                 }
         }
 }

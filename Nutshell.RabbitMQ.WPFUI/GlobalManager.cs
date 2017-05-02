@@ -57,11 +57,11 @@ namespace Nutshell.RabbitMQ.WPFUI
                         Bus.Start();
 
                         Sender = RabbitMQSender<MultiStringKeyValuePairsMessageModel>.Load(ConfigDirectory + "Sender.config");
-                        Sender.SetBus(Bus);
+                        Sender.BindToBus(Bus);
                         Sender.Start();
 
                         Receiver = RabbitMQReceiver<MultiStringKeyValuePairsMessageModel>.Load(ConfigDirectory + "Receiver.config");
-                        Receiver.SetBus(Bus);
+                        Receiver.BindToBus(Bus);
                         Receiver.Start();
                 }
 

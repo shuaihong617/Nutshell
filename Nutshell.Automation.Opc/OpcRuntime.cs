@@ -36,12 +36,11 @@ namespace Nutshell.Automation.Opc
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
-                        var baseResult = base.StartCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartCore())
                         {
-                                return baseResult;
+                                return false;
                         }
 
                         var server = new OPCServer();
@@ -61,7 +60,7 @@ namespace Nutshell.Automation.Opc
 
                         InstalledOpcServers = installedOpcServers.ToReadOnlyCollection();
 
-                        return Result.Successed;
+                        return true;
                 }
         }
 }

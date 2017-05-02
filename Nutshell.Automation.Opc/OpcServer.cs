@@ -146,7 +146,7 @@ namespace Nutshell.Automation.Opc
 		/// Starts the connect core.
 		/// </summary>
 		/// <returns>Result.</returns>
-		protected override Result StartConnectCore()
+		protected override bool StartConnectCore()
                 {
                         try
                         {
@@ -155,19 +155,19 @@ namespace Nutshell.Automation.Opc
                         catch (Exception ex)
                         {
                                 this.Error(Id + " " + Address + "  连接失败," + ex);
-                                return Result.Failed;
+                                return false;
                         }
 
                         this.InfoSuccess($"连接{Address}");
 
-                        return Result.Successed;
+                        return true;
                 }
 
 		/// <summary>
 		/// Stops the connect core.
 		/// </summary>
 		/// <returns>Result.</returns>
-		protected override Result StopConnectCore()
+		protected override bool StopConnectCore()
                 {
                         try
                         {
@@ -176,19 +176,19 @@ namespace Nutshell.Automation.Opc
                         catch (Exception ex)
                         {
                                 this.Error(Id + " " + Address + "  断开失败," + ex);
-                                return Result.Failed;
+                                return false;
                         }
 
                         this.InfoSuccess("断开" + Address);
 
-                        return Result.Successed;
+                        return true;
                 }
 
 		/// <summary>
 		/// Starts the dispatch core.
 		/// </summary>
 		/// <returns>Result.</returns>
-		protected override Result StartDispatchCore()
+		protected override bool StartDispatchCore()
                 {
                         try
                         {
@@ -212,14 +212,14 @@ namespace Nutshell.Automation.Opc
 
                         this.InfoSuccess("Attach" + Address);
 
-                        return Result.Successed;
+                        return true;
                 }
 
 		/// <summary>
 		/// Stops the dispatch core.
 		/// </summary>
 		/// <returns>Result.</returns>
-		protected override Result StopDispatchCore()
+		protected override bool StopDispatchCore()
                 {
                         try
                         {
@@ -232,7 +232,7 @@ namespace Nutshell.Automation.Opc
 
                         this.InfoSuccess("断开" + Address);
 
-                        return Result.Successed;
+                        return true;
                 }
         }
 }

@@ -37,15 +37,14 @@ namespace Nutshell.Direct2D.WinForm.Vision
 
                 private readonly CameraDecoder _decoder;
 
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
-                        var baseResult = base.StartCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartCore())
                         {
-                                return baseResult;
+                                return false;
                         }
                         _decoder.DecodeFinished += Decoder_DecodeFinished;
-                        return Result.Successed;
+                        return true;
                 }
 
                 private void Decoder_DecodeFinished(object sender, ValueEventArgs<Bitmap> e)
@@ -58,7 +57,7 @@ namespace Nutshell.Direct2D.WinForm.Vision
                         _decoder.Pool.ReadUnlock(bitmap);
                 }
 
-                protected override Result StopCore()
+                protected override bool StopCore()
                 {
                         _decoder.DecodeFinished -= Decoder_DecodeFinished;
 

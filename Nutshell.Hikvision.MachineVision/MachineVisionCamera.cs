@@ -105,12 +105,11 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #endregion 存储
 
-                protected override sealed Result StartConnectCore()
+                protected override sealed bool StartConnectCore()
                 {
-                        var baseResult = base.StartConnectCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartConnectCore())
                         {
-                                return baseResult;
+                                return false;
                         }
 
                         Debug.Assert(!Equals(IPAddress, IPAddress.Any));
@@ -121,7 +120,7 @@ namespace Nutshell.Hikvision.MachineVision
                         if (installedMachineVisionCamera == null)
                         {
                                 this.Warn("未检测到摄像机");
-                                return Result.Failed;
+                                return false;
                         }
 
                         _deviceInformation = installedMachineVisionCamera.DeviceInformation;
@@ -129,13 +128,13 @@ namespace Nutshell.Hikvision.MachineVision
                         var errorCode = CreateHandle();
                         if (errorCode != ErrorCode.MV_OK)
                         {
-                                return Result.Failed;
+                                return false;
                         }
 
                         errorCode = OpenDevice();
                         if (errorCode != ErrorCode.MV_OK)
                         {
-                                return Result.Failed;
+                                return false;
                         }
 
                         //AdjustSCPSPacketSize();
@@ -144,21 +143,21 @@ namespace Nutshell.Hikvision.MachineVision
                         //SetCurrentUserSet(UserSet.UserSet1);
                         //LoadCurrentUserSet();
 
-                        return Result.Successed;
+                        return true;
                 }
 
-                protected override sealed Result StopConnectCore()
+                protected override sealed bool StopConnectCore()
                 {
                         var errorCode = CloseDevice();
                         if (errorCode != ErrorCode.MV_OK)
                         {
-                                return Result.Failed;
+                                return false;
                         }
 
                         errorCode = DestroyHandle();
                         if (errorCode != ErrorCode.MV_OK)
                         {
-                                return Result.Failed;
+                                return false;
                         }
 
                         return base.StopConnectCore();
@@ -169,23 +168,22 @@ namespace Nutshell.Hikvision.MachineVision
                         return IsDeviceAccessible();
                 }
 
-                protected override sealed Result StartDispatchCore()
+                protected override sealed bool StartDispatchCore()
                 {
-                        var baseResult = base.StartDispatchCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartDispatchCore())
                         {
-                                return baseResult;
+                                return false;
                         }
 
                         var errorCode = StartGrabbing();
                         if (errorCode != ErrorCode.MV_OK)
                         {
-                                return Result.Failed;
+                                return false;
                         }
-                        return Result.Successed;
+                        return true;
                 }
 
-                protected override sealed Result StopDispatchCore()
+                protected override sealed bool StopDispatchCore()
                 {
                         StopGrabbing();
 

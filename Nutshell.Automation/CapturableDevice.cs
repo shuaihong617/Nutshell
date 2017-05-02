@@ -84,7 +84,7 @@ namespace Nutshell.Automation
 
                 #endregion 存储
 
-                protected override Result StartDispatchCore()
+                protected override bool StartDispatchCore()
                 {
                         if (Pool == null)
                         {
@@ -92,7 +92,7 @@ namespace Nutshell.Automation
                                 Pool.Parent = this;
                         }
 
-                        return Result.Successed;
+                        return true;
                 }
 
                 protected abstract ReadWritePool<T> CreatePool();
@@ -101,19 +101,19 @@ namespace Nutshell.Automation
                 ///         连接
                 /// </summary>
                 /// <returns>操作结果</returns>
-                public Result StartCaptureLoop()
+                public bool StartCaptureLoop()
                 {
                         lock (_lockFlag)
                         {
                                 if (CaptureLooper.WorkerState == WorkerState.已启动)
                                 {
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 if (!IsEnable)
                                 {
                                         this.Warn("未启用");
-                                        return Result.Failed;
+                                        return false;
                                 }
 
                                 return CaptureLooper.Start();
@@ -124,33 +124,32 @@ namespace Nutshell.Automation
                 ///         断开连接
                 /// </summary>
                 /// <returns>操作结果</returns>
-                public Result StopCaptureLoop()
+                public bool StopCaptureLoop()
                 {
                         lock (_lockFlag)
                         {
                                 if (CaptureLooper.WorkerState == WorkerState.已停止)
                                 {
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 if (!IsEnable)
                                 {
                                         this.Warn("未启用");
-                                        return Result.Successed;
+                                        return false;
                                 }
 
                                 return CaptureLooper.Stop();
                         }
                 }
 
-                protected Result Capture()
+                protected void Capture()
                 {
                         var t = CaptureCore();
                         if (t != null && t.IsSuccessed)
                         {
                                 OnCaptureSuccessed(new ValueEventArgs<T>(t.Value));
                         }
-                        return t;
                 }
 
                 protected abstract ValueResult<T> CaptureCore();

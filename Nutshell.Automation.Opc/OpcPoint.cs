@@ -21,7 +21,7 @@ namespace Nutshell.Automation.Opc
         ///         跟踪值更新前后变化的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class OpcPoint<T> : ObservableNullable<T> where T : struct
+        public class OpcPoint<T> : ObservableNullableValue<T> where T : struct
         {
 		/// <summary>
 		///         初始化<see cref="OpcPoint{T}" />的新实例.

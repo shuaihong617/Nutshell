@@ -53,12 +53,11 @@ namespace Nutshell.Hikvision.MachineVision
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
-                        var baseResult = base.StartCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartCore())
                         {
-                                return baseResult;
+                                return false;
                         }
 
                         var deviceInfoList = new DeviceInformationCollection();
@@ -66,7 +65,7 @@ namespace Nutshell.Hikvision.MachineVision
 
                         if (errorCode != ErrorCode.MV_OK)
                         {
-                                return Result.Failed;
+                                return false;
                         }
 
                         var cameras = new List<InstalledMachineVisionCamera>();
@@ -85,25 +84,7 @@ namespace Nutshell.Hikvision.MachineVision
 
                         InstalledMachineVisionCameras = cameras.ToReadOnlyCollection();
 
-                        return Result.Successed;
-                }
-
-                /// <summary>
-                ///         执行退出过程的具体步骤.
-                /// </summary>
-                /// <returns>成功返回True, 否则返回False.</returns>
-                /// <remarks>
-                ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
-                /// </remarks>
-                protected override Result StopCore()
-                {
-                        var baseResult = base.StopCore();
-                        if (!baseResult.IsSuccessed)
-                        {
-                                return baseResult;
-                        }
-
-                        return Result.Successed;
+                        return true;
                 }
 
                 #endregion 方法

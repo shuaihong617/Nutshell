@@ -82,7 +82,7 @@ namespace Nutshell.Automation
                 ///         连接
                 /// </summary>
                 /// <returns>操作结果</returns>
-                public Result StartDispatch()
+                public bool StartDispatch()
                 {
                         lock (_lockFlag)
                         {
@@ -90,12 +90,12 @@ namespace Nutshell.Automation
                                 {
                                         if (ConnectState != ConnectState.Connected)
                                         {
-                                                return Result.Failed;
+                                                return false;
                                         }
 
                                         if (DispatchState == DispatchState.Established)
                                         {
-                                                return Result.Successed;
+                                                return true;
                                         }
 
                                         DispatchState = DispatchState.Establishing;
@@ -105,34 +105,34 @@ namespace Nutshell.Automation
                                                 this.Warn("未启用");
 
                                                 DispatchState = DispatchState.Terminated;
-                                                return Result.Failed;
+                                                return false;
                                         }
 
                                         var result = StartDispatchCore();
 
-                                        DispatchState = result.IsSuccessed ? DispatchState.Established : DispatchState.Terminated;
+                                        DispatchState = result ? DispatchState.Established : DispatchState.Terminated;
 
                                         return result;
                                 }
                         }
                 }
 
-                protected virtual Result StartDispatchCore()
+                protected virtual bool StartDispatchCore()
                 {
-                        return Result.Successed;
+                        return true;
                 }
 
                 /// <summary>
                 ///         断开连接
                 /// </summary>
                 /// <returns>操作结果</returns>
-                public Result StopDispatch()
+                public bool StopDispatch()
                 {
                         lock (_lockFlag)
                         {
                                 if (DispatchState == DispatchState.Terminated)
                                 {
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 DispatchState = DispatchState.Terminating;
@@ -142,7 +142,7 @@ namespace Nutshell.Automation
                                         this.Warn("未启用");
 
                                         DispatchState = DispatchState.Terminated;
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 var result = StopDispatchCore();
@@ -153,9 +153,9 @@ namespace Nutshell.Automation
                         }
                 }
 
-                protected virtual Result StopDispatchCore()
+                protected virtual bool StopDispatchCore()
                 {
-                        return Result.Successed;
+                        return true;
                 }
         }
 }

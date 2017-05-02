@@ -61,12 +61,11 @@ namespace Nutshell.Speech.Microsoft
                 /// <remarks>
                 ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
                 /// </remarks>
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
-                        var baseResult = base.StartCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartCore())
                         {
-                                return baseResult;
+                                return false;
                         }
 
                         var synthesizer = new NativeSynthesizer();
@@ -74,7 +73,7 @@ namespace Nutshell.Speech.Microsoft
                         ChineseVoices = synthesizer.GetInstalledVoices(new CultureInfo("zh-CN"));
                         EnglishVoices = synthesizer.GetInstalledVoices(new CultureInfo("en-US"));
 
-                        return Result.Successed;
+                        return true;
                 }
 
                 #endregion 方法

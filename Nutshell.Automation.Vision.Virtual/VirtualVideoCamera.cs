@@ -74,16 +74,16 @@ namespace Nutshell.Automation.Vision.Virtual
                         throw new NotImplementedException();
                 }
 
-                protected override Result StartConnectCore()
+                protected override bool StartConnectCore()
                 {
                         reader.Open(FileName);
-                        return Result.Successed;
+                        return true;
                 }
 
-                protected override Result StopConnectCore()
+                protected override bool StopConnectCore()
                 {
                         reader.Close();
-                        return Result.Successed;
+                        return true;
                 }
 
                 //protected override bool StartCaptureCore()

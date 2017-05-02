@@ -56,7 +56,7 @@ namespace Nutshell.RabbitMQ
 			base.Save(model);
 		}
 
-		protected override Result StartCore()
+		protected override bool StartCore()
 		{
 			Channel = _connection.CreateModel();
 
@@ -66,19 +66,19 @@ namespace Nutshell.RabbitMQ
 
 			Channel.ExchangeDeclare(Exchange.Name, Exchange.ExchangeType.ToString().ToLower(), Exchange.IsDurable, Exchange.IsAutoDelete);
 
-			return Result.Successed;
+			return true;
 		}
 
-		protected override Result StopCore()
+		protected override bool StopCore()
 		{
 			Channel.Close();
 			Channel.Dispose();
 			Channel = null;
 
-			return Result.Successed;
+			return true;
 		}
 
-		public IActor<T> SetBus([MustNotEqualNull]Bus bus)
+		public IActor<T> BindToBus([MustNotEqualNull]Bus bus)
 		{
 			Trace.Assert(_connection == null);
 

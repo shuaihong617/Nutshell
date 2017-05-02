@@ -96,7 +96,7 @@ namespace Nutshell.Speech
                 /// </summary>
                 /// <param name="voice">The voice.</param>
                 /// <returns>IResult.</returns>
-                public abstract Result SelectVoice(string voice);
+                public abstract bool SelectVoice(string voice);
 
                 /// <summary>
                 /// Synthesizes the asynchronous.
@@ -104,7 +104,7 @@ namespace Nutshell.Speech
                 /// <param name="content">The content.</param>
                 /// <param name="fileName">Name of the file.</param>
                 /// <returns>IResult.</returns>
-                public abstract Result SynthesizeAsync(string content, string fileName = null);
+                public abstract bool SynthesizeAsync(string content, string fileName = null);
 
                 /// <summary>
                 /// 当合成启动时发生。

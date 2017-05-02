@@ -66,7 +66,7 @@ namespace Nutshell.Speech.Microsoft
 
                 #endregion 属性
 
-                public override Result SynthesizeAsync(string content, string fileName = null)
+                public override bool SynthesizeAsync(string content, string fileName = null)
                 {
                         if (fileName == null)
                         {
@@ -90,10 +90,10 @@ namespace Nutshell.Speech.Microsoft
 
                         this.Info("合成:" + content);
 
-                        return Result.Successed;
+                        return true;
                 }
 
-                public override Result SelectVoice(string voice)
+                public override bool SelectVoice(string voice)
                 {
                         try
                         {
@@ -103,9 +103,9 @@ namespace Nutshell.Speech.Microsoft
                         catch (Exception ex)
                         {
                                 this.Error("Select voice " + voice + "失败，失败原因：" + ex);
-                                return Result.Failed;
+                                return false;
                         }
-                        return Result.Successed;
+                        return true;
                 }
         }
 }

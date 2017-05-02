@@ -67,12 +67,11 @@ namespace Nutshell.RabbitMQ
                         throw new NotImplementedException();
                 }
 
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
-                        var baseResult = base.StartCore();
-                        if (!baseResult.IsSuccessed)
+                        if (!base.StartCore())
                         {
-                                return baseResult;
+                                return false;
                         }
 
                         _factory = new ConnectionFactory
@@ -85,7 +84,7 @@ namespace Nutshell.RabbitMQ
 
                         Connection = _factory.CreateConnection();
 
-                        return Result.Successed;
+                        return true;
                 }
 
                 /// <summary>
@@ -95,7 +94,7 @@ namespace Nutshell.RabbitMQ
                 /// <remarks>
                 ///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
                 /// </remarks>
-                protected override Result StopCore()
+                protected override bool StopCore()
                 {
                         base.StopCore();
 
@@ -105,7 +104,7 @@ namespace Nutshell.RabbitMQ
 
                         _factory = null;
 
-                        return Result.Successed;
+                        return true;
                 }
         }
 }

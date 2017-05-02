@@ -83,13 +83,13 @@ namespace Nutshell.Automation
                 /// 连接
                 /// </summary>
                 /// <returns>操作结果</returns>
-                public Result StartConnect()
+                public bool StartConnect()
                 {
                         lock (_lockFlag)
                         {
                                 if (ConnectState == ConnectState.Connected)
                                 {
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 ConnectState = ConnectState.Connecting;
@@ -99,33 +99,33 @@ namespace Nutshell.Automation
                                         this.Warn("未启用");
 
                                         ConnectState = ConnectState.Disconnected;
-                                        return Result.Failed;
+                                        return false;
                                 }
 
                                 var result = StartConnectCore();
 
-                                ConnectState = result.IsSuccessed ? ConnectState.Connected : ConnectState.Disconnected;
+                                ConnectState = result ? ConnectState.Connected : ConnectState.Disconnected;
 
                                 return result;
                         }
                 }
 
-                protected virtual Result StartConnectCore()
+                protected virtual bool StartConnectCore()
                 {
-                        return Result.Successed;
+                        return true;
                 }
 
                 /// <summary>
                 /// 断开连接
                 /// </summary>
                 /// <returns>操作结果</returns>
-                public Result StopConnect()
+                public bool StopConnect()
                 {
                         lock (_lockFlag)
                         {
                                 if (ConnectState == ConnectState.Disconnected)
                                 {
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 ConnectState = ConnectState.Disconnecting;
@@ -135,7 +135,7 @@ namespace Nutshell.Automation
                                         this.Warn("未启用");
 
                                         ConnectState = ConnectState.Disconnected;
-                                        return Result.Successed;
+                                        return true;
                                 }
 
                                 var result = StopConnectCore();
@@ -146,9 +146,9 @@ namespace Nutshell.Automation
                         }
                 }
 
-                protected virtual Result StopConnectCore()
+                protected virtual bool StopConnectCore()
                 {
-                        return Result.Successed;
+                        return true;
                 }
 
                 #region 事件

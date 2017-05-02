@@ -67,7 +67,7 @@ namespace Nutshell.RabbitMQ
 		{
 			var data = Serializer.Serialize(messageModel);
 
-			Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + messageModel.Id);
+			Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {messageModel.Id}    {messageModel.Category}");
 
 			Channel.BasicPublish(Exchange.Name,
 				messageModel.Category,

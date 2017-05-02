@@ -67,13 +67,13 @@ namespace Nutshell.Components
 		///         启动
 		/// </summary>
 		/// <returns>成功返回True，失败返回False.</returns>
-		public Result Start()
+		public bool Start()
 		{
 			lock (_lockFlag)
 			{
 				if (WorkerState == WorkerState.已启动)
 				{
-					return Result.Successed;
+					return true;
 				}
 
 				WorkerState = WorkerState.启动中;
@@ -83,11 +83,11 @@ namespace Nutshell.Components
 					this.Warn("未启用");
 
 					WorkerState = WorkerState.已停止;
-					return Result.Failed;
+					return false;
 				}
 
 				var result = StartCore();
-				WorkerState = result.IsSuccessed ? WorkerState.已启动 : WorkerState.已停止;
+				WorkerState = result ? WorkerState.已启动 : WorkerState.已停止;
 
 				return result;
 			}
@@ -97,13 +97,13 @@ namespace Nutshell.Components
 		///         停止
 		/// </summary>
 		/// <returns>成功返回True，失败返回False.</returns>
-		public Result Stop()
+		public bool Stop()
 		{
 			lock (_lockFlag)
 			{
 				if (WorkerState == WorkerState.已停止)
 				{
-					return Result.Successed;
+					return true;
 				}
 
 				WorkerState = WorkerState.停止中;
@@ -112,7 +112,7 @@ namespace Nutshell.Components
 				{
 					this.Warn("启用状态：否");
 
-					return Result.Failed;
+					return false;
 				}
 
 				var result = StopCore();
@@ -130,9 +130,9 @@ namespace Nutshell.Components
 		/// <remarks>
 		///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
 		/// </remarks>
-		protected virtual Result StartCore()
+		protected virtual bool StartCore()
 		{
-			return Result.Successed;
+			return true;
 		}
 
 		/// <summary>
@@ -142,9 +142,9 @@ namespace Nutshell.Components
 		/// <remarks>
 		///         若退出过程有多个步骤,执行尽可能多的步骤, 以保证尽量清理现场.
 		/// </remarks>
-		protected virtual Result StopCore()
+		protected virtual bool StopCore()
 		{
-			return Result.Successed;
+			return true;
 		}
 
 		#region 事件

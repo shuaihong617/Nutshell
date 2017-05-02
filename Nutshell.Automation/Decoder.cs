@@ -60,7 +60,7 @@ namespace Nutshell.Automation
 
                 #region 处理流程
 
-                protected override Result StartCore()
+                protected override bool StartCore()
                 {
                         if (Pool == null)
                         {
@@ -85,30 +85,30 @@ namespace Nutshell.Automation
                         Capturer.Pool.ReadLock(_decodeSource);
                 }
 
-                protected override Result StopCore()
+                protected override bool StopCore()
                 {
                         DecodeLooper.Stop();
                         Capturer.CaptureSuccessed -= Capturer_CaptureSuccessed;
-                        return Result.Successed;
+                        return true;
                 }
 
-                private ValueResult<T> Decode()
+                private void Decode()
                 {
                         if (_decodeSource == null)
                         {
-                                return ValueResult<T>.Failed;
+                                return ;
                         }
 
                         if (!IsEnable || WorkerState != WorkerState.已启动)
                         {
                                 Capturer.Pool.ReadUnlock(_decodeSource);
                                 _decodeSource = default(T);
-                                return ValueResult<T>.Failed;
+                                return;
                         }
 
                         if (Capturer.Pool.GetLock(_decodeSource) < 1)
                         {
-                                return ValueResult<T>.Failed;
+                                return;
                         }
 
                         var target = Pool.WriteLock();
@@ -126,7 +126,6 @@ namespace Nutshell.Automation
 
                         _decodeSource = default(T);
 
-                        return new ValueResult<T>(target);
                 }
 
                 protected abstract void DecodeCore(T source, T target);

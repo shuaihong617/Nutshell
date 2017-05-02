@@ -49,13 +49,13 @@ namespace Nutshell.Automation.Vision
 
                 #region 处理流程
 
-                protected sealed override Result StartCore()
+                protected sealed override bool StartCore()
                 {
                         Decoder.DecodeFinished += Camera_CaptureSuccessed;
-                        return Result.Successed;
+                        return true;
                 }
 
-                protected sealed override Result StopCore()
+                protected sealed override bool StopCore()
                 {
                         Decoder.DecodeFinished -= Camera_CaptureSuccessed;
 
@@ -66,7 +66,7 @@ namespace Nutshell.Automation.Vision
                                         _processTask.Wait();
                                 }
                         }
-                        return Result.Successed;
+                        return true;
                 }
 
                 /// <summary>
