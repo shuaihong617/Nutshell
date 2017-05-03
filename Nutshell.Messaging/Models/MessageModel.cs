@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Storaging.Models;
@@ -23,6 +24,16 @@ namespace Nutshell.Messaging.Models
 	[XmlType]
 	public class MessageModel : DataModel
 	{
+	        public MessageModel()
+	        {
+	                Id = Guid.NewGuid().ToString();
+	        }
+
+	        public MessageModel(string category)
+	        {
+	                Category = category;
+	        }
+
 		/// <summary>
 		///         获取消息的类型
 		/// </summary>

@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 
+using System;
 using System.Xml.Serialization;
 
 namespace Nutshell.Messaging.Models
@@ -22,6 +23,15 @@ namespace Nutshell.Messaging.Models
         [XmlType]
         public class MultiStringKeyValuePairsMessageModel : MultiKeyValuePairsMessageModel<string,string>
         {
+                public MultiStringKeyValuePairsMessageModel()
+                {
+                        Id = Guid.NewGuid().ToString();
+                }
+
+                public MultiStringKeyValuePairsMessageModel(string category)
+                {
+                        Category = category;
+                }
                 public void Add(object k, object v)
                 {
                         base.Add(k.ToString(), v.ToString());
