@@ -82,7 +82,7 @@ namespace Nutshell.Communication.Data
                         Trace.Assert(FromLowerReceiver == null);
 
                         FromLowerReceiver = receiver;
-                        receiver.ReceiveSuccessed += (obj, args) =>
+                        receiver.Received += (obj, args) =>
                         {
                                 SetData(args.Value.Value);
                                 if (ToUpperSender == null)
@@ -109,7 +109,7 @@ namespace Nutshell.Communication.Data
                         Trace.Assert(FromUpperReceiver == null);
 
                         FromUpperReceiver = receiver;
-                        receiver.ReceiveSuccessed += (obj, args) =>
+                        receiver.Received += (obj, args) =>
                         {
                                 SetData(args.Value.Value);
                                 if (ToUpperSender == null)

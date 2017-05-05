@@ -23,6 +23,6 @@ namespace Nutshell.Communication
 	{
 		ISerializer<T> Serializer { get; }
 
-		IActor<T> BindToBus(Bus bus);
+		IActor<T> BindBus(Bus bus);
 	}
 }

@@ -34,7 +34,7 @@ namespace Nutshell.Automation
                         Trace.Assert(_stateReceiver == null);
 
                         _stateReceiver = receiver;
-                        _stateReceiver.ReceiveSuccessed += (obj, args) =>
+                        _stateReceiver.Received += (obj, args) =>
                         {
                                 State = (CylinderState) args.Value.Value;
 

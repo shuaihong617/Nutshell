@@ -32,7 +32,7 @@ namespace Nutshell.Automation
 			Trace.Assert(_receiver == null);
 
 	                _receiver = receiver;
-			_receiver.ReceiveSuccessed += (obj, args) =>
+			_receiver.Received += (obj, args) =>
 			{
 				State = args.Value.Value;
 

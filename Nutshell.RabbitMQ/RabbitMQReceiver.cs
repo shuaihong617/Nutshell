@@ -76,7 +76,7 @@ namespace Nutshell.RabbitMQ
 
                                 Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + messageModel.Id);
 
-                                OnReceiveSuccessed(new ValueEventArgs<T>(messageModel));
+                                OnReceived(new ValueEventArgs<T>(messageModel));
                         };
                         Channel.BasicConsume(_queue.Name, true, _consumer);
 
@@ -84,17 +84,18 @@ namespace Nutshell.RabbitMQ
                 }
 
 
-                public event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
+                #region 事件
+
+                public event EventHandler<ValueEventArgs<T>> Received;
 
                 /// <summary>
                 ///         引发启动事件。
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
-                protected virtual void OnReceiveSuccessed(ValueEventArgs<T> e)
-                {
-                        e.Raise(this, ref ReceiveSuccessed);
-                }
+                protected virtual void OnReceived(ValueEventArgs<T> e) => e.Raise(this, ref Received);
 
-                public event EventHandler<ValueEventArgs<Exception>> ReceiveFailed;
+                #endregion
+
+
         }
 }
