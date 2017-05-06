@@ -12,31 +12,20 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
 
 namespace Nutshell.Components.Models
 {
-	/// <summary>
-	///         限位数据模型
-	/// </summary>
-	[XmlType]
-	public class LimiterModel:DataModel
-	{
-		/// <summary>
-		///         Gets the mode.
-		/// </summary>
-		/// <value>The mode.</value>
-		[XmlAttribute]
-		public LimitMode Mode { get; set; }
-
-		[XmlAttribute]
-		public double Accuracy { get; set; }
-
-		/// <summary>
-		///         Gets the standard value.
-		/// </summary>
-		/// <value>The standard value.</value>
-		[XmlAttribute]
-		public double StandardValue { get; set; }
-	}
+        /// <summary>
+        ///         限位数据模型
+        /// </summary>
+        [XmlType]
+        public class LimiterModel : DistanceModel
+        {
+                /// <summary>
+                ///         获取或设置限位模式
+                /// </summary>
+                /// <value>限位模式</value>
+                [XmlAttribute]
+                public LimitMode Mode { get; set; }
+        }
 }

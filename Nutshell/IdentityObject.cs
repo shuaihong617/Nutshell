@@ -85,7 +85,6 @@ namespace Nutshell
                 /// <summary>
                 ///         上级对象
                 /// </summary>
-                [MustNotEqualNull]
                 public IIdentifiable Parent
                 {
                         get { return _parent; }
@@ -95,8 +94,9 @@ namespace Nutshell
                                 Trace.Assert(_parent == null);
 
                                 _parent = value;
-                                _parent.GlobalIdChanged += (o, a) => UpdateGlobalId();
+                                OnParentChanged(EventArgs.Empty);
 
+                                _parent.GlobalIdChanged += (o, a) => UpdateGlobalId();
                                 UpdateGlobalId();
                         }
                 }
@@ -127,6 +127,21 @@ namespace Nutshell
                 #endregion 方法
 
                 #region 事件
+
+                /// <summary>
+                ///         当全局标识改变时发生
+                /// </summary>
+                [Description("全局标识改变事件")]
+                public event EventHandler<EventArgs> ParentChanged;
+
+                /// <summary>
+                ///         引发全局标识改变事件
+                /// </summary>
+                /// <param name="e">包含事件数据的<see cref="EventArgs" />实例</param>
+                protected virtual void OnParentChanged(EventArgs e)
+                {
+                        e.Raise(this, ref ParentChanged);
+                }
 
                 /// <summary>
                 ///         当全局标识改变时发生

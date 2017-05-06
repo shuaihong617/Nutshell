@@ -19,29 +19,44 @@ namespace Nutshell.Components
         /// <summary>
         /// 限位
         /// </summary>
-        public class Limiter:Distance,IStorable<LimiterModel>
+        public class Distance:StorableObject,IStorable<DistanceModel>
         {
                 /// <summary>
-                /// 获取限位模式
+                /// 获取精度
                 /// </summary>
-                /// <value>限位模式</value>
-                public LimitMode Mode { get; private set; }
+                /// <value>精度</value>
+                public double Accuracy { get; private set; }
 
                 /// <summary>
-                /// 获取实际值是否在合适的区间
+                /// 获取标准值
                 /// </summary>
-                /// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
-                public bool IsSuitable { get; private set; }
+                /// <value>标准值</value>
+                public double StandardValue { get; private set; }
+                
+                /// <summary>
+                /// 获取实际值
+                /// </summary>
+                /// <value>实际值</value>
+                public double ParcticeValue { get; private set; }
+
+
+                /// <summary>
+		///         Gets a value indicating whether this instance is over.
+		/// </summary>
+		/// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
+		public double Offset { get; set; }
+
 
                 /// <summary>
                 /// 从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(LimiterModel model)
+                public void Load(DistanceModel model)
 		{
 			base.Load(model);
 
-			Mode = model.Mode;
+			Accuracy = model.Accuracy;
+			StandardValue = model.StandardValue;
 		}
 
                 /// <summary>
@@ -49,18 +64,23 @@ namespace Nutshell.Components
                 /// </summary>
                 /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
                 /// <exception cref="System.NotImplementedException"></exception>
-                public void Save(LimiterModel model)
+                public void Save(DistanceModel model)
 		{
 			throw new System.NotImplementedException();
 		}
+
+                public void SetOffset(double offset)
+                {
+                        Offset = offset;
+                }
 
                 /// <summary>
                 /// Sets the parctice value.
                 /// </summary>
                 /// <param name="value">The value.</param>
-                public override void SetParcticeValue(double value)
+                public virtual void SetParcticeValue(double value)
                 {
-                        base.SetParcticeValue(value);
+                        
                 }
 
 	        

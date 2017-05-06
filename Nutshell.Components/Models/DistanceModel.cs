@@ -11,27 +11,25 @@
 // </summary>
 // ***********************************************************************
 
-namespace Nutshell.Components
+using System.Xml.Serialization;
+using Nutshell.Storaging.Models;
+
+namespace Nutshell.Components.Models
 {
 	/// <summary>
-	///         可变限位
+	///         距离数据模型
 	/// </summary>
-	public class VariableLimiter : Limiter
+	[XmlType]
+	public class DistanceModel:DataModel
 	{
+		[XmlAttribute]
+		public double Accuracy { get; set; }
+
 		/// <summary>
-		///         Gets a value indicating whether this instance is over.
+		///         Gets the standard value.
 		/// </summary>
-		/// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
-		public double Offset { get; private set; }
-
-		public override void SetParcticeValue(double value)
-		{
-			base.SetParcticeValue(value + Offset);
-		}
-
-		public void SetOffset(double offset)
-		{
-			Offset = offset;
-		}
+		/// <value>The standard value.</value>
+		[XmlAttribute]
+		public double StandardValue { get; set; }
 	}
 }

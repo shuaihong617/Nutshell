@@ -59,8 +59,9 @@
     <Compile Include="IRunable.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="IHitable.cs" />
+    <Compile Include="Distance.cs" />
+    <Compile Include="Models\DistanceModel.cs" />
     <Compile Include="Models\LimiterModel.cs" />
-    <Compile Include="VariableLimiter.cs" />
     <Compile Include="Limiter.cs" />
     <Compile Include="LimitMode.cs" />
     <Compile Include="Models\ApplicationModel.cs" />
