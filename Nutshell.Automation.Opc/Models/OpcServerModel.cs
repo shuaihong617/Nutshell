@@ -30,16 +30,16 @@ namespace Nutshell.Automation.Opc.Models
                 /// </summary>
                 [XmlAttribute]
                 [MustNotEqualNullOrEmpty]
-                public String Name { get; set; }
+                public string Name { get; set; }
 
                 /// <summary>
                 ///         名称
                 /// </summary>
                 [XmlAttribute]
                 [MustNotEqualNullOrEmpty]
-                public String Address { get; set; }
+                public string Address { get; set; }
 
                 [XmlArray]
-                public List<OpcGroupModel> XmlOpcGroupModels { get; set; }
+                public List<OpcGroupModel> OpcGroupModels { get; set; }
         }
 }

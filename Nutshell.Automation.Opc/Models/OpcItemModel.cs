@@ -24,12 +24,6 @@ namespace Nutshell.Automation.Opc.Models
         [XmlType]
         public class OpcItemModel : DataModel
         {
-                public OpcItemModel()
-                {
-                        TypeCode = TypeCode.Int32;
-                        ReadWriteMode = ReadWriteMode.ReadWrite;
-                }
-
                 /// <summary>
                 ///   地址
                 /// </summary>
@@ -41,12 +35,12 @@ namespace Nutshell.Automation.Opc.Models
                 ///   数据类型
                 /// </summary>
                 [XmlAttribute]
-                public TypeCode TypeCode { get; set; }
+                public TypeCode TypeCode { get; set; } = System.TypeCode.Int32;
 
                 /// <summary>
                 ///   读写模式
                 /// </summary>
                 [XmlAttribute]
-                public ReadWriteMode ReadWriteMode { get; set; }
+                public ReadWriteMode ReadWriteMode { get; set; } = ReadWriteMode.ReadWrite;
         }
 }

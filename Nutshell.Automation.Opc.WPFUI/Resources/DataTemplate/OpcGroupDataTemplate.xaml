@@ -3,20 +3,20 @@
                     xmlns:opc="clr-namespace:Nutshell.Automation.Opc;assembly=Nutshell.Automation.Opc">
         <DataTemplate x:Key="OpcGroupDataTemplate" DataType="{x:Type opc:OpcGroup}">
                 <ContentControl Style="{StaticResource Panel-Primary}" Margin="10">
-                        <StackPanel>
+                        <StackPanel >
                                 <ContentControl Style="{StaticResource Panel-Heading-Primary}" Content="{Binding Id}" />
                                 <ContentControl Style="{StaticResource Panel-Body}">
                                         <DataGrid Margin="10" ItemsSource="{Binding OpcItems}">
                                                 <DataGrid.Columns>
-                                                        <DataGridTextColumn Width="Auto" Header="名称"
+                                                        <DataGridTextColumn Width="500" Header="名称"
                                                                             Binding="{Binding Id}"
                                                                             ElementStyle="{StaticResource DataGridTextCenter}"
-                                                                            IsReadOnly="True" />
-                                                        <DataGridTextColumn Width="Auto" Header="类型"
-                                                                            Binding="{Binding Address}"
+                                                                            IsReadOnly="True" CanUserSort="False" />
+                                                        <DataGridTextColumn Width="100" Header="类型"
+                                                                            Binding="{Binding TypeCode}"
                                                                             ElementStyle="{StaticResource DataGridTextCenter}"
                                                                             IsReadOnly="True" />
-                                                        <DataGridTextColumn Width="Auto" Header="值"
+                                                        <DataGridTextColumn Width="150" Header="值"
                                                                             Binding="{Binding Value}"
                                                                             ElementStyle="{StaticResource DataGridTextCenter}"
                                                                             IsReadOnly="True" />

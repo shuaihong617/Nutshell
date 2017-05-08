@@ -11,8 +11,6 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 private GlobalManager()
                 {
-                        ConfigDirectory = @"配置/";
-
                         LogProvider.Initialize();
                         LogCollecter = new LogCollecter();
                         LogProvider.Instance.Register(LogCollecter);
@@ -32,7 +30,7 @@ namespace Nutshell.Automation.Opc.WPFUI
                 /// <summary>
                 ///         配置文件目录
                 /// </summary>
-                public string ConfigDirectory { get; }
+                public string ConfigDirectory { get; } = @"配置/";
 
                 [NotifyPropertyValueChanged]
                 public Application Application { get; private set; }
@@ -62,7 +60,7 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void Stop()
                 {
-                        //Runtime.Stop();
+                        Runtime.Stop();
                 }
         }
 }

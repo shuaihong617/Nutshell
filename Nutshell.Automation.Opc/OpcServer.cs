@@ -23,6 +23,7 @@ using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
 using Nutshell.Storaging.Xml;
+using OPCAutomation;
 
 //重命名OpcDAAuto.dll中类名，禁止删除；
 using NativeOpcServer = OPCAutomation.OPCServer;
@@ -51,7 +52,7 @@ namespace Nutshell.Automation.Opc
                                 Address = address;
                         }
 
-                        _nativeOpcServer = new NativeOpcServer();
+                        
                 }
 
 		#region 字段
@@ -59,7 +60,7 @@ namespace Nutshell.Automation.Opc
 		/// <summary>
 		/// The _native opc server
 		/// </summary>
-		private readonly NativeOpcServer _nativeOpcServer;
+		private readonly NativeOpcServer _nativeOpcServer = new NativeOpcServer();
 
 		/// <summary>
 		/// The _opc groups
@@ -75,7 +76,7 @@ namespace Nutshell.Automation.Opc
 		/// </summary>
 		/// <value>The address.</value>
 		[MustNotEqualNullOrEmpty]
-                public string Address { get; private set; }
+                public string Address { get; private set; } = string.Empty;
 
 		/// <summary>
 		/// Gets or sets the opc groups.
@@ -121,8 +122,8 @@ namespace Nutshell.Automation.Opc
 
                         Address = model.Address;
 
-			var groups = new List<OpcGroup>(model.XmlOpcGroupModels.Count);
-			foreach (var groupModel in model.XmlOpcGroupModels)
+			var groups = new List<OpcGroup>(model.OpcGroupModels.Count);
+			foreach (var groupModel in model.OpcGroupModels)
 			{
 				var group = new OpcGroup();
 				group.Load(groupModel);
@@ -179,7 +180,7 @@ namespace Nutshell.Automation.Opc
                                 return false;
                         }
 
-                        this.InfoSuccess("断开" + Address);
+                        this.InfoSuccess($"断开{Address}");
 
                         return true;
                 }

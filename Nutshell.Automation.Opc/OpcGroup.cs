@@ -45,7 +45,7 @@ namespace Nutshell.Automation.Opc
                         Address = model.Address;
 
 			var items = new List<OpcItem>();
-			foreach (var itemModel in model.XmlOpcItemModels)
+			foreach (var itemModel in model.OpcItemModels)
 			{
 				var item = new OpcItem();
 				item.Load(itemModel);

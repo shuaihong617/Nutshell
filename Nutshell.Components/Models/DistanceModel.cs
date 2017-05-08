@@ -30,6 +30,6 @@ namespace Nutshell.Components.Models
 		/// </summary>
 		/// <value>The standard value.</value>
 		[XmlAttribute]
-		public double StandardValue { get; set; }
+		public double Standard { get; set; }
 	}
 }

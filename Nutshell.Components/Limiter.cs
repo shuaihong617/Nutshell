@@ -31,7 +31,7 @@ namespace Nutshell.Components
                 /// 获取实际值是否在合适的区间
                 /// </summary>
                 /// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
-                public bool IsSuitable { get; private set; }
+                public bool IsValid { get; private set; }
 
                 /// <summary>
                 /// 从数据模型加载数据
@@ -53,16 +53,5 @@ namespace Nutshell.Components
 		{
 			throw new System.NotImplementedException();
 		}
-
-                /// <summary>
-                /// Sets the parctice value.
-                /// </summary>
-                /// <param name="value">The value.</param>
-                public override void SetParcticeValue(double value)
-                {
-                        base.SetParcticeValue(value);
-                }
-
-	        
         }
 }

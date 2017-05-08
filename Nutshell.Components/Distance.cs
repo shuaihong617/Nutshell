@@ -31,20 +31,26 @@ namespace Nutshell.Components
                 /// 获取标准值
                 /// </summary>
                 /// <value>标准值</value>
-                public double StandardValue { get; private set; }
+                public double Standard { get; private set; }
                 
                 /// <summary>
                 /// 获取实际值
                 /// </summary>
                 /// <value>实际值</value>
-                public double ParcticeValue { get; private set; }
+                public double Parctice { get; set; }
 
 
                 /// <summary>
-		///         Gets a value indicating whether this instance is over.
-		/// </summary>
-		/// <value><c>true</c> if this instance is over; otherwise, <c>false</c>.</value>
-		public double Offset { get; set; }
+                /// 获取修正值
+                /// </summary>
+                /// <value>修正值</value>
+		public double Addition { get; set; }
+
+                /// <summary>
+                /// 获取差值结果
+                /// </summary>
+                /// <value>差值结果</value>
+                public double Offset => Parctice - Standard + Addition;
 
 
                 /// <summary>
@@ -56,7 +62,7 @@ namespace Nutshell.Components
 			base.Load(model);
 
 			Accuracy = model.Accuracy;
-			StandardValue = model.StandardValue;
+			Standard = model.Standard;
 		}
 
                 /// <summary>
@@ -68,11 +74,6 @@ namespace Nutshell.Components
 		{
 			throw new System.NotImplementedException();
 		}
-
-                public void SetOffset(double offset)
-                {
-                        Offset = offset;
-                }
 
                 /// <summary>
                 /// Sets the parctice value.

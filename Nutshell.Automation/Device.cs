@@ -37,7 +37,7 @@ namespace Nutshell.Automation
 		/// <summary>
 		///         制造信息
 		/// </summary>
-		public ManufacturingInformation ManufacturingInformation { get;} = new ManufacturingInformation();
+		public ManufacturingInformation ManufacturingInformation { get; set ; }
 
 		#endregion 属性
 
@@ -53,7 +53,6 @@ namespace Nutshell.Automation
 		{
 			base.Load(model);
 
-			ManufacturingInformation.Load(model.ManufacturingInformationModel);
 		}
 
 		/// <summary>
@@ -64,7 +63,6 @@ namespace Nutshell.Automation
 		{
 			base.Save(model);
 
-                        ManufacturingInformation.Save(model.ManufacturingInformationModel);
                 }
 
 		#endregion 存储

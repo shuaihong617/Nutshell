@@ -29,6 +29,6 @@ namespace Nutshell.Automation.Opc.Models
                 public string Address { get; set; }
 
                 [XmlArray]
-                public List<OpcItemModel> XmlOpcItemModels { get; set; }
+                public List<OpcItemModel> OpcItemModels { get; set; }
         }
 }
