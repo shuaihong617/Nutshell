@@ -59,6 +59,7 @@
     <Compile Include="Models\LogMessageModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\MultiKeyValuePairsMessageModel.cs" />
+    <Compile Include="Models\StringKeyValueMessageModel.cs" />
     <Compile Include="Models\MultiStringKeyValuePairsMessageModel.cs" />
     <Compile Include="Models\MultiValueMessageModel.cs" />
     <Compile Include="Models\ValueMessageModel.cs" />
