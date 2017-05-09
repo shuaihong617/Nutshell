@@ -25,32 +25,25 @@ namespace Nutshell.Components
                 /// 获取精度
                 /// </summary>
                 /// <value>精度</value>
-                public double Accuracy { get; private set; }
+                public float Accuracy { get; private set; }
 
                 /// <summary>
                 /// 获取标准值
                 /// </summary>
                 /// <value>标准值</value>
-                public double Standard { get; private set; }
-                
-                /// <summary>
-                /// 获取实际值
-                /// </summary>
-                /// <value>实际值</value>
-                public double Parctice { get; set; }
-
+                public float Standard { get; private set; }
 
                 /// <summary>
                 /// 获取修正值
                 /// </summary>
                 /// <value>修正值</value>
-		public double Addition { get; set; }
+		public float Addition { get; set; }
 
                 /// <summary>
-                /// 获取差值结果
+                /// 获取实际值
                 /// </summary>
-                /// <value>差值结果</value>
-                public double Offset => Parctice - Standard + Addition;
+                /// <value>实际值</value>
+                public float Parctice => Standard + Addition;
 
 
                 /// <summary>
@@ -75,14 +68,7 @@ namespace Nutshell.Components
 			throw new System.NotImplementedException();
 		}
 
-                /// <summary>
-                /// Sets the parctice value.
-                /// </summary>
-                /// <param name="value">The value.</param>
-                public virtual void SetParcticeValue(double value)
-                {
-                        
-                }
+                
 
 	        
         }

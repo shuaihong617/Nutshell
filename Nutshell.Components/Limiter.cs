@@ -19,13 +19,43 @@ namespace Nutshell.Components
         /// <summary>
         /// 限位
         /// </summary>
-        public class Limiter:Distance,IStorable<LimiterModel>
+        public class Limiter:StorableObject,IStorable<LimiterModel>
         {
                 /// <summary>
                 /// 获取限位模式
                 /// </summary>
                 /// <value>限位模式</value>
                 public LimitMode Mode { get; private set; }
+
+                /// <summary>
+                /// 获取精度
+                /// </summary>
+                /// <value>精度</value>
+                public double Accuracy { get; private set; }
+
+                /// <summary>
+                /// 获取标准值
+                /// </summary>
+                /// <value>标准值</value>
+                public double Standard { get; private set; }
+
+                /// <summary>
+                /// 获取修正值
+                /// </summary>
+                /// <value>修正值</value>
+		public double Addition { get; set; }
+
+                /// <summary>
+                /// 获取实际值
+                /// </summary>
+                /// <value>实际值</value>
+                public double Parctice { get; set; }
+
+                /// <summary>
+                /// 获取差值结果
+                /// </summary>
+                /// <value>差值结果</value>
+                public double Offset => Parctice - Standard + Addition;
 
                 /// <summary>
                 /// 获取实际值是否在合适的区间
@@ -53,5 +83,15 @@ namespace Nutshell.Components
 		{
 			throw new System.NotImplementedException();
 		}
+
+
+                /// <summary>
+                /// Sets the parctice value.
+                /// </summary>
+                /// <param name="value">The value.</param>
+                public virtual void SetParcticeValue(double value)
+                {
+
+                }
         }
 }

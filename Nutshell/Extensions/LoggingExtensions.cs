@@ -29,7 +29,7 @@ namespace Nutshell.Extensions
                         LogProvider.Instance.Debug(identifiable.GlobalId + message);
                 }
 
-                public static void Info(this IIdentifiable identifiable, [MustNotEqualNullOrEmpty]string message)
+                public static void Info(this IIdentifiable identifiable, [MustNotEqualNull]object message)
                 {
                         LogProvider.Instance.Info($"{ identifiable.GlobalId}:{message}");
                 }

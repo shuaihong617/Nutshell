@@ -23,13 +23,13 @@ namespace Nutshell.Components.Models
 	public class DistanceModel:DataModel
 	{
 		[XmlAttribute]
-		public double Accuracy { get; set; }
+		public float Accuracy { get; set; }
 
 		/// <summary>
 		///         Gets the standard value.
 		/// </summary>
 		/// <value>The standard value.</value>
 		[XmlAttribute]
-		public double Standard { get; set; }
+		public float Standard { get; set; }
 	}
 }

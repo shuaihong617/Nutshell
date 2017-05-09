@@ -30,7 +30,5 @@ namespace Nutshell.Communication
                 void Send(T messageModel);
 
                 event EventHandler<ValueEventArgs<T>> SendSuccessed;
-
-                event EventHandler<ValueEventArgs<Exception>> SendFailed;
         }
 }

@@ -80,10 +80,5 @@ namespace Nutshell.RabbitMQ
 		///         Occurs when [send successed].
 		/// </summary>
 		public event EventHandler<ValueEventArgs<T>> SendSuccessed;
-
-		/// <summary>
-		///         Occurs when [send failed].
-		/// </summary>
-		public event EventHandler<ValueEventArgs<Exception>> SendFailed;
 	}
 }
