@@ -14,19 +14,32 @@
 using System;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Storaging.Models;
+using Nutshell.Messaging.Models;
 
-namespace Nutshell.Messaging.Models
+namespace Nutshell.RabbitMQ.Messaging.Models
 {
 	/// <summary>
 	///         消息
 	/// </summary>
 	[XmlType]
-	public class MessageModel : DataModel
+	public class RabbitMQMessageModel : MessageModel
 	{
-	        public MessageModel()
+	        public RabbitMQMessageModel()
 	        {
 	                Id = Guid.NewGuid().ToString();
 	        }
+
+	        public RabbitMQMessageModel(string routingKey)
+	        {
+	                RoutingKey = routingKey;
+	        }
+
+                /// <summary>
+                ///         获取路由键
+                /// </summary>
+                /// <value>路由键</value>
+                [XmlAttribute]
+		[MustNotEqualNull]
+		public string RoutingKey { get; set; }
 	}
 }

@@ -12,19 +12,31 @@
 // ***********************************************************************
 
 
+using System;
 using System.Xml.Serialization;
 
-namespace Nutshell.Messaging.Models
+namespace Nutshell.RabbitMQ.Messaging.Models
 {
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
         [XmlType]
-        public class MultiKeyValuePairsMessageModel<TK,TV> : MultiValueMessageModel<KeyValuePairModel<TK,TV>>
+        public class RabbitMQStringKeyValueMessageModel : RabbitMQMessageModel
         {
-                public void Add(TK k, TV v)
+                public RabbitMQStringKeyValueMessageModel()
                 {
-                        Add(new KeyValuePairModel<TK, TV>(k, v));
+                        Id = Guid.NewGuid().ToString();
                 }
-        }
+
+                public RabbitMQStringKeyValueMessageModel(string routingKey)
+                {
+                        RoutingKey = routingKey;
+                }
+
+		[XmlAttribute]
+		public string Key { get; set; }
+
+		[XmlAttribute]
+		public string Value { get; set; }
+	}
 }

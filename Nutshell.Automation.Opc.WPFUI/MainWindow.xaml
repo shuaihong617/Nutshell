@@ -9,7 +9,7 @@
                      Icon="Resources/Images/Icon.ico"
                      Title="{Binding Application.Id}"
                      Loaded="Window_OnLoaded"
-                     Closing="Window_OnClosing">
+                     Closing="Window_OnClosing" ResizeMode="CanResizeWithGrip">
         <mahapps:MetroWindow.RightWindowCommands>
                 <mahapps:WindowCommands>
                         <Button Style="{StaticResource ButtonStyle}" Foreground="Azure"

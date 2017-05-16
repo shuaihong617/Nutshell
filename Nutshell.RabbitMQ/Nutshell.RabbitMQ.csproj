@@ -96,6 +96,10 @@
       <Project>{58d4115c-c811-499f-811d-5f4debc514dc}</Project>
       <Name>Nutshell.Messaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.RabbitMQ.Messaging\Nutshell.RabbitMQ.Messaging.csproj">
+      <Project>{A68C25FF-BCE5-4155-AB1D-C1EE27DACB0C}</Project>
+      <Name>Nutshell.RabbitMQ.Messaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
       <Project>{238c3467-8aa4-4749-b00f-4528550734bf}</Project>
       <Name>Nutshell.Serializing.Xml</Name>

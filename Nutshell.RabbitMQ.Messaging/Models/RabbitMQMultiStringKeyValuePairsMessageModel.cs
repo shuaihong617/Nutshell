@@ -14,23 +14,24 @@
 
 using System;
 using System.Xml.Serialization;
+using Nutshell.Messaging.Models;
 
-namespace Nutshell.Messaging.Models
+namespace Nutshell.RabbitMQ.Messaging.Models
 {
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
         [XmlType]
-        public class MultiStringKeyValuePairsMessageModel : MultiKeyValuePairsMessageModel<string,string>
+        public class RabbitMQMultiStringKeyValuePairsMessageModel : RabbitMQMultiKeyValuePairsMessageModel<string,string>
         {
-                public MultiStringKeyValuePairsMessageModel()
+                public RabbitMQMultiStringKeyValuePairsMessageModel()
                 {
                         Id = Guid.NewGuid().ToString();
                 }
 
-                public MultiStringKeyValuePairsMessageModel(string category)
+                public RabbitMQMultiStringKeyValuePairsMessageModel(string routingKey)
                 {
-                        Category = category;
+                        RoutingKey = routingKey;
                 }
                 public void Add(object k, object v)
                 {

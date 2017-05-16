@@ -143,7 +143,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Nutshell.Messaging">
-      <HintPath>..\Nutshell.Messaging\bin\Debug\Nutshell.Messaging.dll</HintPath>
+      <HintPath>..\Nutshell.Messaging\obj\Debug\Nutshell.Messaging.dll</HintPath>
     </Reference>
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <HintPath>..\packages\PostSharp.4.2.27\lib\net35-client\PostSharp.dll</HintPath>
@@ -191,6 +191,10 @@
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.RabbitMQ.Messaging\Nutshell.RabbitMQ.Messaging.csproj">
+      <Project>{A68C25FF-BCE5-4155-AB1D-C1EE27DACB0C}</Project>
+      <Name>Nutshell.RabbitMQ.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
       <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>

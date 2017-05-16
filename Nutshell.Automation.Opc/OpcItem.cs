@@ -33,10 +33,6 @@ namespace Nutshell.Automation.Opc
 
                 private static int _clientHandleIndex;
 
-                #endregion 字段
-
-                #region 字段
-
                 private NativeOpcItem _item;
 
                 #endregion 字段

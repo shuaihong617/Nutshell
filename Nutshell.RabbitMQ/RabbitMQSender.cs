@@ -17,6 +17,7 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging.Models;
 using Nutshell.RabbitMQ.Models;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
@@ -27,8 +28,8 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ发送者
 	/// </summary>
-	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : MessageModel
-	{
+	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : RabbitMQMessageModel
+        {
 		/// <summary>
 		///         初始化<see cref="RabbitMQSender{T}" />的新实例.
 		/// </summary>
@@ -67,10 +68,10 @@ namespace Nutshell.RabbitMQ
 		{
 			var data = Serializer.Serialize(messageModel);
 
-			Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {messageModel.Id}    {messageModel.Category}");
+			Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {messageModel.Id}    {messageModel}");
 
 			Channel.BasicPublish(Exchange.Name,
-				messageModel.Category,
+				messageModel.RoutingKey,
 				false,
 				null,
 				data);

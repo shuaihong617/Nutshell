@@ -7,6 +7,7 @@ using Nutshell.Communication;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging.Models;
 
 namespace Nutshell.Automation
 {
@@ -23,7 +24,7 @@ namespace Nutshell.Automation
                 public bool? State { get; private set; }
 
                 [MustNotEqualNull]
-                private ISender<MultiStringKeyValuePairsMessageModel> _sender;
+                private ISender<RabbitMQMultiStringKeyValuePairsMessageModel> _sender;
 
 		private IReceiver<ValueMessageModel<bool>> _receiver; 
 
@@ -53,7 +54,7 @@ namespace Nutshell.Automation
 
                 public void TurnOn()
 		{
-			var message = new MultiStringKeyValuePairsMessageModel()
+			var message = new RabbitMQMultiStringKeyValuePairsMessageModel()
 			{
 				Id = Guid.NewGuid().ToString(),
 			};
@@ -63,7 +64,7 @@ namespace Nutshell.Automation
 
 		public void TurnOff()
 		{
-			var message = new MultiStringKeyValuePairsMessageModel()
+			var message = new RabbitMQMultiStringKeyValuePairsMessageModel()
 			{
 				Id = Guid.NewGuid().ToString(),
 			};

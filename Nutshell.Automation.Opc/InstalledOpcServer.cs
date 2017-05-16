@@ -32,9 +32,9 @@ namespace Nutshell.Automation.Opc
                 #region 属性
 
                 /// <summary>
-                /// 获取OpcServer地址.
+                /// 获取地址.
                 /// </summary>
-                /// <value>OpcServer地址.</value>
+                /// <value>地址.</value>
                 [MustNotEqualNullOrEmpty]
                 public string Address { get; private set; }
 

@@ -14,21 +14,22 @@
 
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Nutshell.Messaging.Models;
 
-namespace Nutshell.Messaging.Models
+namespace Nutshell.RabbitMQ.Messaging.Models
 {
         /// <summary>
         ///         多值消息数据模型
         /// </summary>
         [XmlType]
-        public class MultiValueMessageModel<T> : MessageModel
+        public class RabbitMQMultiValueMessageModel<T> : RabbitMQMessageModel
         {
-                public MultiValueMessageModel()
+                public RabbitMQMultiValueMessageModel()
                         :this(null)
                 {
                 }
 
-                public MultiValueMessageModel(params T[] objs)
+                public RabbitMQMultiValueMessageModel(params T[] objs)
                 {
                         Values = new List<T>();
                         if (objs != null)

@@ -8,6 +8,7 @@ using Nutshell.Communication;
 using Nutshell.Communication.Data;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging.Models;
 
 namespace Nutshell.Automation
 {
@@ -23,7 +24,7 @@ namespace Nutshell.Automation
 
                 [MustNotEqualNull] private IReceiver<ValueMessageModel<byte>> _stateReceiver;
 
-                [MustNotEqualNull] private ISender<MultiStringKeyValuePairsMessageModel> _controlSender;
+                [MustNotEqualNull] private ISender<RabbitMQMultiStringKeyValuePairsMessageModel> _controlSender;
 
 
                 [NotifyPropertyValueChanged]
@@ -61,7 +62,7 @@ namespace Nutshell.Automation
                         return this;
                 }
 
-                public Cylinder SetControlSender([MustNotEqualNull] ISender<MultiStringKeyValuePairsMessageModel> sender)
+                public Cylinder SetControlSender([MustNotEqualNull] ISender<RabbitMQMultiStringKeyValuePairsMessageModel> sender)
                 {
                         Trace.Assert(_controlSender == null);
 
@@ -72,7 +73,7 @@ namespace Nutshell.Automation
 
                 public void Open()
                 {
-                        var message = new MultiStringKeyValuePairsMessageModel()
+                        var message = new RabbitMQMultiStringKeyValuePairsMessageModel()
                         {
                                 Id = Guid.NewGuid().ToString(),
                         };
@@ -82,7 +83,7 @@ namespace Nutshell.Automation
 
                 public void Close()
                 {
-			var message = new MultiStringKeyValuePairsMessageModel()
+			var message = new RabbitMQMultiStringKeyValuePairsMessageModel()
 			{
 				Id = Guid.NewGuid().ToString(),
 			};

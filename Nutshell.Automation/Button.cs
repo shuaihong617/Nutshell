@@ -60,7 +60,7 @@ namespace Nutshell.Automation
 			var message = new ValueMessageModel<bool>
 			{
 				Id = Guid.NewGuid().ToString(),
-				Category = Id,
+				//Category = Id,
 				Value = true
 			};
 			_messager.ToLowerSender.Send(message);
@@ -71,7 +71,7 @@ namespace Nutshell.Automation
 			var message = new ValueMessageModel<bool>
 			{
 				Id = Guid.NewGuid().ToString(),
-				Category = Id,
+				//Category = Id,
 				Value = false
 			};
 			_messager.ToLowerSender.Send(message);

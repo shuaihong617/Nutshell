@@ -66,8 +66,8 @@ namespace Nutshell.Communication
                 /// <param name="messageModel">待发送的消息</param>
                 public void Send(MessageModel messageModel)
                 {
-                        dynamic serializer = _serializers[messageModel.Category];
-                        var btyes = serializer.Serialize(messageModel);
+                        //dynamic serializer = _serializers[messageModel];
+                        //var btyes = serializer.Serialize(messageModel);
                         //_site.Send(btyes);
                 }
 

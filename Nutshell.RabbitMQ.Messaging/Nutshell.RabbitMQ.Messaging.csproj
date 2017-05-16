@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{58D4115C-C811-499F-811D-5F4DEBC514DC}</ProjectGuid>
+    <ProjectGuid>{A68C25FF-BCE5-4155-AB1D-C1EE27DACB0C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Messaging</RootNamespace>
-    <AssemblyName>Nutshell.Messaging</AssemblyName>
+    <RootNamespace>Nutshell.RabbitMQ.Messaging</RootNamespace>
+    <AssemblyName>Nutshell.RabbitMQ.Messaging</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -55,13 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\KeyValuePairModel.cs" />
-    <Compile Include="Models\LogMessageModel.cs" />
-    <Compile Include="Models\MessageModel.cs" />
-    <Compile Include="Models\ValueMessageModel.cs" />
+    <Compile Include="Models\RabbitMQMultiKeyValuePairsMessageModel.cs" />
+    <Compile Include="Models\RabbitMQMultiStringKeyValuePairsMessageModel.cs" />
+    <Compile Include="Models\RabbitMQMultiValueMessageModel.cs" />
+    <Compile Include="Models\RabbitMQMessageModel.cs" />
+    <Compile Include="Models\RabbitMQStringKeyValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
+      <Project>{58D4115C-C811-499F-811D-5F4DEBC514DC}</Project>
+      <Name>Nutshell.Messaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
       <Name>Nutshell.Storaging</Name>

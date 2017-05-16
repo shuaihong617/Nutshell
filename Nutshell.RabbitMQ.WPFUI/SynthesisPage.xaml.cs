@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging.Models;
 
 namespace Nutshell.RabbitMQ.WPFUI
 {
@@ -22,10 +23,10 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 private void SendButton_Click(object sender, RoutedEventArgs e)
                 {
-	                var messageModel = new MultiStringKeyValuePairsMessageModel()
+	                var messageModel = new RabbitMQMultiStringKeyValuePairsMessageModel()
 	                {
 		                Id = Guid.NewGuid().ToString(),
-		                Category = "S1200Write",
+		                RoutingKey = "S1200Write",
 	                };
                         messageModel.Add("一号包车运动授权请求", true);
 			_gm.Sender.Send(messageModel);

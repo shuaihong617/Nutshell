@@ -187,6 +187,10 @@
       <Project>{571b8e0a-d541-4e9a-8fc3-0ffcd60e848a}</Project>
       <Name>Nutshell.Presentation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.RabbitMQ.Messaging\Nutshell.RabbitMQ.Messaging.csproj">
+      <Project>{A68C25FF-BCE5-4155-AB1D-C1EE27DACB0C}</Project>
+      <Name>Nutshell.RabbitMQ.Messaging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.RabbitMQ\Nutshell.RabbitMQ.csproj">
       <Project>{6F9764CE-E583-4953-97CF-CC26A7D7165D}</Project>
       <Name>Nutshell.RabbitMQ</Name>
