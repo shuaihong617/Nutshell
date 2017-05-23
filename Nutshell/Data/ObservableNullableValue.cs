@@ -52,15 +52,15 @@ namespace Nutshell.Data
                 public T? Data { get; private set; }
 
 
-                public void SetData(T? value)
+                public void SetData(T? data)
                 {
-                        if (Equals(Data, value))
+                        if (Equals(Data, data))
                         {
                                return; 
                         }
 
-                        Data = value;
-                        OnDataChanged(new ValueEventArgs<T?>(value));
+                        Data = data;
+                        OnDataChanged(new ValueEventArgs<T?>(data));
                 }
 
                 #region 事件

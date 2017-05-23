@@ -25,7 +25,7 @@ namespace Nutshell.Automation.Opc
                         TypeCode = typeCode;
                         ReadWriteMode = readWriteMode;
 
-                        Value = null;
+                        Data = null;
                         UpdateTime = DateTime.MinValue;
                 }
 
@@ -49,7 +49,7 @@ namespace Nutshell.Automation.Opc
                 public int ClientHandle { get; private set; }
 
                 [NotifyPropertyValueChanged]
-                public object Value { get; private set; }
+                public object Data { get; private set; }
 
                 [NotifyPropertyValueChanged]
                 public DateTime UpdateTime { get; private set; }
@@ -123,16 +123,10 @@ namespace Nutshell.Automation.Opc
 
                 public void LocalWrite(object value)
                 {
-                        Value = value;
-                        if (Value != null)
-                        {
-                                UpdateTime = DateTime.Now;
-                                OnReadSuccessed(new ValueEventArgs<object>(Value));
-                        }
-                        else
-                        {
-                                OnReadFailed(EventArgs.Empty);
-                        }
+                        Data = value;
+
+                        UpdateTime = DateTime.Now;
+                        OnDataChanged(new ValueEventArgs<object>(Data));
                 }
 
                 public void RemoteWrite(object value)
@@ -172,30 +166,17 @@ namespace Nutshell.Automation.Opc
                 /// <summary>
                 ///         Occurs when [opened].
                 /// </summary>
-                public event EventHandler<ValueEventArgs<object>> ReadSuccessed;
+                public event EventHandler<ValueEventArgs<object>> DataChanged;
 
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
                 /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-                protected virtual void OnReadSuccessed(ValueEventArgs<object> e)
+                protected virtual void OnDataChanged(ValueEventArgs<object> e)
                 {
-                        e.Raise(this, ref ReadSuccessed);
+                        e.Raise(this, ref DataChanged);
                 }
 
-                /// <summary>
-                ///         Occurs when [opened].
-                /// </summary>
-                public event EventHandler<EventArgs> ReadFailed;
-
-                /// <summary>
-                ///         引发 <see cref="E:Opened" /> 事件.
-                /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
-                protected virtual void OnReadFailed(EventArgs e)
-                {
-                        e.Raise(this, ref ReadFailed);
-                }
 
                 #endregion 事件
         }

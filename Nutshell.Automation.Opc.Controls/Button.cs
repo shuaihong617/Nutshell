@@ -3,12 +3,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Communication.Data;
 using Nutshell.Extensions;
-using Nutshell.Messaging.Models;
-using PostSharp.Extensibility;
 
-namespace Nutshell.Automation
+namespace Nutshell.Automation.Opc.Controls
 {
         /// <summary>
         /// 按钮
@@ -18,64 +15,63 @@ namespace Nutshell.Automation
                 public Button(string id)
                         : base(id)
                 {
-			
-		}
+                        _stateOpcAccessor.ValueChanged += (obj, args) => State = args.Value;
+                }
 
-                public bool? State { get; private set; }
+                #region 字段
 
-                [MustNotEqualNull]
-                private Messager<bool> _messager;
+                private bool? _state;
 
-                public Button SetMessager([MustNotEqualNull]Messager<bool> messager)
+                private readonly OpcAccessor<bool> _stateOpcAccessor = new OpcAccessor<bool>();
+
+
+                #endregion
+
+                public bool? State
                 {
-                        Trace.Assert(_messager != null);
-
-                        _messager = messager;
-                        _messager.DataChanged += (obj, args) =>
+                        get { return _state; }
+                        private set
                         {
-                                State = args.Value;
-
-                                if (!args.Value.HasValue)
+                                if (value == _state)
                                 {
                                         return;
                                 }
 
-                                switch (args.Value.Value)
+                                _state = value;
+                                OnPropertyChanged();
+
+                                if (!_state.HasValue)
                                 {
-                                        case true:
-                                                OnPressed(EventArgs.Empty);
-                                                break;
-
-                                        case false:
-                                                OnRaised(EventArgs.Empty);
-                                                break;
+                                        return;
                                 }
-                        };
 
+                                if (_state.Value)
+                                {
+                                        OnPressed(EventArgs.Empty);
+                                }
+                                else
+                                {
+                                        OnRaised(EventArgs.Empty);
+                                }
+                        }
+                }
+
+
+                public Button SetStateOpcItem([MustNotEqualNull]OpcItem opcItem)
+                {
+                        _stateOpcAccessor.SetSource(opcItem);
                         return this;
                 }
 
 		public void Press()
                 {
-			var message = new ValueMessageModel<bool>
-			{
-				Id = Guid.NewGuid().ToString(),
-				//Category = Id,
-				Value = true
-			};
-			_messager.ToLowerSender.Send(message);
+			_stateOpcAccessor.RemoteWrite(true);
 		}
 
                 public void Raise()
                 {
-			var message = new ValueMessageModel<bool>
-			{
-				Id = Guid.NewGuid().ToString(),
-				//Category = Id,
-				Value = false
-			};
-			_messager.ToLowerSender.Send(message);
-		}
+                        _stateOpcAccessor.RemoteWrite(false);
+                }
 
 		#region 事件
 

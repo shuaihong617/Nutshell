@@ -4,42 +4,52 @@ using System.Diagnostics;
 using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Communication;
-using Nutshell.Communication.Data;
 using Nutshell.Extensions;
-using Nutshell.Messaging.Models;
-using Nutshell.RabbitMQ.Messaging.Models;
 
-namespace Nutshell.Automation
+namespace Nutshell.Automation.Opc.Controls
 {
         /// <summary>
         ///         气缸
         /// </summary>
-        public class Cylinder : Device
+        public abstract class Cylinder : Device
         {
-                public Cylinder(string id)
+                protected Cylinder(string id)
                         : base(id)
                 {
                 }
 
-                [MustNotEqualNull] private IReceiver<ValueMessageModel<byte>> _stateReceiver;
 
-                [MustNotEqualNull] private ISender<RabbitMQMultiStringKeyValuePairsMessageModel> _controlSender;
+                #region 字段
+
+                private CylinderState? _state;
+
+                private readonly OpcAccessor<bool> _controlOpcAccessor = new OpcAccessor<bool>();
+
+                #endregion
+
+                
 
 
                 [NotifyPropertyValueChanged]
-                public CylinderState? State { get; private set; }
-
-                public Cylinder SetStateReceiver([MustNotEqualNull] IReceiver<ValueMessageModel<byte>> receiver)
+                public CylinderState? State
                 {
-                        Trace.Assert(_stateReceiver == null);
-
-                        _stateReceiver = receiver;
-                        _stateReceiver.Received += (obj, args) =>
+                        get { return _state; }
+                        protected set
                         {
-                                State = (CylinderState) args.Value.Value;
+                                if (value == _state)
+                                {
+                                        return;
+                                }
 
-                                switch (State)
+                                _state = value;
+                                OnPropertyChanged();
+
+                                if (!_state.HasValue)
+                                {
+                                        return;
+                                }
+
+                                switch (_state.Value)
                                 {
                                         case CylinderState.正在开启:
                                                 OnOpening(EventArgs.Empty);
@@ -57,38 +67,26 @@ namespace Nutshell.Automation
                                                 OnCloseCompleted(EventArgs.Empty);
                                                 break;
                                 }
-                        };
-
-                        return this;
+                        }
                 }
 
-                public Cylinder SetControlSender([MustNotEqualNull] ISender<RabbitMQMultiStringKeyValuePairsMessageModel> sender)
-                {
-                        Trace.Assert(_controlSender == null);
+                
 
-                        _controlSender = sender;
+                public Cylinder SetControlOpcItem([MustNotEqualNull] OpcItem opcItem)
+                {
+                        _controlOpcAccessor.SetSource(opcItem);
                         return this;
                 }
 
 
                 public void Open()
                 {
-                        var message = new RabbitMQMultiStringKeyValuePairsMessageModel()
-                        {
-                                Id = Guid.NewGuid().ToString(),
-                        };
-			message.Add($"{Id}控制", true);
-                        _controlSender.Send(message);
+                        _controlOpcAccessor.RemoteWrite(true);
                 }
 
                 public void Close()
                 {
-			var message = new RabbitMQMultiStringKeyValuePairsMessageModel()
-			{
-				Id = Guid.NewGuid().ToString(),
-			};
-			message.Add($"{Id}控制", false);
-			_controlSender.Send(message);
+			_controlOpcAccessor.RemoteWrite(false);
                 }
 
                 #region 事件

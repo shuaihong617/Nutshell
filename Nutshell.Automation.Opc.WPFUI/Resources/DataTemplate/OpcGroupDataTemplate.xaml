@@ -17,7 +17,7 @@
                                                                             ElementStyle="{StaticResource DataGridTextCenter}"
                                                                             IsReadOnly="True" />
                                                         <DataGridTextColumn Width="150" Header="值"
-                                                                            Binding="{Binding Value}"
+                                                                            Binding="{Binding Data}"
                                                                             ElementStyle="{StaticResource DataGridTextCenter}"
                                                                             IsReadOnly="True" />
                                                 </DataGrid.Columns>

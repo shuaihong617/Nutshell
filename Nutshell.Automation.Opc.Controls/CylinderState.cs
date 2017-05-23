@@ -1,4 +1,4 @@
-﻿namespace Nutshell.Automation
+﻿namespace Nutshell.Automation.Opc.Controls
 {
         /// <summary>
         ///         气缸状态

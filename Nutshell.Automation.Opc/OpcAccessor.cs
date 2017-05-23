@@ -11,9 +11,9 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
-using System;
 
 namespace Nutshell.Automation.Opc
 {
@@ -21,37 +21,29 @@ namespace Nutshell.Automation.Opc
         ///         跟踪值更新前后变化的对象
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        public class OpcPoint<T> : ObservableNullableValue<T> where T : struct
+        public class OpcAccessor<T> : ObservableValue<T> where T : struct
         {
-		/// <summary>
-		///         初始化<see cref="OpcPoint{T}" />的新实例.
-		/// </summary>
-		/// <param name="id">The item.</param>
-		/// <param name="opcItem">The opc item.</param>
-		public OpcPoint([MustNotEqualNull] string id,
-                        [MustNotEqualNull] OpcItem opcItem)
-                        : base()
+                [MustNotEqualNull] private OpcItem _source;
+
+                public OpcAccessor<T> SetSource([MustNotEqualNull] OpcItem source)
                 {
-                        _opcItem = opcItem;
-
-                        _opcItem.ReadSuccessed += (obj, args) => { SetData(ConvertFrom(args.Value, _opcItem.TypeCode)); };
-                        _opcItem.ReadFailed += (obj, args) => { SetData(null); };
+                        _source = source;
+                        _source.DataChanged += (obj, args) => { SetValue(ConvertFrom(args.Value, _source.TypeCode)); };
+                        return this;
                 }
-
-                private readonly OpcItem _opcItem;
 
                 public void RemoteWrite(T t)
                 {
-                        _opcItem.RemoteWrite(t);
+                        _source.RemoteWrite(t);
                 }
 
                 public void RemoteRead()
                 {
-                        var result = _opcItem.RemoteRead();
-                        SetData(ConvertFrom(result, _opcItem.TypeCode));
+                        var result = _source.RemoteRead();
+                        SetValue(ConvertFrom(result, _source.TypeCode));
                 }
 
-                private T? ConvertFrom(object value, TypeCode typeCode)
+                private T ConvertFrom([MustNotEqualNull] object value, TypeCode typeCode)
                 {
                         throw new NotImplementedException();
                         //return null;

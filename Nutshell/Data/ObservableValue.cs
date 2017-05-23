@@ -29,37 +29,26 @@ namespace Nutshell.Data
 		/// <param name="value">The value.</param>
 		public ObservableValue(T value = default(T))
 		{
-			_value = value;
+			Value = value;
 		}
 
 		#region 字段
 
-		/// <summary>
-		///         值
-		/// </summary>
-		private T _value;
-
-		#endregion 字段
+	        #endregion 字段
 
 		/// <summary>
 		///         获取或设置值
 		/// </summary>
 		/// <value>值</value>
 		[NotifyPropertyValueChanged]
-		public T Value
-		{
-			get { return _value; }
-			private set
-			{
-				_value = value;
-				OnValueChanged(new ValueEventArgs<T>(value));
-			}
-		}
+		public T Value { get; private set; }
 
-	        public void SetValue(T value)
+	        public ObservableValue<T> SetValue(T value)
 	        {
 	                Value = value;
-	        }
+                        OnValueChanged(new ValueEventArgs<T>(value));
+                        return this;
+	        } 
 
 		#region 事件
 

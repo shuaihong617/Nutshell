@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Nutshell.Automation.Opc.WcfService.OpcServerService" CodeBehind="OpcServerService.svc.cs" %>
