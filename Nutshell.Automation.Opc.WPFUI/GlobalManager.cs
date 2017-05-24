@@ -56,10 +56,16 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                         Server = OpcServer.Load(ConfigDirectory + "OpcServer.config");
                         Server.Parent = Application;
+
+                        Server.StartConnect();
+                        Server.StartDispatch();
                 }
 
                 public void Stop()
                 {
+                        Server.StopDispatch();
+                        Server.StopConnect();
+
                         Runtime.Stop();
                 }
         }

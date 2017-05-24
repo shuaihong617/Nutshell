@@ -179,17 +179,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Communication\Nutshell.Communication.csproj">
-      <Project>{4B22F550-25B2-4F7E-A8A7-8181A3F10494}</Project>
-      <Name>Nutshell.Communication</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.RabbitMQ.Messaging\Nutshell.RabbitMQ.Messaging.csproj">
-      <Project>{A68C25FF-BCE5-4155-AB1D-C1EE27DACB0C}</Project>
-      <Name>Nutshell.RabbitMQ.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
       <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>

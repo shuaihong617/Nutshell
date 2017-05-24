@@ -44,9 +44,14 @@ namespace Nutshell.Automation.Opc
 		/// </summary>
 		/// <param name="id">The identifier.</param>
 		/// <param name="address">The address.</param>
-		public OpcServer(string id = "", string address = "")
+		public OpcServer(string id = "",string name="", string address = "")
                         : base(id)
                 {
+                        if (!string.IsNullOrEmpty(name))
+                        {
+                                Name = name;
+                        }
+
                         if (!string.IsNullOrEmpty(address))
                         {
                                 Address = address;
@@ -67,15 +72,22 @@ namespace Nutshell.Automation.Opc
 		/// </summary>
 		private ReadOnlyCollection<OpcGroup> _opcGroups;
 
-		#endregion 字段
+                #endregion 字段
 
-		#region 属性
+                #region 属性
 
-		/// <summary>
-		/// Gets the address.
-		/// </summary>
-		/// <value>The address.</value>
-		[MustNotEqualNullOrEmpty]
+                /// <summary>
+                /// Gets the address.
+                /// </summary>
+                /// <value>The address.</value>
+                [MustNotEqualNullOrEmpty]
+                public string Name { get; private set; } = string.Empty;
+
+                /// <summary>
+                /// Gets the address.
+                /// </summary>
+                /// <value>The address.</value>
+                [MustNotEqualNullOrEmpty]
                 public string Address { get; private set; } = string.Empty;
 
 		/// <summary>
@@ -120,6 +132,7 @@ namespace Nutshell.Automation.Opc
                 {
                         base.Load(model);
 
+		        Name = model.Name;
                         Address = model.Address;
 
 			var groups = new List<OpcGroup>(model.OpcGroupModels.Count);
@@ -151,15 +164,15 @@ namespace Nutshell.Automation.Opc
                 {
                         try
                         {
-                                _nativeOpcServer.Connect(Address);
+                                _nativeOpcServer.Connect(Name);
                         }
                         catch (Exception ex)
                         {
-                                this.Error(Id + " " + Address + "  连接失败," + ex);
+                                this.Error($"{Id} {Name}  连接失败,{ex}");
                                 return false;
                         }
 
-                        this.InfoSuccess($"连接{Address}");
+                        this.InfoSuccess($"连接{Name}");
 
                         return true;
                 }
@@ -176,7 +189,7 @@ namespace Nutshell.Automation.Opc
                         }
                         catch (Exception ex)
                         {
-                                this.Error(Id + " " + Address + "  断开失败," + ex);
+                                this.Error($"{Id} {Address}  断开失败,{ex}");
                                 return false;
                         }
 

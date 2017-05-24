@@ -25,7 +25,18 @@
                                                 </DataGrid>
                                         </Grid>
                                 </ContentControl>
-                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2" />
+                                <ContentControl Style="{StaticResource Panel-Footer-Primary}">
+                                        <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Column="1" Margin="16,0" Content="共计" />
+                                                <Label Grid.Column="2" Margin="16,0"
+                                                       Content="{Binding Runtime.InstalledOpcServers.Count}" />
+                                        </Grid>
+                                </ContentControl>
                         </StackPanel>
                 </ContentControl>
         </Grid>

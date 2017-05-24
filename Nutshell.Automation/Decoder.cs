@@ -139,7 +139,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
-                /// <param name="e">The <see cref="EventArgs" /> Itance containing the event data.</param>
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
                 protected virtual void OnDecodeFinished(ValueEventArgs<T> e)
                 {
                         e.Raise(this, ref DecodeFinished);

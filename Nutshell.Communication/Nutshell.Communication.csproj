@@ -70,10 +70,6 @@
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
-      <Project>{58d4115c-c811-499f-811d-5f4debc514dc}</Project>
-      <Name>Nutshell.Messaging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
       <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
       <Name>Nutshell.Serializing</Name>

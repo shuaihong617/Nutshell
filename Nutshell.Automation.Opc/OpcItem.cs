@@ -79,11 +79,11 @@ namespace Nutshell.Automation.Opc
                 public void Attach(string serverAddress, NativeOpcGroup group)
                 {
                         _clientHandleIndex++;
-                        var name = serverAddress + "." + group.Name + "." + Address;
+                        var address = serverAddress + "." + group.Name + "." + Address;
                         try
                         {
                                 ClientHandle = _clientHandleIndex;
-                                _item = group.OPCItems.AddItem(name, _clientHandleIndex);
+                                _item = group.OPCItems.AddItem(address, _clientHandleIndex);
                         }
                         catch (Exception ex)
                         {
