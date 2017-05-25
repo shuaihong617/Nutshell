@@ -38,7 +38,7 @@ namespace Nutshell.Automation.Opc
 
                 #endregion 属性
 
-                public void Load(OpcGroupModel model)
+                public virtual void Load(OpcGroupModel model)
                 {
                         base.Load(model);
 
