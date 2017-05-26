@@ -125,7 +125,7 @@ namespace Nutshell.Automation.Opc
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public virtual void Load([MustNotEqualNull] OpcServerModel model)
+                public void Load([MustNotEqualNull] OpcServerModel model)
                 {
                         base.Load(model);
 
