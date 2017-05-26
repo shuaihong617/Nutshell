@@ -66,7 +66,24 @@ namespace Nutshell.Automation.Opc
 
                 public void Attach(NativeOpcServer server, string serverAddress)
                 {
-                        _group = server.OPCGroups.Add(Address);
+                        try
+                        {
+                                _group = server.OPCGroups.Add(Address);
+                        }
+                        catch (Exception ex)
+                        {
+                                _group = null;
+                                this.Error($"{Id}连接失败,错误原因{ex}");
+                                throw;
+                        }
+
+                        this.InfoSuccess($"连接");
+
+                        if (_group == null)
+                        {
+                                return;
+                        }
+
                         _group.IsActive = true;
                         _group.OPCItems.DefaultIsActive = true;
                         _group.IsSubscribed = true;

@@ -116,7 +116,7 @@ namespace Nutshell.Automation.Opc
                         {
                                 result = null;
                                 LocalWrite(null);
-                                this.Error("读取失败, 错误原因：" + e);
+                                this.Error("读取失败, 错误原因:" + e);
                         }
                         return result;
                 }

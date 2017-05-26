@@ -110,7 +110,7 @@ namespace Nutshell.Components
 
 				if (!IsEnable)
 				{
-					this.Warn("启用状态：否");
+					this.Warn("启用状态:否");
 
 					return false;
 				}

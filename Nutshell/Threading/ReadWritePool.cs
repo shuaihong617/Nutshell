@@ -59,7 +59,7 @@ namespace Nutshell.Threading
                 /// <param name="t">当前对象锁的值</param>
                 /// <returns>
                 /// 0:未加锁
-                /// -1：写锁
+                /// -1:写锁
                 /// >0:读锁
                 /// </returns>
                 public int GetLock([MustNotEqualNull]T t)

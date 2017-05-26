@@ -14,7 +14,7 @@
                         <ContentControl Grid.Row="1" Style="{StaticResource Panel-Body}">
                                 <DataGrid Grid.Row="0" Margin="10" ItemsSource="{Binding LogCollecter.LogRecords}">
                                         <DataGrid.Columns>
-                                                <DataGridTextColumn Width="Auto" Binding="{Binding TimeStampChain.CreateTime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" ElementStyle="{StaticResource DataGridTextCenter}" Header="时间" IsReadOnly="True" />
+                                                <DataGridTextColumn Width="Auto" Binding="{Binding CreateTime, StringFormat=\{0:yyyy-MM-dd HH:mm:ss\}}" ElementStyle="{StaticResource DataGridTextCenter}" Header="时间" IsReadOnly="True" />
                                                 <DataGridTextColumn Width="Auto" Binding="{Binding LogLevel}" ElementStyle="{StaticResource DataGridTextCenter}" Header="级别" IsReadOnly="True" />
                                                 <DataGridTextColumn Width="*" Binding="{Binding Message}" ElementStyle="{StaticResource DataGridTextCenter}" Header="内容" IsReadOnly="True" />
                                         </DataGrid.Columns>

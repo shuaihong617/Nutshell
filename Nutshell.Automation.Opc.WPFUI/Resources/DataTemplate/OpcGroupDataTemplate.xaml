@@ -8,7 +8,7 @@
                                 <ContentControl Style="{StaticResource Panel-Body}">
                                         <DataGrid Margin="10" ItemsSource="{Binding OpcItems}">
                                                 <DataGrid.Columns>
-                                                        <DataGridTextColumn Width="500" Header="名称"
+                                                        <DataGridTextColumn Width="700" Header="名称"
                                                                             Binding="{Binding Id}"
                                                                             ElementStyle="{StaticResource DataGridTextCenter}"
                                                                             IsReadOnly="True" CanUserSort="False" />

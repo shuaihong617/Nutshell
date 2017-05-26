@@ -26,7 +26,7 @@
                                                 </DataGrid>
                                         </Grid>
                                 </ContentControl>
-                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2" />
+                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计:2" />
                         </StackPanel>
                 </ContentControl>
         </Grid>

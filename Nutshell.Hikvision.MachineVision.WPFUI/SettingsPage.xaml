@@ -34,7 +34,7 @@
                                                 </DataGrid>
                                         </Grid>
                                 </ContentControl>
-                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计：2" />
+                                <ContentControl Style="{StaticResource Panel-Footer-Primary}" Content="共计:2" />
                         </StackPanel>
                 </ContentControl>
                 <ContentControl Grid.Row="1" Style="{StaticResource Panel-Primary}" Margin="10">

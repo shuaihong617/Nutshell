@@ -34,7 +34,7 @@ namespace Nutshell.Speech.Microsoft.WPFUI
                                 ',', '，',
                                 '.', '。',
                                 ';', '；',
-                                ':', '：',
+                                ':', ':',
                                 '!', '！',
                                 '?', '?',
                                 '、', '、'

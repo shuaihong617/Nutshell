@@ -23,17 +23,17 @@ namespace Nutshell.Extensions
                                 {
                                         appString += "  ";
                                 }
-                                sb.AppendLine($"{appString}异常消息：{exception.Message}");
-                                sb.AppendLine($"{appString}异常类型：{exception.GetType().FullName}");
-                                sb.AppendLine($"{appString}异常方法：{exception.TargetSite?.Name}");
-                                sb.AppendLine($"{appString}异常源：{exception.Source}");
+                                sb.AppendLine($"{appString}异常消息:{exception.Message}");
+                                sb.AppendLine($"{appString}异常类型:{exception.GetType().FullName}");
+                                sb.AppendLine($"{appString}异常方法:{exception.TargetSite?.Name}");
+                                sb.AppendLine($"{appString}异常源:{exception.Source}");
                                 if (!isHideStackTrace && exception.StackTrace != null)
                                 {
-                                        sb.AppendLine($"{appString}异常堆栈：{exception.StackTrace}");
+                                        sb.AppendLine($"{appString}异常堆栈:{exception.StackTrace}");
                                 }
                                 if (exception.InnerException != null)
                                 {
-                                        sb.AppendLine($"{appString}内部异常：");
+                                        sb.AppendLine($"{appString}内部异常:");
                                         count++;
                                 }
                                 exception = exception.InnerException;

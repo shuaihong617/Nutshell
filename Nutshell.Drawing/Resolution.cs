@@ -83,7 +83,7 @@ namespace Nutshell.Drawing
                 /// </returns>
                 public override string ToString()
                 {
-                        return $"{GlobalId}：水平{Horizontal} 垂直{Vertical}";
+                        return $"{GlobalId}:水平{Horizontal} 垂直{Vertical}";
                 }
         }
 }

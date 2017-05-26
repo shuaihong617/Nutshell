@@ -102,7 +102,7 @@ namespace Nutshell.Speech.Microsoft
                         }
                         catch (Exception ex)
                         {
-                                this.Error("Select voice " + voice + "失败，失败原因：" + ex);
+                                this.Error("Select voice " + voice + "失败，失败原因:" + ex);
                                 return false;
                         }
                         return true;

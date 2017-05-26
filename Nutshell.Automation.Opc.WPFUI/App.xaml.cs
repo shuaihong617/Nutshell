@@ -46,6 +46,7 @@ namespace Nutshell.Automation.Opc.WPFUI
                         var window = new MainWindow();
                         window.Closed += MainWindow_Closed;
                         window.Show();
+                        
                 }
 
                 private void MainWindow_Closed(object sender, EventArgs e)

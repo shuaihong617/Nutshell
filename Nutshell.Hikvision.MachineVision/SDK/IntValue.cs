@@ -55,7 +55,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// </returns>
                 public override string ToString()
                 {
-                        return $"当前值：{Current}，最大值：{Maximum}，最小值：{Minimum}，增量：{Increase}";
+                        return $"当前值:{Current}，最大值:{Maximum}，最小值:{Minimum}，增量:{Increase}";
                 }
         }
 }
