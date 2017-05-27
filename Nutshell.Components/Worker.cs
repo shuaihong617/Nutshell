@@ -159,7 +159,7 @@ namespace Nutshell.Components
 		/// <summary>
 		///         引发启动事件。
 		/// </summary>
-		/// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+		/// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
 		protected virtual void OnStarting(EventArgs e)
 		{
 			e.Raise(this, ref Starting);
@@ -175,7 +175,7 @@ namespace Nutshell.Components
 		/// <summary>
 		///         引发启动事件。
 		/// </summary>
-		/// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+		/// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
 		protected virtual void OnStarted(ValueEventArgs<Exception> e)
 		{
 			e.Raise(this, ref Started);
@@ -191,7 +191,7 @@ namespace Nutshell.Components
 		/// <summary>
 		///         引发<see cref="E:Opened" />事件
 		/// </summary>
-		/// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+		/// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
 		protected virtual void OnStoping(EventArgs e)
 		{
 			e.Raise(this, ref Stoping);
@@ -207,7 +207,7 @@ namespace Nutshell.Components
 		/// <summary>
 		///         引发<see cref="E:Opened" />事件
 		/// </summary>
-		/// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+		/// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
 		protected virtual void OnStoped(ValueEventArgs<Exception> e)
 		{
 			e.Raise(this, ref Stoped);

@@ -160,7 +160,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
                 protected virtual void OnConnectSuccessed(EventArgs e)
                 {
                         e.Raise(this, ref ConnectSuccessed);
@@ -174,7 +174,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
                 protected virtual void OnConnectFailed(EventArgs e)
                 {
                         e.Raise(this, ref ConnectFailed);
@@ -188,7 +188,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
                 protected virtual void OnDisconnectSuccessed(EventArgs e)
                 {
                         e.Raise(this, ref DisconnectSuccessed);
@@ -202,7 +202,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发 <see cref="E:Opened" /> 事件.
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
                 protected virtual void OnDisconnectFailed(EventArgs e)
                 {
                         e.Raise(this, ref DisconnectFailed);
@@ -216,7 +216,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发<see cref="E:OpenCaptur" />事件
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
                 protected virtual void OnStartCaptured(EventArgs e)
                 {
                         e.Raise(this, ref StartCaptured);
@@ -230,7 +230,7 @@ namespace Nutshell.Automation
                 /// <summary>
                 ///         引发<see cref="E:OpenCaptur" />事件
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
                 protected virtual void OnStopCaptured(EventArgs e)
                 {
                         e.Raise(this, ref StopCaptured);
