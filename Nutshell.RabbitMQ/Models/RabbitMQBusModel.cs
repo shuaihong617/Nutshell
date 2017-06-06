@@ -13,7 +13,6 @@
 
 using System.Xml.Serialization;
 using Nutshell.Communication.Models;
-using Nutshell.Communication.Models.Xml;
 
 namespace Nutshell.RabbitMQ.Models
 {

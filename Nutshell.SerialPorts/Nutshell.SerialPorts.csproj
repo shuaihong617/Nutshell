@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4B22F550-25B2-4F7E-A8A7-8181A3F10494}</ProjectGuid>
+    <ProjectGuid>{4BEF2247-F0E3-45E6-9347-FC446E230C10}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Communication</RootNamespace>
-    <AssemblyName>Nutshell.Communication</AssemblyName>
+    <RootNamespace>Nutshell.SerialPorts</RootNamespace>
+    <AssemblyName>Nutshell.SerialPorts</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,7 +34,6 @@
     <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <HintPath>..\packages\PostSharp.4.2.27\lib\net35-client\PostSharp.dll</HintPath>
       <Private>True</Private>
-      <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp.Patterns.Common, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
       <HintPath>..\packages\PostSharp.Patterns.Common.4.2.27\lib\net45\PostSharp.Patterns.Common.dll</HintPath>
@@ -55,17 +53,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\SingleMessager.cs" />
-    <Compile Include="Data\Messager.cs" />
-    <Compile Include="Bus.cs" />
-    <Compile Include="IReceiver.cs" />
-    <Compile Include="ISender.cs" />
-    <Compile Include="IActor.cs" />
-    <Compile Include="EthernetPortExtensions.cs" />
-    <Compile Include="Models\BusModel.cs" />
+    <Compile Include="PortName.cs" />
+    <Compile Include="BaudRate.cs" />
+    <Compile Include="Models\SerialPortActorModel.cs" />
+    <Compile Include="Models\SerialPortAuthorizationModel.cs" />
+    <Compile Include="Models\SerialPortBusModel.cs" />
+    <Compile Include="Models\SerialPortReceiverModel.cs" />
+    <Compile Include="Models\SerialPortSenderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialPortAuthorization.cs" />
+    <Compile Include="SerialPortBus.cs" />
+    <Compile Include="SerialPortReceiver.cs" />
+    <Compile Include="SerialPortActor.cs" />
+    <Compile Include="SerialPortSender.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Communication\Nutshell.Communication.csproj">
+      <Project>{4B22F550-25B2-4F7E-A8A7-8181A3F10494}</Project>
+      <Name>Nutshell.Communication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
@@ -74,9 +80,17 @@
       <Project>{58D4115C-C811-499F-811D-5F4DEBC514DC}</Project>
       <Name>Nutshell.Messaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
+      <Project>{238C3467-8AA4-4749-B00F-4528550734BF}</Project>
+      <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
       <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
       <Name>Nutshell.Serializing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.SerialPorts.Messaging\Nutshell.SerialPorts.Messaging.csproj">
+      <Project>{4F299413-5FBF-4764-B705-5A4C177FFA95}</Project>
+      <Name>Nutshell.SerialPorts.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
       <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>

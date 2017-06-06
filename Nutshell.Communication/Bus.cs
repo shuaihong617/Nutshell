@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
 using Nutshell.Communication.Models;
-using Nutshell.Communication.Models.Xml;
 using Nutshell.Components;
 using Nutshell.Extensions;
 using Nutshell.Messaging.Models;

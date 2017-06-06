@@ -13,15 +13,12 @@
 
 using Nutshell.Components.Models;
 
-namespace Nutshell.Communication.Models
+namespace Nutshell.SerialPorts.Models
 {
         /// <summary>
-        ///         总线数据模型接口
+        ///         SerialPort角色数据模型
         /// </summary>
-        public class BusModel:WorkerModel
+        public class SerialPortActorModel:WorkerModel
         {
-                
         }
-
-	
 }

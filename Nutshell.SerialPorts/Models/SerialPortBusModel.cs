@@ -11,17 +11,18 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
+using System.Xml.Serialization;
+using Nutshell.Communication.Models;
 
-namespace Nutshell.Communication.Models
+namespace Nutshell.SerialPorts.Models
 {
-        /// <summary>
-        ///         总线数据模型接口
-        /// </summary>
-        public class BusModel:WorkerModel
-        {
-                
-        }
-
-	
+	/// <summary>
+	///         Xml SerialPort总线数据模型接口
+	/// </summary>
+	[XmlType]
+	public class SerialPortBusModel : BusModel
+	{
+                [XmlElement]
+		public SerialPortAuthorizationModel SerialPortAuthorizationModel { get; set; }
+	}
 }

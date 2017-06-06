@@ -13,20 +13,19 @@
 
 using System;
 using System.Xml.Serialization;
-using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Storaging.Models;
 
 namespace Nutshell.Messaging.Models
 {
-	/// <summary>
-	///         消息
-	/// </summary>
-	[XmlType]
-	public class MessageModel : DataModel
-	{
-	        public MessageModel()
-	        {
-	                Id = Guid.NewGuid().ToString();
-	        }
-	}
+        /// <summary>
+        ///         消息
+        /// </summary>
+        [XmlType]
+        public class MessageModel : DataModel
+        {
+                public MessageModel()
+                {
+                        Id = Guid.NewGuid().ToString();
+                }
+        }
 }

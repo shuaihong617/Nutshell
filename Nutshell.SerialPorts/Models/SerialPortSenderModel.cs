@@ -11,17 +11,13 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
-
-namespace Nutshell.Communication.Models
+namespace Nutshell.SerialPorts.Models
 {
-        /// <summary>
-        ///         总线数据模型接口
-        /// </summary>
-        public class BusModel:WorkerModel
-        {
-                
-        }
-
-	
+	/// <summary>
+	///         SerialPort发送者数据模型
+	/// </summary>
+	public class SerialPortSenderModel : SerialPortActorModel
+	{
+		
+	}
 }
