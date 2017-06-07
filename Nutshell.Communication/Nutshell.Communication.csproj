@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBus.cs" />
     <Compile Include="Data\SingleMessager.cs" />
     <Compile Include="Data\Messager.cs" />
     <Compile Include="Bus.cs" />

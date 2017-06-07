@@ -55,6 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryMessageFilter.cs" />
+    <Compile Include="Models\BinaryMessage.cs" />
+    <Compile Include="XmlMessageFilter.cs" />
+    <Compile Include="MessageFilter.cs" />
     <Compile Include="Models\KeyValuePairModel.cs" />
     <Compile Include="Models\LogMessageModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
@@ -62,6 +66,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
+      <Project>{238C3467-8AA4-4749-B00F-4528550734BF}</Project>
+      <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
       <Name>Nutshell.Storaging</Name>

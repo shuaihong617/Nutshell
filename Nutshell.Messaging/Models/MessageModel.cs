@@ -27,5 +27,7 @@ namespace Nutshell.Messaging.Models
                 {
                         Id = Guid.NewGuid().ToString();
                 }
+
+                public string Type { get; set; }
         }
 }

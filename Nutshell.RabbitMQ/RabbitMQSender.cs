@@ -75,6 +75,7 @@ namespace Nutshell.RabbitMQ
 				false,
 				null,
 				data);
+
 		}
 
 		/// <summary>

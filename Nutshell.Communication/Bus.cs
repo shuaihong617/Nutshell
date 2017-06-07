@@ -59,6 +59,11 @@ namespace Nutshell.Communication
                         _serializers[category] = serializer;
                 }
 
+                public Bus RegisterMessage<T>(Type messageType, ISerializer<T> serializer) where T : MessageModel
+                {
+                        return this;
+                }
+
                 /// <summary>
                 ///         发送消息
                 /// </summary>
