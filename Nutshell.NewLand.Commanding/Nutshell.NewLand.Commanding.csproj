@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6F04C8D6-0572-45E9-81B6-19608D7EF589}</ProjectGuid>
+    <ProjectGuid>{163B7073-CFE1-46CE-8F68-115E0FDD309B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.NewLand.Messaging</RootNamespace>
-    <AssemblyName>Nutshell.NewLand.Messaging</AssemblyName>
+    <RootNamespace>Nutshell.NewLand.Commanding</RootNamespace>
+    <AssemblyName>Nutshell.NewLand.Commanding</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,20 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExitSettingRequestMessage.cs" />
-    <Compile Include="EnterSettingRequestMessage.cs" />
-    <Compile Include="FM100MessageFilter.cs" />
+    <Compile Include="Command.cs" />
+    <Compile Include="EnterSettingResponseCommond.cs" />
+    <Compile Include="EnterSettingRequestCommond.cs" />
+    <Compile Include="ExitSettingResponseCommond.cs" />
+    <Compile Include="ExitSettingRequestCommond.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
-      <Project>{58D4115C-C811-499F-811D-5F4DEBC514DC}</Project>
-      <Name>Nutshell.Messaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
-      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
-      <Name>Nutshell.Storaging</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

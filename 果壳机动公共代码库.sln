@@ -159,6 +159,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.NewLand.Messaging"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.NewLand.Serializing", "Nutshell.NewLand.Serializing\Nutshell.NewLand.Serializing.csproj", "{07947884-46A5-4C48-9A30-01EF453E5CE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.NewLand.Commanding", "Nutshell.NewLand.Commanding\Nutshell.NewLand.Commanding.csproj", "{163B7073-CFE1-46CE-8F68-115E0FDD309B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -951,6 +953,22 @@ Global
 		{07947884-46A5-4C48-9A30-01EF453E5CE9}.Release|Win32.Build.0 = Release|Any CPU
 		{07947884-46A5-4C48-9A30-01EF453E5CE9}.Release|x86.ActiveCfg = Release|Any CPU
 		{07947884-46A5-4C48-9A30-01EF453E5CE9}.Release|x86.Build.0 = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|Win32.Build.0 = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Debug|x86.Build.0 = Debug|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Win32.ActiveCfg = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Win32.Build.0 = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|x86.ActiveCfg = Release|Any CPU
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1017,5 +1035,6 @@ Global
 		{BFD5BDD5-B2CA-4160-8CAA-68E45F09AFD1} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
 		{6F04C8D6-0572-45E9-81B6-19608D7EF589} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
 		{07947884-46A5-4C48-9A30-01EF453E5CE9} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
+		{163B7073-CFE1-46CE-8F68-115E0FDD309B} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
 	EndGlobalSection
 EndGlobal
