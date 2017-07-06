@@ -23,6 +23,21 @@ namespace Nutshell.RabbitMQ.Models
         [XmlType]
         public class RabbitMQQueueModel : DataModel
         {
+                public RabbitMQQueueModel()
+                {
+                        
+                }
+
+                public RabbitMQQueueModel(string name, string routingKey,
+                        bool isDurable = true, bool isExclusive = false, bool isAutoDelete = false)
+                {
+                        Name = name;
+                        RoutingKey = routingKey;
+                        IsDurable = isDurable;
+                        IsExclusive = isExclusive;
+                        IsAutoDelete = isAutoDelete;
+                }
+
                 /// <summary>
                 ///         获取或设置名称
                 /// </summary>
@@ -44,20 +59,20 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>是否持久化</value>
                 [XmlAttribute]
-                public bool IsDurable { get; set; }
+                public bool IsDurable { get; set; } = false;
 
                 /// <summary>
                 ///         获取或设置是否私有
                 /// </summary>
                 /// <value>是否私有</value>
                 [XmlAttribute]
-                public bool IsExclusive { get; set; }
+                public bool IsExclusive { get; set; } = true;
 
                 /// <summary>
                 ///         获取或设置是否自动删除
                 /// </summary>
                 /// <value>是否自动删除</value>
                 [XmlAttribute]
-                public bool IsAutoDelete { get; set; }
+                public bool IsAutoDelete { get; set; } = false;
         }
 }

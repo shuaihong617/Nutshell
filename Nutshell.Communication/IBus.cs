@@ -47,28 +47,24 @@ namespace Nutshell.Communication
                 ///         当消息发送成功时发生。
                 /// </summary>
                 [Description("消息发送成功事件")]
-                [LogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<MessageModel>> SendSuccessed;
 
                 /// <summary>
                 ///         当消息发送失败时发生。
                 /// </summary>
                 [Description("消息发送失败事件")]
-                [LogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<MessageModel>> SendFailed;
 
                 /// <summary>
                 ///         当消息接收成功时发生。
                 /// </summary>
                 [Description("消息接收成功事件")]
-                [LogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<MessageModel>> ReceiveSuccessed;
 
                 /// <summary>
                 ///         当消息接收失败时发生。
                 /// </summary>
                 [Description("消息接收失败事件")]
-                [LogEventInvokeHandler]
                 event EventHandler<ValueEventArgs<MessageModel>> ReceiveFailed;
 
                 #endregion

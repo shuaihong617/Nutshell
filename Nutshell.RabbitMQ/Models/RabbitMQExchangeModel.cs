@@ -44,13 +44,13 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>是否持久化</value>
                 [XmlAttribute]
-                public bool IsDurable { get; set; }
+                public bool IsDurable { get; set; } = true;
 
                 /// <summary>
                 ///         获取或设置是否自动删除
                 /// </summary>
                 /// <value>是否自动删除</value>
                 [XmlAttribute]
-                public bool IsAutoDelete { get; set; }
+                public bool IsAutoDelete { get; set; } = false;
         }
 }

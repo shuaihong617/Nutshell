@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System.Xml;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
@@ -29,7 +30,7 @@ namespace Nutshell.RabbitMQ.Models
                 /// <value>主机名称</value>
                 [MustNotEqualNullOrEmpty]
                 [XmlAttribute]
-                public string HostName { get; set; }
+                public string HostName { get; set; } = "localhost";
 
                 /// <summary>
                 ///         获取或设置端口号
@@ -38,7 +39,7 @@ namespace Nutshell.RabbitMQ.Models
                 [MustBetweenOrEqual(EthernetPortNumberExtensions.MinimumRecommendPortNumber,
                         EthernetPortNumberExtensions.MaximumAvailablePortNumber)]
                 [XmlAttribute]
-                public int PortNumber { get; set; }
+                public int PortNumber { get; set; } = 5672;
 
                 /// <summary>
                 ///         获取或设置用户名称
@@ -46,7 +47,7 @@ namespace Nutshell.RabbitMQ.Models
                 /// <value>用户名称</value>
                 [MustNotEqualNullOrEmpty]
                 [XmlAttribute]
-                public string UserName { get; set; }
+                public string UserName { get; set; } = "guest";
 
                 /// <summary>
                 ///         获取或设置用户密码
@@ -54,6 +55,6 @@ namespace Nutshell.RabbitMQ.Models
                 /// <value>用户密码</value>
                 [MustNotEqualNullOrEmpty]
                 [XmlAttribute]
-                public string Password { get; set; }
+                public string Password { get; set; } = "guest";
         }
 }
