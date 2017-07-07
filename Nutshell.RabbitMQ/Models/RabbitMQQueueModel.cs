@@ -59,14 +59,14 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>是否持久化</value>
                 [XmlAttribute]
-                public bool IsDurable { get; set; } = false;
+                public bool IsDurable { get; set; } = true;
 
                 /// <summary>
                 ///         获取或设置是否私有
                 /// </summary>
                 /// <value>是否私有</value>
                 [XmlAttribute]
-                public bool IsExclusive { get; set; } = true;
+                public bool IsExclusive { get; set; } = false;
 
                 /// <summary>
                 ///         获取或设置是否自动删除
