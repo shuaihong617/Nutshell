@@ -161,6 +161,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.NewLand.Serializin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.NewLand.Commanding", "Nutshell.NewLand.Commanding\Nutshell.NewLand.Commanding.csproj", "{163B7073-CFE1-46CE-8F68-115E0FDD309B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Storaging.Access", "Nutshell.Storaging.Access\Nutshell.Storaging.Access.csproj", "{B25502E0-025E-43D1-A151-F4F202B29953}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -969,6 +971,22 @@ Global
 		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|Win32.Build.0 = Release|Any CPU
 		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|x86.ActiveCfg = Release|Any CPU
 		{163B7073-CFE1-46CE-8F68-115E0FDD309B}.Release|x86.Build.0 = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|Win32.Build.0 = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Debug|x86.Build.0 = Debug|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|Win32.ActiveCfg = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|Win32.Build.0 = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|x86.ActiveCfg = Release|Any CPU
+		{B25502E0-025E-43D1-A151-F4F202B29953}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1036,5 +1054,6 @@ Global
 		{6F04C8D6-0572-45E9-81B6-19608D7EF589} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
 		{07947884-46A5-4C48-9A30-01EF453E5CE9} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
 		{163B7073-CFE1-46CE-8F68-115E0FDD309B} = {DBC3856F-F843-46B1-BD0B-7A690DDE612C}
+		{B25502E0-025E-43D1-A151-F4F202B29953} = {A9814885-C165-47C7-B67B-33368D0CD0C6}
 	EndGlobalSection
 EndGlobal
