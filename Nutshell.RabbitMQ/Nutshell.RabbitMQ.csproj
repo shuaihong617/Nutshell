@@ -75,6 +75,7 @@
     <Compile Include="RabbitMQSender.cs" />
     <Compile Include="RabbitMQReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\Extensions\IModelExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
