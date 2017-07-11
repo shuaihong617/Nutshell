@@ -78,9 +78,7 @@ namespace Nutshell.SerialPorts
 			base.Load(model);
 
 			PortName = model.PortName;
-			BaudRate = model.BaudRate;
-			UserName = model.UserName;
-			Password = model.Password;
+			BaudRate = (int)model.BaudRate;
 		}
 
 		/// <summary>
