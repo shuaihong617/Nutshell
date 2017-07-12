@@ -42,6 +42,17 @@ namespace Nutshell.RabbitMQ.SDK.Extensions
                                 null);
                 }
 
-                
+                public static QueueDeclareOk QueueDeclareAndPurge(this IModel channel, RabbitMQQueueModel queue)
+                {
+                        var result = channel.QueueDeclare(queue.Name,
+                                queue.IsDurable,
+                                queue.IsExclusive,
+                                queue.IsAutoDelete,
+                                null);
+
+                        channel.QueuePurge(queue.Name);
+
+                        return result;
+                }
         }
 }

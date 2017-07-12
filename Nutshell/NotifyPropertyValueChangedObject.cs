@@ -18,9 +18,9 @@ using System.Runtime.CompilerServices;
 namespace Nutshell
 {
         /// <summary>
-        ///         实现属性更改通知接口
+        ///         实现属性值更改通知接口
         /// </summary>
-        public abstract class NotifyPropertyChangedObject : INotifyPropertyChanged
+        public abstract class NotifyPropertyValueChangedObject : INotifyPropertyChanged
         {
                 #region 事件
 
@@ -37,7 +37,7 @@ namespace Nutshell
                 ///         通知属性值已更改
                 /// </summary>
                 /// <param name="propertyName">属性名称, 由编译器自动生成</param>
-                public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+                public void OnPropertyValueChanged([CallerMemberName] string propertyName = null)
                 {
                         PropertyChangedEventHandler handler = PropertyChanged;
                         handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -59,7 +59,7 @@ namespace Nutshell
                         }
 
                         storage = value;
-                        OnPropertyChanged();
+                        OnPropertyValueChanged();
 
                         return true;
                 }

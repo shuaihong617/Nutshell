@@ -18,7 +18,7 @@ namespace Nutshell
         /// <summary>
         ///         实现资源释放模式接口
         /// </summary>
-        public abstract class DisposableObject : NotifyPropertyChangedObject, IDisposable
+        public abstract class DisposableObject : NotifyPropertyValueChangedObject, IDisposable
         {
                 #region 终结函数
 

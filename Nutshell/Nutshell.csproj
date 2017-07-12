@@ -199,7 +199,7 @@
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="Logging\LogRecord.cs" />
     <Compile Include="Net\MacAddress.cs" />
-    <Compile Include="NotifyPropertyChangedObject.cs" />
+    <Compile Include="NotifyPropertyValueChangedObject.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Language.cs" />

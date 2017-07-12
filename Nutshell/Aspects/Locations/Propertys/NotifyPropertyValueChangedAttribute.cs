@@ -16,13 +16,13 @@ namespace Nutshell.Aspects.Locations.Propertys
                                 return;
                         }
 
-                        var i = args.Instance as NotifyPropertyChangedObject;
+                        var i = args.Instance as NotifyPropertyValueChangedObject;
                         if (i == null)
                         {
                                 throw new ArgumentException("必须为IdentityObject或其子类");
                         }
 
-                        i.OnPropertyChanged(args.LocationName);
+                        i.OnPropertyValueChanged(args.LocationName);
                 }
         }
 }
