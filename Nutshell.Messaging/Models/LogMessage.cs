@@ -19,25 +19,25 @@ namespace Nutshell.Messaging.Models
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
-        [XmlType]
-        public class LogMessageModel : MessageModel
+        
+        public class LogMessage : Message
         {
-                public LogMessageModel()
+                public LogMessage()
                 {
                         LogLevel = LogLevel.信息;
                 }
 
-                public LogMessageModel(string content, LogLevel logLevel = LogLevel.信息)
+                public LogMessage(string content, LogLevel logLevel = LogLevel.信息)
                 {
                         Content = content;
 
                         LogLevel = logLevel;
                 }
 
-                [XmlAttribute]
+                
                 public LogLevel LogLevel { get; set; }
 
-                [XmlAttribute]
+                
                 public string Content { get; set; }
 
                 //public override string ToString()

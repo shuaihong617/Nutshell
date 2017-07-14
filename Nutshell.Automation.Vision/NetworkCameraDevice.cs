@@ -23,17 +23,17 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         /// 网络摄像机
         /// </summary>
-        public abstract class NetworkCamera : Camera,IStorable<NetworkCameraModel>
+        public abstract class NetworkCameraDevice : CameraDevice,IStorable<NetworkCameraDeviceModel>
         {
                 /// <summary>
-                /// 初始化<see cref="NetworkCamera"/>的新实例.
+                /// 初始化<see cref="NetworkCameraDevice"/>的新实例.
                 /// </summary>
                 /// <param name="id">标识</param>
                 /// <param name="width">宽度</param>
                 /// <param name="height">高度</param>
                 /// <param name="pixelFormat">图像格式</param>
                 /// <param name="ipAddress">IP地址</param>
-                protected NetworkCamera(string id, int width, int height, PixelFormat pixelFormat,
+                protected NetworkCameraDevice(string id, int width, int height, PixelFormat pixelFormat,
                         string ipAddress)
                         : base(id, width, height, pixelFormat)
                 {
@@ -52,12 +52,12 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 /// 从数据模型加载数据
                 /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull] NetworkCameraModel model)
+                /// <param name="deviceModel">数据模型</param>
+                public void Load([MustNotEqualNull] NetworkCameraDeviceModel deviceModel)
                 {
-                        base.Load(model);
+                        base.Load(deviceModel);
 
-                        IPAddress = IPAddress.Parse(model.IPAddress);
+                        IPAddress = IPAddress.Parse(deviceModel.IPAddress);
 
                         Trace.Assert(!Equals(IPAddress, IPAddress.Any));
                         Trace.Assert(!Equals(IPAddress, IPAddress.None));
@@ -67,12 +67,12 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 /// 保存数据到数据模型
                 /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Save([MustNotEqualNull] NetworkCameraModel model)
+                /// <param name="deviceModel">数据模型</param>
+                public void Save([MustNotEqualNull] NetworkCameraDeviceModel deviceModel)
                 {
-                        base.Save(model);
+                        base.Save(deviceModel);
 
-                        model.IPAddress = IPAddress.ToString();
+                        deviceModel.IPAddress = IPAddress.ToString();
                 }
 
                 #endregion 存储

@@ -9,7 +9,7 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
         public partial class CameraForm : Form
         {
                 private readonly GlobalManager _gm = GlobalManager.Instance;
-                public CameraDecoder Decoder { get; private set; }
+                public CameraDecoderDevice DecoderDevice { get; private set; }
 
                 public CameraSence Sence { get; private set; }
 
@@ -22,19 +22,19 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 
                 private void CameraForm_Load(object sender, EventArgs e)
                 {
-                        Width = _gm.Camera.Width + 40;
-                        Height = _gm.Camera.Height + 40;
+                        Width = _gm.CameraDevice.Width + 40;
+                        Height = _gm.CameraDevice.Height + 40;
 
-                        CameraPictureBox.Width = _gm.Camera.Width;
-                        CameraPictureBox.Height = _gm.Camera.Height;
+                        CameraPictureBox.Width = _gm.CameraDevice.Width;
+                        CameraPictureBox.Height = _gm.CameraDevice.Height;
 
-                        Decoder = new CameraDecoder("1号液位解码单元", _gm.Camera, PixelFormat.Bgra32);
+                        DecoderDevice = new CameraDecoderDevice("1号液位解码单元", _gm.CameraDevice, PixelFormat.Bgra32);
 
-                        Sence = new CameraSence("1号液位场景单元", CameraPictureBox, _gm.Camera);
+                        Sence = new CameraSence("1号液位场景单元", CameraPictureBox, _gm.CameraDevice);
 
-                        Renderer = new CameraRenderer("1号液位显示单元", Decoder, Sence);
+                        Renderer = new CameraRenderer("1号液位显示单元", DecoderDevice, Sence);
 
-                        Decoder.Start();
+                        DecoderDevice.Start();
                         Renderer.Start();
                 }
         }

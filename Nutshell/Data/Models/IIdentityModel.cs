@@ -11,17 +11,20 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Components.Models;
+using Nutshell.Aspects.Locations.Contracts;
 
-namespace Nutshell.Communication.Models
+namespace Nutshell.Data.Models
 {
         /// <summary>
-        ///         总线数据模型
+        ///         存储数据模型接口
         /// </summary>
-        public class BusModel:WorkerModel
+        public interface IIdentityModel
         {
-                
+                /// <summary>
+                /// 获取或设置标识
+                /// </summary>
+                /// <value>标识，不能为空引用或空字符串</value>
+                [MustNotEqualNullOrEmpty]
+                string Id { get; set; }
         }
-
-	
 }

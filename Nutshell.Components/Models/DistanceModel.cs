@@ -12,24 +12,24 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Components.Models
 {
 	/// <summary>
 	///         距离数据模型
 	/// </summary>
-	[XmlType]
-	public class DistanceModel:DataModel
+	
+	public class DistanceModel:IdentityModel
 	{
-		[XmlAttribute]
+		
 		public float Accuracy { get; set; }
 
 		/// <summary>
 		///         Gets the standard value.
 		/// </summary>
 		/// <value>The standard value.</value>
-		[XmlAttribute]
+		
 		public float Standard { get; set; }
 	}
 }

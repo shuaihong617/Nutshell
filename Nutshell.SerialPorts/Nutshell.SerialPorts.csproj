@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PortName.cs" />
-    <Compile Include="BaudRate.cs" />
     <Compile Include="Models\SerialPortActorModel.cs" />
     <Compile Include="Models\SerialPortAuthorizationModel.cs" />
     <Compile Include="Models\SerialPortBusModel.cs" />

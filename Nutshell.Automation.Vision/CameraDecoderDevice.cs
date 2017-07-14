@@ -21,20 +21,20 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         ///         摄像机图像消费者
         /// </summary>
-        public class CameraDecoder : Decoder<Bitmap>
+        public class CameraDecoderDevice : Decoder<Bitmap>
         {
                 /// <summary>
-                ///         初始化<see cref="CameraDecoder" />的新实例.
+                ///         初始化<see cref="CameraDecoderDevice" />的新实例.
                 /// </summary>
                 /// <param name="id">The key.</param>
-                /// <param name="camera">The camera.</param>
+                /// <param name="cameraDevice">The camera.</param>
                 /// <param name="pixelFormat">The pixel format.</param>
-                public CameraDecoder(string id, Camera camera, PixelFormat pixelFormat)
-                        : base(id, camera)
+                public CameraDecoderDevice(string id, CameraDevice cameraDevice, PixelFormat pixelFormat)
+                        : base(id, cameraDevice)
                 {
                         PixelFormat = pixelFormat;
 
-                        Region = camera.Region;
+                        Region = cameraDevice.Region;
                 }
 
                 /// <summary>

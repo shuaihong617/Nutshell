@@ -21,26 +21,26 @@ namespace Nutshell.Automation.Vision.Models
         /// <summary>
         ///         摄像机数据模型
         /// </summary>
-        [XmlType]
-        public class CameraModel : CapturableDeviceModel
+        
+        public class CameraDeviceModel : CapturableDeviceModel
         {
                 /// <summary>
                 ///         宽度, 单位为像素
                 /// </summary>
                 /// <value>The width.</value>
-                [XmlAttribute]
+                
                 public int Width { get; set; }
 
                 /// <summary>
                 ///         高度, 单位为像素
                 /// </summary>
-                [XmlAttribute]
+                
                 public int Height { get; set; }
 
                 /// <summary>
                 ///         像素格式
                 /// </summary>
-                [XmlAttribute]
+                
                 public PixelFormat PixelFormat { get; set; }
 
                 /// <summary>

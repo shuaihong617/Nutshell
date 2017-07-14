@@ -1,13 +1,13 @@
 ﻿using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Drawing.Shapes.Models
 {
         /// <summary>
         ///         刻度
         /// </summary>
-        [XmlType]
-        public class ScaleModel : DataModel
+        
+        public class ScaleModel :IdentityModel
         {
                 public ScaleModel()
                 {
@@ -23,7 +23,7 @@ namespace Nutshell.Drawing.Shapes.Models
                 /// <summary>
                 ///         刻度值
                 /// </summary>
-                [XmlAttribute]
+                
                 public int Value { get; set; }
         }
 }

@@ -12,26 +12,26 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Drawing.Models
 {
         /// <summary>
         ///         分辨率数据模型
         /// </summary>
-        [XmlType]
-        public class ResolutionModel : DataModel
+        
+        public class ResolutionModel :IdentityModel
         {
                 /// <summary>
                 ///         水平分辨率
                 /// </summary>
-                [XmlAttribute]
+                
                 public double Horizontal { get; set; }
 
                 /// <summary>
                 ///         垂直分辨率
                 /// </summary>
-                [XmlAttribute]
+                
                 public double Vertical { get; set; }
         }
 }

@@ -22,20 +22,20 @@ namespace Nutshell.Automation.Opc.Models
         /// <summary>
         ///         Opc服务器数据模型
         /// </summary>
-        [XmlType]
+        
         public class OpcServerModel : DispatchableDeviceModel
         {
                 /// <summary>
                 ///         名称
                 /// </summary>
-                [XmlAttribute]
+                
                 [MustNotEqualNullOrEmpty]
                 public string Name { get; set; }
 
                 /// <summary>
                 ///         名称
                 /// </summary>
-                [XmlAttribute]
+                
                 [MustNotEqualNullOrEmpty]
                 public string Address { get; set; }
 

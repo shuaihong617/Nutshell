@@ -12,7 +12,7 @@ using Nutshell.Storaging;
 namespace Nutshell.SerialPorts
 {
         public abstract class SerialPortActor<T> : Worker, IStorable<SerialPortActorModel>, IActor<T>
-                where T : SerialPortMessageModel
+                where T : SerialPortMessage
         {
                 protected SerialPortActor(string id = "")
                         : base(id)

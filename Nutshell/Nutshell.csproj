@@ -179,6 +179,7 @@
     <Compile Include="Data\Converting\Converter.cs" />
     <Compile Include="Data\Converting\IConverter.cs" />
     <Compile Include="Data\ObservableValue.cs" />
+    <Compile Include="Data\Models\IdentityModel.cs" />
     <Compile Include="Extensions\LoggingExtensions.cs" />
     <Compile Include="Logging\UserLogging\LogPusher.cs" />
     <Compile Include="Logging\UserLogging\LogCollecter.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="DisposableObject.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="Logging\LogRecord.cs" />
+    <Compile Include="Data\Models\IIdentityModel.cs" />
     <Compile Include="Net\MacAddress.cs" />
     <Compile Include="NotifyPropertyValueChangedObject.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />

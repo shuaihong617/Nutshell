@@ -15,7 +15,7 @@ using RabbitMQ.Client.Events;
 namespace Nutshell.RabbitMQ
 {
         public class RabbitMQReceiver<T> : RabbitMQActor<T>, IReceiver<T>, IStorable<RabbitMQReceiverModel>
-                where T : MessageModel
+                where T : Message
         {
                 public RabbitMQReceiver(string id = "")
                         : base(id)

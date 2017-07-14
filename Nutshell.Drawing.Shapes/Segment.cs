@@ -12,11 +12,9 @@
 // ***********************************************************************
 
 using Nutshell.Data;
-using Nutshell.Data.Models;
 using Nutshell.Drawing.Shapes.Models;
 using System;
 using Nutshell.Storaging;
-using Nutshell.Storaging.Models;
 
 namespace Nutshell.Drawing.Shapes
 {

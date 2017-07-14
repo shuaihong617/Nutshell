@@ -14,33 +14,33 @@
 using System;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Automation.Opc.Models
 {
         /// <summary>
         ///         OPC项数据模型
         /// </summary>
-        [XmlType]
-        public class OpcItemModel : DataModel
+        
+        public class OpcItemModel :IdentityModel
         {
                 /// <summary>
                 ///   地址
                 /// </summary>
-                [XmlAttribute]
+                
                 [MustNotEqualNullOrEmpty]
                 public string Address { get; set; }
 
                 /// <summary>
                 ///   数据类型
                 /// </summary>
-                [XmlAttribute]
+                
                 public TypeCode TypeCode { get; set; } = System.TypeCode.Int32;
 
                 /// <summary>
                 ///   读写模式
                 /// </summary>
-                [XmlAttribute]
+                
                 public ReadWriteMode ReadWriteMode { get; set; } = ReadWriteMode.ReadWrite;
         }
 }

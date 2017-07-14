@@ -13,7 +13,7 @@ using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-	public abstract class RabbitMQActor<T> : Worker,IStorable<RabbitMQActorModel>, IActor<T> where T : MessageModel
+	public abstract class RabbitMQActor<T> : Worker,IStorable<RabbitMQActorModel>, IActor<T> where T : Message
 	{
 		protected RabbitMQActor(string id = "")
 			: base(id)

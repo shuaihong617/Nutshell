@@ -19,10 +19,9 @@ namespace Nutshell.SerialPorts.Models
 	/// <summary>
 	///         Xml SerialPort总线数据模型接口
 	/// </summary>
-	[XmlType]
+	
 	public class SerialPortBusModel : BusModel
 	{
-                [XmlElement]
 		public SerialPortAuthorizationModel SerialPortAuthorizationModel { get; set; }
 	}
 }

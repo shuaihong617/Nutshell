@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nutshell.Storaging
 {
-        public interface IStorageEngine
+        public interface IStorager
         {
         }
 }

@@ -159,6 +159,10 @@
     <Resource Include="Resources\Images\Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Communication\Nutshell.Communication.csproj">
+      <Project>{4B22F550-25B2-4F7E-A8A7-8181A3F10494}</Project>
+      <Name>Nutshell.Communication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
       <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
       <Name>Nutshell.Components</Name>
@@ -166,6 +170,10 @@
     <ProjectReference Include="..\Nutshell.IO\Nutshell.IO.csproj">
       <Project>{6713896c-f159-4999-9d47-41792ddca5f0}</Project>
       <Name>Nutshell.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
+      <Project>{58D4115C-C811-499F-811D-5F4DEBC514DC}</Project>
+      <Name>Nutshell.Messaging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Presentation.Bootstrap\Nutshell.Presentation.Bootstrap.csproj">
       <Project>{fc47fdad-024f-4fd1-b629-9a20ba7f76b5}</Project>
@@ -178,6 +186,14 @@
     <ProjectReference Include="..\Nutshell.Presentation\Nutshell.Presentation.csproj">
       <Project>{571b8e0a-d541-4e9a-8fc3-0ffcd60e848a}</Project>
       <Name>Nutshell.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.RabbitMQ.Messaging\Nutshell.RabbitMQ.Messaging.csproj">
+      <Project>{A68C25FF-BCE5-4155-AB1D-C1EE27DACB0C}</Project>
+      <Name>Nutshell.RabbitMQ.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.RabbitMQ\Nutshell.RabbitMQ.csproj">
+      <Project>{6F9764CE-E583-4953-97CF-CC26A7D7165D}</Project>
+      <Name>Nutshell.RabbitMQ</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
       <Project>{238c3467-8aa4-4749-b00f-4528550734bf}</Project>

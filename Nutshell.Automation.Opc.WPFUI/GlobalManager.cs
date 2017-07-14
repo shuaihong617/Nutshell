@@ -5,7 +5,7 @@ using Nutshell.Logging.UserLogging;
 
 namespace Nutshell.Automation.Opc.WPFUI
 {
-        public class GlobalManager : NotifyPropertyChangedObject
+        public class GlobalManager : NotifyPropertyValueChangedObject
         {
                 #region 构造函数
 

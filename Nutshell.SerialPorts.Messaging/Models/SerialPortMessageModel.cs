@@ -2,7 +2,7 @@
 
 namespace Nutshell.SerialPorts.Messaging.Models
 {
-        public class SerialPortMessageModel : MessageModel
+        public class SerialPortMessage : Message
         {
         }
 }

@@ -12,14 +12,14 @@
 // ***********************************************************************
 
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Storaging
 {
         /// <summary>
         ///         可存储对象接口
         /// </summary>
-        public interface IStorable<in T> : IIdentifiable where T:DataModel
+        public interface IStorable<in T> : IIdentifiable where T: IIdentityModel
         {
                 #region 方法
 

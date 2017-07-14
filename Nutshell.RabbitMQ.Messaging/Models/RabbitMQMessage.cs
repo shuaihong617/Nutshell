@@ -21,15 +21,15 @@ namespace Nutshell.RabbitMQ.Messaging.Models
 	/// <summary>
 	///         消息
 	/// </summary>
-	[XmlType]
-	public class RabbitMQMessageModel : MessageModel
+	
+	public class RabbitMQMessage : Message
 	{
-	        public RabbitMQMessageModel()
+	        public RabbitMQMessage()
 	        {
 	                Id = Guid.NewGuid().ToString();
 	        }
 
-	        public RabbitMQMessageModel(string routingKey)
+	        public RabbitMQMessage(string routingKey)
 	        {
 	                RoutingKey = routingKey;
 	        }
@@ -38,7 +38,7 @@ namespace Nutshell.RabbitMQ.Messaging.Models
                 ///         获取路由键
                 /// </summary>
                 /// <value>路由键</value>
-                [XmlAttribute]
+                
 		[MustNotEqualNull]
 		public string RoutingKey { get; set; }
 	}

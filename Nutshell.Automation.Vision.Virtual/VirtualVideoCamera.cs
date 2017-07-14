@@ -30,16 +30,16 @@ namespace Nutshell.Automation.Vision.Virtual
         /// <summary>
         ///         Class AVTCamera.
         /// </summary>
-        public class VirtualVideoCamera : Camera,IStorable<VirtualVideoCameraModel>
+        public class VirtualVideoCameraDevice : CameraDevice,IStorable<VirtualVideoCameraDeviceModel>
         {
                 /// <summary>
-                ///         初始化<see cref="VirtualVideoCamera" />的新实例.
+                ///         初始化<see cref="VirtualVideoCameraDevice" />的新实例.
                 /// </summary>
                 /// <param name="parent">The parent.</param>
                 /// <param name="id">The identifier.</param>
                 /// <param name="width">The width.</param>
                 /// <param name="height">The height.</param>
-                public VirtualVideoCamera()
+                public VirtualVideoCameraDevice()
                         : base("虚拟摄像机", 2048, 1536, PixelFormat.Mono8)
                 {
                 }
@@ -49,12 +49,12 @@ namespace Nutshell.Automation.Vision.Virtual
 
                 public string FileName { get; private set; }
 
-                public static VirtualVideoCamera Load(string fileName)
+                public static VirtualVideoCameraDevice Load(string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<VirtualVideoCameraModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<VirtualVideoCameraDeviceModel>.Instance.Deserialize(bytes);
 
-                        var camera = new VirtualVideoCamera();
+                        var camera = new VirtualVideoCameraDevice();
 
                         camera.Load(model);
 
@@ -62,14 +62,14 @@ namespace Nutshell.Automation.Vision.Virtual
                 }
 
 
-                public void Load(VirtualVideoCameraModel model)
+                public void Load(VirtualVideoCameraDeviceModel deviceModel)
                 {
-                        base.Load(model);
+                        base.Load(deviceModel);
 
-                        FileName = model.FileName;
+                        FileName = deviceModel.FileName;
                 }
 
-                public void Save(VirtualVideoCameraModel model)
+                public void Save(VirtualVideoCameraDeviceModel deviceModel)
                 {
                         throw new NotImplementedException();
                 }

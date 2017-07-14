@@ -13,15 +13,15 @@
 
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.RabbitMQ.Models
 {
         /// <summary>
         ///         RabbitMQ队列数据模型
         /// </summary>
-        [XmlType]
-        public class RabbitMQQueueModel : DataModel
+        
+        public class RabbitMQQueueModel :IdentityModel
         {
                 public RabbitMQQueueModel()
                 {
@@ -43,7 +43,7 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>名称</value>
                 [MustNotEqualNullOrEmpty]
-                [XmlAttribute]
+                
                 public string Name { get; set; }
 
                 /// <summary>
@@ -51,28 +51,28 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>路由键</value>
                 [MustNotEqualNull]
-                [XmlAttribute]
+                
                 public string RoutingKey { get; set; }
 
                 /// <summary>
                 ///         获取或设置是否持久化
                 /// </summary>
                 /// <value>是否持久化</value>
-                [XmlAttribute]
+                
                 public bool IsDurable { get; set; } = true;
 
                 /// <summary>
                 ///         获取或设置是否私有
                 /// </summary>
                 /// <value>是否私有</value>
-                [XmlAttribute]
+                
                 public bool IsExclusive { get; set; } = false;
 
                 /// <summary>
                 ///         获取或设置是否自动删除
                 /// </summary>
                 /// <value>是否自动删除</value>
-                [XmlAttribute]
+                
                 public bool IsAutoDelete { get; set; } = false;
         }
 }

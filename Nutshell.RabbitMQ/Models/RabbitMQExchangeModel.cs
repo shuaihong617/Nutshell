@@ -13,44 +13,44 @@
 
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Data.Models;
 using Nutshell.RabbitMQ.SDK;
-using Nutshell.Storaging.Models;
 
 namespace Nutshell.RabbitMQ.Models
 {
         /// <summary>
         ///         RabbitMQ交换机数据模型
         /// </summary>
-        [XmlType]
-        public class RabbitMQExchangeModel : DataModel
+        
+        public class RabbitMQExchangeModel :IdentityModel
         {
                 /// <summary>
                 ///         获取或设置名称
                 /// </summary>
                 /// <value>名称</value>
                 [MustNotEqualNullOrEmpty]
-                [XmlAttribute]
+                
                 public string Name { get; set; }
 
                 /// <summary>
                 ///         获取或设置交换类型
                 /// </summary>
                 /// <value>交换类型</value>
-                [XmlAttribute]
+                
                 public ExchangeType ExchangeType { get; set; }
 
                 /// <summary>
                 ///         获取或设置是否持久化
                 /// </summary>
                 /// <value>是否持久化</value>
-                [XmlAttribute]
+                
                 public bool IsDurable { get; set; } = true;
 
                 /// <summary>
                 ///         获取或设置是否自动删除
                 /// </summary>
                 /// <value>是否自动删除</value>
-                [XmlAttribute]
+                
                 public bool IsAutoDelete { get; set; } = false;
         }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{86E313F4-8857-4091-AEBD-13A40F731B1C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.Data.MongoDB</RootNamespace>
-    <AssemblyName>Nutshell.Data.MongoDB</AssemblyName>
+    <RootNamespace>Nutshell.Storagine.MongoDB</RootNamespace>
+    <AssemblyName>Nutshell.Storagine.MongoDB</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -75,17 +75,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MongoDataSet.cs" />
     <Compile Include="MongoStorageConnectContext.cs" />
-    <Compile Include="MongoStorageEngine.cs" />
+    <Compile Include="MongoStorager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Data.Mongo\Nutshell.Data.Mongo.csproj">
+      <Project>{48C7E944-BECA-4845-A619-73B2A2AE68DB}</Project>
+      <Name>Nutshell.Data.Mongo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
       <Name>Nutshell.Storaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell\Nutshell.csproj">
+      <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
+      <Name>Nutshell</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

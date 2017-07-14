@@ -21,15 +21,15 @@ namespace Nutshell.RabbitMQ.Messaging.Models
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
-        [XmlType]
-        public class RabbitMQMultiStringKeyValuePairsMessageModel : RabbitMQMultiKeyValuePairsMessageModel<string,string>
+        
+        public class RabbitMQMultiStringKeyValuePairsMessage : RabbitMQMultiKeyValuePairsMessage<string,string>
         {
-                public RabbitMQMultiStringKeyValuePairsMessageModel()
+                public RabbitMQMultiStringKeyValuePairsMessage()
                 {
                         Id = Guid.NewGuid().ToString();
                 }
 
-                public RabbitMQMultiStringKeyValuePairsMessageModel(string routingKey)
+                public RabbitMQMultiStringKeyValuePairsMessage(string routingKey)
                 {
                         RoutingKey = routingKey;
                 }

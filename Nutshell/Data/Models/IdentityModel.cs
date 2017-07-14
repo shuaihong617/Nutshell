@@ -11,20 +11,20 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
+using Nutshell.Aspects.Locations.Contracts;
 
-namespace Nutshell.Automation.Vision.Models
+namespace Nutshell.Data.Models
 {
         /// <summary>
-        ///         网络摄像机数据模型
-        /// </summary>
-        [XmlType]
-        public class NetworkCameraModel : CameraModel
+        ///         默认数据模型
+        ///  </summary>
+        public class IdentityModel : IIdentityModel
         {
                 /// <summary>
-                ///         IP地址
+                ///         获取或设置标识
                 /// </summary>
-                [XmlAttribute]
-                public string IPAddress { get; set; }
+                /// <value>标识，不能为空引用或空字符串</value>
+                [MustNotEqualNullOrEmpty]
+                public string Id { get; set; }
         }
 }

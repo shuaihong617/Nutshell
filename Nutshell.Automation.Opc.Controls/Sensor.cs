@@ -65,7 +65,7 @@ namespace Nutshell.Automation.Opc.Controls
                                 }
 
                                 _value = value;
-                                OnPropertyChanged();
+                                OnPropertyValueChanged();
 
                                 if (!_value.HasValue)
                                 {

@@ -14,17 +14,17 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Automation.Opc.Models
 {
         /// <summary>
         ///         OPC组数据模型
         /// </summary>
-        [XmlType]
-        public class OpcGroupModel : DataModel
+        
+        public class OpcGroupModel :IdentityModel
         {
-                [XmlAttribute]
+                
                 [MustNotEqualNullOrEmpty]
                 public string Address { get; set; }
 

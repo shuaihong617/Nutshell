@@ -2,12 +2,11 @@
 using Nutshell.Components;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using Nutshell.Messaging.Models;
 using Nutshell.RabbitMQ.Messaging.Models;
 
 namespace Nutshell.RabbitMQ.WPFUI
 {
-        public class GlobalManager : NotifyPropertyChangedObject
+        public class GlobalManager : NotifyPropertyValueChangedObject
         {
                 #region 构造函数
 

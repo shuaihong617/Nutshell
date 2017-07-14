@@ -18,7 +18,7 @@ namespace Nutshell.Components.Models
         /// <summary>
         ///         工作者数据模型
         /// </summary>
-        [XmlType]
+        
         public class WorkerModel : ComponentModel
         {
         }

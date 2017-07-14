@@ -26,16 +26,16 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 ///         初始化<see cref="CameraRenderer" />的新实例.
                 /// </summary>
                 /// <param name="id">The key.</param>
-                /// <param name="decoder">The decoder.</param>
+                /// <param name="decoderDevice">The decoder.</param>
                 /// <param name="sence">The sence.</param>
                 /// <exception cref="System.ArgumentException">摄像机解码单元不能为null</exception>
-                public CameraRenderer(string id, [MustNotEqualNull]CameraDecoder decoder, CameraSence sence)
+                public CameraRenderer(string id, [MustNotEqualNull]CameraDecoderDevice decoderDevice, CameraSence sence)
                         : base(id, sence)
                 {
-                        _decoder = decoder;
+                        _decoderDevice = decoderDevice;
                 }
 
-                private readonly CameraDecoder _decoder;
+                private readonly CameraDecoderDevice _decoderDevice;
 
                 protected override bool StartCore()
                 {
@@ -43,23 +43,23 @@ namespace Nutshell.Direct2D.WinForm.Vision
                         {
                                 return false;
                         }
-                        _decoder.DecodeFinished += Decoder_DecodeFinished;
+                        _decoderDevice.DecodeFinished += DecoderDeviceDecodeFinished;
                         return true;
                 }
 
-                private void Decoder_DecodeFinished(object sender, ValueEventArgs<Bitmap> e)
+                private void DecoderDeviceDecodeFinished(object sender, ValueEventArgs<Bitmap> e)
                 {
                         var bitmap = e.Value;
 
-                        _decoder.Pool.ReadLock(bitmap);
+                        _decoderDevice.Pool.ReadLock(bitmap);
                         Sence.Swap(e.Value);
 
-                        _decoder.Pool.ReadUnlock(bitmap);
+                        _decoderDevice.Pool.ReadUnlock(bitmap);
                 }
 
                 protected override bool StopCore()
                 {
-                        _decoder.DecodeFinished -= Decoder_DecodeFinished;
+                        _decoderDevice.DecodeFinished -= DecoderDeviceDecodeFinished;
 
                         return base.StartCore();
                 }

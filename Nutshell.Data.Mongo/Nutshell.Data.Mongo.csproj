@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{07947884-46A5-4C48-9A30-01EF453E5CE9}</ProjectGuid>
+    <ProjectGuid>{48C7E944-BECA-4845-A619-73B2A2AE68DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nutshell.NewLand.Serializing</RootNamespace>
-    <AssemblyName>Nutshell.NewLand.Serializing</AssemblyName>
+    <RootNamespace>Nutshell.Data.Mongo</RootNamespace>
+    <AssemblyName>Nutshell.Data.Mongo</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.4.3\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp, Version=4.2.27.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL" />
+    <Reference Include="PostSharp.Patterns.Model">
+      <HintPath>..\packages\PostSharp.Patterns.Model.4.2.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,30 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnterSettingRequestSerializer.cs" />
+    <Compile Include="Models\MongoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Messaging\Nutshell.Messaging.csproj">
-      <Project>{58D4115C-C811-499F-811D-5F4DEBC514DC}</Project>
-      <Name>Nutshell.Messaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.NewLand.Messaging\Nutshell.NewLand.Messaging.csproj">
-      <Project>{6F04C8D6-0572-45E9-81B6-19608D7EF589}</Project>
-      <Name>Nutshell.NewLand.Messaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Serializing.Binary\Nutshell.Serializing.Binary.csproj">
-      <Project>{485EBD4D-A8AA-427F-A601-2090558D52D4}</Project>
-      <Name>Nutshell.Serializing.Binary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Serializing\Nutshell.Serializing.csproj">
-      <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
-      <Name>Nutshell.Serializing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
-      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
-      <Name>Nutshell.Storaging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>

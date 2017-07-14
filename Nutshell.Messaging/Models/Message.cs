@@ -12,22 +12,23 @@
 // ***********************************************************************
 
 using System;
-using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Messaging.Models
 {
         /// <summary>
         ///         消息
         /// </summary>
-        [XmlType]
-        public class MessageModel : DataModel
+        
+        public class Message : IdentityModel
         {
-                public MessageModel()
+                public Message()
                 {
                         Id = Guid.NewGuid().ToString();
                 }
 
                 public string Type { get; set; }
+
+                public DateTime TimeStamp { get; set; }
         }
 }

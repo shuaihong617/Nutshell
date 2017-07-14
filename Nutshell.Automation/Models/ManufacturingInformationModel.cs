@@ -11,27 +11,26 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Automation.Models
 {
         /// <summary>
         ///         设备制造信息结构体
         /// </summary>
-        [XmlType]
-        public class ManufacturingInformationModel : DataModel
+        
+        public class ManufacturingInformationModel :IdentityModel
         {
                 /// <summary>
                 ///         制造商
                 /// </summary>
-                [XmlAttribute]
+                
                 public string Manufacturer { get; set; }
 
                 /// <summary>
                 ///         型号
                 /// </summary>
-                [XmlAttribute]
+                
                 public string Model { get; set; }
         }
 }

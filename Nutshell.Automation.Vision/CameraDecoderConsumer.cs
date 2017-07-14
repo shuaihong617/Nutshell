@@ -28,19 +28,19 @@ namespace Nutshell.Automation.Vision
                 /// 初始化<see cref="CameraDecoderConsumer" />的新实例.
                 /// </summary>
                 /// <param name="id">The key.</param>
-                /// <param name="decoder">The decoder.</param>
-                protected CameraDecoderConsumer(string id, [MustNotEqualNull]CameraDecoder decoder)
+                /// <param name="decoderDevice">The decoder.</param>
+                protected CameraDecoderConsumer(string id, [MustNotEqualNull]CameraDecoderDevice decoderDevice)
                         : base(id)
                 {
-                        Decoder = decoder;
+                        DecoderDevice = decoderDevice;
 
-                        ProcessImage = new Bitmap(String.Empty, Decoder.Region.Width, Decoder.Region.Height, Decoder.PixelFormat);
+                        ProcessImage = new Bitmap(String.Empty, DecoderDevice.Region.Width, DecoderDevice.Region.Height, DecoderDevice.PixelFormat);
                 }
 
                 /// <summary>
                 ///         摄像机
                 /// </summary>
-                public CameraDecoder Decoder { get; private set; }
+                public CameraDecoderDevice DecoderDevice { get; private set; }
 
                 /// <summary>
                 ///         待处理图像
@@ -51,13 +51,13 @@ namespace Nutshell.Automation.Vision
 
                 protected sealed override bool StartCore()
                 {
-                        Decoder.DecodeFinished += Camera_CaptureSuccessed;
+                        DecoderDevice.DecodeFinished += Camera_CaptureSuccessed;
                         return true;
                 }
 
                 protected sealed override bool StopCore()
                 {
-                        Decoder.DecodeFinished -= Camera_CaptureSuccessed;
+                        DecoderDevice.DecodeFinished -= Camera_CaptureSuccessed;
 
                         if (_processTask != null)
                         {
@@ -88,16 +88,16 @@ namespace Nutshell.Automation.Vision
 
                         var bitmap = e.Value;
 
-                        if (Decoder.RunMode == RunMode.Release)
+                        if (DecoderDevice.RunMode == RunMode.Release)
                         {
-                                Decoder.Pool.ReadLock(bitmap);
+                                DecoderDevice.Pool.ReadLock(bitmap);
                         }
 
                         bitmap.CopyTo(ProcessImage);
 
-                        if (Decoder.RunMode == RunMode.Release)
+                        if (DecoderDevice.RunMode == RunMode.Release)
                         {
-                                Decoder.Pool.ReadUnlock(bitmap);
+                                DecoderDevice.Pool.ReadUnlock(bitmap);
                         }
 
                         _processTask = Task.Run(() => Process());

@@ -13,7 +13,7 @@
 
 using System;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Data.Models;
+using Nutshell.Components.Models;
 using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;

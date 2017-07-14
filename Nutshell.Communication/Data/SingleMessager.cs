@@ -45,19 +45,19 @@ namespace Nutshell.Communication.Data
                 /// <summary>
                 ///         获取状态发送器，状态接收器负责将新状态发送到控制设备
                 /// </summary>
-                [MustNotEqualNull] private ISender<ValueMessageModel<T>> _targetSender;
+                [MustNotEqualNull] private ISender<ValueMessage<T>> _targetSender;
 
                 /// <summary>
                 ///         获取状态接收器，状态接收器负责从执行接收状态
                 /// </summary>
-                [MustNotEqualNull] private IReceiver<ValueMessageModel<T>> _sourceReceiver;
+                [MustNotEqualNull] private IReceiver<ValueMessage<T>> _sourceReceiver;
 
                 #endregion
 
 
                 
 
-                public SingleMessager<T> SetToUpperSender([MustNotEqualNull] ISender<ValueMessageModel<T>> sender)
+                public SingleMessager<T> SetToUpperSender([MustNotEqualNull] ISender<ValueMessage<T>> sender)
                 {
                         Trace.Assert(_targetSender == null);
 
@@ -66,7 +66,7 @@ namespace Nutshell.Communication.Data
                         return this;
                 }
 
-                public SingleMessager<T> SetFromLowerReceiver([MustNotEqualNull] IReceiver<ValueMessageModel<T>> receiver)
+                public SingleMessager<T> SetFromLowerReceiver([MustNotEqualNull] IReceiver<ValueMessage<T>> receiver)
                 {
                         Trace.Assert(_sourceReceiver == null);
 

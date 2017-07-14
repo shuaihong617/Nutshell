@@ -20,23 +20,23 @@ namespace Nutshell.RabbitMQ.Messaging.Models
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
-        [XmlType]
-        public class RabbitMQStringKeyValueMessageModel : RabbitMQMessageModel
+        
+        public class RabbitMQStringKeyValueMessage : RabbitMQMessage
         {
-                public RabbitMQStringKeyValueMessageModel()
+                public RabbitMQStringKeyValueMessage()
                 {
                         Id = Guid.NewGuid().ToString();
                 }
 
-                public RabbitMQStringKeyValueMessageModel(string routingKey)
+                public RabbitMQStringKeyValueMessage(string routingKey)
                 {
                         RoutingKey = routingKey;
                 }
 
-		[XmlAttribute]
+		
 		public string Key { get; set; }
 
-		[XmlAttribute]
+		
 		public string Value { get; set; }
 	}
 }

@@ -21,15 +21,15 @@ namespace Nutshell.RabbitMQ.Messaging.Models
         /// <summary>
         ///         多值消息数据模型
         /// </summary>
-        [XmlType]
-        public class RabbitMQMultiValueMessageModel<T> : RabbitMQMessageModel
+        
+        public class RabbitMQMultiValueMessage<T> : RabbitMQMessage
         {
-                public RabbitMQMultiValueMessageModel()
+                public RabbitMQMultiValueMessage()
                         :this(null)
                 {
                 }
 
-                public RabbitMQMultiValueMessageModel(params T[] objs)
+                public RabbitMQMultiValueMessage(params T[] objs)
                 {
                         Values = new List<T>();
                         if (objs != null)

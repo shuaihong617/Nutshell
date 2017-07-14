@@ -6,7 +6,7 @@ using Application = Nutshell.Components.Application;
 
 namespace Nutshell.Hikvision.MachineVision.WPFUI
 {
-        public class GlobalManager : NotifyPropertyChangedObject
+        public class GlobalManager : NotifyPropertyValueChangedObject
         {
                 #region 构造函数
 
@@ -55,7 +55,7 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                 public MachineVisionRuntime Runtime { get; private set; }
 
                 [NotifyPropertyValueChanged]
-                public MachineVisionCamera Camera { get; private set; }
+                public MachineVisionCameraDevice CameraDevice { get; private set; }
 
                 #endregion 摄像机
 
@@ -70,19 +70,19 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                         Runtime.Parent = Application;
                         Runtime.Start();
 
-                        Camera = MachineVisionCamera.Load(ConfigDirectory + "Camera.config");
-                        Camera.Parent = Application;
+                        CameraDevice = MachineVisionCameraDevice.Load(ConfigDirectory + "Camera.config");
+                        CameraDevice.Parent = Application;
 
-                        Camera.StartConnect();
-                        Camera.StartDispatch();
-                        Camera.StartCaptureLoop();
+                        CameraDevice.StartConnect();
+                        CameraDevice.StartDispatch();
+                        CameraDevice.StartCaptureLoop();
                 }
 
                 public void Stop()
                 {
-                        Camera.StopCaptureLoop();
-                        Camera.StopDispatch();
-                        Camera.StopConnect();
+                        CameraDevice.StopCaptureLoop();
+                        CameraDevice.StopDispatch();
+                        CameraDevice.StopConnect();
 
                         Runtime.Stop();
                 }

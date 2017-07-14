@@ -13,12 +13,10 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Data.Models;
 using Nutshell.Extensions;
 using System;
 using System.Speech.Synthesis;
 using System.Threading.Tasks;
-using Nutshell.Storaging.Models;
 using NativeSynthesizer = System.Speech.Synthesis.SpeechSynthesizer;
 
 namespace Nutshell.Speech.Microsoft

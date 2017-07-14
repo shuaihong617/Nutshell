@@ -13,7 +13,7 @@ namespace Nutshell.Hikvision.MachineVision.Tests
                 [TestMethod()]
                 public void LoadTest()
                 {
-                        var camera = MachineVisionCamera.Load(@"测试文件/Camera.config");
+                        var camera = MachineVisionCameraDevice.Load(@"测试文件/Camera.config");
 
                         Assert.AreEqual(camera.Id, "1车液位摄像机");
                         Assert.AreEqual(camera.IsEnable, true);

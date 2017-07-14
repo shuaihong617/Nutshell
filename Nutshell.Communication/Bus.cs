@@ -54,12 +54,12 @@ namespace Nutshell.Communication
                 /// <typeparam name="T">消息泛型</typeparam>
                 /// <param name="category">消息类型</param>
                 /// <param name="serializer">序列化器</param>
-                public void RegisterSerializer<T>(string category, ISerializer<T> serializer) where T : MessageModel
+                public void RegisterSerializer<T>(string category, ISerializer<T> serializer) where T : Message
                 {
                         _serializers[category] = serializer;
                 }
 
-                public Bus RegisterMessage<T>(Type messageType, ISerializer<T> serializer) where T : MessageModel
+                public Bus RegisterMessage<T>(Type messageType, ISerializer<T> serializer) where T : Message
                 {
                         return this;
                 }
@@ -67,8 +67,8 @@ namespace Nutshell.Communication
                 /// <summary>
                 ///         发送消息
                 /// </summary>
-                /// <param name="messageModel">待发送的消息</param>
-                public void Send(MessageModel messageModel)
+                /// <param name="message">待发送的消息</param>
+                public void Send(Message message)
                 {
                         //dynamic serializer = _serializers[messageModel];
                         //var btyes = serializer.Serialize(messageModel);
@@ -82,13 +82,13 @@ namespace Nutshell.Communication
                 /// </summary>
                 [Description("消息接收成功事件")]
                 [LogEventInvokeHandler]
-                public event EventHandler<ValueEventArgs<MessageModel>> ReceiveSuccessed;
+                public event EventHandler<ValueEventArgs<Message>> ReceiveSuccessed;
 
                 /// <summary>
                 ///         当消息成功接收时发生
                 /// </summary>
                 /// <param name="e">包含消息的事件参数</param>
-                protected virtual void OnReceiveSuccessed(ValueEventArgs<MessageModel> e)
+                protected virtual void OnReceiveSuccessed(ValueEventArgs<Message> e)
                 {
                         e.Raise(this, ref ReceiveSuccessed);
                 }

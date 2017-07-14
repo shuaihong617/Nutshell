@@ -20,8 +20,8 @@ namespace Nutshell.RabbitMQ.Messaging.Models
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
-        [XmlType]
-        public class RabbitMQMultiKeyValuePairsMessageModel<TK,TV> : RabbitMQMultiValueMessageModel<KeyValuePairModel<TK, TV>>
+        
+        public class RabbitMQMultiKeyValuePairsMessage<TK,TV> : RabbitMQMultiValueMessage<KeyValuePairModel<TK, TV>>
         {
                 public void Add(TK k, TV v)
                 {

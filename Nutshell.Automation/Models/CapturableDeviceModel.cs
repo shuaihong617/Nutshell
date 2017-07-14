@@ -19,7 +19,7 @@ namespace Nutshell.Automation.Models
         /// <summary>
         ///         独立设备数据模型
         /// </summary>
-        [XmlType]
+        
         public class CapturableDeviceModel : DispatchableDeviceModel
         {
                 /// <summary>

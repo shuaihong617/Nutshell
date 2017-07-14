@@ -33,9 +33,9 @@ namespace Nutshell.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机
         /// </summary>
-        public partial class MachineVisionCamera : NetworkCamera, IStorable<MachineVisionCameraModel>
+        public partial class MachineVisionCameraDevice : NetworkCameraDevice, IStorable<MachineVisionCameraDeviceModel>
         {
-                public MachineVisionCamera(string id = "", string ipAddress = "0.0.0.0")
+                public MachineVisionCameraDevice(string id = "", string ipAddress = "0.0.0.0")
                         : base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
                 {
                 }
@@ -67,12 +67,12 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 存储
 
-                public static MachineVisionCamera  Load([MustFileExist]string fileName)
+                public static MachineVisionCameraDevice  Load([MustFileExist]string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<MachineVisionCameraModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<MachineVisionCameraDeviceModel>.Instance.Deserialize(bytes);
 
-                        var camera = new MachineVisionCamera();
+                        var camera = new MachineVisionCameraDevice();
 
                         camera.Load(model);
 
@@ -82,13 +82,13 @@ namespace Nutshell.Hikvision.MachineVision
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
-                /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-                public void Load(MachineVisionCameraModel model)
+                /// <param name="deviceModel">读取数据的源数据模型，该数据模型不能为null</param>
+                public void Load(MachineVisionCameraDeviceModel deviceModel)
                 {
-                        base.Load(model);
+                        base.Load(deviceModel);
 
-                        UserSet = model.UserSet;
-                        StreamChannelPacketSize = model.StreamChannelPacketSize;
+                        UserSet = deviceModel.UserSet;
+                        StreamChannelPacketSize = deviceModel.StreamChannelPacketSize;
 
                         Debug.WriteLine(UserSet);
                         Debug.WriteLine(StreamChannelPacketSize);
@@ -97,8 +97,8 @@ namespace Nutshell.Hikvision.MachineVision
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
-                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(MachineVisionCameraModel model)
+                /// <param name="deviceModel">写入数据的目的数据模型，该数据模型不能为null</param>
+                public void Save(MachineVisionCameraDeviceModel deviceModel)
                 {
                         throw new NotImplementedException();
                 }

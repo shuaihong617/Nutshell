@@ -28,7 +28,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ发送者
 	/// </summary>
-	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : RabbitMQMessageModel
+	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : RabbitMQMessage
         {
 		/// <summary>
 		///         初始化<see cref="RabbitMQSender{T}" />的新实例.

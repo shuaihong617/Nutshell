@@ -57,7 +57,7 @@
     <Compile Include="Models\RabbitMQMultiKeyValuePairsMessageModel.cs" />
     <Compile Include="Models\RabbitMQMultiStringKeyValuePairsMessageModel.cs" />
     <Compile Include="Models\RabbitMQMultiValueMessageModel.cs" />
-    <Compile Include="Models\RabbitMQMessageModel.cs" />
+    <Compile Include="Models\RabbitMQMessage.cs" />
     <Compile Include="Models\RabbitMQStringKeyValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

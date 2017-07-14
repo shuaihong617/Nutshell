@@ -12,7 +12,7 @@
 // ***********************************************************************
 
 using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Mathematics.Models
 {
@@ -20,18 +20,18 @@ namespace Nutshell.Mathematics.Models
         ///         线性参数数据模型
         /// </summary>
         [XmlRoot]
-        public class LinearityModel : DataModel
+        public class LinearityModel :IdentityModel
         {
                 /// <summary>
                 ///         斜率
                 /// </summary>
-                [XmlAttribute]
+                
                 public float Slope { get; set; }
 
                 /// <summary>
                 ///         截距
                 /// </summary>
-                [XmlAttribute]
+                
                 public float Intercept { get; set; }
         }
 }

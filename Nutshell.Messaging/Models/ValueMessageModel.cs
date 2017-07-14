@@ -19,10 +19,10 @@ namespace Nutshell.Messaging.Models
 	/// <summary>
 	///         值消息数据模型
 	/// </summary>
-	[XmlType]
-	public class ValueMessageModel<T> : MessageModel
+	
+	public class ValueMessage<T> : Message
 	{
-		[XmlAttribute]
+		
 		[MustNotEqualNull]
 		public T Value { get; set; }
 	}

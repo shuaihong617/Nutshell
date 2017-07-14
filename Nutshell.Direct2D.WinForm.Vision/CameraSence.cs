@@ -31,12 +31,12 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 /// </summary>
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
-                /// <param name="camera">The camera.</param>
-                public CameraSence(string id, Control control, Camera camera)
+                /// <param name="cameraDevice">The camera.</param>
+                public CameraSence(string id, Control control, CameraDevice cameraDevice)
                         : base(id, control)
                 {
-                        camera.NotNull();
-                        Camera = camera;
+                        cameraDevice.NotNull();
+                        CameraDevice = cameraDevice;
 
                         RedBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.Red);
                         BlueBrush = new SolidColorBrush(SurfaceRenderTarget, Colors.Blue);
@@ -46,13 +46,13 @@ namespace Nutshell.Direct2D.WinForm.Vision
                         YaHei36Font = new TextFormat(TextFactory, "Microsoft YaHei", FontWeight.Light, FontStyle.Normal, 36);
                         YaHei18Font = new TextFormat(TextFactory, "Microsoft YaHei", FontWeight.Light, FontStyle.Normal, 18);
 
-                        _cameraOnlineLocation = new RawRectangleF(Camera.Region.Width - 96, Camera.Region.Height - 60, Camera.Region.Width, Camera.Region.Height);
+                        _cameraOnlineLocation = new RawRectangleF(CameraDevice.Region.Width - 96, CameraDevice.Region.Height - 60, CameraDevice.Region.Width, CameraDevice.Region.Height);
                 }
 
                 private readonly RawRectangleF _cameraIdLocation = new RawRectangleF(20, 20, 500, 120);
                 private readonly RawRectangleF _cameraOnlineLocation;
 
-                protected Camera Camera { get; set; }
+                protected CameraDevice CameraDevice { get; set; }
 
                 protected SolidColorBrush RedBrush;
                 protected SolidColorBrush BlueBrush;
@@ -68,7 +68,7 @@ namespace Nutshell.Direct2D.WinForm.Vision
 
                 protected override void Render(RenderTarget target)
                 {
-                        target.DrawText(Camera.Id, YaHei36Font, _cameraIdLocation, RedBrush);
+                        target.DrawText(CameraDevice.Id, YaHei36Font, _cameraIdLocation, RedBrush);
 
                         target.DrawText("PUM = " + _processUsedMilliseconds.ToString("f0"), YaHei36Font, new RawRectangleF(20, 120, 500, 120), BlueBrush);
 

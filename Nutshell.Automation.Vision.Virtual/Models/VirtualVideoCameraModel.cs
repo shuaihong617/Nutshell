@@ -19,13 +19,13 @@ namespace Nutshell.Automation.Vision.Virtual.Models
         /// <summary>
         ///         虚拟摄像机数据模型
         /// </summary>
-        [XmlType]
-        public class VirtualVideoCameraModel : CameraModel
+        
+        public class VirtualVideoCameraDeviceModel : CameraDeviceModel
         {
                 /// <summary>
                 ///         文件名称
                 /// </summary>
-                [XmlAttribute]
+                
                 public string FileName { get; set; }
         }
 }

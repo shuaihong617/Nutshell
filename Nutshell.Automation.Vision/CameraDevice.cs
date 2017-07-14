@@ -25,16 +25,16 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class Camera : CapturableDevice<Bitmap>,IStorable<CameraModel>
+        public abstract class CameraDevice : CapturableDevice<Bitmap>,IStorable<CameraDeviceModel>
         {
                 /// <summary>
-                ///         初始化<see cref="Camera" />的实例
+                ///         初始化<see cref="CameraDevice" />的实例
                 /// </summary>
                 /// <param name="id">标识</param>
                 /// <param name="width">水平采集分辨率</param>
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
-                protected Camera(string id = "", int width = 2, int height = 2,
+                protected CameraDevice(string id = "", int width = 2, int height = 2,
                         PixelFormat pixelFormat = PixelFormat.Mono8)
                         : base(id)
                 {
@@ -103,31 +103,31 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
-                /// <param name = "model" >数据模型</param >
-                public void Load(CameraModel model)
+                /// <param name = "deviceModel" >数据模型</param >
+                public void Load(CameraDeviceModel deviceModel)
                 {
-                        base.Load(model);
+                        base.Load(deviceModel);
 
-                        Width = model.Width;
-                        Height = model.Height;
-                        PixelFormat = model.PixelFormat;
+                        Width = deviceModel.Width;
+                        Height = deviceModel.Height;
+                        PixelFormat = deviceModel.PixelFormat;
 
-                        Region.Load(model.RegionModel);
+                        Region.Load(deviceModel.RegionModel);
                 }
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Save(CameraModel model)
+                /// <param name="deviceModel">数据模型</param>
+                public void Save(CameraDeviceModel deviceModel)
                 {
-                        base.Save(model);
+                        base.Save(deviceModel);
 
-                        model.Width = Width;
-                        model.Height = Height;
-                        model.PixelFormat = PixelFormat;
+                        deviceModel.Width = Width;
+                        deviceModel.Height = Height;
+                        deviceModel.PixelFormat = PixelFormat;
 
-                        Region.Save(model.RegionModel);
+                        Region.Save(deviceModel.RegionModel);
                 }
 
                 #endregion 存储

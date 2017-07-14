@@ -22,7 +22,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         接收器接口
 	/// </summary>
-	public interface IReceiver<T> : IActor<T> where T : MessageModel
+	public interface IReceiver<T> : IActor<T> where T : Message
         {
 		#region 事件
 

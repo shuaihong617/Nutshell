@@ -12,14 +12,14 @@
 // ***********************************************************************
 
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Storaging
 {
         /// <summary>
         ///         可存储对象
         /// </summary>
-        public class StorableObject : IdentityObject, IStorable<DataModel>
+        public class StorableObject : IdentityObject, IStorable<IIdentityModel>
         {
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.
@@ -36,7 +36,7 @@ namespace Nutshell.Storaging
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public virtual void Load([MustNotEqualNull]DataModel model)
+                public virtual void Load([MustNotEqualNull]IIdentityModel model)
                 {
                         Id = model.Id;
                 }
@@ -45,7 +45,7 @@ namespace Nutshell.Storaging
 		///         保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-                public virtual void Save([MustNotEqualNull]DataModel model)
+                public virtual void Save([MustNotEqualNull]IIdentityModel model)
                 {
                         model.Id = Id;
                 }

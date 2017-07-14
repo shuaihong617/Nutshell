@@ -19,7 +19,7 @@ namespace Nutshell.Messaging.Models
         /// <summary>
         ///         键-值数据模型
         /// </summary>
-        [XmlType]
+        
         public class KeyValuePairModel<TK, TV>
         {
                 public KeyValuePairModel()
@@ -33,10 +33,10 @@ namespace Nutshell.Messaging.Models
                         Value = v;
                 }
 
-                [XmlAttribute]
+                
                 public TK Key { get; set; }
 
-                [XmlAttribute]
+                
                 public TV Value { get; set; }
         }
 }

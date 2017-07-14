@@ -13,7 +13,6 @@
 
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
-using Nutshell.Data.Models;
 using Nutshell.RabbitMQ.Models;
 using Nutshell.Storaging;
 

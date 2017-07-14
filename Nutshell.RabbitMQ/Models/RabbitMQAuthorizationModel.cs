@@ -15,21 +15,21 @@ using System.Xml;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.RabbitMQ.Models
 {
         /// <summary>
         ///         RabbitMQ授权数据模型
         /// </summary>
-        public class RabbitMQAuthorizationModel : DataModel
+        public class RabbitMQAuthorizationModel :IdentityModel
         {
                 /// <summary>
                 ///         获取或设置主机名称
                 /// </summary>
                 /// <value>主机名称</value>
                 [MustNotEqualNullOrEmpty]
-                [XmlAttribute]
+                
                 public string HostName { get; set; } = "localhost";
 
                 /// <summary>
@@ -38,7 +38,7 @@ namespace Nutshell.RabbitMQ.Models
                 /// <value>端口号</value>
                 [MustBetweenOrEqual(EthernetPortNumberExtensions.MinimumRecommendPortNumber,
                         EthernetPortNumberExtensions.MaximumAvailablePortNumber)]
-                [XmlAttribute]
+                
                 public int PortNumber { get; set; } = 5672;
 
                 /// <summary>
@@ -46,7 +46,7 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>用户名称</value>
                 [MustNotEqualNullOrEmpty]
-                [XmlAttribute]
+                
                 public string UserName { get; set; } = "guest";
 
                 /// <summary>
@@ -54,7 +54,7 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>用户密码</value>
                 [MustNotEqualNullOrEmpty]
-                [XmlAttribute]
+                
                 public string Password { get; set; } = "guest";
         }
 }

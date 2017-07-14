@@ -11,14 +11,14 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 
 namespace Nutshell.Speech.Models
 {
         /// <summary>
         ///         语音合成器数据模型
         /// </summary>
-        public class SynthesizerModel : DataModel
+        public class SynthesizerModel :IdentityModel
         {
                 /// <summary>
                 ///         主键

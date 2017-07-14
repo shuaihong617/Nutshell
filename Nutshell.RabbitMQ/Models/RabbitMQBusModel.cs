@@ -11,21 +11,18 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Communication.Models;
 
 namespace Nutshell.RabbitMQ.Models
 {
 	/// <summary>
-	///         Xml RabbitMQ总线数据模型接口
+	///         Xml RabbitMQ总线数据模型
 	/// </summary>
-	[XmlType]
+	
 	public class RabbitMQBusModel : BusModel
 	{
-                [XmlElement]
 		public RabbitMQAuthorizationModel RabbitMQAuthorizationModel { get; set; }
 
-		[XmlElement]
 		public RabbitMQExchangeModel RabbitMQExchangeModel { get; set; }
 	}
 }

@@ -60,8 +60,8 @@
     <Compile Include="XmlMessageFilter.cs" />
     <Compile Include="MessageFilter.cs" />
     <Compile Include="Models\KeyValuePairModel.cs" />
-    <Compile Include="Models\LogMessageModel.cs" />
-    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\LogMessage.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\ValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,6 +69,10 @@
     <ProjectReference Include="..\Nutshell.Serializing.Xml\Nutshell.Serializing.Xml.csproj">
       <Project>{238C3467-8AA4-4749-B00F-4528550734BF}</Project>
       <Name>Nutshell.Serializing.Xml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>

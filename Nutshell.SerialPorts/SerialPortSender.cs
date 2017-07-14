@@ -28,7 +28,7 @@ namespace Nutshell.SerialPorts
         ///         SerialPort发送者
         /// </summary>
         public class SerialPortSender<T> : SerialPortActor<T>, IStorable<SerialPortSenderModel>, ISender<T>
-                where T : SerialPortMessageModel
+                where T : SerialPortMessage
         {
                 /// <summary>
                 ///         初始化<see cref="SerialPortSender{T}" />的新实例.

@@ -9,7 +9,7 @@ using Nutshell.Storaging;
 namespace Nutshell.SerialPorts
 {
         public class SerialPortReceiver<T> : SerialPortActor<T>, IReceiver<T>, IStorable<SerialPortReceiverModel>
-                where T : SerialPortMessageModel
+                where T : SerialPortMessage
         {
                 public SerialPortReceiver(string id = "")
                         : base(id)

@@ -45,30 +45,30 @@ namespace Nutshell.Communication.Data
                 /// </summary>
                 /// <value>状态发送器</value>
                 [MustNotEqualNull]
-                public ISender<ValueMessageModel<T>> ToUpperSender { get; private set; }
+                public ISender<ValueMessage<T>> ToUpperSender { get; private set; }
 
                 /// <summary>
                 ///         获取状态接收器，状态接收器负责从执行接收状态
                 /// </summary>
                 /// <value>状态接收器</value>
                 [MustNotEqualNull]
-                public IReceiver<ValueMessageModel<T>> FromLowerReceiver { get; private set; }
+                public IReceiver<ValueMessage<T>> FromLowerReceiver { get; private set; }
 
                 /// <summary>
 		/// 获取命令发送器，命令发送器负责将控制命令发送到可以执行的设备
 		/// </summary>
 		/// <value>命令发送器</value>
 		[MustNotEqualNull]
-                public ISender<ValueMessageModel<T>> ToLowerSender { get; private set; }
+                public ISender<ValueMessage<T>> ToLowerSender { get; private set; }
 
                 /// <summary>
                 /// 获取命令接收器，命令接收器负责从控制设备接收控制命令
                 /// </summary>
                 /// <value>命令接收器</value>
                 [MustNotEqualNull]
-                public IReceiver<ValueMessageModel<T>> FromUpperReceiver { get; private set; }
+                public IReceiver<ValueMessage<T>> FromUpperReceiver { get; private set; }
 
-                public Messager<T> SetToUpperSender([MustNotEqualNull] ISender<ValueMessageModel<T>> sender)
+                public Messager<T> SetToUpperSender([MustNotEqualNull] ISender<ValueMessage<T>> sender)
                 {
                         Trace.Assert(ToUpperSender == null);
 
@@ -77,7 +77,7 @@ namespace Nutshell.Communication.Data
                         return this;
                 }
 
-                public Messager<T> SetFromLowerReceiver([MustNotEqualNull] IReceiver<ValueMessageModel<T>> receiver)
+                public Messager<T> SetFromLowerReceiver([MustNotEqualNull] IReceiver<ValueMessage<T>> receiver)
                 {
                         Trace.Assert(FromLowerReceiver == null);
 
@@ -95,7 +95,7 @@ namespace Nutshell.Communication.Data
                         return this;
                 }
 
-                public Messager<T> SetToLowerSender([MustNotEqualNull] ISender<ValueMessageModel<T>> sender)
+                public Messager<T> SetToLowerSender([MustNotEqualNull] ISender<ValueMessage<T>> sender)
                 {
                         Trace.Assert(ToLowerSender == null);
 
@@ -104,7 +104,7 @@ namespace Nutshell.Communication.Data
                         return this;
                 }
 
-                public Messager<T> SetFromUpperReceiver([MustNotEqualNull] IReceiver<ValueMessageModel<T>> receiver)
+                public Messager<T> SetFromUpperReceiver([MustNotEqualNull] IReceiver<ValueMessage<T>> receiver)
                 {
                         Trace.Assert(FromUpperReceiver == null);
 

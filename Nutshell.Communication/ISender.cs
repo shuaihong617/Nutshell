@@ -21,7 +21,7 @@ namespace Nutshell.Communication
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <seealso cref="Nutshell.Communication.IActor{T}" />
-        public interface ISender<T> : IActor<T> where T : MessageModel
+        public interface ISender<T> : IActor<T> where T : Message
         {
                 /// <summary>
                 ///         发送字节数组数据

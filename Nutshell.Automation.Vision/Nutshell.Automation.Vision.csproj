@@ -166,12 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraDecoderConsumer.cs" />
-    <Compile Include="Models\CameraModel.cs" />
-    <Compile Include="Models\NetworkCameraModel.cs" />
+    <Compile Include="Models\CameraDeviceModel.cs" />
+    <Compile Include="Models\NetworkCameraDeviceModel.cs" />
     <Compile Include="NetworkInformation.cs" />
-    <Compile Include="Camera.cs" />
-    <Compile Include="CameraDecoder.cs" />
-    <Compile Include="NetworkCamera.cs" />
+    <Compile Include="CameraDevice.cs" />
+    <Compile Include="CameraDecoderDevice.cs" />
+    <Compile Include="NetworkCameraDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

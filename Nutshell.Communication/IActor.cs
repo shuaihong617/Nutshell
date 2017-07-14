@@ -19,7 +19,7 @@ namespace Nutshell.Communication
 	/// <summary>
 	///         发送器和接收器基础接口
 	/// </summary>
-	public interface IActor<T> where T : MessageModel
+	public interface IActor<T> where T : Message
 	{
 		ISerializer<T> Serializer { get; }
 

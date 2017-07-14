@@ -14,7 +14,7 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using Nutshell.Storaging.Models;
+using Nutshell.Data.Models;
 using MSXmlSerializer = System.Xml.Serialization.XmlSerializer;
 
 namespace Nutshell.Serializing.Xml
@@ -22,7 +22,7 @@ namespace Nutshell.Serializing.Xml
         /// <summary>
         ///  Xml序列化器
         /// </summary>
-        public class XmlSerializer<T> : Serializer<T> where T : DataModel
+        public class XmlSerializer<T> : Serializer<T> where T : IIdentityModel
         {
                 #region 构造函数
 
