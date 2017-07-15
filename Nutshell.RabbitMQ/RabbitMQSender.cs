@@ -63,15 +63,15 @@ namespace Nutshell.RabbitMQ
 		/// <summary>
 		///         发送字节数组数据
 		/// </summary>
-		/// <param name="messageModel">待发送消息数据</param>
-		public void Send(T messageModel)
+		/// <param name="message">待发送消息数据</param>
+		public void Send(T message)
 		{
-			var data = Serializer.Serialize(messageModel);
+			var data = Serializer.Serialize(message);
 
-			Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {messageModel.Id}    {messageModel}");
+			Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {message.Id}    {message}");
 
 			Channel.BasicPublish(Exchange.Name,
-				messageModel.RoutingKey,
+				message.RoutingKey,
 				false,
 				null,
 				data);

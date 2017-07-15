@@ -100,7 +100,7 @@ namespace Nutshell.SerialPorts
                         return true;
                 }
 
-                public void SetPortName(PortName portName)
+                public void SetPortName(SerialPortName serialPortName)
                 {
                         
                 }

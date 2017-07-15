@@ -16,7 +16,7 @@ namespace Nutshell.SerialPorts
         /// <summary>
         ///         串口端口名称枚举
         /// </summary>
-        public enum PortName
+        public enum SerialPortName
         {
                 COM1,
 

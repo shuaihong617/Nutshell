@@ -24,7 +24,7 @@ namespace Nutshell.RabbitMQ.SDK.Extensions
         public static class IModelExtensions
         {
 
-                public static void ExchangeDeclare(this IModel channel, RabbitMQExchangeModel exchange)
+                public static void DeclareExchange(this IModel channel, RabbitMQExchangeModel exchange)
                 {
                         channel.ExchangeDeclare(exchange.Name,
                                 exchange.ExchangeType.ToString().ToLower(),
@@ -33,7 +33,7 @@ namespace Nutshell.RabbitMQ.SDK.Extensions
                 }
 
 
-                public static QueueDeclareOk QueueDeclare(this IModel channel, RabbitMQQueueModel queue)
+                public static QueueDeclareOk DeclareQueue(this IModel channel, RabbitMQQueueModel queue)
                 {
                         return channel.QueueDeclare(queue.Name,
                                 queue.IsDurable,
@@ -42,7 +42,7 @@ namespace Nutshell.RabbitMQ.SDK.Extensions
                                 null);
                 }
 
-                public static QueueDeclareOk QueueDeclareAndPurge(this IModel channel, RabbitMQQueueModel queue)
+                public static QueueDeclareOk DeclareAndPurgeQueue(this IModel channel, RabbitMQQueueModel queue)
                 {
                         var result = channel.QueueDeclare(queue.Name,
                                 queue.IsDurable,

@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
+    <Compile Include="AppInstance.cs" />
     <Compile Include="IRunable.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="IHitable.cs" />
@@ -64,7 +64,7 @@
     <Compile Include="Models\LimiterModel.cs" />
     <Compile Include="Limiter.cs" />
     <Compile Include="LimitMode.cs" />
-    <Compile Include="Models\ApplicationModel.cs" />
+    <Compile Include="Models\AppInstanceModel.cs" />
     <Compile Include="Models\ComponentModel.cs" />
     <Compile Include="Models\LooperModel.cs" />
     <Compile Include="Models\WorkerModel.cs" />

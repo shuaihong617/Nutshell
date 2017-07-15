@@ -22,11 +22,11 @@ using Nutshell.Storaging.Xml;
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         封装应用程序标识
+        ///         封装应用程序实例标识
         /// </summary>
-        public class Application : StorableObject, IStorable<ApplicationModel>
+        public class AppInstance : StorableObject, IStorable<AppInstanceModel>
         {
-                public Application(string id = "")
+                public AppInstance(string id = "")
                         : base(id)
                 {
                 }
@@ -66,13 +66,13 @@ namespace Nutshell.Components
                 [MustNotEqualNullOrEmpty]
                 public string CopyRight { get; private set; }
 
-                public static Application Load([MustFileExist] string fileName)
+                public static AppInstance Load([MustFileExist] string fileName)
                 {
                         var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<ApplicationModel>.Instance.Deserialize(bytes);
+                        var model = XmlSerializer<AppInstanceModel>.Instance.Deserialize(bytes);
 
 
-                        var application = new Application();
+                        var application = new AppInstance();
                         application.Load(model);
 
                         return application;
@@ -82,7 +82,7 @@ namespace Nutshell.Components
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(ApplicationModel model)
+		public void Load(AppInstanceModel model)
                 {
                         base.Load(model);
 
@@ -93,7 +93,7 @@ namespace Nutshell.Components
                         CopyRight = model.CopyRight;
                 }
 
-                public void Save(ApplicationModel model)
+                public void Save(AppInstanceModel model)
                 {
                 }
         }

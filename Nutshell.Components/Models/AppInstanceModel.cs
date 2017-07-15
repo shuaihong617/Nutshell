@@ -18,9 +18,9 @@ using Nutshell.Data.Models;
 namespace Nutshell.Components.Models
 {
 	/// <summary>
-	///         应用程序数据模型
+	///         应用程序实例数据模型
 	/// </summary>
-	public class ApplicationModel : IdentityModel
+	public class AppInstanceModel : IdentityModel
         {
 		/// <summary>
 		///         获取或设置应用程序名称

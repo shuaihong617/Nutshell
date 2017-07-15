@@ -26,8 +26,8 @@ namespace Nutshell.Communication
                 /// <summary>
                 ///         发送字节数组数据
                 /// </summary>
-                /// <param name="messageModel">待发送消息数据</param>
-                void Send(T messageModel);
+                /// <param name="message">待发送消息数据</param>
+                void Send(T message);
 
                 event EventHandler<ValueEventArgs<T>> SendSuccessed;
         }
