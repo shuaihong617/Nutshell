@@ -19,7 +19,7 @@ namespace Nutshell.Storaging
         /// <summary>
         ///         可存储对象
         /// </summary>
-        public class StorableObject : IdentityObject, IStorable<IIdentityModel>
+        public class StorableObject : IdentityObject
         {
                 /// <summary>
                 ///         初始化<see cref="StorableObject" />的新实例.

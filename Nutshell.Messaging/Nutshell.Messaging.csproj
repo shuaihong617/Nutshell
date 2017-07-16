@@ -56,13 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinaryMessageFilter.cs" />
-    <Compile Include="Models\BinaryMessage.cs" />
+    <Compile Include="BinaryMessage.cs" />
     <Compile Include="XmlMessageFilter.cs" />
     <Compile Include="MessageFilter.cs" />
-    <Compile Include="Models\KeyValuePairModel.cs" />
-    <Compile Include="Models\LogMessage.cs" />
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\ValueMessageModel.cs" />
+    <Compile Include="KeyValuePairModel.cs" />
+    <Compile Include="LogMessage.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="ValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

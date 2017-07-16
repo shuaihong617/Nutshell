@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlStoragerT.cs" />
     <Compile Include="XmlStorager.cs" />
   </ItemGroup>
   <ItemGroup>

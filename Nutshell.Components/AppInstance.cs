@@ -12,8 +12,10 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
@@ -24,9 +26,14 @@ namespace Nutshell.Components
         /// <summary>
         ///         封装应用程序实例标识
         /// </summary>
-        public class AppInstance : StorableObject, IStorable<AppInstanceModel>
+        public class AppInstance : StorableObject
         {
-                public AppInstance(string id = "")
+                public AppInstance()
+                        :base(String.Empty)
+                {
+                }
+
+                public AppInstance(string id)
                         : base(id)
                 {
                 }
@@ -66,31 +73,20 @@ namespace Nutshell.Components
                 [MustNotEqualNullOrEmpty]
                 public string CopyRight { get; private set; }
 
-                public static AppInstance Load([MustFileExist] string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<AppInstanceModel>.Instance.Deserialize(bytes);
+                
 
-
-                        var application = new AppInstance();
-                        application.Load(model);
-
-                        return application;
-                }
-
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(AppInstanceModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Name = model.Name;
-                        Version = Version.Parse(model.Version);
-                        Title = model.Title;
-                        Company = model.Company;
-                        CopyRight = model.CopyRight;
+                        var subMode = model as AppInstanceModel;
+                        Trace.Assert(subMode != null);
+
+                        Name = subMode.Name;
+                        Version = Version.Parse(subMode.Version);
+                        Title = subMode.Title;
+                        Company = subMode.Company;
+                        CopyRight = subMode.CopyRight;
                 }
 
                 public void Save(AppInstanceModel model)

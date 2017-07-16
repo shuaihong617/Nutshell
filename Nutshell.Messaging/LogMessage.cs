@@ -11,10 +11,10 @@
 // </summary>
 // ***********************************************************************
 
-using System.Xml.Serialization;
 using Nutshell.Logging;
+using Nutshell.Messaging.Models;
 
-namespace Nutshell.Messaging.Models
+namespace Nutshell.Messaging
 {
         /// <summary>
         ///         自动装包开始消息数据模型

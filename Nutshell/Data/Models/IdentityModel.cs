@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 
 namespace Nutshell.Data.Models
@@ -18,6 +19,7 @@ namespace Nutshell.Data.Models
         /// <summary>
         ///         默认数据模型
         ///  </summary>
+        [XmlType]
         public class IdentityModel : IIdentityModel
         {
                 /// <summary>
@@ -25,6 +27,7 @@ namespace Nutshell.Data.Models
                 /// </summary>
                 /// <value>标识，不能为空引用或空字符串</value>
                 [MustNotEqualNullOrEmpty]
+                [XmlAttribute]
                 public string Id { get; set; }
         }
 }

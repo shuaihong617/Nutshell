@@ -14,16 +14,18 @@
 using Nutshell.IO.Aspects.Locations.Contracts;
 using System.IO;
 using System.Text;
+using Nutshell.Data.Models;
+using Nutshell.Serializing.Xml;
 
 namespace Nutshell.Storaging.Xml
 {
         /// <summary>
-        ///         Xml文件存储加载器
+        ///         Xml文件泛型存储加载器
         /// </summary>
         /// <remarks>
         ///         只支持UTF-8编码。
         /// </remarks>
-        public class XmlStorager
+        public class XmlStorager<TS, TM> where TS:StorableObject,new() where TM : IIdentityModel,new()
         {
                 /// <summary>
                 ///         初始化<see cref="XmlStorager" />的新实例.
@@ -32,6 +34,8 @@ namespace Nutshell.Storaging.Xml
                 {
                 }
 
+                private readonly XmlSerializer<TM> _serializer = XmlSerializer<TM>.Instance ;
+
                 #region 属性
 
                 #region 单例
@@ -39,34 +43,36 @@ namespace Nutshell.Storaging.Xml
                 /// <summary>
                 ///         单例
                 /// </summary>
-                public static readonly XmlStorager Instance = new XmlStorager();
+                public static readonly XmlStorager<TS,TM> Instance = new XmlStorager<TS, TM>();
 
                 #endregion 单例
 
                 #endregion 属性
 
-                /// <summary>
-                ///         加载指定路径的文件并转换成字节数组，可用于反序列化。
-                /// </summary>
-                /// <param name="filePath">文件路径</param>
-                /// <returns>字节数组</returns>
-                public byte[] Load([MustFileExist] string filePath)
+                public TS Load([MustFileExist] string fileName)
                 {
-                        using (var stream = new StreamReader(filePath, Encoding.UTF8))
-                        {
-                                var result = stream.ReadToEnd();
-                                return Encoding.UTF8.GetBytes(result);
-                        }
+                        var bytes = XmlStorager.Instance.Load(fileName);
+                        var model = _serializer.Deserialize(bytes);
+
+                        var t = new TS();
+                        t.Load(model);
+
+                        return t;
                 }
 
                 /// <summary>
                 ///         加载指定路径的文件并转换成字节数组，可用于反序列化。
                 /// </summary>
                 /// <param name="filePath">文件路径</param>
-                /// <param name="content">文件内容</param>
+                /// <param name="t">文件内容</param>
                 /// <returns>字节数组</returns>
-                public void Save([MustFileExist] string filePath, byte[] content)
+                public void Save([MustFileExist] string filePath, TS t)
                 {
+                        var model = new TM();
+                        t.Save(model);
+
+                        var content = _serializer.Serialize(model);
+
                         using (var stream = new StreamWriter(filePath,false, Encoding.UTF8))
                         {
                                 stream.WriteLine(Encoding.UTF8.GetString(content));

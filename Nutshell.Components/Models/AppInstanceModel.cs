@@ -11,6 +11,7 @@
 // </summary>
 // ***********************************************************************
 
+using System;
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data.Models;
@@ -20,6 +21,7 @@ namespace Nutshell.Components.Models
 	/// <summary>
 	///         应用程序实例数据模型
 	/// </summary>
+	[Serializable()]
 	public class AppInstanceModel : IdentityModel
         {
 		/// <summary>
@@ -27,14 +29,16 @@ namespace Nutshell.Components.Models
 		/// </summary>
 		/// <value>应用程序名称</value>
 		[MustNotEqualNullOrEmpty]
-		public string Name { get; set; }
+                [XmlAttribute]
+                public string Name { get; set; }
 
 		/// <summary>
 		///         获取或设置版本
 		/// </summary>
 		/// <value>版本</value>
 		[MustNotEqualNullOrEmpty]
-		public string Version { get; set; }
+                [XmlAttribute]
+                public string Version { get; set; }
 
 		/// <summary>
 		///         获取或设置应用程序标题
@@ -42,7 +46,8 @@ namespace Nutshell.Components.Models
 		/// <value>应用程序标题</value>
 		
 		[MustNotEqualNullOrEmpty]
-		public string Title { get; set; }
+                [XmlAttribute]
+                public string Title { get; set; }
 
 		/// <summary>
 		///         获取或设置公司
@@ -50,7 +55,8 @@ namespace Nutshell.Components.Models
 		/// <value>公司</value>
 		
 		[MustNotEqualNullOrEmpty]
-		public string Company { get; set; }
+                [XmlAttribute]
+                public string Company { get; set; }
 
 		/// <summary>
 		///         获取或设置版权信息
@@ -58,7 +64,8 @@ namespace Nutshell.Components.Models
 		/// <value>版权信息</value>
 		
 		[MustNotEqualNullOrEmpty]
-		public string CopyRight { get; set; }
+                [XmlAttribute]
+                public string CopyRight { get; set; }
 	}
 
         

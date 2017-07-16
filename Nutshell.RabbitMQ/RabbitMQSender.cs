@@ -28,7 +28,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ发送者
 	/// </summary>
-	public class RabbitMQSender<T> : RabbitMQActor<T>, IStorable<RabbitMQSenderModel>, ISender<T> where T : RabbitMQMessage
+	public class RabbitMQSender<T> : RabbitMQActor<T>, ISender<T> where T : RabbitMQMessage
         {
 		/// <summary>
 		///         初始化<see cref="RabbitMQSender{T}" />的新实例.
@@ -60,11 +60,29 @@ namespace Nutshell.RabbitMQ
 			base.Save(model);
 		}
 
-		/// <summary>
+                /// <summary>
 		///         发送字节数组数据
 		/// </summary>
 		/// <param name="message">待发送消息数据</param>
-		public void Send(T message)
+		public void Send(T message, String routingKey)
+                {
+                        var data = Serializer.Serialize(message);
+
+                        Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {message.Id}    {message}");
+
+                        Channel.BasicPublish(Exchange.Name,
+                                routingKey,
+                                false,
+                                null,
+                                data);
+
+                }
+
+                /// <summary>
+                ///         发送字节数组数据
+                /// </summary>
+                /// <param name="message">待发送消息数据</param>
+                public void Send(T message)
 		{
 			var data = Serializer.Serialize(message);
 

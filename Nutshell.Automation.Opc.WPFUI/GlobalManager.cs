@@ -33,7 +33,7 @@ namespace Nutshell.Automation.Opc.WPFUI
                 public string ConfigDirectory { get; } = @"配置/";
 
                 [NotifyPropertyValueChanged]
-                public Application Application { get; private set; }
+                public AppInstance AppInstance { get; private set; }
 
                 public LogCollecter LogCollecter { get; }
 
@@ -45,17 +45,17 @@ namespace Nutshell.Automation.Opc.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = Application.Load(ConfigDirectory + "Application.config");
+                        AppInstance = AppInstance.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()
                 {
                         Runtime = OpcRuntime.Instance;
-                        Runtime.Parent = Application;
+                        Runtime.Parent = AppInstance;
                         Runtime.Start();
 
                         Server = OpcServer.Load(ConfigDirectory + "OpcServer.config");
-                        Server.Parent = Application;
+                        Server.Parent = AppInstance;
 
                         Server.StartConnect();
                         Server.StartDispatch();
