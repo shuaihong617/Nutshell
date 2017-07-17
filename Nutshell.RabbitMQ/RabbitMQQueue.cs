@@ -11,8 +11,10 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Data;
+using Nutshell.Data.Models;
 using Nutshell.RabbitMQ.Models;
 using Nutshell.Storaging;
 
@@ -21,7 +23,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ认证数据模型接口
 	/// </summary>
-	public class RabbitMQQueue : StorableObject,IStorable<RabbitMQQueueModel>
+	public class RabbitMQQueue : StorableObject
 	{
 		/// <summary>
 		///         获取或设置名称
@@ -55,28 +57,17 @@ namespace Nutshell.RabbitMQ
 		/// <value>是否自动删除</value>
 		public bool IsAutoDelete { get; set; }
 
-		/// <summary>
-		///         从数据模型加载数据
-		/// </summary>
-		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(RabbitMQQueueModel model)
-		{
-			base.Load(model);
+	        public override void Load(IIdentityModel model)
+	        {
+	                base.Load(model);
 
-			Name = model.Name;
-			RoutingKey = model.RoutingKey;
-			IsDurable = model.IsDurable;
-			IsExclusive = model.IsExclusive;
-			IsAutoDelete = model.IsAutoDelete;
-		}
+	                var subModel = model as RabbitMQQueueModel;
+                        Trace.Assert(subModel != null);
 
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-		public void Save(RabbitMQQueueModel model)
-		{
-			throw new System.NotImplementedException();
-		}
+                        Name = subModel.Name;
+                        IsDurable = subModel.IsDurable;
+                        IsExclusive = subModel.IsExclusive;
+                        IsAutoDelete = subModel.IsAutoDelete;
+                }		
 	}
 }

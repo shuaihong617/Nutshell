@@ -15,9 +15,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication.Models;
 using Nutshell.Components;
 using Nutshell.Extensions;
+using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
 using Nutshell.Serializing;
 using Nutshell.Storaging;
@@ -27,53 +29,29 @@ namespace Nutshell.Communication
         /// <summary>
         ///         总线
         /// </summary>
-        public abstract class Bus : Worker, IStorable<BusModel>
+        public abstract class Bus : Worker,IBus
         {
                 protected Bus(string id = "")
                         : base(id)
                 {
                 }
 
-                private readonly Dictionary<string, object> _serializers = new Dictionary<string, object>();
+                protected Dictionary<string, object> Receivers { get; private set; }  = new Dictionary<string, object>();
 
-                //private ISite _site;
 
-                public void Load(BusModel model)
-                {
-                        base.Load(model);
-                }
-
-                public void Save(BusModel model)
-                {
-                        throw new NotImplementedException();
-                }
-
-                /// <summary>
-                ///         注册消息类型所用的序列化器
-                /// </summary>
-                /// <typeparam name="T">消息泛型</typeparam>
-                /// <param name="category">消息类型</param>
-                /// <param name="serializer">序列化器</param>
-                public void RegisterSerializer<T>(string category, ISerializer<T> serializer) where T : Message
-                {
-                        _serializers[category] = serializer;
-                }
-
-                public Bus RegisterMessage<T>(Type messageType, ISerializer<T> serializer) where T : Message
+                public virtual Bus RegisterSender<T>(ISender<T> sender) where T : Message
                 {
                         return this;
                 }
 
-                /// <summary>
-                ///         发送消息
-                /// </summary>
-                /// <param name="message">待发送的消息</param>
-                public void Send(Message message)
+                public virtual Bus RegisterReceiver<T>([MustNotEqualNull]IReceiver<T> receiver) where T : Message
                 {
-                        //dynamic serializer = _serializers[messageModel];
-                        //var btyes = serializer.Serialize(messageModel);
-                        //_site.Send(btyes);
+                        var messageType = typeof (T).Name;
+                        Receivers.Add(messageType, receiver);
+
+                        return this;
                 }
+
 
                 #region 事件
 

@@ -30,7 +30,7 @@ namespace Nutshell.Communication
 		///         当数据接收成功时发生。
 		/// </summary>
 		[Description("数据接收成功事件")]
-		event EventHandler<ValueEventArgs<T>> Received;
+		event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
 
 		#endregion
 	}

@@ -14,6 +14,7 @@
 using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Events;
+using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
 using Nutshell.Serializing;
 
@@ -24,48 +25,32 @@ namespace Nutshell.Communication
         /// </summary>
         public interface IBus
         {
-                /// <summary>
-                ///         注册消息类型所用的序列化器
-                /// </summary>
-                /// <typeparam name="T">消息泛型</typeparam>
-                /// <param name="messageType"></param>
-                /// <param name="serializer">序列化器</param>
-                IBus RegisterSerializer<T>(Type messageType, ISerializer<T> serializer) where T : Message;
-
-
-                IBus RegisterMessage<T>(Type messageType, ISerializer<T> serializer) where T : Message;
-
-                /// <summary>
-                ///         发送消息
-                /// </summary>
-                /// <param name="message">待发送的消息</param>
-                void Send(Message message);
 
                 #region 事件
 
-                /// <summary>
-                ///         当消息发送成功时发生。
-                /// </summary>
-                [Description("消息发送成功事件")]
-                event EventHandler<ValueEventArgs<Message>> SendSuccessed;
+                ///// <summary>
+                /////         当消息发送成功时发生。
+                ///// </summary>
+                //[Description("消息发送成功事件")]
+                //event EventHandler<ValueEventArgs<Message>> SendSuccessed;
 
-                /// <summary>
-                ///         当消息发送失败时发生。
-                /// </summary>
-                [Description("消息发送失败事件")]
-                event EventHandler<ValueEventArgs<Message>> SendFailed;
+                ///// <summary>
+                /////         当消息发送失败时发生。
+                ///// </summary>
+                //[Description("消息发送失败事件")]
+                //event EventHandler<ValueEventArgs<Message>> SendFailed;
 
-                /// <summary>
-                ///         当消息接收成功时发生。
-                /// </summary>
-                [Description("消息接收成功事件")]
-                event EventHandler<ValueEventArgs<Message>> ReceiveSuccessed;
+                ///// <summary>
+                /////         当消息接收成功时发生。
+                ///// </summary>
+                //[Description("消息接收成功事件")]
+                //event EventHandler<ValueEventArgs<Message>> ReceiveSuccessed;
 
-                /// <summary>
-                ///         当消息接收失败时发生。
-                /// </summary>
-                [Description("消息接收失败事件")]
-                event EventHandler<ValueEventArgs<Message>> ReceiveFailed;
+                ///// <summary>
+                /////         当消息接收失败时发生。
+                ///// </summary>
+                //[Description("消息接收失败事件")]
+                //event EventHandler<ValueEventArgs<Message>> ReceiveFailed;
 
                 #endregion
         }

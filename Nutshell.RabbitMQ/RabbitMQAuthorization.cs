@@ -12,9 +12,11 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Data;
+using Nutshell.Data.Models;
 using Nutshell.RabbitMQ.Models;
 using Nutshell.Storaging;
 
@@ -23,7 +25,7 @@ namespace Nutshell.RabbitMQ
 	/// <summary>
 	///         RabbitMQ连接授权
 	/// </summary>
-	public class RabbitMQAuthorization : StorableObject, IStorable<RabbitMQAuthorizationModel>
+	public class RabbitMQAuthorization : StorableObject
 	{
 		/// <summary>
 		/// 获取主机名称
@@ -59,17 +61,20 @@ namespace Nutshell.RabbitMQ
 		///         从数据模型加载数据
 		/// </summary>
 		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(RabbitMQAuthorizationModel model)
-		{
-			base.Load(model);
+	        public override void Load(IIdentityModel model)
+	        {
+	                base.Load(model);
 
-			HostName = model.HostName;
-			PortNumber = model.PortNumber;
-			UserName = model.UserName;
-			Password = model.Password;
-		}
+	                var subModel = model as RabbitMQAuthorizationModel;
+                        Trace.Assert(subModel != null);
 
-		/// <summary>
+                        HostName = subModel.HostName;
+                        PortNumber = subModel.PortNumber;
+                        UserName = subModel.UserName;
+                        Password = subModel.Password;
+                }
+
+	        /// <summary>
 		///         保存数据到数据模型
 		/// </summary>
 		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>

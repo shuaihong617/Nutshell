@@ -1,47 +1,41 @@
 ﻿using System;
 using System.Diagnostics;
-using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
+using Nutshell.Data.Models;
 using Nutshell.Extensions;
-using Nutshell.IO.Aspects.Locations.Contracts;
-using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging;
 using Nutshell.RabbitMQ.Models;
-using Nutshell.Serializing.Xml;
-using Nutshell.Storaging;
-using Nutshell.Storaging.Xml;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
 namespace Nutshell.RabbitMQ
 {
-        public class RabbitMQReceiver<T> : RabbitMQActor<T>, IReceiver<T>, IStorable<RabbitMQReceiverModel>
-                where T : Message
+        public class RabbitMQReceiver<T> : RabbitMQActor<T>, IReceiver<T>
+                where T : RabbitMQMessage
         {
                 public RabbitMQReceiver(string id = "")
                         : base(id)
                 {
                 }
 
-
                 private EventingBasicConsumer _consumer;
 
                 private readonly RabbitMQQueue _queue = new RabbitMQQueue();
 
-                public static RabbitMQReceiver<T> Load([MustFileExist] string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<RabbitMQReceiverModel>.Instance.Deserialize(bytes);
-
-                        var receiver = new RabbitMQReceiver<T>();
-                        receiver.Load(model);
-                        return receiver;
-                }
-
-                public void Load(RabbitMQReceiverModel model)
+                /// <summary>
+                ///         从数据模型加载数据
+                /// </summary>
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
-                        _queue.Load(model.RabbitMQQueueModel);
+
+                        var subModel = model as RabbitMQReceiverModel;
+                        Trace.Assert(subModel != null);
+
+                        _queue.Load(subModel.RabbitMQQueueModel);
                 }
+
 
                 public void Save(RabbitMQReceiverModel model)
                 {
@@ -49,21 +43,9 @@ namespace Nutshell.RabbitMQ
                         base.Save(model);
                 }
 
-                /// <summary>
-                ///         执行启动过程的具体步骤.
-                /// </summary>
-                /// <returns>
-                ///         成功返回True, 否则返回False.
-                /// </returns>
-                /// <remarks>
-                ///         若启动过程有多个步骤, 遇到返回错误的步骤立即停止向下执行.
-                /// </remarks>
-                protected override bool StartCore()
+                public override IActor<T> BindToBus(IBus bus)
                 {
-                        if (!base.StartCore())
-                        {
-                                return false;
-                        }
+                        base.BindToBus(bus);
 
                         Channel.QueueDeclare(_queue.Name, _queue.IsDurable, _queue.IsExclusive, _queue.IsAutoDelete,
                                 null);
@@ -72,30 +54,27 @@ namespace Nutshell.RabbitMQ
                         _consumer.Received += (model, ea) =>
                         {
                                 var body = ea.Body;
-                                var messageModel = Serializer.Deserialize(body);
+                                var message = Serializer.Deserialize(body);
 
-                                Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + messageModel.Id);
+                                Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + message.Id);
 
-                                OnReceived(new ValueEventArgs<T>(messageModel));
+                                OnReceiveSuccessed(new ValueEventArgs<T>(message));
                         };
                         Channel.BasicConsume(_queue.Name, true, _consumer);
 
-                        return true;
+                        return this;
                 }
-
 
                 #region 事件
 
-                public event EventHandler<ValueEventArgs<T>> Received;
+                public event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
 
                 /// <summary>
                 ///         引发启动事件。
                 /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
-                protected virtual void OnReceived(ValueEventArgs<T> e) => e.Raise(this, ref Received);
+                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
+                protected virtual void OnReceiveSuccessed(ValueEventArgs<T> e) => e.Raise(this, ref ReceiveSuccessed);
 
                 #endregion
-
-
         }
 }

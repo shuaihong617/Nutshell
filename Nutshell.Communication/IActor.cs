@@ -11,18 +11,18 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Messaging.Models;
+using Nutshell.Messaging;
 using Nutshell.Serializing;
 
 namespace Nutshell.Communication
 {
-	/// <summary>
-	///         发送器和接收器基础接口
-	/// </summary>
-	public interface IActor<T> where T : Message
-	{
-		ISerializer<T> Serializer { get; }
+        /// <summary>
+        ///         发送器和接收器基础接口
+        /// </summary>
+        public interface IActor<T> where T : Message
+        {
+                ISerializer<T> Serializer { get; }
 
-		IActor<T> BindBus(Bus bus);
-	}
+                IActor<T> BindToBus(IBus bus);
+        }
 }

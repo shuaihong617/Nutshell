@@ -11,13 +11,17 @@
 // </summary>
 // ***********************************************************************
 
+using System.Xml.Serialization;
+
 namespace Nutshell.RabbitMQ.Models
 {
 	/// <summary>
 	///         RabbitMQ发送者数据模型
 	/// </summary>
+	[XmlType]
 	public class RabbitMQSenderModel : RabbitMQActorModel
 	{
-		
-	}
+                [XmlElement]
+                public RabbitMQExchangeModel RabbitMQExchangeModel { get; set; }
+        }
 }

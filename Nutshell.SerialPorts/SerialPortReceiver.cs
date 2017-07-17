@@ -62,13 +62,13 @@ namespace Nutshell.SerialPorts
 
                 #region 事件
 
-                public event EventHandler<ValueEventArgs<T>> Received;
+                public event EventHandler<ValueEventArgs<T>> ReceiveSuccessed;
 
                 /// <summary>
                 ///         引发启动事件。
                 /// </summary>
                 /// <param name="e">包含事件数据的实例<see cref="EventArgs" />
-                protected virtual void OnReceived(ValueEventArgs<T> e) => e.Raise(this, ref Received);
+                protected virtual void OnReceived(ValueEventArgs<T> e) => e.Raise(this, ref ReceiveSuccessed);
 
                 #endregion
         }

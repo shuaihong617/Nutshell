@@ -20,7 +20,7 @@ namespace Nutshell.RabbitMQ.Models
         /// <summary>
         ///         RabbitMQ队列数据模型
         /// </summary>
-        
+        [XmlType]
         public class RabbitMQQueueModel :IdentityModel
         {
                 public RabbitMQQueueModel()
@@ -28,11 +28,10 @@ namespace Nutshell.RabbitMQ.Models
                         
                 }
 
-                public RabbitMQQueueModel(string name, string routingKey,
+                public RabbitMQQueueModel(string name,
                         bool isDurable = true, bool isExclusive = false, bool isAutoDelete = false)
                 {
                         Name = name;
-                        RoutingKey = routingKey;
                         IsDurable = isDurable;
                         IsExclusive = isExclusive;
                         IsAutoDelete = isAutoDelete;
@@ -43,36 +42,30 @@ namespace Nutshell.RabbitMQ.Models
                 /// </summary>
                 /// <value>名称</value>
                 [MustNotEqualNullOrEmpty]
-                
+                [XmlAttribute]
                 public string Name { get; set; }
 
-                /// <summary>
-                ///         获取或设置路由键
-                /// </summary>
-                /// <value>路由键</value>
-                [MustNotEqualNull]
-                
-                public string RoutingKey { get; set; }
+
 
                 /// <summary>
                 ///         获取或设置是否持久化
                 /// </summary>
                 /// <value>是否持久化</value>
-                
+                [XmlAttribute]
                 public bool IsDurable { get; set; } = true;
 
                 /// <summary>
                 ///         获取或设置是否私有
                 /// </summary>
                 /// <value>是否私有</value>
-                
+                [XmlAttribute]
                 public bool IsExclusive { get; set; } = false;
 
                 /// <summary>
                 ///         获取或设置是否自动删除
                 /// </summary>
                 /// <value>是否自动删除</value>
-                
+                [XmlAttribute]
                 public bool IsAutoDelete { get; set; } = false;
         }
 }

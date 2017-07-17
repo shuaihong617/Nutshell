@@ -60,7 +60,6 @@
     <Compile Include="XmlMessageFilter.cs" />
     <Compile Include="MessageFilter.cs" />
     <Compile Include="KeyValuePairModel.cs" />
-    <Compile Include="LogMessage.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="ValueMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

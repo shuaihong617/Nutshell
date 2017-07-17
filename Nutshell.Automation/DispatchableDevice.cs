@@ -17,6 +17,7 @@ using Nutshell.Automation.Models;
 using Nutshell.Data;
 using Nutshell.Extensions;
 using System;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation
@@ -24,7 +25,7 @@ namespace Nutshell.Automation
         /// <summary>
         ///         可调度组件
         /// </summary>
-        public abstract class DispatchableDevice : ConnectableDevice, IStorable<DispatchableDeviceModel>
+        public abstract class DispatchableDevice : ConnectableDevice
         {
                 /// <summary>
                 ///         初始化<see cref="DispatchableDevice" />的新实例.
@@ -58,23 +59,7 @@ namespace Nutshell.Automation
 
                 #region 存储
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">读取数据的源数据模型，该数据模型不能为null</param>
-                public void Load([MustNotEqualNull]DispatchableDeviceModel model)
-                {
-                        base.Load(model);
-                }
-
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(DispatchableDeviceModel model)
-                {
-                        throw new NotImplementedException();
-                }
+	        
 
                 #endregion 存储
 

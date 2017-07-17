@@ -13,21 +13,22 @@
 
 using Nutshell.Logging;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging.Models;
 
-namespace Nutshell.Messaging
+namespace Nutshell.RabbitMQ.Messaging
 {
         /// <summary>
         ///         自动装包开始消息数据模型
         /// </summary>
         
-        public class LogMessage : Message
+        public class RabbitMQLogMessage : RabbitMQMessage
         {
-                public LogMessage()
+                public RabbitMQLogMessage()
                 {
                         LogLevel = LogLevel.信息;
                 }
 
-                public LogMessage(string content, LogLevel logLevel = LogLevel.信息)
+                public RabbitMQLogMessage(string content, LogLevel logLevel = LogLevel.信息)
                 {
                         Content = content;
 

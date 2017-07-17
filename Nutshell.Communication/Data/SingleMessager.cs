@@ -71,7 +71,7 @@ namespace Nutshell.Communication.Data
                         Trace.Assert(_sourceReceiver == null);
 
                         _sourceReceiver = receiver;
-                        receiver.Received += (obj, args) =>
+                        receiver.ReceiveSuccessed += (obj, args) =>
                         {
                                 SetData(args.Value.Value);
                                 if (_targetSender == null)

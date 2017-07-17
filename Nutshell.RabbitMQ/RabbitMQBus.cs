@@ -1,62 +1,53 @@
 ﻿using System;
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Aspects.Locations.Propertys;
+using System.Diagnostics;
 using Nutshell.Communication;
+using Nutshell.Data.Models;
+using Nutshell.RabbitMQ.Messaging;
 using Nutshell.RabbitMQ.Models;
-using Nutshell.Serializing.Xml;
-using Nutshell.Storaging;
-using Nutshell.Storaging.Xml;
 using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-        public class RabbitMQBus : Bus, IStorable<RabbitMQBusModel>
+        public class RabbitMQBus : Bus
         {
-		/// <summary>
-		/// 连接工厂
-		/// </summary>
-		private ConnectionFactory _factory;
+                #region 字段
+
+                /// <summary>
+                ///         连接工厂
+                /// </summary>
+                private ConnectionFactory _factory;
+
+                #endregion
 
                 #region 属性
 
                 public RabbitMQAuthorization Authorization { get; } = new RabbitMQAuthorization();
 
-		/// <summary>
-		/// 获取连接
-		/// </summary>
-		/// <value>连接</value>
-		/// <remarks>
-		/// 1 连接可以Dispose，所以必须可为null。
-		/// 2 连接比较消耗资源，所以多个发送和接收单元尽量共享通道。（官方文档上说的）
-		/// </remarks>
+                /// <summary>
+                ///         获取连接
+                /// </summary>
+                /// <value>连接</value>
+                /// <remarks>
+                ///         1 连接可以Dispose，所以必须可为null。
+                ///         2 连接比较消耗资源，所以多个发送和接收单元尽量共享连接。（官方文档上说的）
+                /// </remarks>
                 public IConnection Connection { get; private set; }
 
-		public RabbitMQExchange Exchange { get; } = new RabbitMQExchange();
-
-		#endregion
-
-		public static RabbitMQBus Load([MustNotEqualNullOrEmpty]string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<RabbitMQBusModel>.Instance.Deserialize(bytes);
-
-                        var bus = new RabbitMQBus();
-                        bus.Load(model);
-                        return bus;
-                }
+                #endregion
 
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(RabbitMQBusModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Authorization.Load(model.RabbitMQAuthorizationModel);
-			Exchange.Load(model.RabbitMQExchangeModel);
-                }
+                        var subModel = model as RabbitMQBusModel;
+                        Trace.Assert(subModel != null);
 
+                        Authorization.Load(subModel.RabbitMQAuthorizationModel);
+                }
 
                 /// <summary>
                 ///         保存数据到数据模型
@@ -66,6 +57,7 @@ namespace Nutshell.RabbitMQ
                 {
                         throw new NotImplementedException();
                 }
+
 
                 protected override bool StartCore()
                 {
@@ -105,6 +97,20 @@ namespace Nutshell.RabbitMQ
                         _factory = null;
 
                         return true;
+                }
+
+                public virtual RabbitMQBus RegisterSender<T>(RabbitMQSender<T> sender) where T : RabbitMQMessage
+                {
+                        base.RegisterSender(sender);
+                        sender.BindToBus(this);
+                        return this;
+                }
+
+                public virtual RabbitMQBus RegisterReceiver<T>(RabbitMQReceiver<T> receiver) where T : RabbitMQMessage
+                {
+                        base.RegisterReceiver(receiver);
+                        receiver.BindToBus(this);
+                        return this;
                 }
         }
 }

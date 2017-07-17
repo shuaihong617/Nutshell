@@ -14,7 +14,7 @@
 using System;
 using Nutshell.Data.Models;
 
-namespace Nutshell.Messaging.Models
+namespace Nutshell.Messaging
 {
         /// <summary>
         ///         消息
@@ -25,10 +25,19 @@ namespace Nutshell.Messaging.Models
                 public Message()
                 {
                         Id = Guid.NewGuid().ToString();
+                        Type = GetType().Name;
+                        CreateTime = DateTime.MinValue;
+                }
+
+                public Message(string id, string type, DateTime time)
+                {
+                        Id = id;
+                        Type = type;
+                        CreateTime = time;
                 }
 
                 public string Type { get; set; }
 
-                public DateTime TimeStamp { get; set; }
+                public DateTime CreateTime { get; set; }
         }
 }

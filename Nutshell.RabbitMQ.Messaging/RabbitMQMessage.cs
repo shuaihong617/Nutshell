@@ -12,11 +12,10 @@
 // ***********************************************************************
 
 using System;
-using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Messaging.Models;
+using Nutshell.Messaging;
 
-namespace Nutshell.RabbitMQ.Messaging.Models
+namespace Nutshell.RabbitMQ.Messaging
 {
 	/// <summary>
 	///         消息
@@ -35,11 +34,11 @@ namespace Nutshell.RabbitMQ.Messaging.Models
 	        }
 
                 /// <summary>
-                ///         获取路由键
+                ///         获取或设置路由键
                 /// </summary>
                 /// <value>路由键</value>
-                
-		[MustNotEqualNull]
-		public string RoutingKey { get; set; }
-	}
+                [MustNotEqualNull]
+
+                public string RoutingKey { get; set; }
+        }
 }

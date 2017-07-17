@@ -4,7 +4,9 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Communication.Models;
 using Nutshell.Components;
+using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
+using Nutshell.RabbitMQ.Messaging;
 using Nutshell.RabbitMQ.Models;
 using Nutshell.Serializing;
 using Nutshell.Serializing.Xml;
@@ -13,7 +15,7 @@ using RabbitMQ.Client;
 
 namespace Nutshell.RabbitMQ
 {
-	public abstract class RabbitMQActor<T> : Worker,IStorable<RabbitMQActorModel>, IActor<T> where T : Message
+	public abstract class RabbitMQActor<T> : Worker, IActor<T> where T : RabbitMQMessage
 	{
 		protected RabbitMQActor(string id = "")
 			: base(id)
@@ -31,9 +33,6 @@ namespace Nutshell.RabbitMQ
 
 		public ISerializer<T> Serializer { get; } = XmlSerializer<T>.Instance;
 
-		[MustNotEqualNull]
-		protected RabbitMQExchange Exchange { get; private set; }
-
 		/// <summary>
 		/// 获取通道
 		/// </summary>
@@ -46,15 +45,7 @@ namespace Nutshell.RabbitMQ
 
 		#endregion
 
-		public void Load([MustNotEqualNull]RabbitMQActorModel model)
-		{
-			base.Load(model);
-		}
-
-		public void Save([MustNotEqualNull]RabbitMQActorModel model)
-		{
-			base.Save(model);
-		}
+		
 
 		protected override bool StartCore()
 		{
@@ -78,17 +69,16 @@ namespace Nutshell.RabbitMQ
 			return true;
 		}
 
-		public IActor<T> BindBus([MustNotEqualNull]Bus bus)
-		{
-			Trace.Assert(_connection == null);
+                public virtual IActor<T> BindToBus([MustNotEqualNull]IBus bus)
+                {
+                        Trace.Assert(_connection == null);
 
-		        var rabbitBus = bus as RabbitMQBus;
-		        Trace.Assert(rabbitBus != null);
-		        Trace.Assert(rabbitBus.Connection != null);
+                        var rabbitBus = bus as RabbitMQBus;
+                        Trace.Assert(rabbitBus!= null);
+                        Trace.Assert(rabbitBus.Connection != null);
 
-			_connection = rabbitBus.Connection;
-			Exchange = rabbitBus.Exchange;
-			return this;
-		}
+                        _connection = rabbitBus.Connection;
+                        return this;
+                }
 	}
 }

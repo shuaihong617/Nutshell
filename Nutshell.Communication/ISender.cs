@@ -12,6 +12,7 @@
 // ***********************************************************************
 
 using System;
+using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
 
 namespace Nutshell.Communication
