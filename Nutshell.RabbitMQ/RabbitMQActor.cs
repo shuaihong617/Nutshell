@@ -69,7 +69,8 @@ namespace Nutshell.RabbitMQ
 
                 public virtual IActor<T> BindToBus([MustNotEqualNull]IBus bus)
                 {
-                        Trace.Assert(_connection == null);
+			Trace.Assert(_connection == null);
+			
 
                         var rabbitBus = bus as RabbitMQBus;
                         Trace.Assert(rabbitBus!= null);

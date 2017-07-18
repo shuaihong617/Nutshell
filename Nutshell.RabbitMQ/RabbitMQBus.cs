@@ -90,18 +90,5 @@ namespace Nutshell.RabbitMQ
                         return true;
                 }
 
-                public virtual RabbitMQBus RegisterSender<T>(RabbitMQSender<T> sender) where T : RabbitMQMessage
-                {
-                        base.RegisterSender(sender);
-                        sender.BindToBus(this);
-                        return this;
-                }
-
-                public virtual RabbitMQBus RegisterReceiver<T>(RabbitMQReceiver<T> receiver) where T : RabbitMQMessage
-                {
-                        base.RegisterReceiver(receiver);
-                        receiver.BindToBus(this);
-                        return this;
-                }
         }
 }
