@@ -11,11 +11,14 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components;
 using Nutshell.Data;
 using Nutshell.Drawing.Models;
 using System.Drawing;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Drawing
@@ -23,7 +26,7 @@ namespace Nutshell.Drawing
         /// <summary>
         ///         区域
         /// </summary>
-        public class Region : StorableObject, IHitable, IStorable<RegionModel>
+        public class Region : StorableObject, IHitable
         {
                 private int _x;
                 private int _y;
@@ -229,18 +232,17 @@ namespace Nutshell.Drawing
                         return false;
                 }
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Load(RegionModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        X = model.X;
-                        Y = model.Y;
-                        Width = model.Width;
-                        Height = model.Height;
+                        var subModel = model as RegionModel;
+                        Trace.Assert(subModel != null);
+                
+                        X = subModel.X;
+                        Y = subModel.Y;
+                        Width = subModel.Width;
+                        Height = subModel.Height;
                 }
 
                 /// <summary>

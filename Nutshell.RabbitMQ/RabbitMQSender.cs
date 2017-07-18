@@ -57,16 +57,16 @@ namespace Nutshell.RabbitMQ
 	        }
 
 
-	        public override IActor<T> BindToBus(IBus bus)
+	        protected override bool StartCore()
 	        {
-	                base.BindToBus(bus);
+	                base.StartCore();
 
                         Channel.ExchangeDeclare(Exchange.Name, Exchange.ExchangeType.ToString().ToLower(), Exchange.IsDurable, Exchange.IsAutoDelete);
 
-	                return this;
+	                return true;
 	        }
 
-                /// <summary>
+	        /// <summary>
                 ///         发送字节数组数据
                 /// </summary>
                 /// <param name="message">待发送消息数据</param>

@@ -88,7 +88,7 @@ namespace Nutshell.Automation.Opc
                 public string Address { get; private set; } = string.Empty;
 
                 /// <summary>
-                ///         Gets or sets the opc groups.
+                ///         获取或设置the opc groups.
                 /// </summary>
                 /// <value>The opc groups.</value>
                 public ReadOnlyCollection<OpcGroup> OpcGroups

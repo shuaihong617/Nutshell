@@ -22,6 +22,8 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Hikvision.MachineVision.Models;
 using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
@@ -33,8 +35,13 @@ namespace Nutshell.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机
         /// </summary>
-        public partial class MachineVisionCameraDevice : NetworkCameraDevice, IStorable<MachineVisionCameraDeviceModel>
+        public class MachineVisionCameraDevice : NetworkCameraDevice
         {
+                public MachineVisionCameraDevice()
+                        : base(String.Empty, 1280, 960, PixelFormat.Rgb24, IPAddress.None.ToString())
+                {
+                }
+
                 public MachineVisionCameraDevice(string id = "", string ipAddress = "0.0.0.0")
                         : base(id, 1280, 960, PixelFormat.Rgb24, ipAddress)
                 {
@@ -67,40 +74,15 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 存储
 
-                public static MachineVisionCameraDevice  Load([MustFileExist]string fileName)
+                public override void Load(IIdentityModel model)
                 {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<MachineVisionCameraDeviceModel>.Instance.Deserialize(bytes);
+                        base.Load(model);
 
-                        var camera = new MachineVisionCameraDevice();
-
-                        camera.Load(model);
-
-                        return camera;
-                }
-
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="deviceModel">读取数据的源数据模型，该数据模型不能为null</param>
-                public void Load(MachineVisionCameraDeviceModel deviceModel)
-                {
-                        base.Load(deviceModel);
-
-                        UserSet = deviceModel.UserSet;
-                        StreamChannelPacketSize = deviceModel.StreamChannelPacketSize;
-
-                        Debug.WriteLine(UserSet);
-                        Debug.WriteLine(StreamChannelPacketSize);
-                }
-
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="deviceModel">写入数据的目的数据模型，该数据模型不能为null</param>
-                public void Save(MachineVisionCameraDeviceModel deviceModel)
-                {
-                        throw new NotImplementedException();
+                        var subModel = model as MachineVisionCameraDeviceModel;
+                        Trace.Assert(subModel != null);
+                
+                        UserSet = subModel.UserSet;
+                        StreamChannelPacketSize = subModel.StreamChannelPacketSize;
                 }
 
                 #endregion 存储

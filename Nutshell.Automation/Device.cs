@@ -21,7 +21,7 @@ namespace Nutshell.Automation
 	/// <summary>
 	///         设备
 	/// </summary>
-	public abstract class Device : Component, IStorable<DeviceModel>
+	public abstract class Device : Component
 	{
 		/// <summary>
 		///         初始化<see cref="Device" />的新实例.
@@ -45,25 +45,7 @@ namespace Nutshell.Automation
 
 		#region 存储
 
-		/// <summary>
-		///         从数据模型加载数据
-		/// </summary>
-		/// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-		public void Load(DeviceModel model)
-		{
-			base.Load(model);
-
-		}
-
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
-		public void Save(DeviceModel model)
-		{
-			base.Save(model);
-
-                }
+		
 
 		#endregion 存储
 

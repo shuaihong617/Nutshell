@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fy6400Board.cs" />
+    <Compile Include="ChannelValueChangedEventArgs.cs" />
+    <Compile Include="FyyingIOBoardDevice.cs" />
+    <Compile Include="Fyying6400IOBoardDevice.cs" />
+    <Compile Include="Models\FyyingIOBoardDeviceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\OfficalAPI.cs" />
+    <Compile Include="SDK\ErrorCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">

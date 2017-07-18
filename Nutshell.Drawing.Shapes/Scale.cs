@@ -3,6 +3,9 @@ using Nutshell.Data;
 using Nutshell.Drawing.Shapes.Models;
 using Nutshell.Extensions;
 using System;
+using System.Diagnostics;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Drawing.Shapes
@@ -10,7 +13,7 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         ///         刻度
         /// </summary>
-        public class Scale : StorableObject, IHitable, IStorable<ScaleModel>
+        public class Scale : StorableObject, IHitable
         {
                 public Scale(string id = "")
                         : base(id)
@@ -22,11 +25,15 @@ namespace Nutshell.Drawing.Shapes
 
                 public virtual int Value { get; private set; }
 
-                public void Load(ScaleModel model)
+                
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Value = model.Value;
+                        var subModel = model as ScaleModel;
+                        Trace.Assert(subModel != null);
+
+                        Value = subModel.Value;
 
                         //scaleModel.SegmentModel.NotNull();
                         //Segment.Load(scaleModel.SegmentModel);

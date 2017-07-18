@@ -55,8 +55,6 @@ namespace Nutshell.RabbitMQ
 			var properties = Channel.CreateBasicProperties();
 			properties.DeliveryMode = 2;
 
-			Channel.ExchangeDeclare(Exchange.Name, Exchange.ExchangeType.ToString().ToLower(), Exchange.IsDurable, Exchange.IsAutoDelete);
-
 			return true;
 		}
 

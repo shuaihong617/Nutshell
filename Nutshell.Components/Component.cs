@@ -11,10 +11,12 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
 using Nutshell.Data;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Components
@@ -22,7 +24,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         组件
         /// </summary>
-        public abstract class Component : StorableObject, IRunable, IStorable<ComponentModel>
+        public abstract class Component : StorableObject, IRunable
         {
                 #region 构造函数
 
@@ -55,22 +57,21 @@ namespace Nutshell.Components
 
                 #region 方法
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load([MustNotEqualNull] ComponentModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        IsEnable = model.IsEnable;
-                        RunMode = model.RunMode;
+                        var subModel = model as ComponentModel;
+                        Trace.Assert(subModel != null);
+
+                        IsEnable = subModel.IsEnable;
+                        RunMode = subModel.RunMode;
                 }
 
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
-                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用.</param>
                 public void Save([MustNotEqualNull] ComponentModel model)
                 {
                         base.Save(model);

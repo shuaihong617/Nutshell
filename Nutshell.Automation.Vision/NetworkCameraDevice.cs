@@ -16,6 +16,8 @@ using Nutshell.Automation.Vision.Models;
 using Nutshell.Drawing.Imaging;
 using System.Diagnostics;
 using System.Net;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation.Vision
@@ -23,7 +25,7 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         /// 网络摄像机
         /// </summary>
-        public abstract class NetworkCameraDevice : CameraDevice,IStorable<NetworkCameraDeviceModel>
+        public abstract class NetworkCameraDevice : CameraDevice
         {
                 /// <summary>
                 /// 初始化<see cref="NetworkCameraDevice"/>的新实例.
@@ -52,28 +54,23 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 /// 从数据模型加载数据
                 /// </summary>
-                /// <param name="deviceModel">数据模型</param>
-                public void Load([MustNotEqualNull] NetworkCameraDeviceModel deviceModel)
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用.</param>
+                public override void Load(IIdentityModel model)
                 {
-                        base.Load(deviceModel);
+                        base.Load(model);
 
-                        IPAddress = IPAddress.Parse(deviceModel.IPAddress);
+                        var subModel = model as NetworkCameraDeviceModel;
+                        Trace.Assert(subModel != null);
+                
+
+                        IPAddress = IPAddress.Parse(subModel.IPAddress);
 
                         Trace.Assert(!Equals(IPAddress, IPAddress.Any));
                         Trace.Assert(!Equals(IPAddress, IPAddress.None));
                         Trace.Assert(!Equals(IPAddress, IPAddress.Loopback));
                 }
 
-                /// <summary>
-                /// 保存数据到数据模型
-                /// </summary>
-                /// <param name="deviceModel">数据模型</param>
-                public void Save([MustNotEqualNull] NetworkCameraDeviceModel deviceModel)
-                {
-                        base.Save(deviceModel);
-
-                        deviceModel.IPAddress = IPAddress.ToString();
-                }
+                
 
                 #endregion 存储
 

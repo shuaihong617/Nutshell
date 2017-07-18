@@ -18,6 +18,8 @@ using Nutshell.Drawing;
 using Nutshell.Drawing.Imaging;
 using Nutshell.Threading;
 using System.Diagnostics;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation.Vision
@@ -25,7 +27,7 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class CameraDevice : CapturableDevice<Bitmap>,IStorable<CameraDeviceModel>
+        public abstract class CameraDevice : CapturableDevice<Bitmap>
         {
                 /// <summary>
                 ///         初始化<see cref="CameraDevice" />的实例
@@ -101,33 +103,41 @@ namespace Nutshell.Automation.Vision
                 #region 存储
 
                 /// <summary>
-                ///         从数据模型加载数据
+                /// 从数据模型加载数据
                 /// </summary>
-                /// <param name = "deviceModel" >数据模型</param >
-                public void Load(CameraDeviceModel deviceModel)
+                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用.</param>
+                public override void Load(IIdentityModel model)
                 {
-                        base.Load(deviceModel);
+                        base.Load(model);
 
-                        Width = deviceModel.Width;
-                        Height = deviceModel.Height;
-                        PixelFormat = deviceModel.PixelFormat;
+                        var subModel = model as CameraDeviceModel;
+                        Trace.Assert(subModel != null);
+                
 
-                        Region.Load(deviceModel.RegionModel);
+                        Width = subModel.Width;
+                        Height = subModel.Height;
+                        PixelFormat = subModel.PixelFormat;
+
+                        Region.Load(subModel.RegionModel);
                 }
 
                 /// <summary>
-                ///         保存数据到数据模型
+                /// 保存数据到数据模型
                 /// </summary>
-                /// <param name="deviceModel">数据模型</param>
-                public void Save(CameraDeviceModel deviceModel)
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
+                public override void Save(IIdentityModel model)
                 {
-                        base.Save(deviceModel);
+                        base.Save(model);
 
-                        deviceModel.Width = Width;
-                        deviceModel.Height = Height;
-                        deviceModel.PixelFormat = PixelFormat;
+                        var subModel = model as CameraDeviceModel;
+                        Trace.Assert(subModel != null);
 
-                        Region.Save(deviceModel.RegionModel);
+
+                        subModel.Width = Width;
+                        subModel.Height = Height;
+                        subModel.PixelFormat = PixelFormat;
+
+                        Region.Save(subModel.RegionModel);
                 }
 
                 #endregion 存储

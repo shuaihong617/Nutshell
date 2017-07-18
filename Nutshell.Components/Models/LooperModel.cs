@@ -20,20 +20,20 @@ namespace Nutshell.Components.Models
         /// <summary>
         ///         循环序列化数据模型
         /// </summary>
-        
+        [XmlType]
         public class LooperModel : WorkerModel
         {
                 /// <summary>
                 /// 获取循环调度线程优先级
                 /// </summary>
                 /// <value>循环调度线程优先级</value>
-                
+                [XmlAttribute]
                 public ThreadPriority Priority { get; set; }
 
                 /// <summary>
                 ///         工作线程休眠时间间隔（毫秒）
                 /// </summary>
-                
+                [XmlAttribute]
                 [MustGreaterThan(0)]
                 public int Interval { get; set; }
         }

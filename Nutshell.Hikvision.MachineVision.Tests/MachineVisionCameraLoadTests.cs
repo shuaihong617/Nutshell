@@ -3,7 +3,9 @@ using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nutshell.Components;
 using Nutshell.Drawing.Imaging;
+using Nutshell.Hikvision.MachineVision.Models;
 using Nutshell.Hikvision.MachineVision.SDK;
+using Nutshell.Storaging.Xml;
 
 namespace Nutshell.Hikvision.MachineVision.Tests
 {
@@ -13,7 +15,7 @@ namespace Nutshell.Hikvision.MachineVision.Tests
                 [TestMethod()]
                 public void LoadTest()
                 {
-                        var camera = MachineVisionCameraDevice.Load(@"测试文件/Camera.config");
+                        var camera = XmlStorager<MachineVisionCameraDevice, MachineVisionCameraDeviceModel>.Instance.Load(@"测试文件/Camera.config");
 
                         Assert.AreEqual(camera.Id, "1车液位摄像机");
                         Assert.AreEqual(camera.IsEnable, true);

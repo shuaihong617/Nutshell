@@ -11,7 +11,9 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Components
@@ -19,7 +21,7 @@ namespace Nutshell.Components
         /// <summary>
         /// 限位
         /// </summary>
-        public class Distance:StorableObject,IStorable<DistanceModel>
+        public class Distance:StorableObject
         {
                 /// <summary>
                 /// 获取精度
@@ -46,17 +48,17 @@ namespace Nutshell.Components
                 public float Parctice => Standard + Addition;
 
 
-                /// <summary>
-                /// 从数据模型加载数据
-                /// </summary>
-                /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(DistanceModel model)
-		{
-			base.Load(model);
 
-			Accuracy = model.Accuracy;
-			Standard = model.Standard;
-		}
+                public override void Load(IIdentityModel model)
+                {
+                        base.Load(model);
+
+                        var subModel = model as DistanceModel;
+                        Trace.Assert(subModel != null);
+
+                        Accuracy = subModel.Accuracy;
+                        Standard = subModel.Standard;
+                }
 
                 /// <summary>
                 /// 保存数据到数据模型

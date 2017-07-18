@@ -19,21 +19,21 @@ namespace Nutshell.Components.Models
         /// <summary>
         ///         组件数据模型
         /// </summary>
-        
+        [XmlType]
         public class ComponentModel : IdentityModel
         {
                 /// <summary>
                 /// 获取或设置是否启用
                 /// </summary>
                 /// <value>是否启用</value>
-                
+                [XmlAttribute]
                 public bool IsEnable { get; set; }
 
                 ///<summary>
                 /// 获取或设置运行模式
                 /// </summary>
                 /// <value>运行模式</value>
-                
+                [XmlAttribute]
                 public RunMode RunMode { get; set; }
         }
 }

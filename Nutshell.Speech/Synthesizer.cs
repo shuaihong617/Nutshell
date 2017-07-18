@@ -39,14 +39,14 @@ namespace Nutshell.Speech
                 }
 
                 /// <summary>
-                /// Gets or sets the language.
+                /// 获取或设置the language.
                 /// </summary>
                 /// <value>The language.</value>
                 [NotifyPropertyValueChanged]
                 public Language Language { get; protected set; }
 
                 /// <summary>
-                /// Gets or sets the voice.
+                /// 获取或设置the voice.
                 /// </summary>
                 /// <value>The voice.</value>
                 [MustNotEqualNullOrEmpty]
@@ -54,7 +54,7 @@ namespace Nutshell.Speech
                 public string Voice { get; protected set; }
 
                 /// <summary>
-                /// Gets or sets the volume.
+                /// 获取或设置the volume.
                 /// </summary>
                 /// <value>The volume.</value>
                 [MustBetweenOrEqual(0, 100)]
@@ -62,7 +62,7 @@ namespace Nutshell.Speech
                 public int Volume { get; set; }
 
                 /// <summary>
-                /// Gets or sets the state of the synthesizer.
+                /// 获取或设置the state of the synthesizer.
                 /// </summary>
                 /// <value>The state of the synthesizer.</value>
                 [NotifyPropertyValueChanged]
@@ -75,7 +75,7 @@ namespace Nutshell.Speech
                 public int Progresee { get; }
 
                 /// <summary>
-                /// Gets or sets the output mode.
+                /// 获取或设置the output mode.
                 /// </summary>
                 /// <value>The output mode.</value>
                 [NotifyPropertyValueChanged]

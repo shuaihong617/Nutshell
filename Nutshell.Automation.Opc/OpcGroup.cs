@@ -58,7 +58,7 @@ namespace Nutshell.Automation.Opc
                 /// <summary>
                 ///         保存数据到数据模型
                 /// </summary>
-                /// <param name="model">写入数据的目的数据模型，该数据模型不能为null</param>
+                /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用.</param>
                 public void Save(OpcGroupModel model)
                 {
                         throw new NotImplementedException();

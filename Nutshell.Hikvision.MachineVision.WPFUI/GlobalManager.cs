@@ -1,8 +1,11 @@
 ﻿using System.Windows.Forms;
 using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Components;
+using Nutshell.Components.Models;
+using Nutshell.Hikvision.MachineVision.Models;
 using Nutshell.Logging;
 using Nutshell.Logging.UserLogging;
-using Application = Nutshell.Components.Application;
+using Nutshell.Storaging.Xml;
 
 namespace Nutshell.Hikvision.MachineVision.WPFUI
 {
@@ -36,7 +39,7 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                 public string ConfigDirectory { get; }
 
                 [NotifyPropertyValueChanged]
-                public Application Application { get; private set; }
+                public AppInstance AppInstance { get; private set; }
 
                 public LogCollecter LogCollecter { get; }
 
@@ -61,17 +64,17 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = Application.Load(ConfigDirectory + "Application.config");
+                        AppInstance = XmlStorager<AppInstance,AppInstanceModel>.Instance.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()
                 {
                         Runtime = MachineVisionRuntime.Instance;
-                        Runtime.Parent = Application;
+                        Runtime.Parent = AppInstance;
                         Runtime.Start();
 
-                        CameraDevice = MachineVisionCameraDevice.Load(ConfigDirectory + "Camera.config");
-                        CameraDevice.Parent = Application;
+                        CameraDevice = XmlStorager<MachineVisionCameraDevice, MachineVisionCameraDeviceModel>.Instance.Load(ConfigDirectory + "Camera.config");
+                        CameraDevice.Parent = AppInstance;
 
                         CameraDevice.StartConnect();
                         CameraDevice.StartDispatch();

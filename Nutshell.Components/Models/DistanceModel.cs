@@ -19,17 +19,17 @@ namespace Nutshell.Components.Models
 	/// <summary>
 	///         距离数据模型
 	/// </summary>
-	
+	[XmlType]
 	public class DistanceModel:IdentityModel
 	{
-		
-		public float Accuracy { get; set; }
+                [XmlAttribute]
+                public float Accuracy { get; set; }
 
-		/// <summary>
-		///         Gets the standard value.
-		/// </summary>
-		/// <value>The standard value.</value>
-		
-		public float Standard { get; set; }
+                /// <summary>
+                ///         Gets the standard value.
+                /// </summary>
+                /// <value>The standard value.</value>
+                [XmlAttribute]
+                public float Standard { get; set; }
 	}
 }

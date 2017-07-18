@@ -23,17 +23,5 @@ namespace Nutshell.Fyying.SDK
 
 		[DllImport("FY6400.DLL")]
 		public static extern int FY6400_DO_Bit(IntPtr hDevice, int dochdata, int doch);
-
-		[DllImport("FY6400.DLL")]
-		public static extern int FY6400_EEPROM_WR(IntPtr hDevice, int wadr, int wdata);
-
-		[DllImport("FY6400.DLL")]
-		public static extern int FY6400_EEPROM_RD(IntPtr hDevice, int radr);
-
-		[DllImport("FY6400.DLL")]
-		public static extern int FY6400_CNT_Rest(IntPtr hDevice, int cntch, int cpol);
-
-		[DllImport("FY6400.DLL")]
-		public static extern int FY6400_CNT_Read(IntPtr hDevice, int cntch, int[] cdata);
 	}
 }

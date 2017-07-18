@@ -207,6 +207,10 @@
       <Project>{bd530e64-a243-494b-9c8c-5362c8a36e8c}</Project>
       <Name>Nutshell.Presentation.MahApps</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
+      <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
+      <Name>Nutshell.Storaging.Xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
       <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
       <Name>Nutshell.Storaging</Name>

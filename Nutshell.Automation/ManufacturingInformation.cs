@@ -15,6 +15,9 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Models;
 using Nutshell.Data;
 using System;
+using System.Diagnostics;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation
@@ -22,7 +25,7 @@ namespace Nutshell.Automation
         /// <summary>
         /// 制造信息
         /// </summary>
-        public class ManufacturingInformation : StorableObject, IStorable<ManufacturingInformationModel>
+        public class ManufacturingInformation : StorableObject
         {
                 /// <summary>
                 /// 制造商
@@ -34,12 +37,16 @@ namespace Nutshell.Automation
                 /// </summary>
                 public string Model { get; private set; }
 
-                public void Load([MustNotEqualNull]ManufacturingInformationModel model)
-                {
-			base.Load(model);
 
-                        Manufacturer = model.Manufacturer;
-                        Model = model.Model;
+                public override void Load(IIdentityModel model)
+                {
+                        base.Load(model);
+
+                        var subModel = model as ManufacturingInformationModel;
+                        Trace.Assert(subModel != null);
+                
+                        Manufacturer = subModel.Manufacturer;
+                        Model = subModel.Model;
                 }
 
                 public void Save([MustNotEqualNull]ManufacturingInformationModel model)

@@ -18,7 +18,9 @@ using Nutshell.Components.Models;
 using Nutshell.Extensions;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Components
@@ -26,7 +28,7 @@ namespace Nutshell.Components
         /// <summary>
         ///         循环工作者
         /// </summary>
-        public class Looper : Worker, IStorable<LooperModel>
+        public class Looper : Worker
         {
                 public Looper(string id, Action repeat)
                         : this(id, ThreadPriority.Normal, 1000, repeat)
@@ -75,17 +77,15 @@ namespace Nutshell.Components
 
                 #endregion 属性
 
-                public void Load([MustNotEqualNull] LooperModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Priority = model.Priority;
-                        Interval = model.Interval;
-                }
+                        var subModel = model as LooperModel;
+                        Trace.Assert(subModel != null);
 
-                public void Save([MustNotEqualNull] LooperModel model)
-                {
-                        throw new NotImplementedException();
+                        Priority = subModel.Priority;
+                        Interval = subModel.Interval;
                 }
 
                 protected override bool StartCore()

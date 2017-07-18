@@ -26,7 +26,7 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                 private void Application_Startup(object sender, StartupEventArgs e)
                 {
                         _gm.LoadApplication();
-                        if (string.IsNullOrEmpty(_gm.Application.Id))
+                        if (string.IsNullOrEmpty(_gm.AppInstance.Id))
                         {
                                 MessageBox.Show("应用程序令牌加载失败, 请联系软件发行方以协助改进这个问题, 非常感谢！");
                                 Shutdown();
@@ -34,11 +34,11 @@ namespace Nutshell.Hikvision.MachineVision.WPFUI
                         }
 
                         bool isNotEixst;
-                        _mutex = new Mutex(true, _gm.Application.Id, out isNotEixst);
+                        _mutex = new Mutex(true, _gm.AppInstance.Id, out isNotEixst);
 
                         if (!isNotEixst)
                         {
-                                MessageBox.Show("应用程序 " + _gm.Application.Id + " 已运行！");
+                                MessageBox.Show("应用程序 " + _gm.AppInstance.Id + " 已运行！");
                                 Shutdown();
                                 return;
                         }

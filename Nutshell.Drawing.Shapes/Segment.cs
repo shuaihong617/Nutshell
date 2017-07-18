@@ -14,6 +14,9 @@
 using Nutshell.Data;
 using Nutshell.Drawing.Shapes.Models;
 using System;
+using System.Diagnostics;
+using Nutshell.Components.Models;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Drawing.Shapes
@@ -21,7 +24,7 @@ namespace Nutshell.Drawing.Shapes
         /// <summary>
         /// 线段
         /// </summary>
-        public class Segment : StorableObject,IStorable<SegmentModel>
+        public class Segment : StorableObject
         {
                 /// <summary>
                 /// 初始化<see cref="Segment" />的新实例.
@@ -52,20 +55,20 @@ namespace Nutshell.Drawing.Shapes
                 /// </summary>
                 public int Y2 { get; set; }
 
-                /// <summary>
-                /// 从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Load(SegmentModel model)
+
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        X1 = model.X1;
-                        Y1 = model.Y1;
-                        X2 = model.X2;
-                        Y2 = model.Y2;
-                }
+                        var subModel = model as SegmentModel;
+                        Trace.Assert(subModel != null);
 
+                        X1 = subModel.X1;
+                        Y1 = subModel.Y1;
+                        X2 = subModel.X2;
+                        Y2 = subModel.Y2;
+                }
+                
                 /// <summary>
                 /// 保存数据到数据模型
                 /// </summary>

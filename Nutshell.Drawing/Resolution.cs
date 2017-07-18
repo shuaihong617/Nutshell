@@ -11,8 +11,9 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Data;
+using Nutshell.Data.Models;
 using Nutshell.Drawing.Models;
 using Nutshell.Storaging;
 
@@ -21,7 +22,7 @@ namespace Nutshell.Drawing
         /// <summary>
         ///         Class NSBitmap.
         /// </summary>
-        public abstract class Resolution : StorableObject, IStorable<ResolutionModel>
+        public abstract class Resolution : StorableObject
         {
                 /// <summary>
                 ///         初始化<see cref="Resolution" />的新实例.
@@ -51,28 +52,15 @@ namespace Nutshell.Drawing
                 [MustGreaterThan(0f)]
                 public double Vertical { get; private set; }
 
-                /// <summary>
-                ///         从数据模型加载数据
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull] ResolutionModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Horizontal = model.Horizontal;
-                        Vertical = model.Vertical;
-                }
+                        var subModel = model as ResolutionModel;
+                        Trace.Assert(subModel != null);
 
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">数据模型</param>
-                public void Save([MustNotEqualNull] ResolutionModel model)
-                {
-                        base.Save(model);
-
-                        model.Horizontal = Horizontal;
-                        model.Vertical = Vertical;
+                        Horizontal = subModel.Horizontal;
+                        Vertical = subModel.Vertical;
                 }
 
                 /// <summary>
