@@ -8,7 +8,7 @@ using Nutshell.Storaging;
 
 namespace Nutshell.SerialPorts
 {
-        public class SerialPortReceiver<T> : SerialPortActor<T>, IReceiver<T>, IStorable<SerialPortReceiverModel>
+        public class SerialPortReceiver<T> : SerialPortActor<T>, IReceiver<T>
                 where T : SerialPortMessage
         {
                 public SerialPortReceiver(string id = "")
@@ -17,15 +17,7 @@ namespace Nutshell.SerialPorts
                 }
 
 
-                public void Load(SerialPortReceiverModel model)
-                {
-                        base.Load(model);
-                }
-
-                public void Save(SerialPortReceiverModel model)
-                {
-                        base.Save(model);
-                }
+               
 
                 /// <summary>
                 ///         执行启动过程的具体步骤.

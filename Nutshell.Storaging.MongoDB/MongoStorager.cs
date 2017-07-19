@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.ServiceProcess;
 using MongoDB.Driver;
 using Nutshell.Data.Mongo.Models;
 using Nutshell.Data.MongoDB;
@@ -8,7 +11,6 @@ namespace Nutshell.Storagine.MongoDB
 {
         public class MongoStorager
         {
-                private MongoStorageConnectContext _connectContext;
 
                 private MongoClient _client;
 
@@ -25,9 +27,30 @@ namespace Nutshell.Storagine.MongoDB
                         _database = _client.GetDatabase("EMP.PMC");
                 }
 
-                
+		/// <summary>
+		/// Environments the verification.
+		/// </summary>
+		/// <exception cref="System.InvalidOperationException">数据库服务启动失败</exception>
+		private void EnvironmentVerification()
+		{
+			var mongoDbServiceController = new ServiceController("MongoDB");
 
-                public MongoDataSet<T> GetDataSet<T>(string collectionName = "") where T:MongoModel
+			if (mongoDbServiceController.Status != ServiceControllerStatus.Running)
+			{
+				File.Delete(@"D:\MongoDB32\Data\mongod.lock");
+
+				mongoDbServiceController.Start();
+
+				mongoDbServiceController.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(3));
+
+				if (mongoDbServiceController.Status != ServiceControllerStatus.Running)
+				{
+					throw new InvalidOperationException("数据库服务启动失败");
+				}
+			}
+		}
+
+		public MongoDataSet<T> GetDataSet<T>(string collectionName = "") where T:MongoModel
                 {
                         Debug.Assert(_database != null);
 

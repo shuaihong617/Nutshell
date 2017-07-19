@@ -28,44 +28,44 @@ namespace Nutshell.SerialPorts.Models
                 /// </summary>
                 /// <value>端口名称</value>
                 [MustNotEqualNullOrEmpty]
-                
+                [XmlAttribute]
                 public string PortName { get; set; }
 
-                /// <summary>
-                ///         获取或设置波特率
-                /// </summary>
-                /// <value>波特率</value>
-                
-                public int BaudRate { get; set; }
+		/// <summary>
+		///         获取或设置波特率
+		/// </summary>
+		/// <value>波特率</value>
+		[XmlAttribute]
+		public int BaudRate { get; set; }
 
                 /// <summary>
                 ///         获取或设置校验模式
                 /// </summary>
                 /// <value>校验模式</value>
                 [MustNotEqualNullOrEmpty]
-                
-                public Parity Parity { get; set; }
+		[XmlAttribute]
+		public Parity Parity { get; set; }
 
                 /// <summary>
                 ///         获取或设置数据位
                 /// </summary>
                 /// <value>数据位</value>
                 [MustNotEqualNullOrEmpty]
-                
-                public int DataBits { get; set; }
+		[XmlAttribute]
+		public int DataBits { get; set; }
 
-                /// <summary>
-                ///         获取或设置停止位
-                /// </summary>
-                /// <value>停止位</value>
-                
-                public StopBits StopBits { get; set; }
+		/// <summary>
+		///         获取或设置停止位
+		/// </summary>
+		/// <value>停止位</value>
+		[XmlAttribute]
+		public StopBits StopBits { get; set; }
 
-                /// <summary>
-                ///         获取或设置握手协议
-                /// </summary>
-                /// <value>握手协议</value>
-                
-                public Handshake Handshake { get; set; }
+		/// <summary>
+		///         获取或设置握手协议
+		/// </summary>
+		/// <value>握手协议</value>
+		[XmlAttribute]
+		public Handshake Handshake { get; set; }
         }
 }

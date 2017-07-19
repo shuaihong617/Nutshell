@@ -171,6 +171,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Fyying", "Nutshell
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "飞扬电子", "飞扬电子", "{16FC3B8A-F021-4918-BCAF-8C17A033B931}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Hikvision.DigitalVideo", "Nutshell.Hikvision.DigitalVideo\Nutshell.Hikvision.DigitalVideo.csproj", "{A07A73E7-9238-449C-BBAF-09A939AD46A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1059,6 +1061,22 @@ Global
 		{2C7EB310-870A-4BDA-AAA1-A0D36E5C5A7C}.Release|Win32.Build.0 = Release|Any CPU
 		{2C7EB310-870A-4BDA-AAA1-A0D36E5C5A7C}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C7EB310-870A-4BDA-AAA1-A0D36E5C5A7C}.Release|x86.Build.0 = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|Win32.Build.0 = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Debug|x86.Build.0 = Debug|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|Win32.ActiveCfg = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|Win32.Build.0 = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1131,5 +1149,6 @@ Global
 		{4C675A3E-BB9D-47AD-AF82-8318163BF43B} = {912AED77-AF19-4220-89A5-EBAA529E304F}
 		{9FED40BC-0D15-4CE1-B22B-3B70C717A338} = {912AED77-AF19-4220-89A5-EBAA529E304F}
 		{2C7EB310-870A-4BDA-AAA1-A0D36E5C5A7C} = {16FC3B8A-F021-4918-BCAF-8C17A033B931}
+		{A07A73E7-9238-449C-BBAF-09A939AD46A7} = {86760795-605F-4560-B6CD-FC7562B7D135}
 	EndGlobalSection
 EndGlobal

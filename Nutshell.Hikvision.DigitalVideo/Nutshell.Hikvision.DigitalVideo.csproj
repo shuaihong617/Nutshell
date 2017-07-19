@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A07A73E7-9238-449C-BBAF-09A939AD46A7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nutshell.Hikvision.DigitalVideo</RootNamespace>
+    <AssemblyName>Nutshell.Hikvision.DigitalVideo</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DigitalVideoRecord.cs" />
+    <Compile Include="DigitalVideoCamera.cs" />
+    <Compile Include="DigitalVideoRuntime.cs" />
+    <Compile Include="Models\DigitalVideoCameraDeviceModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\DayNightFilterType.cs" />
+    <Compile Include="SDK\DVRConfigType.cs" />
+    <Compile Include="SDK\FrameDataFormat.cs" />
+    <Compile Include="SDK\FRAME_INFO.cs" />
+    <Compile Include="SDK\OfficalAPI.cs" />
+    <Compile Include="SDK\NET_DVR_BACKLIGHT.cs" />
+    <Compile Include="SDK\NET_DVR_CAMERAPARAMCFG.cs" />
+    <Compile Include="SDK\NET_DVR_CMOSMODECFG.cs" />
+    <Compile Include="SDK\NET_DVR_COMPRESSIONCFG_V30.cs" />
+    <Compile Include="SDK\NET_DVR_COMPRESSION_INFO_V30.cs" />
+    <Compile Include="SDK\NET_DVR_DAYNIGHT.cs" />
+    <Compile Include="SDK\NET_DVR_EXPOSURE.cs" />
+    <Compile Include="SDK\NET_DVR_GAIN.cs" />
+    <Compile Include="SDK\NET_DVR_GAMMACORRECT.cs" />
+    <Compile Include="SDK\NET_DVR_NOISEREMOVE.cs" />
+    <Compile Include="SDK\NET_DVR_VIDEOEFFECT.cs" />
+    <Compile Include="SDK\NET_DVR_WDR.cs" />
+    <Compile Include="SDK\NET_DVR_WHITEBALANCE.cs" />
+    <Compile Include="SDK\StreamResolution.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Automation.Vision\Nutshell.Automation.Vision.csproj">
+      <Project>{6EA29297-E045-4E00-B6A4-0B2A139C450B}</Project>
+      <Name>Nutshell.Automation.Vision</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
+      <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>
+      <Name>Nutshell.Automation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
+      <Project>{4838A2A5-EF64-491C-BC25-8D89344E35E2}</Project>
+      <Name>Nutshell.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Drawing.Imaging\Nutshell.Drawing.Imaging.csproj">
+      <Project>{5E9EC531-B6EA-4BA9-A3A5-DD40436860D7}</Project>
+      <Name>Nutshell.Drawing.Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Drawing\Nutshell.Drawing.csproj">
+      <Project>{4C1AF121-A3F6-4C2B-AB35-986D41047E9E}</Project>
+      <Name>Nutshell.Drawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Storaging\Nutshell.Storaging.csproj">
+      <Project>{54D89A43-AB43-4DBA-AD52-FE608B717E80}</Project>
+      <Name>Nutshell.Storaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell\Nutshell.csproj">
+      <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
+      <Name>Nutshell</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

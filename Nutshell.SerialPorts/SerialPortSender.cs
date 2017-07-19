@@ -27,7 +27,7 @@ namespace Nutshell.SerialPorts
         /// <summary>
         ///         SerialPort发送者
         /// </summary>
-        public class SerialPortSender<T> : SerialPortActor<T>, IStorable<SerialPortSenderModel>, ISender<T>
+        public class SerialPortSender<T> : SerialPortActor<T>, ISender<T>
                 where T : SerialPortMessage
         {
                 /// <summary>
@@ -39,27 +39,7 @@ namespace Nutshell.SerialPorts
                 {
                 }
 
-                public static SerialPortSender<T> Load([MustNotEqualNullOrEmpty] string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<SerialPortSenderModel>.Instance.Deserialize(bytes);
-
-                        var sender = new SerialPortSender<T>();
-                        sender.Load(model);
-
-                        return sender;
-                }
-
-                public void Load(SerialPortSenderModel model)
-                {
-                        base.Load(model);
-                }
-
-                public void Save(SerialPortSenderModel model)
-                {
-                        base.Save(model);
-                }
-
+                
                 /// <summary>
                 ///         发送字节数组数据
                 /// </summary>
