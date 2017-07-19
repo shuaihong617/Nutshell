@@ -20,7 +20,7 @@ namespace Nutshell.Drawing.Models
         /// <summary>
         ///         区域数据模型
         /// </summary>
-        
+        [XmlType]
         public class RegionModel :IdentityModel
         {
                 /// <summary>
@@ -28,7 +28,7 @@ namespace Nutshell.Drawing.Models
                 /// </summary>
                 [MustGreaterThanOrEqual(0)]
                 [MustMultiplesOf(4)]
-                
+                [XmlAttribute]
                 public int X { get; set; }
 
                 /// <summary>
@@ -36,7 +36,7 @@ namespace Nutshell.Drawing.Models
                 /// </summary>
                 [MustGreaterThanOrEqual(0)]
                 [MustMultiplesOf(4)]
-                
+                [XmlAttribute]
                 public int Y { get; set; }
 
                 /// <summary>
@@ -44,7 +44,7 @@ namespace Nutshell.Drawing.Models
                 /// </summary>
                 [MustGreaterThanOrEqual(0)]
                 [MustMultiplesOf(4)]
-                
+                [XmlAttribute]
                 public int Width { get; set; }
 
                 /// <summary>
@@ -52,7 +52,7 @@ namespace Nutshell.Drawing.Models
                 /// </summary>
                 [MustGreaterThanOrEqual(0)]
                 [MustMultiplesOf(4)]
-                
+                [XmlAttribute]
                 public int Height { get; set; }
         }
 }

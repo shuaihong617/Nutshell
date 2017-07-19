@@ -11,18 +11,14 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Models;
-using Nutshell.Components;
-using Nutshell.Data;
-using Nutshell.Extensions;
-using Nutshell.Threading;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Nutshell.Components.Models;
+using Nutshell.Automation.Models;
+using Nutshell.Components;
 using Nutshell.Data.Models;
-using Nutshell.Storaging;
+using Nutshell.Extensions;
+using Nutshell.Threading;
 
 namespace Nutshell.Automation
 {
@@ -38,7 +34,7 @@ namespace Nutshell.Automation
                 protected CapturableDevice(string id = "")
                         : base(id)
                 {
-                        CaptureLooper = new Looper(String.Empty, Capture);
+                        CaptureLooper = new FuncLooper<T>(string.Empty, Capture);
                         CaptureLooper.Parent = this;
                 }
 
@@ -141,13 +137,16 @@ namespace Nutshell.Automation
                         }
                 }
 
-                protected void Capture()
+                public T Capture()
                 {
                         var t = CaptureCore();
                         if (t != null && t.IsSuccessed)
                         {
                                 OnCaptureSuccessed(new ValueEventArgs<T>(t.Value));
+                                return t.Value;
                         }
+
+                        return default(T);
                 }
 
                 protected abstract ValueResult<T> CaptureCore();

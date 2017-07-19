@@ -18,13 +18,13 @@ namespace Nutshell.Automation.Vision.Models
         /// <summary>
         ///         网络摄像机数据模型
         /// </summary>
-        
+        [XmlType]
         public class NetworkCameraDeviceModel : CameraDeviceModel
         {
                 /// <summary>
                 ///         IP地址
                 /// </summary>
-                
+                [XmlAttribute]
                 public string IPAddress { get; set; }
         }
 }

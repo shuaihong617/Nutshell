@@ -60,6 +60,8 @@
     <Compile Include="Component.cs" />
     <Compile Include="IHitable.cs" />
     <Compile Include="Distance.cs" />
+    <Compile Include="ActionLooper.cs" />
+    <Compile Include="FuncLooper.cs" />
     <Compile Include="Models\DistanceModel.cs" />
     <Compile Include="Models\LimiterModel.cs" />
     <Compile Include="Limiter.cs" />

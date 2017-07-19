@@ -43,9 +43,9 @@ namespace Nutshell.RabbitMQ
                         base.Save(model);
                 }
 
-                public override IActor<T> BindToBus(IBus bus)
+                protected override bool StartCore()
                 {
-                        base.BindToBus(bus);
+                        base.StartCore();
 
                         Channel.QueueDeclare(_queue.Name, _queue.IsDurable, _queue.IsExclusive, _queue.IsAutoDelete,
                                 null);
@@ -62,7 +62,7 @@ namespace Nutshell.RabbitMQ
                         };
                         Channel.BasicConsume(_queue.Name, true, _consumer);
 
-                        return this;
+                        return true;
                 }
 
                 #region 事件

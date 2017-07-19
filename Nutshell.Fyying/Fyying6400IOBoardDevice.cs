@@ -1,8 +1,10 @@
-﻿namespace Nutshell.Fyying
+﻿using Nutshell.Aspects.Locations.Propertys;
+
+namespace Nutshell.Fyying
 {
         public class Fyying6400IOBoardDevice : FyyingIOBoardDevice
         {
-                #region 字段
+                #region 常量
 
                 public const int StandardInputChannelsCount = 16;
 

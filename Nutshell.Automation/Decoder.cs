@@ -35,7 +35,7 @@ namespace Nutshell.Automation
                         capturer.NotNull();
                         Capturer = capturer;
 
-                        DecodeLooper = new Looper("解码循环", ThreadPriority.Highest, 10, Decode);
+                        DecodeLooper = new ActionLooper("解码循环", ThreadPriority.Highest, 10, Decode);
                         DecodeLooper.Parent = this;
                 }
 

@@ -11,41 +11,26 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Aspects.Events;
+using System.Diagnostics;
+using System.Threading;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components.Models;
-using Nutshell.Extensions;
-using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 using Nutshell.Data.Models;
-using Nutshell.Storaging;
+using Nutshell.Extensions;
 
 namespace Nutshell.Components
 {
         /// <summary>
-        ///         循环工作者
+        ///         循环工作者抽象基类
         /// </summary>
-        public class Looper : Worker
+        public abstract class Looper : Worker
         {
-                public Looper(string id, Action repeat)
-                        : this(id, ThreadPriority.Normal, 1000, repeat)
-                {
-                }
-
-                public Looper(string id, int interval, Action repeat)
-                        : this(id, ThreadPriority.Normal, interval, repeat)
-                {
-                }
-
-                public Looper(string id, ThreadPriority priority, int interval, Action repeat)
+                protected Looper(string id, ThreadPriority priority, int interval)
                         : base(id)
                 {
                         Priority = priority;
                         Interval = interval;
-                        _repeat = repeat;
                 }
 
                 #region 字段
@@ -53,8 +38,6 @@ namespace Nutshell.Components
                 private Thread _thread;
 
                 private bool _isContinue;
-
-                private readonly Action _repeat;
 
                 #endregion 字段
 
@@ -73,7 +56,7 @@ namespace Nutshell.Components
                 /// <value>循环调度间隔事件</value>
                 [MustGreaterThanOrEqual(0)]
                 [NotifyPropertyValueChanged]
-                public int Interval { get; set; }
+                public int Interval { get; private set; }
 
                 #endregion 属性
 
@@ -92,7 +75,7 @@ namespace Nutshell.Components
                 {
                         _isContinue = true;
 
-                        _thread = new Thread(ThreadWork) { Priority = Priority };
+                        _thread = new Thread(ThreadWork) {Priority = Priority};
                         _thread.Start();
 
                         return true;
@@ -103,8 +86,7 @@ namespace Nutshell.Components
                         this.Info($"循环启动,周期{Interval}毫秒");
                         for (;;)
                         {
-                                _repeat();
-                                //OnRepeatFinshed(new ValueEventArgs<Result>(result));
+                                RepeatWork();
 
                                 Thread.Sleep(Interval);
 
@@ -116,31 +98,13 @@ namespace Nutshell.Components
                         }
                 }
 
+                protected abstract void RepeatWork();
+
                 protected override bool StopCore()
                 {
                         _isContinue = false;
 
                         return true;
                 }
-
-                #region 事件
-
-                /// <summary>
-                ///         当启动时发生。
-                /// </summary>
-                [Description("启动事件")]
-                [LogEventInvokeHandler]
-                public event EventHandler<ValueEventArgs<Result>> RepeatFinshed;
-
-                /// <summary>
-                ///         引发启动事件。
-                /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
-                protected virtual void OnRepeatFinshed(ValueEventArgs<Result> e)
-                {
-                        e.Raise(this, ref RepeatFinshed);
-                }
-
-                #endregion 事件
         }
 }

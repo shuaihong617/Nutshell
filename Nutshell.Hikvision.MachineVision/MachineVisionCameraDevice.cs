@@ -11,24 +11,18 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation;
-using Nutshell.Automation.Vision;
-using Nutshell.Data;
-using Nutshell.Drawing.Imaging;
-using Nutshell.Extensions;
-using Nutshell.Hikvision.MachineVision.SDK;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using Nutshell.Components.Models;
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Automation;
+using Nutshell.Automation.Vision;
 using Nutshell.Data.Models;
+using Nutshell.Drawing.Imaging;
+using Nutshell.Extensions;
 using Nutshell.Hikvision.MachineVision.Models;
-using Nutshell.IO.Aspects.Locations.Contracts;
-using Nutshell.Serializing.Xml;
-using Nutshell.Storaging;
-using Nutshell.Storaging.Xml;
+using Nutshell.Hikvision.MachineVision.SDK;
 
 namespace Nutshell.Hikvision.MachineVision
 {
@@ -38,7 +32,7 @@ namespace Nutshell.Hikvision.MachineVision
         public class MachineVisionCameraDevice : NetworkCameraDevice
         {
                 public MachineVisionCameraDevice()
-                        : base(String.Empty, 1280, 960, PixelFormat.Rgb24, IPAddress.None.ToString())
+                        : base(string.Empty, 1280, 960, PixelFormat.Rgb24, IPAddress.None.ToString())
                 {
                 }
 
@@ -80,7 +74,7 @@ namespace Nutshell.Hikvision.MachineVision
 
                         var subModel = model as MachineVisionCameraDeviceModel;
                         Trace.Assert(subModel != null);
-                
+
                         UserSet = subModel.UserSet;
                         StreamChannelPacketSize = subModel.StreamChannelPacketSize;
                 }
@@ -96,8 +90,9 @@ namespace Nutshell.Hikvision.MachineVision
 
                         Debug.Assert(!Equals(IPAddress, IPAddress.Any));
 
-                        var installedMachineVisionCamera = MachineVisionRuntime.Instance.InstalledMachineVisionCameras.FirstOrDefault(
-                                i => Equals(i.IPAddress, IPAddress));
+                        var installedMachineVisionCamera = MachineVisionRuntime.Instance.InstalledMachineVisionCameras
+                                .FirstOrDefault(
+                                        i => Equals(i.IPAddress, IPAddress));
 
                         if (installedMachineVisionCamera == null)
                         {
@@ -119,11 +114,11 @@ namespace Nutshell.Hikvision.MachineVision
                                 return false;
                         }
 
-                        //AdjustSCPSPacketSize();
+                        AdjustSCPSPacketSize();
 
-                        //SetDefaultUserSet(UserSet.UserSet1);
-                        //SetCurrentUserSet(UserSet.UserSet1);
-                        //LoadCurrentUserSet();
+                        SetDefaultUserSet(UserSet.UserSet1);
+                        SetCurrentUserSet(UserSet.UserSet1);
+                        LoadCurrentUserSet();
 
                         return true;
                 }
@@ -175,14 +170,14 @@ namespace Nutshell.Hikvision.MachineVision
                 protected override sealed ValueResult<Bitmap> CaptureCore()
                 {
                         if (ConnectState != ConnectState.Connected
-                                || DispatchState != DispatchState.Established)
+                            || DispatchState != DispatchState.Established)
                         {
                                 return ValueResult<Bitmap>.Failed;
                         }
 
                         var bitmap = Pool.WriteLock();
 
-                        ErrorCode error = GetOneFrame(bitmap);
+                        var error = GetOneFrame(bitmap);
 
                         if (error != ErrorCode.MV_OK)
                         {
@@ -207,18 +202,19 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 扩展API
 
-                private bool IsDeviceAccessible()
+                protected bool IsDeviceAccessible()
                 {
                         Debug.Assert(_handle == IntPtr.Zero);
 
-                        var isAccessible = OfficialApi.IsDeviceAccessible(_handle, ref _deviceInformation, AccessMode.独占权限);
+                        var isAccessible = OfficialApi.IsDeviceAccessible(_handle, ref _deviceInformation,
+                                AccessMode.独占权限);
 
                         this.InfoSuccessWithDescription(isAccessible);
 
                         return isAccessible;
                 }
 
-                private ErrorCode CreateHandle()
+                protected ErrorCode CreateHandle()
                 {
                         Debug.Assert(_handle == IntPtr.Zero);
 
@@ -236,7 +232,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode DestroyHandle()
+                protected ErrorCode DestroyHandle()
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -255,7 +251,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode OpenDevice()
+                protected ErrorCode OpenDevice()
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -271,7 +267,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode CloseDevice()
+                protected ErrorCode CloseDevice()
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -287,7 +283,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode StartGrabbing()
+                protected ErrorCode StartGrabbing()
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -303,7 +299,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode StopGrabbing()
+                protected ErrorCode StopGrabbing()
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -319,7 +315,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode GetOneFrame(Bitmap bitmap)
+                protected ErrorCode GetOneFrame(Bitmap bitmap)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -342,19 +338,19 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 万能接口
 
-                private ErrorCode SetIntValue(string strValue, uint value)
+                protected ErrorCode SetIntValue(string strValue, uint value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
                         return OfficialApi.SetIntValue(_handle, strValue, value);
                 }
 
-                private ErrorCode SetEnumValue(CommondType commond, uint value)
+                protected ErrorCode SetEnumValue(CommondType commond, uint value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
                         return OfficialApi.SetEnumValue(_handle, commond.ToString(), value);
                 }
 
-                private ErrorCode SetCommandValue(CommondType commond)
+                protected ErrorCode SetCommandValue(CommondType commond)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
                         return OfficialApi.SetCommandValue(_handle, commond.ToString());
@@ -364,9 +360,9 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region UserSet相关
 
-                private ErrorCode SetDefaultUserSet(UserSet userSet)
+                protected ErrorCode SetDefaultUserSet(UserSet userSet)
                 {
-                        var errorCode = SetEnumValue(CommondType.UserSetDefault, (uint)userSet);
+                        var errorCode = SetEnumValue(CommondType.UserSetDefault, (uint) userSet);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
@@ -378,9 +374,9 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode SetCurrentUserSet(UserSet userSet)
+                protected ErrorCode SetCurrentUserSet(UserSet userSet)
                 {
-                        var errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint)userSet);
+                        var errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint) userSet);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
@@ -392,7 +388,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode LoadCurrentUserSet()
+                protected ErrorCode LoadCurrentUserSet()
                 {
                         var errorCode = SetCommandValue(CommondType.UserSetLoad);
                         if (errorCode != ErrorCode.MV_OK)
@@ -410,9 +406,9 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region GIGE独有接口
 
-                private ErrorCode AdjustSCPSPacketSize()
+                protected ErrorCode AdjustSCPSPacketSize()
                 {
-                        IntValue packetSize = new IntValue();
+                        var packetSize = new IntValue();
 
                         var errorCode = GetGevSCPSPacketSize(ref packetSize);
                         if (errorCode != ErrorCode.MV_OK)
@@ -420,7 +416,7 @@ namespace Nutshell.Hikvision.MachineVision
                                 return errorCode;
                         }
 
-                        errorCode = SetGevSCPSPacketSize((uint)StreamChannelPacketSize);
+                        errorCode = SetGevSCPSPacketSize((uint) StreamChannelPacketSize);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 return errorCode;
@@ -431,7 +427,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode GetGevSCPSPacketSize(ref IntValue value)
+                protected ErrorCode GetGevSCPSPacketSize(ref IntValue value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
@@ -447,7 +443,7 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                private ErrorCode SetGevSCPSPacketSize(uint value = 8164)
+                protected ErrorCode SetGevSCPSPacketSize(uint value = 8164)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 

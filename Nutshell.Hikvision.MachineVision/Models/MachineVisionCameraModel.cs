@@ -21,7 +21,7 @@ namespace Nutshell.Hikvision.MachineVision.Models
         /// <summary>
         ///         海康威视机器视觉摄像机数据模型
         /// </summary>
-        
+        [XmlType]
         public class MachineVisionCameraDeviceModel : NetworkCameraDeviceModel
         {
                 /// <summary>
@@ -29,7 +29,7 @@ namespace Nutshell.Hikvision.MachineVision.Models
                 /// </summary>
                 /// <value>用户</value>
                 [MustNotEqual(UserSet.Default)]
-                
+                [XmlAttribute]
                 public UserSet UserSet { get; set; }
 
                 /// <summary>
@@ -37,7 +37,7 @@ namespace Nutshell.Hikvision.MachineVision.Models
                 /// </summary>
                 /// <value>图像数据包大小</value>
                 [MustBetween(OfficialApi.MinStreamChannelPacketSize, OfficialApi.MaxStreamChannelPacketSize)]
-                
+                [XmlAttribute]
                 public int StreamChannelPacketSize { get; set; }
         }
 }

@@ -13,15 +13,7 @@ namespace Nutshell.Fyying
 {
 	public class FyyingIOBoardDevice : DispatchableDevice
 	{
-		#region 常量
-
-		public const int One = 1;
-
-		public const int Zero = 0;
-
-		#endregion
-
-		#region 字段
+	        #region 字段
 
 		private Task _scanningTask;
 
@@ -32,22 +24,23 @@ namespace Nutshell.Fyying
 		[NotifyPropertyValueChanged]
 		public int BoardId { get; private set; }
 
-		[NotifyPropertyValueChanged]
-		public int InputChannelsCount { get; private set; } = 4;
+                public IntPtr Handle { get; private set; } = IntPtr.Zero;
 
-		[NotifyPropertyValueChanged]
-		public int OutputChannelsCount { get; private set; } = 4;
+	        [NotifyPropertyValueChanged]
+	        public int InputChannelsCount { get; private set; } = 4;
 
-		protected IntPtr Handle { get; private set; } = IntPtr.Zero;
+                [NotifyPropertyValueChanged]
+                public Channel[] InputChannels { get; private set; }
 
-		[NotifyPropertyValueChanged]
+	        [NotifyPropertyValueChanged]
+	        public int OutputChannelsCount { get; private set; } = 4;
+
+                [NotifyPropertyValueChanged]
+                public Channel[] OutputChannels { get; private set; }
+
+                [NotifyPropertyValueChanged]
 		public int ScanningInterval { get; private set; } = 500;
 
-		[NotifyPropertyValueChanged]
-		public int[] InputBuffer { get; private set; } = new int[16];
-
-		[NotifyPropertyValueChanged]
-		public int[] OutputBuffer { get; private set; } = new int[16];
 
 		public override void Load(IIdentityModel model)
 		{
@@ -69,8 +62,6 @@ namespace Nutshell.Fyying
 				return false;
 			}
 
-			CreateBuffer();
-
 			Handle = OfficalAPI.FY6400_OpenDevice(BoardId);
 
 			if (Handle.ToInt32() == -1)
@@ -79,7 +70,9 @@ namespace Nutshell.Fyying
 				return false;
 			}
 
-			return true;
+                        CreateChannels();
+
+                        return true;
 		}
 
 		protected override sealed bool StopConnectCore()
@@ -112,12 +105,7 @@ namespace Nutshell.Fyying
 
 					for (var i = 0; i < InputChannelsCount; i++)
 					{
-						var result = OfficalAPI.FY6400_DI_Bit(Handle, i);
-						if (InputBuffer[i] != result)
-						{
-							InputBuffer[i] = result;
-							OnChannelValueChanged(new ChannelValueChangedEventArgs(i, result == One));
-						}
+                                                InputChannels[i].Read();
 					}
 
 					Thread.Sleep(ScanningInterval);
@@ -134,35 +122,29 @@ namespace Nutshell.Fyying
 			return base.StopDispatchCore();
 		}
 
-		private void CreateBuffer()
+		private void CreateChannels()
 		{
-			if (InputBuffer == null)
+			if (InputChannels == null)
 			{
-				InputBuffer = new int[InputChannelsCount];
+                                InputChannels = new Channel[InputChannelsCount];
 				for (var i = 0; i < InputChannelsCount; i++)
 				{
-					InputBuffer[i] = Zero;
-				}
+					InputChannels[i] = new Channel(i);
+                                        InputChannels[i].BindToBoardDevice(this);
+                                        InputChannels[i].ValueChanged+= (obj, args) => { OnChannelValueChanged(args); };
+                                }
 			}
 
-			if (OutputBuffer == null)
+			if (OutputChannels == null)
 			{
-				OutputBuffer = new int[OutputChannelsCount];
+				OutputChannels = new Channel[OutputChannelsCount];
 				for (var i = 0; i < OutputChannelsCount; i++)
 				{
-					OutputBuffer[i] = Zero;
-				}
+					OutputChannels[i] = new Channel(i);
+                                        OutputChannels[i].BindToBoardDevice(this);
+                                        OutputChannels[i].ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
+                                }
 			}
-		}
-
-		public bool ReadChannel(int channel)
-		{
-			return OfficalAPI.FY6400_DI_Bit(Handle, channel) == One;
-		}
-
-		public void Write(int channel, bool value)
-		{
-			OfficalAPI.FY6400_DO_Bit(Handle, value ? 1 : 0, channel);
 		}
 
 		#region 事件

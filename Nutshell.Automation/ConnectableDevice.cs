@@ -11,14 +11,11 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Aspects.Events;
-using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Automation.Models;
-using Nutshell.Data;
-using Nutshell.Extensions;
 using System;
 using System.ComponentModel;
-using Nutshell.Storaging;
+using Nutshell.Aspects.Events;
+using Nutshell.Aspects.Locations.Propertys;
+using Nutshell.Extensions;
 
 namespace Nutshell.Automation
 {
@@ -59,12 +56,10 @@ namespace Nutshell.Automation
 
                 #region 存储
 
-                
-
                 #endregion 存储
 
                 /// <summary>
-                /// 连接
+                ///         连接
                 /// </summary>
                 /// <returns>操作结果</returns>
                 public bool StartConnect()
@@ -100,7 +95,7 @@ namespace Nutshell.Automation
                 }
 
                 /// <summary>
-                /// 断开连接
+                ///         断开连接
                 /// </summary>
                 /// <returns>操作结果</returns>
                 public bool StopConnect()
