@@ -416,6 +416,11 @@ namespace Nutshell.Hikvision.MachineVision
                                 return errorCode;
                         }
 
+                        if (packetSize.Current == StreamChannelPacketSize)
+                        {
+                                return ErrorCode.MV_OK;
+                        }
+
                         errorCode = SetGevSCPSPacketSize((uint) StreamChannelPacketSize);
                         if (errorCode != ErrorCode.MV_OK)
                         {
