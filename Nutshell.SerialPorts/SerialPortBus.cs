@@ -1,63 +1,56 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO.Ports;
-using Nutshell.Aspects.Locations.Contracts;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Nutshell.Communication;
-using Nutshell.Serializing.Xml;
+using Nutshell.Components;
+using Nutshell.Data.Models;
+using Nutshell.Extensions;
 using Nutshell.SerialPorts.Models;
-using Nutshell.Storaging;
-using Nutshell.Storaging.Xml;
 
 namespace Nutshell.SerialPorts
 {
-        public class SerialPortBus : Bus, IStorable<SerialPortBusModel>
+        public abstract class SerialPortBus : Bus
         {
+                protected SerialPortBus()
+                {
+                        ReadLooper = new ActionLooper(string.Empty, ReadAndResolve);
+                        ReadLooper.Parent = this;
+                }
 
                 #region 属性
 
                 public SerialPortAuthorization Authorization { get; } = new SerialPortAuthorization();
 
-		/// <summary>
-		/// 获取连接
-		/// </summary>
-		/// <value>连接</value>
-		/// <remarks>
-		/// 1 连接可以Dispose，所以必须可为null。
-		/// 2 连接比较消耗资源，所以多个发送和接收单元尽量共享通道。（官方文档上说的）
-		/// </remarks>
+                /// <summary>
+                ///         获取串口
+                /// </summary>
+                /// <value>串口</value>
                 public SerialPort SerialPort { get; private set; } = new SerialPort();
 
-		#endregion
+                protected List<byte> Buffer { get; } = new List<byte>(1024);
 
-		public static SerialPortBus Load([MustNotEqualNullOrEmpty]string fileName)
-                {
-                        var bytes = XmlStorager.Instance.Load(fileName);
-                        var model = XmlSerializer<SerialPortBusModel>.Instance.Deserialize(bytes);
+                public Looper ReadLooper { get; }
 
-                        var bus = new SerialPortBus();
-                        bus.Load(model);
-                        return bus;
-                }
+                #endregion
 
                 /// <summary>
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(SerialPortBusModel model)
+                public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Authorization.Load(model.SerialPortAuthorizationModel);
+                        var subModel = model as SerialPortBusModel;
+                        Trace.Assert(subModel != null);
+
+                        Authorization.Load(subModel.SerialPortAuthorizationModel);
+                        ReadLooper.Load(subModel.ReadLooperModel);
                 }
 
-
-                /// <summary>
-                ///         保存数据到数据模型
-                /// </summary>
-                /// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-                public void Save(SerialPortBusModel model)
-                {
-                        throw new NotImplementedException();
-                }
 
                 protected override bool StartCore()
                 {
@@ -74,8 +67,10 @@ namespace Nutshell.SerialPorts
 
                         if (!SerialPort.IsOpen)
                         {
-                             SerialPort.Open();   
+                                SerialPort.Open();
                         }
+
+                        ReadLooper.Start();
 
                         return true;
                 }
@@ -91,6 +86,8 @@ namespace Nutshell.SerialPorts
                 {
                         base.StopCore();
 
+                        ReadLooper.Stop();
+
                         if (SerialPort.IsOpen)
                         {
                                 SerialPort.Close();
@@ -102,7 +99,24 @@ namespace Nutshell.SerialPorts
 
                 public void SetPortName(SerialPortName serialPortName)
                 {
-                        
                 }
+
+                private void ReadAndResolve()
+                {
+                        if (SerialPort.BytesToRead == 0)
+                        {
+                                return;
+                        }
+
+                        var readResult = SerialPort.ReadExisting();
+
+                        this.Info("接收：" + readResult);
+                        var bytes = Encoding.ASCII.GetBytes(readResult);
+                        Buffer.AddRange(bytes);
+
+                        Resolving();
+                }
+
+                protected abstract void Resolving();
         }
 }

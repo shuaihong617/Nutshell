@@ -13,6 +13,7 @@
 
 using System.Xml.Serialization;
 using Nutshell.Communication.Models;
+using Nutshell.Components.Models;
 
 namespace Nutshell.SerialPorts.Models
 {
@@ -24,5 +25,11 @@ namespace Nutshell.SerialPorts.Models
 	{
 		[XmlElement]
 		public SerialPortAuthorizationModel SerialPortAuthorizationModel { get; set; }
-	}
+
+                /// <summary>
+                ///         读取循环
+                /// </summary>
+                [XmlElement]
+                public LooperModel ReadLooperModel { get; set; }
+        }
 }

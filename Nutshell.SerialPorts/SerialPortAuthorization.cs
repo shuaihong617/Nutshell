@@ -12,9 +12,11 @@
 // ***********************************************************************
 
 using System;
+using System.Diagnostics;
 using System.IO.Ports;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
+using Nutshell.Data.Models;
 using Nutshell.SerialPorts.Models;
 using Nutshell.Storaging;
 
@@ -23,7 +25,7 @@ namespace Nutshell.SerialPorts
 	/// <summary>
 	///         SerialPort连接授权
 	/// </summary>
-	public class SerialPortAuthorization : StorableObject, IStorable<SerialPortAuthorizationModel>
+	public class SerialPortAuthorization : StorableObject
 	{
 		/// <summary>
 		/// 获取端口名称
@@ -45,49 +47,39 @@ namespace Nutshell.SerialPorts
 		/// 获取校验模式
 		/// </summary>
 		/// <value>校验模式</value>
-		[MustNotEqualNullOrEmpty]
 		public Parity Parity { get; private set; }
 
 		/// <summary>
 		/// 获取数据位
 		/// </summary>
 		/// <value>数据位</value>
-		[MustNotEqualNullOrEmpty]
 		public int DataBits { get; private set; }
 
                 /// <summary>
 		/// 获取数据位
 		/// </summary>
 		/// <value>数据位</value>
-		[MustNotEqualNullOrEmpty]
-                public int StopBits { get; private set; }
+                public StopBits StopBits { get; private set; }
 
                 /// <summary>
 		/// 获取数据位
 		/// </summary>
 		/// <value>数据位</value>
-		[MustNotEqualNullOrEmpty]
-                public int HandShake { get; private set; }
+                public Handshake HandShake { get; private set; }
 
                 /// <summary>
-                ///         从数据模型加载数据
+                /// 从数据模型加载数据
                 /// </summary>
                 /// <param name="model">读取数据的源数据模型，该数据模型不能为空引用</param>
-                public void Load(SerialPortAuthorizationModel model)
-		{
-			base.Load(model);
+                public override void Load(IIdentityModel model)
+	        {
+	                base.Load(model);
 
-			PortName = model.PortName;
-			BaudRate = (int)model.BaudRate;
-		}
+                        var subModel = model as SerialPortAuthorizationModel;
+                        Trace.Assert(subModel != null);
 
-		/// <summary>
-		///         保存数据到数据模型
-		/// </summary>
-		/// <param name="model">写入数据的目的数据模型，该数据模型不能为空引用</param>
-		public void Save(SerialPortAuthorizationModel model)
-		{
-			throw new NotImplementedException();
-		}
+                        PortName = subModel.PortName;
+                        BaudRate = subModel.BaudRate;
+                }
 	}
 }

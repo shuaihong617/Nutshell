@@ -42,7 +42,6 @@ namespace Nutshell.SerialPorts.Models
                 ///         获取或设置校验模式
                 /// </summary>
                 /// <value>校验模式</value>
-                [MustNotEqualNullOrEmpty]
 		[XmlAttribute]
 		public Parity Parity { get; set; }
 
@@ -50,7 +49,6 @@ namespace Nutshell.SerialPorts.Models
                 ///         获取或设置数据位
                 /// </summary>
                 /// <value>数据位</value>
-                [MustNotEqualNullOrEmpty]
 		[XmlAttribute]
 		public int DataBits { get; set; }
 

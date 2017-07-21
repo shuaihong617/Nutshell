@@ -11,44 +11,39 @@
 // </summary>
 // ***********************************************************************
 
-using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.Models;
 using Nutshell.Components;
-using Nutshell.Storaging;
 
 namespace Nutshell.Automation
 {
-	/// <summary>
-	///         设备
-	/// </summary>
-	public abstract class Device : Component
-	{
-		/// <summary>
-		///         初始化<see cref="Device" />的新实例.
-		/// </summary>
-		/// <param name="id">The identifier.</param>
-		protected Device(string id = "")
-			: base(id)
-		{
-		}
+        /// <summary>
+        ///         设备
+        /// </summary>
+        public abstract class Device : Component
+        {
+                /// <summary>
+                ///         初始化<see cref="Device" />的新实例.
+                /// </summary>
+                /// <param name="id">The identifier.</param>
+                protected Device(string id = "")
+                        : base(id)
+                {
+                }
 
-		#region 属性
+                #region 属性
 
-		/// <summary>
-		///         制造信息
-		/// </summary>
-		public ManufacturingInformation ManufacturingInformation { get; set ; }
+                /// <summary>
+                ///         制造信息
+                /// </summary>
+                public ManufacturingInformation ManufacturingInformation { get; set; }
 
-		#endregion 属性
+                #endregion 属性
 
-		#region 方法
+                #region 方法
 
-		#region 存储
+                #region 存储
 
-		
+                #endregion 存储
 
-		#endregion 存储
-
-		#endregion 方法
-	}
+                #endregion 方法
+        }
 }

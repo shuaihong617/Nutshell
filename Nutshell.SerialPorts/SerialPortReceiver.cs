@@ -35,13 +35,7 @@ namespace Nutshell.SerialPorts
                                 return false;
                         }
 
-                        Task.Run(() =>
-                        {
-                                if (SerialPort.BytesToRead != 0)
-                                {
-                                        SerialPort.ReadExisting();
-                                }
-                        });
+                        
 
 
                         return true;
