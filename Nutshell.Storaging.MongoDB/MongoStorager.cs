@@ -18,13 +18,11 @@ namespace Nutshell.Storagine.MongoDB
 
                 public void Connect()
                 {
-                        //_connectContext = context;
-
                         string connectionStr = "mongodb://127.0.0.1:27017";
                         //连接数据库
 
                         _client = new MongoClient(connectionStr);
-                        _database = _client.GetDatabase("EMP.PMC");
+                        _database = _client.GetDatabase("PMU");
                 }
 
 		/// <summary>

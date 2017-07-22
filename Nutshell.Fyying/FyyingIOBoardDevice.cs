@@ -66,7 +66,7 @@ namespace Nutshell.Fyying
 
 			if (Handle.ToInt32() == -1)
 			{
-				this.Warn("未检测到摄像机");
+				this.Warn($"未检测到{BoardId}号板卡.");
 				return false;
 			}
 

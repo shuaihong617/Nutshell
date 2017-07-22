@@ -48,7 +48,7 @@ namespace Nutshell.Fyying
 
                                 OnValueChanged(new ChannelValueChangedEventArgs(Index, Value == One));
 
-                                this.Info(ToString());
+                                //this.Info(ToString());
                         }
                 }
 
@@ -69,7 +69,7 @@ namespace Nutshell.Fyying
 
                 public override string ToString()
                 {
-                        return $"{Id}：{Value}";
+                        return $"{Id}:{Value}";
                 }
 
                 #region 事件

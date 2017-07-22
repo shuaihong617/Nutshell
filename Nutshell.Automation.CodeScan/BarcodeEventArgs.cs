@@ -2,9 +2,9 @@
 
 namespace Nutshell.Automation.CodeScan
 {
-        public class BarcodeChangedEventArgs : EventArgs
+        public class BarcodeEventArgs : EventArgs
         {
-	        public BarcodeChangedEventArgs(string barcode)
+	        public BarcodeEventArgs(string barcode)
 	        {
 		        Barcode = barcode;
 	        }

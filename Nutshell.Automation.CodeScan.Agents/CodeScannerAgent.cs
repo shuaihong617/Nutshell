@@ -28,7 +28,7 @@ namespace Nutshell.Automation.CodeScan.Agents
                                 _barcode = value;
                                 OnPropertyValueChanged();
 
-                                OnBarcodeChanged(new BarcodeChangedEventArgs(_barcode));
+                                OnBarcodeChanged(new BarcodeEventArgs(_barcode));
                         }
                 }
 
@@ -44,13 +44,13 @@ namespace Nutshell.Automation.CodeScan.Agents
 
                 #region 事件
 
-                public event EventHandler<BarcodeChangedEventArgs> BarcodeChanged;
+                public event EventHandler<BarcodeEventArgs> BarcodeChanged;
 
                 /// <summary>
                 ///         引发启动事件。
                 /// </summary>
                 /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
-                protected virtual void OnBarcodeChanged(BarcodeChangedEventArgs e)
+                protected virtual void OnBarcodeChanged(BarcodeEventArgs e)
                         => e.Raise(this, ref BarcodeChanged);
 
                 #endregion

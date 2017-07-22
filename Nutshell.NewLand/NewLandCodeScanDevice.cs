@@ -9,6 +9,7 @@ namespace Nutshell.NewLand
         {
                 public NewLandCodeScanDevice()
                 {
+                        SerialBus.Parent = this;
                         SerialBus.BarcodeReceiveSuccessed += (obj, args) =>
                         {
                                 Barcode = args.Barcode;

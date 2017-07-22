@@ -13,6 +13,7 @@
 
 using System;
 using Nutshell.Data.Models;
+using Nutshell.Extensions;
 
 namespace Nutshell.Messaging
 {
@@ -39,5 +40,10 @@ namespace Nutshell.Messaging
                 public string Type { get; set; }
 
                 public DateTime CreateTime { get; set; }
+
+                public override string ToString()
+                {
+                        return $"{Id}  {Type}  {CreateTime.ToChineseLongMillisecondString()}";
+                }
         }
 }

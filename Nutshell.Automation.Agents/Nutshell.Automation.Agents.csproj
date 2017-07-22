@@ -40,7 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ElectronicAgent.cs" />
+    <Compile Include="ElectronicState.cs" />
+    <Compile Include="LampAgent.cs" />
+    <Compile Include="LocatorAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nutshell\Nutshell.csproj">
+      <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
+      <Name>Nutshell</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

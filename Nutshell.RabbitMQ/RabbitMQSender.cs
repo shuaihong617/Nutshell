@@ -40,11 +40,10 @@ namespace Nutshell.RabbitMQ
 		public RabbitMQSender(string id = "")
 			: base(id)
 		{
+		        _exchange.Parent = this;
 		}
 
-                [MustNotEqualNull]
-                protected RabbitMQExchange Exchange { get; private set; } = new RabbitMQExchange();
-
+                private readonly RabbitMQExchange _exchange = new RabbitMQExchange();
 
 	        public override void Load(IIdentityModel model)
 	        {
@@ -53,7 +52,7 @@ namespace Nutshell.RabbitMQ
 	                var subModel = model as RabbitMQSenderModel;
                         Trace.Assert(subModel != null);
 
-                        Exchange.Load(subModel.RabbitMQExchangeModel);
+                        _exchange.Load(subModel.RabbitMQExchangeModel);
 	        }
 
 
@@ -61,7 +60,7 @@ namespace Nutshell.RabbitMQ
 	        {
 	                base.StartCore();
 
-                        Channel.ExchangeDeclare(Exchange.Name, Exchange.ExchangeType.ToString().ToLower(), Exchange.IsDurable, Exchange.IsAutoDelete);
+                        Channel.ExchangeDeclare(_exchange.Name, _exchange.ExchangeType.ToString().ToLower(), _exchange.IsDurable, _exchange.IsAutoDelete);
 
 	                return true;
 	        }
@@ -74,9 +73,9 @@ namespace Nutshell.RabbitMQ
 		{
 			var data = Serializer.Serialize(message);
 
-			Trace.WriteLine($"{DateTime.Now.ToChineseLongMillisecondString()}    {message.Id}    {message}");
+                        this.Info("发送:" + message);
 
-			Channel.BasicPublish(Exchange.Name,
+			Channel.BasicPublish(_exchange.Name,
 				message.RoutingKey,
 				false,
 				null,

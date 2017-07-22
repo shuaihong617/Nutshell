@@ -13,6 +13,7 @@
 
 using System;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Extensions;
 using Nutshell.Messaging;
 
 namespace Nutshell.RabbitMQ.Messaging
@@ -40,5 +41,10 @@ namespace Nutshell.RabbitMQ.Messaging
                 [MustNotEqualNull]
 
                 public string RoutingKey { get; set; }
+
+                public override string ToString()
+                {
+                        return $"{base.ToString()}  {RoutingKey}";
+                }
         }
 }

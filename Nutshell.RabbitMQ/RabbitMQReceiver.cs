@@ -16,6 +16,7 @@ namespace Nutshell.RabbitMQ
                 public RabbitMQReceiver(string id = "")
                         : base(id)
                 {
+                        _queue.Parent = this;
                 }
 
                 private EventingBasicConsumer _consumer;
@@ -56,7 +57,7 @@ namespace Nutshell.RabbitMQ
                                 var body = ea.Body;
                                 var message = Serializer.Deserialize(body);
 
-                                Trace.WriteLine(DateTime.Now.ToChineseLongMillisecondString() + message.Id);
+                                this.Info("接收:" + message);
 
                                 OnReceiveSuccessed(new ValueEventArgs<T>(message));
                         };

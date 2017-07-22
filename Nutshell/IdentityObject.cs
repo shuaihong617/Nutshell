@@ -90,8 +90,8 @@ namespace Nutshell
                         get { return _parent; }
                         set
                         {
-                                Trace.Assert(value != null);
-                                Trace.Assert(_parent == null);
+                                Trace.Assert(value != null, "父对象不能为空引用");
+                                Trace.Assert(_parent == null, "已有父对象，不允许重复设置");
 
                                 _parent = value;
                                 OnParentChanged(EventArgs.Empty);

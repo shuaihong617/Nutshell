@@ -16,7 +16,7 @@ namespace Nutshell.Fyying
 
                 public override string ToString()
                 {
-                        return $"{Channel}通道：{Value}";
+                        return $"{Channel}通道:{Value}";
                 }
         }
 }

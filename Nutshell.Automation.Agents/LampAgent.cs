@@ -1,13 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using Nutshell.Extensions;
-
-namespace Nutshell.Automation
+﻿namespace Nutshell.Automation.Agents
 {
-        public class LampDevice : ElectronicDevice
+        public class LampAgent : ElectronicAgent
         {
 
-                public LampDevice(string id = "")
+                public LampAgent(string id = "")
                         : base(id)
                 {
                 }

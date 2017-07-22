@@ -41,11 +41,14 @@ namespace Nutshell.Communication
 
                 public virtual Bus RegisterSender<T>(ISender<T> sender) where T : Message
                 {
+                        sender.Parent = this;
                         return this;
                 }
 
                 public virtual Bus RegisterReceiver<T>([MustNotEqualNull]IReceiver<T> receiver) where T : Message
                 {
+                        receiver.Parent = this;
+
                         var messageType = typeof (T).Name;
                         Receivers.Add(messageType, receiver);
 

@@ -2,16 +2,16 @@
 using System.ComponentModel;
 using Nutshell.Extensions;
 
-namespace Nutshell.Automation
+namespace Nutshell.Automation.Agents
 {
-        public class ElectronicDevice : Device
+        public class ElectronicAgent : IdentityObject
         {
-                private ElectronicState _state = ElectronicState.断电;
-
-                public ElectronicDevice(string id = "")
+                public ElectronicAgent(string id = "")
                         : base(id)
                 {
                 }
+
+                private ElectronicState _state = ElectronicState.断电;
 
                 public ElectronicState State
                 {

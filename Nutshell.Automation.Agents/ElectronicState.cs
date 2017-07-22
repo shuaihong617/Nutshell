@@ -1,4 +1,4 @@
-﻿namespace Nutshell.Automation
+﻿namespace Nutshell.Automation.Agents
 {
         public enum ElectronicState
         {

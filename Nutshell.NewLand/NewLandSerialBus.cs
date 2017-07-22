@@ -18,6 +18,9 @@ namespace Nutshell.NewLand
                 //public SerialPortReceiver<int> BarcodeReceiver;
 
                 public const byte Enter = 0x0D;
+                /// <summary>
+                /// Resolvings this instance.
+                /// </summary>
                 protected override void Resolving()
                 {
                         for (;;)
@@ -31,32 +34,31 @@ namespace Nutshell.NewLand
                                 var target = new byte[index];
                                 Buffer.CopyTo(0, target, 0, index);
                                 var barcode = Encoding.ASCII.GetString(target);
-
-                                this.Info("条码："+ barcode);
-
-                                OnBarcodeReceiveSuccessed(new BarcodeChangedEventArgs(barcode));
+                                this.Info("条码分析结果:" + barcode);
 
                                 Buffer.RemoveRange(0, index + 1);
+
+                                OnBarcodeReceiveSuccessed(new BarcodeEventArgs(barcode));
                         }
-                        
                 }
 
                 #region 事件
 
                 /// <summary>
-                ///         当消息接收成功时发生。
+                ///         当条码接收成功时发生。
                 /// </summary>
-                [Description("消息接收成功事件")]
+                [Description("条码接收成功事件")]
                 [LogEventInvokeHandler]
-                public event EventHandler<BarcodeChangedEventArgs> BarcodeReceiveSuccessed;
+                public event EventHandler<BarcodeEventArgs> BarcodeReceiveSuccessed;
 
                 /// <summary>
-                ///         当消息成功接收时发生
+                ///         当条码接收成功时发生
                 /// </summary>
                 /// <param name="e">包含消息的事件参数</param>
-                protected virtual void OnBarcodeReceiveSuccessed(BarcodeChangedEventArgs e)
+                protected virtual void OnBarcodeReceiveSuccessed(BarcodeEventArgs e)
                 {
                         e.Raise(this, ref BarcodeReceiveSuccessed);
+                        
                 }
 
                 #endregion

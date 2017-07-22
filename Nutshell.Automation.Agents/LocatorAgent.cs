@@ -2,18 +2,20 @@
 using System.ComponentModel;
 using Nutshell.Extensions;
 
-namespace Nutshell.Automation
+namespace Nutshell.Automation.Agents
 {
-        public class LocatorDevice : Device
+        public class LocatorAgent : IdentityObject
         {
-                private int _practiceTriggeredCount;
-                private bool _isEffective;
+                
 
-                public LocatorDevice(string id = "", int standardTriggeredCount = 1)
+                public LocatorAgent(string id = "", int standardTriggeredCount = 1)
                         : base(id)
                 {
                         StandardTriggeredCount = standardTriggeredCount;
                 }
+
+                private int _practiceTriggeredCount;
+                private bool _isEffective;
 
                 public int StandardTriggeredCount { get; }
 
@@ -50,6 +52,11 @@ namespace Nutshell.Automation
                 public void Triggering()
                 {
                         PracticeTriggeredCount++;
+                }
+
+                public void Reset()
+                {
+                        PracticeTriggeredCount = 0;
                 }
 
                 #region 事件

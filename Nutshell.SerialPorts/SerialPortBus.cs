@@ -110,7 +110,7 @@ namespace Nutshell.SerialPorts
 
                         var readResult = SerialPort.ReadExisting();
 
-                        this.Info("接收：" + readResult);
+                        this.Info("接收数据:" + readResult);
                         var bytes = Encoding.ASCII.GetBytes(readResult);
                         Buffer.AddRange(bytes);
 
