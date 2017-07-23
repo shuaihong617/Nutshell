@@ -1,14 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Extensions;
 
 namespace Nutshell.Automation.Agents
 {
-        public class LocatorAgent : IdentityObject
+        public class Locator : IdentityObject
         {
-                
-
-                public LocatorAgent(string id = "", int standardTriggeredCount = 1)
+                public Locator(string id = "", int standardTriggeredCount = 1)
                         : base(id)
                 {
                         StandardTriggeredCount = standardTriggeredCount;
@@ -17,6 +16,7 @@ namespace Nutshell.Automation.Agents
                 private int _practiceTriggeredCount;
                 private bool _isEffective;
 
+                [NotifyPropertyValueChanged]
                 public int StandardTriggeredCount { get; }
 
                 public int PracticeTriggeredCount
@@ -29,6 +29,7 @@ namespace Nutshell.Automation.Agents
                                         return;
                                 }
                                 _practiceTriggeredCount = value;
+                                OnPropertyValueChanged();
                                 OnTriggered(EventArgs.Empty);
 
                                 IsEffective = PracticeTriggeredCount == StandardTriggeredCount;
@@ -45,6 +46,7 @@ namespace Nutshell.Automation.Agents
                                          return;
                                 }
                                 _isEffective = value;
+                                OnPropertyValueChanged();
                                 OnEffectiveChanged(new ValueEventArgs<bool>(_isEffective));
                         }
                 }

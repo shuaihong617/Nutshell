@@ -114,7 +114,7 @@ namespace Nutshell.Hikvision.MachineVision
                                 return false;
                         }
 
-                        AdjustSCPSPacketSize();
+                        AdjustStreamChannelPacketSize();
 
                         SetDefaultUserSet(UserSet.UserSet1);
                         SetCurrentUserSet(UserSet.UserSet1);
@@ -338,10 +338,22 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region 万能接口
 
-                protected ErrorCode SetIntValue(string strValue, uint value)
+                protected ErrorCode GetInt32Value(CommondType commond, ref Int32Value value)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
+                        return OfficialApi.GetIntValue(_handle, commond.ToString(), ref value);
+                }
+
+                protected ErrorCode SetInt32Value(string strValue, uint value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
                         return OfficialApi.SetIntValue(_handle, strValue, value);
+                }
+
+                protected ErrorCode GetEnumValue(CommondType commond, ref EnumValue value)
+                {
+                        Debug.Assert(_handle != IntPtr.Zero);
+                        return OfficialApi.GetEnumValue(_handle, commond.ToString(),ref value);
                 }
 
                 protected ErrorCode SetEnumValue(CommondType commond, uint value)
@@ -360,6 +372,21 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region UserSet相关
 
+                protected ErrorCode GetDefaultUserSet(UserSet userSet)
+                {
+                        EnumValue value = new EnumValue();
+                        var errorCode = GetEnumValue(CommondType.UserSetDefault, ref value);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                        }
+                        else
+                        {
+                                this.InfoSuccess();
+                        }
+                        return errorCode;
+                }
+
                 protected ErrorCode SetDefaultUserSet(UserSet userSet)
                 {
                         var errorCode = SetEnumValue(CommondType.UserSetDefault, (uint) userSet);
@@ -374,9 +401,23 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                protected ErrorCode SetCurrentUserSet(UserSet userSet)
+                public ErrorCode SetCurrentUserSet(UserSet userSet)
                 {
-                        var errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint) userSet);
+                        Int32Value value = new Int32Value();
+                        var errorCode = GetInt32Value(CommondType.UserSetCurrent, ref value);
+                        if (errorCode != ErrorCode.MV_OK)
+                        {
+                                this.ErrorFailWithReason(errorCode);
+                                return errorCode;
+                        }
+                        
+                        if (value.Current == (uint)userSet)
+                        {
+                                this.InfoSuccess();
+                                return ErrorCode.MV_OK;
+                        }
+
+                        errorCode = SetEnumValue(CommondType.UserSetSelecter, (uint) userSet);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
@@ -406,11 +447,11 @@ namespace Nutshell.Hikvision.MachineVision
 
                 #region GIGE独有接口
 
-                protected ErrorCode AdjustSCPSPacketSize()
+                protected ErrorCode AdjustStreamChannelPacketSize()
                 {
-                        var packetSize = new IntValue();
+                        var packetSize = new Int32Value();
 
-                        var errorCode = GetGevSCPSPacketSize(ref packetSize);
+                        var errorCode = GetStreamChannelPacketSize(ref packetSize);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 return errorCode;
@@ -421,7 +462,7 @@ namespace Nutshell.Hikvision.MachineVision
                                 return ErrorCode.MV_OK;
                         }
 
-                        errorCode = SetGevSCPSPacketSize((uint) StreamChannelPacketSize);
+                        errorCode = SetStreamChannelPacketSize((uint) StreamChannelPacketSize);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 return errorCode;
@@ -432,11 +473,11 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                protected ErrorCode GetGevSCPSPacketSize(ref IntValue value)
+                protected ErrorCode GetStreamChannelPacketSize(ref Int32Value value)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
-                        var errorCode = OfficialApi.GetGevSCPSPacketSize(_handle, ref value);
+                        var errorCode = OfficialApi.GetStreamChannelPacketSize(_handle, ref value);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);
@@ -448,11 +489,11 @@ namespace Nutshell.Hikvision.MachineVision
                         return errorCode;
                 }
 
-                protected ErrorCode SetGevSCPSPacketSize(uint value = 8164)
+                protected ErrorCode SetStreamChannelPacketSize(uint value = 8164)
                 {
                         Debug.Assert(_handle != IntPtr.Zero);
 
-                        var errorCode = OfficialApi.SetGevSCPSPacketSize(_handle, value);
+                        var errorCode = OfficialApi.SetStreamChannelPacketSize(_handle, value);
                         if (errorCode != ErrorCode.MV_OK)
                         {
                                 this.ErrorFailWithReason(errorCode);

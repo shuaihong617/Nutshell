@@ -20,7 +20,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
         {
                 // Undefined pixel type
                 UserSetDefault,
-
+                UserSetCurrent,
                 UserSetSelecter,
                 UserSetLoad,
                 UserSetSave,

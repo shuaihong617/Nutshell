@@ -42,5 +42,7 @@ namespace Nutshell
                 /// </summary>
                 /// <value>操作成功返回True,否则返回False.</value>
                 public bool IsSuccessed { get; private set; }
+
+                public string Message { get;  set; }
         }
 }

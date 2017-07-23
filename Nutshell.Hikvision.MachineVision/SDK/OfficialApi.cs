@@ -46,24 +46,30 @@ namespace Nutshell.Hikvision.MachineVision.SDK
 
                 #region 万能接口
 
+                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_GetIntValue")]
+                public static extern ErrorCode GetIntValue(IntPtr handle, string command, ref Int32Value value);
+
                 [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_SetIntValue")]
-                public static extern ErrorCode SetIntValue(IntPtr handle, string strValue, uint value);
+                public static extern ErrorCode SetIntValue(IntPtr handle, string command, uint value);
+
+                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_GetEnumValue")]
+                public static extern ErrorCode GetEnumValue(IntPtr handle, string command, ref EnumValue value);
 
                 [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_SetEnumValue")]
-                public static extern ErrorCode SetEnumValue(IntPtr handle, string strValue, uint value);
+                public static extern ErrorCode SetEnumValue(IntPtr handle, string command, uint value);
 
                 [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_SetCommandValue")]
-                public static extern ErrorCode SetCommandValue(IntPtr handle, string strValue);
+                public static extern ErrorCode SetCommandValue(IntPtr handle, string command);
 
                 #endregion 万能接口
 
                 #region GIGE独有接口
 
                 [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_GIGE_GetGevSCPSPacketSize")]
-                public static extern ErrorCode GetGevSCPSPacketSize(IntPtr handle, ref IntValue value);
+                public static extern ErrorCode GetStreamChannelPacketSize(IntPtr handle, ref Int32Value value);
 
                 [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_GIGE_SetGevSCPSPacketSize")]
-                public static extern ErrorCode SetGevSCPSPacketSize(IntPtr handle, uint value);
+                public static extern ErrorCode SetStreamChannelPacketSize(IntPtr handle, uint value);
 
                 #endregion GIGE独有接口
 

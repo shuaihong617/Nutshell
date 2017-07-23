@@ -72,16 +72,27 @@ namespace Nutshell.Drawing.Imaging
                         var nativeBitmap = new NativeBitmap(bitmap.Width, bitmap.Height,
                                 System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
+                        Rectangle rect = new Rectangle(0, 0, nativeBitmap.Width, nativeBitmap.Height);
+                        System.Drawing.Imaging.BitmapData bmpData =
+                            nativeBitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite,
+                            nativeBitmap.PixelFormat);
+
+                        // Get the address of the first line.
+                        var targetPtr = (byte*)bmpData.Scan0.ToPointer();
+
                         for (int y = 0; y < bitmap.Height; y++)
                         {
                                 for (int x = 0; x < bitmap.Width; x++)
                                 {
-                                        byte r = *sourcePtr++;
-                                        byte g = *sourcePtr++;
-                                        byte b = *sourcePtr++;
-                                        nativeBitmap.SetPixel(x, y, Color.FromArgb(255, r, g, b));
+                                        *targetPtr++ = 255;
+                                        *targetPtr++ = *sourcePtr++;
+                                        *targetPtr++ = *sourcePtr++;
+                                        *targetPtr++ = *sourcePtr++;
                                 }
                         }
+
+                        // Unlock the bits.
+                        nativeBitmap.UnlockBits(bmpData);
 
                         nativeBitmap.Save(fileName);
                 }
