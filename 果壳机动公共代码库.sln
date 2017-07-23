@@ -177,9 +177,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.Agents"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "新大陆", "新大陆", "{52D4C797-AE2C-4738-A933-4AE3FC7C3A77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.CodeScan", "Nutshell.Automation.CodeScan\Nutshell.Automation.CodeScan.csproj", "{EC814F33-C96F-4D5E-A2E0-4477B8266DC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.BardodeRecognition", "Nutshell.Automation.BardodeRecognition\Nutshell.Automation.BardodeRecognition.csproj", "{EC814F33-C96F-4D5E-A2E0-4477B8266DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.CodeScan.Agents", "Nutshell.Automation.CodeScan.Agents\Nutshell.Automation.CodeScan.Agents.csproj", "{3FD4E48C-448E-49EE-8D3E-ED6623C4A745}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.BardodeRecognition.Agents", "Nutshell.Automation.BardodeRecognition.Agents\Nutshell.Automation.BardodeRecognition.Agents.csproj", "{3FD4E48C-448E-49EE-8D3E-ED6623C4A745}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.Vision.Agents", "Nutshell.Automation.Vision.Agents\Nutshell.Automation.Vision.Agents.csproj", "{C92A7C31-0B3A-4EC4-96AF-ABD41826226A}"
 EndProject
@@ -191,7 +191,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Component.Agents",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.Subjects", "Nutshell.Automation.Subjects\Nutshell.Automation.Subjects.csproj", "{07556DE6-8644-470F-AAC4-8EDC35CF6777}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.CodeScan.Subjects", "Nutshell.Automation.CodeScan.Subjects\Nutshell.Automation.CodeScan.Subjects.csproj", "{27915587-841E-4C4C-B43F-E884CFBE127D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.BardodeRecognition.Subjects", "Nutshell.Automation.BardodeRecognition.Subjects\Nutshell.Automation.BardodeRecognition.Subjects.csproj", "{27915587-841E-4C4C-B43F-E884CFBE127D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "端口控制", "端口控制", "{DF0F2859-C941-4119-BBD4-B2643905EE9C}"
 EndProject

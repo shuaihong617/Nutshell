@@ -49,12 +49,27 @@ namespace Nutshell.Extensions
                         return value.Length == 0;
                 }
 
-                /// <summary>
-                ///         Determines whether the specified value is empty.
-                /// </summary>
-                /// <param name="value">The value.</param>
-                /// <returns><c>true</c> if [is null or empty] [the specified value]; otherwise, <c>false</c>.</returns>
-                public static bool IsNullOrEmpty(this string value)
+		/// <summary>
+		///         Determines whether the specified value is empty.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns><c>true</c> if the specified value is empty; otherwise, <c>false</c>.</returns>
+		/// <exception cref="System.ArgumentException">不能为空引用！</exception>
+		public static bool IsNotEmpty(this string value)
+		{
+			if (value == null)
+			{
+				throw new ArgumentException("不能为空引用！");
+			}
+			return value.Length != 0;
+		}
+
+		/// <summary>
+		///         Determines whether the specified value is empty.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns><c>true</c> if [is null or empty] [the specified value]; otherwise, <c>false</c>.</returns>
+		public static bool IsNullOrEmpty(this string value)
                 {
                         return string.IsNullOrEmpty(value);
                 }

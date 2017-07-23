@@ -84,11 +84,11 @@ namespace Nutshell.Drawing.Imaging
                         {
                                 for (int x = 0; x < bitmap.Width; x++)
                                 {
-                                        *targetPtr++ = 255;
                                         *targetPtr++ = *sourcePtr++;
                                         *targetPtr++ = *sourcePtr++;
                                         *targetPtr++ = *sourcePtr++;
-                                }
+					*targetPtr++ = 255;
+				}
                         }
 
                         // Unlock the bits.
