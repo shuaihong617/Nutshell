@@ -23,7 +23,7 @@ namespace Nutshell.Hikvision.DigitalVideo
         public class DigitalVideoRuntime : Runtime
         {
                 protected DigitalVideoRuntime()
-                        :base(null,"Hikvision摄像机运行环境")
+                        :base("海康威视数字视频设备运行环境")
                 {
                         
                 }

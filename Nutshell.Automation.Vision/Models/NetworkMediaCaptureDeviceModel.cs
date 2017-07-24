@@ -16,10 +16,10 @@ using System.Xml.Serialization;
 namespace Nutshell.Automation.Vision.Models
 {
         /// <summary>
-        ///         网络摄像机数据模型
+        ///         网络媒体采集设备数据模型
         /// </summary>
         [XmlType]
-        public class NetworkCameraDeviceModel : CameraDeviceModel
+        public class NetworkMediaCaptureDeviceModel : MediaCaptureDeviceModel
         {
                 /// <summary>
                 ///         IP地址

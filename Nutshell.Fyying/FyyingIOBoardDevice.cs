@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Automation;
+using Nutshell.Automation.IOBoard.Devices;
 using Nutshell.Data.Models;
 using Nutshell.Extensions;
 using Nutshell.Fyying.Models;
@@ -11,153 +9,80 @@ using Nutshell.Fyying.SDK;
 
 namespace Nutshell.Fyying
 {
-	public class FyyingIOBoardDevice : DispatchableDevice
-	{
-	        #region 字段
-
-		private Task _scanningTask;
-
-		private bool _isScanning;
-
-		#endregion
-
-		[NotifyPropertyValueChanged]
-		public int BoardId { get; private set; }
+        public class FyyingIOBoardDevice : IOBoardDevice
+        {
+                [NotifyPropertyValueChanged]
+                public int BoardId { get; private set; }
 
                 public IntPtr Handle { get; private set; } = IntPtr.Zero;
 
-	        [NotifyPropertyValueChanged]
-	        public int InputChannelsCount { get; private set; } = 4;
+                public override void Load(IIdentityModel model)
+                {
+                        base.Load(model);
 
-                [NotifyPropertyValueChanged]
-                public Channel[] InputChannels { get; private set; }
+                        var subModel = model as FyyingIOBoardDeviceModel;
+                        Trace.Assert(subModel != null);
 
-	        [NotifyPropertyValueChanged]
-	        public int OutputChannelsCount { get; private set; } = 4;
+                        BoardId = subModel.BoardId;
+                }
 
-                [NotifyPropertyValueChanged]
-                public Channel[] OutputChannels { get; private set; }
+                protected override bool StartConnectCore()
+                {
+                        if (!base.StartConnectCore())
+                        {
+                                return false;
+                        }
 
-                [NotifyPropertyValueChanged]
-		public int ScanningInterval { get; private set; } = 500;
+                        Handle = OfficalAPI.FY6400_OpenDevice(BoardId);
 
-
-		public override void Load(IIdentityModel model)
-		{
-			base.Load(model);
-
-			var subModel = model as FyyingIOBoardDeviceModel;
-			Trace.Assert(subModel != null);
-
-			BoardId = subModel.BoardId;
-			InputChannelsCount = subModel.InputChannelsCount;
-			OutputChannelsCount = subModel.OutputChannelsCount;
-			ScanningInterval = subModel.ScanningInterval;
-		}
-
-		protected override bool StartConnectCore()
-		{
-			if (!base.StartConnectCore())
-			{
-				return false;
-			}
-
-			Handle = OfficalAPI.FY6400_OpenDevice(BoardId);
-
-			if (Handle.ToInt32() == -1)
-			{
-				this.Warn($"未检测到{BoardId}号板卡.");
-				return false;
-			}
-
-                        CreateChannels();
-
+                        if (Handle.ToInt32() == -1)
+                        {
+                                this.Warn($"未检测到{BoardId}号板卡.");
+                                return false;
+                        }
                         return true;
-		}
+                }
 
-		protected override sealed bool StopConnectCore()
-		{
-			var errorCode = OfficalAPI.FY6400_CloseDevice(Handle);
-			if (errorCode != ErrorCode.失败.ToInt32())
-			{
-				return false;
-			}
+                protected override sealed bool StopConnectCore()
+                {
+                        var errorCode = OfficalAPI.FY6400_CloseDevice(Handle);
+                        if (errorCode != ErrorCode.失败.ToInt32())
+                        {
+                                return false;
+                        }
 
-			return base.StopConnectCore();
-		}
+                        return base.StopConnectCore();
+                }
 
-		protected override sealed bool StartDispatchCore()
-		{
-			if (!base.StartDispatchCore())
-			{
-				return false;
-			}
-
-			_isScanning = true;
-			_scanningTask = Task.Run(() =>
-			{
-				for (;;)
-				{
-					if (!_isScanning)
-					{
-						break;
-					}
-
-					for (var i = 0; i < InputChannelsCount; i++)
-					{
-                                                InputChannels[i].Read();
-					}
-
-					Thread.Sleep(ScanningInterval);
-				}
-			});
-
-			return true;
-		}
-
-		protected override sealed bool StopDispatchCore()
-		{
-			_isScanning = false;
-
-			return base.StopDispatchCore();
-		}
-
-		private void CreateChannels()
-		{
-			if (InputChannels == null)
-			{
-                                InputChannels = new Channel[InputChannelsCount];
-				for (var i = 0; i < InputChannelsCount; i++)
-				{
-					InputChannels[i] = new Channel(i);
-                                        InputChannels[i].BindToBoardDevice(this);
-                                        InputChannels[i].ValueChanged+= (obj, args) => { OnChannelValueChanged(args); };
+                protected override void CreateChannels()
+                {
+                        for (var i = 0; i < StandardInputChannelsCount; i++)
+                        {
+                                if (InputChannels.ContainsKey(i))
+                                {
+                                        continue;
                                 }
-			}
 
-			if (OutputChannels == null)
-			{
-				OutputChannels = new Channel[OutputChannelsCount];
-				for (var i = 0; i < OutputChannelsCount; i++)
-				{
-					OutputChannels[i] = new Channel(i);
-                                        OutputChannels[i].BindToBoardDevice(this);
-                                        OutputChannels[i].ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
+                                var channel = new FyyingInputChannel(i);
+                                channel.Parent = this;
+                                channel.ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
+
+                                InputChannels.Add(i, channel);
+                        }
+
+                        for (var i = 0; i < StandardOutputChannelsCount; i++)
+                        {
+                                if (OutputChannels.ContainsKey(i))
+                                {
+                                        continue;
                                 }
-			}
-		}
 
-		#region 事件
+                                var channel = new FyyingOutputChannel(i);
+                                channel.Parent = this;
+                                channel.ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
 
-		public event EventHandler<ChannelValueChangedEventArgs> ChannelValueChanged;
-
-		/// <summary>
-		///         引发启动事件。
-		/// </summary>
-		/// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
-		protected virtual void OnChannelValueChanged(ChannelValueChangedEventArgs e)
-			=> e.Raise(this, ref ChannelValueChanged);
-
-		#endregion
-	}
+                                OutputChannels.Add(i, channel);
+                        }
+                }
+        }
 }

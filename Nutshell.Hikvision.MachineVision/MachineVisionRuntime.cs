@@ -28,7 +28,7 @@ namespace Nutshell.Hikvision.MachineVision
         public class MachineVisionRuntime : Runtime
         {
                 protected MachineVisionRuntime()
-                        : base("海康威视机器视觉摄像机运行环境")
+                        : base("海康威视机器视觉设备运行环境")
                 {
                 }
 

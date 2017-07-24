@@ -27,16 +27,16 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         ///         摄像机
         /// </summary>
-        public abstract class CameraDevice : CapturableDevice<Bitmap>
+        public abstract class MediaCaptureDevice : CapturableDevice<Bitmap>
         {
                 /// <summary>
-                ///         初始化<see cref="CameraDevice" />的实例
+                ///         初始化<see cref="MediaCaptureDevice" />的实例
                 /// </summary>
                 /// <param name="id">标识</param>
                 /// <param name="width">水平采集分辨率</param>
                 /// <param name="height">垂直采集分辨率</param>
                 /// <param name="pixelFormat">采集图像像素格式</param>
-                protected CameraDevice(string id = "", int width = 2, int height = 2,
+                protected MediaCaptureDevice(string id = "", int width = 2, int height = 2,
                         PixelFormat pixelFormat = PixelFormat.Mono8)
                         : base(id)
                 {
@@ -110,7 +110,7 @@ namespace Nutshell.Automation.Vision
                 {
                         base.Load(model);
 
-                        var subModel = model as CameraDeviceModel;
+                        var subModel = model as MediaCaptureDeviceModel;
                         Trace.Assert(subModel != null);
                 
 
@@ -129,7 +129,7 @@ namespace Nutshell.Automation.Vision
                 {
                         base.Save(model);
 
-                        var subModel = model as CameraDeviceModel;
+                        var subModel = model as MediaCaptureDeviceModel;
                         Trace.Assert(subModel != null);
 
 

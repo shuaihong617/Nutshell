@@ -11,42 +11,43 @@
 // </summary>
 // ***********************************************************************
 
+using System.IO.Ports;
 using System.Xml.Serialization;
-using Nutshell.Automation.Models;
-using Nutshell.Drawing.Imaging;
-using Nutshell.Drawing.Models;
+using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Data.Models;
 
-namespace Nutshell.Automation.Vision.Models
+namespace Nutshell.Hikvision.DigitalVideo.Models
 {
         /// <summary>
-        ///         摄像机数据模型
+        ///         数字视频设备授权数据模型
         /// </summary>
         [XmlType]
-        public class CameraDeviceModel : CapturableDeviceModel
+        public class DigitalVideoAuthorizationModel : IdentityModel
         {
                 /// <summary>
-                ///         宽度, 单位为像素
+                ///         获取或设置端口
                 /// </summary>
-                /// <value>The width.</value>
+                /// <value>端口</value>
+                [MustGreaterThan(0)]
                 [XmlAttribute]
-                public int Width { get; set; }
+                public int PortNumber { get; set; } = 8000;
 
                 /// <summary>
-                ///         高度, 单位为像素
+                ///         获取或设置用户
                 /// </summary>
+                /// <value>用户</value>
+                [MustNotEqualNullOrEmpty]
                 [XmlAttribute]
-                public int Height { get; set; }
+                public string UserName { get; set; } = "admin";
 
                 /// <summary>
-                ///         像素格式
+                ///         获取或设置密码
                 /// </summary>
+                /// <value>密码</value>
+                [MustNotEqualNullOrEmpty]
                 [XmlAttribute]
-                public PixelFormat PixelFormat { get; set; }
-
-                /// <summary>
-                ///         摄像机图像有效区域
-                /// </summary>
-                [XmlElement]
-                public RegionModel RegionModel { get; set; }
+                public string Password { get; set; } = "JDKD123456";
         }
+
+        
 }

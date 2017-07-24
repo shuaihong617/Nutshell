@@ -30,13 +30,6 @@ namespace Nutshell.Messaging
                         CreateTime = DateTime.MinValue;
                 }
 
-                public Message(string id, string type, DateTime time)
-                {
-                        Id = id;
-                        Type = type;
-                        CreateTime = time;
-                }
-
                 public string Type { get; set; }
 
                 public DateTime CreateTime { get; set; }

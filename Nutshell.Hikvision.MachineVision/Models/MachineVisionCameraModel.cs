@@ -22,7 +22,7 @@ namespace Nutshell.Hikvision.MachineVision.Models
         ///         海康威视机器视觉摄像机数据模型
         /// </summary>
         [XmlType]
-        public class MachineVisionCameraDeviceModel : NetworkCameraDeviceModel
+        public class MachineVisionMediaCaptureDeviceModel : NetworkMediaCaptureDeviceModel
         {
                 /// <summary>
                 /// 获取或设置用户

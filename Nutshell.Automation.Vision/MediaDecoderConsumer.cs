@@ -22,14 +22,14 @@ namespace Nutshell.Automation.Vision
         /// <summary>
         ///         摄像机图像处理器
         /// </summary>
-        public abstract class CameraDecoderConsumer : Worker
+        public abstract class MediaDecoderConsumer : Worker
         {
                 /// <summary>
-                /// 初始化<see cref="CameraDecoderConsumer" />的新实例.
+                /// 初始化<see cref="MediaDecoderConsumer" />的新实例.
                 /// </summary>
                 /// <param name="id">The key.</param>
                 /// <param name="decoderDevice">The decoder.</param>
-                protected CameraDecoderConsumer(string id, [MustNotEqualNull]CameraDecoderDevice decoderDevice)
+                protected MediaDecoderConsumer(string id, [MustNotEqualNull]MediaDecoderDevice decoderDevice)
                         : base(id)
                 {
                         DecoderDevice = decoderDevice;
@@ -40,7 +40,7 @@ namespace Nutshell.Automation.Vision
                 /// <summary>
                 ///         摄像机
                 /// </summary>
-                public CameraDecoderDevice DecoderDevice { get; private set; }
+                public MediaDecoderDevice DecoderDevice { get; private set; }
 
                 /// <summary>
                 ///         待处理图像

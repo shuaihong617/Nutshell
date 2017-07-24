@@ -242,6 +242,51 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 
                 #endregion
 
+                #region 文件查找与回放
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern int NET_DVR_FindFile_V30(int lUserID, ref NET_DVR_FILECOND pFindCond);
+
+                /// <summary>
+                /// Nes the t_ dv r_ find next file_ V30.
+                /// </summary>
+                /// <param name="lFindHandle">The l find handle.</param>
+                /// <param name="lpFindData">The lp find data.</param>
+                /// <returns>System.Int32.</returns
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern int NET_DVR_FindNextFile_V30(int lFindHandle, ref NET_DVR_FINDDATA_V30 lpFindData);
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern bool NET_DVR_FindClose_V30(int lFindHandle);
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern int NET_DVR_PlayBackByTime_V40(int lUserID, ref NET_DVR_VOD_PARA pVodPara);
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern bool NET_DVR_PlayBackControl(int lPlayHandle, uint dwControlCode, uint dwInValue, ref uint LPOutValue);
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern bool NET_DVR_PlayBackControl_V40(int lPlayHandle, uint dwControlCode, IntPtr lpInBuffer, uint dwInValue, IntPtr lpOutBuffer, ref uint LPOutValue);
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern bool NET_DVR_StopPlayBack(int lPlayHandle);
+
+                /*********************************************************
+                Function:	PLAYDATACALLBACK
+                Desc:		(回调函数)
+                Input:	
+                Output:	
+                Return:	
+                **********************************************************/
+                public delegate void PLAYDATACALLBACK(int lPlayHandle, uint dwDataType, IntPtr pBuffer, uint dwBufSize, uint dwUser);
+
+                [DllImport(@"..\bin\HCNetSDK.dll")]
+                public static extern bool NET_DVR_SetPlayDataCallBack(int lPlayHandle, PLAYDATACALLBACK fPlayDataCallBack, uint dwUser);
+
+
+                #endregion
+
+
                 public struct NET_DVR_CLIENTINFO
                 {
                         public IntPtr hPlayWnd; //播放窗口的句柄,为NULL表示不播放图象

@@ -37,6 +37,10 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PostSharp.Patterns.Model, Version=4.2.27.0, Culture=neutral, PublicKeyToken=e7f631e6ce13f078, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\青岛云路企业管理平台\packages\PostSharp.Patterns.Model.4.2.27\lib\net40\PostSharp.Patterns.Model.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,8 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Channel.cs" />
-    <Compile Include="ChannelValueChangedEventArgs.cs" />
+    <Compile Include="FyyingOutputChannel.cs" />
+    <Compile Include="FyyingInputChannel.cs" />
     <Compile Include="FyyingIOBoardDevice.cs" />
     <Compile Include="Fyying6400IOBoardDevice.cs" />
     <Compile Include="Models\FyyingIOBoardDeviceModel.cs" />
@@ -57,6 +61,14 @@
     <Compile Include="SDK\ErrorCode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Automation.IOBoard.Devices\Nutshell.Automation.IOBoard.Devices.csproj">
+      <Project>{6AC3D89C-C1A8-4CE4-ABDC-B2A3B7CEB6E5}</Project>
+      <Name>Nutshell.Automation.IOBoard.Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Automation.IOBoard\Nutshell.Automation.IOBoard.csproj">
+      <Project>{3DA4F03C-16F4-495A-9B33-FAFA85BCB0A5}</Project>
+      <Name>Nutshell.Automation.IOBoard</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
       <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>
       <Name>Nutshell.Automation</Name>

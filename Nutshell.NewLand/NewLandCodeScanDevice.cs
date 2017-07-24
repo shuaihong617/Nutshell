@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
-using Nutshell.Automation.CodeScan.Subjects;
+using Nutshell.Automation.BarcodeRecognition.Subjects;
 using Nutshell.Data.Models;
 using Nutshell.NewLand.Models;
 
 namespace Nutshell.NewLand
 {
-        public class NewLandCodeScanDevice : CodeScannerDevice
+        public class NewLandCodeScanDevice : BarcodeRecognizerDevice
         {
                 public NewLandCodeScanDevice()
                 {

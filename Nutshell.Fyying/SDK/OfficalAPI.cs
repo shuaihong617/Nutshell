@@ -23,5 +23,8 @@ namespace Nutshell.Fyying.SDK
 
 		[DllImport("FY6400.DLL")]
 		public static extern int FY6400_DO_Bit(IntPtr hDevice, int dochdata, int doch);
-	}
+
+                [DllImport("FY6400.DLL")]
+                public static extern int FY6400_RDO_Bit(IntPtr hDevice, int doch);
+        }
 }

@@ -11,17 +11,20 @@
 // </summary>
 // ***********************************************************************
 
-using System.Net.NetworkInformation;
 using System.Xml.Serialization;
+using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Automation.Vision.Models;
 
 namespace Nutshell.Hikvision.DigitalVideo.Models
 {
         /// <summary>
-        ///         AVT网络摄像机数据模型
+        ///         数字视频设备数据模型
         /// </summary>
         [XmlType]
-        public class DigitalVideoCameraDeviceModel : NetworkCameraDeviceModel
+        public class DigitalVideoDeviceModel : NetworkMediaCaptureDeviceModel
         {
+                [MustNotEqualNull]
+                [XmlElement]
+                public DigitalVideoAuthorizationModel DigitalVideoAuthorizationModel { get; set; }
         }
 }

@@ -30,10 +30,10 @@ namespace Nutshell.Hikvision.DigitalVideo
         /// <summary>
         ///         海康威视摄像机
         /// </summary>
-        public class DigitalVideoRecord : NetworkCameraDevice
+        public class DigitalVideoDevice : NetworkMediaCaptureDevice
         {
-                public DigitalVideoRecord(string id, string ipAddress)
-                        : base(id, 1920, 1080, Drawing.Imaging.PixelFormat.Rgba32, ipAddress)
+                public DigitalVideoDevice(string id, string ipAddress)
+                        : base(id, 1920, 1080, PixelFormat.Rgba32, ipAddress)
                 {
                         //X64
                         //_clientInfo = new HikvisionSDK.NET_DVR_CLIENTINFO
@@ -59,20 +59,7 @@ namespace Nutshell.Hikvision.DigitalVideo
 
                 #region 常量
 
-                /// <summary>
-                ///         登陆端口
-                /// </summary>
-                public const int LoginPort = 8000;
-
-                /// <summary>
-                ///         用户名称
-                /// </summary>
-                public const string LoginName = "admin";
-
-                /// <summary>
-                ///         登陆密码
-                /// </summary>
-                public const string Password = "shuaihong617";
+                
 
                 /// <summary>
                 ///         无效播放通道
@@ -157,21 +144,28 @@ namespace Nutshell.Hikvision.DigitalVideo
 
                 #endregion
 
+                public DigitalVideoAuthorization Authorization { get; private set; } = new DigitalVideoAuthorization();
+
                 #region 方法
 
                 public override void Load(IIdentityModel model)
                 {
                         base.Load(model);
 
-                        var cameraModel = model as DigitalVideoCameraDeviceModel;
-                        Trace.Assert(cameraModel != null);
+                        var subModel = model as DigitalVideoDeviceModel;
+                        Trace.Assert(subModel != null);
+
+                        Authorization.Load(subModel.DigitalVideoAuthorizationModel);
                 }
 
                 protected override sealed bool StartConnectCore()
                 {
                         for (int i = 0; i < 5; i++)
                         {
-                                _userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), LoginPort, LoginName, Password,
+                                _userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), 
+                                        Authorization.PortNumber,
+                                        Authorization.UserName,
+                                        Authorization.Password,
                                         ref _deviceInfo);
                                 if (_userId != InvalidUserId)
                                 {

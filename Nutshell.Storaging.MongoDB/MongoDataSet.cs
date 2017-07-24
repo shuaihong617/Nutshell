@@ -11,7 +11,7 @@ namespace Nutshell.Storagine.MongoDB
                         _collection = collection;
                 }
 
-                private readonly IMongoCollection<T> _collection;
+                public readonly IMongoCollection<T> _collection;
 
                 public void Insert(T t)
                 {
@@ -30,9 +30,9 @@ namespace Nutshell.Storagine.MongoDB
                         _collection.DeleteOne(filter);
                 }
 
-                public void Update()
+                public void Update(T t)
                 {
-
+                        
                 }
 
                 public List<T> Select()

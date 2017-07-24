@@ -60,13 +60,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Automation.CodeScan.Subjects\Nutshell.Automation.CodeScan.Subjects.csproj">
-      <Project>{27915587-841e-4c4c-b43f-e884cfbe127d}</Project>
-      <Name>Nutshell.Automation.CodeScan.Subjects</Name>
+    <ProjectReference Include="..\Nutshell.Automation.BarcodeRecognition.Subjects\Nutshell.Automation.BarcodeRecognition.Subjects.csproj">
+      <Project>{27915587-841E-4C4C-B43F-E884CFBE127D}</Project>
+      <Name>Nutshell.Automation.BarcodeRecognition.Subjects</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Automation.CodeScan\Nutshell.Automation.CodeScan.csproj">
+    <ProjectReference Include="..\Nutshell.Automation.BarcodeRecognition\Nutshell.Automation.BarcodeRecognition.csproj">
       <Project>{EC814F33-C96F-4D5E-A2E0-4477B8266DC5}</Project>
-      <Name>Nutshell.Automation.CodeScan</Name>
+      <Name>Nutshell.Automation.BarcodeRecognition</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Automation\Nutshell.Automation.csproj">
       <Project>{FF4C3544-8428-4859-B754-C07442EF562D}</Project>

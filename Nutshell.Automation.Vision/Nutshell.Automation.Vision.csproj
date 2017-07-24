@@ -165,13 +165,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CameraDecoderConsumer.cs" />
-    <Compile Include="Models\CameraDeviceModel.cs" />
-    <Compile Include="Models\NetworkCameraDeviceModel.cs" />
+    <Compile Include="MediaDecoderConsumer.cs" />
+    <Compile Include="Models\MediaCaptureDeviceModel.cs" />
+    <Compile Include="Models\NetworkMediaCaptureDeviceModel.cs" />
     <Compile Include="NetworkInformation.cs" />
-    <Compile Include="CameraDevice.cs" />
-    <Compile Include="CameraDecoderDevice.cs" />
-    <Compile Include="NetworkCameraDevice.cs" />
+    <Compile Include="MediaCaptureDevice.cs" />
+    <Compile Include="MediaDecoderDevice.cs" />
+    <Compile Include="NetworkMediaCaptureDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

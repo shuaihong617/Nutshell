@@ -30,9 +30,9 @@ namespace Nutshell.Hikvision.DigitalVideo
         /// <summary>
         ///         海康威视摄像机
         /// </summary>
-        public class DigitalVideoCamera : NetworkCameraDevice
+        public class DigitalVideoCameraDevice : DigitalVideoDevice
         {
-                public DigitalVideoCamera(string id, string ipAddress)
+                public DigitalVideoCameraDevice(string id, string ipAddress)
                         : base(id, 1920, 1080, Drawing.Imaging.PixelFormat.Rgba32, ipAddress)
                 {
                         //X64
@@ -164,7 +164,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                 {
                         base.Load(model);
 
-                        var cameraModel = model as DigitalVideoCameraDeviceModel;
+                        var cameraModel = model as DigitalVideoDeviceModel;
                         Trace.Assert(cameraModel != null);
                 }
 

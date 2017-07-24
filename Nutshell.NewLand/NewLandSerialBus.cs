@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Nutshell.Aspects.Events;
-using Nutshell.Automation.CodeScan;
+using Nutshell.Automation.BarcodeRecognition;
 using Nutshell.Extensions;
 using Nutshell.SerialPorts;
 using PostSharp.Extensibility;

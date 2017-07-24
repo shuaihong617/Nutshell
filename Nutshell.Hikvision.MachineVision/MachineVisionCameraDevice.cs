@@ -29,7 +29,7 @@ namespace Nutshell.Hikvision.MachineVision
         /// <summary>
         ///         海康威视机器视觉摄像机
         /// </summary>
-        public class MachineVisionCameraDevice : NetworkCameraDevice
+        public class MachineVisionCameraDevice : NetworkMediaCaptureDevice
         {
                 public MachineVisionCameraDevice()
                         : base(string.Empty, 1280, 960, PixelFormat.Rgb24, IPAddress.None.ToString())
@@ -72,7 +72,7 @@ namespace Nutshell.Hikvision.MachineVision
                 {
                         base.Load(model);
 
-                        var subModel = model as MachineVisionCameraDeviceModel;
+                        var subModel = model as MachineVisionMediaCaptureDeviceModel;
                         Trace.Assert(subModel != null);
 
                         UserSet = subModel.UserSet;
@@ -508,5 +508,5 @@ namespace Nutshell.Hikvision.MachineVision
                 #endregion GIGE独有接口
 
                 #endregion 扩展API
-        }
+        }        
 }

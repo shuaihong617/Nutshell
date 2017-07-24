@@ -26,7 +26,6 @@ namespace Nutshell.RabbitMQ.Messaging
 	{
 	        public RabbitMQMessage()
 	        {
-	                Id = Guid.NewGuid().ToString();
 	        }
 
 	        public RabbitMQMessage(string routingKey)

@@ -6,9 +6,9 @@ namespace Nutshell.Fyying
         {
                 #region 常量
 
-                public const int StandardInputChannelsCount = 16;
+                public const int Fyying6400StandardInputChannelsCount = 16;
 
-                public const int StandardOutputChannelsCount = 16;
+                public const int Fyying6400StandardOutputChannelsCount = 16;
 
                 #endregion
 
@@ -19,8 +19,8 @@ namespace Nutshell.Fyying
                                 return false;
                         }
 
-                        return InputChannelsCount == StandardInputChannelsCount
-                                && OutputChannelsCount == StandardOutputChannelsCount;
+                        return Fyying6400StandardInputChannelsCount == StandardInputChannelsCount
+                                && Fyying6400StandardOutputChannelsCount == StandardOutputChannelsCount;
                 }
         }
 }
