@@ -64,10 +64,11 @@
     <Compile Include="Models\DigitalVideoDeviceModel.cs" />
     <Compile Include="Models\DigitalVideoAuthorizationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SDK\PlayBackControlCode.cs" />
     <Compile Include="SDK\NET_DVR_STREAM_INFO.cs" />
     <Compile Include="SDK\NET_DVR_VOD_PARA.cs" />
     <Compile Include="SDK\NET_DVR_FINDDATA_V30.cs" />
-    <Compile Include="SDK\NET_DVR_TIME.cs" />
+    <Compile Include="SDK\Time.cs" />
     <Compile Include="SDK\NET_DVR_FILECOND.cs" />
     <Compile Include="SDK\DayNightFilterType.cs" />
     <Compile Include="SDK\DVRConfigType.cs" />
@@ -86,7 +87,7 @@
     <Compile Include="SDK\NET_DVR_NOISEREMOVE.cs" />
     <Compile Include="SDK\NET_DVR_VIDEOEFFECT.cs" />
     <Compile Include="SDK\NET_DVR_WDR.cs" />
-    <Compile Include="SDK\NET_DVR_WHITEBALANCE.cs" />
+    <Compile Include="SDK\WhiteBalance.cs" />
     <Compile Include="SDK\StreamResolution.cs" />
   </ItemGroup>
   <ItemGroup>

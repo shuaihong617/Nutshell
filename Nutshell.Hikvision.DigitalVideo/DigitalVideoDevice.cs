@@ -32,7 +32,7 @@ namespace Nutshell.Hikvision.DigitalVideo
         /// </summary>
         public class DigitalVideoDevice : NetworkMediaCaptureDevice
         {
-                public DigitalVideoDevice(string id, string ipAddress)
+		public DigitalVideoDevice(string id, string ipAddress)
                         : base(id, 1920, 1080, PixelFormat.Rgba32, ipAddress)
                 {
                         //X64
@@ -142,7 +142,9 @@ namespace Nutshell.Hikvision.DigitalVideo
 
                 private readonly Looper _captureLooper;
 
-                #endregion
+	        
+
+	        #endregion
 
                 public DigitalVideoAuthorization Authorization { get; private set; } = new DigitalVideoAuthorization();
 

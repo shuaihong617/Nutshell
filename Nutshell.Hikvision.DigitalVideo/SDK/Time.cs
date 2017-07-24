@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         [StructLayout(LayoutKind.Sequential)]
-        public struct NET_DVR_TIME
+        public struct Time
         {
-                public uint dwYear;
-                public uint dwMonth;
-                public uint dwDay;
-                public uint dwHour;
-                public uint dwMinute;
-                public uint dwSecond;
+                public uint Year;
+                public uint Month;
+                public uint Day;
+                public uint Hour;
+                public uint Minute;
+                public uint Second;
         }
 }

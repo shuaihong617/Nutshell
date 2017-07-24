@@ -33,16 +33,9 @@ namespace Nutshell.Hikvision.DigitalVideo
         public class DigitalVideoRecorderDevice : DigitalVideoDevice
         {
                 public DigitalVideoRecorderDevice(string id, string ipAddress)
-                        : base(id, 1920, 1080, Drawing.Imaging.PixelFormat.Rgba32, ipAddress)
+                        : base(id, 1920, 1080, PixelFormat.Rgba32, ipAddress)
                 {
-                        //X64
-                        //_clientInfo = new HikvisionSDK.NET_DVR_CLIENTINFO
-                        //{
-                        //        lChannel = 1,
-                        //        lLinkMode = 0x0000,
-                        //        sMultiCastIP = "",
-                        //        hPlayWnd = IntPtr.Zero
-                        //};
+                        
 
                         _previewInfo = new OfficalAPI.NET_DVR_PREVIEWINFO
                         {
@@ -59,20 +52,6 @@ namespace Nutshell.Hikvision.DigitalVideo
 
                 #region 常量
 
-                /// <summary>
-                ///         登陆端口
-                /// </summary>
-                public const int LoginPort = 8000;
-
-                /// <summary>
-                ///         用户名称
-                /// </summary>
-                public const string LoginName = "admin";
-
-                /// <summary>
-                ///         登陆密码
-                /// </summary>
-                public const string Password = "shuaihong617";
 
                 /// <summary>
                 ///         无效播放通道
@@ -167,37 +146,71 @@ namespace Nutshell.Hikvision.DigitalVideo
                         Trace.Assert(cameraModel != null);
                 }
 
-                protected override sealed bool StartConnectCore()
-                {
-                        for (int i = 0; i < 5; i++)
-                        {
-                                _userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), LoginPort, LoginName, Password,
-                                        ref _deviceInfo);
-                                if (_userId != InvalidUserId)
-                                {
-                                        this.Info("NET_DVR_Login_V30调用成功, 用户标识："+ _userId);
-                                        return true;
-                                }
-                        }
+	        public void Login()
+	        {
+			for (int i = 0; i < 5; i++)
+			{
+				_userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), LoginPort, LoginName, Password,
+					ref _deviceInfo);
+				if (_userId != InvalidUserId)
+				{
+					this.Info("NET_DVR_Login_V30调用成功, 用户标识：" + _userId);
+				}
+			}
+		}
+
+	        public void Logout()
+	        {
+			Debug.Assert(_userId >=0);
+			if (!OfficalAPI.NET_DVR_Logout_V30(_userId))
+			{
+				WarnDvrSdkFailWithReason("NET_DVR_Logout_V30");
+			}
+		}
+
+	        private int playHandle;
+
+	        public void StartPlayBack(DateTime beginTime, DateTime endTime, IntPtr hwnd)
+	        {
+		        NET_DVR_TIME begin = new NET_DVR_TIME
+		        {
+			        Year = (uint) beginTime.Year,
+			        Month = (uint) beginTime.Month,
+			        Day = (uint) beginTime.Day,
+			        Hour = (uint) beginTime.Hour,
+			        Minute = (uint) beginTime.Minute
+		        };
+
+			NET_DVR_TIME end = new NET_DVR_TIME
+			{
+				Year = (uint)endTime.Year,
+				Month = (uint)endTime.Month,
+				Day = (uint)endTime.Day,
+				Hour = (uint)endTime.Hour,
+				Minute = (uint)endTime.Minute
+			};
+
+		        playHandle = OfficalAPI.NET_DVR_PlayBackByTime(_userId, 1, ref begin, ref end, hwnd);
+	        }
+
+	        public void PlayBackControl(PlayBackControlCode controlCode)
+	        {
+			uint outValue = 0;
+			OfficalAPI.NET_DVR_PlayBackControl(playHandle, controlCode, 0, ref outValue);
+	        }
+
+	        public void StartPlay()
+	        {
+		        PlayBackControl(PlayBackControlCode.NET_DVR_PLAYSTART);
+	        }
 
 
-                        WarnDvrSdkFailWithReason("NET_DVR_Login_V30");
-                        return true;
-                }
 
-                protected override sealed bool StopConnectCore()
-                {
-                        if (_userId < 0)
-                        {
-                                return true;
-                        }
-
-                        if (!OfficalAPI.NET_DVR_Logout_V30(_userId))
-                        {
-                                WarnDvrSdkFailWithReason("NET_DVR_Logout_V30");
-                        }
-                        return true;
-                }
+	        public void StopPlayBack()
+	        {
+			Debug.Assert(playHandle>-1);
+		        OfficalAPI.NET_DVR_StopPlayBack(playHandle);
+	        }
 
                 protected override  sealed bool  StartDispatchCore()
                 {
