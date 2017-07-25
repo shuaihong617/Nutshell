@@ -13,8 +13,8 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
         {
                 [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 100)]
                 public string sFileName;//文件名
-                public NET_DVR_TIME struStartTime;//文件的开始时间
-                public NET_DVR_TIME struStopTime;//文件的结束时间
+                public NetDvrTime StruStartNetDvrTime;//文件的开始时间
+                public NetDvrTime StruStopNetDvrTime;//文件的结束时间
                 public uint dwFileSize;//文件的大小
                 [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 32)]
                 public string sCardNum;

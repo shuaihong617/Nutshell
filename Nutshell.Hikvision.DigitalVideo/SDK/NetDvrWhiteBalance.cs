@@ -9,7 +9,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         //白平衡配置
         [StructLayout(LayoutKind.Sequential)]
-        public struct WhiteBalance
+        public struct NetDvrWhiteBalance
         {
                 public byte byWhiteBalanceMode; /*0-手动白平衡（MWB）,1-自动白平衡1（AWB1）,2-自动白平衡2 (AWB2),3-自动控制改名为锁定白平衡(Locked WB)，
 	                         4-室外(Indoor)，5-室内(Outdoor)6-日光灯(Fluorescent Lamp)，7-钠灯(Sodium Lamp)，

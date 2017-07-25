@@ -1,6 +1,6 @@
 ﻿namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
-        public enum StreamResolution:byte
+        public enum NetDvrResolution:byte
         {
                 //[Resolution(528,384)]
                 DCIF =0,

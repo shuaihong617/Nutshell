@@ -10,14 +10,14 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
         public struct NET_DVR_CAMERAPARAMCFG
         {
                 public uint dwSize;
-                public NET_DVR_VIDEOEFFECT struVideoEffect;/*亮度、对比度、饱和度、锐度、色调配置*/
-                public NET_DVR_GAIN struGain;/*自动增益*/
-                public NET_DVR_WHITEBALANCE struWhiteBalance;/*白平衡*/
-                public NET_DVR_EXPOSURE struExposure; /*曝光控制*/
+                public NetDvrVideoEffect VideoEffect;/*亮度、对比度、饱和度、锐度、色调配置*/
+                public NetDvrGain struGain;/*自动增益*/
+                public NetDvrWhiteBalance WhiteBalance;/*白平衡*/
+                public NetDvrExposure struExposure; /*曝光控制*/
                 public NET_DVR_GAMMACORRECT struGammaCorrect;/*Gamma校正*/
                 public NET_DVR_WDR struWdr;/*宽动态*/
-                public NET_DVR_DAYNIGHT struDayNight;/*日夜转换*/
-                public NET_DVR_BACKLIGHT struBackLight;/*背光补偿*/
+                public NetDvrDayNight struDayNight;/*日夜转换*/
+                public NetDvrBackLight struBackLight;/*背光补偿*/
                 public NET_DVR_NOISEREMOVE struNoiseRemove;/*数字降噪*/
                 public byte byPowerLineFrequencyMode; /*0-50HZ; 1-60HZ*/
                 public byte byIrisMode; /*0 自动光圈 1手动光圈*/

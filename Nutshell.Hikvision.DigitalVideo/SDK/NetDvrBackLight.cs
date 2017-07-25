@@ -4,7 +4,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         //背光补偿配置
         [StructLayout(LayoutKind.Sequential)]
-        public struct NET_DVR_BACKLIGHT
+        public struct NetDvrBackLight
         {
                 public byte byBacklightMode; /*背光补偿:0 off 1 UP、2 DOWN、3 LEFT、4 RIGHT、5MIDDLE、6自定义*/
                 public byte byBacklightLevel; /*0x0-0xF*/

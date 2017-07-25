@@ -9,7 +9,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         //视频参数配置
         [StructLayout(LayoutKind.Sequential)]
-        public struct NET_DVR_VIDEOEFFECT
+        public struct NetDvrVideoEffect
         {
                 public byte byBrightnessLevel; /*0-100*/
                 public byte byContrastLevel; /*0-100*/

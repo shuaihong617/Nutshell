@@ -18,7 +18,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 public uint IsUseCardNo;//是否使用卡号
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
                 public byte[] sCardNumber;//卡号
-                public NET_DVR_TIME BeginTime;//开始时间
-                public NET_DVR_TIME EndTime;//结束时间
+                public NetDvrTime BeginNetDvrTime;//开始时间
+                public NetDvrTime EndNetDvrTime;//结束时间
         }
 }

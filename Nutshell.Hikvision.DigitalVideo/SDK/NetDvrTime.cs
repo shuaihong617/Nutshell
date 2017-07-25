@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         [StructLayout(LayoutKind.Sequential)]
-        public struct Time
+        public struct NetDvrTime
         {
                 public uint Year;
                 public uint Month;

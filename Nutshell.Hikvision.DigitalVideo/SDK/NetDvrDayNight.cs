@@ -9,7 +9,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         //日夜转换功能配置
         [StructLayout(LayoutKind.Sequential)]
-        public struct NET_DVR_DAYNIGHT
+        public struct NetDvrDayNight
         {
                 public DayNightFilterType DayNightFilterType; /*日夜切换：0-白天，1-夜晚，2-自动，3-定时，4-报警输入触发*/
                 public byte bySwitchScheduleEnabled; /*0 dsibale  1 enable,(保留)*/

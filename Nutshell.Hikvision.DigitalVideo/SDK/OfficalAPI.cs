@@ -177,7 +177,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
                 public static extern bool PlayM4_SetStreamOpenMode(int nPort, uint nMode);
 
-                public delegate void DECCBFUN(int nPort, IntPtr pBuf, int nSize, ref FRAME_INFO pFrameInfo, int nReserved1, int nReserved2);
+                public delegate void DECCBFUN(int nPort, IntPtr pBuf, int nSize, ref NetDvrFrameInfo pNetDvrFrameInfo, int nReserved1, int nReserved2);
 
                 [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
                 public static extern bool PlayM4_SetDecCallBack(int nPort, DECCBFUN DecCBFun);
@@ -245,11 +245,11 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 #region 回放
 
 		[DllImport(@"..\bin\HCNetSDK.dll")]
-		public static extern int NET_DVR_PlayBackByTime(int lUserID, int lChannel, ref Time lpStartTime, ref Time lpStopTime, IntPtr hWnd);
+		public static extern int NET_DVR_PlayBackByTime(int lUserID, int lChannel, ref NetDvrTime lpStartNetDvrTime, ref NetDvrTime lpStopNetDvrTime, IntPtr hWnd);
 
 
 		[DllImport(@"..\bin\HCNetSDK.dll")]
-		public static extern bool NET_DVR_PlayBackControl(int lPlayHandle, PlayBackControlCode controlCode, uint inValue, ref uint outValue);
+		public static extern bool NET_DVR_PlayBackControl(int lPlayHandle, NetDvrPlayBackControlCode controlCode, uint inValue, ref uint outValue);
 
 
 		[DllImport(@"..\bin\HCNetSDK.dll")]

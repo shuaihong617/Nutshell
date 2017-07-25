@@ -52,22 +52,6 @@ namespace Nutshell.Hikvision.DigitalVideo
 
                 #region 常量
 
-
-                /// <summary>
-                ///         无效播放通道
-                /// </summary>
-                public const int InvalidPlayPort = -1;
-
-                /// <summary>
-                ///         无效播放句柄
-                /// </summary>
-                public const int InvalidRealHandle = -1;
-
-                /// <summary>
-                ///         无效用户标识
-                /// </summary>
-                public const int InvalidUserId = -1;
-
                 #endregion
 
                 #region 字段
@@ -150,7 +134,10 @@ namespace Nutshell.Hikvision.DigitalVideo
 	        {
 			for (int i = 0; i < 5; i++)
 			{
-				_userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), LoginPort, LoginName, Password,
+				_userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), 
+					Authorization.PortNumber, 
+					Authorization.UserName,
+					Authorization.Password,
 					ref _deviceInfo);
 				if (_userId != InvalidUserId)
 				{
@@ -172,8 +159,8 @@ namespace Nutshell.Hikvision.DigitalVideo
 
 	        public void StartPlayBack(DateTime beginTime, DateTime endTime, IntPtr hwnd)
 	        {
-		        NET_DVR_TIME begin = new NET_DVR_TIME
-		        {
+		        NetDvrTime begin = new NetDvrTime
+			{
 			        Year = (uint) beginTime.Year,
 			        Month = (uint) beginTime.Month,
 			        Day = (uint) beginTime.Day,
@@ -181,7 +168,7 @@ namespace Nutshell.Hikvision.DigitalVideo
 			        Minute = (uint) beginTime.Minute
 		        };
 
-			NET_DVR_TIME end = new NET_DVR_TIME
+			NetDvrTime end = new NetDvrTime
 			{
 				Year = (uint)endTime.Year,
 				Month = (uint)endTime.Month,
@@ -193,7 +180,7 @@ namespace Nutshell.Hikvision.DigitalVideo
 		        playHandle = OfficalAPI.NET_DVR_PlayBackByTime(_userId, 1, ref begin, ref end, hwnd);
 	        }
 
-	        public void PlayBackControl(PlayBackControlCode controlCode)
+	        public void PlayBackControl(NetDvrPlayBackControlCode controlCode)
 	        {
 			uint outValue = 0;
 			OfficalAPI.NET_DVR_PlayBackControl(playHandle, controlCode, 0, ref outValue);
@@ -201,7 +188,7 @@ namespace Nutshell.Hikvision.DigitalVideo
 
 	        public void StartPlay()
 	        {
-		        PlayBackControl(PlayBackControlCode.NET_DVR_PLAYSTART);
+		        PlayBackControl(NetDvrPlayBackControlCode.NET_DVR_PLAYSTART);
 	        }
 
 
@@ -212,52 +199,7 @@ namespace Nutshell.Hikvision.DigitalVideo
 		        OfficalAPI.NET_DVR_StopPlayBack(playHandle);
 	        }
 
-                protected override  sealed bool  StartDispatchCore()
-                {
-                        //CreateBitmapPool();
-
-                        if (_capturePtr == IntPtr.Zero)
-                        {
-                                int bitmapBytesCount = Width * Height * PixelFormat.GetBytes();
-
-                                _prepareCaptureBytesCount = bitmapBytesCount + MSBitmapExtensions.FileHeaderTotalBytes +
-						     MSBitmapExtensions.InfoHeaderTotalBytes;
-
-                                _capturePtr = Marshal.AllocHGlobal(_prepareCaptureBytesCount);
-
-                                unsafe
-                                {
-                                        var tempPtr = ((byte*)_capturePtr.ToPointer()) + +MSBitmapExtensions.FileHeaderTotalBytes +
-					     MSBitmapExtensions.InfoHeaderTotalBytes;
-                                        _bitmapPtr = new IntPtr(tempPtr);
-                                }
-                                
-
-                                //_bitmapPtr = _capturePtr + +BitmapExtensions.FileHeaderTotalBytes +
-                                //             BitmapExtensions.InfoHeaderTotalBytes;
-                        }
-                        
-
-                        //X64
-                        //RealHandle = HikvisionSDK.NET_DVR_RealPlay_V40(UserId, ref _clientInfo, _realDataSnapCallBack,
-                        //        UserPtr, 0);
-
-                        //X86
-                        _realHandle = OfficalAPI.NET_DVR_RealPlay_V40(_userId, ref _previewInfo,
-                                _realDataCallBack,
-                                _userPtr);
-
-                        if (_realHandle == InvalidRealHandle)
-                        {
-                                WarnDvrSdkFailWithReason("NET_DVR_RealPlay_V40");
-                                return false;
-                        }
-                        this.InfoSuccess("NET_DVR_RealPlay_V40");
-
-                        OfficalAPI.NET_DVR_SetPlayerBufNumber(_realHandle, 3);
-
-                        return _captureLooper.Start();
-                }
+                
 
                 protected override bool StopDispatchCore()
                 {
@@ -313,44 +255,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                         return true;
                 }
 
-                protected override sealed ValueResult<Bitmap> CaptureCore()
-                {
-                        if (!IsEnable 
-				|| ConnectState != ConnectState.Connected 
-				|| DispatchState != DispatchState.Established)
-                        {
-                                Trace.WriteLine("!IsEnable || !IsStarted || !IsConnected || !IsStartCaptured Failed");
-                                return null;
-                        }
-
-	                return null;
-
-                        //var bitmap = BitmapPool.EnterWrite();
-                        //if (bitmap == null)
-                        //{
-                        //        Trace.WriteLine("BitmapPool.Instance.EnterWrite Failed");
-                        //        return null;
-                        //}
-
-                        //bool result = OfficalAPI.PlayM4_GetBMP(_playPort, _capturePtr,
-                        //        (uint) _prepareCaptureBytesCount,
-                        //        ref _actuallycaptureBytesCount);
-
-                        //if (!result || _actuallycaptureBytesCount == 0)
-                        //{
-                        //        WarnPlaySdkFailWithReason("PlayM4_GetBMP");
-
-                        //        BitmapPool.ExitWrite(bitmap);
-                        //        return bitmap;
-                        //}
-
-
-                        //bitmap.CopyFromVerticalMirror(_bitmapPtr, Width, Height, Region);
-
-                        //BitmapPool.ExitWrite(bitmap);
-                        //return bitmap;
-                }
-
+                
                 private void RealDataSnapCallBack(Int32 lRealHandle, uint dwDataType, ref byte pBuffer,
                         uint dwBufSize,
                         IntPtr pUser)

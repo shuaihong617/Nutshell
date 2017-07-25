@@ -1,6 +1,6 @@
 ﻿namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
-        public struct FRAME_INFO
+        public struct NetDvrFrameInfo
         {
                 public int Width;
                 public int Height;

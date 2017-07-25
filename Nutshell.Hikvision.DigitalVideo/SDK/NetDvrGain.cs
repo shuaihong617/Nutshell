@@ -9,7 +9,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         //增益配置
         [StructLayout(LayoutKind.Sequential)]
-        public struct NET_DVR_GAIN
+        public struct NetDvrGain
         {
                 public byte byGainLevel; /*增益：0-100*/
                 public byte byGainUserSet; /*用户自定义增益；0-100，对于抓拍机，是CCD模式下的抓拍增益*/

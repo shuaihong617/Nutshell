@@ -11,8 +11,8 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
         {
                 public uint dwSize; //结构体大小
                 public NET_DVR_STREAM_INFO struIDInfo; //流ID信息
-                public NET_DVR_TIME struBeginTime;//回放开始时间
-                public NET_DVR_TIME struEndTime;//回放结束时间
+                public NetDvrTime BeginTime;//回放开始时间
+                public NetDvrTime EndTime;//回放结束时间
                 public IntPtr hWnd;//回放窗口
                 public byte byDrawFrame;//是否抽帧：0- 不抽帧，1- 抽帧
                 public byte byVolumeType;//0-普通录像卷，1-存档卷，适用于CVR设备，普通卷用于通道录像，存档卷用于备份录像

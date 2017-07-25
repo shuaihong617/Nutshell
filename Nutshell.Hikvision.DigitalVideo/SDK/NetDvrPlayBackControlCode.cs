@@ -2,7 +2,7 @@
 
 namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
-	public enum PlayBackControlCode : uint
+	public enum NetDvrPlayBackControlCode : uint
 	{
 		NET_DVR_PLAYSTART = 1, //开始播放
 		NET_DVR_PLAYSTOP = 2, //停止播放

@@ -9,7 +9,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
         //曝光控制
         [StructLayout(LayoutKind.Sequential)]
-        public struct NET_DVR_EXPOSURE
+        public struct NetDvrExposure
         {
                 public byte byExposureMode; /*0 手动曝光 1自动曝光*/
                 public byte byAutoApertureLevel; /* 自动光圈灵敏度, 0-10 */
