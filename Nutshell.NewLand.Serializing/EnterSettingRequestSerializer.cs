@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
-using 武汉九鼎科达科技有限公司.SqlServer.Server;
 using Nutshell.NewLand.Messaging;
 using Nutshell.Serializing.Binary;
 
