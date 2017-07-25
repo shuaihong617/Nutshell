@@ -6,7 +6,7 @@
                 <Setter Property="Foreground" Value="White"></Setter>
                 <Setter Property="Background" Value="Transparent"></Setter>
                 <Setter Property="FontSize" Value="15"></Setter>
-                <Setter Property="FontFamily" Value="Microsoft YaHei" />
+                <Setter Property="FontFamily" Value="武汉九鼎科达科技有限公司 YaHei" />
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
         </Style>
 

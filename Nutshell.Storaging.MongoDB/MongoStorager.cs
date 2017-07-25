@@ -22,7 +22,7 @@ namespace Nutshell.Storagine.MongoDB
                         //连接数据库
 
                         _client = new MongoClient(connectionStr);
-                        _database = _client.GetDatabase("PMU");
+                        _database = _client.GetDatabase("PMRS");
                 }
 
 		/// <summary>

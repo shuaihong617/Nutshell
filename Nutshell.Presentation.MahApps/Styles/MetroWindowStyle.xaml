@@ -21,7 +21,7 @@
                 <Setter Property="TitleCaps" Value="False" />
                 <Setter Property="Foreground" Value="Black" />
                 <Setter Property="Background" Value="#FFEDEDED" />
-                <Setter Property="FontFamily" Value="Microsoft YaHei" />
+                <Setter Property="FontFamily" Value="武汉九鼎科达科技有限公司 YaHei" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="IconBitmapScalingMode" Value="HighQuality"></Setter>
                 <Setter Property="IconEdgeMode" Value="Aliased"></Setter>
