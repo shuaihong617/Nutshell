@@ -72,7 +72,7 @@ namespace Nutshell.Hikvision.MachineVision
                 {
                         base.Load(model);
 
-                        var subModel = model as MachineVisionMediaCaptureDeviceModel;
+                        var subModel = model as MachineVisionCameraDeviceModel;
                         Trace.Assert(subModel != null);
 
                         UserSet = subModel.UserSet;

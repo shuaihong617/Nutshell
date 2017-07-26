@@ -152,7 +152,7 @@
     <Compile Include="InstalledMachineVisionCamera.cs" />
     <Compile Include="MachineVisionRuntime.cs" />
     <Compile Include="MachineVisionCameraDevice.cs" />
-    <Compile Include="Models\MachineVisionCameraModel.cs" />
+    <Compile Include="Models\MachineVisionCameraDeviceModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\CommondType.cs" />
     <Compile Include="SDK\EnumValue.cs" />

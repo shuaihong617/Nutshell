@@ -33,7 +33,7 @@ namespace Nutshell.Hikvision.DigitalVideo
         public class DigitalVideoRecorderDevice : DigitalVideoDevice
         {
                 public DigitalVideoRecorderDevice(string id, string ipAddress)
-                        : base(id, 1920, 1080, PixelFormat.Rgba32, ipAddress)
+                        : base(id, ipAddress)
                 {
                         
 
