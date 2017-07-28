@@ -187,7 +187,7 @@ namespace Nutshell.Drawing.Imaging
                                         switch (target.PixelFormat)
                                         {
                                                 case PixelFormat.Mono8:
-                                                        ConvertFormat8bppIndexedToMono8(source, target);
+                                                        ConvertFormat8BppIndexedToMono8(source, target);
                                                         break;
 
                                                 default:
@@ -199,7 +199,7 @@ namespace Nutshell.Drawing.Imaging
                                         switch (target.PixelFormat)
                                         {
                                                 case PixelFormat.Mono8:
-                                                        ConvertFormat24bppRgbToMono8(source, target);
+                                                        ConvertFormat24BppRgbToMono8(source, target);
                                                         break;
 
                                                 default:
@@ -218,7 +218,7 @@ namespace Nutshell.Drawing.Imaging
                 /// </summary>
                 /// <param name="source">The source.</param>
                 /// <param name="target">The target.</param>
-                private static void ConvertFormat8bppIndexedToMono8([MustNotEqualNull]NativeBitmap source, Bitmap target)
+                private static void ConvertFormat8BppIndexedToMono8([MustNotEqualNull]NativeBitmap source, Bitmap target)
                 {
                         Trace.Assert(source.PixelFormat == NativePixelFormat.Format8bppIndexed);
 
@@ -246,7 +246,7 @@ namespace Nutshell.Drawing.Imaging
                 /// </summary>
                 /// <param name="source">The source.</param>
                 /// <param name="target">The target.</param>
-                private static void ConvertFormat24bppRgbToMono8([MustNotEqualNull]NativeBitmap source, Bitmap target)
+                private static void ConvertFormat24BppRgbToMono8([MustNotEqualNull]NativeBitmap source, Bitmap target)
                 {
                         Trace.Assert(source.PixelFormat == NativePixelFormat.Format24bppRgb);
 
@@ -272,6 +272,38 @@ namespace Nutshell.Drawing.Imaging
                         }
 
                         source.UnlockBits(sourceData);
+                }
+
+
+                public static void ConvertRgb24ToFormat24BppRgb([MustNotEqualNull]Bitmap source,  [MustNotEqualNull]NativeBitmap target)
+                {
+                        source.PixelFormat.MustEqual(PixelFormat.Rgb24);
+
+                        target.Width.MustEqual(source.Width);
+                        target.Height.MustEqual(source.Height);
+                        Debug.Assert(target.PixelFormat == NativePixelFormat.Format24bppRgb);
+
+                        var rect = new Rectangle(0, 0, target.Width, target.Height);
+                        BitmapData targetData = target.LockBits(rect, ImageLockMode.ReadOnly,
+                                target.PixelFormat);
+
+                        var sourcePtr = (byte*)source.Buffer.ToPointer();
+                        var targetPtr = (byte*)targetData.Scan0.ToPointer();
+
+                        var length = source.BufferLength / 3;
+
+                        for (var i = 0; i < length; i++)
+                        {
+                                var r = *sourcePtr++;
+                                var g = *sourcePtr++;
+                                var b = *sourcePtr++;
+
+                                *targetPtr++ = b;
+                                *targetPtr++ = g;
+                                *targetPtr++ = r;
+                        }
+
+                        target.UnlockBits(targetData);
                 }
         }
 }

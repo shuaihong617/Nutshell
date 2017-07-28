@@ -47,7 +47,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                                 Return:	TRUE表示成功, FALSE表示失败.
                                 **********************************************************/
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_Init();
 
                 /*********************************************************
@@ -58,26 +58,26 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                                 Return:	TRUE表示成功, FALSE表示失败
                                 **********************************************************/
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_Cleanup();
 
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_RebootDVR(int userId);
 
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetConnectTime(uint dwWaitTime, uint dwTryTimes);
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetReconnect(uint dwInterval, int bEnableRecon);
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetRecvTimeOut(uint nRecvTimeOut = 5000);
 
                 //最小3000毫秒
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetPlayerBufNumber(Int32 lRealHandle, uint dwBufNum);
 
 
@@ -92,7 +92,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                                 Return:	-1表示失败, 其他值表示返回的用户ID值
                                 **********************************************************/
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern Int32 NET_DVR_Login_V30(string sDVRIP, Int32 wDVRPort, string sUserName,
                         string sPassword, ref NET_DVR_DEVICEINFO_V30 lpDeviceInfo);
 
@@ -104,7 +104,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                                 Return:	TRUE表示成功, FALSE表示失败
                                 **********************************************************/
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_Logout_V30(Int32 lUserID);
 
                 /*********************************************************
@@ -130,7 +130,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                                 Output:	
                                 Return:	1表示失败, 其他值作为NET_DVR_StopRealPlay等函数的句柄参数
                                 **********************************************************/
-                //[DllImport(@"Hikvision\X64\HCNetSDK.dll")]
+                //[DllImport("X64\HCNetSDK.dll")]
                 //public static extern int NET_DVR_RealPlay_V40(int iUserID, ref NET_DVR_CLIENTINFO lpClientInfo,
                 //        REALDATACALLBACK fRealDataCallBack_V30, IntPtr pUser,
                 //        UInt32 bBlocked);
@@ -143,7 +143,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 /// <param name="fRealDataCallBackV30">码流数据回调函数</param>
                 /// <param name="pUser">用户数据</param>
                 /// <returns>1表示失败, 其他值作为NET_DVR_StopRealPlay等函数的句柄参数</returns>
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern int NET_DVR_RealPlay_V40(int iUserId, ref NET_DVR_PREVIEWINFO lpPreviewInfo,
                         REALDATACALLBACK fRealDataCallBackV30, IntPtr pUser);
 
@@ -155,81 +155,81 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 		Return:	
 		**********************************************************/
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_StopRealPlay(int iRealHandle);
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_Logout(int iUserID);
 
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetExceptionCallBack_V30(uint nMessage, IntPtr hWnd,
                         EXCEPYIONCALLBACK fExceptionCallBack,
                         IntPtr pUser);
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_TestDVRAlive(int userId);
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern uint NET_DVR_GetLastError();
 
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_SetStreamOpenMode(int nPort, uint nMode);
 
                 public delegate void DECCBFUN(int nPort, IntPtr pBuf, int nSize, ref NetDvrFrameInfo pNetDvrFrameInfo, int nReserved1, int nReserved2);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_SetDecCallBack(int nPort, DECCBFUN DecCBFun);
 
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_SetDisplayBuf(int nPort, uint nNum);
 
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_SetOverlayMode(int nPort, int bOverlay, uint colorKey);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_GetPort(ref int nPort);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_FreePort(int nPort);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_OpenStream(int nPort, ref byte pFileHeadBuf, uint nSize,
                         uint nBufPoolSize);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_Play(int nPort, IntPtr hWnd);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_Stop(int nPort);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_InputData(int nPort, ref byte pBuf, uint nSize);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_CloseStream(int nPort);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_GetBMP(int nPort, ref byte pBitmap, uint nBufSize, ref uint pBmpSize);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern bool PlayM4_GetBMP(int nPort, IntPtr pBitmap, uint nBufSize, ref uint pBmpSize);
 
-                [DllImport(@"Hikvision\X86\PlayCtrl.dll")]
+                [DllImport("PlayCtrl.dll")]
                 public static extern uint PlayM4_GetLastError(int nPort);
 
                 #region 参数配置
 
                 
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_GetDVRConfig(int userId, DVRConfigType dvrConfigType, int channel,
                         IntPtr lpOutBuffer, uint dwOutBufferSize, ref uint lpBytesReturned);
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetDVRConfig(int userId, DVRConfigType dvrConfigType, int channel,
                         IntPtr lpInBuffer, uint dwInBufferSize);
 
@@ -237,22 +237,26 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
 
                 #region 云台控制
 
-                [DllImport(@"Hikvision\X86\HCNetSDK.dll")]
+                [DllImport("HCNetSDK.dll")]
                 public static extern bool NET_DVR_PTZControl(Int32 lRealHandle, uint dwPTZCommand, uint dwStop);
 
                 #endregion
 
                 #region 回放
 
-		[DllImport(@"..\bin\HCNetSDK.dll")]
+		[DllImport(@"HCNetSDK.dll")]
 		public static extern int NET_DVR_PlayBackByTime(int lUserID, int lChannel, ref NetDvrTime lpStartNetDvrTime, ref NetDvrTime lpStopNetDvrTime, IntPtr hWnd);
 
+                [DllImport(@"HCNetSDK.dll")]
+                public static extern int NET_DVR_PlayBackByTime_V40(int lUserID, ref NET_DVR_VOD_PARA pVodPara);
 
-		[DllImport(@"..\bin\HCNetSDK.dll")]
+                [DllImport(@"HCNetSDK.dll")]
 		public static extern bool NET_DVR_PlayBackControl(int lPlayHandle, NetDvrPlayBackControlCode controlCode, uint inValue, ref uint outValue);
 
+                [DllImport(@"HCNetSDK.dll")]
+                public static extern bool NET_DVR_PlayBackControl_V40(int lPlayHandle, uint dwControlCode, IntPtr lpInBuffer, uint dwInValue, IntPtr lpOutBuffer, ref uint LPOutValue);
 
-		[DllImport(@"..\bin\HCNetSDK.dll")]
+                [DllImport(@"HCNetSDK.dll")]
 		public static extern bool NET_DVR_StopPlayBack(int lPlayHandle);
 
 
@@ -265,7 +269,7 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 **********************************************************/
                 public delegate void PLAYDATACALLBACK(int lPlayHandle, uint dwDataType, IntPtr pBuffer, uint dwBufSize, uint dwUser);
 
-                [DllImport(@"..\bin\HCNetSDK.dll")]
+                [DllImport(@"HCNetSDK.dll")]
                 public static extern bool NET_DVR_SetPlayDataCallBack(int lPlayHandle, PLAYDATACALLBACK fPlayDataCallBack, uint dwUser);
 
 

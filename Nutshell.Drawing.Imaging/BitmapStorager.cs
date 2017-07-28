@@ -84,9 +84,13 @@ namespace Nutshell.Drawing.Imaging
                         {
                                 for (int x = 0; x < bitmap.Width; x++)
                                 {
-                                        *targetPtr++ = *sourcePtr++;
-                                        *targetPtr++ = *sourcePtr++;
-                                        *targetPtr++ = *sourcePtr++;
+                                        byte r = *sourcePtr++;
+                                        byte g = *sourcePtr++;
+                                        byte b = *sourcePtr++;
+
+                                        *targetPtr++ = b;
+                                        *targetPtr++ = g;
+                                        *targetPtr++ = r;
 					*targetPtr++ = 255;
 				}
                         }

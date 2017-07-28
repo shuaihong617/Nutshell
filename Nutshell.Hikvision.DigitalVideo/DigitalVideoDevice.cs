@@ -195,7 +195,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                         return true;
                 }
 
-                protected override  sealed bool  StartDispatchCore()
+                protected override bool  StartDispatchCore()
                 {
                         //CreateBitmapPool();
 
@@ -296,7 +296,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                         return true;
                 }
 
-                protected override sealed ValueResult<Bitmap> CaptureCore()
+                protected override ValueResult<Bitmap> CaptureCore()
                 {
                         if (!IsEnable 
 				|| ConnectState != ConnectState.Connected 

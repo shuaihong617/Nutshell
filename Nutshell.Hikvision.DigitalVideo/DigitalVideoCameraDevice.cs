@@ -33,7 +33,7 @@ namespace Nutshell.Hikvision.DigitalVideo
         public class DigitalVideoCameraDevice : DigitalVideoDevice
         {
                 public DigitalVideoCameraDevice(string id, string ipAddress)
-                        : base(id, 1920, 1080, Drawing.Imaging.PixelFormat.Rgba32, ipAddress)
+                        : base(id, ipAddress)
                 {
                         //X64
                         //_clientInfo = new HikvisionSDK.NET_DVR_CLIENTINFO
@@ -75,20 +75,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                 /// </summary>
                 public const string Password = "shuaihong617";
 
-                /// <summary>
-                ///         无效播放通道
-                /// </summary>
-                public const int InvalidPlayPort = -1;
-
-                /// <summary>
-                ///         无效播放句柄
-                /// </summary>
-                public const int InvalidRealHandle = -1;
-
-                /// <summary>
-                ///         无效用户标识
-                /// </summary>
-                public const int InvalidUserId = -1;
+                
 
                 #endregion
 
@@ -168,37 +155,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                         Trace.Assert(cameraModel != null);
                 }
 
-                protected override sealed bool StartConnectCore()
-                {
-                        for (int i = 0; i < 5; i++)
-                        {
-                                _userId = OfficalAPI.NET_DVR_Login_V30(IPAddress.ToString(), LoginPort, LoginName, Password,
-                                        ref _deviceInfo);
-                                if (_userId != InvalidUserId)
-                                {
-                                        this.Info("NET_DVR_Login_V30调用成功, 用户标识："+ _userId);
-                                        return true;
-                                }
-                        }
-
-
-                        WarnDvrSdkFailWithReason("NET_DVR_Login_V30");
-                        return true;
-                }
-
-                protected override sealed bool StopConnectCore()
-                {
-                        if (_userId < 0)
-                        {
-                                return true;
-                        }
-
-                        if (!OfficalAPI.NET_DVR_Logout_V30(_userId))
-                        {
-                                WarnDvrSdkFailWithReason("NET_DVR_Logout_V30");
-                        }
-                        return true;
-                }
+                
 
                 protected override  sealed bool  StartDispatchCore()
                 {

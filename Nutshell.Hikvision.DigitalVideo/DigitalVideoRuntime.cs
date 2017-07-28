@@ -11,8 +11,10 @@
 // </summary>
 // ***********************************************************************
 
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Nutshell.Components;
+using Nutshell.Extensions;
 using Nutshell.Hikvision.DigitalVideo.SDK;
 
 namespace Nutshell.Hikvision.DigitalVideo
@@ -43,17 +45,19 @@ namespace Nutshell.Hikvision.DigitalVideo
                 {
                         if (!OfficalAPI.NET_DVR_Init())
                         {
+                                this.Info("摄像机运行环境创建失败, 错误代码" + OfficalAPI.NET_DVR_GetLastError());
                                 return false;
                         }
 
 
-			//GlobalLoger.Info("摄像机运行环境创建" + (IsCreated ? "成功" : "失败, 错误代码" + HikvisionSDK.NET_DVR_GetLastError()));
-
+			this.Info("摄像机运行环境创建成功");
+                        Trace.WriteLine("xianshi");
 
 			OfficalAPI.NET_DVR_SetConnectTime(3000, 1);
 			OfficalAPI.NET_DVR_SetReconnect(500, 0);
                         OfficalAPI.NET_DVR_SetRecvTimeOut(3000);
-                        
+
+                        Trace.WriteLine("xianshi2");
                         return true;
                 }
 

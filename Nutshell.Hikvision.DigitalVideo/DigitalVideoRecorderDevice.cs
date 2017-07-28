@@ -139,9 +139,12 @@ namespace Nutshell.Hikvision.DigitalVideo
 					Authorization.UserName,
 					Authorization.Password,
 					ref _deviceInfo);
+
+                                Trace.WriteLine(_deviceInfo.byIPChanNum);
 				if (_userId != InvalidUserId)
 				{
 					this.Info("NET_DVR_Login_V30调用成功, 用户标识：" + _userId);
+                                        break;
 				}
 			}
 		}
@@ -175,12 +178,30 @@ namespace Nutshell.Hikvision.DigitalVideo
 				Day = (uint)endTime.Day,
 				Hour = (uint)endTime.Hour,
 				Minute = (uint)endTime.Minute
-			};
+			};                      
 
-		        playHandle = OfficalAPI.NET_DVR_PlayBackByTime(_userId, 1, ref begin, ref end, hwnd);
-	        }
 
-	        public void PlayBackControl(NetDvrPlayBackControlCode controlCode)
+
+                        NET_DVR_VOD_PARA vod = new NET_DVR_VOD_PARA();
+	                vod.dwSize = (uint)Marshal.SizeOf(vod);
+                        //vod.struIDInfo.dwSize = Marshal.SizeOf(NET_DVR_STREAM_INFO);
+                        vod.struIDInfo.dwChannel = 33;//按录像机网口32+i计算
+                        vod.hWnd = hwnd;
+                        vod.BeginTime = begin;
+	                vod.EndTime = end;
+
+
+		        //playHandle = OfficalAPI.NET_DVR_PlayBackByTime(_userId, 2, ref begin, ref end, hwnd);
+	                playHandle = OfficalAPI.NET_DVR_PlayBackByTime_V40(_userId, ref vod);
+
+                        Trace.WriteLine($"playHandle   {playHandle}");
+	                var error = OfficalAPI.NET_DVR_GetLastError();
+                        Trace.WriteLine($"error   {error}");
+                }
+
+                
+
+                public void PlayBackControl(NetDvrPlayBackControlCode controlCode)
 	        {
 			uint outValue = 0;
 			OfficalAPI.NET_DVR_PlayBackControl(playHandle, controlCode, 0, ref outValue);

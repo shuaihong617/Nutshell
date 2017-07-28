@@ -151,5 +151,29 @@ namespace Nutshell.Drawing.Imaging
                                 }
                         }
                 }
+
+                public void Binary(byte threshold)
+                {
+                        PixelFormat.MustEqual(PixelFormat.Mono8);
+
+                        var sourcePtr = (byte*)Buffer.ToPointer();
+
+                        for (int i = 0; i < Width; i++)
+                        {
+                                for (int j = 0; j < Height; j++)
+                                {
+                                        byte b = *sourcePtr;
+                                        if (b > threshold)
+                                        {
+                                                b = Byte.MaxValue;
+                                        }
+                                        else
+                                        {
+                                                b= Byte.MinValue;
+                                        }
+                                        *sourcePtr = b;
+                                }
+                        }
+                }
         }
 }
