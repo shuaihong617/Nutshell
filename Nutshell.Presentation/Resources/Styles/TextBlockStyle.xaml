@@ -1,0 +1,52 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="Margin" Value="20"></Setter>
+                <Setter Property="Foreground" Value="DodgerBlue"></Setter>
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+                <Setter Property="FontFamily" Value="Microsoft YaHei" />
+                <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="CenterTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="RightTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        </Style>
+
+        <Style x:Key="WindowTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="Margin" Value="40"></Setter>
+                <Setter Property="FontSize" Value="36"></Setter>
+        </Style>
+
+        <Style x:Key="WindowGridTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="Margin" Value="4"></Setter>
+                <Setter Property="FontSize" Value="16"></Setter>
+                <Setter Property="TextAlignment" Value="Left"></Setter>
+        </Style>
+
+        <Style x:Key="WindowGridTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource WindowGridTextBlockStyle}">
+                <Setter Property="Margin" Value="4,4,4,20"></Setter>
+                <Setter Property="FontSize" Value="24"></Setter>
+        </Style>
+
+        <Style x:Key="DialogTitleTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="Margin" Value="40"></Setter>
+                <Setter Property="FontSize" Value="36"></Setter>
+        </Style>
+
+        <Style x:Key="DialogCenterContentTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="Width" Value="220"></Setter>
+                <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="DialogLeftContentTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="Width" Value="Auto"></Setter>
+                <Setter Property="TextAlignment" Value="Left"></Setter>
+        </Style>
+</ResourceDictionary>

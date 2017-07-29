@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("武汉九鼎科达科技有限公司")]
 [assembly: AssemblyProduct("Nutshell.Automation")]
-[assembly: AssemblyCopyright("Copyright © 武汉九鼎科达科技有限公司 2015")]
+[assembly: AssemblyCopyright("Copyright © 武汉九鼎科达科技有限公司 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

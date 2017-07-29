@@ -2,14 +2,13 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Nutshell.Presentation.Converters
+namespace Nutshell.Presentation.Resources.Converters
 {
         public class BoolToOnlineConverter : IValueConverter
         {
                 public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
                 {
-                        var b = (bool)value;
-                        return b ? "在线" : "离线";
+                        return value != null && (bool)value ? "在线" : "离线";
                 }
 
                 public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

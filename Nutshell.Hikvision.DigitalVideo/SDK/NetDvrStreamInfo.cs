@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Nutshell.Hikvision.DigitalVideo.SDK
 {
-        public struct NET_DVR_STREAM_INFO
+        public struct NetDvrStreamInfo
         {
-                public uint dwSize;
+                public uint Size;
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = OfficalAPI.STREAM_ID_LEN, ArraySubType = UnmanagedType.I1)]
                 public byte[] byID;      //ID数据
-                public uint dwChannel;                //关联设备通道，等于0xffffffff时，表示不关联
+                public uint Channel;                //关联设备通道，等于0xffffffff时，表示不关联
                 [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32, ArraySubType = UnmanagedType.I1)]
                 public byte[] byRes;                //保留
                 public void init()

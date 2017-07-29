@@ -56,6 +56,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SDK\NetDvrPreviewInfo.cs" />
+    <Compile Include="SDK\NetDvrDeviceInfoV30.cs" />
     <Compile Include="DigitalVideoAuthorization.cs" />
     <Compile Include="DigitalVideoDevice.cs" />
     <Compile Include="DigitalVideoRecorderDevice.cs" />
@@ -65,8 +67,8 @@
     <Compile Include="Models\DigitalVideoAuthorizationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SDK\NetDvrPlayBackControlCode.cs" />
-    <Compile Include="SDK\NET_DVR_STREAM_INFO.cs" />
-    <Compile Include="SDK\NET_DVR_VOD_PARA.cs" />
+    <Compile Include="SDK\NetDvrStreamInfo.cs" />
+    <Compile Include="SDK\NetDvrVodPara.cs" />
     <Compile Include="SDK\NET_DVR_FINDDATA_V30.cs" />
     <Compile Include="SDK\NetDvrTime.cs" />
     <Compile Include="SDK\NET_DVR_FILECOND.cs" />

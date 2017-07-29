@@ -37,7 +37,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                 {
                         
 
-                        _previewInfo = new OfficalAPI.NET_DVR_PREVIEWINFO
+                        _previewInfo = new NetDvrPreviewInfo
                         {
                                 hPlayWnd = IntPtr.Zero,
                                 lChannel = 1,
@@ -88,7 +88,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                 /// <summary>
                 ///         预览信息结构体
                 /// </summary>
-                private OfficalAPI.NET_DVR_PREVIEWINFO _previewInfo;
+                private NetDvrPreviewInfo _previewInfo;
 
                 /// <summary>
                 ///         图像缓冲区指针
@@ -182,11 +182,11 @@ namespace Nutshell.Hikvision.DigitalVideo
 
 
 
-                        NET_DVR_VOD_PARA vod = new NET_DVR_VOD_PARA();
-	                vod.dwSize = (uint)Marshal.SizeOf(vod);
+                        NetDvrVodPara vod = new NetDvrVodPara();
+	                vod.Size = (uint)Marshal.SizeOf(vod);
                         //vod.struIDInfo.dwSize = Marshal.SizeOf(NET_DVR_STREAM_INFO);
-                        vod.struIDInfo.dwChannel = 33;//按录像机网口32+i计算
-                        vod.hWnd = hwnd;
+                        vod.struIDInfo.Channel = 33;//按录像机网口32+i计算
+                        vod.HWnd = hwnd;
                         vod.BeginTime = begin;
 	                vod.EndTime = end;
 

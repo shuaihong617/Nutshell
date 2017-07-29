@@ -44,7 +44,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                         //        hPlayWnd = IntPtr.Zero
                         //};
 
-                        _previewInfo = new OfficalAPI.NET_DVR_PREVIEWINFO
+                        _previewInfo = new NetDvrPreviewInfo
                         {
                                 hPlayWnd = IntPtr.Zero,
                                 lChannel = 1,
@@ -113,7 +113,7 @@ namespace Nutshell.Hikvision.DigitalVideo
                 /// <summary>
                 ///         预览信息结构体
                 /// </summary>
-                private OfficalAPI.NET_DVR_PREVIEWINFO _previewInfo;
+                private NetDvrPreviewInfo _previewInfo;
 
                 /// <summary>
                 ///         图像缓冲区指针
