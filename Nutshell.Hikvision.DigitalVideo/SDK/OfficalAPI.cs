@@ -62,18 +62,18 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 public static extern bool NET_DVR_Cleanup();
 
 
-                [DllImport("HCNetSDK.dll")]
-                public static extern bool NET_DVR_RebootDVR(int userId);
+                //[DllImport("HCNetSDK.dll")]
+                //public static extern bool NET_DVR_RebootDVR(int userId);
 
 
-                [DllImport("HCNetSDK.dll")]
-                public static extern bool NET_DVR_SetConnectTime(uint dwWaitTime, uint dwTryTimes);
+                //[DllImport("HCNetSDK.dll")]
+                //public static extern bool NET_DVR_SetConnectTime(uint dwWaitTime, uint dwTryTimes);
 
-                [DllImport("HCNetSDK.dll")]
-                public static extern bool NET_DVR_SetReconnect(uint dwInterval, int bEnableRecon);
+                //[DllImport("HCNetSDK.dll")]
+                //public static extern bool NET_DVR_SetReconnect(uint dwInterval, int bEnableRecon);
 
-                [DllImport("HCNetSDK.dll")]
-                public static extern bool NET_DVR_SetRecvTimeOut(uint nRecvTimeOut = 5000);
+                //[DllImport("HCNetSDK.dll")]
+                //public static extern bool NET_DVR_SetRecvTimeOut(uint nRecvTimeOut = 5000);
 
                 //最小3000毫秒
 
@@ -229,9 +229,9 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 public static extern bool NET_DVR_GetDVRConfig(int userId, DVRConfigType dvrConfigType, int channel,
                         IntPtr lpOutBuffer, uint dwOutBufferSize, ref uint lpBytesReturned);
 
-                [DllImport("HCNetSDK.dll")]
-                public static extern bool NET_DVR_SetDVRConfig(int userId, DVRConfigType dvrConfigType, int channel,
-                        IntPtr lpInBuffer, uint dwInBufferSize);
+                //[DllImport("HCNetSDK.dll")]
+                //public static extern bool NET_DVR_SetDVRConfig(int userId, DVRConfigType dvrConfigType, int channel,
+                //        IntPtr lpInBuffer, uint dwInBufferSize);
 
                 #endregion
 
@@ -251,6 +251,9 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 public static extern int NET_DVR_PlayBackByTime_V40(int lUserID, ref NetDvrVodPara pVodPara);
 
                 [DllImport(@"HCNetSDK.dll")]
+                public static extern int NET_DVR_GetFileByTime_V40(int lUserID, string sSavedFileName, ref NetDvrPlayCondition pDownloadCond);
+
+                [DllImport(@"HCNetSDK.dll")]
 		public static extern bool NET_DVR_PlayBackControl(int lPlayHandle, NetDvrPlayBackControlCode controlCode, uint inValue, ref uint outValue);
 
                 [DllImport(@"HCNetSDK.dll")]
@@ -259,18 +262,24 @@ namespace Nutshell.Hikvision.DigitalVideo.SDK
                 [DllImport(@"HCNetSDK.dll")]
 		public static extern bool NET_DVR_StopPlayBack(int lPlayHandle);
 
-
-                /*********************************************************
-                Function:	PLAYDATACALLBACK
-                Desc:		(回调函数)
-                Input:	
-                Output:	
-                Return:	
-                **********************************************************/
-                public delegate void PlayDataCallBack(int lPlayHandle, uint dwDataType, IntPtr pBuffer, uint dwBufSize, uint dwUser);
+                [DllImport(@"HCNetSDK.dll")]
+                public static extern bool NET_DVR_StopGetFile(int lFileHandle);
 
                 [DllImport(@"HCNetSDK.dll")]
-                public static extern bool NET_DVR_SetPlayDataCallBack(int lPlayHandle, PlayDataCallBack fPlayDataCallBack, uint dwUser);
+                public static extern int NET_DVR_GetDownloadPos(int lFileHandle);
+
+
+                ///*********************************************************
+                //Function:	PLAYDATACALLBACK
+                //Desc:		(回调函数)
+                //Input:	
+                //Output:	
+                //Return:	
+                //**********************************************************/
+                //public delegate void PlayDataCallBack(int lPlayHandle, uint dwDataType, IntPtr pBuffer, uint dwBufSize, uint dwUser);
+
+                //[DllImport(@"HCNetSDK.dll")]
+                //public static extern bool NET_DVR_SetPlayDataCallBack(int lPlayHandle, PlayDataCallBack fPlayDataCallBack, uint dwUser);
 
 
                 #endregion

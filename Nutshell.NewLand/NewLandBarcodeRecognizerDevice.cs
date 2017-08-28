@@ -1,18 +1,26 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Nutshell.Automation.BarcodeRecognition.Subjects;
 using Nutshell.Data.Models;
 using Nutshell.NewLand.Models;
 
 namespace Nutshell.NewLand
 {
-        public class NewLandCodeScanDevice : BarcodeRecognizerDevice
+        public class NewLandBarcodeRecognizerDevice : BarcodeRecognizerDevice
         {
-                public NewLandCodeScanDevice()
+	        public NewLandBarcodeRecognizerDevice()
+		        : this(String.Empty)
+	        {
+		        
+	        }
+
+		public NewLandBarcodeRecognizerDevice(string id="")
+			:base(id)
                 {
                         SerialBus.Parent = this;
                         SerialBus.BarcodeReceiveSuccessed += (obj, args) =>
                         {
-                                Barcode = args.Barcode;
+                                WriteBarcode(args.Barcode);
                         };
                 }
                 public NewLandSerialBus SerialBus { get; } = new NewLandSerialBus();

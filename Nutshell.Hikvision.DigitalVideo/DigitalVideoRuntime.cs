@@ -53,9 +53,9 @@ namespace Nutshell.Hikvision.DigitalVideo
 			this.Info("摄像机运行环境创建成功");
                         Trace.WriteLine("xianshi");
 
-			OfficalAPI.NET_DVR_SetConnectTime(3000, 1);
-			OfficalAPI.NET_DVR_SetReconnect(500, 0);
-                        OfficalAPI.NET_DVR_SetRecvTimeOut(3000);
+			//OfficalAPI.NET_DVR_SetConnectTime(3000, 1);
+			//OfficalAPI.NET_DVR_SetReconnect(500, 0);
+   //                     OfficalAPI.NET_DVR_SetRecvTimeOut(3000);
 
                         Trace.WriteLine("xianshi2");
                         return true;

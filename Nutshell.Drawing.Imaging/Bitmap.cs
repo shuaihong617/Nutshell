@@ -175,5 +175,26 @@ namespace Nutshell.Drawing.Imaging
                                 }
                         }
                 }
+
+                public void FlipVertical()
+                {
+                        PixelFormat.MustEqual(PixelFormat.Rgb24);
+
+                        var sourcePtr = (byte*)Buffer.ToPointer();
+
+                        for (int y = 0; y < Height/2; y++)
+                        {
+                                var topPtr = sourcePtr + y*Stride;
+                                var bottomPtr = sourcePtr + (Height - y - 1)*Stride;
+                                for (int x = 0; x < Stride; x++)
+                                {
+                                        byte t = *topPtr;
+	                                byte b = *bottomPtr;
+
+	                                *topPtr++ = b;
+	                                *bottomPtr++ = t;
+                                }
+                        }
+                }
         }
 }

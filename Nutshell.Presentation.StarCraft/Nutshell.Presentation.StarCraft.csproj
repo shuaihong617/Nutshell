@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E83F258D-3A99-449D-94F3-A595884EEE25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nutshell.Presentation.StarCraft</RootNamespace>
+    <AssemblyName>Nutshell.Presentation.StarCraft</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DialogBackgroundGrid.xaml.cs">
+      <DependentUpon>DialogBackgroundGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PanelBackgroundGrid.xaml.cs">
+      <DependentUpon>PanelBackgroundGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowBackgroundGrid.xaml.cs">
+      <DependentUpon>WindowBackgroundGrid.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DialogBackgroundGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PanelBackgroundGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\AzureButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\BlackWindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\CheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\GridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\ListBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\TextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\TextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Styles\WindowStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WindowBackgroundGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nutshell.Presentation.MahApps\Nutshell.Presentation.MahApps.csproj">
+      <Project>{bd530e64-a243-494b-9c8c-5362c8a36e8c}</Project>
+      <Name>Nutshell.Presentation.MahApps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Presentation\Nutshell.Presentation.csproj">
+      <Project>{571b8e0a-d541-4e9a-8fc3-0ffcd60e848a}</Project>
+      <Name>Nutshell.Presentation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Images\ButtonBackground.png" />
+    <Content Include="Resources\Images\ConfigWindowBackgroundBottom.gif" />
+    <Content Include="Resources\Images\ConfigWindowBackgroundMiddle.gif" />
+    <Content Include="Resources\Images\ConfigWindowBackgroundTop.png" />
+    <Content Include="Resources\Images\Dialog1.png" />
+    <Content Include="Resources\Images\Dialog10.png" />
+    <Content Include="Resources\Images\Dialog11.png" />
+    <Content Include="Resources\Images\Dialog12.png" />
+    <Content Include="Resources\Images\Dialog13.png" />
+    <Content Include="Resources\Images\Dialog14.png" />
+    <Content Include="Resources\Images\Dialog15.png" />
+    <Content Include="Resources\Images\Dialog2.png" />
+    <Content Include="Resources\Images\Dialog3.png" />
+    <Content Include="Resources\Images\Dialog4.png" />
+    <Content Include="Resources\Images\Dialog5.png" />
+    <Content Include="Resources\Images\Dialog6.png" />
+    <Content Include="Resources\Images\Dialog7.png" />
+    <Content Include="Resources\Images\Dialog8.png" />
+    <Content Include="Resources\Images\Dialog9.png" />
+    <Content Include="Resources\Images\MainFormBackground.jpg" />
+    <Content Include="Resources\Images\MessageWindowBackground.png" />
+    <Content Include="Resources\Images\OperationWindowBackgroundBottom.png" />
+    <Content Include="Resources\Images\OperationWindowBackgroundMiddle.png" />
+    <Content Include="Resources\Images\OperationWindowBackgroundTop.png" />
+    <Content Include="Resources\Images\Panel1.png" />
+    <Content Include="Resources\Images\Panel2.png" />
+    <Content Include="Resources\Images\Panel3.png" />
+    <Content Include="Resources\Images\Panel4.png" />
+    <Content Include="Resources\Images\Panel5.png" />
+    <Content Include="Resources\Images\Panel6.png" />
+    <Content Include="Resources\Images\Panel7.png" />
+    <Content Include="Resources\Images\Panel8.png" />
+    <Content Include="Resources\Images\Panel9.png" />
+    <Content Include="Resources\Images\PanelBottom.png" />
+    <Content Include="Resources\Images\PanelMiddle.png" />
+    <Content Include="Resources\Images\PanelTop.png" />
+    <Content Include="Resources\Images\PictureBackground.jpg" />
+    <Content Include="Resources\Images\StartWindowBackground.png" />
+    <Content Include="Resources\Images\WindowBackgroundBottom.gif" />
+    <Content Include="Resources\Images\WindowBackgroundMiddle.gif" />
+    <Content Include="Resources\Images\WindowBackgroundTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

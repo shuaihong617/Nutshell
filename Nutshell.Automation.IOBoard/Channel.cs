@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using Nutshell.Aspects.Events;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Extensions;
 
@@ -21,7 +23,6 @@ namespace Nutshell.Automation.IOBoard
 
                 public int Index { get; }
 
-                [NotifyPropertyValueChanged]
                 public int Value
                 {
                         get { return _value; }
@@ -47,6 +48,8 @@ namespace Nutshell.Automation.IOBoard
 
                 #region 事件
 
+                [Description("通道值更新事件")]
+                [LogEventInvokeHandler]
                 public event EventHandler<ChannelValueEventArgs> ValueChanged;
 
                 /// <summary>

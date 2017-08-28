@@ -54,7 +54,7 @@ namespace Nutshell.Fyying
                         return base.StopConnectCore();
                 }
 
-                protected override void CreateChannels()
+                public override void CreateChannels()
                 {
                         for (var i = 0; i < StandardInputChannelsCount; i++)
                         {
@@ -65,7 +65,7 @@ namespace Nutshell.Fyying
 
                                 var channel = new FyyingInputChannel(i);
                                 channel.Parent = this;
-                                channel.ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
+                                //channel.ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
 
                                 InputChannels.Add(i, channel);
                         }
@@ -79,7 +79,7 @@ namespace Nutshell.Fyying
 
                                 var channel = new FyyingOutputChannel(i);
                                 channel.Parent = this;
-                                channel.ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
+                                //channel.ValueChanged += (obj, args) => { OnChannelValueChanged(args); };
 
                                 OutputChannels.Add(i, channel);
                         }

@@ -14,6 +14,7 @@
 using System;
 using System.ComponentModel;
 using Nutshell.Aspects.Locations.Contracts;
+using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Extensions;
 
 namespace Nutshell.Automation.BarcodeRecognition.Subjects
@@ -23,6 +24,12 @@ namespace Nutshell.Automation.BarcodeRecognition.Subjects
         /// </summary>
         public class BarcodeRecognizerDevice : ConnectableDevice
         {
+	        public BarcodeRecognizerDevice(string id = "")
+			:base(id)
+	        {
+		        
+	        }
+
                 /// <summary>
                 /// 条码
                 /// </summary>
@@ -36,13 +43,28 @@ namespace Nutshell.Automation.BarcodeRecognition.Subjects
                 public string Barcode
                 {
                         get { return _barcode; }
-                        protected set
+                        private set
                         {
                                 _barcode = value;
                                 OnPropertyValueChanged();
 
+                                HasBarcode = !Barcode.IsEmpty();
+
                                 OnBarcodeReceived(new BarcodeEventArgs(_barcode));
                         }
+                }
+
+                [NotifyPropertyValueChanged]
+                public bool HasBarcode { get; private set; }
+
+                public void Reset()
+	        {
+		        WriteBarcode(String.Empty);
+	        }
+
+                public void WriteBarcode(string barcode)
+                {
+                        Barcode = barcode;
                 }
 
                 #region 事件

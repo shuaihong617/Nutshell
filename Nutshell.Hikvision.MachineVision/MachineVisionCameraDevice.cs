@@ -117,7 +117,7 @@ namespace Nutshell.Hikvision.MachineVision
                         AdjustStreamChannelPacketSize();
 
                         SetDefaultUserSet(UserSet.UserSet1);
-                        SetCurrentUserSet(UserSet.UserSet1);
+                        //SetCurrentUserSet(UserSet.UserSet1);
                         LoadCurrentUserSet();
 
                         return true;

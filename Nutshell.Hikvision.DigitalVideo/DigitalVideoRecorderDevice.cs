@@ -32,7 +32,13 @@ namespace Nutshell.Hikvision.DigitalVideo
         /// </summary>
         public class DigitalVideoRecorderDevice : DigitalVideoDevice
         {
-                public DigitalVideoRecorderDevice(string id, string ipAddress)
+	        public DigitalVideoRecorderDevice()
+		        : this(String.Empty, "192.168.1.1")
+	        {
+		        
+	        }
+
+		public DigitalVideoRecorderDevice(string id, string ipAddress)
                         : base(id, ipAddress)
                 {
                         
@@ -158,7 +164,7 @@ namespace Nutshell.Hikvision.DigitalVideo
 			}
 		}
 
-	        private int playHandle;
+	        private int _playHandle;
 
 	        public void StartPlayBack(DateTime beginTime, DateTime endTime, IntPtr hwnd)
 	        {
@@ -178,33 +184,82 @@ namespace Nutshell.Hikvision.DigitalVideo
 				Day = (uint)endTime.Day,
 				Hour = (uint)endTime.Hour,
 				Minute = (uint)endTime.Minute
-			};                      
+			};
 
 
+			//按时间播放
+			NetDvrVodPara vod = new NetDvrVodPara();
+			vod.Size = (uint)Marshal.SizeOf(vod);
+			//vod.struIDInfo.dwSize = Marshal.SizeOf(NET_DVR_STREAM_INFO);
+			vod.struIDInfo.Channel = 33;//按录像机网口32+i计算
+			vod.HWnd = hwnd;
+			vod.BeginTime = begin;
+			vod.EndTime = end;
 
-                        NetDvrVodPara vod = new NetDvrVodPara();
-	                vod.Size = (uint)Marshal.SizeOf(vod);
-                        //vod.struIDInfo.dwSize = Marshal.SizeOf(NET_DVR_STREAM_INFO);
-                        vod.struIDInfo.Channel = 33;//按录像机网口32+i计算
-                        vod.HWnd = hwnd;
-                        vod.BeginTime = begin;
-	                vod.EndTime = end;
+
+			_playHandle = OfficalAPI.NET_DVR_PlayBackByTime(_userId, 33, ref begin, ref end, hwnd);
+			//playHandle = OfficalAPI.NET_DVR_PlayBackByTime_V40(_userId, ref vod);
+
+			Trace.WriteLine($"playHandle   {_playHandle}");
+			var error = OfficalAPI.NET_DVR_GetLastError();
+			Trace.WriteLine($"error   {error}");
 
 
-		        //playHandle = OfficalAPI.NET_DVR_PlayBackByTime(_userId, 2, ref begin, ref end, hwnd);
-	                playHandle = OfficalAPI.NET_DVR_PlayBackByTime_V40(_userId, ref vod);
+		}
 
-                        Trace.WriteLine($"playHandle   {playHandle}");
-	                var error = OfficalAPI.NET_DVR_GetLastError();
-                        Trace.WriteLine($"error   {error}");
-                }
+		private int _fileHandle;
 
-                
+		public void StartDownloadAsync(DateTime beginTime, DateTime endTime, string fileName)
+                {
+                        NetDvrTime begin = new NetDvrTime
+                        {
+                                Year = (uint) beginTime.Year,
+                                Month = (uint) beginTime.Month,
+                                Day = (uint) beginTime.Day,
+                                Hour = (uint) beginTime.Hour,
+                                Minute = (uint) beginTime.Minute
+                        };
 
-                public void PlayBackControl(NetDvrPlayBackControlCode controlCode)
+                        NetDvrTime end = new NetDvrTime
+                        {
+                                Year = (uint) endTime.Year,
+                                Month = (uint) endTime.Month,
+                                Day = (uint) endTime.Day,
+                                Hour = (uint) endTime.Hour,
+                                Minute = (uint) endTime.Minute
+                        };
+
+                        NetDvrPlayCondition condition = new NetDvrPlayCondition();
+                        condition.Channel = 33;
+                        condition.StartTime = begin;
+                        condition.StopTime = end;
+
+                        _fileHandle = OfficalAPI.NET_DVR_GetFileByTime_V40(_userId, fileName, ref condition);
+
+                        PlayBackControl(NetDvrPlayBackControlCode.NET_DVR_PLAYSTART);
+		}
+
+	        public int GetDownloadPercent()
+	        {
+		        if (_fileHandle == -1)
+		        {
+			        return -1;
+		        }
+			return OfficalAPI.NET_DVR_GetDownloadPos(_fileHandle);
+		}
+
+		public void StopDownloadAsync()
+		{
+			if (_fileHandle > -1)
+			{
+				OfficalAPI.NET_DVR_StopGetFile(_fileHandle);
+			}
+		}
+
+		public void PlayBackControl(NetDvrPlayBackControlCode controlCode)
 	        {
 			uint outValue = 0;
-			OfficalAPI.NET_DVR_PlayBackControl(playHandle, controlCode, 0, ref outValue);
+			OfficalAPI.NET_DVR_PlayBackControl(_playHandle, controlCode, 0, ref outValue);
 	        }
 
 	        public void StartPlay()
@@ -216,8 +271,8 @@ namespace Nutshell.Hikvision.DigitalVideo
 
 	        public void StopPlayBack()
 	        {
-			Debug.Assert(playHandle>-1);
-		        OfficalAPI.NET_DVR_StopPlayBack(playHandle);
+			Debug.Assert(_playHandle>-1);
+		        OfficalAPI.NET_DVR_StopPlayBack(_playHandle);
 	        }
 
                 

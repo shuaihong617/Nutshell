@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Automation.IOBoard.Devices.Models;
 using Nutshell.Components;
 using Nutshell.Data.Models;
-using Nutshell.Extensions;
 
 namespace Nutshell.Automation.IOBoard.Devices
 {
@@ -27,7 +23,7 @@ namespace Nutshell.Automation.IOBoard.Devices
                 public int StandardInputChannelsCount { get; private set; } = 4;
 
                 [NotifyPropertyValueChanged]
-                public Dictionary<int,InputChannel> InputChannels { get; }= new Dictionary<int, InputChannel>();
+                public Dictionary<int, InputChannel> InputChannels { get; } = new Dictionary<int, InputChannel>();
 
                 [NotifyPropertyValueChanged]
                 public int PracticeInputChannelsCount { get; private set; } = 4;
@@ -36,7 +32,7 @@ namespace Nutshell.Automation.IOBoard.Devices
                 public int StandardOutputChannelsCount { get; private set; } = 4;
 
                 [NotifyPropertyValueChanged]
-                public Dictionary<int,OutputChannel> OutputChannels { get; } = new Dictionary<int, OutputChannel>();
+                public Dictionary<int, OutputChannel> OutputChannels { get; } = new Dictionary<int, OutputChannel>();
 
                 [NotifyPropertyValueChanged]
                 public int PracticeOutputChannelsCount { get; private set; } = 4;
@@ -82,7 +78,7 @@ namespace Nutshell.Automation.IOBoard.Devices
                         return base.StopDispatchCore();
                 }
 
-                protected abstract void CreateChannels();
+                public abstract void CreateChannels();
 
                 protected void ReadChannels()
                 {
@@ -96,18 +92,5 @@ namespace Nutshell.Automation.IOBoard.Devices
                                 OutputChannels[i].Read();
                         }
                 }
-
-                #region 事件
-
-                public event EventHandler<ChannelValueEventArgs> ChannelValueChanged;
-
-                /// <summary>
-                ///         引发启动事件。
-                /// </summary>
-                /// <param name="e">包含事件数据的实例<see cref="EventArgs" /></param>
-                protected virtual void OnChannelValueChanged(ChannelValueEventArgs e)
-                        => e.Raise(this, ref ChannelValueChanged);
-
-                #endregion
         }
 }

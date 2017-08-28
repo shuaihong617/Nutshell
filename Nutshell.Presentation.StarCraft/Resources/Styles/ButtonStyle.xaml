@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        
+        
+        <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="Foreground" Value="DodgerBlue" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+
+                <Setter Property="Template">
+                        <Setter.Value>
+                                <!--控件模板-->
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                        <!--背景色-->
+                                        <Border>
+                                                <Border.Background>
+                                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Images/ButtonBackground.png"/>
+                                                </Border.Background>
+
+                                                <!--按钮内容-->
+                                                <ContentPresenter x:Name="content" HorizontalAlignment="Center"
+                                                                  VerticalAlignment="Center"
+                                                                  Content="{TemplateBinding Content}" />
+                                        </Border>
+                                        <!--触发器-->
+                                        <ControlTemplate.Triggers>
+                                                <!--鼠标移入移出-->
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Foreground" Value="Chartreuse" />
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                        <Setter Property="Foreground" Value="AliceBlue" />
+                                                </Trigger>
+                                        </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                        </Setter.Value>
+                </Setter>
+        </Style>
+
+        <Style x:Key="BigButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="274" />
+                <Setter Property="Height" Value="60" />
+                <Setter Property="FontSize" Value="32" />
+        </Style>
+
+        <Style x:Key="MiddleButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="220" />
+                <Setter Property="Height" Value="48" />
+                <Setter Property="FontSize" Value="26" />
+        </Style>
+
+        <Style x:Key="SmallButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="220" />
+                <Setter Property="Height" Value="48" />
+                <Setter Property="FontSize" Value="20" />
+        </Style>
+
+        <Style x:Key="DialogButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="220" />
+                <Setter Property="Height" Value="48" />
+                <Setter Property="Margin" Value="46,20" />
+        </Style>
+
+
+</ResourceDictionary>

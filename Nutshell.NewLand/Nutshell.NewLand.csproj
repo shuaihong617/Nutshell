@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\NewLandCodeScanDeviceModel.cs" />
-    <Compile Include="NewLandCodeScanDevice.cs" />
+    <Compile Include="NewLandBarcodeRecognizerDevice.cs" />
     <Compile Include="NewLandSerialBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,7 +73,7 @@
       <Name>Nutshell.Automation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Communication\Nutshell.Communication.csproj">
-      <Project>{4B22F550-25B2-4F7E-A8A7-8181A3F10494}</Project>
+      <Project>{4b22f550-25b2-4f7e-a8a7-8181a3f10494}</Project>
       <Name>Nutshell.Communication</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nutshell.Components\Nutshell.Components.csproj">
