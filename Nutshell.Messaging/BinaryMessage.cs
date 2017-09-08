@@ -1,4 +1,4 @@
-﻿namespace Nutshell.Messaging.Models
+﻿namespace Nutshell.Messaging
 {
         public abstract class BinaryMessage:Message
         {

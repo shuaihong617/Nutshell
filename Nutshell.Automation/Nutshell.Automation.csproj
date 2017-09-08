@@ -166,6 +166,10 @@
     <Compile Include="ConnectState.cs" />
     <Compile Include="Decoder.cs" />
     <Compile Include="DispatchableDevice.cs" />
+    <Compile Include="ElectronicAgent.cs" />
+    <Compile Include="ElectronicState.cs" />
+    <Compile Include="LampAgent.cs" />
+    <Compile Include="Locator.cs" />
     <Compile Include="ManufacturingInformation.cs" />
     <Compile Include="CapturableDevice.cs" />
     <Compile Include="Models\CapturableDeviceModel.cs" />

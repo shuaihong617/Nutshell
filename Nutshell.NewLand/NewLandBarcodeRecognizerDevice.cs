@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Nutshell.Automation.BarcodeRecognition.Subjects;
+using Nutshell.Automation.BarcodeRecognition;
 using Nutshell.Data.Models;
 using Nutshell.NewLand.Models;
 

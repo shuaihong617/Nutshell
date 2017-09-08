@@ -7,6 +7,7 @@ using Nutshell.Extensions;
 using OPCAutomation;
 using System;
 using System.Diagnostics;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 //重命名OpcDAAuto.dll中类名，禁止删除；
@@ -15,7 +16,7 @@ using NativeOpcItem = OPCAutomation.OPCItem;
 
 namespace Nutshell.Automation.Opc
 {
-        public class OpcItem : StorableObject, IStorable<OpcItemModel>
+        public class OpcItem : StorableObject
         {
                 public OpcItem(string id = "", string address = "",
                         TypeCode typeCode = TypeCode.Int32, ReadWriteMode readWriteMode = ReadWriteMode.None)
@@ -58,13 +59,17 @@ namespace Nutshell.Automation.Opc
                 ///         从数据模型加载数据
                 /// </summary>
                 /// <param name="model">数据模型</param>
-                public void Load([MustNotEqualNull] OpcItemModel model)
+                public override void Load([MustNotEqualNull] IIdentityModel model)
                 {
                         base.Load(model);
 
-                        Address = model.Address;
-                        TypeCode = model.TypeCode;
-                        ReadWriteMode = model.ReadWriteMode;
+                        var subModel = model as OpcItemModel;
+                        Trace.Assert(subModel != null);
+
+
+                        Address = subModel.Address;
+                        TypeCode = subModel.TypeCode;
+                        ReadWriteMode = subModel.ReadWriteMode;
                 }
 
                 /// <summary>

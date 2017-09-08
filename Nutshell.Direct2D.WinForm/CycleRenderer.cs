@@ -11,7 +11,7 @@ namespace Nutshell.Direct2D.WinForm
                         : base(id)
                 {
                         Sence = sence;
-                        _renderLooper = new Looper("显示循环", ThreadPriority.Highest, 15, Render);
+                        _renderLooper = new ActionLooper("显示循环", ThreadPriority.Highest, 15, Render);
                 }
 
                 protected BitmapSence Sence { get; }

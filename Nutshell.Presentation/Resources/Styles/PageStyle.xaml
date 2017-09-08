@@ -6,6 +6,4 @@
                 <Setter Property="Background" Value="Transparent"></Setter>
                 <Setter Property="FontSize" Value="24"></Setter>
         </Style>
-
-
 </ResourceDictionary>

@@ -30,7 +30,7 @@ namespace Nutshell.Automation.Vision.Virtual
         /// <summary>
         ///         Class AVTCamera.
         /// </summary>
-        public class VirtualVideoCameraDevice : CameraDevice,IStorable<VirtualVideoCameraDeviceModel>
+        public class VirtualVideoCameraDevice : MediaCaptureDevice
         {
                 /// <summary>
                 ///         初始化<see cref="VirtualVideoCameraDevice" />的新实例.

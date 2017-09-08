@@ -23,7 +23,7 @@ namespace Nutshell.Mathematics
         /// <summary>
         ///         线性参数
         /// </summary>
-        public class Linearity : StorableObject,IStorable<LinearityModel>
+        public class Linearity : StorableObject
         {
                 public Linearity(float slope = 0f, float intercept = 0f)
                 {
@@ -45,8 +45,11 @@ namespace Nutshell.Mathematics
                 {
                         base.Load(model);
 
-                        Slope = model.Slope;
-                        Intercept = model.Intercept;
+                        var subModel = model as LinearityModel;
+                        Trace.Assert(subModel != null);
+
+                        Slope = subModel.Slope;
+                        Intercept = subModel.Intercept;
                 }
 
                 public void Save([MustNotEqualNull] LinearityModel model)

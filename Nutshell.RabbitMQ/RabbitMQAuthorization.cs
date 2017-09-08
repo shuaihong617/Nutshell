@@ -18,6 +18,7 @@ using Nutshell.Communication;
 using Nutshell.Data;
 using Nutshell.Data.Models;
 using Nutshell.RabbitMQ.Models;
+using Nutshell.Sockets;
 using Nutshell.Storaging;
 
 namespace Nutshell.RabbitMQ
@@ -39,8 +40,8 @@ namespace Nutshell.RabbitMQ
 		/// 获取端口
 		/// </summary>
 		/// <value>端口</value>
-		[MustBetweenOrEqual(EthernetPortNumberExtensions.MinimumRecommendPortNumber,
-			EthernetPortNumberExtensions.MaximumAvailablePortNumber)]
+		[MustBetweenOrEqual(PortNumberExtensions.MinimumRecommendPortNumber,
+			PortNumberExtensions.MaximumAvailablePortNumber)]
 		public int PortNumber { get; private set; }
 
 		/// <summary>

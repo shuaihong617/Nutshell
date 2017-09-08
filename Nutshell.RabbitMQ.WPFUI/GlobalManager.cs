@@ -36,7 +36,7 @@ namespace Nutshell.RabbitMQ.WPFUI
                 public string ConfigDirectory { get; }
 
                 [NotifyPropertyValueChanged]
-                public Application Application { get; private set; }
+                public AppInstance AppInstance { get; private set; }
 
                 public LogCollecter LogCollecter { get; }
 
@@ -48,7 +48,7 @@ namespace Nutshell.RabbitMQ.WPFUI
 
                 public void LoadApplication()
                 {
-                        Application = Application.Load(ConfigDirectory + "Application.config");
+                        AppInstance = AppInstance.Load(ConfigDirectory + "Application.config");
                 }
 
                 public void Start()

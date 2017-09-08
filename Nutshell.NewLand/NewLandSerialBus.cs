@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO.Ports;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Nutshell.Aspects.Events;
 using Nutshell.Automation.BarcodeRecognition;
 using Nutshell.Extensions;
 using Nutshell.SerialPorts;
-using PostSharp.Extensibility;
 
 namespace Nutshell.NewLand
 {
-        public class NewLandSerialBus:SerialPortBus
+        public class NewLandSerialBus : SerialPortBus
         {
                 //public SerialPortReceiver<int> BarcodeReceiver;
 
                 public const byte Enter = 0x0D;
+
                 /// <summary>
-                /// Resolvings this instance.
+                ///         Resolvings this instance.
                 /// </summary>
                 protected override void Resolving()
                 {
@@ -58,7 +54,6 @@ namespace Nutshell.NewLand
                 protected virtual void OnBarcodeReceiveSuccessed(BarcodeEventArgs e)
                 {
                         e.Raise(this, ref BarcodeReceiveSuccessed);
-                        
                 }
 
                 #endregion

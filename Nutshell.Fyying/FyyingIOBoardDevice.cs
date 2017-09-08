@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Nutshell.Aspects.Locations.Propertys;
-using Nutshell.Automation.IOBoard.Devices;
+using Nutshell.Automation.IOBoard;
 using Nutshell.Data.Models;
 using Nutshell.Extensions;
 using Nutshell.Fyying.Models;

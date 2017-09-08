@@ -20,7 +20,7 @@ namespace Nutshell.Automation.Vision.Virtual.Models
         ///         虚拟摄像机数据模型
         /// </summary>
         
-        public class VirtualVideoCameraDeviceModel : CameraDeviceModel
+        public class VirtualVideoCameraDeviceModel : MediaCaptureDeviceModel
         {
                 /// <summary>
                 ///         文件名称

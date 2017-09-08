@@ -29,13 +29,13 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 /// <param name="decoderDevice">The decoder.</param>
                 /// <param name="sence">The sence.</param>
                 /// <exception cref="System.ArgumentException">摄像机解码单元不能为null</exception>
-                public CameraRenderer(string id, [MustNotEqualNull]CameraDecoderDevice decoderDevice, CameraSence sence)
+                public CameraRenderer(string id, [MustNotEqualNull]MediaDecoderDevice decoderDevice, CameraSence sence)
                         : base(id, sence)
                 {
                         _decoderDevice = decoderDevice;
                 }
 
-                private readonly CameraDecoderDevice _decoderDevice;
+                private readonly MediaDecoderDevice _decoderDevice;
 
                 protected override bool StartCore()
                 {

@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
+    <Compile Include="NewLandCommand.cs" />
     <Compile Include="EnterSettingResponseCommond.cs" />
     <Compile Include="EnterSettingRequestCommond.cs" />
     <Compile Include="ExitSettingResponseCommond.cs" />

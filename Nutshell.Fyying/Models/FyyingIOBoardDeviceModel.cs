@@ -13,7 +13,7 @@
 
 using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
-using Nutshell.Automation.IOBoard.Devices.Models;
+using Nutshell.Automation.IOBoard.Models;
 using Nutshell.Automation.Models;
 
 namespace Nutshell.Fyying.Models

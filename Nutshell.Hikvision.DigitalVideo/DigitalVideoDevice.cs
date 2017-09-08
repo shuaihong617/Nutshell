@@ -203,15 +203,15 @@ namespace Nutshell.Hikvision.DigitalVideo
                         {
                                 int bitmapBytesCount = Width * Height * PixelFormat.GetBytes();
 
-                                _prepareCaptureBytesCount = bitmapBytesCount + MSBitmapExtensions.FileHeaderTotalBytes +
-						     MSBitmapExtensions.InfoHeaderTotalBytes;
+                                _prepareCaptureBytesCount = bitmapBytesCount + MicrosoftBitmapExtensions.FileHeaderTotalBytes +
+						     MicrosoftBitmapExtensions.InfoHeaderTotalBytes;
 
                                 _capturePtr = Marshal.AllocHGlobal(_prepareCaptureBytesCount);
 
                                 unsafe
                                 {
-                                        var tempPtr = ((byte*)_capturePtr.ToPointer()) + +MSBitmapExtensions.FileHeaderTotalBytes +
-					     MSBitmapExtensions.InfoHeaderTotalBytes;
+                                        var tempPtr = ((byte*)_capturePtr.ToPointer()) + +MicrosoftBitmapExtensions.FileHeaderTotalBytes +
+					     MicrosoftBitmapExtensions.InfoHeaderTotalBytes;
                                         _bitmapPtr = new IntPtr(tempPtr);
                                 }
                                 

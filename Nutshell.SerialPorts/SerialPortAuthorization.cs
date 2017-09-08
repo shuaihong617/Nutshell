@@ -39,8 +39,7 @@ namespace Nutshell.SerialPorts
 		/// 获取端口
 		/// </summary>
 		/// <value>端口</value>
-		[MustBetweenOrEqual(EthernetPortNumberExtensions.MinimumRecommendPortNumber,
-			EthernetPortNumberExtensions.MaximumAvailablePortNumber)]
+		[MustGreaterThan(0)]
 		public int BaudRate { get; private set; }
 
 		/// <summary>

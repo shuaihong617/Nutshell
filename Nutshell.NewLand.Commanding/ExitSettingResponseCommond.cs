@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Nutshell.NewLand.Commanding
 {
-        public class ExitSettingResponseCommond : Command
+        public class ExitSettingResponseCommond : NewLandCommand
         {
                 public ExitSettingResponseCommond()
                 {

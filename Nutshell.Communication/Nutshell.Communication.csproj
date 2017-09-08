@@ -62,7 +62,6 @@
     <Compile Include="IReceiver.cs" />
     <Compile Include="ISender.cs" />
     <Compile Include="IActor.cs" />
-    <Compile Include="EthernetPortExtensions.cs" />
     <Compile Include="Models\BusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

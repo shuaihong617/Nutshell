@@ -109,6 +109,10 @@
       <Project>{24C687D9-0212-49A6-8664-C908FD09FA40}</Project>
       <Name>Nutshell.Serializing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Nutshell.Sockets\Nutshell.Sockets.csproj">
+      <Project>{C3E51C29-0130-4235-92D3-6257D28C0AD8}</Project>
+      <Name>Nutshell.Sockets</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Storaging.Xml\Nutshell.Storaging.Xml.csproj">
       <Project>{5537B35B-85F7-4730-ADED-518A7D0E814A}</Project>
       <Name>Nutshell.Storaging.Xml</Name>

@@ -16,6 +16,7 @@ using System.Xml.Serialization;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Communication;
 using Nutshell.Data.Models;
+using Nutshell.Sockets;
 
 namespace Nutshell.RabbitMQ.Models
 {
@@ -36,8 +37,8 @@ namespace Nutshell.RabbitMQ.Models
                 ///         获取或设置端口号
                 /// </summary>
                 /// <value>端口号</value>
-                [MustBetweenOrEqual(EthernetPortNumberExtensions.MinimumRecommendPortNumber,
-                        EthernetPortNumberExtensions.MaximumAvailablePortNumber)]
+                [MustBetweenOrEqual(PortNumberExtensions.MinimumRecommendPortNumber,
+                        PortNumberExtensions.MaximumAvailablePortNumber)]
                 [XmlAttribute]
                 public int PortNumber { get; set; } = 5672;
 

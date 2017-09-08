@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Nutshell.Messaging;
 using Nutshell.Messaging.Models;
 
 namespace Nutshell.NewLand.Messaging

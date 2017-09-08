@@ -4,7 +4,6 @@
 
         <Style x:Key="TextBlockStyle" TargetType="TextBlock">
                 <Setter Property="Margin" Value="20" />
-                <Setter Property="Foreground" Value="DodgerBlue" />
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="FontSize" Value="24" />
                 <Setter Property="VerticalAlignment" Value="Center" />

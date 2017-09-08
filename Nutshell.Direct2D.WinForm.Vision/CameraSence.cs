@@ -32,7 +32,7 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 /// <param name="id">The key.</param>
                 /// <param name="control">The image.</param>
                 /// <param name="cameraDevice">The camera.</param>
-                public CameraSence(string id, Control control, CameraDevice cameraDevice)
+                public CameraSence(string id, Control control, MediaCaptureDevice cameraDevice)
                         : base(id, control)
                 {
                         cameraDevice.NotNull();
@@ -52,7 +52,7 @@ namespace Nutshell.Direct2D.WinForm.Vision
                 private readonly RawRectangleF _cameraIdLocation = new RawRectangleF(20, 20, 500, 120);
                 private readonly RawRectangleF _cameraOnlineLocation;
 
-                protected CameraDevice CameraDevice { get; set; }
+                protected MediaCaptureDevice CameraDevice { get; set; }
 
                 protected SolidColorBrush RedBrush;
                 protected SolidColorBrush BlueBrush;

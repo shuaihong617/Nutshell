@@ -2,7 +2,7 @@
 
 namespace Nutshell.NewLand.Commanding
 {
-        public class EnterSettingResponseCommond:Command
+        public class EnterSettingResponseCommond:NewLandCommand
         {
                 public EnterSettingResponseCommond()
                 {

@@ -2,7 +2,7 @@
 
 namespace Nutshell.NewLand.Commanding
 {
-        public class ExitSettingRequestCommond : Command
+        public class ExitSettingRequestCommond : NewLandCommand
         {
                 public ExitSettingRequestCommond()
                 {

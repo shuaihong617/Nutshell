@@ -21,10 +21,6 @@ namespace Nutshell.Drawing.Imaging
         {
                 Mono8,
 
-                /// <summary>
-                ///         未知
-                /// </summary>
-                ///
                 Yuv422,
 
                 Rgb24,

@@ -14,6 +14,8 @@ using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Aspects.Locations.Propertys;
 using Nutshell.Components;
 using System;
+using System.Diagnostics;
+using Nutshell.Data.Models;
 using Nutshell.Speech.Models;
 using Nutshell.Storaging;
 
@@ -22,7 +24,7 @@ namespace Nutshell.Speech
         /// <summary>
         /// 语音合成器
         /// </summary>
-        public abstract class Synthesizer : Component,IStorable<SynthesizerModel>
+        public abstract class Synthesizer : Component
         {
                 /// <summary>
                 /// 初始化<see cref="Synthesizer"/>的新实例.
@@ -81,9 +83,10 @@ namespace Nutshell.Speech
                 [NotifyPropertyValueChanged]
                 public OutputMode OutputMode { get; set; }
 
-                public void Load(SynthesizerModel model)
+                public void Load(IIdentityModel model)
                 {
-                        throw new NotImplementedException();
+                        var subModel = model as SynthesizerModel;
+                        Trace.Assert(subModel != null);
                 }
 
                 public void Save(SynthesizerModel model)

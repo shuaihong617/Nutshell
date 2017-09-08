@@ -3,21 +3,24 @@
 
 
         <Style x:Key="WindowStyle" TargetType="Window">
-                <Setter Property="WindowStyle" Value="None" />
-                <Setter Property="AllowsTransparency" Value="True" />
-                <Setter Property="ResizeMode" Value="NoResize" />
                 <Setter Property="Foreground" Value="DodgerBlue" />
                 <Setter Property="Background" Value="Transparent" />
                 <Setter Property="FontSize" Value="24" />
-                <Setter Property="SizeToContent" Value="Height" />
+        </Style>
+
+        <Style x:Key="TransparencyWindowStyle" TargetType="Window" BasedOn="{StaticResource WindowStyle}">
+                <Setter Property="WindowStyle" Value="None" />
+                <Setter Property="AllowsTransparency" Value="True" />
+                <Setter Property="ResizeMode" Value="NoResize" />
         </Style>
 
 
-        <Style x:Key="DialogStyle" TargetType="Window" BasedOn="{StaticResource WindowStyle}">
+        <Style x:Key="DialogStyle" TargetType="Window" BasedOn="{StaticResource TransparencyWindowStyle}">
                 <Setter Property="MinWidth" Value="1136" />
                 <Setter Property="Width" Value="1136" />
                 <Setter Property="MinHeight" Value="300" />
                 <Setter Property="Height" Value="Auto" />
+                <Setter Property="SizeToContent" Value="WidthAndHeight" />
         </Style>
 
 

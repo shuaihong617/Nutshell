@@ -14,7 +14,6 @@
 using System;
 using System.ComponentModel;
 using System.Threading;
-using Nutshell.Aspects.Events;
 using Nutshell.Extensions;
 
 namespace Nutshell.Components
@@ -58,7 +57,6 @@ namespace Nutshell.Components
                 ///         当启动时发生。
                 /// </summary>
                 [Description("启动事件")]
-                [LogEventInvokeHandler]
                 public event EventHandler<ValueEventArgs<T>> RepeatFinshed;
 
                 /// <summary>
