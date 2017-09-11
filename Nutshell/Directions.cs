@@ -11,12 +11,15 @@
 // </summary>
 // ***********************************************************************
 
+using System;
+
 namespace Nutshell
 {
         /// <summary>
         /// 方向枚举
         /// </summary>
-        public enum Direction
+        [Flags]
+        public enum Directions
         {
                 /// <summary>
                 /// 未知
@@ -26,22 +29,22 @@ namespace Nutshell
                 /// <summary>
                 /// 上
                 /// </summary>
-                上 = 1,
+                从下到上 = 1,
 
                 /// <summary>
                 /// 下
                 /// </summary>
-                下 = 2,
+                从上到下 = 2,
 
                 /// <summary>
                 /// 左
                 /// </summary>
-                左 = 4,
+                从右到左 = 4,
 
                 /// <summary>
                 /// 右
                 /// </summary>
-                右 = 8,
+                从左到右 = 8,
 
                 /// <summary>
                 /// 水平
