@@ -3,12 +3,18 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using Nutshell.Automation.DaHeng.Sdk;
+using Nutshell.Storaging;
 
 namespace Nutshell.Automation.DaHeng
 {
-	public class GraphicsCard: IdentityObject
+	public class GraphicsCard: StorableObject
         {
-	        public GraphicsCard(int index)
+                public GraphicsCard()
+                        :this(1)
+                {
+                }
+
+                public GraphicsCard(int index)
 	        {
 	                Index = index;
 
