@@ -61,6 +61,7 @@
     <Compile Include="DaHengException.cs" />
     <Compile Include="DaHengRuntime.cs" />
     <Compile Include="GraphicsCard.cs" />
+    <Compile Include="Models\GraphicsCardModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sdk\CardType.cs" />
     <Compile Include="Sdk\BoardInfoMode.cs" />

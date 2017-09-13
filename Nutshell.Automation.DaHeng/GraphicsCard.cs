@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using Nutshell.Automation.DaHeng.Models;
 using Nutshell.Automation.DaHeng.Sdk;
+using Nutshell.Data.Models;
 using Nutshell.Storaging;
 
 namespace Nutshell.Automation.DaHeng
@@ -40,11 +43,19 @@ namespace Nutshell.Automation.DaHeng
 
 	        public IntPtr Buffer { get; private set; }
 
-                public int Index { get;}
+                public int Index { get; private set; }
 
-                
+	        public override void Load(IIdentityModel model)
+	        {
+                        base.Load(model);
 
-                public void StartConnect()
+                        var subModel = model as GraphicsCardModel;
+                        Trace.Assert(subModel != null);
+
+	                Index = subModel.Index;
+	        }
+
+	        public void StartConnect()
 	        {
                         ErrorCode errorCode = OfficalApi.BeginCard(Index, ref _cardHandle);
                         if (errorCode != ErrorCode.CG_OK)

@@ -38,22 +38,28 @@
                 </Setter>
         </Style>
 
-        <Style x:Key="BigButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Style x:Key="F32ButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
                 <Setter Property="Width" Value="274" />
                 <Setter Property="Height" Value="60" />
                 <Setter Property="FontSize" Value="32" />
         </Style>
 
-        <Style x:Key="MiddleButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+        <Style x:Key="F24ButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
                 <Setter Property="Width" Value="220" />
                 <Setter Property="Height" Value="48" />
-                <Setter Property="FontSize" Value="26" />
+                <Setter Property="FontSize" Value="24" />
         </Style>
 
-        <Style x:Key="SmallButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-                <Setter Property="Width" Value="220" />
-                <Setter Property="Height" Value="48" />
+        <Style x:Key="F20ButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="165" />
+                <Setter Property="Height" Value="36" />
                 <Setter Property="FontSize" Value="20" />
+        </Style>
+
+        <Style x:Key="F16ButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="165" />
+                <Setter Property="Height" Value="36" />
+                <Setter Property="FontSize" Value="16" />
         </Style>
 
         <Style x:Key="DialogButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">

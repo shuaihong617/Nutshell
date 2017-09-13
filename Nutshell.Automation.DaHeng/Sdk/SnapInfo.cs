@@ -4,9 +4,9 @@ namespace Nutshell.Automation.DaHeng.Sdk
 {
 	public struct SnapInfo
 	{
-		IntPtr hcg;
-		int nDevice;
-		int nNumber;
-		IntPtr pParam;
+		public IntPtr hcg;
+                public int nDevice;
+                public int nNumber;
+                public IntPtr pParam;
 	}
 }
