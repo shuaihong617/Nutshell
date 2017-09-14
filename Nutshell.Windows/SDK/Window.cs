@@ -15,19 +15,19 @@ namespace Nutshell.Windows.SDK
 
                 public static IntPtr FindWindow(string title)
                 {
-                        return WindowAPI.FindWindow(null, title);
+                        return WindowApi.FindWindow(null, title);
                 }
 
                 public Window FindChildWindow()
                 {
-                        IntPtr handle = WindowAPI.FindWindowEx(Handle, IntPtr.Zero, null, null);
+                        IntPtr handle = WindowApi.FindWindowEx(Handle, IntPtr.Zero, null, null);
                         return handle == IntPtr.Zero ? null : new Window(handle);
                 }
 
                 public Rectangle GetWindowRectangle()
                 {
                         Rect rect = new Rect();
-                        WindowAPI.GetWindowRect(Handle, ref rect);
+                        WindowApi.GetWindowRect(Handle, ref rect);
                         return rect.ToRectangle();
                 }
         }

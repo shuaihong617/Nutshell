@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nutshell.Windows</RootNamespace>
     <AssemblyName>Nutshell.Windows</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <DontImportPostSharp>True</DontImportPostSharp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,18 +62,18 @@
   <ItemGroup>
     <Compile Include="CpuPerformance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SDK\APIs\CursorAPI.cs" />
-    <Compile Include="SDK\APIs\GDIAPI.cs" />
-    <Compile Include="SDK\APIs\MemoryAPIs.cs" />
-    <Compile Include="SDK\APIs\MemoryInformation.cs" />
-    <Compile Include="SDK\APIs\MessageAPI.cs" />
-    <Compile Include="SDK\APIs\Messages.cs" />
-    <Compile Include="SDK\APIs\MouseAPI.cs" />
-    <Compile Include="SDK\APIs\MouseEventFlag.cs" />
-    <Compile Include="SDK\APIs\Rect.cs" />
-    <Compile Include="SDK\APIs\RectExtensions.cs" />
-    <Compile Include="SDK\APIs\VirtualMouseButtons.cs" />
-    <Compile Include="SDK\APIs\WindowAPI.cs" />
+    <Compile Include="SDK\CursorAPI.cs" />
+    <Compile Include="SDK\GdiApi.cs" />
+    <Compile Include="SDK\MemoryAPIs.cs" />
+    <Compile Include="SDK\MemoryInformation.cs" />
+    <Compile Include="SDK\MessageAPI.cs" />
+    <Compile Include="SDK\Messages.cs" />
+    <Compile Include="SDK\MouseAPI.cs" />
+    <Compile Include="SDK\MouseEventFlag.cs" />
+    <Compile Include="SDK\Rect.cs" />
+    <Compile Include="SDK\RectExtensions.cs" />
+    <Compile Include="SDK\VirtualMouseButtons.cs" />
+    <Compile Include="SDK\WindowAPI.cs" />
     <Compile Include="SDK\CapturableWindow.cs" />
     <Compile Include="SDK\Window.cs" />
   </ItemGroup>

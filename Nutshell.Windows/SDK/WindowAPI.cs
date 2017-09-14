@@ -13,14 +13,14 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Nutshell.Windows.Win32API;
+using Nutshell.Windows.SDK.APIs;
 
-namespace Nutshell.Windows.SDK.APIs
+namespace Nutshell.Windows.SDK
 {
         /// <summary>
         /// 窗体API.
         /// </summary>
-        public static class WindowAPI
+        public static class WindowApi
         {
                 /// <summary>
                 /// Finds the window.

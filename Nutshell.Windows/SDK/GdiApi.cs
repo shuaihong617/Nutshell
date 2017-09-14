@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using Nutshell.Windows.Win32API;
 
-namespace Nutshell.Windows.SDK.APIs
+namespace Nutshell.Windows.SDK
 {
-        public static class GDIAPI
+        public static class GdiApi
         {
                 [DllImport("gdi32.dll",SetLastError = true)]
                 public static extern IntPtr CreatePen(int nPenStyle, int nWidth, int crColor);
 
                 [DllImport("gdi32.dll", SetLastError = true)]
-                public static extern int BitBlt(IntPtr hDestDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC,
+                public static extern int BitBlt(IntPtr targetDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC,
                         int xSrc, int ySrc, CopyPixelOperation operation);
 
                 [DllImport("gdi32.dll")]

@@ -30,14 +30,14 @@ namespace Nutshell.Windows.SDK
                         Trace.Assert(_memoryDC == IntPtr.Zero);
                         Trace.Assert(MemoryBitmapHandle == IntPtr.Zero);
                         
-                        _windowDC = WindowAPI.GetWindowDC(Handle);
-                        _memoryDC = GDIAPI.CreateCompatibleDC(_windowDC);
+                        _windowDC = WindowApi.GetWindowDC(Handle);
+                        _memoryDC = GdiApi.CreateCompatibleDC(_windowDC);
 
                         var rect = GetWindowRectangle();
-                        MemoryBitmapHandle = GDIAPI.CreateCompatibleBitmap(_windowDC, rect.Width,
+                        MemoryBitmapHandle = GdiApi.CreateCompatibleBitmap(_windowDC, rect.Width,
                                         rect.Height);
 
-                        GDIAPI.SelectObject(_memoryDC, MemoryBitmapHandle);
+                        GdiApi.SelectObject(_memoryDC, MemoryBitmapHandle);
 
                         IsCaptureEnable = true;
                 }
@@ -52,19 +52,19 @@ namespace Nutshell.Windows.SDK
 
                         //UpdateRectangle();
 
-                        WindowAPI.PrintWindow(Handle, _memoryDC, 0);
+                        WindowApi.PrintWindow(Handle, _memoryDC, 0);
                 }
 
                 public void ClearCaptureEnvironment()
                 {
                         IsCaptureEnable = false;
 
-                        GDIAPI.DeleteObject(MemoryBitmapHandle);
+                        GdiApi.DeleteObject(MemoryBitmapHandle);
 
-                        GDIAPI.DeleteDC(_memoryDC);
+                        GdiApi.DeleteDC(_memoryDC);
 
-                        GDIAPI.ReleaseDC(Handle, _windowDC);
-                        GDIAPI.DeleteDC(_windowDC);
+                        GdiApi.ReleaseDC(Handle, _windowDC);
+                        GdiApi.DeleteDC(_windowDC);
                 }
 
 
@@ -82,7 +82,7 @@ namespace Nutshell.Windows.SDK
                         //Win32API.SendMessage(WindowHandle, Win32API.WM_LBUTTONUP, Win32API.MK_LBUTTON,
                         //        Win32API.MAKELONG(x, y));
                         //var r = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
-                        CursorAPI.SetCursorPos(x, y);
+                        CursorApi.SetCursorPos(x, y);
                         //Win32API.mouse_event(MouseEventFlag.Move  | MouseEventFlag.Absolute, x * 65535 / r.Width, y * 65535 / r.Height, 0, 0);//移动到需要点击的位置
                         MouseAPI.mouse_event(MouseEventFlag.LeftDown | MouseEventFlag.Absolute, 0, 0, 0, 0); //点击
                         MouseAPI.mouse_event(MouseEventFlag.LeftUp | MouseEventFlag.Absolute, 0, 0, 0, 0); //抬起
@@ -90,7 +90,7 @@ namespace Nutshell.Windows.SDK
 
                 public void SendLeftMouseClick(Point point)
                 {
-                        WindowAPI.SetForegroundWindow(Handle);
+                        WindowApi.SetForegroundWindow(Handle);
                         SendLeftMouseClick(point.X, point.Y);
                 }
 

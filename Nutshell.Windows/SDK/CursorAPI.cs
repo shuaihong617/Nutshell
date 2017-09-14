@@ -14,12 +14,12 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 
-namespace Nutshell.Windows.SDK.APIs
+namespace Nutshell.Windows.SDK
 {
         /// <summary>
         /// 光标API.
         /// </summary>
-        public static class CursorAPI
+        public static class CursorApi
         {
                 /// <summary>
                 /// Gets the cursor position.
