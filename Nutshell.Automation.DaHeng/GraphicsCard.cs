@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using Nutshell.Automation.DaHeng.Models;
 using Nutshell.Automation.DaHeng.Sdk;
@@ -10,7 +8,7 @@ using Nutshell.Storaging;
 
 namespace Nutshell.Automation.DaHeng
 {
-	public class GraphicsCard: StorableObject
+	public unsafe class GraphicsCard: StorableObject
         {
                 public GraphicsCard()
                         :this(1)
@@ -21,7 +19,10 @@ namespace Nutshell.Automation.DaHeng
 	        {
 	                Index = index;
 
-	                Buffer = Marshal.AllocHGlobal(FrameSize);
+	                CaptureFrameBuffer = Marshal.AllocHGlobal(FrameBufferSize);
+
+                        EvenFieldBuffer = Marshal.AllocHGlobal(FieldBufferSize);
+                        OddFieldBuffer = Marshal.AllocHGlobal(FieldBufferSize);
 	        }
 
 	        #region 常量
@@ -30,9 +31,11 @@ namespace Nutshell.Automation.DaHeng
 
 	        public const int Height = 576;
 
-	        private const int FrameSize = Width*Height;
+	        public const int FrameBufferSize = Width*Height;
 
-	        #endregion
+                public const int FieldBufferSize = Width * Height /2;
+
+                #endregion
 
 
                 private IntPtr _cardHandle;
@@ -41,7 +44,10 @@ namespace Nutshell.Automation.DaHeng
 
 	        private IntPtr _staticMemoryPointer;
 
-	        public IntPtr Buffer { get; private set; }
+	        public IntPtr CaptureFrameBuffer { get; private set; }
+
+                public IntPtr EvenFieldBuffer { get; private set; }
+                public IntPtr OddFieldBuffer { get; private set; }
 
                 public int Index { get; private set; }
 
@@ -108,7 +114,7 @@ namespace Nutshell.Automation.DaHeng
                 /// <summary>
                 /// 采集一帧
                 /// </summary>
-                public unsafe bool CaptureOneFrame()
+                public bool CaptureOneFrame()
 	        {
                         //采集图像
                         ErrorCode errorCode = OfficalApi.SnapShot(_cardHandle,0,0,true,1);
@@ -119,7 +125,7 @@ namespace Nutshell.Automation.DaHeng
                         }
 
                         errorCode = OfficalApi.StaticMemLock(0,
-                                FrameSize,
+                                FrameBufferSize,
                                 ref _staticMemoryHandle,
                                 ref _staticMemoryPointer);
 
@@ -131,9 +137,9 @@ namespace Nutshell.Automation.DaHeng
 
                         //传输到缓冲区
                         var sourcePtr = (byte*) _staticMemoryPointer.ToPointer();
-                        var targetPtr = (byte*)Buffer.ToPointer();
+                        var targetPtr = (byte*)CaptureFrameBuffer.ToPointer();
 
-                        for (int i = 0; i < FrameSize; i++)
+                        for (int i = 0; i < FrameBufferSize; i++)
                         {
                                 *targetPtr++ = *sourcePtr++;
                         }
@@ -146,6 +152,36 @@ namespace Nutshell.Automation.DaHeng
                         }
 
                         return true;
+                }
+
+	        protected void UpdateEvenFieldBuffer()
+	        {
+                        byte* sourcePtr = (byte*)CaptureFrameBuffer.ToPointer();
+                        byte* targetPtr = (byte*)EvenFieldBuffer.ToPointer();
+
+                        for (int y = 0; y < Height / 2; y++)
+                        {
+                                for (int x = 0; x < Width; x++)
+                                {
+                                        *targetPtr++ = *sourcePtr++;
+                                }
+                                sourcePtr += Width;
+                        }
+                }
+
+                protected void UpdateOddFieldBuffer()
+                {
+                        byte* sourcePtr = (byte*)CaptureFrameBuffer.ToPointer() + Width;
+                        byte* targetPtr = (byte*)OddFieldBuffer.ToPointer();
+
+                        for (int y = 0; y < Height / 2; y++)
+                        {
+                                for (int x = 0; x < Width; x++)
+                                {
+                                        *targetPtr++ = *sourcePtr++;
+                                }
+                                sourcePtr += Width;
+                        }
                 }
 
 	        public void StopConnect()

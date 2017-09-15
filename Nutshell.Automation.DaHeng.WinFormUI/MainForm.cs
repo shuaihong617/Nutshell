@@ -88,9 +88,9 @@ namespace Nutshell.Automation.DaHeng.WinFormUI
                                 var bmpData =
                                     _bitmap.LockBits(_rect, ImageLockMode.ReadWrite, _bitmap.PixelFormat);
 
-                                var sourcePtr = (byte*)_graphicsCard.Buffer.ToPointer();
+                                var sourcePtr = (byte*)_graphicsCard.CaptureFrameBuffer.ToPointer();
                                 var targetPtr = (byte*)bmpData.Scan0.ToPointer();
-                                for (int i = 0; i < GraphicsCard.FrameSize; i++)
+                                for (int i = 0; i < GraphicsCard.FieldBufferSize; i++)
                                 {
                                        var t  = *sourcePtr++;
 
