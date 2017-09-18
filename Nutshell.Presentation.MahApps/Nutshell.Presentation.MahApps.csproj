@@ -78,14 +78,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Styles\MetroFlatButtonStyle.xaml">
+    <Resource Include="Styles\MetroFlatButtonStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Styles\MetroWindowStyle.xaml">
+    </Resource>
+    <Resource Include="Styles\MetroWindowStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

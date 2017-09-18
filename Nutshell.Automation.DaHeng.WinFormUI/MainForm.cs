@@ -78,7 +78,7 @@ namespace Nutshell.Automation.DaHeng.WinFormUI
                                 }
 
                                 //采集
-                                var isSuccess = _graphicsCard.CaptureOneFrame();
+                                var isSuccess = _graphicsCard.CaptureOneFrameSync();
                                 if (!isSuccess)
                                 {
                                         return;

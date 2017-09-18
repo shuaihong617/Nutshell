@@ -19,7 +19,7 @@ namespace Nutshell.Aspects.Locations.Propertys
                         var i = args.Instance as NotifyPropertyValueChangedObject;
                         if (i == null)
                         {
-                                throw new ArgumentException("必须为IdentityObject或其子类");
+                                throw new ArgumentException("必须为NotifyPropertyValueChangedObject或其子类");
                         }
 
                         i.OnPropertyValueChanged(args.LocationName);

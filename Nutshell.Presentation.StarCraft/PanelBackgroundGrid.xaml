@@ -16,55 +16,55 @@
 
                 <Grid Grid.Column="0" Grid.Row="0">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel1.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel1.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="0">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel2.png" />
+                                <ImageBrush ImageSource="Resources/Images/Panel2.png" />
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="2" Grid.Row="0">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel3.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel3.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="1">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel4.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel4.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="1">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel5.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel5.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="2" Grid.Row="1">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel6.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel6.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="0" Grid.Row="2">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel7.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel7.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="1" Grid.Row="2">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel8.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel8.png"/>
                         </Grid.Background>
                 </Grid>
 
                 <Grid Grid.Column="2" Grid.Row="2">
                         <Grid.Background>
-                                <ImageBrush ImageSource="pack://application:,,,/Resources/Images/Panel9.png"/>
+                                <ImageBrush ImageSource="Resources/Images/Panel9.png"/>
                         </Grid.Background>
                 </Grid>
         </Grid>

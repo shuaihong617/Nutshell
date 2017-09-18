@@ -125,6 +125,10 @@ namespace Nutshell.Automation.DaHeng.Sdk
                 [DllImport("CGVideo.dll",EntryPoint = "CGAdjustVideo")]
 		public static extern ErrorCode AdjustVideo(IntPtr handle, VideoAdjustMode param, byte value);
 
+
+                [DllImport("CGVideo.dll", EntryPoint = "CGEnableVideoMirror")]
+                public static extern ErrorCode SetVideoMirror(IntPtr handle, MirrorType mirrorType, bool enable);
+
                 /// <summary>
                 /// Statics the memory lock.
                 /// </summary>
@@ -155,7 +159,7 @@ namespace Nutshell.Automation.DaHeng.Sdk
                 /// <param name="wSum">The w sum.</param>
                 /// <returns>ErrorCode.</returns>
                 [DllImport("CGVideo.dll",EntryPoint = "CGSnapShot")]
-		public static extern ErrorCode SnapShot(IntPtr handle, int dwMemOffset, short wIntervSyncs, bool bInterline, short wSum);
+		public static extern ErrorCode CaptureSync(IntPtr handle, int dwMemOffset, short wIntervSyncs, bool bInterline, short wSum);
 
                 /// <summary>
                 /// Starts the snap.
@@ -163,27 +167,27 @@ namespace Nutshell.Automation.DaHeng.Sdk
                 /// <param name="handle">The handle.</param>
                 /// <param name="dwMemOffset">if set to <c>true</c> [dw memory offset].</param>
                 /// <param name="bInterline">if set to <c>true</c> [b interline].</param>
-                /// <param name="wSum">The w sum.</param>
+                /// <param name="sum">The w sum.</param>
                 /// <returns>ErrorCode.</returns>
-                [DllImport("CGVideo.dll")]
-		public static extern ErrorCode StartSnap(IntPtr handle, bool dwMemOffset, bool bInterline, short wSum);
+                [DllImport("CGVideo.dll", EntryPoint = "CGStartSnap")]
+		public static extern ErrorCode StartCaptureAsync(IntPtr handle, int dwMemOffset, bool bInterline, short sum);
 
                 /// <summary>
                 /// Gets the snapping number.
                 /// </summary>
                 /// <param name="handle">The handle.</param>
-                /// <param name="pNumber">The p number.</param>
+                /// <param name="number">The p number.</param>
                 /// <returns>ErrorCode.</returns>
-                [DllImport("CGVideo.dll")]
-		public static extern ErrorCode GetSnappingNumber(IntPtr handle, IntPtr pNumber);
+                [DllImport("CGVideo.dll", EntryPoint = "CGGetSnappingNumber")]
+		public static extern ErrorCode GetSnappingNumber(IntPtr handle, ref  int number);
 
                 /// <summary>
                 /// Stops the snap.
                 /// </summary>
                 /// <param name="handle">The handle.</param>
                 /// <returns>ErrorCode.</returns>
-                [DllImport("CGVideo.dll")]
-		public static extern ErrorCode StopSnap(IntPtr handle);
+                [DllImport("CGVideo.dll", EntryPoint = "CGStopSnap")]
+		public static extern ErrorCode StopCaptureAsync(IntPtr handle);
 
 
                 /// <summary>

@@ -35,6 +35,8 @@ namespace Nutshell.Automation.DaHeng
 
                 public const int FieldBufferSize = Width * Height /2;
 
+	        private const int AsyncFramesCount = 8;
+
                 #endregion
 
 
@@ -50,6 +52,8 @@ namespace Nutshell.Automation.DaHeng
                 public IntPtr OddFieldBuffer { get; private set; }
 
                 public int Index { get; private set; }
+
+                
 
 	        public override void Load(IIdentityModel model)
 	        {
@@ -97,27 +101,80 @@ namespace Nutshell.Automation.DaHeng
                 /// <summary>
                 /// 开始同步采集
                 /// </summary>
-                public void StartCaptureSync()
-	        {
-	                
-	        }
+                public void StartCaptureAsync()
+                {
+                        OfficalApi.StartCaptureAsync(_cardHandle, 0, true, AsyncFramesCount);
+                }
 
                 /// <summary>
                 /// 停止同步采集
                 /// </summary>
-                public void StopCaptureSync()
+                public void StopCaptureAsync()
+                {
+                        OfficalApi.StopCaptureAsync(_cardHandle);
+                }
+
+	        public bool CaptureOneFrameAsync()
 	        {
-	                
-	        }
+	                int fieldNumber = -1;
+	                var errorCode = OfficalApi.GetSnappingNumber(_cardHandle,ref fieldNumber);
+                        if (errorCode != ErrorCode.CG_OK)
+                        {
+                                return false;
+                                //throw gcnew InvalidOperationException("采集卡采集图像失败");
+                        }
+
+	                if (fieldNumber < 0)
+	                {
+	                        return false;
+	                }
+
+	                int frameNumber = fieldNumber/2 -1;
+	                if (frameNumber == -1)
+	                {
+	                        frameNumber = AsyncFramesCount - 1;
+	                }
+
+                        //Trace.WriteLine(DateTime.Now.ToString("yyyy年MM月dd日 HH:mm:ss:fff") + "     " + frameNumber);
+
+                        errorCode = OfficalApi.StaticMemLock(frameNumber * FrameBufferSize,
+                                FrameBufferSize,
+                                ref _staticMemoryHandle,
+                                ref _staticMemoryPointer);
+
+                        if (errorCode != ErrorCode.CG_OK)
+                        {
+                                return false;
+                                //throw gcnew InvalidOperationException("采集卡锁定图像失败");
+                        }
+
+                        //传输到缓冲区
+                        var sourcePtr = (byte*)_staticMemoryPointer.ToPointer();
+                        var targetPtr = (byte*)CaptureFrameBuffer.ToPointer();
+
+                        for (int i = 0; i < FrameBufferSize; i++)
+                        {
+                                *targetPtr++ = *sourcePtr++;
+                        }
+
+                        errorCode = OfficalApi.StaticMemUnlock(_staticMemoryHandle);
+                        if (errorCode != ErrorCode.CG_OK)
+                        {
+                                return false;
+                                //throw gcnew InvalidOperationException("采集卡解锁图像失败");
+                        }
+
+                        return true;
+                }
 
 
                 /// <summary>
                 /// 采集一帧
                 /// </summary>
-                public bool CaptureOneFrame()
+                public bool CaptureOneFrameSync()
 	        {
                         //采集图像
-                        ErrorCode errorCode = OfficalApi.SnapShot(_cardHandle,0,0,true,1);
+                        ErrorCode errorCode = OfficalApi.CaptureSync(_cardHandle,0,0,true,1);
                         if (errorCode != ErrorCode.CG_OK)
                         {
                                 return false;
@@ -205,6 +262,12 @@ namespace Nutshell.Automation.DaHeng
                                 throw new InvalidOperationException("采集卡设置视频源失败");
                         }
                 }
+
+	        public void SetVideoMirror(MirrorType mirrorType, bool enable)
+	        {
+	                Debug.Assert(_cardHandle != IntPtr.Zero);
+	                OfficalApi.SetVideoMirror(_cardHandle, mirrorType, enable);
+	        }
 
                 //void UpdateSnapingFrameNumber();
 
