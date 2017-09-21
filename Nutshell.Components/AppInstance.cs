@@ -16,6 +16,7 @@ using System.Diagnostics;
 using Nutshell.Aspects.Locations.Contracts;
 using Nutshell.Components.Models;
 using Nutshell.Data.Models;
+using Nutshell.Extensions;
 using Nutshell.IO.Aspects.Locations.Contracts;
 using Nutshell.Serializing.Xml;
 using Nutshell.Storaging;
@@ -29,13 +30,24 @@ namespace Nutshell.Components
         public class AppInstance : StorableObject
         {
                 public AppInstance()
-                        :base(String.Empty)
+                        :this(String.Empty)
                 {
                 }
 
                 public AppInstance(string id)
-                        : base(id)
+                        : this(id, String.Empty, "1.0.0.1")
                 {
+                }
+
+                public AppInstance(string id, string name, string version, string title="", string company="武汉九鼎", string copyright = "武汉九鼎")
+                        :base(id)
+                {
+                        
+                        Name = name.IsNotNullOrEmpty()? name:GetType().ToString();
+                        Version = version;
+                        Title = title.IsNotNullOrEmpty()?title:GetType().ToString();
+                        Company = company;
+                        CopyRight = copyright;
                 }
 
                 /// <summary>
@@ -49,8 +61,8 @@ namespace Nutshell.Components
                 ///         获取版本
                 /// </summary>
                 /// <value>版本</value>
-                [MustNotEqualEmptyVersion]
-                public Version Version { get; private set; }
+                [MustNotEqualNullOrEmpty]
+                public string Version { get; set; }
 
                 /// <summary>
                 ///         获取应用程序标题
@@ -83,7 +95,6 @@ namespace Nutshell.Components
                         Trace.Assert(subMode != null);
 
                         Name = subMode.Name;
-                        Version = Version.Parse(subMode.Version);
                         Title = subMode.Title;
                         Company = subMode.Company;
                         CopyRight = subMode.CopyRight;

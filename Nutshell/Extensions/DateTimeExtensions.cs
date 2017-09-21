@@ -20,6 +20,7 @@ namespace Nutshell.Extensions
         /// </summary>
         public static class DateTimeExtensions
         {
+                public const string LongFileNameFormat = "yyyy年MM月dd日 HH-mm-ss";
                 /// <summary>
                 ///         The empty date time
                 /// </summary>
@@ -28,26 +29,26 @@ namespace Nutshell.Extensions
                 /// <summary>
                 ///         To the long string ex.
                 /// </summary>
-                /// <param name="dt">The dt.</param>
+                /// <param name="time">The dt.</param>
                 /// <returns>String.</returns>
-                public static DateTime GetThisHourLastSecond(this DateTime dt)
+                public static DateTime GetThisHourLastSecond(this DateTime time)
                 {
-                        return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, 59, 59);
+                        return new DateTime(time.Year, time.Month, time.Day, time.Hour, 59, 59);
                 }
 
                 /// <summary>
                 ///         To the long string ex.
                 /// </summary>
-                /// <param name="dt">The dt.</param>
+                /// <param name="time">The dt.</param>
                 /// <returns>String.</returns>
-                public static String ToChineseLongString(this DateTime dt)
+                public static String ToChineseLongString(this DateTime time)
                 {
-                        return dt == Empty ? string.Empty : dt.ToString("yyyy年MM月dd日 HH:mm:ss");
+                        return time == Empty ? string.Empty : time.ToString("yyyy年MM月dd日 HH:mm:ss");
                 }
 
-                public static String ToChineseLongFileName(this DateTime dt)
+                public static String ToChineseLongFileName(this DateTime time)
                 {
-                        return dt.ToString("yyyy年MM月dd日 HH_mm_ss");
+                        return time.ToString("yyyy年MM月dd日 HH-mm-ss");
                 }
 
                 /// <summary>

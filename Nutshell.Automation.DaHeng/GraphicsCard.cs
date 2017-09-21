@@ -269,18 +269,14 @@ namespace Nutshell.Automation.DaHeng
 	                OfficalApi.SetVideoMirror(_cardHandle, mirrorType, enable);
 	        }
 
-                //void UpdateSnapingFrameNumber();
-
-                //void TransformSnapShotData(byte* imageBuffer);
-
-                public void SetBrightness(int brightness)
+                public void SetBrightness(byte brightness)
 	        {
-                        OfficalApi.AdjustVideo(_cardHandle, VideoAdjustMode.Brightness, (byte)brightness);
+                        OfficalApi.AdjustVideo(_cardHandle, VideoAdjustMode.Brightness, brightness);
                 }
 
-                public void SetContrast(int constrast)
+                public void SetContrast(byte constrast)
 	        {
-                        OfficalApi.AdjustVideo(_cardHandle, VideoAdjustMode.Contrast, (byte)constrast);
+                        OfficalApi.AdjustVideo(_cardHandle, VideoAdjustMode.Contrast, constrast);
                 }
         }
 }

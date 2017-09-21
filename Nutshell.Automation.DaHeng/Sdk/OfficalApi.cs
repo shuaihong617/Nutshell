@@ -204,7 +204,7 @@ namespace Nutshell.Automation.DaHeng.Sdk
                 /// </summary>
                 /// <param name="pNumber">The p number.</param>
                 /// <returns>ErrorCode.</returns>
-                [DllImport("CGVideo.dll")]
+                [DllImport("CGVideo.dll", EntryPoint = "CGGetCardTotal")]
 		public static extern ErrorCode GetCardTotal(ref int pNumber);
 
 

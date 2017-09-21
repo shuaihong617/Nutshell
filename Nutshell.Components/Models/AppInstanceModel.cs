@@ -33,14 +33,6 @@ namespace Nutshell.Components.Models
                 public string Name { get; set; }
 
 		/// <summary>
-		///         获取或设置版本
-		/// </summary>
-		/// <value>版本</value>
-		[MustNotEqualNullOrEmpty]
-                [XmlAttribute]
-                public string Version { get; set; }
-
-		/// <summary>
 		///         获取或设置应用程序标题
 		/// </summary>
 		/// <value>应用程序标题</value>
