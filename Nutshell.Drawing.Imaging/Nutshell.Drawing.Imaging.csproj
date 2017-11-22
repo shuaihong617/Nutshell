@@ -89,10 +89,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nutshell.Drawing.Shapes\Nutshell.Drawing.Shapes.csproj">
-      <Project>{f86ed66f-e231-44d5-a33d-bd29663a7c57}</Project>
-      <Name>Nutshell.Drawing.Shapes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell\Nutshell.csproj">
       <Project>{C394AAD7-06A2-429B-A3B8-AC531EF77DE1}</Project>
       <Name>Nutshell</Name>

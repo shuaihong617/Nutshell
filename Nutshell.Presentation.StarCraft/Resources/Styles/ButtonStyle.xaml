@@ -56,9 +56,15 @@
                 <Setter Property="FontSize" Value="20" />
         </Style>
 
+        <Style x:Key="F18ButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Width" Value="150" />
+                <Setter Property="Height" Value="33" />
+                <Setter Property="FontSize" Value="18" />
+        </Style>
+
         <Style x:Key="F16ButtonStyle" TargetType="Button" BasedOn="{StaticResource ButtonStyle}">
-                <Setter Property="Width" Value="165" />
-                <Setter Property="Height" Value="36" />
+                <Setter Property="Width" Value="137" />
+                <Setter Property="Height" Value="30" />
                 <Setter Property="FontSize" Value="16" />
         </Style>
 

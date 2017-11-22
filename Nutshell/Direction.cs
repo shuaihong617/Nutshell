@@ -19,7 +19,7 @@ namespace Nutshell
         /// 方向枚举
         /// </summary>
         [Flags]
-        public enum Directions
+        public enum Direction
         {
                 /// <summary>
                 /// 未知

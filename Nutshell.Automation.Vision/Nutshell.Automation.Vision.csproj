@@ -183,10 +183,6 @@
       <Project>{5e9ec531-b6ea-4ba9-a3a5-dd40436860d7}</Project>
       <Name>Nutshell.Drawing.Imaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Nutshell.Drawing.Shapes\Nutshell.Drawing.Shapes.csproj">
-      <Project>{F86ED66F-E231-44D5-A33D-BD29663A7C57}</Project>
-      <Name>Nutshell.Drawing.Shapes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Nutshell.Drawing\Nutshell.Drawing.csproj">
       <Project>{4c1af121-a3f6-4c2b-ab35-986d41047e9e}</Project>
       <Name>Nutshell.Drawing</Name>

@@ -157,6 +157,8 @@ namespace Nutshell.Hikvision.DigitalVideo
                         var subModel = model as DigitalVideoDeviceModel;
                         Trace.Assert(subModel != null);
 
+
+
                         Authorization.Load(subModel.DigitalVideoAuthorizationModel);
                 }
 

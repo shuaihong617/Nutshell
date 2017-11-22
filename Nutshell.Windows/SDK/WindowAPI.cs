@@ -69,7 +69,7 @@ namespace Nutshell.Windows.SDK
                 public static extern bool PrintWindow(
                         IntPtr hwnd, // Window to copy,Handle to the window that will be copied.  
                         IntPtr hdcBlt, // HDC to print into,Handle to the device context.  
-                        UInt32 nFlags // Optional flags,Specifies the drawing options. It can be one of the following values.  
+                        uint nFlags // Optional flags,Specifies the drawing options. It can be one of the following values.  
                         );
         }
 }

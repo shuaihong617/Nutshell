@@ -23,7 +23,6 @@ namespace Nutshell.Serializing.Json.Tests
                                 Company = "AppInstanceModel.Compan",
                                 Name = "AppInstanceModel.Name",
                                 Title = "AppInstanceModel.Title",
-                                Version = "AppInstanceModel.Version",
                                 CopyRight = "AppInstanceModel.CopyRight"
                         };
 

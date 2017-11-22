@@ -15,61 +15,61 @@ namespace Nutshell.Hikvision.MachineVision.SDK
 
                 #endregion 常量
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_EnumDevices")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_EnumDevices")]
                 public static extern ErrorCode EnumDevices(DeviceType nTLayerType, ref DeviceInformationCollection deviceInfoCollection);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_IsDeviceAccessible")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_IsDeviceAccessible")]
                 public static extern bool IsDeviceAccessible(IntPtr handle, ref DeviceInformation pstDevInfo,
                         AccessMode accessMode);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_CreateHandle")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_CreateHandle")]
                 public static extern ErrorCode CreateHandle(ref IntPtr handle, ref DeviceInformation pstDevInfo);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_DestroyHandle")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_DestroyHandle")]
                 public static extern ErrorCode DestroyHandle(IntPtr handle);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_OpenDevice")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_OpenDevice")]
                 public static extern ErrorCode OpenDevice(IntPtr handle, AccessMode accessMode, ushort switchoverKey = 0);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_CloseDevice")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_CloseDevice")]
                 public static extern ErrorCode CloseDevice(IntPtr handle);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_StartGrabbing")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_StartGrabbing")]
                 public static extern ErrorCode StartGrabbing(IntPtr handle);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_StopGrabbing")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_StopGrabbing")]
                 public static extern ErrorCode StopGrabbing(IntPtr handle);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_GetOneFrame")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_GetOneFrame")]
                 public static extern ErrorCode GetOneFrame(IntPtr handle, IntPtr pData, int nDataSize,
                         ref FrameOutInformation pFrameInfo);
 
                 #region 万能接口
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_GetIntValue")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_GetIntValue")]
                 public static extern ErrorCode GetIntValue(IntPtr handle, string command, ref Int32Value value);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_SetIntValue")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_SetIntValue")]
                 public static extern ErrorCode SetIntValue(IntPtr handle, string command, uint value);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_GetEnumValue")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_GetEnumValue")]
                 public static extern ErrorCode GetEnumValue(IntPtr handle, string command, ref EnumValue value);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_SetEnumValue")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_SetEnumValue")]
                 public static extern ErrorCode SetEnumValue(IntPtr handle, string command, uint value);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_SetCommandValue")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_SetCommandValue")]
                 public static extern ErrorCode SetCommandValue(IntPtr handle, string command);
 
                 #endregion 万能接口
 
                 #region GIGE独有接口
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_GIGE_GetGevSCPSPacketSize")]
-                public static extern ErrorCode GetStreamChannelPacketSize(IntPtr handle, ref Int32Value value);
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_GIGE_GetGevSCPSPacketSize")]
+                internal static extern ErrorCode GetStreamChannelPacketSize(IntPtr handle, ref Int32Value value);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_GIGE_SetGevSCPSPacketSize")]
-                public static extern ErrorCode SetStreamChannelPacketSize(IntPtr handle, uint value);
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_GIGE_SetGevSCPSPacketSize")]
+                internal static extern ErrorCode SetStreamChannelPacketSize(IntPtr handle, uint value);
 
                 #endregion GIGE独有接口
 
@@ -77,8 +77,8 @@ namespace Nutshell.Hikvision.MachineVision.SDK
 
                 public delegate void ExceptionCallbackFunction(ExceptionType exceptionType, IntPtr user);
 
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                public static extern bool RegisterExceptionCallBack(IntPtr handle,
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
+                internal static extern bool RegisterExceptionCallBack(IntPtr handle,
                         ExceptionCallbackFunction callBack,
                         IntPtr user);
 
@@ -94,7 +94,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <param name="address">寄存器地址</param>
                 /// <param name="length">读取长度（字节）</param>
                 /// <returns>错误码，成功返回MV_OK</returns>
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_ReadMemory")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_ReadMemory")]
                 public static extern ErrorCode ReadMemory(IntPtr handle,
                         IntPtr buffer,
                         long address,
@@ -108,7 +108,7 @@ namespace Nutshell.Hikvision.MachineVision.SDK
                 /// <param name="address">寄存器地址</param>
                 /// <param name="length">写入长度（字节）</param>
                 /// <returns>错误码，成功返回MV_OK</returns>
-                [DllImport(@"MachineVision\MvCameraControl.dll", EntryPoint = "MV_CC_WriteMemory")]
+                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_WriteMemory")]
                 public static extern ErrorCode WriteMemory(IntPtr handle,
                         IntPtr buffer,
                         long address,
