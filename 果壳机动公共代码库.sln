@@ -209,6 +209,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.DaHeng"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Automation.DaHeng.WinFormUI", "Nutshell.Automation.DaHeng.WinFormUI\Nutshell.Automation.DaHeng.WinFormUI.csproj", "{F5FD17B0-7B22-4E49-8A25-06CA487DFC3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutshell.Hikvision.SmartVision", "Nutshell.Hikvision.SmartVision\Nutshell.Hikvision.SmartVision.csproj", "{E4585708-9AA9-4555-A778-4A2B2E48C9C0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "智能视觉", "智能视觉", "{5B869CF2-FDC3-47D3-9E75-2DE6AD2B9A17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1289,6 +1293,22 @@ Global
 		{F5FD17B0-7B22-4E49-8A25-06CA487DFC3A}.Release|Win32.Build.0 = Release|Any CPU
 		{F5FD17B0-7B22-4E49-8A25-06CA487DFC3A}.Release|x86.ActiveCfg = Release|Any CPU
 		{F5FD17B0-7B22-4E49-8A25-06CA487DFC3A}.Release|x86.Build.0 = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|Win32.Build.0 = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Debug|x86.Build.0 = Debug|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|Win32.ActiveCfg = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|Win32.Build.0 = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1380,5 +1400,7 @@ Global
 		{C3E51C29-0130-4235-92D3-6257D28C0AD8} = {519B6103-68E2-4545-9E15-911B7A245A0F}
 		{9E04F329-163F-4FA3-AA2D-3AED85B3517D} = {074ACF2A-5645-441C-8217-5A1102C3E584}
 		{F5FD17B0-7B22-4E49-8A25-06CA487DFC3A} = {074ACF2A-5645-441C-8217-5A1102C3E584}
+		{E4585708-9AA9-4555-A778-4A2B2E48C9C0} = {5B869CF2-FDC3-47D3-9E75-2DE6AD2B9A17}
+		{5B869CF2-FDC3-47D3-9E75-2DE6AD2B9A17} = {5F88E9F0-8EF6-425E-AF2C-3E5BDF15D4F6}
 	EndGlobalSection
 EndGlobal

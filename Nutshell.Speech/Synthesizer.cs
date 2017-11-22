@@ -83,13 +83,13 @@ namespace Nutshell.Speech
                 [NotifyPropertyValueChanged]
                 public OutputMode OutputMode { get; set; }
 
-                public void Load(IIdentityModel model)
+                public override void Load(IIdentityModel model)
                 {
                         var subModel = model as SynthesizerModel;
                         Trace.Assert(subModel != null);
                 }
 
-                public void Save(SynthesizerModel model)
+                public override void Save(IIdentityModel model)
                 {
                         throw new NotImplementedException();
                 }
