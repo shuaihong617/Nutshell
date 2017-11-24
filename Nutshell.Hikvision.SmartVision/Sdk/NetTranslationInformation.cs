@@ -1,40 +1,45 @@
 ﻿// ***********************************************************************
 // 作者           : 阿尔卑斯 shuaihong617@qq.com
-// 创建           : 2017-11-23
+// 创建           : 2017-11-24
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2017-11-23
+// 日期           : 2017-11-24
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
 // <summary>
 // </summary>
 // ***********************************************************************
+
+using System.Runtime.InteropServices;
+
 namespace Nutshell.Hikvision.SmartVision.Sdk
 {
         /// <summary>
-        /// 图像文件格式
+        /// Struct _MVSC_NETTRANS_INFO_
         /// </summary>
-        public enum ImageType
+        public struct NetTranslationInformation
         {
                 /// <summary>
-                /// 未定义
+                /// GVSP通道接收的数据大小
                 /// </summary>
-                Undefined = 0,
-
+                public long GvspReceiveDataSize; 
                 /// <summary>
-                /// BMP位图格式
+                /// GVSP通道抛出的帧数
                 /// </summary>
-                Bmp = 1,
-
+                public int GvspThrowFrameCount;
                 /// <summary>
-                /// JPG压缩格式
+                /// GVMP通道接收的数据大小
                 /// </summary>
-                Jpg = 2,
-
+                public long GvmpReceiveDataSize;
                 /// <summary>
-                /// 8位原始位图格式
+                /// GVMP通道抛出的帧数
                 /// </summary>
-                Mono8 = 3
+                public int GvmpThrowFrameCount;
+                /// <summary>
+                /// 保留
+                /// </summary>
+                [MarshalAs(UnmanagedType.U4, SizeConst = 24)]
+                public uint[] Reserved;  
         }
 }

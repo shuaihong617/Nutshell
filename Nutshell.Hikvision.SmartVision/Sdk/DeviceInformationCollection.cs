@@ -11,26 +11,24 @@
 // </summary>
 // ***********************************************************************
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace Nutshell.Hikvision.SmartVision.Sdk
 {
         /// <summary>
-        /// 设备信息集合
+        ///         设备信息集合
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct DeviceInformationCollection
         {
                 /// <summary>
-                /// 在线设备数量
+                ///         在线设备数量
                 /// </summary>
                 public uint OnlineDevicesCount;
 
                 /// <summary>
-                /// 设备信息数组
+                ///         设备信息数组
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-                public DeviceInfomation[] DeviceInfomations;     
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)] public DeviceInfomation[] DeviceInfomations;
         }
 }

@@ -3,33 +3,38 @@
 // 创建           : 2017-11-22
 //
 // 编辑           : 阿尔卑斯 shuaihong617@qq.com
-// 日期           : 2017-11-22
+// 日期           : 2017-11-23
 // 内容           : 创建文件
 // ***********************************************************************
 // Copyright (c) 果壳机动----有金属的地方就有果壳. All rights reserved.
 // <summary>
 // </summary>
 // ***********************************************************************
+
+using System.Runtime.InteropServices;
+
 namespace Nutshell.Hikvision.SmartVision.Sdk
 {
         /// <summary>
-        /// 条码输出通讯模式枚举
+        ///         条码识别结果结构体
         /// </summary>
-        public enum BarcodeOutputCommunicationMode
+        [StructLayout(LayoutKind.Sequential)]
+        public struct CodeRecognitionResultCollection
         {
                 /// <summary>
-                /// 官方SmartSDK开发包调用模式
+                ///         已识别条码数量
                 /// </summary>
-                SmartSdk = 1,
-                
-                /// <summary>
-                /// Tcp指定端口发送模式
-                /// </summary>
-                TcpIp = 2,
+                public uint RecognisedCodesCount;
 
                 /// <summary>
-                /// 串口输出模式
+                ///         条码识别结果数组
                 /// </summary>
-                SerialPort = 3
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 200)] public CodeRecognitionResult[]
+                        CodeRecognitionResults;
+
+                /// <summary>
+                /// 保留
+                /// </summary>
+                [MarshalAs(UnmanagedType.U4, SizeConst = 4)] public uint[] Reserved;
         }
 }

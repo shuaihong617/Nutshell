@@ -16,10 +16,10 @@ using System.Runtime.InteropServices;
 namespace Nutshell.Hikvision.SmartVision.Sdk
 {
         /// <summary>
-        ///         条码信息结构体
+        ///         条码识别结果结构体
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public struct BarcodeRecognitionInformation
+        public struct CodeRecognitionResult
         {
                 /// <summary>
                 ///         条码Id
@@ -29,23 +29,22 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 /// <summary>
                 ///         条码字符
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)] public string Barcode;
+                [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)] public string Code;
 
                 /// <summary>
                 ///         条码字符长度
                 /// </summary>
-                public uint BarcodeLength;
+                public uint CodeLength;
 
                 /// <summary>
                 ///         条码类型
                 /// </summary>
-                public uint BarcodeType;
+                public uint CodeType;
 
                 /// <summary>
                 ///         条码位置
                 /// </summary>
-                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-                public Point2I[] Points;
+                [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public Point2I[] Points;
 
                 /// <summary>
                 ///         条码角度
@@ -58,12 +57,12 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 /// <summary>
                 ///         主包ID
                 /// </summary>
-                public uint nMainPackageId;
+                public uint MainPackageId;
 
                 /// <summary>
                 ///         次包ID
                 /// </summary>
-                public uint nSubPackageId;
+                public uint SubPackageId;
 
                 /// <summary>
                 ///         保留

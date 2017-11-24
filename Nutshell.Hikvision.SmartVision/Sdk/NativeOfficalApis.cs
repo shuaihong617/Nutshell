@@ -16,8 +16,12 @@ using System.Runtime.InteropServices;
 
 namespace Nutshell.Hikvision.SmartVision.Sdk
 {
-        internal static class OfficalApis
+        internal static class NativeOfficalApis
         {
+                // 回调函数声明
+                public delegate void OutputDelegate(IntPtr pData, ref FrameOutInformation pFrameInfo, IntPtr pUser);
+                public delegate void ExceptionDelegate(uint nMsgType, IntPtr pUser);
+
                 /// <summary>
                 /// 获取当前的SDK版本
                 /// </summary>
@@ -40,7 +44,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern ErrorCode DiscoveryEx(IN OUT MV_SC_DEVICE_INFO_LIST* pstDevList, IN const ushort nDevPort);
+                internal static extern ErrorCode DiscoveryEx(ref DeviceInformationCollection pstDevList, ushort nDevPort);
 
                 /*@fn       MV_SC_GetDeviceInfo
                 **@brief    获取设备信息
@@ -49,7 +53,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern ErrorCode GetDeviceInfo(uint nDeviceIp, OUT MV_SC_DEVICE_INFO * pstDeviceInfo);
+                internal static extern ErrorCode GetDeviceInfo(uint nDeviceIp, ref DeviceInfomation pstDeviceInfo);
 
                 /*@fn       MV_SC_GetDeviceInfoEx
                 **@brief    获取设备信息，扩展接口，可指定端口号
@@ -58,7 +62,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetDeviceInfoEx(IN uint nDeviceIp, IN const ushort nDevPort, OUT MV_SC_DEVICE_INFO* pstDeviceInfo);
+                internal static extern int MV_SC_GetDeviceInfoEx(uint nDeviceIp, ushort nDevPort, ref DeviceInformationCollection pstDeviceInfo);
 
                 /*@fn       MV_SC_CreateHandle
                 **@brief    创建设备句柄
@@ -67,8 +71,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_CreateHandle(OUT void** handle
-                                                                    , IN MV_SC_DEVICE_INFO* pstDevInfo);
+                internal static extern int MV_SC_CreateHandle(ref IntPtr handle,ref DeviceInfomation pstDevInfo);
 
                 /*@fn       MV_SC_CreateHandleEx
                 **@brief    创建设备句柄，扩展接口，可以指定创建设备句柄的端口号
@@ -79,11 +82,10 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_CreateHandleEx(OUT void** handle
-                                                                      , IN MV_SC_DEVICE_INFO* pstDevInfo
-                
-                                                                      , IN  const ushort nDevPort
-                                                                      , IN  const bool bLogEnable);
+                internal static extern int MV_SC_CreateHandleEx(ref IntPtr handle
+                                                                      , ref DeviceInfomation pstDevInfo
+                                                                      , ushort nDevPort
+                                                                      , bool bLogEnable);
 
                 /*@fn       MV_SC_DestroyHandle
                 **@brief    销毁设备句柄
@@ -162,7 +164,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetJobState(IntPtr handle, IN OUT int* pbWorking);
+                internal static extern int MV_SC_GetJobState(IntPtr handle, ref int pbWorking);
 
 
 
@@ -176,9 +178,9 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
                 internal static extern int MV_SC_GetOneFrame(IntPtr handle,
-                                                                  IN OUT uchar* pData,
-                                                                  IN uint nDataSize,
-                                                                  IN OUT MV_SC_IMAGE_OUT_INFO* pstImageInfo);
+                                                                  IntPtr pData,
+                                                                  uint nDataSize,
+                                                                  ref FrameOutInformation pstImageInfo);
 
 
 
@@ -190,9 +192,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_RegisterOutputCallBack(IntPtr handle,
-                                                                             IN void(__stdcall* cbOutput)(uchar* pData, MV_SC_IMAGE_OUT_INFO* pstImageInfo, void* pUser),
-                                                                           IntPtr pUser);
+                internal static extern int MV_SC_RegisterOutputCallBack(IntPtr handle,OutputDelegate outputDelegate,IntPtr pUser);
 
                 /*@fn       MV_SC_RegisterExceptionCallBack
                 **@brief    注册异常回调函数
@@ -202,9 +202,9 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_RegisterExceptionCallBack(IntPtr handle,
-                                                                                 void(__stdcall* cbException)(uint nMsgType, void* pUser),
-                                                                 void* pUser);
+                internal static extern int RegisterExceptionCallBack(IntPtr handle,
+                                                                 ExceptionDelegate exceptionDelegate,                
+                                                                 IntPtr pUser);
 
 
 
@@ -215,7 +215,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_CommandExecute(IntPtr handle, IN const char* strName);
+                internal static extern int MV_SC_CommandExecute(IntPtr handle, string strName);
 
                 /*@fn       MV_SC_GetBooleanValue
                 **@brief    获取Boolean型参数值
@@ -225,7 +225,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetBooleanValue(IntPtr handle, IN const char* strName, IN OUT bool* pbValue);
+                internal static extern int MV_SC_GetBooleanValue(IntPtr handle, string strName, ref bool pbValue);
 
                 /*@fn       MV_SC_SetBooleanValue
                 **@brief    设置Boolean型参数值
@@ -235,7 +235,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_SetBooleanValue(IntPtr handle, IN const char* strName, IN bool bValue);
+                internal static extern int MV_SC_SetBooleanValue(IntPtr handle, string strName, bool bValue);
 
                 /*@fn       MV_SC_GetIntegerValue
                 **@brief    获取Integer型参数值
@@ -245,7 +245,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetIntegerValue(IntPtr handle, IN const char* strName, IN OUT uint* pnValue);
+                internal static extern int MV_SC_GetIntegerValue(IntPtr handle, string strName, ref uint pnValue);
 
                 /*@fn       MV_SC_SetIntegerValue
                 **@brief    设置Integer型参数值
@@ -255,7 +255,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_SetIntegerValue(IntPtr handle, IN const char* strName, IN uint nValue);
+                internal static extern int MV_SC_SetIntegerValue(IntPtr handle, string strName, uint nValue);
 
                 /*@fn       MV_SC_GetFloatValue
                 **@brief    获取Float型参数值
@@ -265,7 +265,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetFloatValue(IntPtr handle, IN const char* strName, IN OUT float* pfValue);
+                internal static extern int MV_SC_GetFloatValue(IntPtr handle, string strName, ref float pfValue);
 
                 /*@fn       MV_SC_SetFloatValue
                 **@brief    设置Float型参数值
@@ -275,7 +275,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_SetFloatValue(IntPtr handle, IN const char* strName, IN float fValue);
+                internal static extern int MV_SC_SetFloatValue(IntPtr handle, string strName, float fValue);
 
                 /*@fn       MV_SC_GetStringValue
                 **@brief    获取String型参数值
@@ -286,7 +286,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetStringValue(IntPtr handle, IN const char* strName, IN OUT char* strValue, IN uint nSize);
+                internal static extern int MV_SC_GetStringValue(IntPtr handle, string strName, ref string strValue, uint nSize);
 
                 /*@fn       MV_SC_SetStringValue
                 **@brief    设置String型参数值
@@ -296,7 +296,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_SetStringValue(IntPtr handle, IN const char* strName, IN const char* strValue);
+                internal static extern int MV_SC_SetStringValue(IntPtr handle, string strName, ref string strValue);
 
                 /*@fn       MV_SC_GetEnumerationValue
                 **@brief    获取Enumeration型参数值
@@ -306,7 +306,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetEnumerationValue(IntPtr handle, IN const char* strName, IN OUT uint* pnValue);
+                internal static extern int MV_SC_GetEnumerationValue(IntPtr handle, string strName, ref uint pnValue);
 
                 /*@fn       MV_SC_SetEnumerationValue
                 **@brief    设置Enumeration型参数值
@@ -316,7 +316,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_SetEnumerationValue(IntPtr handle, IN const char* strName, IN uint nValue);
+                internal static extern int MV_SC_SetEnumerationValue(IntPtr handle, string strName, uint nValue);
 
                 /*@fn       MV_SC_GetNetTransInfo
                 **@brief    获取网络传输信息
@@ -325,7 +325,7 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 **@return   成功：返回MV_OK;失败：返回错误码
                 */
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_GetNetTransInfo(IntPtr handle, OUT MVSC_NETTRANS_INFO * pstNetTransInfo);
+                internal static extern int MV_SC_GetNetTransInfo(IntPtr handle, ref NetTranslationInformation pstNetTransInfo);
 
                 /*@fn       MV_SC_GetOptimalPacketSize
                 **@brief    获取最优的数据包大小
@@ -336,18 +336,5 @@ namespace Nutshell.Hikvision.SmartVision.Sdk
                 [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
                 internal static extern int MV_SC_GetOptimalPacketSize(IntPtr handle);
 
-
-                // 以下接口为定制接口，请谨慎使用
-
-                /*@fn       MV_SC_SaveJpg
-                **@brief    保存JPG格式图像
-                **@param    pstParam        图像转换参数结构体指针
-                **@return   成功：返回MV_OK;失败：返回错误码
-                */
-                [DllImport(@"MvCameraControl.dll", EntryPoint = "MV_CC_RegisterExceptionCallBack")]
-                internal static extern int MV_SC_SaveJpg(MVSC_IMG_CONVERT_PARAM* pstParam);
-
-
-               
-}
+        }
 }
